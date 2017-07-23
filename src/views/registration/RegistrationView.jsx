@@ -10,8 +10,8 @@ import RegistrationForm from './components/RegistrationForm';
 const RegistrationView = props => {
   const { onSubmitLogin, t } = props;
 
-  const submit = form => {
-    return onSubmitLogin(form).then(response => {
+  const submit = form =>
+    onSubmitLogin(form).then(response => {
       console.log('response');
       console.log(response);
       if (response.code === 11) {
@@ -26,7 +26,6 @@ const RegistrationView = props => {
         });
       }
     });
-  };
 
   return (
     <div>
