@@ -29,6 +29,13 @@ const RegistrationForm = props => {
           label={t('password')}
         />
 
+        <Field
+          name="serial"
+          type="text"
+          component={FormField}
+          label={t('serial')}
+        />
+
         <button type="submit" disabled={submitting}>
           {t('button.register')}
         </button>
