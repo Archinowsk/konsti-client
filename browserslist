@@ -1,0 +1,60 @@
+# Browsers that we support
+# https://github.com/ai/browserslist
+
+## MAJOR BROWSERS
+
+# Google Chrome
+Chrome >= 29
+
+# Mozilla Firefox
+Firefox >= 28
+
+# Internet Explorer
+Explorer >= 11
+
+# Microsoft Edge
+Edge >= 12
+
+# iOS Safari
+iOS >= 9.2
+
+# Opera
+Opera >= 17
+
+# Desktop Safari
+Safari >= 9
+
+# Internet Explorer Mobile
+ExplorerMobile >= 11
+
+## OTHER
+
+# Android WebView
+Android >= 4.4
+
+# Blackberry browser
+BlackBerry >= 10
+
+# Chrome for Android (mostly same as common Chrome)
+ChromeAndroid >= 55
+
+# Firefox for Android
+FirefoxAndroid >= 50
+
+# Opera Mobile
+OperaMobile >= 12.1
+
+# Opera Mini
+OperaMini all
+
+# Samsung Internet
+Samsung >= 4
+
+# UC Browser for Android
+UCAndroid >= 11
+
+# QQ Browser for Android
+# QQAndroid all
+
+# Electron framework
+# Electron all

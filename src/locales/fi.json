@@ -1,0 +1,52 @@
+{
+  "header": "Otsikko",
+  "footer": "Alaviite",
+  "button": {
+    "logout": "Kirjaudu ulos",
+    "login": "Kirjaudu sisään",
+    "register": "Luo tili",
+    "updateDb": "Päivitä pelitietokanta",
+    "assignPlayers": "Sijoita pelaajat",
+    "signup": "Ilmoittaudu",
+    "back": "Takaisin",
+    "favorite": "Lisää suosikkeihin",
+    "removeFavorite": "Poista suosikki"
+  },
+  "username": "Käyttäjänimi",
+  "password": "Salasana",
+  "language": {
+    "english": "Englanti",
+    "finnish": "Suomi"
+  },
+  "validation": {
+    "required": "Vaadittu kenttä"
+  },
+  "pages": {
+    "myGames": "Omat pelini",
+    "allGames": "Kaikki pelit",
+    "signUp": "Ilmoittaudu",
+    "settings": "Asetukset",
+    "admin": "Ylläpito"
+  },
+  "gameInfo": {
+    "title": "Pelin nimi",
+    "programType": "Ohjelmatyypit",
+    "date": "Päivämäärä",
+    "description": "Kuvaus",
+    "location": "Pelihuone",
+    "numberOfPlayers": "Pelaajamäärä",
+    "duration": "Pelin kesto",
+    "gamemaster": "Pelinjohtaja",
+    "table": "Pelipöytä",
+    "tags": "Tagit",
+    "time": "Aloitusaika"
+  },
+  "pageTitle": {
+    "login": "Kirjaudu sisään",
+    "registration": "Rekisteröi käyttäjätunnus"
+  },
+  "user": "Käyttäjä",
+  "selectTime": "Valitse aika",
+  "favoritedGames": "Suosikkipelit",
+  "signedGames": "Ilmoittautumiset"
+}

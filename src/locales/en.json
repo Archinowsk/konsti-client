@@ -1,0 +1,52 @@
+{
+  "header": "Header",
+  "footer": "Footer",
+  "button": {
+    "logout": "Logout",
+    "login": "Login",
+    "register": "Register",
+    "updateDb": "Update games database",
+    "assignPlayers": "Assign players",
+    "signup": "Sign up",
+    "back": "Back",
+    "favorite": "Favorite",
+    "removeFavorite": "Remove favorite"
+  },
+  "username": "Username",
+  "password": "Password",
+  "language": {
+    "english": "English",
+    "finnish": "Finnish"
+  },
+  "validation": {
+    "required": "Required"
+  },
+  "pages": {
+    "myGames": "My Games",
+    "allGames": "All games",
+    "signUp": "Sign Up",
+    "settings": "Settings",
+    "admin": "Admin"
+  },
+  "gameInfo": {
+    "title": "Title",
+    "programType": "Program type",
+    "date": "Date",
+    "description": "Description",
+    "location": "Location",
+    "numberOfPlayers": "Number of players",
+    "duration": "Length",
+    "gamemaster": "Game master",
+    "table": "Table",
+    "tags": "Tags",
+    "time": "Starting time"
+  },
+  "pageTitle": {
+    "login": "Please login",
+    "registration": "Please register user account"
+  },
+  "user": "User",
+  "selectTime": "Select time",
+  "favoritedGames": "Favorited games",
+  "signedGames": "Signed up games"
+}
