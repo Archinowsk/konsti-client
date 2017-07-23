@@ -7,7 +7,7 @@ import validate from '../../../app/validate';
 import FormField from '../../../shared-components/FormField';
 
 const LoginForm = props => {
-  const { handleSubmit, submitting, t } = props;
+  const { handleSubmit, submitting, t, error } = props;
 
   return (
     <div>
@@ -32,6 +32,11 @@ const LoginForm = props => {
         <button type="submit" disabled={submitting}>
           {t('button.login')}
         </button>
+
+        {error &&
+          <strong>
+            {error}
+          </strong>}
       </form>
     </div>
   );
@@ -41,6 +46,7 @@ LoginForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired,
   t: PropTypes.func.isRequired,
+  error: PropTypes.string, // eslint-disable-line react/require-default-props
 };
 
 export default translate()(

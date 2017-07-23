@@ -53,6 +53,7 @@
   "error": {
     "usernameTaken": "Käyttäjänimi on varattu",
     "invalidSerial": "Epäkelpo kirjautumiskoodi",
-    "registrationFailed": "Rekisteröityminen epäonnistui"
+    "registrationFailed": "Rekisteröityminen epäonnistui",
+    "loginFailed": "Käyttäjänimi ja salasana eivät täsmää"
   }
 }

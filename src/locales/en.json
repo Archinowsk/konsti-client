@@ -53,6 +53,7 @@
   "error": {
     "usernameTaken": "Username not free",
     "invalidSerial": "Invalid serial",
-    "registrationFailed": "Registration failed"
+    "registrationFailed": "Registration failed",
+    "loginFailed": "Username and password don't match"
   }
 }

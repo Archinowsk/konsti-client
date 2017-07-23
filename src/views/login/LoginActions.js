@@ -24,7 +24,7 @@ export const submitLogin = loginData => dispatch =>
       if (response.status === 'success') {
         dispatch(submitLoginAsync(loginData.username, true));
       }
-      return undefined;
+      return response;
     })
     .catch(error => {
       dispatch(submitLoginAsync(error));

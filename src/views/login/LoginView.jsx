@@ -2,27 +2,29 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
-import { withRouter } from 'react-router-dom';
+import { SubmissionError } from 'redux-form';
 
 import { submitLogin } from './LoginActions';
 import LoginForm from './components/LoginForm';
 
 const LoginView = props => {
-  const { onSubmitLogin, t, history } = props;
+  const { onSubmitLogin, t } = props;
+
+  const submit = form => {
+    return onSubmitLogin(form).then(response => {
+      console.log('response');
+      console.log(response);
+      if (response.code === 21) {
+        throw new SubmissionError({
+          _error: t('error.loginFailed'),
+        });
+      }
+    });
+  };
 
   return (
     <div>
-      <LoginForm onSubmit={onSubmitLogin} />
-
-      {/*
-      <button
-        onClick={() => {
-          history.push('/registration');
-        }}
-      >
-        {t('button.register')}
-      </button>
-      */}
+      <LoginForm onSubmit={submit} />
     </div>
   );
 };
@@ -30,7 +32,6 @@ const LoginView = props => {
 LoginView.propTypes = {
   onSubmitLogin: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
-  history: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -45,6 +46,6 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default withRouter(
-  translate()(connect(mapStateToProps, mapDispatchToProps)(LoginView))
+export default translate()(
+  connect(mapStateToProps, mapDispatchToProps)(LoginView)
 );
