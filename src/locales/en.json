@@ -49,5 +49,10 @@
   "user": "User",
   "selectTime": "Select time",
   "favoritedGames": "Favorited games",
-  "signedGames": "Signed up games"
+  "signedGames": "Signed up games",
+  "error": {
+    "usernameTaken": "Username not free",
+    "invalidSerial": "Invalid serial",
+    "registrationFailed": "Registration failed"
+  }
 }

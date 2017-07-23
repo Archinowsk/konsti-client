@@ -24,7 +24,7 @@ export const submitRegistration = registrationData => dispatch =>
         dispatch(submitRegistrationAsync(true));
         dispatch(submitLogin(registrationData));
       }
-      return undefined;
+      return response;
     })
     .catch(error => {
       dispatch(submitRegistrationAsync(error));

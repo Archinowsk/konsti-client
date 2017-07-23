@@ -49,5 +49,10 @@
   "user": "Käyttäjä",
   "selectTime": "Valitse aika",
   "favoritedGames": "Suosikkipelit",
-  "signedGames": "Ilmoittautumiset"
+  "signedGames": "Ilmoittautumiset",
+  "error": {
+    "usernameTaken": "Käyttäjänimi on varattu",
+    "invalidSerial": "Epäkelpo kirjautumiskoodi",
+    "registrationFailed": "Rekisteröityminen epäonnistui"
+  }
 }
