@@ -11,7 +11,7 @@ const RegistrationForm = props => {
 
   return (
     <div>
-      <p>
+      <p className="page-title">
         {t('pageTitle.registration')}
       </p>
       <form onSubmit={handleSubmit}>
@@ -41,7 +41,7 @@ const RegistrationForm = props => {
         </button>
 
         {error &&
-          <strong>
+          <strong className="error">
             {error}
           </strong>}
       </form>

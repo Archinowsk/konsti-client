@@ -20,7 +20,7 @@ a:hover {
 }
 
 header {
-  padding: 32px;
+  padding: 0 0 20px 0;
 }
 
 footer {
@@ -41,11 +41,26 @@ label {
 }
 
 button {
-  margin: 20px 10px 0 0;
+  margin: 10px 10px 0 0;
+  padding: 6px 20px 6px 20px;
+  background-color: #ffffff;
+  border: 1px solid $borderGray;
+  border-radius: 5px;
+  color: $fontGray;
+}
+
+button:hover {
+  background-color: $backgroundGreen;
+  border: 1px solid $borderGreen;
+  color: $borderGreen;
 }
 
 .error {
   color: $errorRed;
+}
+
+.main-container {
+  margin: 10px 10px 10px 10px;
 }
 
 .title {
@@ -63,8 +78,19 @@ button {
   flex-grow: 0;
   flex-shrink: 1;
   flex-basis: auto;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.form-field {
+  display: flex;
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  padding: 8px 0 8px 0;
 }
 
 .router-link {
@@ -73,4 +99,43 @@ button {
 
 .username {
   padding: 0 0 0 10px;
+}
+
+.form-field-error {
+  background-color: $backgroundGray;
+  color: $errorRed;
+  font-size: 12px;
+  padding: 4px 10px 4px 10px;
+}
+
+.error {
+  color: $errorRed;
+}
+
+.page-title {
+  font-weight: 700;
+}
+
+input {
+  box-sizing: border-box;
+  border-radius: 6px;
+}
+
+input::placeholder {
+  color: $placeholderFontGray;
+}
+
+input:focus {
+  box-sizing: border-box;
+  outline-style: none;
+  border: 1px solid #4d90fe;
+  box-shadow: 0 0 5px 0 #4d90fe;
+}
+
+.form-input {
+  border: 1px solid $borderGray;
+  height: 30px;
+  padding: 0 0 0 10px;
+  color: $fontGray;
+  width: 100%;
 }

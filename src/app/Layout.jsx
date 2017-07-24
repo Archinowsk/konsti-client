@@ -15,7 +15,7 @@ const Layout = props => {
   };
 
   return (
-    <div>
+    <div className="main-container">
       <header>
         <h1>Konsti</h1>
         <p>

@@ -11,7 +11,7 @@ const LoginForm = props => {
 
   return (
     <div>
-      <p>
+      <p className="page-title">
         {t('pageTitle.login')}
       </p>
       <form onSubmit={handleSubmit}>
@@ -34,7 +34,7 @@ const LoginForm = props => {
         </button>
 
         {error &&
-          <strong>
+          <strong className="error">
             {error}
           </strong>}
       </form>
