@@ -2,42 +2,11 @@ import axios from 'axios';
 import config from '../../config';
 import store from './store';
 
-const getAuthToken = () => {
+const setAuthToken = () => {
   const state = store.getState();
   const jwtToken = state.login.jwtToken;
 
-  const authHeader = {
-    headers: { Authorization: `bearer ${jwtToken}` },
-  };
-
-  return authHeader;
-  /*
-  function select(state) {
-    return state.login.jwtToken;
-  }
-
-  // let authHeader = {};
-
-  function listener() {
-    const token = select(store.getState());
-    axios.defaults.headers.common['Authorization'] = token;
-    console.log('token');
-    console.log(token);
-
-
-    authHeader = {
-      headers: { Authorization: `bearer ${token}` },
-    };
-
-  }
-
-  // store.subscribe(listener);
-
-  // return authHeader;
-
-  // console.log('authHeader');
-  // console.log(authHeader);
-  */
+  axios.defaults.headers.common.Authorization = `Bearer ${jwtToken}`;
 };
 
 const apiServerURL = config.apiServerURL;
@@ -87,8 +56,8 @@ export const postRegistration = registrationData =>
   );
 
 export const postGamesUpdate = () => {
-  const authHeader = getAuthToken();
-  return api.post('/games', {}, authHeader).then(
+  setAuthToken();
+  return api.post('/games').then(
     response => {
       if (response.status !== 200 || !response.data) {
         console.log('Response status !== 200, reject');
@@ -106,8 +75,9 @@ export const postGamesUpdate = () => {
   );
 };
 
-export const postPlayersAssign = () =>
-  api.post('/players').then(
+export const postPlayersAssign = () => {
+  setAuthToken();
+  return api.post('/players').then(
     response => {
       if (response.status !== 200 || !response.data) {
         console.log('Response status !== 200, reject');
@@ -123,7 +93,7 @@ export const postPlayersAssign = () =>
       }
     }
   );
-
+};
 export const getGames = () =>
   api.get('/games').then(
     response => {
@@ -142,8 +112,9 @@ export const getGames = () =>
     }
   );
 
-export const getUser = username =>
-  api
+export const getUser = username => {
+  setAuthToken();
+  return api
     .get('/user', {
       params: {
         username,
@@ -165,9 +136,10 @@ export const getUser = username =>
         }
       }
     );
-
-export const postSignup = signupData =>
-  api.post('/signup', { signupData }).then(
+};
+export const postSignup = signupData => {
+  setAuthToken();
+  return api.post('/signup', { signupData }).then(
     response => {
       if (response.status !== 200 || !response.data) {
         console.log('Response status !== 200, reject');
@@ -183,9 +155,11 @@ export const postSignup = signupData =>
       }
     }
   );
+};
 
-export const postFavorite = favoriteData =>
-  api.post('/favorite', { favoriteData }).then(
+export const postFavorite = favoriteData => {
+  setAuthToken();
+  return api.post('/favorite', { favoriteData }).then(
     response => {
       if (response.status !== 200 || !response.data) {
         console.log('Response status !== 200, reject');
@@ -201,3 +175,4 @@ export const postFavorite = favoriteData =>
       }
     }
   );
+};
