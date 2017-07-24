@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { submitUpdateFavorites } from '../views/my-games/MyGamesActions';
+import formatDate from '../utils/dates';
 
 class GameDetails extends React.Component {
   constructor(props) {
@@ -95,14 +96,7 @@ class GameDetails extends React.Component {
       </li>
     );
 
-    const formattedDate = new Date(this.state.game.date).toLocaleString('fi', {
-      weekday: 'short',
-      day: 'numeric',
-      month: 'numeric',
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-    });
+    const formattedDate = formatDate(new Date(this.state.game.date));
 
     return (
       <div>

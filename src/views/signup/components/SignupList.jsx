@@ -11,6 +11,7 @@ import {
   submitSignup,
   submitUpdatetGame,
 } from '../SignupActions';
+import formatDate from '../../../utils/dates';
 
 class SignupList extends React.Component {
   componentDidMount() {
@@ -118,10 +119,10 @@ class SignupList extends React.Component {
     // Show "signup starts xx:xx" on others
     // Toggle to show upcoming gameslots or all gameslots
     const TimesDropdown = sortedTimes.map(sortedTime => {
-      const formattedTime = new Date(sortedTime).toLocaleString('fi');
+      const formattedDate = formatDate(new Date(sortedTime));
       return (
         <option value={sortedTime} key={sortedTime}>
-          {formattedTime}
+          {formattedDate}
         </option>
       );
     });
