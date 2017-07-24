@@ -3,7 +3,7 @@
   "footer": "Alaviite",
   "button": {
     "logout": "Kirjaudu ulos",
-    "login": "Kirjaudu sisään",
+    "login": "Kirjaudu",
     "register": "Luo tili",
     "updateDb": "Päivitä pelitietokanta",
     "assignPlayers": "Sijoita pelaajat",
