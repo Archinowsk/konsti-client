@@ -96,9 +96,9 @@ class GameDetails extends React.Component {
       </li>
     );
 
-    const formattedDate = moment(this.state.game.date).format(
-      'DD.M.YYYY, HH:mm'
-    );
+    const formattedDate = moment
+      .utc(this.state.game.date)
+      .format('DD.M.YYYY HH:mm');
 
     return (
       <div>

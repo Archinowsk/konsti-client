@@ -120,7 +120,7 @@ class SignupList extends React.Component {
     // Toggle to show upcoming gameslots or all gameslots
     const TimesDropdown = sortedTimes.map(sortedTime => {
       // const formattedDate = formatDate(new Date(sortedTime));
-      const formattedDate = moment(sortedTime).format('DD.M.YYYY, HH:mm');
+      const formattedDate = moment.utc(sortedTime).format('DD.M.YYYY HH:mm');
       return (
         <option value={sortedTime} key={sortedTime}>
           {formattedDate}
