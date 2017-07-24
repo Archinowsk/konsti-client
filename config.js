@@ -1,7 +1,7 @@
 const config = {};
 
 // App info
-config.appName = 'Ropecon RPG Signup';
+config.appName = 'Konsti';
 
 // Variables for production environment
 if (process.env.NODE_ENV === 'production') {

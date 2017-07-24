@@ -17,6 +17,7 @@ const Layout = props => {
   return (
     <div>
       <header>
+        <h1>Konsti</h1>
         <p>
           {t('header')}
         </p>
@@ -43,12 +44,13 @@ const Layout = props => {
       <div>
         <Routes />
       </div>
-
+      {/*
       <footer>
         <p>
           {t('footer')}
         </p>
       </footer>
+      */}
     </div>
   );
 };
