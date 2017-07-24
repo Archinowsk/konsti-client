@@ -95,7 +95,14 @@ class GameDetails extends React.Component {
       </li>
     );
 
-    const formattedDate = new Date(this.state.game.date).toLocaleString('fi');
+    const formattedDate = new Date(this.state.game.date).toLocaleString('fi', {
+      weekday: 'short',
+      day: 'numeric',
+      month: 'numeric',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+    });
 
     return (
       <div>
