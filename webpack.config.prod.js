@@ -63,6 +63,7 @@ const config = {
   },
 
   plugins: [
+    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), // Ignore all optional deps of moment.js
     new CleanWebpackPlugin(['build'], {
       root: path.resolve(__dirname),
       verbose: false,
