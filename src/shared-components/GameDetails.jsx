@@ -22,6 +22,7 @@ class GameDetails extends React.Component {
   }
 
   componentDidMount() {
+    // Check if in favorites
     this.props.favoritedGames.forEach(favoritedGame => {
       if (favoritedGame.id === this.state.game.id) {
         this.setState({ favorited: true });
@@ -29,6 +30,7 @@ class GameDetails extends React.Component {
     });
   }
 
+  // Find selected game index
   findGame(id) {
     for (let i = 0; i < this.props.favoritedGames.length; i += 1) {
       if (this.props.favoritedGames[i].id === id) {
@@ -38,6 +40,7 @@ class GameDetails extends React.Component {
     return -1;
   }
 
+  // Favorite / unfavorite clicked
   addFavoriteEvent(action) {
     this.setState({ submitting: true });
     const gameIndex = this.findGame(this.state.game.id);
