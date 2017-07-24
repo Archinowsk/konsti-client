@@ -32,12 +32,12 @@ const LoginForm = props => {
         <button type="submit" disabled={submitting}>
           {t('button.login')}
         </button>
-
-        {error &&
-          <strong className="error">
-            {error}
-          </strong>}
       </form>
+
+      {error &&
+        <strong className="error">
+          {error}
+        </strong>}
     </div>
   );
 };
