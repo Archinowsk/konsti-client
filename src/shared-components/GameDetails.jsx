@@ -145,39 +145,75 @@ class GameDetails extends React.Component {
             {t('button.favorite')}
           </button>}
 
-        <ul>
-          <li>
-            {t('gameInfo.title')}: {this.state.game.title}
-          </li>
-          <li>
-            {t('gameInfo.programType')}:<ul> {attributesList}</ul>
-          </li>
-          <li>
-            {t('gameInfo.date')}: {formattedDate}
-          </li>
-          <li>
-            {t('gameInfo.description')}: {this.state.game.description}
-          </li>
-          <li>
-            {t('gameInfo.location')}: {this.state.game.location}
-          </li>
-          <li>
-            {t('gameInfo.numberOfPlayers')}: {this.state.game.min_attendance} -{' '}
-            {this.state.game.max_attendance}
-          </li>
-          <li>
-            {t('gameInfo.duration')}: {this.state.game.mins}
-          </li>
-          <li>
-            {t('gameInfo.gamemaster')}:<ul> {gamemastersList}</ul>
-          </li>
-          <li>
-            {t('gameInfo.table')}: {this.state.game.table}
-          </li>
-          <li>
-            {t('gameInfo.tags')}:<ul>{tagsList}</ul>
-          </li>
-        </ul>
+        <div className="game-details-row">
+          <span className="game-details-title">
+            {t('gameInfo.title')}
+          </span>
+          {this.state.game.title}
+        </div>
+        <div className="game-details-row">
+          <span className="game-details-title">
+            {t('gameInfo.programType')}
+          </span>
+          <ul>
+            {attributesList}
+          </ul>
+        </div>
+        <div className="game-details-row">
+          <span className="game-details-title">
+            {t('gameInfo.date')}
+          </span>
+          {formattedDate}
+        </div>
+        <div className="game-details-row">
+          <span className="game-details-title">
+            {t('gameInfo.description')}
+          </span>
+          {this.state.game.description}
+        </div>
+        <div className="game-details-row">
+          <span className="game-details-title">
+            {t('gameInfo.gamesystem')}
+          </span>
+          {this.state.game.notes}
+        </div>
+        <div className="game-details-row">
+          <span className="game-details-title">
+            {t('gameInfo.location')}
+          </span>
+          {this.state.game.location}
+        </div>
+        <div className="game-details-row">
+          <span className="game-details-title">
+            {t('gameInfo.numberOfPlayers')}
+          </span>
+          {this.state.game.min_attendance} - {this.state.game.max_attendance}
+        </div>
+        <div className="game-details-row">
+          <span className="game-details-title">{t('gameInfo.duration')}</span>
+          {this.state.game.mins / 60} {t('hours')}
+        </div>
+        <div className="game-details-row">
+          <span className="game-details-title">
+            {t('gameInfo.gamemaster')}
+          </span>
+          <ul>
+            {gamemastersList}
+          </ul>
+        </div>
+        {/*
+        <div className="game-details-row">
+          {t('gameInfo.table')}: {this.state.game.table}
+        </div>
+        */}
+        <div className="game-details-row">
+          <span className="game-details-title">
+            {t('gameInfo.tags')}
+          </span>
+          <ul>
+            {tagsList}
+          </ul>
+        </div>
       </div>
     );
   }

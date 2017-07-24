@@ -16,6 +16,7 @@
   "password": "Salasana",
   "serial": "Kirjautumiskoodi",
   "loading": "Ladataan...",
+  "hours": "tuntia",
   "language": {
     "english": "Englanti",
     "finnish": "Suomi"
@@ -33,15 +34,16 @@
   "gameInfo": {
     "title": "Pelin nimi",
     "programType": "Ohjelmatyypit",
-    "date": "Päivämäärä",
+    "date": "Aloitusaika",
     "description": "Kuvaus",
     "location": "Pelihuone",
     "numberOfPlayers": "Pelaajamäärä",
     "duration": "Pelin kesto",
-    "gamemaster": "Pelinjohtaja",
+    "gamemaster": "Pelinjohtaja(t)",
     "table": "Pelipöytä",
     "tags": "Tagit",
-    "time": "Aloitusaika"
+    "time": "Aloitusaika",
+    "gamesystem": "Pelijärjestelmä"
   },
   "pageTitle": {
     "login": "Kirjaudu sisään",

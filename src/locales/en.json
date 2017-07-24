@@ -16,6 +16,7 @@
   "password": "Password",
   "serial": "Registration serial",
   "loading": "Loading...",
+  "hours": "hours",
   "language": {
     "english": "English",
     "finnish": "Finnish"
@@ -32,16 +33,17 @@
   },
   "gameInfo": {
     "title": "Title",
-    "programType": "Program type",
-    "date": "Date",
+    "programType": "Program types",
+    "date": "Starting time",
     "description": "Description",
     "location": "Location",
     "numberOfPlayers": "Number of players",
     "duration": "Length",
-    "gamemaster": "Game master",
+    "gamemaster": "Game master(s)",
     "table": "Table",
     "tags": "Tags",
-    "time": "Starting time"
+    "time": "Starting time",
+    "gamesystem": "Game system"
   },
   "pageTitle": {
     "login": "Please login",
