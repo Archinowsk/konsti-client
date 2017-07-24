@@ -9,7 +9,7 @@ const AllGamesList = props => {
   // const startTimes = [];
 
   // Sort games by starting time
-  const sortedByTime = games.sort((a, b) => {
+  const sortedGames = games.sort((a, b) => {
     // const keyA = new Date(a.date);
     // const keyB = new Date(b.date);
     const keyA = moment(a.date) + a.title;
@@ -20,17 +20,10 @@ const AllGamesList = props => {
     return 0;
   });
 
-  /*
-  games.forEach(game => {
-    startTimes.push(game.date);
-  });
-
-  const sortedTimes = [...new Set(startTimes)].sort();
-  */
-
-  const GamesList = sortedByTime.map((game, index, array) => {
+  const GamesList = sortedGames.map((game, index, array) => {
     const formattedDate = moment.utc(game.date).format('DD.M.YYYY HH:mm');
 
+    // First title
     if (index === 0) {
       return (
         <div key={game.id}>
@@ -39,33 +32,35 @@ const AllGamesList = props => {
           </p>
           <p className="games-list">
             <Link to={`/games/${game.id}`}>
-              {game.title}
+              {game.title} - {formattedDate}
             </Link>
           </p>
         </div>
       );
+      // Set title if the previous starting time is diffenrent
     } else if (
-      typeof array[index + 1] !== 'undefined' &&
-      game.date === array[index + 1].date
+      typeof array[index - 1] !== 'undefined' &&
+      game.date !== array[index - 1].date
     ) {
       return (
         <div key={game.id}>
+          <p className="title">
+            {formattedDate}
+          </p>
           <p className="games-list">
             <Link to={`/games/${game.id}`}>
-              {game.title}
+              {game.title} - {formattedDate}
             </Link>
           </p>
         </div>
       );
     }
+    // Don't set new title
     return (
       <div key={game.id}>
-        <p className="title">
-          {formattedDate}
-        </p>
         <p className="games-list">
           <Link to={`/games/${game.id}`}>
-            {game.title}
+            {game.title} - {formattedDate}
           </Link>
         </p>
       </div>
