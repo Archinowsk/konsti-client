@@ -75,7 +75,7 @@ const config = {
       filename: 'index.html',
       template: TemplateWebpackPlugin,
       inject: false,
-      favicon: path.resolve(__dirname, 'static', 'favicon.ico'),
+      favicon: path.resolve(__dirname, 'static', 'favicon.png'),
       minify: {
         collapseWhitespace: true,
         preserveLineBreaks: true,
