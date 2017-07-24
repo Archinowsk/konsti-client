@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
 import {
   submitSelectDate,
@@ -11,7 +12,6 @@ import {
   submitSignup,
   submitUpdatetGame,
 } from '../SignupActions';
-import formatDate from '../../../utils/dates';
 
 class SignupList extends React.Component {
   componentDidMount() {
@@ -119,7 +119,8 @@ class SignupList extends React.Component {
     // Show "signup starts xx:xx" on others
     // Toggle to show upcoming gameslots or all gameslots
     const TimesDropdown = sortedTimes.map(sortedTime => {
-      const formattedDate = formatDate(new Date(sortedTime));
+      // const formattedDate = formatDate(new Date(sortedTime));
+      const formattedDate = moment(sortedTime).format('DD.M.YYYY, HH:mm');
       return (
         <option value={sortedTime} key={sortedTime}>
           {formattedDate}

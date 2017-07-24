@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
 import { submitUpdateFavorites } from '../views/my-games/MyGamesActions';
-import formatDate from '../utils/dates';
 
 class GameDetails extends React.Component {
   constructor(props) {
@@ -96,7 +96,9 @@ class GameDetails extends React.Component {
       </li>
     );
 
-    const formattedDate = formatDate(new Date(this.state.game.date));
+    const formattedDate = moment(this.state.game.date).format(
+      'DD.M.YYYY, HH:mm'
+    );
 
     return (
       <div>
