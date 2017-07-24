@@ -12,8 +12,6 @@ const RegistrationView = props => {
 
   const submit = form =>
     onSubmitLogin(form).then(response => {
-      console.log('response');
-      console.log(response);
       if (response.code === 11) {
         throw new SubmissionError({
           username: t('error.usernameTaken'),

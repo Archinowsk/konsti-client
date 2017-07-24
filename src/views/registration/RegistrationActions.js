@@ -13,8 +13,6 @@ const submitRegistrationAsync = registrationResponse => {
 export const submitRegistration = registrationData => dispatch =>
   postRegistration(registrationData)
     .then(response => {
-      console.log('sent registration data');
-      console.log(registrationData);
       console.log('submitRegistration() response');
       console.log(response);
       if (response.error) {

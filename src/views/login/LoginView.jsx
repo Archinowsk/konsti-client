@@ -12,8 +12,6 @@ const LoginView = props => {
 
   const submit = form =>
     onSubmitLogin(form).then(response => {
-      console.log('response');
-      console.log(response);
       if (response.code === 21) {
         throw new SubmissionError({
           _error: t('error.loginFailed'),

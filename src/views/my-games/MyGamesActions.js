@@ -46,8 +46,6 @@ const submitUpdateFavoritesAsync = favoritedGames => {
 export const submitUpdateFavorites = favoriteData => dispatch =>
   postFavorite(favoriteData)
     .then(response => {
-      console.log('Sent favorite data');
-      console.log(favoriteData);
       console.log('submitUpdateFavorites() response');
       console.log(response);
       if (response.error) {
