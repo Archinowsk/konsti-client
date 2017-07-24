@@ -10,11 +10,21 @@ import GameDetails from '../../shared-components/GameDetails';
 
 class SignupView extends React.Component {
   componentDidMount() {
-    this.props.onSubmitGetGames();
+    if (!this.props.games || this.props.games.length === 0) {
+      this.props.onSubmitGetGames();
+    }
   }
 
   render() {
     const { games, t } = this.props;
+
+    if (!games || games.length === 0) {
+      return (
+        <p>
+          {t('loading')}
+        </p>
+      );
+    }
 
     return (
       <div>
@@ -27,7 +37,7 @@ class SignupView extends React.Component {
           <Route
             exact
             path="/games/:id"
-            render={props => <GameDetails {...props} games={games} />}
+            render={props => <GameDetails {...props} />}
           />
         </Switch>
       </div>

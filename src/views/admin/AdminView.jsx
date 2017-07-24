@@ -5,50 +5,68 @@ import { translate } from 'react-i18next';
 
 import Blacklist from './components/Blacklist';
 import { submitGamesUpdate, submitPlayersAssign } from './AdminActions';
+import { submitGetGames } from '../all-games/AllGamesActions';
 
-const LoginView = props => {
-  const {
-    onSubmitGamesUpdate,
-    onSubmitPlayersAssign,
-    t,
-    updateResponse,
-    games,
-  } = props;
+class AdminView extends React.Component {
+  componentDidMount() {
+    if (!this.props.games || this.props.games.length === 0) {
+      this.props.onSubmitGetGames();
+    }
+  }
 
-  return (
-    <div>
-      <button
-        onClick={() => {
-          onSubmitGamesUpdate();
-        }}
-      >
-        {t('button.updateDb')}
-      </button>
+  render() {
+    const {
+      onSubmitGamesUpdate,
+      onSubmitPlayersAssign,
+      t,
+      updateResponse,
+      games,
+    } = this.props;
 
-      <button
-        onClick={() => {
-          onSubmitPlayersAssign();
-        }}
-      >
-        {t('button.assignPlayers')}
-      </button>
+    if (!games || games.length === 0) {
+      return (
+        <p>
+          {t('loading')}
+        </p>
+      );
+    }
 
-      {updateResponse.data.errors &&
-        <p className="error">
-          {updateResponse.data.message}
-        </p>}
+    return (
+      <div>
+        <button
+          onClick={() => {
+            onSubmitGamesUpdate();
+          }}
+        >
+          {t('button.updateDb')}
+        </button>
 
-      <Blacklist games={games} />
-    </div>
-  );
-};
+        <button
+          onClick={() => {
+            onSubmitPlayersAssign();
+          }}
+        >
+          {t('button.assignPlayers')}
+        </button>
 
-LoginView.propTypes = {
+        {updateResponse.data.errors &&
+          <p className="error">
+            {updateResponse.data.message}
+          </p>}
+
+        <Blacklist games={games} />
+      </div>
+    );
+  }
+}
+
+AdminView.propTypes = {
   onSubmitGamesUpdate: PropTypes.func.isRequired,
   onSubmitPlayersAssign: PropTypes.func.isRequired,
   t: PropTypes.func.isRequired,
   updateResponse: PropTypes.object.isRequired,
   games: PropTypes.array.isRequired,
+  onSubmitGetGames: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -62,9 +80,10 @@ const mapDispatchToProps = dispatch => {
   return {
     onSubmitGamesUpdate: () => dispatch(submitGamesUpdate()),
     onSubmitPlayersAssign: () => dispatch(submitPlayersAssign()),
+    onSubmitGetGames: () => dispatch(submitGetGames()),
   };
 };
 
 export default translate()(
-  connect(mapStateToProps, mapDispatchToProps)(LoginView)
+  connect(mapStateToProps, mapDispatchToProps)(AdminView)
 );

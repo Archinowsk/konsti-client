@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { translate } from 'react-i18next';
 
 import { submitGetUser } from './MyGamesActions';
 import { submitGetGames } from '../all-games/AllGamesActions';
@@ -10,12 +11,22 @@ import MyFavoritesList from './components/MyFavoritesList';
 
 class MyGamesView extends React.Component {
   componentDidMount() {
-    this.props.onSubmitGetGames();
+    if (!this.props.games || this.props.games.length === 0) {
+      this.props.onSubmitGetGames();
+    }
     this.props.onSubmitGetUser(this.props.username);
   }
 
   render() {
-    const { signedGames, favoritedGames, games } = this.props;
+    const { signedGames, favoritedGames, games, t } = this.props;
+
+    if (!games || games.length === 0) {
+      return (
+        <p>
+          {t('loading')}
+        </p>
+      );
+    }
 
     games.forEach(game => {
       signedGames.forEach(signedGame => {
@@ -47,6 +58,7 @@ MyGamesView.propTypes = {
   onSubmitGetUser: PropTypes.func.isRequired,
   username: PropTypes.string.isRequired,
   onSubmitGetGames: PropTypes.func.isRequired,
+  t: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -65,4 +77,6 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyGamesView);
+export default translate()(
+  connect(mapStateToProps, mapDispatchToProps)(MyGamesView)
+);

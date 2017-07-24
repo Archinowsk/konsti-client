@@ -20,7 +20,7 @@ export const submitGetGames = () => dispatch =>
       if (response.status === 'success') {
         dispatch(submitGetGamesAsync(response.games));
       }
-      return undefined;
+      return response;
     })
     .catch(error => {
       console.log(error);

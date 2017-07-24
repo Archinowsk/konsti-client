@@ -15,6 +15,7 @@
   "username": "Username",
   "password": "Password",
   "serial": "Login serial",
+  "loading": "Loading...",
   "language": {
     "english": "English",
     "finnish": "Finnish"

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
+import { translate } from 'react-i18next';
 
 import { submitGetGames } from './AllGamesActions';
 import AllGamesList from './components/AllGamesList';
@@ -9,11 +10,21 @@ import GameDetails from '../../shared-components/GameDetails';
 
 class AllGamesView extends React.Component {
   componentDidMount() {
-    this.props.onSubmitGetGames();
+    if (!this.props.games || this.props.games.length === 0) {
+      this.props.onSubmitGetGames();
+    }
   }
 
   render() {
-    const { games } = this.props;
+    const { games, t } = this.props;
+
+    if (!games || games.length === 0) {
+      return (
+        <p>
+          {t('loading')}
+        </p>
+      );
+    }
 
     return (
       <div>
@@ -31,7 +42,7 @@ class AllGamesView extends React.Component {
           <Route
             exact
             path="/games/:id"
-            render={props => <GameDetails {...props} games={games} />}
+            render={props => <GameDetails {...props} />}
           />
         </Switch>
       </div>
@@ -40,7 +51,7 @@ class AllGamesView extends React.Component {
 }
 
 AllGamesView.propTypes = {
-  // t: PropTypes.func,
+  t: PropTypes.func.isRequired,
   onSubmitGetGames: PropTypes.func.isRequired,
   games: PropTypes.array.isRequired,
 };
@@ -57,4 +68,6 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AllGamesView);
+export default translate()(
+  connect(mapStateToProps, mapDispatchToProps)(AllGamesView)
+);

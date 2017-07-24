@@ -15,6 +15,7 @@
   "username": "Käyttäjänimi",
   "password": "Salasana",
   "serial": "Kirjautumiskoodi",
+  "loading": "Ladataan...",
   "language": {
     "english": "Englanti",
     "finnish": "Suomi"

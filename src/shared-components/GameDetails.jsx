@@ -6,23 +6,32 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 
 import { submitUpdateFavorites } from '../views/my-games/MyGamesActions';
+import { submitGetGames } from '../views/all-games/AllGamesActions';
 
 class GameDetails extends React.Component {
   constructor(props) {
     super(props);
-    const gameById = game =>
-      game.id === parseInt(this.props.match.params.id, 10);
-    const game = this.props.games.find(gameById);
 
     this.state = {
       favorited: false,
       username: this.props.username,
-      game,
+      game: {},
       submitting: false,
     };
   }
 
+  componentWillMount() {
+    const gameById = game =>
+      game.id === parseInt(this.props.match.params.id, 10);
+    const game = this.props.games.find(gameById);
+    this.setState({ game });
+  }
+
   componentDidMount() {
+    if (!this.props.games || this.props.games.length === 0) {
+      this.props.onSubmitGetGames();
+    }
+
     // Check if in favorites
     for (let i = 0; i < this.props.favoritedGames.length; i += 1) {
       if (this.props.favoritedGames[i].id === this.state.game.id) {
@@ -76,7 +85,15 @@ class GameDetails extends React.Component {
   }
 
   render() {
-    const { t, history, loggedIn } = this.props;
+    const { t, history, loggedIn, games } = this.props;
+
+    if (!games || games.length === 0) {
+      return (
+        <p>
+          {t('loading')}
+        </p>
+      );
+    }
 
     const tagsList = this.state.game.tags.map(tag =>
       <li key={tag}>
@@ -175,6 +192,7 @@ GameDetails.propTypes = {
   username: PropTypes.string.isRequired,
   favoritedGames: PropTypes.array.isRequired,
   loggedIn: PropTypes.bool.isRequired,
+  onSubmitGetGames: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -182,12 +200,14 @@ const mapStateToProps = state => {
     username: state.login.username,
     favoritedGames: state.myGames.favoritedGames,
     loggedIn: state.login.loggedIn,
+    games: state.allGames.games,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     onSubmitUpdateFavorites: id => dispatch(submitUpdateFavorites(id)),
+    onSubmitGetGames: () => dispatch(submitGetGames()),
   };
 };
 

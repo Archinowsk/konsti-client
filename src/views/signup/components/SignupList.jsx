@@ -34,6 +34,15 @@ class SignupList extends React.Component {
       signedGames,
       onSubmitUpdatetGame,
     } = this.props;
+
+    if (!games || games.length === 0) {
+      return (
+        <p>
+          {t('loading')}
+        </p>
+      );
+    }
+
     const filteredGames = [];
     const startTimes = [];
 
