@@ -62,11 +62,6 @@ class SignupList extends React.Component {
       const signupData = { id, priority };
       const gameIndex = findGame(id);
 
-      console.log('priority');
-      console.log(priority);
-      console.log('gameIndex');
-      console.log(gameIndex);
-
       if (priority !== 0) {
         // New game
         if (gameIndex === -1) {

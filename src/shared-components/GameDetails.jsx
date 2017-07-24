@@ -57,10 +57,18 @@ class GameDetails extends React.Component {
         this.setState({ favorited: false });
       }
     }
+
+    // Send only game IDs to API
+    const favoritedGameIds = [];
+    this.props.favoritedGames.forEach(favoritedGame => {
+      favoritedGameIds.push({ id: favoritedGame.id });
+    });
+
     const favoriteData = {
       username: this.state.username,
-      favoritedGames: this.props.favoritedGames,
+      favoritedGames: favoritedGameIds,
     };
+
     this.props.onSubmitUpdateFavorites(favoriteData).then(() => {
       this.setState({ submitting: false });
     });
