@@ -16,8 +16,6 @@ const submitSignupAsync = status => {
 export const submitSignup = signupData => dispatch =>
   postSignup(signupData)
     .then(response => {
-      console.log('Sent signup data');
-      console.log(signupData);
       console.log('submitSignup() response');
       console.log(response);
       if (response.error) {

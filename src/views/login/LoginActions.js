@@ -15,8 +15,6 @@ const submitLoginAsync = (username, loggedIn, jwtToken) => {
 export const submitLogin = loginData => dispatch =>
   postLogin(loginData)
     .then(response => {
-      console.log('sent login data');
-      console.log(loginData);
       console.log('submitLogin() response');
       console.log(response);
       if (response.error) {
