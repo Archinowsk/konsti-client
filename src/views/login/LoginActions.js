@@ -3,11 +3,12 @@ import { postLogin } from '../../app/api';
 export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
 export const SUBMIT_LOGOUT = 'SUBMIT_LOGOUT';
 
-const submitLoginAsync = (username, loggedIn) => {
+const submitLoginAsync = (username, loggedIn, jwtToken) => {
   return {
     type: SUBMIT_LOGIN,
     username,
     loggedIn,
+    jwtToken,
   };
 };
 
@@ -22,7 +23,7 @@ export const submitLogin = loginData => dispatch =>
         return Promise.reject(response);
       }
       if (response.status === 'success') {
-        dispatch(submitLoginAsync(loginData.username, true));
+        dispatch(submitLoginAsync(loginData.username, true, response.jwtToken));
       }
       return response;
     })
