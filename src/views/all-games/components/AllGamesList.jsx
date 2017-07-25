@@ -32,7 +32,7 @@ const AllGamesList = props => {
           </p>
           <p className="games-list">
             <Link to={`/games/${game.id}`}>
-              {game.title} - {formattedDate}
+              {game.title}
             </Link>
           </p>
         </div>
@@ -49,7 +49,7 @@ const AllGamesList = props => {
           </p>
           <p className="games-list">
             <Link to={`/games/${game.id}`}>
-              {game.title} - {formattedDate}
+              {game.title}
             </Link>
           </p>
         </div>
@@ -60,7 +60,7 @@ const AllGamesList = props => {
       <div key={game.id}>
         <p className="games-list">
           <Link to={`/games/${game.id}`}>
-            {game.title} - {formattedDate}
+            {game.title}
           </Link>
         </p>
       </div>
