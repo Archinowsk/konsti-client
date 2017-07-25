@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { BrowserRouter, Route, Link, Switch, Redirect } from 'react-router-dom';
+import { HashRouter, Route, Link, Switch, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 
@@ -21,7 +21,7 @@ const Routes = props => {
 
   if (!loggedIn) {
     return (
-      <BrowserRouter>
+      <HashRouter>
         <div>
           <Link to="/games" className="router-link">
             {t('pages.allGames')}
@@ -49,12 +49,12 @@ const Routes = props => {
             <Redirect from="/*" to="/login" />
           </Switch>
         </div>
-      </BrowserRouter>
+      </HashRouter>
     );
   }
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <div>
         <Link to="/games" className="router-link">
           {t('pages.allGames')}
@@ -87,7 +87,7 @@ const Routes = props => {
           <Redirect from="/*" to="/" />
         </Switch>
       </div>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 

@@ -39,6 +39,9 @@ class GameDetails extends React.Component {
         break;
       }
     }
+
+    console.log('history');
+    console.log(this.props.history);
   }
 
   // Find selected game index
@@ -121,7 +124,11 @@ class GameDetails extends React.Component {
       <div>
         <button
           onClick={() => {
-            history.goBack();
+            if (history.action === 'PUSH') {
+              history.goBack();
+            } else {
+              history.push('/');
+            }
           }}
         >
           {t('button.back')}

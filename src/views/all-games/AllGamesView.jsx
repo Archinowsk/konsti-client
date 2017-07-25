@@ -40,9 +40,8 @@ class AllGamesView extends React.Component {
             render={props => <AllGamesList {...props} games={games} />}
           />
           <Route
-            exact
             path="/games/:id"
-            render={props => <GameDetails {...props} />}
+            render={props => <GameDetails {...props} games={games} />}
           />
         </Switch>
       </div>

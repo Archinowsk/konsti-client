@@ -9,6 +9,7 @@
   },
   "scripts": {
     "build": "webpack --config webpack.config.prod.js --progress",
+    "build-test": "webpack --config webpack.config.test.js --progress",
     "start": "webpack-dev-server --progress --config webpack.config.dev.js",
     "eslint": "eslint --ext .js,.jsx src",
     "eslint-fix": "eslint  --fix --ext .js,.jsx src",
