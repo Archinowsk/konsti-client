@@ -39,9 +39,6 @@ class GameDetails extends React.Component {
         break;
       }
     }
-
-    console.log('history');
-    console.log(this.props.history);
   }
 
   // Find selected game index
