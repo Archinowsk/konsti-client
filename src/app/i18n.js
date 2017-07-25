@@ -21,9 +21,9 @@ i18n.use(XHR).use(Cache).use(LanguageDetector).init({
     ajax: loadLocales,
   },
 
-  // lng: 'en',
+  lng: 'en',
   fallbackLng: 'en',
-  wait: true, // globally set to wait for loaded translations in translate hoc
+  wait: false, // globally set to wait for loaded translations in translate hoc
   // debug: true,
 
   /*

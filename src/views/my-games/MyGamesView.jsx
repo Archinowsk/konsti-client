@@ -8,6 +8,7 @@ import { submitGetGames } from '../all-games/AllGamesActions';
 
 import MySignupsList from './components/MySignupsList';
 import MyFavoritesList from './components/MyFavoritesList';
+import MyEnteredList from './components/MyEnteredList';
 
 class MyGamesView extends React.Component {
   componentDidMount() {
@@ -18,7 +19,7 @@ class MyGamesView extends React.Component {
   }
 
   render() {
-    const { signedGames, favoritedGames, games, t } = this.props;
+    const { signedGames, favoritedGames, enteredGames, games, t } = this.props;
 
     if (!games || games.length === 0) {
       return (
@@ -40,12 +41,19 @@ class MyGamesView extends React.Component {
           Object.assign(favoritedGame, game);
         }
       });
+
+      enteredGames.forEach(enteredGame => {
+        if (game.id === enteredGame.id) {
+          Object.assign(enteredGame, game);
+        }
+      });
     });
 
     return (
       <div>
         <MySignupsList signedGames={signedGames} />
         <MyFavoritesList favoritedGames={favoritedGames} />
+        <MyEnteredList enteredGames={enteredGames} />
       </div>
     );
   }
@@ -54,6 +62,7 @@ class MyGamesView extends React.Component {
 MyGamesView.propTypes = {
   signedGames: PropTypes.array.isRequired,
   favoritedGames: PropTypes.array.isRequired,
+  enteredGames: PropTypes.array.isRequired,
   games: PropTypes.array.isRequired,
   onSubmitGetUser: PropTypes.func.isRequired,
   username: PropTypes.string.isRequired,
@@ -65,6 +74,7 @@ const mapStateToProps = state => {
   return {
     signedGames: state.myGames.signedGames,
     favoritedGames: state.myGames.favoritedGames,
+    enteredGames: state.myGames.enteredGames,
     username: state.login.username,
     games: state.allGames.games,
   };

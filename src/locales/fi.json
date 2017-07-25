@@ -53,6 +53,7 @@
   "selectTime": "Valitse aika",
   "favoritedGames": "Suosikkipelit",
   "signedGames": "Ilmoittautumiset",
+  "enteredGames": "Vahvistuneet ilmoittautumiset",
   "error": {
     "usernameTaken": "Käyttäjänimi on varattu",
     "invalidSerial": "Epäkelpo kirjautumiskoodi",

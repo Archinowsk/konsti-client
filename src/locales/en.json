@@ -53,6 +53,7 @@
   "selectTime": "Select time",
   "favoritedGames": "Favorited games",
   "signedGames": "Signed up games",
+  "enteredGames": "Signup results",
   "error": {
     "usernameTaken": "Username not free",
     "invalidSerial": "Invalid serial",
