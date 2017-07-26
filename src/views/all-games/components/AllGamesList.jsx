@@ -7,24 +7,8 @@ import moment from 'moment';
 const AllGamesList = props => {
   const { games, t, blacklistedGames } = props;
 
-  const visibleGames = [];
-  // Remove hidden games
-  for (let i = 0; i < games.length; i += 1) {
-    let match = false;
-
-    for (let j = 0; j < blacklistedGames.length; j += 1) {
-      if (games[i].id === blacklistedGames[j].id) {
-        match = true;
-        break;
-      }
-    }
-    if (!match) {
-      visibleGames.push(games[i]);
-    }
-  }
-
   // Sort games by starting time and name
-  const sortedGames = visibleGames.sort((a, b) => {
+  const sortedGames = games.sort((a, b) => {
     const keyA = moment(a.date) + a.title;
     const keyB = moment(b.date) + b.title;
     if (keyA < keyB) return -1;

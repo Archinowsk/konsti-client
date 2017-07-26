@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 import { translate } from 'react-i18next';
 
 import { submitGetGames } from '../all-games/AllGamesActions';
+import { submitGetSettings } from '../admin/AdminActions';
 import SignupList from './components/SignupList';
 import GameDetails from '../../shared-components/GameDetails';
 
@@ -13,6 +14,7 @@ class SignupView extends React.Component {
     if (!this.props.games || this.props.games.length === 0) {
       this.props.onSubmitGetGames();
     }
+    this.props.onSubmitGetSettings();
   }
 
   render() {
@@ -48,6 +50,7 @@ class SignupView extends React.Component {
 SignupView.propTypes = {
   t: PropTypes.func.isRequired,
   onSubmitGetGames: PropTypes.func.isRequired,
+  onSubmitGetSettings: PropTypes.func.isRequired,
   games: PropTypes.array.isRequired,
 };
 
@@ -60,6 +63,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onSubmitGetGames: () => dispatch(submitGetGames()),
+    onSubmitGetSettings: () => dispatch(submitGetSettings()),
   };
 };
 

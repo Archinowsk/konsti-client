@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 import { translate } from 'react-i18next';
 
 import { submitGetGames } from './AllGamesActions';
+import { submitGetSettings } from '../admin/AdminActions';
 import AllGamesList from './components/AllGamesList';
 import GameDetails from '../../shared-components/GameDetails';
 
@@ -13,6 +14,7 @@ class AllGamesView extends React.Component {
     if (!this.props.games || this.props.games.length === 0) {
       this.props.onSubmitGetGames();
     }
+    this.props.onSubmitGetSettings();
   }
 
   render() {
@@ -26,6 +28,22 @@ class AllGamesView extends React.Component {
       );
     }
 
+    const visibleGames = [];
+    // Remove hidden games
+    for (let i = 0; i < games.length; i += 1) {
+      let match = false;
+
+      for (let j = 0; j < blacklistedGames.length; j += 1) {
+        if (games[i].id === blacklistedGames[j].id) {
+          match = true;
+          break;
+        }
+      }
+      if (!match) {
+        visibleGames.push(games[i]);
+      }
+    }
+
     return (
       <div>
         <Switch>
@@ -35,7 +53,7 @@ class AllGamesView extends React.Component {
             render={props =>
               <AllGamesList
                 {...props}
-                games={games}
+                games={visibleGames}
                 blacklistedGames={blacklistedGames}
               />}
           />
@@ -45,7 +63,7 @@ class AllGamesView extends React.Component {
             render={props =>
               <AllGamesList
                 {...props}
-                games={games}
+                games={visibleGames}
                 blacklistedGames={blacklistedGames}
               />}
           />
@@ -54,7 +72,7 @@ class AllGamesView extends React.Component {
             render={props =>
               <GameDetails
                 {...props}
-                games={games}
+                games={visibleGames}
                 blacklistedGames={blacklistedGames}
               />}
           />
@@ -69,6 +87,7 @@ AllGamesView.propTypes = {
   onSubmitGetGames: PropTypes.func.isRequired,
   games: PropTypes.array.isRequired,
   blacklistedGames: PropTypes.array.isRequired,
+  onSubmitGetSettings: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -81,6 +100,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onSubmitGetGames: () => dispatch(submitGetGames()),
+    onSubmitGetSettings: () => dispatch(submitGetSettings()),
   };
 };
 
