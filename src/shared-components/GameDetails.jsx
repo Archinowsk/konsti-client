@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 
 import { submitUpdateFavorites } from '../views/my-games/MyGamesActions';
+import { submitUpdateBlacklist } from '../views/admin/AdminActions';
 import { submitGetGames } from '../views/all-games/AllGamesActions';
 
 class GameDetails extends React.Component {
@@ -13,7 +14,8 @@ class GameDetails extends React.Component {
     super(props);
 
     this.state = {
-      favorited: false,
+      blacklisted: false,
+      hidden: false,
       username: this.props.username,
       game: {},
       submitting: false,
@@ -21,6 +23,7 @@ class GameDetails extends React.Component {
   }
 
   componentWillMount() {
+    // Get the open game from games list
     const gameById = game =>
       game.id === parseInt(this.props.match.params.id, 10);
     const game = this.props.games.find(gameById);
@@ -39,12 +42,20 @@ class GameDetails extends React.Component {
         break;
       }
     }
+
+    // Check if blacklisted
+    for (let i = 0; i < this.props.blacklistedGames.length; i += 1) {
+      if (this.props.blacklistedGames[i].id === this.state.game.id) {
+        this.setState({ blacklisted: true }); // eslint-disable-line react/no-did-mount-set-state
+        break;
+      }
+    }
   }
 
   // Find selected game index
-  findGame(id) {
-    for (let i = 0; i < this.props.favoritedGames.length; i += 1) {
-      if (this.props.favoritedGames[i].id === id) {
+  findGame(id, array) {
+    for (let i = 0; i < array.length; i += 1) {
+      if (array[i].id === id) {
         return i;
       }
     }
@@ -54,7 +65,10 @@ class GameDetails extends React.Component {
   // Favorite / unfavorite clicked
   addFavoriteEvent(action) {
     this.setState({ submitting: true });
-    const gameIndex = this.findGame(this.state.game.id);
+    const gameIndex = this.findGame(
+      this.state.game.id,
+      this.props.favoritedGames
+    );
     const allFavoritedGames = this.props.favoritedGames.slice();
 
     if (action === 'add') {
@@ -92,44 +106,43 @@ class GameDetails extends React.Component {
 
   // Favorite / unfavorite clicked
   addBlacklistEvent(action) {
-    console.log('blacklist');
-    /*
     this.setState({ submitting: true });
-    const gameIndex = this.findGame(this.state.game.id);
-    const allFavoritedGames = this.props.favoritedGames.slice();
+    const gameIndex = this.findGame(
+      this.state.game.id,
+      this.props.blacklistedGames
+    );
+    const allBlacklistedGames = this.props.blacklistedGames.slice();
 
     if (action === 'add') {
       if (gameIndex === -1) {
-        allFavoritedGames.push({ id: this.state.game.id });
+        allBlacklistedGames.push({ id: this.state.game.id });
       }
     } else if (action === 'del') {
       if (gameIndex > -1) {
-        allFavoritedGames.splice(gameIndex, 1);
+        allBlacklistedGames.splice(gameIndex, 1);
       }
     }
 
     // Send only game IDs to API
-    const favoritedGameIds = [];
-    allFavoritedGames.forEach(favoritedGame => {
-      favoritedGameIds.push({ id: favoritedGame.id });
+    const blacklistedGameIds = [];
+    allBlacklistedGames.forEach(blacklistedGame => {
+      blacklistedGameIds.push({ id: blacklistedGame.id });
     });
 
-    const favoriteData = {
-      username: this.state.username,
-      favoritedGames: favoritedGameIds,
+    const blacklistData = {
+      blacklistedGames: blacklistedGameIds,
     };
 
-    this.props.onSubmitUpdateFavorites(favoriteData).then(response => {
+    this.props.onSubmitUpdateBlacklist(blacklistData).then(response => {
       this.setState({ submitting: false });
       if (response.status === 'success') {
         if (action === 'add') {
-          this.setState({ favorited: true });
+          this.setState({ blacklisted: true });
         } else if (action === 'del') {
-          this.setState({ favorited: false });
+          this.setState({ blacklisted: false });
         }
       }
     });
-    */
   }
 
   render() {
@@ -301,15 +314,18 @@ GameDetails.propTypes = {
   onSubmitUpdateFavorites: PropTypes.func.isRequired,
   username: PropTypes.string.isRequired,
   favoritedGames: PropTypes.array.isRequired,
+  blacklistedGames: PropTypes.array.isRequired,
   loggedIn: PropTypes.bool.isRequired,
   onSubmitGetGames: PropTypes.func.isRequired,
   userGroup: PropTypes.string.isRequired,
+  onSubmitUpdateBlacklist: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
   return {
     username: state.login.username,
     favoritedGames: state.myGames.favoritedGames,
+    blacklistedGames: state.admin.blacklistedGames,
     loggedIn: state.login.loggedIn,
     games: state.allGames.games,
     userGroup: state.login.userGroup,
@@ -319,6 +335,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onSubmitUpdateFavorites: id => dispatch(submitUpdateFavorites(id)),
+    onSubmitUpdateBlacklist: id => dispatch(submitUpdateBlacklist(id)),
     onSubmitGetGames: () => dispatch(submitGetGames()),
   };
 };

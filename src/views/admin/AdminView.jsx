@@ -4,7 +4,11 @@ import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 
 import Blacklist from './components/Blacklist';
-import { submitGamesUpdate, submitPlayersAssign } from './AdminActions';
+import {
+  submitGamesUpdate,
+  submitPlayersAssign,
+  submitGetSettings,
+} from './AdminActions';
 import { submitGetGames } from '../all-games/AllGamesActions';
 
 class AdminView extends React.Component {
@@ -12,6 +16,7 @@ class AdminView extends React.Component {
     if (!this.props.games || this.props.games.length === 0) {
       this.props.onSubmitGetGames();
     }
+    this.props.onSubmitGetSettings();
   }
 
   render() {
@@ -21,6 +26,7 @@ class AdminView extends React.Component {
       t,
       updateResponse,
       games,
+      blacklistedGames,
     } = this.props;
 
     if (!games || games.length === 0) {
@@ -54,7 +60,7 @@ class AdminView extends React.Component {
             {updateResponse.data.message}
           </p>}
 
-        <Blacklist games={games} />
+        <Blacklist blacklistedGames={blacklistedGames} />
       </div>
     );
   }
@@ -67,12 +73,15 @@ AdminView.propTypes = {
   updateResponse: PropTypes.object.isRequired,
   games: PropTypes.array.isRequired,
   onSubmitGetGames: PropTypes.func.isRequired,
+  onSubmitGetSettings: PropTypes.func.isRequired,
+  blacklistedGames: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = state => {
   return {
     updateResponse: state.admin.updateResponse,
     games: state.allGames.games,
+    blacklistedGames: state.admin.blacklistedGames,
   };
 };
 
@@ -81,6 +90,7 @@ const mapDispatchToProps = dispatch => {
     onSubmitGamesUpdate: () => dispatch(submitGamesUpdate()),
     onSubmitPlayersAssign: () => dispatch(submitPlayersAssign()),
     onSubmitGetGames: () => dispatch(submitGetGames()),
+    onSubmitGetSettings: () => dispatch(submitGetSettings()),
   };
 };
 
