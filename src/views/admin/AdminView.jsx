@@ -99,6 +99,8 @@ class AdminView extends React.Component {
             {updateResponse.data.message}
           </p>}
 
+        <p>Select open signup</p>
+
         <Blacklist blacklistedGames={blacklistedGames} />
       </div>
     );

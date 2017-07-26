@@ -49,13 +49,6 @@ class MyGamesView extends React.Component {
       });
     });
 
-    console.log('signedGames');
-    console.log(signedGames);
-    console.log('favoritedGames');
-    console.log(favoritedGames);
-    console.log('enteredGames');
-    console.log(enteredGames);
-
     return (
       <div>
         <MySignupsList signedGames={signedGames} />
