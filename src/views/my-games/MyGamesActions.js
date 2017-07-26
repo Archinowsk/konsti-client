@@ -55,7 +55,7 @@ export const submitUpdateFavorites = favoriteData => dispatch =>
         dispatch(submitUpdateFavoritesAsync(favoriteData.favoritedGames));
         return Promise.resolve;
       }
-      return undefined;
+      return response;
     })
     .catch(error => {
       console.log(error);

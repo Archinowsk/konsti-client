@@ -59,12 +59,12 @@ class GameDetails extends React.Component {
     if (action === 'add') {
       if (gameIndex === -1) {
         this.props.favoritedGames.push({ id: this.state.game.id });
-        this.setState({ favorited: true });
+        // this.setState({ favorited: true });
       }
     } else if (action === 'del') {
       if (gameIndex > -1) {
         this.props.favoritedGames.splice(gameIndex, 1);
-        this.setState({ favorited: false });
+        // this.setState({ favorited: false });
       }
     }
 
@@ -79,8 +79,15 @@ class GameDetails extends React.Component {
       favoritedGames: favoritedGameIds,
     };
 
-    this.props.onSubmitUpdateFavorites(favoriteData).then(() => {
+    this.props.onSubmitUpdateFavorites(favoriteData).then(response => {
       this.setState({ submitting: false });
+      if (response.status === 'success') {
+        if (action === 'add') {
+          this.setState({ favorited: true });
+        } else if (action === 'del') {
+          this.setState({ favorited: false });
+        }
+      }
     });
   }
 
