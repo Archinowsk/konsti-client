@@ -1,6 +1,11 @@
 import { SUBMIT_LOGIN, SUBMIT_LOGOUT } from './LoginActions';
 
-const initialState = { username: '', loggedIn: false, jwtToken: '' };
+const initialState = {
+  username: '',
+  loggedIn: false,
+  jwtToken: '',
+  userGroup: '',
+};
 
 const loginReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -10,6 +15,7 @@ const loginReducer = (state = initialState, action) => {
         username: action.username,
         loggedIn: action.loggedIn,
         jwtToken: action.jwtToken,
+        userGroup: action.userGroup,
       };
     case SUBMIT_LOGOUT:
       return {
@@ -17,6 +23,7 @@ const loginReducer = (state = initialState, action) => {
         username: action.username,
         loggedIn: action.loggedIn,
         jwtToken: '',
+        userGroup: '',
       };
     default:
       return state;

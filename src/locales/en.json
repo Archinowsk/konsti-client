@@ -10,7 +10,9 @@
     "signup": "Sign up",
     "back": "Back",
     "favorite": "Favorite",
-    "removeFavorite": "Remove favorite"
+    "removeFavorite": "Remove favorite",
+    "hide": "Hide",
+    "unhide": "Unhide"
   },
   "username": "Username",
   "password": "Password",

@@ -17,7 +17,7 @@ import { submitLogin } from '../views/login/LoginActions';
 import LogoutButton from '../shared-components/LogoutButton';
 
 const Routes = props => {
-  const { loggedIn, t } = props;
+  const { loggedIn, t, userGroup } = props;
 
   if (!loggedIn) {
     return (
@@ -63,20 +63,26 @@ const Routes = props => {
         <Link to="/games" className="router-link">
           {t('pages.allGames')}
         </Link>
-        <Link to="/mygames" className="router-link">
-          {t('pages.myGames')}
-        </Link>
-        <Link to="/signup" className="router-link">
-          {t('pages.signUp')}
-        </Link>
+
+        {userGroup === 'user' &&
+          <Link to="/mygames" className="router-link">
+            {t('pages.myGames')}
+          </Link>}
+
+        {userGroup === 'user' &&
+          <Link to="/signup" className="router-link">
+            {t('pages.signUp')}
+          </Link>}
         {/*
           <Link to="/settings" className="router-link">
           {t('pages.settings')}
         </Link>
         */}
-        <Link to="/admin" className="router-link">
-          {t('pages.admin')}
-        </Link>
+        {userGroup === 'admin' &&
+          <Link to="/admin" className="router-link">
+            {t('pages.admin')}
+          </Link>}
+
         <LogoutButton />
 
         <hr />
@@ -98,11 +104,13 @@ const Routes = props => {
 Routes.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
   t: PropTypes.func.isRequired,
+  userGroup: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => {
   return {
     loggedIn: state.login.loggedIn,
+    userGroup: state.login.userGroup,
   };
 };
 

@@ -10,7 +10,9 @@
     "signup": "Ilmoittaudu",
     "back": "Takaisin",
     "favorite": "Lisää suosikkeihin",
-    "removeFavorite": "Poista suosikki"
+    "removeFavorite": "Poista suosikki",
+    "hide": "Piilota",
+    "unhide": "Poista piilotus"
   },
   "username": "Käyttäjänimi",
   "password": "Salasana",

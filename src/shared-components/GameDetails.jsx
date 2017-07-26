@@ -90,8 +90,50 @@ class GameDetails extends React.Component {
     });
   }
 
+  // Favorite / unfavorite clicked
+  addBlacklistEvent(action) {
+    console.log('blacklist');
+    /*
+    this.setState({ submitting: true });
+    const gameIndex = this.findGame(this.state.game.id);
+    const allFavoritedGames = this.props.favoritedGames.slice();
+
+    if (action === 'add') {
+      if (gameIndex === -1) {
+        allFavoritedGames.push({ id: this.state.game.id });
+      }
+    } else if (action === 'del') {
+      if (gameIndex > -1) {
+        allFavoritedGames.splice(gameIndex, 1);
+      }
+    }
+
+    // Send only game IDs to API
+    const favoritedGameIds = [];
+    allFavoritedGames.forEach(favoritedGame => {
+      favoritedGameIds.push({ id: favoritedGame.id });
+    });
+
+    const favoriteData = {
+      username: this.state.username,
+      favoritedGames: favoritedGameIds,
+    };
+
+    this.props.onSubmitUpdateFavorites(favoriteData).then(response => {
+      this.setState({ submitting: false });
+      if (response.status === 'success') {
+        if (action === 'add') {
+          this.setState({ favorited: true });
+        } else if (action === 'del') {
+          this.setState({ favorited: false });
+        }
+      }
+    });
+    */
+  }
+
   render() {
-    const { t, history, loggedIn, games } = this.props;
+    const { t, history, loggedIn, games, userGroup } = this.props;
 
     if (!games || games.length === 0) {
       return (
@@ -139,6 +181,7 @@ class GameDetails extends React.Component {
 
         {this.state.favorited &&
           loggedIn &&
+          userGroup === 'user' &&
           <button
             disabled={this.state.submitting}
             onClick={() => this.addFavoriteEvent('del')}
@@ -148,11 +191,32 @@ class GameDetails extends React.Component {
 
         {!this.state.favorited &&
           loggedIn &&
+          userGroup === 'user' &&
           <button
             disabled={this.state.submitting}
             onClick={() => this.addFavoriteEvent('add')}
           >
             {t('button.favorite')}
+          </button>}
+
+        {this.state.blacklisted &&
+          loggedIn &&
+          userGroup === 'admin' &&
+          <button
+            disabled={this.state.submitting}
+            onClick={() => this.addBlacklistEvent('del')}
+          >
+            {t('button.unhide')}
+          </button>}
+
+        {!this.state.blacklisted &&
+          loggedIn &&
+          userGroup === 'admin' &&
+          <button
+            disabled={this.state.submitting}
+            onClick={() => this.addBlacklistEvent('add')}
+          >
+            {t('button.hide')}
           </button>}
 
         <div className="game-details-row">
@@ -239,6 +303,7 @@ GameDetails.propTypes = {
   favoritedGames: PropTypes.array.isRequired,
   loggedIn: PropTypes.bool.isRequired,
   onSubmitGetGames: PropTypes.func.isRequired,
+  userGroup: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -247,6 +312,7 @@ const mapStateToProps = state => {
     favoritedGames: state.myGames.favoritedGames,
     loggedIn: state.login.loggedIn,
     games: state.allGames.games,
+    userGroup: state.login.userGroup,
   };
 };
 
