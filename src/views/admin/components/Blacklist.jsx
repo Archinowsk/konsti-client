@@ -9,7 +9,7 @@ const Blacklist = props => {
   const GamesList = blacklistedGames.map(game =>
     <li key={game.id}>
       <Link to={`/games/${game.id}`}>
-        {game.title} {game.id}
+        {game.title}
       </Link>
     </li>
   );

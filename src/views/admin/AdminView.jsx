@@ -37,6 +37,14 @@ class AdminView extends React.Component {
       );
     }
 
+    games.forEach(game => {
+      blacklistedGames.forEach(blacklistedGame => {
+        if (game.id === blacklistedGame.id) {
+          Object.assign(blacklistedGame, game);
+        }
+      });
+    });
+
     return (
       <div>
         <button
