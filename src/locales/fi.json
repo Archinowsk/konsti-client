@@ -61,5 +61,7 @@
     "loginFailed": "Käyttäjänimi ja salasana eivät täsmää"
   },
   "agreeTerms": "Hyväksyn ehdot ja",
-  "registerDescription": "rekisteriselosteen"
+  "iAgree": "Hyväksyn",
+  "registerDescription": "rekisteriselosteen",
+  "registrationSerialHelp": "Nouda kirjautusmikoodi roolipelitiskiltä"
 }

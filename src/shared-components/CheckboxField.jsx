@@ -22,7 +22,8 @@ const FormField = props => {
         </div>
 
         <label htmlFor={label}>
-          {t('agreeTerms')}{' '}
+          {/* {t('agreeTerms')}{' '}} */}
+          {t('iAgree')}{' '}
           <a href={registerDescriptionLink} target="_blank">
             {t('registerDescription')}
           </a>

@@ -61,5 +61,7 @@
     "loginFailed": "Username and password don't match"
   },
   "agreeTerms": "I agree to the terms and",
-  "registerDescription": "register description"
+  "iAgree": "I agree to the",
+  "registerDescription": "register description",
+  "registrationSerialHelp": "Get serial from Role-playing Game Desk"
 }

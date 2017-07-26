@@ -32,10 +32,15 @@ const RegistrationForm = props => {
 
         <Field
           name="serial"
+          id="serial"
           type="text"
           component={FormField}
           label={t('serial')}
         />
+
+        <label htmlFor="serial" className="help">
+          {t('registrationSerialHelp')}
+        </label>
 
         <Field
           name="registerDescription"
