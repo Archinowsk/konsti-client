@@ -24,7 +24,7 @@ export const submitSignup = signupData => dispatch =>
       if (response.status === 'success') {
         dispatch(submitSignupAsync(true));
       }
-      return undefined;
+      return response;
     })
     .catch(error => {
       console.log(error);

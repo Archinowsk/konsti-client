@@ -9,7 +9,7 @@ const MySignupsList = props => {
   const GamesList = signedGames.map(game =>
     <li key={game.id}>
       <Link to={`/games/${game.id}`}>
-        {game.title}
+        {game.title} {game.id}
       </Link>
     </li>
   );

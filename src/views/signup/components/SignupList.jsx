@@ -14,6 +14,14 @@ import {
 } from '../SignupActions';
 
 class SignupList extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      submitting: false,
+    };
+  }
+
   componentDidMount() {
     this.props.signedGames.forEach(signedGame => {
       this.props.onSubmitSelectGame(signedGame);
@@ -107,8 +115,11 @@ class SignupList extends React.Component {
     };
 
     const onSubmitClick = () => {
+      this.setState({ submitting: true });
       const signupData = { username, selectedGames };
-      onSubmitSignup(signupData);
+      onSubmitSignup(signupData).then(() => {
+        this.setState({ submitting: false });
+      });
     };
 
     // TODO: Select each priority only once
@@ -165,7 +176,7 @@ class SignupList extends React.Component {
         <ul>
           {GamesList}
         </ul>
-        <button onClick={onSubmitClick}>
+        <button disabled={this.state.submitting} onClick={onSubmitClick}>
           {t('button.signup')}
         </button>
       </div>
