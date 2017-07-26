@@ -61,7 +61,8 @@
     "usernameTaken": "Username not free",
     "invalidSerial": "Invalid serial",
     "registrationFailed": "Registration failed",
-    "loginFailed": "Username and password don't match"
+    "loginFailed": "Username and password don't match",
+    "unkown": "Unknown error"
   },
   "agreeTerms": "I agree to the terms and",
   "iAgree": "I agree to the",

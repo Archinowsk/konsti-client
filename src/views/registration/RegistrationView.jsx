@@ -22,6 +22,10 @@ const RegistrationView = props => {
           serial: t('error.invalidSerial'),
           _error: t('error.registrationFailed'),
         });
+      } else {
+        throw new SubmissionError({
+          _error: t('error.unknown'),
+        });
       }
     });
 
