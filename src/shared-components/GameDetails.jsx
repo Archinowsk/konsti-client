@@ -60,12 +60,10 @@ class GameDetails extends React.Component {
     if (action === 'add') {
       if (gameIndex === -1) {
         allFavoritedGames.push({ id: this.state.game.id });
-        // this.setState({ favorited: true });
       }
     } else if (action === 'del') {
       if (gameIndex > -1) {
         allFavoritedGames.splice(gameIndex, 1);
-        // this.setState({ favorited: false });
       }
     }
 

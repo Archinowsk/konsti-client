@@ -53,7 +53,6 @@ export const submitUpdateFavorites = favoriteData => dispatch =>
       }
       if (response.status === 'success') {
         dispatch(submitUpdateFavoritesAsync(favoriteData.favoritedGames));
-        return Promise.resolve;
       }
       return response;
     })
