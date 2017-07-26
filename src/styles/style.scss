@@ -59,6 +59,14 @@ button:hover {
   color: $borderGreen;
 }
 
+button:disabled {
+  background-color: $disabledGray;
+}
+
+button:disabled:hover {
+  color: $fontGray;
+}
+
 .error {
   color: $errorRed;
 }

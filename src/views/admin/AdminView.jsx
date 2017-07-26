@@ -12,6 +12,14 @@ import {
 import { submitGetGames } from '../all-games/AllGamesActions';
 
 class AdminView extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      submitting: false,
+    };
+  }
+
   componentDidMount() {
     if (!this.props.games || this.props.games.length === 0) {
       this.props.onSubmitGetGames();
@@ -45,23 +53,46 @@ class AdminView extends React.Component {
       });
     });
 
+    const submitUpdate = () => {
+      this.setState({ submitting: true });
+
+      onSubmitGamesUpdate().then(() => {
+        this.setState({ submitting: false });
+      });
+    };
+
+    const submitAssign = () => {
+      this.setState({ submitting: true });
+
+      onSubmitPlayersAssign().then(() => {
+        this.setState({ submitting: false });
+      });
+    };
+
     return (
       <div>
         <button
+          disabled={this.state.submitting}
           onClick={() => {
-            onSubmitGamesUpdate();
+            submitUpdate();
           }}
         >
           {t('button.updateDb')}
         </button>
 
         <button
+          disabled={this.state.submitting}
           onClick={() => {
-            onSubmitPlayersAssign();
+            submitAssign();
           }}
         >
           {t('button.assignPlayers')}
         </button>
+
+        {this.state.submitting &&
+          <p>
+            {t('loading')}
+          </p>}
 
         {updateResponse.data.errors &&
           <p className="error">

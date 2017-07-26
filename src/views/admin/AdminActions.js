@@ -53,7 +53,7 @@ export const submitPlayersAssign = () => dispatch =>
       if (response.status === 'success') {
         dispatch(submitPlayersAssignAsync(response));
       }
-      return undefined;
+      return response;
     })
     .catch(error => {
       dispatch(submitPlayersAssignAsync(error));
