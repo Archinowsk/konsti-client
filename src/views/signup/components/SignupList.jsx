@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import moment from 'moment';
 
 import {
   submitSelectDate,
@@ -12,6 +11,7 @@ import {
   submitSignup,
   submitUpdatetGame,
 } from '../SignupActions';
+import TimesDropdown from '../../../shared-components/TimesDropdown';
 
 class SignupList extends React.Component {
   constructor(props) {
@@ -69,13 +69,6 @@ class SignupList extends React.Component {
     }
 
     const filteredGames = [];
-    const startTimes = [];
-
-    visibleGames.forEach(game => {
-      startTimes.push(game.date);
-    });
-
-    const sortedTimes = [...new Set(startTimes)].sort();
 
     visibleGames.forEach(game => {
       if (game.date === date) {
@@ -174,28 +167,13 @@ class SignupList extends React.Component {
     console.log(nextTime);
     */
 
-    // TODO: Only enable next open signup
-    // Check current time and enable new timestamp
-    // Show "signup starts xx:xx" on others
-    // Toggle to show upcoming gameslots or all gameslots
-    const TimesDropdown = sortedTimes.map(sortedTime => {
-      // const formattedDate = formatDate(new Date(sortedTime));
-      const formattedDate = moment.utc(sortedTime).format('DD.M.YYYY HH:mm');
-      return (
-        <option value={sortedTime} key={sortedTime}>
-          {formattedDate}
-        </option>
-      );
-    });
-
     return (
       <div>
-        <select onChange={onSubmitSelectDate} value={date}>
-          <option>
-            {t('selectTime')}
-          </option>
-          {TimesDropdown}
-        </select>
+        <TimesDropdown
+          games={visibleGames}
+          onChange={onSubmitSelectDate}
+          date={date}
+        />
         <ul>
           {GamesList}
         </ul>
