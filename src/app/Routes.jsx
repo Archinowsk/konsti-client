@@ -29,9 +29,11 @@ const Routes = props => {
           <Link to="/mygames" className="router-link">
             {t('pages.myGames')}
           </Link>
+          {/*
           <Link to="/signup" className="router-link">
             {t('pages.signUp')}
           </Link>
+          */}
           <Link to="/login" className="router-link">
             {t('button.login')}
           </Link>
@@ -59,9 +61,11 @@ const Routes = props => {
         <Link to="/games" className="router-link">
           {t('pages.allGames')}
         </Link>
+        {/*
         <Link to="/mygames" className="router-link">
           {t('pages.myGames')}
         </Link>
+        */}
         <Link to="/signup" className="router-link">
           {t('pages.signUp')}
         </Link>
