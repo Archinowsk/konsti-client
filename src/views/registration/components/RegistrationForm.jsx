@@ -5,6 +5,7 @@ import { translate } from 'react-i18next';
 
 import validate from '../../../app/validate';
 import FormField from '../../../shared-components/FormField';
+import CheckboxField from '../../../shared-components/CheckboxField';
 
 const RegistrationForm = props => {
   const { handleSubmit, submitting, t, error } = props;
@@ -35,6 +36,29 @@ const RegistrationForm = props => {
           component={FormField}
           label={t('serial')}
         />
+
+        <Field
+          name="registerDescription"
+          id="registerDescription"
+          type="checkbox"
+          component={CheckboxField}
+        />
+
+        {/*
+        <label htmlFor="registerDescription">
+          I agree to the terms and{' '}
+          <a href="https://konsti.ropecon.fi/rekisteriseloste.txt">
+            register description
+          </a>
+        </label>
+        <p>
+          <input type="checkbox" />
+          <span> I agree to the terms and </span>
+          <a href="https://konsti.ropecon.fi/rekisteriseloste.txt">
+            register description
+          </a>
+        </p>
+*/}
 
         <button type="submit" disabled={submitting}>
           {t('button.register')}

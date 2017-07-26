@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
-// const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const TemplateWebpackPlugin = require('html-webpack-template');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -69,6 +69,7 @@ const config = {
       verbose: false,
       exclude: ['.keep'],
     }),
+    new CopyWebpackPlugin([{ from: 'static' }]),
     new HtmlWebpackPlugin({
       // html-webpack-plugin configs
       title: appConfig.appName,

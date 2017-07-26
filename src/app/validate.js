@@ -14,6 +14,9 @@ const validate = (values, props) => {
     errors.serial = t('validation.required');
   }
 
+  if (!values.registerDescription) {
+    errors.registerDescription = t('validation.required');
+  }
   return errors;
 };
 

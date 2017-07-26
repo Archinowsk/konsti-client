@@ -59,5 +59,7 @@
     "invalidSerial": "Invalid serial",
     "registrationFailed": "Registration failed",
     "loginFailed": "Username and password don't match"
-  }
+  },
+  "agreeTerms": "I agree to the terms and",
+  "registerDescription": "register description"
 }
