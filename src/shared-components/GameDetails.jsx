@@ -55,22 +55,23 @@ class GameDetails extends React.Component {
   addFavoriteEvent(action) {
     this.setState({ submitting: true });
     const gameIndex = this.findGame(this.state.game.id);
+    const allFavoritedGames = this.props.favoritedGames.slice();
 
     if (action === 'add') {
       if (gameIndex === -1) {
-        this.props.favoritedGames.push({ id: this.state.game.id });
+        allFavoritedGames.push({ id: this.state.game.id });
         // this.setState({ favorited: true });
       }
     } else if (action === 'del') {
       if (gameIndex > -1) {
-        this.props.favoritedGames.splice(gameIndex, 1);
+        allFavoritedGames.splice(gameIndex, 1);
         // this.setState({ favorited: false });
       }
     }
 
     // Send only game IDs to API
     const favoritedGameIds = [];
-    this.props.favoritedGames.forEach(favoritedGame => {
+    allFavoritedGames.forEach(favoritedGame => {
       favoritedGameIds.push({ id: favoritedGame.id });
     });
 
