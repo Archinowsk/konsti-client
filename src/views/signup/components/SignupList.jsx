@@ -33,6 +33,7 @@ class SignupList extends React.Component {
       username,
       signedGames,
       onSubmitUpdatetGame,
+      blacklistedGames,
     } = this.props;
 
     if (!games || games.length === 0) {
@@ -43,16 +44,32 @@ class SignupList extends React.Component {
       );
     }
 
+    const visibleGames = [];
+    // Remove hidden games
+    for (let i = 0; i < games.length; i += 1) {
+      let match = false;
+
+      for (let j = 0; j < blacklistedGames.length; j += 1) {
+        if (games[i].id === blacklistedGames[j].id) {
+          match = true;
+          break;
+        }
+      }
+      if (!match) {
+        visibleGames.push(games[i]);
+      }
+    }
+
     const filteredGames = [];
     const startTimes = [];
 
-    games.forEach(game => {
+    visibleGames.forEach(game => {
       startTimes.push(game.date);
     });
 
     const sortedTimes = [...new Set(startTimes)].sort();
 
-    games.forEach(game => {
+    visibleGames.forEach(game => {
       if (game.date === date) {
         filteredGames.push(game);
       }
@@ -168,6 +185,7 @@ SignupList.propTypes = {
   username: PropTypes.string.isRequired,
   signedGames: PropTypes.array.isRequired,
   onSubmitUpdatetGame: PropTypes.func.isRequired,
+  blacklistedGames: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -176,6 +194,7 @@ const mapStateToProps = state => {
     selectedGames: state.signup.selectedGames,
     username: state.login.username,
     signedGames: state.myGames.signedGames,
+    blacklistedGames: state.admin.blacklistedGames,
   };
 };
 

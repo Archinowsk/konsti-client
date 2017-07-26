@@ -16,7 +16,7 @@ class AllGamesView extends React.Component {
   }
 
   render() {
-    const { games, t } = this.props;
+    const { games, t, blacklistedGames } = this.props;
 
     if (!games || games.length === 0) {
       return (
@@ -32,16 +32,31 @@ class AllGamesView extends React.Component {
           <Route
             exact
             path="/"
-            render={props => <AllGamesList {...props} games={games} />}
+            render={props =>
+              <AllGamesList
+                {...props}
+                games={games}
+                blacklistedGames={blacklistedGames}
+              />}
           />
           <Route
             exact
             path="/games"
-            render={props => <AllGamesList {...props} games={games} />}
+            render={props =>
+              <AllGamesList
+                {...props}
+                games={games}
+                blacklistedGames={blacklistedGames}
+              />}
           />
           <Route
             path="/games/:id"
-            render={props => <GameDetails {...props} games={games} />}
+            render={props =>
+              <GameDetails
+                {...props}
+                games={games}
+                blacklistedGames={blacklistedGames}
+              />}
           />
         </Switch>
       </div>
@@ -53,11 +68,13 @@ AllGamesView.propTypes = {
   t: PropTypes.func.isRequired,
   onSubmitGetGames: PropTypes.func.isRequired,
   games: PropTypes.array.isRequired,
+  blacklistedGames: PropTypes.array.isRequired,
 };
 
 const mapStateToProps = state => {
   return {
     games: state.allGames.games,
+    blacklistedGames: state.admin.blacklistedGames,
   };
 };
 

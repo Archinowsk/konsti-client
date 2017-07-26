@@ -5,16 +5,28 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 
 const AllGamesList = props => {
-  const { games, t } = props;
-  // const startTimes = [];
+  const { games, t, blacklistedGames } = props;
 
-  // Sort games by starting time
-  const sortedGames = games.sort((a, b) => {
-    // const keyA = new Date(a.date);
-    // const keyB = new Date(b.date);
+  const visibleGames = [];
+  // Remove hidden games
+  for (let i = 0; i < games.length; i += 1) {
+    let match = false;
+
+    for (let j = 0; j < blacklistedGames.length; j += 1) {
+      if (games[i].id === blacklistedGames[j].id) {
+        match = true;
+        break;
+      }
+    }
+    if (!match) {
+      visibleGames.push(games[i]);
+    }
+  }
+
+  // Sort games by starting time and name
+  const sortedGames = visibleGames.sort((a, b) => {
     const keyA = moment(a.date) + a.title;
     const keyB = moment(b.date) + b.title;
-    // Compare the 2 dates
     if (keyA < keyB) return -1;
     if (keyA > keyB) return 1;
     return 0;
@@ -77,6 +89,7 @@ const AllGamesList = props => {
 AllGamesList.propTypes = {
   t: PropTypes.func.isRequired,
   games: PropTypes.array.isRequired,
+  blacklistedGames: PropTypes.array.isRequired,
 };
 
 export default translate()(AllGamesList);
