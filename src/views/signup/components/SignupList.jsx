@@ -151,7 +151,16 @@ class SignupList extends React.Component {
 
     const onSubmitClick = () => {
       this.setState({ submitting: true });
-      const signupData = { username, selectedGames };
+
+      // Send only game IDs to API
+      const selectedGameIds = [];
+      selectedGames.forEach(selectedGame => {
+        selectedGameIds.push({ id: selectedGame.id });
+      });
+
+      const signupData = { username, selectedGames: selectedGameIds };
+      // const signupData = { username, selectedGames };
+
       onSubmitSignup(signupData).then(() => {
         this.setState({ submitting: false });
       });
