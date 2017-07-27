@@ -18,13 +18,21 @@ const AllGamesList = props => {
 
   const GamesList = sortedGames.map((game, index, array) => {
     const formattedDate = moment.utc(game.date).format('DD.M.YYYY HH:mm');
+    const startingTime = moment
+      .utc(game.date)
+      .subtract(1, 'hours')
+      .format('HH:mm');
+    const endingTime = moment
+      .utc(game.date)
+      .subtract(15, 'minutes')
+      .format('HH:mm');
 
     // First title
     if (index === 0) {
       return (
         <div key={game.id}>
           <p className="title">
-            {formattedDate}
+            {formattedDate} ({t('signupOpenBetween')} {startingTime}-{endingTime})
           </p>
           <p className="games-list">
             <Link to={`/games/${game.id}`}>
@@ -41,7 +49,7 @@ const AllGamesList = props => {
       return (
         <div key={game.id}>
           <p className="title">
-            {formattedDate}
+            {formattedDate} ({t('signupOpenBetween')} {startingTime}-{endingTime})
           </p>
           <p className="games-list">
             <Link to={`/games/${game.id}`}>
