@@ -9,6 +9,7 @@ import myGamesReducer from '../views/my-games/MyGamesReducer';
 import settingsReducer from '../views/settings/SettingsReducer';
 import signupReducer from '../views/signup/SignupReducer';
 import adminReducer from '../views/admin/AdminReducer';
+import allSignupsReducer from '../views/all-signups/AllSignupsReducer';
 
 // Set reducers
 const reducer = combineReducers({
@@ -19,6 +20,7 @@ const reducer = combineReducers({
   settings: settingsReducer,
   signup: signupReducer,
   admin: adminReducer,
+  allSignups: allSignupsReducer,
 });
 
 // Set initial state

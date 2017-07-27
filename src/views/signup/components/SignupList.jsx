@@ -144,8 +144,9 @@ class SignupList extends React.Component {
       }
 
       return (
-        <p key={game.id}>
+        <p key={game.id} className="games-list">
           <select
+            className="priority-select"
             defaultValue={priority}
             onFocus={event => {
               this.oldValue = parseInt(event.target.value, 10);
@@ -187,12 +188,12 @@ class SignupList extends React.Component {
       <div>
         <ul>
           {filteredGames.length === 0 &&
-            <p>
+            <p className="page-title">
               {t('noOpenSignups')}
             </p>}
 
           {filteredGames.length !== 0 &&
-            <p>
+            <p className="page-title">
               {t('signupOpen')} {formattedDate}
             </p>}
 

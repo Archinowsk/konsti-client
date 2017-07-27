@@ -164,6 +164,26 @@ export const getSettings = () => {
   );
 };
 
+export const getResults = () => {
+  setAuthToken();
+  return api.get('/results').then(
+    response => {
+      if (response.status !== 200 || !response.data) {
+        console.log('Response status !== 200, reject');
+        return Promise.reject(response);
+      }
+      return response.data;
+    },
+    error => {
+      if (error.message === 'Network Error') {
+        console.log('Network error: no connection to server');
+      } else {
+        console.log(error);
+      }
+    }
+  );
+};
+
 export const postSignup = signupData => {
   setAuthToken();
   return api.post('/signup', { signupData }).then(

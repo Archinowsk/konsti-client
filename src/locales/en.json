@@ -32,7 +32,8 @@
     "allGames": "All Games",
     "signUp": "Sign Up",
     "settings": "Settings",
-    "admin": "Admin"
+    "admin": "Admin",
+    "allsignups": "All signup results"
   },
   "gameInfo": {
     "title": "Title",

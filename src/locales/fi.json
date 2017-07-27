@@ -32,7 +32,8 @@
     "allGames": "Kaikki pelit",
     "signUp": "Ilmoittaudu",
     "settings": "Asetukset",
-    "admin": "Ylläpito"
+    "admin": "Ylläpito",
+    "allsignups": "Kaikki ilmoittautumistulokset"
   },
   "gameInfo": {
     "title": "Pelin nimi",
