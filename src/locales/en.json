@@ -77,5 +77,6 @@
   "signupOpen": "Signup open for games starting at",
   "selectOpenSignup": "Select open signup time",
   "signupOpenBetween": "signup open ",
+  "signupOpenBetweenCapital": "Signup open ",
   "noSignupSelected": "No signup"
 }

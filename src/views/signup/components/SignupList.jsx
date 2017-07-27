@@ -174,6 +174,14 @@ class SignupList extends React.Component {
     });
 
     const formattedDate = moment.utc(signupTime).format('DD.M.YYYY HH:mm');
+    const startingTime = moment
+      .utc(signupTime)
+      .subtract(1, 'hours')
+      .format('HH:mm');
+    const endingTime = moment
+      .utc(signupTime)
+      .subtract(15, 'minutes')
+      .format('HH:mm');
 
     return (
       <div>
@@ -186,6 +194,11 @@ class SignupList extends React.Component {
           {filteredGames.length !== 0 &&
             <p>
               {t('signupOpen')} {formattedDate}
+            </p>}
+
+          {filteredGames.length !== 0 &&
+            <p>
+              {t('signupOpenBetweenCapital')} {startingTime}-{endingTime}
             </p>}
 
           {GamesList}
