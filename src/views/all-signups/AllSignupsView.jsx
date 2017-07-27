@@ -45,6 +45,14 @@ class AllSignupsView extends React.Component {
       }
     }
 
+    if (!selectedResult || selectedResult === 0) {
+      return (
+        <p>
+          {t('noResults')}
+        </p>
+      );
+    }
+
     games.forEach(game => {
       selectedResult.forEach(result => {
         if (game.id === result.enteredGame.id) {
