@@ -70,5 +70,6 @@
   "registrationSerialHelp": "Get serial from Role-playing Game Desk",
   "noSignedGames": "No signed up games",
   "noFavoritedGames": "No favorited games",
-  "noEnteredGames": "No signup results"
+  "noEnteredGames": "No signup results",
+  "noBlacklistedGames": "No hidden games"
 }

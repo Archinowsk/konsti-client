@@ -70,5 +70,6 @@
   "registrationSerialHelp": "Nouda kirjautusmikoodi roolipelitiskiltä",
   "noSignedGames": "Ei peli-ilmoittautumisia",
   "noFavoritedGames": "Ei suosikkipelejä",
-  "noEnteredGames": "Ei vahvistuneita ilmoittautumisia"
+  "noEnteredGames": "Ei vahvistuneita ilmoittautumisia",
+  "noBlacklistedGames": "Ei piilotettuja pelejä"
 }

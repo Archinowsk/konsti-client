@@ -29,6 +29,10 @@ const Blacklist = props => {
         {t('blacklistedGames')}
       </p>
       <ul>
+        {blacklistedGames.length === 0 &&
+          <span>
+            {t('noFavoritedGames')}
+          </span>}
         {GamesList}
       </ul>
     </div>
