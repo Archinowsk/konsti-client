@@ -3,15 +3,16 @@ import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import moment from 'moment';
 
 import {
-  submitSelectDate,
+  // submitSelectDate,
   submitSelectGame,
   submitDeselectGame,
   submitSignup,
   submitUpdatetGame,
 } from '../SignupActions';
-import TimesDropdown from '../../../shared-components/TimesDropdown';
+// import TimesDropdown from '../../../shared-components/TimesDropdown';
 
 class SignupList extends React.Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class SignupList extends React.Component {
       games,
       t,
       date,
-      onSubmitSelectDate,
+      // onSubmitSelectDate,
       onSubmitSelectGame,
       onSubmitDeselectGame,
       onSubmitSignup,
@@ -167,14 +168,28 @@ class SignupList extends React.Component {
     console.log(nextTime);
     */
 
+    const formattedDate = moment.utc(date).format('DD.M.YYYY HH:mm');
+
     return (
       <div>
+        {/*
         <TimesDropdown
           games={visibleGames}
           onChange={onSubmitSelectDate}
           date={date}
         />
+        */}
         <ul>
+          {filteredGames.length === 0 &&
+            <p>
+              {t('noOpenSignups')}
+            </p>}
+
+          {filteredGames.length !== 0 &&
+            <p>
+              {t('signupOpen')} {formattedDate}
+            </p>}
+
           {GamesList}
         </ul>
         <button disabled={this.state.submitting} onClick={onSubmitClick}>
@@ -190,7 +205,7 @@ SignupList.propTypes = {
   games: PropTypes.array.isRequired,
   date: PropTypes.string.isRequired,
   selectedGames: PropTypes.array.isRequired,
-  onSubmitSelectDate: PropTypes.func.isRequired,
+  // onSubmitSelectDate: PropTypes.func.isRequired,
   onSubmitSelectGame: PropTypes.func.isRequired,
   onSubmitDeselectGame: PropTypes.func.isRequired,
   onSubmitSignup: PropTypes.func.isRequired,
@@ -212,7 +227,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onSubmitSelectDate: event => dispatch(submitSelectDate(event.target.value)),
+    // onSubmitSelectDate: event => dispatch(submitSelectDate(event.target.value)),
     onSubmitSelectGame: id => dispatch(submitSelectGame(id)),
     onSubmitDeselectGame: gameIndex => dispatch(submitDeselectGame(gameIndex)),
     onSubmitSignup: signupData => dispatch(submitSignup(signupData)),

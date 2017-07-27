@@ -71,5 +71,8 @@
   "noSignedGames": "No signed up games",
   "noFavoritedGames": "No favorited games",
   "noEnteredGames": "No signup results",
-  "noBlacklistedGames": "No hidden games"
+  "noBlacklistedGames": "No hidden games",
+  "noOpenSignups": "No open signups",
+  "signupOpen": "Signup open for games starting at",
+  "selenctOpenSignup": "Select open signup time"
 }

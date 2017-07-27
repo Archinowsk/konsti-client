@@ -69,7 +69,7 @@ const Routes = props => {
             {t('pages.myGames')}
           </Link>}
 
-        {userGroup === 'user' &&
+        {(userGroup === 'user' || userGroup === 'admin') &&
           <Link to="/signup" className="router-link">
             {t('pages.signUp')}
           </Link>}

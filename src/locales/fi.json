@@ -71,5 +71,8 @@
   "noSignedGames": "Ei peli-ilmoittautumisia",
   "noFavoritedGames": "Ei suosikkipelejä",
   "noEnteredGames": "Ei vahvistuneita ilmoittautumisia",
-  "noBlacklistedGames": "Ei piilotettuja pelejä"
+  "noBlacklistedGames": "Ei piilotettuja pelejä",
+  "noOpenSignups": "Ei avoimia ilmoittautumisia",
+  "signupOpen": "Ilmoittautuminen auki peleille, jotka alkavat",
+  "selenctOpenSignup": "Valitse avoin ilmoittautumisajankohta"
 }
