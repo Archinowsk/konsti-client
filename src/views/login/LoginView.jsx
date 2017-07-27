@@ -16,11 +16,14 @@ const LoginView = props => {
         throw new SubmissionError({
           _error: t('error.loginFailed'),
         });
-      } else {
+      }
+      /*
+      else {
         throw new SubmissionError({
           _error: t('error.unknown'),
         });
       }
+      */
     });
 
   return (
