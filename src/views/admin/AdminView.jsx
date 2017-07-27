@@ -10,6 +10,8 @@ import {
   submitGetSettings,
 } from './AdminActions';
 import { submitGetGames } from '../all-games/AllGamesActions';
+import { submitSelectDate } from '../signup/SignupActions';
+import TimesDropdown from '../../shared-components/TimesDropdown';
 
 class AdminView extends React.Component {
   constructor(props) {
@@ -35,6 +37,8 @@ class AdminView extends React.Component {
       updateResponse,
       games,
       blacklistedGames,
+      onSubmitSelectDate,
+      date,
     } = this.props;
 
     if (!games || games.length === 0) {
@@ -53,6 +57,22 @@ class AdminView extends React.Component {
         }
       });
     });
+
+    const visibleGames = [];
+    // Remove hidden games
+    for (let i = 0; i < games.length; i += 1) {
+      let match = false;
+
+      for (let j = 0; j < blacklistedGames.length; j += 1) {
+        if (games[i].id === blacklistedGames[j].id) {
+          match = true;
+          break;
+        }
+      }
+      if (!match) {
+        visibleGames.push(games[i]);
+      }
+    }
 
     const submitUpdate = () => {
       this.setState({ submitting: true });
@@ -102,6 +122,12 @@ class AdminView extends React.Component {
 
         <p>Select open signup</p>
 
+        <TimesDropdown
+          games={visibleGames}
+          onChange={onSubmitSelectDate}
+          date={date}
+        />
+
         <Blacklist blacklistedGames={blacklistedGames} />
       </div>
     );
@@ -117,6 +143,8 @@ AdminView.propTypes = {
   onSubmitGetGames: PropTypes.func.isRequired,
   onSubmitGetSettings: PropTypes.func.isRequired,
   blacklistedGames: PropTypes.array.isRequired,
+  onSubmitSelectDate: PropTypes.func.isRequired,
+  date: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -124,6 +152,7 @@ const mapStateToProps = state => {
     updateResponse: state.admin.updateResponse,
     games: state.allGames.games,
     blacklistedGames: state.admin.blacklistedGames,
+    date: state.signup.date,
   };
 };
 
@@ -133,6 +162,7 @@ const mapDispatchToProps = dispatch => {
     onSubmitPlayersAssign: () => dispatch(submitPlayersAssign()),
     onSubmitGetGames: () => dispatch(submitGetGames()),
     onSubmitGetSettings: () => dispatch(submitGetSettings()),
+    onSubmitSelectDate: event => dispatch(submitSelectDate(event.target.value)),
   };
 };
 
