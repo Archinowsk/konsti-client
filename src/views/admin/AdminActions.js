@@ -44,8 +44,8 @@ const submitPlayersAssignAsync = assignResponse => {
   };
 };
 
-export const submitPlayersAssign = () => dispatch =>
-  postPlayersAssign()
+export const submitPlayersAssign = signupTime => dispatch =>
+  postPlayersAssign(signupTime)
     .then(response => {
       console.log('submitPlayersAssign() response');
       console.log(response);

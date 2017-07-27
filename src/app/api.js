@@ -75,27 +75,30 @@ export const postGamesUpdate = () => {
   );
 };
 
-export const postPlayersAssign = () => {
+export const postPlayersAssign = signupTime => {
   setAuthToken();
   // const startingTime = getNextStartingTime();
-  return api
-    .post('/players', { startingTime: '2016-07-30 20:00:00.000Z' })
-    .then(
-      response => {
-        if (response.status !== 200 || !response.data) {
-          console.log('Response status !== 200, reject');
-          return Promise.reject(response);
+  return (
+    api
+      // .post('/players', { startingTime: '2016-07-30 20:00:00.000Z' })
+      .post('/players', { startingTime: signupTime })
+      .then(
+        response => {
+          if (response.status !== 200 || !response.data) {
+            console.log('Response status !== 200, reject');
+            return Promise.reject(response);
+          }
+          return response.data;
+        },
+        error => {
+          if (error.message === 'Network Error') {
+            console.log('Network error: no connection to server');
+          } else {
+            console.log(error);
+          }
         }
-        return response.data;
-      },
-      error => {
-        if (error.message === 'Network Error') {
-          console.log('Network error: no connection to server');
-        } else {
-          console.log(error);
-        }
-      }
-    );
+      )
+  );
 };
 export const getGames = () =>
   api.get('/games').then(

@@ -89,7 +89,7 @@ class AdminView extends React.Component {
     const submitAssign = () => {
       this.setState({ submitting: true });
 
-      onSubmitPlayersAssign().then(() => {
+      onSubmitPlayersAssign(signupTime).then(() => {
         this.setState({ submitting: false });
       });
     };
@@ -193,7 +193,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onSubmitGamesUpdate: () => dispatch(submitGamesUpdate()),
-    onSubmitPlayersAssign: () => dispatch(submitPlayersAssign()),
+    onSubmitPlayersAssign: signupTime =>
+      dispatch(submitPlayersAssign(signupTime)),
     onSubmitGetGames: () => dispatch(submitGetGames()),
     onSubmitGetSettings: () => dispatch(submitGetSettings()),
     onSubmitSelectDate: event => dispatch(submitSelectDate(event.target.value)),
