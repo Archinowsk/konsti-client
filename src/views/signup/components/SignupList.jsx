@@ -10,6 +10,7 @@ import {
   submitDeselectGame,
   submitSignup,
   submitUpdatetGame,
+  submitAllSelectedGames,
 } from '../SignupActions';
 
 class SignupList extends React.Component {
@@ -25,8 +26,16 @@ class SignupList extends React.Component {
   }
 
   componentDidMount() {
+    this.props.onSubmitAllSelectedGames(this.props.signedGames);
+
     this.props.signedGames.forEach(signedGame => {
-      this.props.onSubmitSelectGame(signedGame);
+      if (signedGame.priority === 1) {
+        this.setState({ first: true });
+      } else if (signedGame.priority === 2) {
+        this.setState({ second: true });
+      } else if (signedGame.priority === 3) {
+        this.setState({ third: true });
+      }
     });
   }
 
@@ -136,15 +145,17 @@ class SignupList extends React.Component {
     const onSubmitClick = () => {
       this.setState({ submitting: true });
 
-      // Send only game IDs to API
+      // Send only game IDs and priorities to API
       const selectedGameIds = [];
       selectedGames.forEach(selectedGame => {
-        selectedGameIds.push({ id: selectedGame.id });
+        selectedGameIds.push({
+          id: selectedGame.id,
+          priority: selectedGame.priority,
+        });
       });
-
       const signupData = { username, selectedGames: selectedGameIds };
-      // const signupData = { username, selectedGames };
 
+      // const signupData = { username, selectedGames };
       onSubmitSignup(signupData).then(() => {
         this.setState({ submitting: false });
       });
@@ -242,6 +253,7 @@ SignupList.propTypes = {
   signedGames: PropTypes.array.isRequired,
   onSubmitUpdatetGame: PropTypes.func.isRequired,
   blacklistedGames: PropTypes.array.isRequired,
+  onSubmitAllSelectedGames: PropTypes.func.isRequired,
   // onSubmitGetUser: PropTypes.func.isRequired,
 };
 
@@ -257,6 +269,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    onSubmitAllSelectedGames: signedGames =>
+      dispatch(submitAllSelectedGames(signedGames)),
     onSubmitSelectGame: id => dispatch(submitSelectGame(id)),
     onSubmitDeselectGame: gameIndex => dispatch(submitDeselectGame(gameIndex)),
     onSubmitSignup: signupData => dispatch(submitSignup(signupData)),

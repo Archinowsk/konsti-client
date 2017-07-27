@@ -5,6 +5,7 @@ export const SUBMIT_SELECT_DATE = 'SUBMIT_SELECT_DATE';
 export const SUBMIT_SELECT_GAME = 'SUBMIT_SELECT_GAME';
 export const SUBMIT_DESELECT_GAME = 'SUBMIT_DESELECT_GAME';
 export const SUBMIT_UPDATE_GAME = 'SUBMIT_UPDATE_GAME';
+export const SUBMIT_ALL_SELECTED_GAMES = 'SUBMIT_ALL_SELECTED_GAMES';
 
 const submitSignupAsync = status => {
   return {
@@ -56,5 +57,12 @@ export const submitUpdatetGame = signupData => {
   return {
     type: SUBMIT_UPDATE_GAME,
     signupData,
+  };
+};
+
+export const submitAllSelectedGames = selectedGames => {
+  return {
+    type: SUBMIT_ALL_SELECTED_GAMES,
+    selectedGames,
   };
 };

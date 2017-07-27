@@ -20,11 +20,14 @@ class AllGamesView extends React.Component {
     */
     this.props.onSubmitGetGames();
     this.props.onSubmitGetSettings();
+    this.props.onSubmitGetUser(this.props.username);
+    /*
     this.props.onSubmitGetUser(this.props.username).then(() => {
       this.props.signedGames.forEach(signedGame => {
         this.props.onSubmitSelectGame(signedGame);
       });
     });
+    */
   }
 
   render() {
@@ -82,8 +85,8 @@ AllGamesView.propTypes = {
   games: PropTypes.array.isRequired,
   blacklistedGames: PropTypes.array.isRequired,
   onSubmitGetSettings: PropTypes.func.isRequired,
-  signedGames: PropTypes.array.isRequired,
-  onSubmitSelectGame: PropTypes.func.isRequired,
+  // signedGames: PropTypes.array.isRequired,
+  // onSubmitSelectGame: PropTypes.func.isRequired,
   username: PropTypes.string.isRequired,
   onSubmitGetUser: PropTypes.func.isRequired,
 };

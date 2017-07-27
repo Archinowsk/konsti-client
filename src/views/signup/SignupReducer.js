@@ -4,6 +4,7 @@ import {
   SUBMIT_SELECT_GAME,
   SUBMIT_DESELECT_GAME,
   SUBMIT_UPDATE_GAME,
+  SUBMIT_ALL_SELECTED_GAMES,
 } from './SignupActions';
 
 const initialState = { status: false, date: '', selectedGames: [] };
@@ -14,6 +15,8 @@ const signupReducer = (state = initialState, action) => {
       return { ...state, status: action.status };
     case SUBMIT_SELECT_DATE:
       return { ...state, date: action.date };
+    case SUBMIT_ALL_SELECTED_GAMES:
+      return { ...state, selectedGames: action.selectedGames };
     case SUBMIT_SELECT_GAME:
       return {
         ...state,
