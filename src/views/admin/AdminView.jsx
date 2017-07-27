@@ -2,12 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
+import moment from 'moment';
 
 import Blacklist from './components/Blacklist';
 import {
   submitGamesUpdate,
   submitPlayersAssign,
   submitGetSettings,
+  submitSignupTime,
 } from './AdminActions';
 import { submitGetGames } from '../all-games/AllGamesActions';
 import { submitSelectDate } from '../signup/SignupActions';
@@ -38,7 +40,9 @@ class AdminView extends React.Component {
       games,
       blacklistedGames,
       onSubmitSelectDate,
+      onSubmitSignupTime,
       date,
+      signupTime,
     } = this.props;
 
     if (!games || games.length === 0) {
@@ -90,6 +94,17 @@ class AdminView extends React.Component {
       });
     };
 
+    const submitTime = () => {
+      this.setState({ submitting: true });
+
+      onSubmitSignupTime(date).then(() => {
+        this.setState({ submitting: false });
+      });
+    };
+
+    // submitSelectDate(signupTime);
+    const formattedDate = moment.utc(signupTime).format('DD.M.YYYY HH:mm');
+
     return (
       <div>
         <button
@@ -121,13 +136,27 @@ class AdminView extends React.Component {
           </p>}
 
         <p>
-          {t('selenctOpenSignup')}
+          {t('selectOpenSignup')}
         </p>
+
+        <p>
+          {t('signupOpen')} {formattedDate}
+        </p>
+
+        <button
+          disabled={this.state.submitting}
+          onClick={() => {
+            submitTime();
+          }}
+        >
+          {t('button.saveTime')}
+        </button>
 
         <TimesDropdown
           games={visibleGames}
           onChange={onSubmitSelectDate}
           date={date}
+          signupTime={signupTime}
         />
 
         <Blacklist blacklistedGames={blacklistedGames} />
@@ -146,7 +175,9 @@ AdminView.propTypes = {
   onSubmitGetSettings: PropTypes.func.isRequired,
   blacklistedGames: PropTypes.array.isRequired,
   onSubmitSelectDate: PropTypes.func.isRequired,
+  onSubmitSignupTime: PropTypes.func.isRequired,
   date: PropTypes.string.isRequired,
+  signupTime: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -155,6 +186,7 @@ const mapStateToProps = state => {
     games: state.allGames.games,
     blacklistedGames: state.admin.blacklistedGames,
     date: state.signup.date,
+    signupTime: state.admin.signupTime,
   };
 };
 
@@ -165,6 +197,7 @@ const mapDispatchToProps = dispatch => {
     onSubmitGetGames: () => dispatch(submitGetGames()),
     onSubmitGetSettings: () => dispatch(submitGetSettings()),
     onSubmitSelectDate: event => dispatch(submitSelectDate(event.target.value)),
+    onSubmitSignupTime: date => dispatch(submitSignupTime(date)),
   };
 };
 

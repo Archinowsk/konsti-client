@@ -12,7 +12,8 @@
     "favorite": "Lisää suosikkeihin",
     "removeFavorite": "Poista suosikki",
     "hide": "Piilota",
-    "unhide": "Poista piilotus"
+    "unhide": "Poista piilotus",
+    "saveTime": "Tallenna ilmoittautumisaika"
   },
   "username": "Käyttäjänimi",
   "password": "Salasana",
@@ -74,5 +75,5 @@
   "noBlacklistedGames": "Ei piilotettuja pelejä",
   "noOpenSignups": "Ei avoimia ilmoittautumisia",
   "signupOpen": "Ilmoittautuminen auki peleille, jotka alkavat",
-  "selenctOpenSignup": "Valitse avoin ilmoittautumisajankohta"
+  "selectOpenSignup": "Valitse avoin ilmoittautumisajankohta"
 }

@@ -33,8 +33,9 @@ class SignupList extends React.Component {
     const {
       games,
       t,
-      date,
+      // date,
       // onSubmitSelectDate,
+      signupTime,
       onSubmitSelectGame,
       onSubmitDeselectGame,
       onSubmitSignup,
@@ -72,7 +73,7 @@ class SignupList extends React.Component {
     const filteredGames = [];
 
     visibleGames.forEach(game => {
-      if (game.date === date) {
+      if (game.date === signupTime) {
         filteredGames.push(game);
       }
     });
@@ -168,7 +169,7 @@ class SignupList extends React.Component {
     console.log(nextTime);
     */
 
-    const formattedDate = moment.utc(date).format('DD.M.YYYY HH:mm');
+    const formattedDate = moment.utc(signupTime).format('DD.M.YYYY HH:mm');
 
     return (
       <div>
@@ -203,7 +204,8 @@ class SignupList extends React.Component {
 SignupList.propTypes = {
   t: PropTypes.func.isRequired,
   games: PropTypes.array.isRequired,
-  date: PropTypes.string.isRequired,
+  // date: PropTypes.string.isRequired,
+  signupTime: PropTypes.string.isRequired,
   selectedGames: PropTypes.array.isRequired,
   // onSubmitSelectDate: PropTypes.func.isRequired,
   onSubmitSelectGame: PropTypes.func.isRequired,
@@ -217,7 +219,8 @@ SignupList.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    date: state.signup.date,
+    // date: state.signup.date,
+    signupTime: state.admin.signupTime,
     selectedGames: state.signup.selectedGames,
     username: state.login.username,
     signedGames: state.myGames.signedGames,

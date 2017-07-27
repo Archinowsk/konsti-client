@@ -3,12 +3,14 @@ import {
   postPlayersAssign,
   postBlacklist,
   getSettings,
+  postSignupTime,
 } from '../../app/api';
 
 export const SUBMIT_GAMES_UPDATE = 'SUBMIT_GAMES_UPDATE';
 export const SUBMIT_PLAYERS_ASSIGN = 'SUBMIT_PLAYERS_ASSIGN';
 export const SUBMIT_UPDATE_BLACKLIST = 'SUBMIT_UPDATE_BLACKLIST';
 export const SUBMIT_GET_SETTINGS = 'SUBMIT_GET_SETTINGS';
+export const SUBMIT_SELECT_SIGNUP_TIME = 'SUBMIT_SELECT_SIGNUP_TIME';
 
 const submitGamesUpdateAsync = updateResponse => {
   return {
@@ -83,10 +85,11 @@ export const submitUpdateBlacklist = blacklistData => dispatch =>
       console.log(error);
     });
 
-const submitGetUserAsync = blacklistedGames => {
+const submitGetSettingsAsync = (blacklistedGames, signupTime) => {
   return {
     type: SUBMIT_GET_SETTINGS,
     blacklistedGames,
+    signupTime,
   };
 };
 
@@ -99,7 +102,36 @@ export const submitGetSettings = () => dispatch =>
         return Promise.reject(response);
       }
       if (response.status === 'success') {
-        dispatch(submitGetUserAsync(response.games.blacklistedGames));
+        dispatch(
+          submitGetSettingsAsync(
+            response.games.blacklistedGames,
+            response.signupTime
+          )
+        );
+      }
+      return response;
+    })
+    .catch(error => {
+      console.log(error);
+    });
+
+const submitSignupTimeAsync = signupTime => {
+  return {
+    type: SUBMIT_SELECT_SIGNUP_TIME,
+    signupTime,
+  };
+};
+
+export const submitSignupTime = signupTime => dispatch =>
+  postSignupTime(signupTime)
+    .then(response => {
+      console.log('submitSignupTime() response');
+      console.log(response);
+      if (response.error) {
+        return Promise.reject(response);
+      }
+      if (response.status === 'success') {
+        dispatch(submitSignupTimeAsync(signupTime));
       }
       return response;
     })

@@ -12,7 +12,8 @@
     "favorite": "Favorite",
     "removeFavorite": "Remove favorite",
     "hide": "Hide",
-    "unhide": "Unhide"
+    "unhide": "Unhide",
+    "saveTime": "Save signup time"
   },
   "username": "Username",
   "password": "Password",
@@ -74,5 +75,5 @@
   "noBlacklistedGames": "No hidden games",
   "noOpenSignups": "No open signups",
   "signupOpen": "Signup open for games starting at",
-  "selenctOpenSignup": "Select open signup time"
+  "selectOpenSignup": "Select open signup time"
 }
