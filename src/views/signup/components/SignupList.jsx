@@ -22,29 +22,13 @@ class SignupList extends React.Component {
       second: false,
       third: false,
     };
-
-    this.props.signedGames.forEach(signedGame => {
-      this.props.onSubmitSelectGame(signedGame);
-    });
   }
-
-  // componentWillMount() {}
 
   componentDidMount() {
-    /*
     this.props.signedGames.forEach(signedGame => {
       this.props.onSubmitSelectGame(signedGame);
     });
-    */
   }
-
-  /*
-  componentWillReceiveProps(nextProps) {
-    this.forceUpdate();
-    this.setState(this.state);
-    console.log('new props');
-  }
-  */
 
   render() {
     const {
