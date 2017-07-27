@@ -33,6 +33,9 @@ const TimesDropdown = props => {
         <option>
           {t('selectTime')}
         </option>
+        <option value="2000-01-01T23:59:00.000Z">
+          {t('noSignupSelected')}
+        </option>
         {times}
       </select>
     </div>

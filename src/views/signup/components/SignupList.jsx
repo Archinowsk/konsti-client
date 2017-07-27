@@ -6,13 +6,11 @@ import { connect } from 'react-redux';
 import moment from 'moment';
 
 import {
-  // submitSelectDate,
   submitSelectGame,
   submitDeselectGame,
   submitSignup,
   submitUpdatetGame,
 } from '../SignupActions';
-// import TimesDropdown from '../../../shared-components/TimesDropdown';
 
 class SignupList extends React.Component {
   constructor(props) {
@@ -36,8 +34,6 @@ class SignupList extends React.Component {
     const {
       games,
       t,
-      // date,
-      // onSubmitSelectDate,
       signupTime,
       onSubmitSelectGame,
       onSubmitDeselectGame,
@@ -181,13 +177,6 @@ class SignupList extends React.Component {
 
     return (
       <div>
-        {/*
-        <TimesDropdown
-          games={visibleGames}
-          onChange={onSubmitSelectDate}
-          date={date}
-        />
-        */}
         <ul>
           {filteredGames.length === 0 &&
             <p>
@@ -212,10 +201,8 @@ class SignupList extends React.Component {
 SignupList.propTypes = {
   t: PropTypes.func.isRequired,
   games: PropTypes.array.isRequired,
-  // date: PropTypes.string.isRequired,
   signupTime: PropTypes.string.isRequired,
   selectedGames: PropTypes.array.isRequired,
-  // onSubmitSelectDate: PropTypes.func.isRequired,
   onSubmitSelectGame: PropTypes.func.isRequired,
   onSubmitDeselectGame: PropTypes.func.isRequired,
   onSubmitSignup: PropTypes.func.isRequired,
@@ -227,7 +214,6 @@ SignupList.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    // date: state.signup.date,
     signupTime: state.admin.signupTime,
     selectedGames: state.signup.selectedGames,
     username: state.login.username,
@@ -238,7 +224,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    // onSubmitSelectDate: event => dispatch(submitSelectDate(event.target.value)),
     onSubmitSelectGame: id => dispatch(submitSelectGame(id)),
     onSubmitDeselectGame: gameIndex => dispatch(submitDeselectGame(gameIndex)),
     onSubmitSignup: signupData => dispatch(submitSignup(signupData)),

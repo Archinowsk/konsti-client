@@ -76,5 +76,6 @@
   "noOpenSignups": "Ei avoimia ilmoittautumisia",
   "signupOpen": "Ilmoittautuminen auki peleille, jotka alkavat",
   "selectOpenSignup": "Valitse avoin ilmoittautumisajankohta",
-  "signupOpenBetween": "ilmoittautuminen auki "
+  "signupOpenBetween": "ilmoittautuminen auki ",
+  "noSignupSelected": "Ei ilmoittautumista"
 }
