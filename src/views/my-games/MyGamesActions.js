@@ -30,7 +30,7 @@ export const submitGetUser = username => dispatch =>
           )
         );
       }
-      return undefined;
+      return response;
     })
     .catch(error => {
       console.log(error);

@@ -41,9 +41,15 @@ label {
 }
 
 ul {
-  margin: 10px 0 0 0;
+  margin: 10px 0 0 30px;
   padding: 0;
 }
+
+/*
+li {
+  // margin: 0 0 0 30px;
+}
+*/
 
 button {
   margin: 10px 10px 10px 0;
@@ -189,4 +195,8 @@ input[type='checkbox'] {
 
 .bold {
   font-weight: 600;
+}
+
+.signup-list {
+  margin: 0;
 }

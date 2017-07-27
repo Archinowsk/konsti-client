@@ -22,13 +22,29 @@ class SignupList extends React.Component {
       second: false,
       third: false,
     };
-  }
 
-  componentDidMount() {
     this.props.signedGames.forEach(signedGame => {
       this.props.onSubmitSelectGame(signedGame);
     });
   }
+
+  // componentWillMount() {}
+
+  componentDidMount() {
+    /*
+    this.props.signedGames.forEach(signedGame => {
+      this.props.onSubmitSelectGame(signedGame);
+    });
+    */
+  }
+
+  /*
+  componentWillReceiveProps(nextProps) {
+    this.forceUpdate();
+    this.setState(this.state);
+    console.log('new props');
+  }
+  */
 
   render() {
     const {
@@ -43,9 +59,18 @@ class SignupList extends React.Component {
       signedGames,
       onSubmitUpdatetGame,
       blacklistedGames,
+      // onSubmitGetUser,
     } = this.props;
 
     if (!games || games.length === 0) {
+      return (
+        <p>
+          {t('loading')}
+        </p>
+      );
+    }
+
+    if (!signedGames || signedGames === 0) {
       return (
         <p>
           {t('loading')}
@@ -186,7 +211,7 @@ class SignupList extends React.Component {
 
     return (
       <div>
-        <ul>
+        <ul className="signup-list">
           {filteredGames.length === 0 &&
             <p className="page-title">
               {t('noOpenSignups')}
@@ -224,6 +249,7 @@ SignupList.propTypes = {
   signedGames: PropTypes.array.isRequired,
   onSubmitUpdatetGame: PropTypes.func.isRequired,
   blacklistedGames: PropTypes.array.isRequired,
+  // onSubmitGetUser: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
