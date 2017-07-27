@@ -12,9 +12,12 @@ import MyEnteredList from './components/MyEnteredList';
 
 class MyGamesView extends React.Component {
   componentDidMount() {
+    /*
     if (!this.props.games || this.props.games.length === 0) {
       this.props.onSubmitGetGames();
     }
+    */
+    this.props.onSubmitGetGames();
     this.props.onSubmitGetUser(this.props.username);
   }
 

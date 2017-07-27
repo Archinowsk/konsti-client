@@ -31,9 +31,12 @@ class GameDetails extends React.Component {
   }
 
   componentDidMount() {
+    /*
     if (!this.props.games || this.props.games.length === 0) {
       this.props.onSubmitGetGames();
     }
+    */
+    this.props.onSubmitGetGames();
 
     // Check if in favorites
     for (let i = 0; i < this.props.favoritedGames.length; i += 1) {
