@@ -20,6 +20,9 @@ class SignupList extends React.Component {
 
     this.state = {
       submitting: false,
+      first: false,
+      second: false,
+      third: false,
     };
   }
 
@@ -87,8 +90,25 @@ class SignupList extends React.Component {
       return -1;
     };
 
-    const getSignupEvent = (id, event) => {
+    const getSignupEvent = (id, event, oldValue) => {
       const priority = parseInt(event.target.value, 10);
+
+      if (oldValue === 1) {
+        this.setState({ first: false });
+      } else if (oldValue === 2) {
+        this.setState({ second: false });
+      } else if (oldValue === 3) {
+        this.setState({ third: false });
+      }
+
+      if (priority === 1) {
+        this.setState({ first: true });
+      } else if (priority === 2) {
+        this.setState({ second: true });
+      } else if (priority === 3) {
+        this.setState({ third: true });
+      }
+
       const signupData = { id, priority };
       const gameIndex = findGame(id);
 
@@ -98,7 +118,6 @@ class SignupList extends React.Component {
           onSubmitSelectGame(signupData);
           // Existing game
         } else {
-          console.log('change');
           onSubmitUpdatetGame(signupData);
         }
         // Remove existing game
@@ -117,8 +136,9 @@ class SignupList extends React.Component {
       });
     };
 
-    // TODO: Select each priority only once
+    // Build component with priority dropdowns and game info
     const GamesList = filteredGames.map(game => {
+      // Get existing priority value
       let priority = 0;
       for (let i = 0; i < signedGames.length; i += 1) {
         if (signedGames[i].id === game.id) {
@@ -131,12 +151,23 @@ class SignupList extends React.Component {
         <p key={game.id}>
           <select
             defaultValue={priority}
-            onChange={event => getSignupEvent(game.id, event)}
+            onFocus={event => {
+              this.oldValue = parseInt(event.target.value, 10);
+            }}
+            onChange={event => {
+              getSignupEvent(game.id, event, this.oldValue);
+            }}
           >
             <option value="0">-</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
+            <option disabled={this.state.first} value="1">
+              1
+            </option>
+            <option disabled={this.state.second} value="2">
+              2
+            </option>
+            <option disabled={this.state.third} value="3">
+              3
+            </option>
           </select>
 
           <Link to={`/games/${game.id}`}>
