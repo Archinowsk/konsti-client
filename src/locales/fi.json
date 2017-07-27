@@ -13,7 +13,9 @@
     "removeFavorite": "Poista suosikki",
     "hide": "Piilota",
     "unhide": "Poista piilotus",
-    "saveTime": "Tallenna ilmoittautumisaika"
+    "saveTime": "Tallenna ilmoittautumisaika",
+    "sendFeedback": "Lähetä palautetta",
+    "feedbackSent": "Palaute lähetetty"
   },
   "username": "Käyttäjänimi",
   "password": "Salasana",

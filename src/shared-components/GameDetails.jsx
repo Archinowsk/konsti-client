@@ -5,9 +5,13 @@ import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import moment from 'moment';
 
-import { submitUpdateFavorites } from '../views/my-games/MyGamesActions';
+import {
+  submitUpdateFavorites,
+  // submitSendFeedback,
+} from '../views/my-games/MyGamesActions';
 import { submitUpdateBlacklist } from '../views/admin/AdminActions';
 import { submitGetGames } from '../views/all-games/AllGamesActions';
+import { postFeedback } from '../app/api';
 
 class GameDetails extends React.Component {
   constructor(props) {
@@ -19,6 +23,8 @@ class GameDetails extends React.Component {
       username: this.props.username,
       game: {},
       submitting: false,
+      feedbackValue: '',
+      feedbackSent: false,
     };
   }
 
@@ -107,7 +113,7 @@ class GameDetails extends React.Component {
     });
   }
 
-  // Favorite / unfavorite clicked
+  // Hide / unhide clicked
   addBlacklistEvent(action) {
     this.setState({ submitting: true });
     const gameIndex = this.findGame(
@@ -148,6 +154,26 @@ class GameDetails extends React.Component {
     });
   }
 
+  // Hide / unhide clicked
+  sendFeedbackEvent() {
+    this.setState({ submitting: true });
+
+    const feedbackData = {
+      id: this.state.game.id,
+      feedback: this.state.feedbackValue,
+    };
+
+    postFeedback(feedbackData).then(() => {
+      // this.setState({ feedbackValue: '' });
+      this.setState({ feedbackSent: true });
+      this.setState({ submitting: false });
+    });
+
+    // this.props.onSubmitSendFeedback(feedbackData).then(response => {
+    // this.setState({ submitting: false });
+    // });
+  }
+
   render() {
     const { t, history, loggedIn, games, userGroup } = this.props;
 
@@ -180,6 +206,10 @@ class GameDetails extends React.Component {
     const formattedDate = moment
       .utc(this.state.game.date)
       .format('DD.M.YYYY HH:mm');
+
+    const handleChange = event => {
+      this.setState({ feedbackValue: event.target.value });
+    };
 
     return (
       <div>
@@ -304,6 +334,27 @@ class GameDetails extends React.Component {
             {tagsList}
           </ul>
         </div>
+
+        {loggedIn &&
+          <textarea
+            value={this.state.feedback}
+            onChange={handleChange}
+            className="feedback-textarea"
+            rows="4"
+          />}
+        {this.state.feedbackSent &&
+          <p>
+            {t('button.feedbackSent')}
+          </p>}
+        {loggedIn &&
+          <p>
+            <button
+              disabled={this.state.submitting}
+              onClick={() => this.sendFeedbackEvent()}
+            >
+              {t('button.sendFeedback')}
+            </button>
+          </p>}
       </div>
     );
   }
@@ -340,6 +391,8 @@ const mapDispatchToProps = dispatch => {
     onSubmitUpdateFavorites: id => dispatch(submitUpdateFavorites(id)),
     onSubmitUpdateBlacklist: id => dispatch(submitUpdateBlacklist(id)),
     onSubmitGetGames: () => dispatch(submitGetGames()),
+    // onSubmitSendFeedback: feedbackData =>
+    // dispatch(submitSendFeedback(feedbackData)),
   };
 };
 

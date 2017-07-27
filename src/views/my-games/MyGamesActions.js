@@ -1,4 +1,4 @@
-import { getUser, postFavorite } from '../../app/api';
+import { getUser, postFavorite, postFeedback } from '../../app/api';
 
 export const SUBMIT_GET_USER_GAMES = 'SUBMIT_GET_USER_GAMES';
 export const SUBMIT_UPDATE_FAVORITES = 'SUBMIT_UPDATE_FAVORITES';
@@ -59,3 +59,29 @@ export const submitUpdateFavorites = favoriteData => dispatch =>
     .catch(error => {
       console.log(error);
     });
+
+/*
+const submitSendFeedbackAsync = favoritedGames => {
+  return {
+    type: SUBMIT_UPDATE_FAVORITES,
+    favoritedGames,
+  };
+};
+
+export const submitSendFeedback = feedbackData => dispatch =>
+  postFeedback(feedbackData)
+    .then(response => {
+      console.log('submitSendFeedback() response');
+      console.log(response);
+      if (response.error) {
+        return Promise.reject(response);
+      }
+      if (response.status === 'success') {
+        dispatch(submitSendFeedbackAsync(true));
+      }
+      return response;
+    })
+    .catch(error => {
+      console.log(error);
+    });
+*/

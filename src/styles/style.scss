@@ -179,6 +179,8 @@ input:focus {
 .game-details-row {
   padding: 0 0 10px 0;
   white-space: pre-wrap;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 
 input[type='checkbox'] {
@@ -199,4 +201,9 @@ input[type='checkbox'] {
 
 .signup-list {
   margin: 0;
+}
+
+.feedback-textarea {
+  margin: 20px 0 0 0;
+  width: 100%;
 }

@@ -13,7 +13,9 @@
     "removeFavorite": "Remove favorite",
     "hide": "Hide",
     "unhide": "Unhide",
-    "saveTime": "Save signup time"
+    "saveTime": "Save signup time",
+    "sendFeedback": "Send feedback",
+    "feedbackSent": "Feedback sent"
   },
   "username": "Username",
   "password": "Password",

@@ -263,3 +263,27 @@ export const postSignupTime = signupTime => {
     }
   );
 };
+
+export const postFeedback = feedbackData => {
+  setAuthToken();
+  console.log('feedbackData');
+  console.log(feedbackData);
+  return api.post('/feedback', { feedbackData }).then(
+    response => {
+      if (response.status !== 200 || !response.data) {
+        console.log('Response status !== 200, reject');
+        return Promise.reject(response);
+      }
+      console.log('postFeedback() response');
+      console.log(response.data);
+      return response.data;
+    },
+    error => {
+      if (error.message === 'Network Error') {
+        console.log('Network error: no connection to server');
+      } else {
+        console.log(error);
+      }
+    }
+  );
+};
