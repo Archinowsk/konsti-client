@@ -8,18 +8,29 @@ import moment from 'moment';
 const AllSignupsList = props => {
   const { t, results } = props;
 
-  const sortedResults = results.map(result => {
+  // Sort games by name
+  const sortedResults = results.sort((a, b) => {
+    const keyA = a.username;
+    const keyB = b.username;
+    if (keyA < keyB) return -1;
+    if (keyA > keyB) return 1;
+    return 0;
+  });
+
+  const resultsList = sortedResults.map(result => {
     return (
       <p key={result.username}>
-        {result.username}: {result.enteredGame.title} (location:{' '}
-        {result.enteredGame.location})
+        <span className="bold">{result.username}:</span>{' '}
+        {result.enteredGame.title} (<span className="bold">
+          {t('gameInfo.location')}: {result.enteredGame.location}
+        </span>)
       </p>
     );
   });
 
   return (
     <div>
-      {sortedResults}
+      {resultsList}
     </div>
   );
 };

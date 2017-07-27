@@ -21,10 +21,18 @@ class AllSignupsView extends React.Component {
   render() {
     const { games, t, results, signupTime } = this.props;
 
-    if (!results || results.length === 0 || !games || games.length === 0) {
+    if (!games || games.length === 0) {
       return (
         <p>
           {t('loading')}
+        </p>
+      );
+    }
+
+    if (!results || results.length === 0 || !games || games.length === 0) {
+      return (
+        <p>
+          {t('noResults')}
         </p>
       );
     }
@@ -50,7 +58,7 @@ class AllSignupsView extends React.Component {
     return (
       <div>
         <p className="page-title">
-          Signup results for games starting at {formattedDate}
+          {t('signupResultsfor')} {formattedDate}
         </p>
         <AllSignupsList results={selectedResult} />
       </div>

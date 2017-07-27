@@ -79,6 +79,7 @@
   "selectOpenSignup": "Valitse avoin ilmoittautumisajankohta",
   "signupOpenBetween": "ilmoittautuminen auki ",
   "signupOpenBetweenCapital": "Ilmoittautuminen auki ",
-
-  "noSignupSelected": "Ei ilmoittautumista"
+  "noSignupSelected": "Ei ilmoittautumista",
+  "signupResultsfor": "Ilmoittautumisen tulokset peleille jotka alkavat",
+  "noResults": "Ei ilmoittautumistietoja vielä"
 }
