@@ -67,5 +67,8 @@
   "agreeTerms": "Hyväksyn ehdot ja",
   "iAgree": "Hyväksyn",
   "registerDescription": "rekisteriselosteen",
-  "registrationSerialHelp": "Nouda kirjautusmikoodi roolipelitiskiltä"
+  "registrationSerialHelp": "Nouda kirjautusmikoodi roolipelitiskiltä",
+  "noSignedGames": "Ei peli-ilmoittautumisia",
+  "noFavoritedGames": "Ei suosikkipelejä",
+  "noEnteredGames": "Ei vahvistuneita ilmoittautumisia"
 }

@@ -6,7 +6,16 @@ import { Link } from 'react-router-dom';
 const Blacklist = props => {
   const { blacklistedGames, t } = props;
 
-  const GamesList = blacklistedGames.map(game =>
+  // Sort games by name
+  const sortedGames = blacklistedGames.sort((a, b) => {
+    const keyA = a.title;
+    const keyB = b.title;
+    if (keyA < keyB) return -1;
+    if (keyA > keyB) return 1;
+    return 0;
+  });
+
+  const GamesList = sortedGames.map(game =>
     <li key={game.id}>
       <Link to={`/games/${game.id}`}>
         {game.title}

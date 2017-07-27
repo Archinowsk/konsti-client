@@ -45,6 +45,7 @@ class AdminView extends React.Component {
       );
     }
 
+    // Assign game info to blacklisted games list
     games.forEach(game => {
       blacklistedGames.forEach(blacklistedGame => {
         if (game.id === blacklistedGame.id) {

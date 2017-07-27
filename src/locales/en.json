@@ -67,5 +67,8 @@
   "agreeTerms": "I agree to the terms and",
   "iAgree": "I agree to the",
   "registerDescription": "register description",
-  "registrationSerialHelp": "Get serial from Role-playing Game Desk"
+  "registrationSerialHelp": "Get serial from Role-playing Game Desk",
+  "noSignedGames": "No signed up games",
+  "noFavoritedGames": "No favorited games",
+  "noEnteredGames": "No signup results"
 }

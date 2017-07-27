@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 
 const AllGamesList = props => {
-  const { games, t, blacklistedGames } = props;
+  const { games, t } = props;
 
   // Sort games by starting time and name
   const sortedGames = games.sort((a, b) => {
@@ -73,7 +73,6 @@ const AllGamesList = props => {
 AllGamesList.propTypes = {
   t: PropTypes.func.isRequired,
   games: PropTypes.array.isRequired,
-  blacklistedGames: PropTypes.array.isRequired,
 };
 
 export default translate()(AllGamesList);

@@ -51,9 +51,9 @@ class MyGamesView extends React.Component {
 
     return (
       <div>
-        <MySignupsList signedGames={signedGames} />
         <MyFavoritesList favoritedGames={favoritedGames} />
         <MyEnteredList enteredGames={enteredGames} />
+        <MySignupsList signedGames={signedGames} />
       </div>
     );
   }

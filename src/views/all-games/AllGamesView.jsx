@@ -28,11 +28,10 @@ class AllGamesView extends React.Component {
       );
     }
 
-    const visibleGames = [];
     // Remove hidden games
+    const visibleGames = [];
     for (let i = 0; i < games.length; i += 1) {
       let match = false;
-
       for (let j = 0; j < blacklistedGames.length; j += 1) {
         if (games[i].id === blacklistedGames[j].id) {
           match = true;
@@ -50,31 +49,16 @@ class AllGamesView extends React.Component {
           <Route
             exact
             path="/"
-            render={props =>
-              <AllGamesList
-                {...props}
-                games={visibleGames}
-                blacklistedGames={blacklistedGames}
-              />}
+            render={props => <AllGamesList {...props} games={visibleGames} />}
           />
           <Route
             exact
             path="/games"
-            render={props =>
-              <AllGamesList
-                {...props}
-                games={visibleGames}
-                blacklistedGames={blacklistedGames}
-              />}
+            render={props => <AllGamesList {...props} games={visibleGames} />}
           />
           <Route
             path="/games/:id"
-            render={props =>
-              <GameDetails
-                {...props}
-                games={visibleGames}
-                blacklistedGames={blacklistedGames}
-              />}
+            render={props => <GameDetails {...props} games={visibleGames} />}
           />
         </Switch>
       </div>
