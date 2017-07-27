@@ -146,29 +146,6 @@ class SignupList extends React.Component {
       );
     });
 
-    /*
-    const currentTime = moment.utc().format();
-    let nextTime = '';
-
-    // Get next starting time
-    for (let i = 0; i < sortedTimes.length; i += 1) {
-      // console.log(sortedTimes[i]);
-      // console.log(currentTime);
-      if (
-        sortedTimes[i + 1] &&
-        sortedTimes[i] < currentTime &&
-        sortedTimes[i + 1 > currentTime]
-      ) {
-        nextTime = sortedTimes[i];
-        break;
-      }
-    }
-
-
-    console.log('nextTime');
-    console.log(nextTime);
-    */
-
     const formattedDate = moment.utc(signupTime).format('DD.M.YYYY HH:mm');
 
     return (
