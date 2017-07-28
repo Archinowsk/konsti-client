@@ -22,6 +22,7 @@ class SignupList extends React.Component {
       first: false,
       second: false,
       third: false,
+      signupSubmitted: false,
     };
   }
 
@@ -180,6 +181,7 @@ class SignupList extends React.Component {
       // const signupData = { username, selectedGames };
       onSubmitSignup(signupData).then(() => {
         this.setState({ submitting: false });
+        this.setState({ signupSubmitted: true });
       });
     };
 
@@ -260,6 +262,12 @@ class SignupList extends React.Component {
 
           {GamesList}
         </ul>
+
+        {this.state.signupSubmitted &&
+          <p>
+            {t('signupSaved')}
+          </p>}
+
         <button disabled={this.state.submitting} onClick={onSubmitClick}>
           {t('button.signup')}
         </button>
