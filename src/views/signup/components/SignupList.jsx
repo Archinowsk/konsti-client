@@ -227,6 +227,8 @@ class SignupList extends React.Component {
       );
     });
 
+    // const resultsTime = moment.utc(signupTime).format('HH:mm');
+
     const formattedDate = moment.utc(signupTime).format('DD.M.YYYY HH:mm');
     const startingTime = moment
       .utc(signupTime)
@@ -267,6 +269,10 @@ class SignupList extends React.Component {
           <p>
             {t('signupSaved')}
           </p>}
+
+        <p>
+          {t('signupResultHint')} {endingTime}
+        </p>
 
         <button disabled={this.state.submitting} onClick={onSubmitClick}>
           {t('button.signup')}
