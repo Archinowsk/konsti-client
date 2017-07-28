@@ -83,5 +83,6 @@
   "signupOpenBetweenCapital": "Signup open ",
   "noSignupSelected": "No signup",
   "signupResultsfor": "Signup results for games starting at",
-  "noResults": "No signup results yet"
+  "noResults": "No signup results yet",
+  "signupGuide": "First choice: 1, second choice: 2, third choice: 3"
 }

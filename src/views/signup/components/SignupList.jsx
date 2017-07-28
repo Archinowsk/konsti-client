@@ -28,12 +28,29 @@ class SignupList extends React.Component {
   componentDidMount() {
     this.props.onSubmitAllSelectedGames(this.props.signedGames);
 
+    // this.setState({ first: false });
+    // this.setState({ second: false });
+    // this.setState({ third: false });
+
+    // TODO: Check that starting time matches
     this.props.signedGames.forEach(signedGame => {
-      if (signedGame.priority === 1) {
+      if (
+        signedGame.priority === 1 &&
+        signedGame.time === this.props.signupTime
+      ) {
+        // console.log('priority and starting time match for 1');
         this.setState({ first: true });
-      } else if (signedGame.priority === 2) {
+      } else if (
+        signedGame.priority === 2 &&
+        signedGame.time === this.props.signupTime
+      ) {
+        // console.log('priority and starting time match for 2');
         this.setState({ second: true });
-      } else if (signedGame.priority === 3) {
+      } else if (
+        signedGame.priority === 3 &&
+        signedGame.time === this.props.signupTime
+      ) {
+        // console.log('priority and starting time match for 3');
         this.setState({ third: true });
       }
     });
@@ -151,9 +168,14 @@ class SignupList extends React.Component {
         selectedGameIds.push({
           id: selectedGame.id,
           priority: selectedGame.priority,
+          time: signupTime,
         });
       });
-      const signupData = { username, selectedGames: selectedGameIds };
+      const signupData = {
+        username,
+        selectedGames: selectedGameIds,
+        // time: signupTime,
+      };
 
       // const signupData = { username, selectedGames };
       onSubmitSignup(signupData).then(() => {
@@ -229,6 +251,11 @@ class SignupList extends React.Component {
           {filteredGames.length !== 0 &&
             <p>
               {t('signupOpenBetweenCapital')} {startingTime}-{endingTime}
+            </p>}
+
+          {filteredGames.length !== 0 &&
+            <p>
+              {t('signupGuide')}
             </p>}
 
           {GamesList}
