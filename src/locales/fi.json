@@ -86,5 +86,6 @@
   "noResults": "Ei ilmoittautumistietoja vielä",
   "signupGuide": "Ensimmäinen vaihtoehto: 1, toinen: 2, kolmas: 3",
   "signupSaved": "Ilmoittautuminen tallennettu",
-  "signupResultHint": "Voit katsoa ilmoittautumistulokset 'Omat Pelini' sivulta klo"
+  "signupResultHint": "Voit katsoa ilmoittautumistulokset 'Omat Pelini' sivulta klo",
+  "closingMessage": "Konsti on suljettu, nähdään ensi vuonna!"
 }
