@@ -17,16 +17,14 @@ const AllSignupsList = props => {
     return 0;
   });
 
-  const resultsList = sortedResults.map(result => {
-    return (
-      <p key={result.username}>
-        <span className="bold">{result.username}:</span>{' '}
-        {result.enteredGame.title} (<span className="bold">
-          {t('gameInfo.location')}: {result.enteredGame.location}
-        </span>)
-      </p>
-    );
-  });
+  const resultsList = sortedResults.map(result =>
+    <p key={result.username}>
+      <span className="bold">{result.username}:</span>{' '}
+      {result.enteredGame.title} (<span className="bold">
+        {t('gameInfo.location')}: {result.enteredGame.location}
+      </span>)
+    </p>
+  );
 
   return (
     <div>
