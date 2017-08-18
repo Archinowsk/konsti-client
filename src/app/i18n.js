@@ -23,7 +23,6 @@ i18n.use(XHR).use(Cache).use(LanguageDetector).init({
 
   lng: 'en',
   fallbackLng: 'en',
-  wait: false, // globally set to wait for loaded translations in translate hoc
   // debug: true,
 
   /*
