@@ -28,8 +28,8 @@ const LoginView = props => {
 
   return (
     <div>
-      {t('closingMessage')}
-      {/* <LoginForm onSubmit={submit} /> */}
+      {/* {t('closingMessage')} */}
+      <LoginForm onSubmit={submit} />
     </div>
   );
 };
