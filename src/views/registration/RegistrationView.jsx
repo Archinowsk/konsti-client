@@ -35,7 +35,7 @@ const RegistrationView = props => {
   return (
     <div>
       {/* {t('closingMessage')} */}
-      {/*  <RegistrationForm onSubmit={submit} /> */}
+      <RegistrationForm onSubmit={submit} />
     </div>
   );
 };
