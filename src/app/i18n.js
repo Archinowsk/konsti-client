@@ -32,6 +32,11 @@ i18n.use(XHR).use(Cache).use(LanguageDetector).init({
     prefix: 'i18next_',
   },
   */
+
+  // Override default options for translate HOC
+  react: {
+    wait: false,
+  },
 });
 
 export default i18n;
