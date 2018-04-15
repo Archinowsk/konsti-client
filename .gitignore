@@ -14,3 +14,7 @@ build/*
 
 # IDE config
 .vscode
+
+# Analyzer files
+report.html
+stats.json

@@ -6,7 +6,7 @@
         "modules": false,
         "useBuiltIns": "entry",
         "shippedProposals": true,
-        "debug": true
+        "debug": false
       }
     ],
     "@babel/preset-react"
