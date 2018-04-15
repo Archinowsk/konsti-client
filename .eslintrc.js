@@ -23,6 +23,6 @@ module.exports = {
   */
   rules: {
     'prettier/prettier': 'error',
-    // "compat/compat": "error"
+    'compat/compat': 'error',
   },
 }

@@ -8,33 +8,33 @@
 ## DESKTOP
 
 # Google Chrome
-Chrome >= 50
+Chrome >= 56
 
 # Mozilla Firefox
-Firefox >= 50
+Firefox >= 51
 
 # Microsoft Edge
 Edge >= 16
 
 # Opera
-Opera >= 17
+Opera >= 43
 
 # Desktop Safari
-Safari >= 9
+Safari >= 10.1
 
 ## MOBILE
 
 # iOS Safari
-iOS >= 9.2
+iOS >= 10.3
 
 # Android WebView
 Android >= 62
 
 # Chrome for Android
-ChromeAndroid >= 55
+ChromeAndroid >= 64
 
 # Firefox for Android
-FirefoxAndroid >= 50
+FirefoxAndroid >= 57
 
 ###################
 ## NOT SUPPORTED ##
