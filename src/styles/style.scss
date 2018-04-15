@@ -1,12 +1,9 @@
 @import './variables';
 
-#main {
-  display: flex;
-}
-
 html {
   color: #030303;
-  font: caption;
+  display: flex;
+  font-family: Helvetica, Arial, Verdana, Tahoma, sans-serif;
   padding-bottom: 32px;
 }
 
@@ -20,20 +17,20 @@ a:hover {
 }
 
 header {
-  padding: 0 0 20px 0;
+  padding: 0 0 20px;
 }
 
 footer {
   margin: 64px auto;
+  max-width: 800px;
   padding: 32px;
   text-align: center;
-  max-width: 800px;
   width: 100%;
 }
 
 footer p {
   line-height: 16px;
-  margin: 0 0 16px 0;
+  margin: 0 0 16px;
 }
 
 label {
@@ -52,43 +49,45 @@ li {
 */
 
 button {
-  margin: 10px 10px 10px 0;
-  padding: 6px 20px 6px 20px;
-  background-color: #ffffff;
-  border: 1px solid $borderGray;
+  background-color: #fff;
+  border: 1px solid $border-gray;
   border-radius: 5px;
-  color: $fontGray;
+  color: $font-gray;
+  margin: 10px 10px 10px 0;
+  padding: 6px 20px;
 }
 
 button:hover {
-  background-color: $backgroundGreen;
-  border: 1px solid $borderGreen;
-  color: $borderGreen;
+  background-color: $background-green;
+  border: 1px solid $border-green;
+  color: $border-green;
 }
 
 button:disabled {
-  background-color: $disabledGray;
+  background-color: $disabled-gray;
 }
 
 button:disabled:hover {
-  color: $fontGray;
+  color: $font-gray;
 }
 
 .error {
-  color: $errorRed;
+  color: $error-red;
 }
 
 .main-container {
-  margin: 10px 10px 10px 10px;
+  margin: 10px;
   max-width: 800px;
 }
 
 .title {
-  margin: 0 0 20px 0;
   display: flex;
   flex: 0 1 auto;
   flex-direction: row;
+  font-weight: 700;
   justify-content: space-between;
+  margin: 0 0 20px;
+  margin: 20px 0;
 }
 
 .form-row {
@@ -99,17 +98,17 @@ button:disabled:hover {
 }
 
 .form-field {
+  align-items: center;
   display: flex;
   flex: 0 1 auto;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-  padding: 8px 0 8px 0;
+  padding: 8px 0;
 }
 
 .router-link {
-  padding: 4px;
   display: inline-block;
+  padding: 4px;
 }
 
 .username {
@@ -117,14 +116,10 @@ button:disabled:hover {
 }
 
 .form-field-error {
-  background-color: $backgroundGray;
-  color: $errorRed;
+  background-color: $background-gray;
+  color: $error-red;
   font-size: 12px;
-  padding: 4px 10px 4px 10px;
-}
-
-.error {
-  color: $errorRed;
+  padding: 4px 10px;
 }
 
 .page-title {
@@ -132,32 +127,27 @@ button:disabled:hover {
   font-weight: 700;
 }
 
-.title {
-  margin: 20px 0 20px 0;
-  font-weight: 700;
-}
-
 input {
-  box-sizing: border-box;
   border-radius: 6px;
+  box-sizing: border-box;
 }
 
 input::placeholder {
-  color: $placeholderFontGray;
+  color: $placeholder-font-gray;
 }
 
 input:focus {
-  box-sizing: border-box;
-  outline-style: none;
   border: 1px solid #4d90fe;
   box-shadow: 0 0 5px 0 #4d90fe;
+  box-sizing: border-box;
+  outline-style: none;
 }
 
 .form-input {
-  border: 1px solid $borderGray;
+  border: 1px solid $border-gray;
+  color: $font-gray;
   height: 30px;
   padding: 0 0 0 10px;
-  color: $fontGray;
   width: 100%;
 }
 
@@ -171,13 +161,13 @@ input:focus {
 }
 
 .game-details-row {
-  padding: 0 0 10px 0;
+  padding: 0 0 10px;
   white-space: pre-wrap;
   word-wrap: break-word;
   // word-break: break-all;
 }
 
-input[type='checkbox'] {
+.checkbox {
   width: 16px;
 }
 
@@ -198,6 +188,6 @@ input[type='checkbox'] {
 }
 
 .feedback-textarea {
-  margin: 20px 0 0 0;
+  margin: 20px 0 0;
   width: 100%;
 }

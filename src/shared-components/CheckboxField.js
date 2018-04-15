@@ -19,7 +19,7 @@ const FormField = props => {
       <div className="form-field">
         <div className="form-input-wrapper" id={`${input.name}-wrapper`}>
           <input
-            className="form-input"
+            className="form-input checkbox"
             {...input}
             placeholder={label}
             type={type}

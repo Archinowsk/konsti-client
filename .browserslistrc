@@ -1,0 +1,68 @@
+# Browsers that we support
+# https://github.com/ai/browserslist
+
+###############
+## SUPPORTED ##
+###############
+
+## DESKTOP
+
+# Google Chrome
+Chrome >= 50
+
+# Mozilla Firefox
+Firefox >= 50
+
+# Microsoft Edge
+Edge >= 16
+
+# Opera
+Opera >= 17
+
+# Desktop Safari
+Safari >= 9
+
+## MOBILE
+
+# iOS Safari
+iOS >= 9.2
+
+# Android WebView
+Android >= 62
+
+# Chrome for Android
+ChromeAndroid >= 55
+
+# Firefox for Android
+FirefoxAndroid >= 50
+
+###################
+## NOT SUPPORTED ##
+###################
+
+# Internet Explorer
+# Explorer >= 11
+
+# Blackberry browser
+# BlackBerry >= 10
+
+# Samsung Internet
+# Samsung >= 4
+
+# Baidu
+# Baidu >= 7.12
+
+# QQAndroid
+# QQAndroid >= 1.2
+
+# Opera Mobile
+# OperaMobile >= 12.1
+
+# Opera Mini
+# OperaMini all
+
+# UC Browser for Android
+# UCAndroid >= 11.4
+
+# Internet Explorer Mobile
+# ExplorerMobile >= 11
