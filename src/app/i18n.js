@@ -1,6 +1,6 @@
 import i18n from 'i18next'
 import XHR from 'i18next-xhr-backend'
-import Cache from 'i18next-localstorage-cache'
+// import Cache from 'i18next-localstorage-cache'
 import LanguageDetector from 'i18next-browser-languagedetector'
 
 import en from '../locales/en.json'
@@ -16,7 +16,7 @@ function loadLocales(url, options, callback) {
 
 i18n
   .use(XHR)
-  .use(Cache)
+  // .use(Cache)
   .use(LanguageDetector)
   .init({
     backend: {

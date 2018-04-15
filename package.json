@@ -18,10 +18,9 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
-    "i18next": "^8.4.3",
-    "i18next-browser-languagedetector": "^2.0.0",
-    "i18next-localstorage-cache": "^1.1.1",
-    "i18next-xhr-backend": "^1.4.2",
+    "i18next": "^11.2.2",
+    "i18next-browser-languagedetector": "^2.2.0",
+    "i18next-xhr-backend": "^1.5.1",
     "json-loader": "^0.5.7",
     "lodash": "^4.17.4",
     "moment": "^2.21.0",
