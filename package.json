@@ -8,12 +8,12 @@
     "name": "Arttu Hanska"
   },
   "scripts": {
-    "build": "webpack-cli --config webpack.config.prod.js --progress",
-    "build-test": "webpack-cli --config webpack.config.test.js --progress",
+    "build": "webpack-cli --progress",
+    "build-test": "webpack-cli --progress",
     "eslint": "eslint src",
     "precommit": "lint-staged",
     "prettier": "prettier --write \"src/**/*.{js,json,scss}\"",
-    "start": "webpack-dev-server --progress --config webpack.config.dev.js",
+    "start": "webpack-dev-server --progress",
     "stylelint": "stylelint \"src/**/*.scss\" --fix"
   },
   "dependencies": {
@@ -84,7 +84,8 @@
     "stylelint-scss": "^3.0.0",
     "webpack": "^4.5.0",
     "webpack-cli": "^2.0.14",
-    "webpack-dev-server": "^3.1.3"
+    "webpack-dev-server": "^3.1.3",
+    "webpack-merge": "^4.1.2"
   },
   "lint-staged": {
     "src/**/*.json": [
