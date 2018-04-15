@@ -1,16 +1,18 @@
-const webpack = require('webpack');
-const path = require('path');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const TemplateWebpackPlugin = require('html-webpack-template');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
-const CompressionPlugin = require('compression-webpack-plugin');
-const appConfig = require('./config');
+const webpack = require('webpack')
+const path = require('path')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+const TemplateWebpackPlugin = require('html-webpack-template')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin')
+const CompressionPlugin = require('compression-webpack-plugin')
+const appConfig = require('./config')
 
-process.env.BABEL_ENV = 'production';
+process.env.BABEL_ENV = 'production'
 
 const config = {
+  mode: 'production',
+
   target: 'web',
 
   // Array of entry files
@@ -52,13 +54,6 @@ const config = {
           publicPath: '/',
         }),
       },
-      // JSON loader
-      {
-        test: /\.json$/,
-        include: [path.resolve(__dirname, 'src')],
-        use: 'json-loader',
-        exclude: /node_modules/,
-      },
     ],
   },
 
@@ -92,12 +87,6 @@ const config = {
     new webpack.DefinePlugin({
       'process.env': { NODE_ENV: JSON.stringify('production') },
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-        drop_console: true,
-      },
-    }),
     new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.optimize.ModuleConcatenationPlugin(), // Scope Hoisting
     new webpack.LoaderOptionsPlugin({
@@ -115,6 +104,6 @@ const config = {
       // minRatio: 0.8
     }),
   ],
-};
+}
 
-module.exports = config;
+module.exports = config

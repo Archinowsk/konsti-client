@@ -1,12 +1,14 @@
-const webpack = require('webpack');
-const path = require('path');
-const TemplateWebpackPlugin = require('html-webpack-template');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const appConfig = require('./config');
+const webpack = require('webpack')
+const path = require('path')
+const TemplateWebpackPlugin = require('html-webpack-template')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const appConfig = require('./config')
 
-process.env.BABEL_ENV = 'development';
+process.env.BABEL_ENV = 'development'
 
 const config = {
+  mode: 'development',
+
   target: 'web',
 
   devtool: 'eval', // Use eval for best hot-loading perf
@@ -65,13 +67,6 @@ const config = {
         ],
         exclude: /node_modules/,
       },
-      // JSON loader
-      {
-        test: /\.json$/,
-        include: [path.resolve(__dirname, 'src')],
-        use: 'json-loader',
-        exclude: /node_modules/,
-      },
     ],
   },
 
@@ -104,6 +99,6 @@ const config = {
       mobile: true,
     }),
   ],
-};
+}
 
-module.exports = config;
+module.exports = config
