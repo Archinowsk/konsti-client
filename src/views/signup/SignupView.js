@@ -1,14 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
-import { translate } from 'react-i18next';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { Route, Switch } from 'react-router-dom'
+import { translate } from 'react-i18next'
 
-import { submitGetGames } from '../all-games/AllGamesActions';
-import { submitGetSettings } from '../admin/AdminActions';
-import { submitGetUser } from '../my-games/MyGamesActions';
-import SignupList from './components/SignupList';
-import GameDetails from '../../shared-components/GameDetails';
+import { submitGetGames } from '../all-games/AllGamesActions'
+import { submitGetSettings } from '../admin/AdminActions'
+import { submitGetUser } from '../my-games/MyGamesActions'
+import SignupList from './components/SignupList'
+import GameDetails from '../../shared-components/GameDetails'
 
 class SignupView extends React.Component {
   componentDidMount() {
@@ -17,28 +17,20 @@ class SignupView extends React.Component {
       this.props.onSubmitGetGames();
     }
     */
-    this.props.onSubmitGetGames();
-    this.props.onSubmitGetSettings();
-    this.props.onSubmitGetUser(this.props.username);
+    this.props.onSubmitGetGames()
+    this.props.onSubmitGetSettings()
+    this.props.onSubmitGetUser(this.props.username)
   }
 
   render() {
-    const { games, t, signedGames } = this.props;
+    const { games, t, signedGames } = this.props
 
     if (!games || games.length === 0) {
-      return (
-        <p>
-          {t('loading')}
-        </p>
-      );
+      return <p>{t('loading')}</p>
     }
 
     if (!signedGames || signedGames === 0) {
-      return (
-        <p>
-          {t('loading')}
-        </p>
-      );
+      return <p>{t('loading')}</p>
     }
 
     return (
@@ -56,7 +48,7 @@ class SignupView extends React.Component {
           />
         </Switch>
       </div>
-    );
+    )
   }
 }
 
@@ -68,24 +60,24 @@ SignupView.propTypes = {
   onSubmitGetUser: PropTypes.func.isRequired,
   username: PropTypes.string.isRequired,
   signedGames: PropTypes.array.isRequired,
-};
+}
 
 const mapStateToProps = state => {
   return {
     games: state.allGames.games,
     username: state.login.username,
     signedGames: state.myGames.signedGames,
-  };
-};
+  }
+}
 
 const mapDispatchToProps = dispatch => {
   return {
     onSubmitGetGames: () => dispatch(submitGetGames()),
     onSubmitGetSettings: () => dispatch(submitGetSettings()),
     onSubmitGetUser: username => dispatch(submitGetUser(username)),
-  };
-};
+  }
+}
 
 export default translate()(
   connect(mapStateToProps, mapDispatchToProps)(SignupView)
-);
+)

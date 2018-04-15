@@ -5,23 +5,23 @@ import {
   SUBMIT_DESELECT_GAME,
   SUBMIT_UPDATE_GAME,
   SUBMIT_ALL_SELECTED_GAMES,
-} from './SignupActions';
+} from './SignupActions'
 
-const initialState = { status: false, date: '', selectedGames: [] };
+const initialState = { status: false, date: '', selectedGames: [] }
 
 const signupReducer = (state = initialState, action) => {
   switch (action.type) {
     case SUBMIT_SIGNUP:
-      return { ...state, status: action.status };
+      return { ...state, status: action.status }
     case SUBMIT_SELECT_DATE:
-      return { ...state, date: action.date };
+      return { ...state, date: action.date }
     case SUBMIT_ALL_SELECTED_GAMES:
-      return { ...state, selectedGames: action.selectedGames };
+      return { ...state, selectedGames: action.selectedGames }
     case SUBMIT_SELECT_GAME:
       return {
         ...state,
         selectedGames: [...state.selectedGames, action.signupData],
-      };
+      }
     case SUBMIT_DESELECT_GAME:
       return {
         ...state,
@@ -29,7 +29,7 @@ const signupReducer = (state = initialState, action) => {
           ...state.selectedGames.slice(0, action.gameIndex),
           ...state.selectedGames.slice(action.gameIndex + 1),
         ],
-      };
+      }
     case SUBMIT_UPDATE_GAME:
       return {
         ...state,
@@ -41,10 +41,10 @@ const signupReducer = (state = initialState, action) => {
               : // otherwise return original todo
                 selectedGame
         ),
-      };
+      }
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default signupReducer;
+export default signupReducer

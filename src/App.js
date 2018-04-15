@@ -1,22 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { I18nextProvider } from 'react-i18next';
-import { AppContainer } from 'react-hot-loader';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import { I18nextProvider } from 'react-i18next'
+import { AppContainer } from 'react-hot-loader'
 
 // Styles
-import './styles/style.scss';
+import './styles/style.scss'
 
 // Root component
-import Layout from './app/Layout';
+import Layout from './app/Layout'
 
 // Initialized i18next instance
-import i18n from './app/i18n';
+import i18n from './app/i18n'
 
 // Redux store
-import store from './app/store';
+import store from './app/store'
 
-const rootElement = document.getElementById('main');
+const rootElement = document.getElementById('main')
 
 const render = () => {
   ReactDOM.render(
@@ -28,7 +28,7 @@ const render = () => {
       </Provider>
     </AppContainer>,
     rootElement
-  );
+  )
 
   if (module.hot) {
     module.hot.accept('./app/Layout', () => {
@@ -41,11 +41,11 @@ const render = () => {
           </Provider>
         </AppContainer>,
         rootElement
-      );
-    });
+      )
+    })
   }
-};
+}
 
 window.onload = () => {
-  render();
-};
+  render()
+}

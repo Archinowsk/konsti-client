@@ -1,4 +1,4 @@
-@import "./variables";
+@import './variables';
 
 #main {
   display: flex;
@@ -86,27 +86,21 @@ button:disabled:hover {
 .title {
   margin: 0 0 20px 0;
   display: flex;
-  flex-grow: 0;
-  flex-shrink: 1;
-  flex-basis: auto;
+  flex: 0 1 auto;
   flex-direction: row;
   justify-content: space-between;
 }
 
 .form-row {
   display: flex;
-  flex-grow: 0;
-  flex-shrink: 1;
-  flex-basis: auto;
+  flex: 0 1 auto;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .form-field {
   display: flex;
-  flex-grow: 0;
-  flex-shrink: 1;
-  flex-basis: auto;
+  flex: 0 1 auto;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;

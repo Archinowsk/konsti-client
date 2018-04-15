@@ -1,25 +1,25 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
 const SettingsView = props => {
-  const {} = props;
+  const {} = props
 
   return (
     <div>
       <p>SettingsView</p>
     </div>
-  );
-};
+  )
+}
 
-SettingsView.propTypes = {};
+SettingsView.propTypes = {}
 
 const mapStateToProps = state => {
-  return {};
-};
+  return {}
+}
 
 const mapDispatchToProps = dispatch => {
-  return {};
-};
+  return {}
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(SettingsView);
+export default connect(mapStateToProps, mapDispatchToProps)(SettingsView)

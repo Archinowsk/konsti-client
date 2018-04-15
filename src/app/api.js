@@ -1,15 +1,15 @@
-import axios from 'axios';
-import config from '../../config';
-import store from './store';
+import axios from 'axios'
+import config from '../../config'
+import store from './store'
 
 const setAuthToken = () => {
-  const state = store.getState();
-  const jwtToken = state.login.jwtToken;
+  const state = store.getState()
+  const jwtToken = state.login.jwtToken
 
-  axios.defaults.headers.common.Authorization = `Bearer ${jwtToken}`;
-};
+  axios.defaults.headers.common.Authorization = `Bearer ${jwtToken}`
+}
 
-const apiServerURL = config.apiServerURL;
+const apiServerURL = config.apiServerURL
 
 export const api = axios.create({
   baseURL: `${apiServerURL}/api`,
@@ -17,66 +17,66 @@ export const api = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-});
+})
 
 export const postLogin = loginData =>
   api.post('/login', { loginData }).then(
     response => {
       if (response.status !== 200 || !response.data) {
-        console.log('Response status !== 200, reject');
-        return Promise.reject(response);
+        console.log('Response status !== 200, reject')
+        return Promise.reject(response)
       }
-      return response.data;
+      return response.data
     },
     error => {
       if (error.message === 'Network Error') {
-        console.log('Network error: no connection to server');
+        console.log('Network error: no connection to server')
       } else {
-        console.log(error);
+        console.log(error)
       }
     }
-  );
+  )
 
 export const postRegistration = registrationData =>
   api.post('/user', { registrationData }).then(
     response => {
       if (response.status !== 200 || !response.data) {
-        console.log('Response status !== 200, reject');
-        return Promise.reject(response);
+        console.log('Response status !== 200, reject')
+        return Promise.reject(response)
       }
-      return response.data;
+      return response.data
     },
     error => {
       if (error.message === 'Network Error') {
-        console.log('Network error: no connection to server');
+        console.log('Network error: no connection to server')
       } else {
-        console.log(error);
+        console.log(error)
       }
     }
-  );
+  )
 
 export const postGamesUpdate = () => {
-  setAuthToken();
+  setAuthToken()
   return api.post('/games').then(
     response => {
       if (response.status !== 200 || !response.data) {
-        console.log('Response status !== 200, reject');
-        return Promise.reject(response);
+        console.log('Response status !== 200, reject')
+        return Promise.reject(response)
       }
-      return response.data;
+      return response.data
     },
     error => {
       if (error.message === 'Network Error') {
-        console.log('Network error: no connection to server');
+        console.log('Network error: no connection to server')
       } else {
-        console.log(error);
+        console.log(error)
       }
     }
-  );
-};
+  )
+}
 
 export const postPlayersAssign = signupTime => {
-  setAuthToken();
+  setAuthToken()
   // const startingTime = getNextStartingTime();
   return (
     api
@@ -85,41 +85,41 @@ export const postPlayersAssign = signupTime => {
       .then(
         response => {
           if (response.status !== 200 || !response.data) {
-            console.log('Response status !== 200, reject');
-            return Promise.reject(response);
+            console.log('Response status !== 200, reject')
+            return Promise.reject(response)
           }
-          return response.data;
+          return response.data
         },
         error => {
           if (error.message === 'Network Error') {
-            console.log('Network error: no connection to server');
+            console.log('Network error: no connection to server')
           } else {
-            console.log(error);
+            console.log(error)
           }
         }
       )
-  );
-};
+  )
+}
 export const getGames = () =>
   api.get('/games').then(
     response => {
       if (response.status !== 200 || !response.data) {
-        console.log('Response status !== 200, reject');
-        return Promise.reject(response);
+        console.log('Response status !== 200, reject')
+        return Promise.reject(response)
       }
-      return response.data;
+      return response.data
     },
     error => {
       if (error.message === 'Network Error') {
-        console.log('Network error: no connection to server');
+        console.log('Network error: no connection to server')
       } else {
-        console.log(error);
+        console.log(error)
       }
     }
-  );
+  )
 
 export const getUser = username => {
-  setAuthToken();
+  setAuthToken()
   return api
     .get('/user', {
       params: {
@@ -129,161 +129,161 @@ export const getUser = username => {
     .then(
       response => {
         if (response.status !== 200 || !response.data) {
-          console.log('Response status !== 200, reject');
-          return Promise.reject(response);
+          console.log('Response status !== 200, reject')
+          return Promise.reject(response)
         }
-        return response.data;
+        return response.data
       },
       error => {
         if (error.message === 'Network Error') {
-          console.log('Network error: no connection to server');
+          console.log('Network error: no connection to server')
         } else {
-          console.log(error);
+          console.log(error)
         }
       }
-    );
-};
+    )
+}
 
 export const getSettings = () => {
-  setAuthToken();
+  setAuthToken()
   return api.get('/settings').then(
     response => {
       if (response.status !== 200 || !response.data) {
-        console.log('Response status !== 200, reject');
-        return Promise.reject(response);
+        console.log('Response status !== 200, reject')
+        return Promise.reject(response)
       }
-      return response.data;
+      return response.data
     },
     error => {
       if (error.message === 'Network Error') {
-        console.log('Network error: no connection to server');
+        console.log('Network error: no connection to server')
       } else {
-        console.log(error);
+        console.log(error)
       }
     }
-  );
-};
+  )
+}
 
 export const getResults = () => {
-  setAuthToken();
+  setAuthToken()
   return api.get('/results').then(
     response => {
       if (response.status !== 200 || !response.data) {
-        console.log('Response status !== 200, reject');
-        return Promise.reject(response);
+        console.log('Response status !== 200, reject')
+        return Promise.reject(response)
       }
-      return response.data;
+      return response.data
     },
     error => {
       if (error.message === 'Network Error') {
-        console.log('Network error: no connection to server');
+        console.log('Network error: no connection to server')
       } else {
-        console.log(error);
+        console.log(error)
       }
     }
-  );
-};
+  )
+}
 
 export const postSignup = signupData => {
-  setAuthToken();
+  setAuthToken()
   return api.post('/signup', { signupData }).then(
     response => {
       if (response.status !== 200 || !response.data) {
-        console.log('Response status !== 200, reject');
-        return Promise.reject(response);
+        console.log('Response status !== 200, reject')
+        return Promise.reject(response)
       }
-      return response.data;
+      return response.data
     },
     error => {
       if (error.message === 'Network Error') {
-        console.log('Network error: no connection to server');
+        console.log('Network error: no connection to server')
       } else {
-        console.log(error);
+        console.log(error)
       }
     }
-  );
-};
+  )
+}
 
 export const postFavorite = favoriteData => {
-  setAuthToken();
+  setAuthToken()
   return api.post('/favorite', { favoriteData }).then(
     response => {
       if (response.status !== 200 || !response.data) {
-        console.log('Response status !== 200, reject');
-        return Promise.reject(response);
+        console.log('Response status !== 200, reject')
+        return Promise.reject(response)
       }
-      return response.data;
+      return response.data
     },
     error => {
       if (error.message === 'Network Error') {
-        console.log('Network error: no connection to server');
+        console.log('Network error: no connection to server')
       } else {
-        console.log(error);
+        console.log(error)
       }
     }
-  );
-};
+  )
+}
 
 export const postBlacklist = blacklistData => {
-  setAuthToken();
+  setAuthToken()
   return api.post('/blacklist', { blacklistData }).then(
     response => {
       if (response.status !== 200 || !response.data) {
-        console.log('Response status !== 200, reject');
-        return Promise.reject(response);
+        console.log('Response status !== 200, reject')
+        return Promise.reject(response)
       }
-      return response.data;
+      return response.data
     },
     error => {
       if (error.message === 'Network Error') {
-        console.log('Network error: no connection to server');
+        console.log('Network error: no connection to server')
       } else {
-        console.log(error);
+        console.log(error)
       }
     }
-  );
-};
+  )
+}
 
 export const postSignupTime = signupTime => {
-  setAuthToken();
+  setAuthToken()
   return api.post('/signuptime', { signupTime }).then(
     response => {
       if (response.status !== 200 || !response.data) {
-        console.log('Response status !== 200, reject');
-        return Promise.reject(response);
+        console.log('Response status !== 200, reject')
+        return Promise.reject(response)
       }
-      return response.data;
+      return response.data
     },
     error => {
       if (error.message === 'Network Error') {
-        console.log('Network error: no connection to server');
+        console.log('Network error: no connection to server')
       } else {
-        console.log(error);
+        console.log(error)
       }
     }
-  );
-};
+  )
+}
 
 export const postFeedback = feedbackData => {
-  setAuthToken();
-  console.log('feedbackData');
-  console.log(feedbackData);
+  setAuthToken()
+  console.log('feedbackData')
+  console.log(feedbackData)
   return api.post('/feedback', { feedbackData }).then(
     response => {
       if (response.status !== 200 || !response.data) {
-        console.log('Response status !== 200, reject');
-        return Promise.reject(response);
+        console.log('Response status !== 200, reject')
+        return Promise.reject(response)
       }
-      console.log('postFeedback() response');
-      console.log(response.data);
-      return response.data;
+      console.log('postFeedback() response')
+      console.log(response.data)
+      return response.data
     },
     error => {
       if (error.message === 'Network Error') {
-        console.log('Network error: no connection to server');
+        console.log('Network error: no connection to server')
       } else {
-        console.log(error);
+        console.log(error)
       }
     }
-  );
-};
+  )
+}

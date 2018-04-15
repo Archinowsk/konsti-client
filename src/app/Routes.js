@@ -1,24 +1,24 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { HashRouter, Route, Link, Switch, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { HashRouter, Route, Link, Switch, Redirect } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { translate } from 'react-i18next'
 
 // Views
-import AllGames from '../views/all-games/AllGamesView';
-import Login from '../views/login/LoginView';
-import MyGames from '../views/my-games/MyGamesView';
-import Signup from '../views/signup/SignupView';
+import AllGames from '../views/all-games/AllGamesView'
+import Login from '../views/login/LoginView'
+import MyGames from '../views/my-games/MyGamesView'
+import Signup from '../views/signup/SignupView'
 // import Settings from '../views/settings/SettingsView';
-import Registration from '../views/registration/RegistrationView';
-import Admin from '../views/admin/AdminView';
-import AllSignups from '../views/all-signups/AllSignupsView';
+import Registration from '../views/registration/RegistrationView'
+import Admin from '../views/admin/AdminView'
+import AllSignups from '../views/all-signups/AllSignupsView'
 
-import { submitLogin } from '../views/login/LoginActions';
-import LogoutButton from '../shared-components/LogoutButton';
+import { submitLogin } from '../views/login/LoginActions'
+import LogoutButton from '../shared-components/LogoutButton'
 
 const Routes = props => {
-  const { loggedIn, t, userGroup } = props;
+  const { loggedIn, t, userGroup } = props
 
   if (!loggedIn) {
     return (
@@ -55,7 +55,7 @@ const Routes = props => {
           </Switch>
         </div>
       </HashRouter>
-    );
+    )
   }
 
   return (
@@ -65,30 +65,34 @@ const Routes = props => {
           {t('pages.allGames')}
         </Link>
 
-        {userGroup === 'user' &&
+        {userGroup === 'user' && (
           <Link to="/mygames" className="router-link">
             {t('pages.myGames')}
-          </Link>}
+          </Link>
+        )}
 
-        {(userGroup === 'user' || userGroup === 'admin') &&
+        {(userGroup === 'user' || userGroup === 'admin') && (
           <Link to="/signup" className="router-link">
             {t('pages.signUp')}
-          </Link>}
+          </Link>
+        )}
 
-        {(userGroup === 'user' || userGroup === 'admin') &&
+        {(userGroup === 'user' || userGroup === 'admin') && (
           <Link to="/allsignups" className="router-link">
             {t('pages.allsignups')}
-          </Link>}
+          </Link>
+        )}
 
         {/*
           <Link to="/settings" className="router-link">
           {t('pages.settings')}
         </Link>
         */}
-        {userGroup === 'admin' &&
+        {userGroup === 'admin' && (
           <Link to="/admin" className="router-link">
             {t('pages.admin')}
-          </Link>}
+          </Link>
+        )}
 
         <LogoutButton />
 
@@ -107,28 +111,26 @@ const Routes = props => {
         </Switch>
       </div>
     </HashRouter>
-  );
-};
+  )
+}
 
 Routes.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
   t: PropTypes.func.isRequired,
   userGroup: PropTypes.string.isRequired,
-};
+}
 
 const mapStateToProps = state => {
   return {
     loggedIn: state.login.loggedIn,
     userGroup: state.login.userGroup,
-  };
-};
+  }
+}
 
 const mapDispatchToProps = dispatch => {
   return {
     onLogin: loginInfo => dispatch(submitLogin(loginInfo)),
-  };
-};
+  }
+}
 
-export default translate()(
-  connect(mapStateToProps, mapDispatchToProps)(Routes)
-);
+export default translate()(connect(mapStateToProps, mapDispatchToProps)(Routes))

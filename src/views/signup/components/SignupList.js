@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import moment from 'moment';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { translate } from 'react-i18next'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import moment from 'moment'
 
 import {
   submitSelectGame,
@@ -11,11 +11,11 @@ import {
   submitSignup,
   submitUpdatetGame,
   submitAllSelectedGames,
-} from '../SignupActions';
+} from '../SignupActions'
 
 class SignupList extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       submitting: false,
@@ -23,11 +23,11 @@ class SignupList extends React.Component {
       second: false,
       third: false,
       signupSubmitted: false,
-    };
+    }
   }
 
   componentDidMount() {
-    this.props.onSubmitAllSelectedGames(this.props.signedGames);
+    this.props.onSubmitAllSelectedGames(this.props.signedGames)
 
     // this.setState({ first: false });
     // this.setState({ second: false });
@@ -40,21 +40,21 @@ class SignupList extends React.Component {
         signedGame.time === this.props.signupTime
       ) {
         // console.log('priority and starting time match for 1');
-        this.setState({ first: true });
+        this.setState({ first: true })
       } else if (
         signedGame.priority === 2 &&
         signedGame.time === this.props.signupTime
       ) {
         // console.log('priority and starting time match for 2');
-        this.setState({ second: true });
+        this.setState({ second: true })
       } else if (
         signedGame.priority === 3 &&
         signedGame.time === this.props.signupTime
       ) {
         // console.log('priority and starting time match for 3');
-        this.setState({ third: true });
+        this.setState({ third: true })
       }
-    });
+    })
   }
 
   render() {
@@ -71,128 +71,120 @@ class SignupList extends React.Component {
       onSubmitUpdatetGame,
       blacklistedGames,
       // onSubmitGetUser,
-    } = this.props;
+    } = this.props
 
     if (!games || games.length === 0) {
-      return (
-        <p>
-          {t('loading')}
-        </p>
-      );
+      return <p>{t('loading')}</p>
     }
 
     if (!signedGames || signedGames === 0) {
-      return (
-        <p>
-          {t('loading')}
-        </p>
-      );
+      return <p>{t('loading')}</p>
     }
 
-    const visibleGames = [];
+    const visibleGames = []
     // Remove hidden games
     for (let i = 0; i < games.length; i += 1) {
-      let match = false;
+      let match = false
 
       for (let j = 0; j < blacklistedGames.length; j += 1) {
         if (games[i].id === blacklistedGames[j].id) {
-          match = true;
-          break;
+          match = true
+          break
         }
       }
       if (!match) {
-        visibleGames.push(games[i]);
+        visibleGames.push(games[i])
       }
     }
 
-    const filteredGames = [];
+    const filteredGames = []
 
     visibleGames.forEach(game => {
       if (game.date === signupTime) {
-        filteredGames.push(game);
+        filteredGames.push(game)
       }
-    });
+    })
 
     const findGame = id => {
       for (let i = 0; i < selectedGames.length; i += 1) {
         if (selectedGames[i].id === id) {
-          return i;
+          return i
         }
       }
-      return -1;
-    };
+      return -1
+    }
 
     const getSignupEvent = (id, event, oldValue) => {
-      const priority = parseInt(event.target.value, 10);
+      const priority = parseInt(event.target.value, 10)
 
       if (oldValue === 1) {
-        this.setState({ first: false });
+        this.setState({ first: false })
       } else if (oldValue === 2) {
-        this.setState({ second: false });
+        this.setState({ second: false })
       } else if (oldValue === 3) {
-        this.setState({ third: false });
+        this.setState({ third: false })
       }
 
       if (priority === 1) {
-        this.setState({ first: true });
+        this.setState({ first: true })
       } else if (priority === 2) {
-        this.setState({ second: true });
+        this.setState({ second: true })
       } else if (priority === 3) {
-        this.setState({ third: true });
+        this.setState({ third: true })
       }
 
-      const signupData = { id, priority };
-      const gameIndex = findGame(id);
+      const signupData = { id, priority }
+      const gameIndex = findGame(id)
 
       if (priority !== 0) {
         // New game
         if (gameIndex === -1) {
-          onSubmitSelectGame(signupData);
+          onSubmitSelectGame(signupData)
           // Existing game
         } else {
-          onSubmitUpdatetGame(signupData);
+          onSubmitUpdatetGame(signupData)
         }
         // Remove existing game
       } else if (priority === 0) {
         if (gameIndex > -1) {
-          onSubmitDeselectGame(gameIndex);
+          onSubmitDeselectGame(gameIndex)
         }
       }
-    };
+    }
 
     const onSubmitClick = () => {
-      this.setState({ submitting: true });
+      this.setState({ submitting: true })
 
       // Send only game IDs and priorities to API
-      const selectedGameIds = [];
+      const selectedGameIds = []
       selectedGames.forEach(selectedGame => {
         selectedGameIds.push({
           id: selectedGame.id,
           priority: selectedGame.priority,
           time: signupTime,
-        });
-      });
+        })
+      })
       const signupData = {
         username,
         selectedGames: selectedGameIds,
         // time: signupTime,
-      };
+      }
 
       // const signupData = { username, selectedGames };
       onSubmitSignup(signupData).then(() => {
-        this.setState({ submitting: false });
-        this.setState({ signupSubmitted: true });
-      });
-    };
+        this.setState({ submitting: false })
+        this.setState({ signupSubmitted: true })
+      })
+    }
 
     // Build component with priority dropdowns and game info
     const GamesList = filteredGames.map(game => {
       // Get existing priority value
-      let priority = 0;
+      let priority = 0
       for (let i = 0; i < signedGames.length; i += 1) {
         if (signedGames[i].id === game.id) {
-          priority = signedGames[i].priority;
-          break;
+          priority = signedGames[i].priority
+          break
         }
       }
 
@@ -202,10 +194,10 @@ class SignupList extends React.Component {
             className="priority-select"
             defaultValue={priority}
             onFocus={event => {
-              this.oldValue = parseInt(event.target.value, 10);
+              this.oldValue = parseInt(event.target.value, 10)
             }}
             onChange={event => {
-              getSignupEvent(game.id, event, this.oldValue);
+              getSignupEvent(game.id, event, this.oldValue)
             }}
           >
             <option value="0">-</option>
@@ -220,55 +212,48 @@ class SignupList extends React.Component {
             </option>
           </select>
 
-          <Link to={`/games/${game.id}`}>
-            {game.title}
-          </Link>
+          <Link to={`/games/${game.id}`}>{game.title}</Link>
         </p>
-      );
-    });
+      )
+    })
 
     // const resultsTime = moment.utc(signupTime).format('HH:mm');
 
-    const formattedDate = moment.utc(signupTime).format('DD.M.YYYY HH:mm');
+    const formattedDate = moment.utc(signupTime).format('DD.M.YYYY HH:mm')
     const startingTime = moment
       .utc(signupTime)
       .subtract(1, 'hours')
-      .format('HH:mm');
+      .format('HH:mm')
     const endingTime = moment
       .utc(signupTime)
       .subtract(15, 'minutes')
-      .format('HH:mm');
+      .format('HH:mm')
 
     return (
       <div>
         <ul className="signup-list">
-          {filteredGames.length === 0 &&
-            <p className="page-title">
-              {t('noOpenSignups')}
-            </p>}
+          {filteredGames.length === 0 && (
+            <p className="page-title">{t('noOpenSignups')}</p>
+          )}
 
-          {filteredGames.length !== 0 &&
+          {filteredGames.length !== 0 && (
             <p className="page-title">
               {t('signupOpen')} {formattedDate}
-            </p>}
+            </p>
+          )}
 
-          {filteredGames.length !== 0 &&
+          {filteredGames.length !== 0 && (
             <p>
               {t('signupOpenBetweenCapital')} {startingTime}-{endingTime}
-            </p>}
+            </p>
+          )}
 
-          {filteredGames.length !== 0 &&
-            <p>
-              {t('signupGuide')}
-            </p>}
+          {filteredGames.length !== 0 && <p>{t('signupGuide')}</p>}
 
           {GamesList}
         </ul>
 
-        {this.state.signupSubmitted &&
-          <p>
-            {t('signupSaved')}
-          </p>}
+        {this.state.signupSubmitted && <p>{t('signupSaved')}</p>}
 
         <p>
           {t('signupResultHint')} {endingTime}
@@ -278,7 +263,7 @@ class SignupList extends React.Component {
           {t('button.signup')}
         </button>
       </div>
-    );
+    )
   }
 }
 
@@ -296,7 +281,7 @@ SignupList.propTypes = {
   blacklistedGames: PropTypes.array.isRequired,
   onSubmitAllSelectedGames: PropTypes.func.isRequired,
   // onSubmitGetUser: PropTypes.func.isRequired,
-};
+}
 
 const mapStateToProps = state => {
   return {
@@ -305,8 +290,8 @@ const mapStateToProps = state => {
     username: state.login.username,
     signedGames: state.myGames.signedGames,
     blacklistedGames: state.admin.blacklistedGames,
-  };
-};
+  }
+}
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -316,9 +301,9 @@ const mapDispatchToProps = dispatch => {
     onSubmitDeselectGame: gameIndex => dispatch(submitDeselectGame(gameIndex)),
     onSubmitSignup: signupData => dispatch(submitSignup(signupData)),
     onSubmitUpdatetGame: signupData => dispatch(submitUpdatetGame(signupData)),
-  };
-};
+  }
+}
 
 export default translate()(
   connect(mapStateToProps, mapDispatchToProps)(SignupList)
-);
+)

@@ -1,12 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
-import config from '../../config';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { translate } from 'react-i18next'
+import config from '../../config'
 
 const FormField = props => {
-  const { input, label = '', type, meta: { touched, error }, t } = props;
+  const {
+    input,
+    label = '',
+    type,
+    meta: { touched, error },
+    t,
+  } = props
 
-  const registerDescriptionLink = `${config.apiServerURL}/rekisteriseloste.txt`;
+  const registerDescriptionLink = `${config.apiServerURL}/rekisteriseloste.txt`
 
   return (
     <div className="form-row">
@@ -30,14 +36,10 @@ const FormField = props => {
         </label>
       </div>
 
-      {touched &&
-        error &&
-        <div className="form-field-error">
-          {error}
-        </div>}
+      {touched && error && <div className="form-field-error">{error}</div>}
     </div>
-  );
-};
+  )
+}
 
 FormField.propTypes = {
   input: PropTypes.object.isRequired,
@@ -45,6 +47,6 @@ FormField.propTypes = {
   type: PropTypes.string.isRequired,
   meta: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
-};
+}
 
-export default translate()(FormField);
+export default translate()(FormField)

@@ -1,31 +1,35 @@
-import i18n from 'i18next';
-import XHR from 'i18next-xhr-backend';
-import Cache from 'i18next-localstorage-cache';
-import LanguageDetector from 'i18next-browser-languagedetector';
+import i18n from 'i18next'
+import XHR from 'i18next-xhr-backend'
+import Cache from 'i18next-localstorage-cache'
+import LanguageDetector from 'i18next-browser-languagedetector'
 
-import en from '../locales/en.json';
-import fi from '../locales/fi.json';
+import en from '../locales/en.json'
+import fi from '../locales/fi.json'
 
 function loadLocales(url, options, callback) {
   if (url === 'en') {
-    callback(en, { status: '200' });
+    callback(en, { status: '200' })
   } else if (url === 'fi') {
-    callback(fi, { status: '200' });
+    callback(fi, { status: '200' })
   }
 }
 
-i18n.use(XHR).use(Cache).use(LanguageDetector).init({
-  backend: {
-    loadPath: '{{lng}}',
-    parse: data => data,
-    ajax: loadLocales,
-  },
+i18n
+  .use(XHR)
+  .use(Cache)
+  .use(LanguageDetector)
+  .init({
+    backend: {
+      loadPath: '{{lng}}',
+      parse: data => data,
+      ajax: loadLocales,
+    },
 
-  lng: 'en',
-  fallbackLng: 'en',
-  // debug: true,
+    lng: 'en',
+    fallbackLng: 'en',
+    // debug: true,
 
-  /*
+    /*
   // Enable for production
   cache: {
     enabled: true,
@@ -33,10 +37,10 @@ i18n.use(XHR).use(Cache).use(LanguageDetector).init({
   },
   */
 
-  // Override default options for translate HOC
-  react: {
-    wait: false,
-  },
-});
+    // Override default options for translate HOC
+    react: {
+      wait: false,
+    },
+  })
 
-export default i18n;
+export default i18n

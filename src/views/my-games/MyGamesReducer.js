@@ -2,13 +2,13 @@ import {
   SUBMIT_GET_USER_GAMES,
   SUBMIT_UPDATE_FAVORITES,
   // SUBMIT_DEL_FAVORITE,
-} from './MyGamesActions';
+} from './MyGamesActions'
 
 const initialState = {
   enteredGames: [],
   favoritedGames: [],
   signedGames: [],
-};
+}
 
 const myGamesReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -18,13 +18,13 @@ const myGamesReducer = (state = initialState, action) => {
         enteredGames: action.enteredGames,
         favoritedGames: action.favoritedGames,
         signedGames: action.signedGames,
-      };
+      }
     case SUBMIT_UPDATE_FAVORITES:
       return {
         ...state,
         favoritedGames: action.favoritedGames,
         // selectedFavorites: [...state.selectedFavorites, action.favoriteData],
-      };
+      }
     /*
     case SUBMIT_DEL_FAVORITE:
       return {
@@ -36,8 +36,8 @@ const myGamesReducer = (state = initialState, action) => {
       };
     */
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default myGamesReducer;
+export default myGamesReducer

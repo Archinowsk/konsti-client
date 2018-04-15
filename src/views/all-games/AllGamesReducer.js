@@ -1,14 +1,14 @@
-import { SUBMIT_GET_GAMES } from './AllGamesActions';
+import { SUBMIT_GET_GAMES } from './AllGamesActions'
 
-const initialState = { games: [] };
+const initialState = { games: [] }
 
 const allGamesReducer = (state = initialState, action) => {
   switch (action.type) {
     case SUBMIT_GET_GAMES:
-      return { ...state, games: action.games };
+      return { ...state, games: action.games }
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default allGamesReducer;
+export default allGamesReducer

@@ -1,67 +1,55 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
-import moment from 'moment';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { translate } from 'react-i18next'
+import moment from 'moment'
 
-import { submitGetResults } from '../all-signups/AllSignupsActions';
-import { submitGetGames } from '../all-games/AllGamesActions';
-import { submitGetSettings } from '../admin/AdminActions';
+import { submitGetResults } from '../all-signups/AllSignupsActions'
+import { submitGetGames } from '../all-games/AllGamesActions'
+import { submitGetSettings } from '../admin/AdminActions'
 
-import AllSignupsList from './components/AllSignupsList';
+import AllSignupsList from './components/AllSignupsList'
 // import GameDetails from '../../shared-components/GameDetails';
 
 class AllSignupsView extends React.Component {
   componentDidMount() {
-    this.props.onSubmitGetGames();
-    this.props.onSubmitGetSettings();
-    this.props.onSubmitGetResults();
+    this.props.onSubmitGetGames()
+    this.props.onSubmitGetSettings()
+    this.props.onSubmitGetResults()
   }
 
   render() {
-    const { games, t, results, signupTime } = this.props;
+    const { games, t, results, signupTime } = this.props
 
     if (!games || games.length === 0) {
-      return (
-        <p>
-          {t('loading')}
-        </p>
-      );
+      return <p>{t('loading')}</p>
     }
 
     if (!results || results.length === 0 || !games || games.length === 0) {
-      return (
-        <p>
-          {t('noResults')}
-        </p>
-      );
+      return <p>{t('noResults')}</p>
     }
 
-    let selectedResult;
+    let selectedResult
     for (let i = 0; i < results.length; i += 1) {
       if (results[i].time === signupTime) {
-        selectedResult = results[i].result;
-        break;
+        selectedResult = results[i].result
+        break
       }
     }
 
     if (!selectedResult || selectedResult === 0) {
-      return (
-        <p>
-          {t('noResults')}
-        </p>
-      );
+      return <p>{t('noResults')}</p>
     }
 
     games.forEach(game => {
       selectedResult.forEach(result => {
         if (game.id === result.enteredGame.id) {
-          Object.assign(result.enteredGame, game);
+          Object.assign(result.enteredGame, game)
         }
-      });
-    });
+      })
+    })
 
-    const formattedDate = moment.utc(signupTime).format('DD.M.YYYY HH:mm');
+    const formattedDate = moment.utc(signupTime).format('DD.M.YYYY HH:mm')
 
     return (
       <div>
@@ -70,7 +58,7 @@ class AllSignupsView extends React.Component {
         </p>
         <AllSignupsList results={selectedResult} />
       </div>
-    );
+    )
   }
 }
 
@@ -82,24 +70,24 @@ AllSignupsView.propTypes = {
   onSubmitGetSettings: PropTypes.func.isRequired,
   results: PropTypes.array.isRequired,
   signupTime: PropTypes.string.isRequired,
-};
+}
 
 const mapStateToProps = state => {
   return {
     games: state.allGames.games,
     results: state.allSignups.results,
     signupTime: state.admin.signupTime,
-  };
-};
+  }
+}
 
 const mapDispatchToProps = dispatch => {
   return {
     onSubmitGetGames: () => dispatch(submitGetGames()),
     onSubmitGetResults: () => dispatch(submitGetResults()),
     onSubmitGetSettings: () => dispatch(submitGetSettings()),
-  };
-};
+  }
+}
 
 export default translate()(
   connect(mapStateToProps, mapDispatchToProps)(AllSignupsView)
-);
+)

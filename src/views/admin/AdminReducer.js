@@ -4,34 +4,34 @@ import {
   SUBMIT_UPDATE_BLACKLIST,
   SUBMIT_GET_SETTINGS,
   SUBMIT_SELECT_SIGNUP_TIME,
-} from './AdminActions';
+} from './AdminActions'
 
 const initialState = {
   updateResponse: { data: { errors: '' } },
   assignResponse: { data: { errors: '' } },
   blacklistedGames: [],
   signupTime: '',
-};
+}
 
 const loginReducer = (state = initialState, action) => {
   switch (action.type) {
     case SUBMIT_GAMES_UPDATE:
-      return { ...state, updateResponse: action.payload };
+      return { ...state, updateResponse: action.payload }
     case SUBMIT_PLAYERS_ASSIGN:
-      return { ...state, assignResponse: action.payload };
+      return { ...state, assignResponse: action.payload }
     case SUBMIT_UPDATE_BLACKLIST:
-      return { ...state, blacklistedGames: action.blacklistedGames };
+      return { ...state, blacklistedGames: action.blacklistedGames }
     case SUBMIT_GET_SETTINGS:
       return {
         ...state,
         blacklistedGames: action.blacklistedGames,
         signupTime: action.signupTime,
-      };
+      }
     case SUBMIT_SELECT_SIGNUP_TIME:
-      return { ...state, signupTime: action.signupTime };
+      return { ...state, signupTime: action.signupTime }
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default loginReducer;
+export default loginReducer

@@ -1,22 +1,22 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { withRouter } from 'react-router-dom'
 
 class ScrollToTop extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.location !== prevProps.location) {
-      window.scrollTo(0, 0);
+      window.scrollTo(0, 0)
     }
   }
 
   render() {
-    return this.props.children;
+    return this.props.children
   }
 }
 
 ScrollToTop.propTypes = {
   location: PropTypes.object, // eslint-disable-line react/require-default-props
   children: PropTypes.Component, // eslint-disable-line react/require-default-props
-};
+}
 
-export default withRouter(ScrollToTop);
+export default withRouter(ScrollToTop)

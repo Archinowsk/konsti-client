@@ -1,23 +1,23 @@
 const validate = (values, props) => {
-  const { t } = props;
-  const errors = {};
+  const { t } = props
+  const errors = {}
 
   if (!values.username) {
-    errors.username = t('validation.required');
+    errors.username = t('validation.required')
   }
 
   if (!values.password) {
-    errors.password = t('validation.required');
+    errors.password = t('validation.required')
   }
 
   if (!values.serial) {
-    errors.serial = t('validation.required');
+    errors.serial = t('validation.required')
   }
 
   if (!values.registerDescription) {
-    errors.registerDescription = t('validation.required');
+    errors.registerDescription = t('validation.required')
   }
-  return errors;
-};
+  return errors
+}
 
-export default validate;
+export default validate

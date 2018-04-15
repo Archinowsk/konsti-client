@@ -1,7 +1,7 @@
-import { postLogin } from '../../app/api';
+import { postLogin } from '../../app/api'
 
-export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
-export const SUBMIT_LOGOUT = 'SUBMIT_LOGOUT';
+export const SUBMIT_LOGIN = 'SUBMIT_LOGIN'
+export const SUBMIT_LOGOUT = 'SUBMIT_LOGOUT'
 
 const submitLoginAsync = (username, loggedIn, jwtToken, userGroup) => {
   return {
@@ -10,16 +10,16 @@ const submitLoginAsync = (username, loggedIn, jwtToken, userGroup) => {
     loggedIn,
     jwtToken,
     userGroup,
-  };
-};
+  }
+}
 
 export const submitLogin = loginData => dispatch =>
   postLogin(loginData)
     .then(response => {
-      console.log('submitLogin() response');
-      console.log(response);
+      console.log('submitLogin() response')
+      console.log(response)
       if (response.error) {
-        return Promise.reject(response);
+        return Promise.reject(response)
       }
       if (response.status === 'success') {
         dispatch(
@@ -29,18 +29,18 @@ export const submitLogin = loginData => dispatch =>
             response.jwtToken,
             response.userGroup
           )
-        );
+        )
       }
-      return response;
+      return response
     })
     .catch(error => {
-      dispatch(submitLoginAsync(error));
-    });
+      dispatch(submitLoginAsync(error))
+    })
 
 export const submitLogout = () => {
   return {
     type: SUBMIT_LOGOUT,
     username: '',
     loggedIn: false,
-  };
-};
+  }
+}

@@ -1,19 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Field, reduxForm } from 'redux-form';
-import { translate } from 'react-i18next';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Field, reduxForm } from 'redux-form'
+import { translate } from 'react-i18next'
 
-import validate from '../../../app/validate';
-import FormField from '../../../shared-components/FormField';
+import validate from '../../../app/validate'
+import FormField from '../../../shared-components/FormField'
 
 const LoginForm = props => {
-  const { handleSubmit, submitting, t, error } = props;
+  const { handleSubmit, submitting, t, error } = props
 
   return (
     <div>
-      <p className="page-title">
-        {t('pageTitle.login')}
-      </p>
+      <p className="page-title">{t('pageTitle.login')}</p>
       <form onSubmit={handleSubmit}>
         <Field
           name="username"
@@ -34,24 +32,21 @@ const LoginForm = props => {
         </button>
       </form>
 
-      {error &&
-        <strong className="error">
-          {error}
-        </strong>}
+      {error && <strong className="error">{error}</strong>}
     </div>
-  );
-};
+  )
+}
 
 LoginForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired,
   t: PropTypes.func.isRequired,
   error: PropTypes.string, // eslint-disable-line react/require-default-props
-};
+}
 
 export default translate()(
   reduxForm({
     form: 'login',
     validate,
   })(LoginForm)
-);
+)

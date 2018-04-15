@@ -1,27 +1,27 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
-import moment from 'moment';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { translate } from 'react-i18next'
+import moment from 'moment'
 
-import Blacklist from './components/Blacklist';
+import Blacklist from './components/Blacklist'
 import {
   submitGamesUpdate,
   submitPlayersAssign,
   submitGetSettings,
   submitSignupTime,
-} from './AdminActions';
-import { submitGetGames } from '../all-games/AllGamesActions';
-import { submitSelectDate } from '../signup/SignupActions';
-import TimesDropdown from '../../shared-components/TimesDropdown';
+} from './AdminActions'
+import { submitGetGames } from '../all-games/AllGamesActions'
+import { submitSelectDate } from '../signup/SignupActions'
+import TimesDropdown from '../../shared-components/TimesDropdown'
 
 class AdminView extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       submitting: false,
-    };
+    }
   }
 
   componentDidMount() {
@@ -30,8 +30,8 @@ class AdminView extends React.Component {
       this.props.onSubmitGetGames();
     }
     */
-    this.props.onSubmitGetGames();
-    this.props.onSubmitGetSettings();
+    this.props.onSubmitGetGames()
+    this.props.onSubmitGetSettings()
   }
 
   render() {
@@ -46,74 +46,70 @@ class AdminView extends React.Component {
       onSubmitSignupTime,
       date,
       signupTime,
-    } = this.props;
+    } = this.props
 
     if (!games || games.length === 0) {
-      return (
-        <p>
-          {t('loading')}
-        </p>
-      );
+      return <p>{t('loading')}</p>
     }
 
     // Assign game info to blacklisted games list
     games.forEach(game => {
       blacklistedGames.forEach(blacklistedGame => {
         if (game.id === blacklistedGame.id) {
-          Object.assign(blacklistedGame, game);
+          Object.assign(blacklistedGame, game)
         }
-      });
-    });
+      })
+    })
 
-    const visibleGames = [];
+    const visibleGames = []
     // Remove hidden games
     for (let i = 0; i < games.length; i += 1) {
-      let match = false;
+      let match = false
 
       for (let j = 0; j < blacklistedGames.length; j += 1) {
         if (games[i].id === blacklistedGames[j].id) {
-          match = true;
-          break;
+          match = true
+          break
         }
       }
       if (!match) {
-        visibleGames.push(games[i]);
+        visibleGames.push(games[i])
       }
     }
 
     const submitUpdate = () => {
-      this.setState({ submitting: true });
+      this.setState({ submitting: true })
 
       onSubmitGamesUpdate().then(() => {
-        this.setState({ submitting: false });
-      });
-    };
+        this.setState({ submitting: false })
+      })
+    }
 
     const submitAssign = () => {
-      this.setState({ submitting: true });
+      this.setState({ submitting: true })
 
       onSubmitPlayersAssign(signupTime).then(() => {
-        this.setState({ submitting: false });
-      });
-    };
+        this.setState({ submitting: false })
+      })
+    }
 
     const submitTime = () => {
-      this.setState({ submitting: true });
+      this.setState({ submitting: true })
 
       onSubmitSignupTime(date).then(() => {
-        this.setState({ submitting: false });
-      });
-    };
+        this.setState({ submitting: false })
+      })
+    }
 
     // submitSelectDate(signupTime);
-    const formattedDate = moment.utc(signupTime).format('DD.M.YYYY HH:mm');
+    const formattedDate = moment.utc(signupTime).format('DD.M.YYYY HH:mm')
 
     return (
       <div>
         <button
           disabled={this.state.submitting}
           onClick={() => {
-            submitUpdate();
+            submitUpdate()
           }}
         >
           {t('button.updateDb')}
@@ -122,25 +118,19 @@ class AdminView extends React.Component {
         <button
           disabled={this.state.submitting}
           onClick={() => {
-            submitAssign();
+            submitAssign()
           }}
         >
           {t('button.assignPlayers')}
         </button>
 
-        {this.state.submitting &&
-          <p>
-            {t('loading')}
-          </p>}
+        {this.state.submitting && <p>{t('loading')}</p>}
 
-        {updateResponse.data.errors &&
-          <p className="error">
-            {updateResponse.data.message}
-          </p>}
+        {updateResponse.data.errors && (
+          <p className="error">{updateResponse.data.message}</p>
+        )}
 
-        <p>
-          {t('selectOpenSignup')}
-        </p>
+        <p>{t('selectOpenSignup')}</p>
 
         <p>
           {t('signupOpen')} {formattedDate}
@@ -149,7 +139,7 @@ class AdminView extends React.Component {
         <button
           disabled={this.state.submitting}
           onClick={() => {
-            submitTime();
+            submitTime()
           }}
         >
           {t('button.saveTime')}
@@ -164,7 +154,7 @@ class AdminView extends React.Component {
 
         <Blacklist blacklistedGames={blacklistedGames} />
       </div>
-    );
+    )
   }
 }
 
@@ -181,7 +171,7 @@ AdminView.propTypes = {
   onSubmitSignupTime: PropTypes.func.isRequired,
   date: PropTypes.string.isRequired,
   signupTime: PropTypes.string.isRequired,
-};
+}
 
 const mapStateToProps = state => {
   return {
@@ -190,8 +180,8 @@ const mapStateToProps = state => {
     blacklistedGames: state.admin.blacklistedGames,
     date: state.signup.date,
     signupTime: state.admin.signupTime,
-  };
-};
+  }
+}
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -202,9 +192,9 @@ const mapDispatchToProps = dispatch => {
     onSubmitGetSettings: () => dispatch(submitGetSettings()),
     onSubmitSelectDate: event => dispatch(submitSelectDate(event.target.value)),
     onSubmitSignupTime: date => dispatch(submitSignupTime(date)),
-  };
-};
+  }
+}
 
 export default translate()(
   connect(mapStateToProps, mapDispatchToProps)(AdminView)
-);
+)

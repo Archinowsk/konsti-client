@@ -1,15 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router-dom';
-import { translate } from 'react-i18next';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { Route, Switch } from 'react-router-dom'
+import { translate } from 'react-i18next'
 
-import { submitGetGames } from './AllGamesActions';
-import { submitGetSettings } from '../admin/AdminActions';
-import { submitSelectGame } from '../signup/SignupActions';
-import { submitGetUser } from '../my-games/MyGamesActions';
-import AllGamesList from './components/AllGamesList';
-import GameDetails from '../../shared-components/GameDetails';
+import { submitGetGames } from './AllGamesActions'
+import { submitGetSettings } from '../admin/AdminActions'
+import { submitSelectGame } from '../signup/SignupActions'
+import { submitGetUser } from '../my-games/MyGamesActions'
+import AllGamesList from './components/AllGamesList'
+import GameDetails from '../../shared-components/GameDetails'
 
 class AllGamesView extends React.Component {
   componentDidMount() {
@@ -18,9 +18,9 @@ class AllGamesView extends React.Component {
       this.props.onSubmitGetGames();
     }
     */
-    this.props.onSubmitGetGames();
-    this.props.onSubmitGetSettings();
-    this.props.onSubmitGetUser(this.props.username);
+    this.props.onSubmitGetGames()
+    this.props.onSubmitGetSettings()
+    this.props.onSubmitGetUser(this.props.username)
     /*
     this.props.onSubmitGetUser(this.props.username).then(() => {
       this.props.signedGames.forEach(signedGame => {
@@ -31,28 +31,24 @@ class AllGamesView extends React.Component {
   }
 
   render() {
-    const { games, t, blacklistedGames } = this.props;
+    const { games, t, blacklistedGames } = this.props
 
     if (!games || games.length === 0) {
-      return (
-        <p>
-          {t('loading')}
-        </p>
-      );
+      return <p>{t('loading')}</p>
     }
 
     // Remove hidden games
-    const visibleGames = [];
+    const visibleGames = []
     for (let i = 0; i < games.length; i += 1) {
-      let match = false;
+      let match = false
       for (let j = 0; j < blacklistedGames.length; j += 1) {
         if (games[i].id === blacklistedGames[j].id) {
-          match = true;
-          break;
+          match = true
+          break
         }
       }
       if (!match) {
-        visibleGames.push(games[i]);
+        visibleGames.push(games[i])
       }
     }
 
@@ -75,7 +71,7 @@ class AllGamesView extends React.Component {
           />
         </Switch>
       </div>
-    );
+    )
   }
 }
 
@@ -89,7 +85,7 @@ AllGamesView.propTypes = {
   // onSubmitSelectGame: PropTypes.func.isRequired,
   username: PropTypes.string.isRequired,
   onSubmitGetUser: PropTypes.func.isRequired,
-};
+}
 
 const mapStateToProps = state => {
   return {
@@ -97,8 +93,8 @@ const mapStateToProps = state => {
     blacklistedGames: state.admin.blacklistedGames,
     signedGames: state.myGames.signedGames,
     username: state.login.username,
-  };
-};
+  }
+}
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -106,9 +102,9 @@ const mapDispatchToProps = dispatch => {
     onSubmitGetSettings: () => dispatch(submitGetSettings()),
     onSubmitSelectGame: id => dispatch(submitSelectGame(id)),
     onSubmitGetUser: username => dispatch(submitGetUser(username)),
-  };
-};
+  }
+}
 
 export default translate()(
   connect(mapStateToProps, mapDispatchToProps)(AllGamesView)
-);
+)

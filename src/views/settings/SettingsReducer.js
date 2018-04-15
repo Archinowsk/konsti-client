@@ -1,10 +1,10 @@
-const initialState = {};
+const initialState = {}
 
 const settingsReducer = (state = initialState, action) => {
   switch (action.type) {
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default settingsReducer;
+export default settingsReducer
