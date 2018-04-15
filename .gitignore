@@ -11,3 +11,6 @@ build/*
 
 # Office temp files
 ~$*
+
+# IDE config
+.vscode
