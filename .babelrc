@@ -1,21 +1,19 @@
 {
   "presets": [
     [
-      "env",
+      "@babel/preset-env",
       {
-        "modules": false
+        "modules": false,
+        "useBuiltIns": "entry",
+        "shippedProposals": true,
+        "debug": true
       }
     ],
-    "react"
-  ],
-  "plugins": [
-    "babel-plugin-transform-object-rest-spread"
+    "@babel/preset-react"
   ],
   "env": {
     "development": {
-      "plugins": [
-        "react-hot-loader/babel"
-      ]
+      "plugins": ["react-hot-loader/babel"]
     }
   }
 }
