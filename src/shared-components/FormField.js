@@ -9,8 +9,8 @@ const FormField = props => {
     type,
     required = false,
     meta: { touched, error },
-    t,
-    tooltip = true,
+    // t,
+    // tooltip = true,
   } = props
 
   return (

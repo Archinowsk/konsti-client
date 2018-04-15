@@ -7,6 +7,7 @@ import moment from 'moment'
 const MySignupsList = props => {
   const { signedGames, t } = props
 
+  /*
   // Sort games by time and name
   const sortedGames = signedGames.sort((a, b) => {
     const keyA = moment(a.date) + a.title
@@ -15,6 +16,7 @@ const MySignupsList = props => {
     if (keyA > keyB) return 1
     return 0
   })
+  */
 
   const GamesList = signedGames.map(game => {
     const formattedDate = moment.utc(game.date).format('DD.M.YYYY HH:mm')

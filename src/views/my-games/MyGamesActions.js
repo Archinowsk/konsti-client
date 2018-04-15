@@ -1,4 +1,4 @@
-import { getUser, postFavorite, postFeedback } from '../../app/api'
+import { getUser, postFavorite } from '../../app/api'
 
 export const SUBMIT_GET_USER_GAMES = 'SUBMIT_GET_USER_GAMES'
 export const SUBMIT_UPDATE_FAVORITES = 'SUBMIT_UPDATE_FAVORITES'
