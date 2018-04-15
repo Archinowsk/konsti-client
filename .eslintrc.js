@@ -5,8 +5,9 @@ module.exports = {
     'prettier',
     'prettier/react',
     'prettier/standard',
+    // 'plugin:jsx-a11y/recommended',
   ],
-  plugins: ['react', 'prettier', 'standard', 'compat'],
+  plugins: ['jsx-a11y', 'react', 'prettier', 'standard', 'compat'],
   parser: 'babel-eslint',
   parserOptions: {
     sourceType: 'module',
