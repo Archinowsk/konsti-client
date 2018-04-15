@@ -20,4 +20,4 @@ module.exports = {
     // Call autoprefixer last
     require('autoprefixer'),
   ],
-};
+}
