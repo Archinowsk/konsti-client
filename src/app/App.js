@@ -1,12 +1,12 @@
-import React from 'react'
 import PropTypes from 'prop-types'
+import React from 'react'
+import { hot } from 'react-hot-loader'
 import { translate } from 'react-i18next'
 import { connect } from 'react-redux'
-
-import i18n from './i18n'
 import Routes from './Routes'
+import i18n from './i18n'
 
-const Layout = props => {
+const App = props => {
   const { t, username, loggedIn } = props
   const toggle = lng => i18n.changeLanguage(lng)
   const language = i18n.language
@@ -50,7 +50,7 @@ const Layout = props => {
   )
 }
 
-Layout.propTypes = {
+App.propTypes = {
   t: PropTypes.func.isRequired,
   username: PropTypes.string.isRequired,
   loggedIn: PropTypes.bool.isRequired,
@@ -67,4 +67,6 @@ const mapDispatchToProps = dispatch => {
   return {}
 }
 
-export default translate()(connect(mapStateToProps, mapDispatchToProps)(Layout))
+export default hot(module)(
+  translate()(connect(mapStateToProps, mapDispatchToProps)(App))
+)

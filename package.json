@@ -9,12 +9,12 @@
   },
   "scripts": {
     "analyze": "webpack-cli --profile --json > stats.json && webpack-bundle-analyzer stats.json -m static -r report.html",
-    "build": "webpack-cli --progress",
-    "build-test": "webpack-cli --progress",
+    "build": "webpack-cli",
+    "build-test": "webpack-cli",
     "eslint": "eslint src",
     "precommit": "lint-staged",
     "prettier": "prettier --write \"src/**/*.{js,json,scss}\"",
-    "start": "webpack-dev-server --progress",
+    "start": "webpack-dev-server",
     "stylelint": "stylelint \"src/**/*.scss\" --fix"
   },
   "dependencies": {

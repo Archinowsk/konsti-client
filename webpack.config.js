@@ -68,7 +68,7 @@ const devConfig = {
       'react-hot-loader/patch',
       'webpack-dev-server/client?http://localhost:8080',
       // 'webpack/hot/only-dev-server',
-      path.join(__dirname, 'src', 'App'), // App entry point
+      path.join(__dirname, 'src', 'index'), // App entry point
     ],
   },
 
@@ -111,7 +111,7 @@ const prodConfig = {
 
   // Array of entry files
   entry: {
-    client: [path.join(__dirname, 'src', 'App')],
+    client: [path.join(__dirname, 'src', 'index')],
   },
 
   module: {
@@ -164,7 +164,7 @@ const testConfig = {
 
   // Array of entry files
   entry: {
-    client: [path.join(__dirname, 'src', 'App')],
+    client: [path.join(__dirname, 'src', 'index')],
   },
 
   module: {
