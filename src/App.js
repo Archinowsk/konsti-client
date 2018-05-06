@@ -4,30 +4,17 @@ import { hot } from 'react-hot-loader'
 import { translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import Routes from './Routes'
-import i18n from './utils/i18n'
+import LanguageSelector from './components/LanguageSelector'
 
 const App = props => {
   const { t, username, loggedIn } = props
-  const toggle = lng => i18n.changeLanguage(lng)
-  const language = i18n.language
-  const setLanguage = event => {
-    toggle(event.target.value)
-  }
 
   return (
     <div className="main-container">
       <header>
         <h1>Konsti</h1>
         <p>{t('header')}</p>
-        <select
-          id="language"
-          type="text"
-          value={language}
-          onChange={setLanguage}
-        >
-          <option value="en">{t('language.english')}</option>
-          <option value="fi">{t('language.finnish')}</option>
-        </select>
+        <LanguageSelector />
 
         {loggedIn && (
           <span className="username">
