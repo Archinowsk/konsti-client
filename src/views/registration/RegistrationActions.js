@@ -1,4 +1,4 @@
-import { postRegistration } from '../../app/api'
+import { postRegistration } from '../../utils/api'
 import { submitLogin } from '../login/LoginActions'
 
 export const SUBMIT_REGISTRATION = 'SUBMIT_REGISTRATION'

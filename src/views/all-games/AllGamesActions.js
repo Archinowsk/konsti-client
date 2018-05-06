@@ -1,4 +1,4 @@
-import { getGames } from '../../app/api'
+import { getGames } from '../../utils/api'
 
 export const SUBMIT_GET_GAMES = 'SUBMIT_GET_GAMES'
 

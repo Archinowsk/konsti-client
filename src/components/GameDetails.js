@@ -11,7 +11,7 @@ import {
 } from '../views/my-games/MyGamesActions'
 import { submitUpdateBlacklist } from '../views/admin/AdminActions'
 import { submitGetGames } from '../views/all-games/AllGamesActions'
-import { postFeedback } from '../app/api'
+import { postFeedback } from '../utils/api'
 
 class GameDetails extends React.Component {
   constructor(props) {

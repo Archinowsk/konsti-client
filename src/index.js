@@ -8,13 +8,13 @@ import { I18nextProvider } from 'react-i18next'
 import './styles/style.scss'
 
 // Root component
-import App from './app/App'
+import App from './App'
 
 // Initialized i18next instance
-import i18n from './app/i18n'
+import i18n from './utils/i18n'
 
 // Redux store
-import store from './app/store'
+import store from './utils/store'
 
 const rootElement = document.getElementById('main')
 

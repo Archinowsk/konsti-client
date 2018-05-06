@@ -13,7 +13,7 @@ import {
 } from './AdminActions'
 import { submitGetGames } from '../all-games/AllGamesActions'
 import { submitSelectDate } from '../signup/SignupActions'
-import TimesDropdown from '../../shared-components/TimesDropdown'
+import TimesDropdown from '../../components/TimesDropdown'
 
 class AdminView extends React.Component {
   constructor(props) {

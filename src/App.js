@@ -4,7 +4,7 @@ import { hot } from 'react-hot-loader'
 import { translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import Routes from './Routes'
-import i18n from './i18n'
+import i18n from './utils/i18n'
 
 const App = props => {
   const { t, username, loggedIn } = props

@@ -9,7 +9,7 @@ import { submitGetSettings } from '../admin/AdminActions'
 import { submitSelectGame } from '../signup/SignupActions'
 import { submitGetUser } from '../my-games/MyGamesActions'
 import AllGamesList from './components/AllGamesList'
-import GameDetails from '../../shared-components/GameDetails'
+import GameDetails from '../../components/GameDetails'
 
 class AllGamesView extends React.Component {
   componentDidMount() {

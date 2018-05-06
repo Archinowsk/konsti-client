@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { Field, reduxForm } from 'redux-form'
 import { translate } from 'react-i18next'
 
-import validate from '../../../app/validate'
-import FormField from '../../../shared-components/FormField'
+import validate from '../../../utils/validate'
+import FormField from '../../../components/FormField'
 
 const LoginForm = props => {
   const { handleSubmit, submitting, t, error } = props

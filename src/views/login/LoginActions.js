@@ -1,4 +1,4 @@
-import { postLogin } from '../../app/api'
+import { postLogin } from '../../utils/api'
 
 export const SUBMIT_LOGIN = 'SUBMIT_LOGIN'
 export const SUBMIT_LOGOUT = 'SUBMIT_LOGOUT'

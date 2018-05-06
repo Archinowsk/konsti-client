@@ -8,7 +8,7 @@ import { submitGetGames } from '../all-games/AllGamesActions'
 import { submitGetSettings } from '../admin/AdminActions'
 import { submitGetUser } from '../my-games/MyGamesActions'
 import SignupList from './components/SignupList'
-import GameDetails from '../../shared-components/GameDetails'
+import GameDetails from '../../components/GameDetails'
 
 class SignupView extends React.Component {
   componentDidMount() {

@@ -1,4 +1,4 @@
-import { postSignup } from '../../app/api'
+import { postSignup } from '../../utils/api'
 
 export const SUBMIT_SIGNUP = 'SUBMIT_SIGNUP'
 export const SUBMIT_SELECT_DATE = 'SUBMIT_SELECT_DATE'
