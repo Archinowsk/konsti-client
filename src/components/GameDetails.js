@@ -47,7 +47,7 @@ class GameDetails extends React.Component {
     // Check if in favorites
     for (let i = 0; i < this.props.favoritedGames.length; i += 1) {
       if (this.props.favoritedGames[i].id === this.state.game.id) {
-        this.setState({ favorited: true }) // eslint-disable-line react/no-did-mount-set-state
+        this.setState({ favorited: true })
         break
       }
     }
@@ -55,7 +55,7 @@ class GameDetails extends React.Component {
     // Check if blacklisted
     for (let i = 0; i < this.props.blacklistedGames.length; i += 1) {
       if (this.props.blacklistedGames[i].id === this.state.game.id) {
-        this.setState({ blacklisted: true }) // eslint-disable-line react/no-did-mount-set-state
+        this.setState({ blacklisted: true })
         break
       }
     }

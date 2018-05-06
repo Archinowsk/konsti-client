@@ -43,7 +43,7 @@ const FormField = props => {
 
 FormField.propTypes = {
   input: PropTypes.object.isRequired,
-  label: PropTypes.string, // eslint-disable-line react/require-default-props
+  label: PropTypes.string,
   type: PropTypes.string.isRequired,
   meta: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,

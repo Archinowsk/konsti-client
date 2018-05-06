@@ -11,7 +11,7 @@ const Logout = props => {
 
   return (
     <span>
-      <a // eslint-disable-line jsx-a11y/interactive-supports-focus
+      <a
         role="link"
         // tabIndex={0}
         className="router-link"

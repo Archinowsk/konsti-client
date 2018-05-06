@@ -46,12 +46,12 @@ const FormField = props => {
 
 FormField.propTypes = {
   input: PropTypes.object.isRequired,
-  label: PropTypes.string, // eslint-disable-line react/require-default-props
+  label: PropTypes.string,
   type: PropTypes.string.isRequired,
   meta: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
-  required: PropTypes.bool, // eslint-disable-line react/require-default-props
-  tooltip: PropTypes.bool, // eslint-disable-line react/require-default-props
+  required: PropTypes.bool,
+  tooltip: PropTypes.bool,
 }
 
 export default translate()(FormField)

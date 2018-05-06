@@ -77,7 +77,7 @@ RegistrationForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   submitting: PropTypes.bool.isRequired,
   t: PropTypes.func.isRequired,
-  error: PropTypes.string, // eslint-disable-line react/require-default-props
+  error: PropTypes.string,
 }
 
 export default translate()(
