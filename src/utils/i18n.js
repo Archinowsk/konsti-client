@@ -6,7 +6,7 @@ import LanguageDetector from 'i18next-browser-languagedetector'
 import en from '../locales/en.json'
 import fi from '../locales/fi.json'
 
-function loadLocales(url, options, callback) {
+const loadLocales = (url, options, callback) => {
   if (url === 'en') {
     callback(en, { status: '200' })
   } else if (url === 'fi') {
@@ -30,12 +30,12 @@ i18n
     // debug: true,
 
     /*
-  // Enable for production
-  cache: {
-    enabled: true,
-    prefix: 'i18next_',
-  },
-  */
+    // Enable for production
+    cache: {
+      enabled: true,
+      prefix: 'i18next_',
+    },
+    */
 
     // Override default options for translate HOC
     react: {
