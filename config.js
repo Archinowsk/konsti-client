@@ -15,10 +15,4 @@ if (process.env.NODE_ENV === 'development') {
   config.apiServerURL = 'http://localhost:3000'
 }
 
-// Variables for development environment
-if (process.env.NODE_ENV === 'testing') {
-  config.env = 'testing'
-  config.apiServerURL = 'http://localhost:3000'
-}
-
 module.exports = config
