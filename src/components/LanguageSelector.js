@@ -15,12 +15,12 @@ const LanguageSelector = props => {
   }
 
   return (
-    <div>
+    <React.Fragment>
       <select id="language" type="text" value={language} onChange={setLanguage}>
         <option value="en">{t('language.english')}</option>
         <option value="fi">{t('language.finnish')}</option>
       </select>
-    </div>
+    </React.Fragment>
   )
 }
 
