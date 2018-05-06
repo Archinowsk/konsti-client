@@ -8,9 +8,9 @@ import moment from 'moment'
 import {
   submitUpdateFavorites,
   // submitSendFeedback,
-} from '../views/my-games/MyGamesActions'
-import { submitUpdateBlacklist } from '../views/admin/AdminActions'
-import { submitGetGames } from '../views/all-games/AllGamesActions'
+} from '../views/my-games/myGamesActions'
+import { submitUpdateBlacklist } from '../views/admin/adminActions'
+import { submitGetGames } from '../views/all-games/allGamesActions'
 import { postFeedback } from '../utils/api'
 
 class GameDetails extends React.Component {

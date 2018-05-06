@@ -1,4 +1,4 @@
-import { SUBMIT_GET_GAMES } from './AllGamesActions'
+import { SUBMIT_GET_GAMES } from './allGamesActions'
 
 const initialState = { games: [] }
 

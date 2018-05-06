@@ -4,9 +4,9 @@ import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import { translate } from 'react-i18next'
 
-import { submitGetGames } from '../all-games/AllGamesActions'
-import { submitGetSettings } from '../admin/AdminActions'
-import { submitGetUser } from '../my-games/MyGamesActions'
+import { submitGetGames } from '../all-games/allGamesActions'
+import { submitGetSettings } from '../admin/adminActions'
+import { submitGetUser } from '../my-games/myGamesActions'
 import SignupList from './components/SignupList'
 import GameDetails from '../../components/GameDetails'
 

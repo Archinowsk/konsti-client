@@ -1,4 +1,4 @@
-import { SUBMIT_REGISTRATION } from './RegistrationActions'
+import { SUBMIT_REGISTRATION } from './registrationActions'
 
 const initialState = {}
 

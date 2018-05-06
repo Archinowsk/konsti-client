@@ -4,9 +4,9 @@ import { connect } from 'react-redux'
 import { translate } from 'react-i18next'
 import moment from 'moment'
 
-import { submitGetResults } from '../all-signups/AllSignupsActions'
-import { submitGetGames } from '../all-games/AllGamesActions'
-import { submitGetSettings } from '../admin/AdminActions'
+import { submitGetResults } from '../all-signups/allSignupsActions'
+import { submitGetGames } from '../all-games/allGamesActions'
+import { submitGetSettings } from '../admin/adminActions'
 
 import AllSignupsList from './components/AllSignupsList'
 // import GameDetails from '../../components/GameDetails';

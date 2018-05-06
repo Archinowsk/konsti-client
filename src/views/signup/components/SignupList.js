@@ -11,7 +11,7 @@ import {
   submitSignup,
   submitUpdatetGame,
   submitAllSelectedGames,
-} from '../SignupActions'
+} from '../signupActions'
 
 class SignupList extends React.Component {
   constructor(props) {

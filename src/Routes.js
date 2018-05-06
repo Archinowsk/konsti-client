@@ -14,7 +14,7 @@ import Registration from './views/registration/RegistrationView'
 import Admin from './views/admin/AdminView'
 import AllSignups from './views/all-signups/AllSignupsView'
 
-import { submitLogin } from './views/login/LoginActions'
+import { submitLogin } from './views/login/loginActions'
 import LogoutButton from './components/LogoutButton'
 
 const Routes = props => {

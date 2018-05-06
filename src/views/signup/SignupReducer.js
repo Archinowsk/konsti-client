@@ -5,7 +5,7 @@ import {
   SUBMIT_DESELECT_GAME,
   SUBMIT_UPDATE_GAME,
   SUBMIT_ALL_SELECTED_GAMES,
-} from './SignupActions'
+} from './signupActions'
 
 const initialState = { status: false, date: '', selectedGames: [] }
 

@@ -3,13 +3,13 @@ import thunk from 'redux-thunk'
 
 // Reducers
 import { reducer as formReducer } from 'redux-form'
-import allGamesReducer from '../views/all-games/AllGamesReducer'
-import loginReducer from '../views/login/LoginReducer'
-import myGamesReducer from '../views/my-games/MyGamesReducer'
-import settingsReducer from '../views/settings/SettingsReducer'
-import signupReducer from '../views/signup/SignupReducer'
-import adminReducer from '../views/admin/AdminReducer'
-import allSignupsReducer from '../views/all-signups/AllSignupsReducer'
+import allGamesReducer from '../views/all-games/allGamesReducer'
+import loginReducer from '../views/login/loginReducer'
+import myGamesReducer from '../views/my-games/myGamesReducer'
+import settingsReducer from '../views/settings/settingsReducer'
+import signupReducer from '../views/signup/signupReducer'
+import adminReducer from '../views/admin/adminReducer'
+import allSignupsReducer from '../views/all-signups/allSignupsReducer'
 
 // Set reducers
 const reducer = combineReducers({

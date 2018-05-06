@@ -10,9 +10,9 @@ import {
   submitPlayersAssign,
   submitGetSettings,
   submitSignupTime,
-} from './AdminActions'
-import { submitGetGames } from '../all-games/AllGamesActions'
-import { submitSelectDate } from '../signup/SignupActions'
+} from './adminActions'
+import { submitGetGames } from '../all-games/allGamesActions'
+import { submitSelectDate } from '../signup/signupActions'
 import TimesDropdown from '../../components/TimesDropdown'
 
 class AdminView extends React.Component {

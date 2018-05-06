@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { translate } from 'react-i18next'
 
-import { submitGetUser } from './MyGamesActions'
-import { submitGetGames } from '../all-games/AllGamesActions'
+import { submitGetUser } from './myGamesActions'
+import { submitGetGames } from '../all-games/allGamesActions'
 
 import MySignupsList from './components/MySignupsList'
 import MyFavoritesList from './components/MyFavoritesList'

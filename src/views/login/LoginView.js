@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { translate } from 'react-i18next'
 import { SubmissionError } from 'redux-form'
 
-import { submitLogin } from './LoginActions'
+import { submitLogin } from './loginActions'
 import LoginForm from './components/LoginForm'
 
 const LoginView = props => {

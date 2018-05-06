@@ -1,4 +1,4 @@
-import { SUBMIT_GET_RESULTS } from './AllSignupsActions'
+import { SUBMIT_GET_RESULTS } from './allSignupsActions'
 
 const initialState = { results: [] }
 

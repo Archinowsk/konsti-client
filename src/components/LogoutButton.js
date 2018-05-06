@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { translate } from 'react-i18next'
 // import { BrowserRouter, Route, Link, Switch, Redirect } from 'react-router-dom'
 
-import { submitLogout } from '../views/login/LoginActions'
+import { submitLogout } from '../views/login/loginActions'
 
 const Logout = props => {
   const { onSubmitLogout, t } = props

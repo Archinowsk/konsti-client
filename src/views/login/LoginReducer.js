@@ -1,4 +1,4 @@
-import { SUBMIT_LOGIN, SUBMIT_LOGOUT } from './LoginActions'
+import { SUBMIT_LOGIN, SUBMIT_LOGOUT } from './loginActions'
 
 const initialState = {
   username: '',

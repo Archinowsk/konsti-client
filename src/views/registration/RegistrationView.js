@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { SubmissionError } from 'redux-form'
 import { translate } from 'react-i18next'
 
-import { submitRegistration } from './RegistrationActions'
+import { submitRegistration } from './registrationActions'
 import RegistrationForm from './components/RegistrationForm'
 
 const RegistrationView = props => {

@@ -2,7 +2,7 @@ import {
   SUBMIT_GET_USER_GAMES,
   SUBMIT_UPDATE_FAVORITES,
   // SUBMIT_DEL_FAVORITE,
-} from './MyGamesActions'
+} from './myGamesActions'
 
 const initialState = {
   enteredGames: [],
