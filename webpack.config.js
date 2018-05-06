@@ -35,7 +35,7 @@ const commonConfig = {
       filename: 'index.html',
       template: TemplateWebpackPlugin,
       inject: false,
-      favicon: path.resolve(__dirname, 'static', 'favicon.png'),
+      favicon: path.resolve(__dirname, 'assets', 'favicon.png'),
       minify: {
         collapseWhitespace: true,
         preserveLineBreaks: true,
@@ -130,7 +130,7 @@ const prodConfig = {
       verbose: false,
       exclude: ['.keep'],
     }),
-    new CopyWebpackPlugin([{ from: 'static' }]),
+    new CopyWebpackPlugin([{ from: 'assets' }]),
     // “en” is built into Moment and can’t be removed
     new MomentLocalesPlugin({
       localesToKeep: ['fi'],

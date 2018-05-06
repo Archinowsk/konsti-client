@@ -8,7 +8,7 @@
     "name": "Arttu Hanska"
   },
   "scripts": {
-    "analyze": "webpack-cli --profile --json > stats.json && webpack-bundle-analyzer stats.json -m static -r report.html",
+    "analyze": "webpack-cli --profile --json > stats.json && webpack-bundle-analyzer stats.json -m assets -r report.html",
     "build": "webpack-cli",
     "eslint": "eslint src",
     "precommit": "lint-staged",
