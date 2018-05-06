@@ -61,7 +61,7 @@ const RegistrationForm = props => {
             register description
           </a>
         </p>
-*/}
+        */}
 
         <button type="submit" disabled={submitting}>
           {t('button.register')}

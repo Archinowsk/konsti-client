@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { translate } from 'react-i18next'
 import config from '../../config'
 
-const FormField = props => {
+const CheckboxField = props => {
   const {
     input,
     label = '',
@@ -41,7 +41,7 @@ const FormField = props => {
   )
 }
 
-FormField.propTypes = {
+CheckboxField.propTypes = {
   input: PropTypes.object.isRequired,
   label: PropTypes.string,
   type: PropTypes.string.isRequired,
@@ -49,4 +49,4 @@ FormField.propTypes = {
   t: PropTypes.func.isRequired,
 }
 
-export default translate()(FormField)
+export default translate()(CheckboxField)
