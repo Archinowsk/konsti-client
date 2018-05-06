@@ -4,6 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const TemplateWebpackPlugin = require('html-webpack-template')
+const MomentLocalesPlugin = require('moment-locales-webpack-plugin')
 const path = require('path')
 const webpack = require('webpack')
 const webpackMerge = require('webpack-merge')
@@ -14,6 +15,11 @@ const TARGET = process.env.npm_lifecycle_event
 
 const commonConfig = {
   target: 'web',
+
+  // Array of entry files
+  entry: {
+    client: [path.join(__dirname, 'src', 'index')],
+  },
 
   // Output for compiled file
   output: {
@@ -62,16 +68,6 @@ const devConfig = {
 
   devtool: 'eval', // Use eval for best hot-loading perf
 
-  // Array of files run at startup
-  entry: {
-    client: [
-      'react-hot-loader/patch',
-      'webpack-dev-server/client?http://localhost:8080',
-      // 'webpack/hot/only-dev-server',
-      path.join(__dirname, 'src', 'index'), // App entry point
-    ],
-  },
-
   // webpack-dev-server config
   devServer: {
     host: 'localhost',
@@ -109,11 +105,6 @@ const devConfig = {
 const prodConfig = {
   mode: 'production',
 
-  // Array of entry files
-  entry: {
-    client: [path.join(__dirname, 'src', 'index')],
-  },
-
   module: {
     // Loaders to transform sources
     rules: [
@@ -134,13 +125,16 @@ const prodConfig = {
   },
 
   plugins: [
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), // Ignore all optional deps of moment.js
     new CleanWebpackPlugin(['build'], {
       root: path.resolve(__dirname),
       verbose: false,
       exclude: ['.keep'],
     }),
     new CopyWebpackPlugin([{ from: 'static' }]),
+    // “en” is built into Moment and can’t be removed
+    new MomentLocalesPlugin({
+      localesToKeep: ['fi'],
+    }),
     new ExtractTextWebpackPlugin('[name].bundle.css'),
     new CompressionPlugin({
       asset: '[path].gz[query]',
@@ -159,50 +153,10 @@ const prodConfig = {
   },
 }
 
-const testConfig = {
-  mode: 'production',
-
-  // Array of entry files
-  entry: {
-    client: [path.join(__dirname, 'src', 'index')],
-  },
-
-  module: {
-    // Loaders to transform sources
-    rules: [
-      {
-        // SCSS loaders
-        test: /\.scss$/,
-        use: ExtractTextWebpackPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            { loader: 'css-loader' },
-            { loader: 'postcss-loader', options: { parser: 'postcss-scss' } },
-            { loader: 'sass-loader' },
-          ],
-          publicPath: '/',
-        }),
-      },
-    ],
-  },
-
-  plugins: [
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/), // Ignore all optional deps of moment.js
-    new CleanWebpackPlugin(['build'], {
-      root: path.resolve(__dirname),
-      verbose: false,
-      exclude: ['.keep'],
-    }),
-    new ExtractTextWebpackPlugin('[name].bundle.css'),
-  ],
-}
-
 if (TARGET === 'build' || TARGET === 'analyze') {
   config = webpackMerge(commonConfig, prodConfig)
 } else if (TARGET === 'start' || TARGET === 'watch') {
   config = webpackMerge(commonConfig, devConfig)
-} else if (TARGET === 'build-test') {
-  config = webpackMerge(commonConfig, testConfig)
 }
 
 module.exports = config

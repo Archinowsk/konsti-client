@@ -10,7 +10,6 @@
   "scripts": {
     "analyze": "webpack-cli --profile --json > stats.json && webpack-bundle-analyzer stats.json -m static -r report.html",
     "build": "webpack-cli",
-    "build-test": "webpack-cli",
     "eslint": "eslint src",
     "precommit": "lint-staged",
     "prettier": "prettier --write \"src/**/*.{js,json,scss}\"",
@@ -66,6 +65,7 @@
     "html-webpack-template": "^6.2.0",
     "husky": "^0.14.3",
     "lint-staged": "^7.0.5",
+    "moment-locales-webpack-plugin": "^1.0.5",
     "node-sass": "^4.9.0",
     "postcss": "^6.0.22",
     "postcss-autoreset": "^2.0.2",
