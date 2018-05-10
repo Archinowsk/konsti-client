@@ -1,15 +1,14 @@
-import React from 'react'
 import PropTypes from 'prop-types'
+import React from 'react'
+import { translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
-import { translate } from 'react-i18next'
-
-import { submitGetGames } from './allGamesActions'
-import { submitGetSettings } from '../admin/adminActions'
-import { submitSelectGame } from '../signup/signupActions'
-import { submitGetUser } from '../my-games/myGamesActions'
-import AllGamesList from './components/AllGamesList'
 import GameDetails from '../../components/GameDetails'
+import { submitGetSettings } from '../admin/adminActions'
+import { submitGetUser } from '../my-games/myGamesActions'
+import { submitSelectGame } from '../signup/signupActions'
+import { submitGetGames } from './allGamesActions'
+import AllGamesList from './components/AllGamesList'
 
 class AllGamesView extends React.Component {
   componentDidMount() {
@@ -20,7 +19,8 @@ class AllGamesView extends React.Component {
     */
     this.props.onSubmitGetGames()
     this.props.onSubmitGetSettings()
-    this.props.onSubmitGetUser(this.props.username)
+    // this.props.onSubmitGetUser(this.props.username)
+
     /*
     this.props.onSubmitGetUser(this.props.username).then(() => {
       this.props.signedGames.forEach(signedGame => {
