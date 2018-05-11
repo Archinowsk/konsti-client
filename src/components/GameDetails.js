@@ -1,17 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { translate } from 'react-i18next'
-import { withRouter } from 'react-router-dom'
-import { connect } from 'react-redux'
 import moment from 'moment'
-
-import {
-  submitUpdateFavorites,
-  // submitSendFeedback,
-} from '../views/my-games/myGamesActions'
+import { translate } from 'react-i18next'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+import { postFeedback } from '../utils/api'
 import { submitUpdateBlacklist } from '../views/admin/adminActions'
 import { submitGetGames } from '../views/all-games/allGamesActions'
-import { postFeedback } from '../utils/api'
+import { submitUpdateFavorites } from '../views/my-games/myGamesActions'
 
 class GameDetails extends React.Component {
   constructor(props) {
@@ -72,7 +68,7 @@ class GameDetails extends React.Component {
   }
 
   // Favorite / unfavorite clicked
-  addFavoriteEvent(action) {
+  async addFavoriteEvent(action) {
     this.setState({ submitting: true })
     const gameIndex = this.findGame(
       this.state.game.id,
@@ -101,7 +97,10 @@ class GameDetails extends React.Component {
       favoritedGames: favoritedGameIds,
     }
 
-    this.props.onSubmitUpdateFavorites(favoriteData).then(response => {
+    let response = null
+    try {
+      response = await this.props.onSubmitUpdateFavorites(favoriteData)
+
       this.setState({ submitting: false })
       if (response.status === 'success') {
         if (action === 'add') {
@@ -110,11 +109,13 @@ class GameDetails extends React.Component {
           this.setState({ favorited: false })
         }
       }
-    })
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   // Hide / unhide clicked
-  addBlacklistEvent(action) {
+  async addBlacklistEvent(action) {
     this.setState({ submitting: true })
     const gameIndex = this.findGame(
       this.state.game.id,
@@ -142,7 +143,9 @@ class GameDetails extends React.Component {
       blacklistedGames: blacklistedGameIds,
     }
 
-    this.props.onSubmitUpdateBlacklist(blacklistData).then(response => {
+    let response = null
+    try {
+      response = await this.props.onSubmitUpdateBlacklist(blacklistData)
       this.setState({ submitting: false })
       if (response.status === 'success') {
         if (action === 'add') {
@@ -151,11 +154,13 @@ class GameDetails extends React.Component {
           this.setState({ blacklisted: false })
         }
       }
-    })
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   // Hide / unhide clicked
-  sendFeedbackEvent() {
+  async sendFeedbackEvent() {
     this.setState({ submitting: true })
 
     const feedbackData = {
@@ -163,15 +168,10 @@ class GameDetails extends React.Component {
       feedback: this.state.feedbackValue,
     }
 
-    postFeedback(feedbackData).then(() => {
-      // this.setState({ feedbackValue: '' });
-      this.setState({ feedbackSent: true })
-      this.setState({ submitting: false })
-    })
-
-    // this.props.onSubmitSendFeedback(feedbackData).then(response => {
-    // this.setState({ submitting: false });
-    // });
+    try {
+      await postFeedback(feedbackData)
+      this.setState({ feedbackSent: true, submitting: false })
+    } catch (error) {}
   }
 
   render() {
