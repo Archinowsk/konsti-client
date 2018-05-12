@@ -22,9 +22,7 @@ class GameDetails extends React.Component {
       feedbackValue: '',
       feedbackSent: false,
     }
-  }
 
-  componentWillMount() {
     // Get the open game from games list
     const gameById = game =>
       game.id === parseInt(this.props.match.params.id, 10)
