@@ -10,8 +10,10 @@ import LoginForm from './components/LoginForm'
 const LoginView = props => {
   const { onSubmitLogin, t } = props
 
-  const submit = form =>
-    onSubmitLogin(form).then(response => {
+  const submit = async form => {
+    let response = null
+    try {
+      response = await onSubmitLogin(form)
       if (response.code === 21) {
         throw new SubmissionError({
           _error: t('error.loginFailed'),
@@ -24,7 +26,10 @@ const LoginView = props => {
         });
       }
       */
-    })
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <div>

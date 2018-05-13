@@ -20,14 +20,6 @@ class AllGamesView extends React.Component {
     this.props.onSubmitGetGames()
     this.props.onSubmitGetSettings()
     // this.props.onSubmitGetUser(this.props.username)
-
-    /*
-    this.props.onSubmitGetUser(this.props.username).then(() => {
-      this.props.signedGames.forEach(signedGame => {
-        this.props.onSubmitSelectGame(signedGame);
-      });
-    });
-    */
   }
 
   render() {

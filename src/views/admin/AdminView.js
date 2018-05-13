@@ -77,28 +77,37 @@ class AdminView extends React.Component {
       }
     }
 
-    const submitUpdate = () => {
+    const submitUpdate = async () => {
       this.setState({ submitting: true })
 
-      onSubmitGamesUpdate().then(() => {
+      try {
+        await onSubmitGamesUpdate()
         this.setState({ submitting: false })
-      })
+      } catch (error) {
+        console.log(error)
+      }
     }
 
-    const submitAssign = () => {
+    const submitAssign = async () => {
       this.setState({ submitting: true })
 
-      onSubmitPlayersAssign(signupTime).then(() => {
+      try {
+        await onSubmitPlayersAssign(signupTime)
         this.setState({ submitting: false })
-      })
+      } catch (error) {
+        console.log(error)
+      }
     }
 
-    const submitTime = () => {
+    const submitTime = async () => {
       this.setState({ submitting: true })
 
-      onSubmitSignupTime(date).then(() => {
+      try {
+        await onSubmitSignupTime(date)
         this.setState({ submitting: false })
-      })
+      } catch (error) {
+        console.log(error)
+      }
     }
 
     // submitSelectDate(signupTime);

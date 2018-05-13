@@ -152,7 +152,7 @@ class SignupList extends React.Component {
       }
     }
 
-    const onSubmitClick = () => {
+    const onSubmitClick = async () => {
       this.setState({ submitting: true })
 
       // Send only game IDs and priorities to API
@@ -170,11 +170,12 @@ class SignupList extends React.Component {
         // time: signupTime,
       }
 
-      // const signupData = { username, selectedGames };
-      onSubmitSignup(signupData).then(() => {
-        this.setState({ submitting: false })
-        this.setState({ signupSubmitted: true })
-      })
+      try {
+        await onSubmitSignup(signupData)
+        this.setState({ submitting: false, signupSubmitted: true })
+      } catch (error) {
+        console.log(error)
+      }
     }
 
     // Build component with priority dropdowns and game info

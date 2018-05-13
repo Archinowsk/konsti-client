@@ -10,8 +10,10 @@ import RegistrationForm from './components/RegistrationForm'
 const RegistrationView = props => {
   const { onSubmitLogin, t } = props
 
-  const submit = form =>
-    onSubmitLogin(form).then(response => {
+  const submit = async form => {
+    let response = null
+    try {
+      response = await onSubmitLogin(form)
       if (response.code === 11) {
         throw new SubmissionError({
           username: t('error.usernameTaken'),
@@ -30,7 +32,10 @@ const RegistrationView = props => {
         });
       }
       */
-    })
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <div>
