@@ -10,22 +10,22 @@ const submitGetGamesAsync = games => {
 }
 
 export const submitGetGames = () => {
-  return dispatch => {
-    return getGames()
-      .then(response => {
-        console.log('submitGetGames() response')
-        console.log(response)
-        if (response.error) {
-          return Promise.reject(response)
-        }
-        if (response.status === 'success') {
-          dispatch(submitGetGamesAsync(response.games))
-        }
-        return response
-      })
-      .catch(error => {
-        console.log(error)
-        // dispatch(submitGetGamesAsync(error));
-      })
+  return async dispatch => {
+    let response = null
+    try {
+      response = await getGames()
+      console.log('submitGetGames() response')
+      console.log(response)
+      if (response.error) {
+        return Promise.reject(response)
+      }
+      if (response.status === 'success') {
+        dispatch(submitGetGamesAsync(response.games))
+      }
+      return response
+    } catch (error) {
+      console.log(error)
+      // dispatch(submitGetGamesAsync(error))
+    }
   }
 }

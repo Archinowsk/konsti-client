@@ -14,29 +14,29 @@ const submitLoginAsync = (username, loggedIn, jwtToken, userGroup) => {
 }
 
 export const submitLogin = loginData => {
-  return dispatch => {
-    return postLogin(loginData)
-      .then(response => {
-        console.log('submitLogin() response')
-        console.log(response)
-        if (response.error) {
-          return Promise.reject(response)
-        }
-        if (response.status === 'success') {
-          dispatch(
-            submitLoginAsync(
-              loginData.username,
-              true,
-              response.jwtToken,
-              response.userGroup
-            )
+  return async dispatch => {
+    let response = null
+    try {
+      response = await postLogin(loginData)
+      console.log('submitLogin() response')
+      console.log(response)
+      if (response.error) {
+        return Promise.reject(response)
+      }
+      if (response.status === 'success') {
+        dispatch(
+          submitLoginAsync(
+            loginData.username,
+            true,
+            response.jwtToken,
+            response.userGroup
           )
-        }
-        return response
-      })
-      .catch(error => {
-        dispatch(submitLoginAsync(error))
-      })
+        )
+      }
+      return response
+    } catch (error) {
+      dispatch(submitLoginAsync(error))
+    }
   }
 }
 

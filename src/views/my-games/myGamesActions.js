@@ -14,28 +14,28 @@ const submitGetUserAsync = (enteredGames, favoritedGames, signedGames) => {
 }
 
 export const submitGetUser = username => {
-  return dispatch => {
-    return getUser(username)
-      .then(response => {
-        console.log('submitGetUser() response')
-        console.log(response)
-        if (response.error) {
-          return Promise.reject(response)
-        }
-        if (response.status === 'success') {
-          dispatch(
-            submitGetUserAsync(
-              response.games.enteredGames,
-              response.games.favoritedGames,
-              response.games.signedGames
-            )
+  return async dispatch => {
+    let response = null
+    try {
+      response = await getUser(username)
+      console.log('submitGetUser() response')
+      console.log(response)
+      if (response.error) {
+        return Promise.reject(response)
+      }
+      if (response.status === 'success') {
+        dispatch(
+          submitGetUserAsync(
+            response.games.enteredGames,
+            response.games.favoritedGames,
+            response.games.signedGames
           )
-        }
-        return response
-      })
-      .catch(error => {
-        console.log(error)
-      })
+        )
+      }
+      return response
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 
@@ -47,22 +47,22 @@ const submitUpdateFavoritesAsync = favoritedGames => {
 }
 
 export const submitUpdateFavorites = favoriteData => {
-  return dispatch => {
-    return postFavorite(favoriteData)
-      .then(response => {
-        console.log('submitUpdateFavorites() response')
-        console.log(response)
-        if (response.error) {
-          return Promise.reject(response)
-        }
-        if (response.status === 'success') {
-          dispatch(submitUpdateFavoritesAsync(favoriteData.favoritedGames))
-        }
-        return response
-      })
-      .catch(error => {
-        console.log(error)
-      })
+  return async dispatch => {
+    let response = null
+    try {
+      response = await postFavorite(favoriteData)
+      console.log('submitUpdateFavorites() response')
+      console.log(response)
+      if (response.error) {
+        return Promise.reject(response)
+      }
+      if (response.status === 'success') {
+        dispatch(submitUpdateFavoritesAsync(favoriteData.favoritedGames))
+      }
+      return response
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 
@@ -75,22 +75,22 @@ const submitSendFeedbackAsync = favoritedGames => {
 }
 
 export const submitSendFeedback = feedbackData => {
-  return dispatch => {
-    return postFeedback(feedbackData)
-      .then(response => {
-        console.log('submitSendFeedback() response')
-        console.log(response)
-        if (response.error) {
-          return Promise.reject(response)
-        }
-        if (response.status === 'success') {
-          dispatch(submitSendFeedbackAsync(true))
-        }
-        return response
-      })
-      .catch(error => {
-        console.log(error)
-      })
+  return async dispatch => {
+    let response = null
+    try {
+      response = await postFeedback(feedbackData)
+      console.log('submitSendFeedback() response')
+      console.log(response)
+      if (response.error) {
+        return Promise.reject(response)
+      }
+      if (response.status === 'success') {
+        dispatch(submitSendFeedbackAsync(true))
+      }
+      return response
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 */
