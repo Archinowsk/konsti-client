@@ -10,20 +10,23 @@ const submitRegistrationAsync = registrationResponse => {
   }
 }
 
-export const submitRegistration = registrationData => dispatch =>
-  postRegistration(registrationData)
-    .then(response => {
-      console.log('submitRegistration() response')
-      console.log(response)
-      if (response.error) {
-        return Promise.reject(response)
-      }
-      if (response.status === 'success') {
-        dispatch(submitRegistrationAsync(true))
-        dispatch(submitLogin(registrationData))
-      }
-      return response
-    })
-    .catch(error => {
-      dispatch(submitRegistrationAsync(error))
-    })
+export const submitRegistration = registrationData => {
+  return dispatch => {
+    return postRegistration(registrationData)
+      .then(response => {
+        console.log('submitRegistration() response')
+        console.log(response)
+        if (response.error) {
+          return Promise.reject(response)
+        }
+        if (response.status === 'success') {
+          dispatch(submitRegistrationAsync(true))
+          dispatch(submitLogin(registrationData))
+        }
+        return response
+      })
+      .catch(error => {
+        dispatch(submitRegistrationAsync(error))
+      })
+  }
+}

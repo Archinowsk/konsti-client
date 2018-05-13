@@ -9,20 +9,23 @@ const submitGetResultsAsync = results => {
   }
 }
 
-export const submitGetResults = () => dispatch =>
-  getResults()
-    .then(response => {
-      console.log('submitGetResults() response')
-      console.log(response)
-      if (response.error) {
-        return Promise.reject(response)
-      }
-      if (response.status === 'success') {
-        dispatch(submitGetResultsAsync(response.results))
-      }
-      return response
-    })
-    .catch(error => {
-      console.log(error)
-      // dispatch(submitGetGamesAsync(error));
-    })
+export const submitGetResults = () => {
+  return dispatch => {
+    return getResults()
+      .then(response => {
+        console.log('submitGetResults() response')
+        console.log(response)
+        if (response.error) {
+          return Promise.reject(response)
+        }
+        if (response.status === 'success') {
+          dispatch(submitGetResultsAsync(response.results))
+        }
+        return response
+      })
+      .catch(error => {
+        console.log(error)
+        // dispatch(submitGetGamesAsync(error));
+      })
+  }
+}

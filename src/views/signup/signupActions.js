@@ -14,23 +14,26 @@ const submitSignupAsync = status => {
   }
 }
 
-export const submitSignup = signupData => dispatch =>
-  postSignup(signupData)
-    .then(response => {
-      console.log('submitSignup() response')
-      console.log(response)
-      if (response.error) {
-        return Promise.reject(response)
-      }
-      if (response.status === 'success') {
-        dispatch(submitSignupAsync(true))
-      }
-      return response
-    })
-    .catch(error => {
-      console.log(error)
-      dispatch(submitSignupAsync(false))
-    })
+export const submitSignup = signupData => {
+  return dispatch => {
+    return postSignup(signupData)
+      .then(response => {
+        console.log('submitSignup() response')
+        console.log(response)
+        if (response.error) {
+          return Promise.reject(response)
+        }
+        if (response.status === 'success') {
+          dispatch(submitSignupAsync(true))
+        }
+        return response
+      })
+      .catch(error => {
+        console.log(error)
+        dispatch(submitSignupAsync(false))
+      })
+  }
+}
 
 export const submitSelectDate = date => {
   return {

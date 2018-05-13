@@ -19,23 +19,26 @@ const submitGamesUpdateAsync = updateResponse => {
   }
 }
 
-export const submitGamesUpdate = loginInfo => dispatch =>
-  postGamesUpdate(loginInfo)
-    .then(response => {
-      console.log('submitGamesUpdate() response')
-      console.log(response)
-      if (response.error) {
-        return Promise.reject(response)
-      }
-      if (response.status === 'success') {
-        dispatch(submitGamesUpdateAsync(response))
-      }
-      return response
-    })
-    .catch(error => {
-      console.log(error)
-      // dispatch(submitGamesUpdateAsync(error));
-    })
+export const submitGamesUpdate = loginInfo => {
+  return dispatch => {
+    return postGamesUpdate(loginInfo)
+      .then(response => {
+        console.log('submitGamesUpdate() response')
+        console.log(response)
+        if (response.error) {
+          return Promise.reject(response)
+        }
+        if (response.status === 'success') {
+          dispatch(submitGamesUpdateAsync(response))
+        }
+        return response
+      })
+      .catch(error => {
+        console.log(error)
+        // dispatch(submitGamesUpdateAsync(error));
+      })
+  }
+}
 
 const submitPlayersAssignAsync = assignResponse => {
   return {
@@ -44,22 +47,25 @@ const submitPlayersAssignAsync = assignResponse => {
   }
 }
 
-export const submitPlayersAssign = signupTime => dispatch =>
-  postPlayersAssign(signupTime)
-    .then(response => {
-      console.log('submitPlayersAssign() response')
-      console.log(response)
-      if (response.error) {
-        return Promise.reject(response)
-      }
-      if (response.status === 'success') {
-        dispatch(submitPlayersAssignAsync(response))
-      }
-      return response
-    })
-    .catch(error => {
-      dispatch(submitPlayersAssignAsync(error))
-    })
+export const submitPlayersAssign = signupTime => {
+  return dispatch => {
+    return postPlayersAssign(signupTime)
+      .then(response => {
+        console.log('submitPlayersAssign() response')
+        console.log(response)
+        if (response.error) {
+          return Promise.reject(response)
+        }
+        if (response.status === 'success') {
+          dispatch(submitPlayersAssignAsync(response))
+        }
+        return response
+      })
+      .catch(error => {
+        dispatch(submitPlayersAssignAsync(error))
+      })
+  }
+}
 
 const submitUpdateBlacklistAsync = blacklistedGames => {
   return {
@@ -68,22 +74,25 @@ const submitUpdateBlacklistAsync = blacklistedGames => {
   }
 }
 
-export const submitUpdateBlacklist = blacklistData => dispatch =>
-  postBlacklist(blacklistData)
-    .then(response => {
-      console.log('submitUpdateBlacklist() response')
-      console.log(response)
-      if (response.error) {
-        return Promise.reject(response)
-      }
-      if (response.status === 'success') {
-        dispatch(submitUpdateBlacklistAsync(blacklistData.blacklistedGames))
-      }
-      return response
-    })
-    .catch(error => {
-      console.log(error)
-    })
+export const submitUpdateBlacklist = blacklistData => {
+  return dispatch => {
+    return postBlacklist(blacklistData)
+      .then(response => {
+        console.log('submitUpdateBlacklist() response')
+        console.log(response)
+        if (response.error) {
+          return Promise.reject(response)
+        }
+        if (response.status === 'success') {
+          dispatch(submitUpdateBlacklistAsync(blacklistData.blacklistedGames))
+        }
+        return response
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+}
 
 const submitGetSettingsAsync = (blacklistedGames, signupTime) => {
   return {
@@ -93,27 +102,30 @@ const submitGetSettingsAsync = (blacklistedGames, signupTime) => {
   }
 }
 
-export const submitGetSettings = () => dispatch =>
-  getSettings()
-    .then(response => {
-      console.log('submitGetSettings() response')
-      console.log(response)
-      if (response.error) {
-        return Promise.reject(response)
-      }
-      if (response.status === 'success') {
-        dispatch(
-          submitGetSettingsAsync(
-            response.games.blacklistedGames,
-            response.signupTime
+export const submitGetSettings = () => {
+  return dispatch => {
+    return getSettings()
+      .then(response => {
+        console.log('submitGetSettings() response')
+        console.log(response)
+        if (response.error) {
+          return Promise.reject(response)
+        }
+        if (response.status === 'success') {
+          dispatch(
+            submitGetSettingsAsync(
+              response.games.blacklistedGames,
+              response.signupTime
+            )
           )
-        )
-      }
-      return response
-    })
-    .catch(error => {
-      console.log(error)
-    })
+        }
+        return response
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+}
 
 const submitSignupTimeAsync = signupTime => {
   return {
@@ -122,19 +134,22 @@ const submitSignupTimeAsync = signupTime => {
   }
 }
 
-export const submitSignupTime = signupTime => dispatch =>
-  postSignupTime(signupTime)
-    .then(response => {
-      console.log('submitSignupTime() response')
-      console.log(response)
-      if (response.error) {
-        return Promise.reject(response)
-      }
-      if (response.status === 'success') {
-        dispatch(submitSignupTimeAsync(signupTime))
-      }
-      return response
-    })
-    .catch(error => {
-      console.log(error)
-    })
+export const submitSignupTime = signupTime => {
+  return dispatch => {
+    return postSignupTime(signupTime)
+      .then(response => {
+        console.log('submitSignupTime() response')
+        console.log(response)
+        if (response.error) {
+          return Promise.reject(response)
+        }
+        if (response.status === 'success') {
+          dispatch(submitSignupTimeAsync(signupTime))
+        }
+        return response
+      })
+      .catch(error => {
+        console.log(error)
+      })
+  }
+}
