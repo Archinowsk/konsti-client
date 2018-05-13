@@ -5,285 +5,273 @@ import store from './store'
 const setAuthToken = () => {
   const state = store.getState()
   const jwtToken = state.login.jwtToken
-
   axios.defaults.headers.common.Authorization = `Bearer ${jwtToken}`
 }
 
-const apiServerURL = config.apiServerURL
-
 export const api = axios.create({
-  baseURL: `${apiServerURL}/api`,
+  baseURL: `${config.apiServerURL}/api`,
   timeout: 10000, // 10s
   headers: {
     'Content-Type': 'application/json',
   },
 })
 
-export const postLogin = loginData =>
-  api.post('/login', { loginData }).then(
-    response => {
-      if (response.status !== 200 || !response.data) {
-        console.log('Response status !== 200, reject')
-        return Promise.reject(response)
-      }
-      return response.data
-    },
-    error => {
-      if (error.message === 'Network Error') {
-        console.log('Network error: no connection to server')
-      } else {
-        console.log(error)
-      }
+export const postLogin = async loginData => {
+  let response = null
+  try {
+    response = await api.post('/login', { loginData })
+    if (response.status !== 200 || !response.data) {
+      console.log('Response status !== 200, reject')
+      return Promise.reject(response)
     }
-  )
-
-export const postRegistration = registrationData =>
-  api.post('/user', { registrationData }).then(
-    response => {
-      if (response.status !== 200 || !response.data) {
-        console.log('Response status !== 200, reject')
-        return Promise.reject(response)
-      }
-      return response.data
-    },
-    error => {
-      if (error.message === 'Network Error') {
-        console.log('Network error: no connection to server')
-      } else {
-        console.log(error)
-      }
+    return response.data
+  } catch (error) {
+    if (error.message === 'Network Error') {
+      console.log('Network error: no connection to server')
+    } else {
+      console.log(error)
     }
-  )
-
-export const postGamesUpdate = () => {
-  setAuthToken()
-  return api.post('/games').then(
-    response => {
-      if (response.status !== 200 || !response.data) {
-        console.log('Response status !== 200, reject')
-        return Promise.reject(response)
-      }
-      return response.data
-    },
-    error => {
-      if (error.message === 'Network Error') {
-        console.log('Network error: no connection to server')
-      } else {
-        console.log(error)
-      }
-    }
-  )
+  }
 }
 
-export const postPlayersAssign = signupTime => {
-  setAuthToken()
-  // const startingTime = getNextStartingTime();
-  return (
-    api
-      // .post('/players', { startingTime: '2016-07-30 20:00:00.000Z' })
-      .post('/players', { startingTime: signupTime })
-      .then(
-        response => {
-          if (response.status !== 200 || !response.data) {
-            console.log('Response status !== 200, reject')
-            return Promise.reject(response)
-          }
-          return response.data
-        },
-        error => {
-          if (error.message === 'Network Error') {
-            console.log('Network error: no connection to server')
-          } else {
-            console.log(error)
-          }
-        }
-      )
-  )
-}
-export const getGames = () =>
-  api.get('/games').then(
-    response => {
-      if (response.status !== 200 || !response.data) {
-        console.log('Response status !== 200, reject')
-        return Promise.reject(response)
-      }
-      return response.data
-    },
-    error => {
-      if (error.message === 'Network Error') {
-        console.log('Network error: no connection to server')
-      } else {
-        console.log(error)
-      }
+export const postRegistration = async registrationData => {
+  let response = null
+  try {
+    response = await api.post('/user', { registrationData })
+    if (response.status !== 200 || !response.data) {
+      console.log('Response status !== 200, reject')
+      return Promise.reject(response)
     }
-  )
+    return response.data
+  } catch (error) {
+    if (error.message === 'Network Error') {
+      console.log('Network error: no connection to server')
+    } else {
+      console.log(error)
+    }
+  }
+}
 
-export const getUser = username => {
+export const postGamesUpdate = async () => {
   setAuthToken()
-  return api
-    .get('/user', {
+
+  let response = null
+  try {
+    response = await api.post('/games')
+    if (response.status !== 200 || !response.data) {
+      console.log('Response status !== 200, reject')
+      return Promise.reject(response)
+    }
+    return response.data
+  } catch (error) {
+    if (error.message === 'Network Error') {
+      console.log('Network error: no connection to server')
+    } else {
+      console.log(error)
+    }
+  }
+}
+
+export const postPlayersAssign = async signupTime => {
+  setAuthToken()
+
+  let response = null
+  try {
+    response = await api.post('/players', { startingTime: signupTime })
+    if (response.status !== 200 || !response.data) {
+      console.log('Response status !== 200, reject')
+      return Promise.reject(response)
+    }
+    return response.data
+  } catch (error) {
+    if (error.message === 'Network Error') {
+      console.log('Network error: no connection to server')
+    } else {
+      console.log(error)
+    }
+  }
+}
+
+export const getGames = async () => {
+  let response = null
+  try {
+    response = await api.get('/games')
+    if (response.status !== 200 || !response.data) {
+      console.log('Response status !== 200, reject')
+      return Promise.reject(response)
+    }
+    return response.data
+  } catch (error) {
+    if (error.message === 'Network Error') {
+      console.log('Network error: no connection to server')
+    } else {
+      console.log(error)
+    }
+  }
+}
+
+export const getUser = async username => {
+  setAuthToken()
+
+  let response = null
+  try {
+    response = await api.get('/user', {
       params: {
         username,
       },
     })
-    .then(
-      response => {
-        if (response.status !== 200 || !response.data) {
-          console.log('Response status !== 200, reject')
-          return Promise.reject(response)
-        }
-        return response.data
-      },
-      error => {
-        if (error.message === 'Network Error') {
-          console.log('Network error: no connection to server')
-        } else {
-          console.log(error)
-        }
-      }
-    )
+    if (response.status !== 200 || !response.data) {
+      console.log('Response status !== 200, reject')
+      return Promise.reject(response)
+    }
+    return response.data
+  } catch (error) {
+    if (error.message === 'Network Error') {
+      console.log('Network error: no connection to server')
+    } else {
+      console.log(error)
+    }
+  }
 }
 
-export const getSettings = () => {
+export const getSettings = async () => {
   setAuthToken()
-  return api.get('/settings').then(
-    response => {
-      if (response.status !== 200 || !response.data) {
-        console.log('Response status !== 200, reject')
-        return Promise.reject(response)
-      }
-      return response.data
-    },
-    error => {
-      if (error.message === 'Network Error') {
-        console.log('Network error: no connection to server')
-      } else {
-        console.log(error)
-      }
+
+  let response = null
+  try {
+    response = await api.get('/settings')
+    if (response.status !== 200 || !response.data) {
+      console.log('Response status !== 200, reject')
+      return Promise.reject(response)
     }
-  )
+    return response.data
+  } catch (error) {
+    if (error.message === 'Network Error') {
+      console.log('Network error: no connection to server')
+    } else {
+      console.log(error)
+    }
+  }
 }
 
-export const getResults = () => {
+export const getResults = async () => {
   setAuthToken()
-  return api.get('/results').then(
-    response => {
-      if (response.status !== 200 || !response.data) {
-        console.log('Response status !== 200, reject')
-        return Promise.reject(response)
-      }
-      return response.data
-    },
-    error => {
-      if (error.message === 'Network Error') {
-        console.log('Network error: no connection to server')
-      } else {
-        console.log(error)
-      }
+
+  let response = null
+  try {
+    response = await api.get('/results')
+    if (response.status !== 200 || !response.data) {
+      console.log('Response status !== 200, reject')
+      return Promise.reject(response)
     }
-  )
+    return response.data
+  } catch (error) {
+    if (error.message === 'Network Error') {
+      console.log('Network error: no connection to server')
+    } else {
+      console.log(error)
+    }
+  }
 }
 
-export const postSignup = signupData => {
+export const postSignup = async signupData => {
   setAuthToken()
-  return api.post('/signup', { signupData }).then(
-    response => {
-      if (response.status !== 200 || !response.data) {
-        console.log('Response status !== 200, reject')
-        return Promise.reject(response)
-      }
-      return response.data
-    },
-    error => {
-      if (error.message === 'Network Error') {
-        console.log('Network error: no connection to server')
-      } else {
-        console.log(error)
-      }
+
+  let response = null
+  try {
+    response = await api.post('/signup', { signupData })
+    if (response.status !== 200 || !response.data) {
+      console.log('Response status !== 200, reject')
+      return Promise.reject(response)
     }
-  )
+    return response.data
+  } catch (error) {
+    if (error.message === 'Network Error') {
+      console.log('Network error: no connection to server')
+    } else {
+      console.log(error)
+    }
+  }
 }
 
-export const postFavorite = favoriteData => {
+export const postFavorite = async favoriteData => {
   setAuthToken()
-  return api.post('/favorite', { favoriteData }).then(
-    response => {
-      if (response.status !== 200 || !response.data) {
-        console.log('Response status !== 200, reject')
-        return Promise.reject(response)
-      }
-      return response.data
-    },
-    error => {
-      if (error.message === 'Network Error') {
-        console.log('Network error: no connection to server')
-      } else {
-        console.log(error)
-      }
+
+  let response = null
+  try {
+    response = await api.post('/favorite', { favoriteData })
+    if (response.status !== 200 || !response.data) {
+      console.log('Response status !== 200, reject')
+      return Promise.reject(response)
     }
-  )
+    return response.data
+  } catch (error) {
+    if (error.message === 'Network Error') {
+      console.log('Network error: no connection to server')
+    } else {
+      console.log(error)
+    }
+  }
 }
 
-export const postBlacklist = blacklistData => {
+export const postBlacklist = async blacklistData => {
   setAuthToken()
-  return api.post('/blacklist', { blacklistData }).then(
-    response => {
-      if (response.status !== 200 || !response.data) {
-        console.log('Response status !== 200, reject')
-        return Promise.reject(response)
-      }
-      return response.data
-    },
-    error => {
-      if (error.message === 'Network Error') {
-        console.log('Network error: no connection to server')
-      } else {
-        console.log(error)
-      }
+
+  let response = null
+  try {
+    response = await api.post('/blacklist', { blacklistData })
+    if (response.status !== 200 || !response.data) {
+      console.log('Response status !== 200, reject')
+      return Promise.reject(response)
     }
-  )
+    return response.data
+  } catch (error) {
+    if (error.message === 'Network Error') {
+      console.log('Network error: no connection to server')
+    } else {
+      console.log(error)
+    }
+  }
 }
 
-export const postSignupTime = signupTime => {
+export const postSignupTime = async signupTime => {
   setAuthToken()
-  return api.post('/signuptime', { signupTime }).then(
-    response => {
-      if (response.status !== 200 || !response.data) {
-        console.log('Response status !== 200, reject')
-        return Promise.reject(response)
-      }
-      return response.data
-    },
-    error => {
-      if (error.message === 'Network Error') {
-        console.log('Network error: no connection to server')
-      } else {
-        console.log(error)
-      }
+
+  let response = null
+  try {
+    response = await api.post('/signuptime', { signupTime })
+    if (response.status !== 200 || !response.data) {
+      console.log('Response status !== 200, reject')
+      return Promise.reject(response)
     }
-  )
+    return response.data
+  } catch (error) {
+    if (error.message === 'Network Error') {
+      console.log('Network error: no connection to server')
+    } else {
+      console.log(error)
+    }
+  }
 }
 
-export const postFeedback = feedbackData => {
+export const postFeedback = async feedbackData => {
   setAuthToken()
-  console.log('feedbackData')
-  console.log(feedbackData)
-  return api.post('/feedback', { feedbackData }).then(
-    response => {
-      if (response.status !== 200 || !response.data) {
-        console.log('Response status !== 200, reject')
-        return Promise.reject(response)
-      }
-      console.log('postFeedback() response')
-      console.log(response.data)
-      return response.data
-    },
-    error => {
-      if (error.message === 'Network Error') {
-        console.log('Network error: no connection to server')
-      } else {
-        console.log(error)
-      }
+
+  let response = null
+  try {
+    response = await api.post('/feedback', { feedbackData })
+    if (response.status !== 200 || !response.data) {
+      console.log('Response status !== 200, reject')
+      return Promise.reject(response)
     }
-  )
+    console.log('postFeedback() response')
+    console.log(response.data)
+    return response.data
+  } catch (error) {
+    if (error.message === 'Network Error') {
+      console.log('Network error: no connection to server')
+    } else {
+      console.log(error)
+    }
+  }
 }
