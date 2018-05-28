@@ -79,5 +79,8 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default translate()(
-  connect(mapStateToProps, mapDispatchToProps)(SignupView)
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(SignupView)
 )

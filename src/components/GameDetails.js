@@ -368,5 +368,10 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default withRouter(
-  translate()(connect(mapStateToProps, mapDispatchToProps)(GameDetails))
+  translate()(
+    connect(
+      mapStateToProps,
+      mapDispatchToProps
+    )(GameDetails)
+  )
 )

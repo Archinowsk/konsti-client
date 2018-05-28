@@ -205,5 +205,8 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default translate()(
-  connect(mapStateToProps, mapDispatchToProps)(AdminView)
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(AdminView)
 )

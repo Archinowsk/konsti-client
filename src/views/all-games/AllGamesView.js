@@ -98,5 +98,8 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default translate()(
-  connect(mapStateToProps, mapDispatchToProps)(AllGamesView)
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(AllGamesView)
 )

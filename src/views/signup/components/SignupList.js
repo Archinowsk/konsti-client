@@ -306,5 +306,8 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default translate()(
-  connect(mapStateToProps, mapDispatchToProps)(SignupList)
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(SignupList)
 )

@@ -38,4 +38,9 @@ const mapDispatchToProps = dispatch => {
 }
 
 // Use connect method to hook up component with app state
-export default translate()(connect(null, mapDispatchToProps)(Logout))
+export default translate()(
+  connect(
+    null,
+    mapDispatchToProps
+  )(Logout)
+)

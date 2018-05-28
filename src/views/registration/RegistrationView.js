@@ -57,4 +57,9 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default translate()(connect(null, mapDispatchToProps)(RegistrationView))
+export default translate()(
+  connect(
+    null,
+    mapDispatchToProps
+  )(RegistrationView)
+)

@@ -133,4 +133,9 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default translate()(connect(mapStateToProps, mapDispatchToProps)(Routes))
+export default translate()(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Routes)
+)

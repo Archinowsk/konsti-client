@@ -19,4 +19,7 @@ const mapDispatchToProps = dispatch => {
   return {}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SettingsView)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SettingsView)

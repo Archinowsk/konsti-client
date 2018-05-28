@@ -55,5 +55,10 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default hot(module)(
-  translate()(connect(mapStateToProps, mapDispatchToProps)(App))
+  translate()(
+    connect(
+      mapStateToProps,
+      mapDispatchToProps
+    )(App)
+  )
 )
