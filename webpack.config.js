@@ -75,6 +75,17 @@ const devConfig = {
     hot: true, // enable HMR on the server
     contentBase: path.join(__dirname, 'build'),
     historyApiFallback: true, // respond to 404s with index.html
+    stats: {
+      // assets: false,
+      // children: false,
+      // chunks: false,
+      // hash: false,
+      modules: false,
+      // publicPath: false,
+      // timings: false,
+      // version: false,
+      // warnings: true,
+    },
   },
 
   module: {
