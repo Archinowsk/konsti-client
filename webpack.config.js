@@ -13,6 +13,18 @@ const appConfig = require('./config')
 let config = null
 const TARGET = process.env.npm_lifecycle_event
 
+const stats = {
+  // assets: false,
+  // children: false,
+  // chunks: false,
+  // hash: false,
+  modules: false,
+  // publicPath: false,
+  // timings: false,
+  // version: false,
+  // warnings: true,
+}
+
 const commonConfig = {
   target: 'web',
 
@@ -75,17 +87,7 @@ const devConfig = {
     hot: true, // enable HMR on the server
     contentBase: path.join(__dirname, 'build'),
     historyApiFallback: true, // respond to 404s with index.html
-    stats: {
-      // assets: false,
-      // children: false,
-      // chunks: false,
-      // hash: false,
-      modules: false,
-      // publicPath: false,
-      // timings: false,
-      // version: false,
-      // warnings: true,
-    },
+    stats,
   },
 
   module: {
@@ -115,6 +117,8 @@ const devConfig = {
 
 const prodConfig = {
   mode: 'production',
+
+  stats,
 
   module: {
     // Loaders to transform sources
