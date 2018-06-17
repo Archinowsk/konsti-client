@@ -1,3 +1,4 @@
+/* @flow */
 import { SUBMIT_LOGIN, SUBMIT_LOGOUT } from './loginActions'
 
 const initialState = {
@@ -7,7 +8,7 @@ const initialState = {
   userGroup: '',
 }
 
-const loginReducer = (state = initialState, action) => {
+const loginReducer = (state: Object = initialState, action: Function) => {
   switch (action.type) {
     case SUBMIT_LOGIN:
       return {

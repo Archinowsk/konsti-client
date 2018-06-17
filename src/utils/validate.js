@@ -1,4 +1,10 @@
-const validate = (values, props) => {
+/* @flow */
+
+type Props = {
+  t: Function,
+}
+
+const validate = (values: Object, props: Props) => {
   const { t } = props
   const errors = {}
 

@@ -1,3 +1,4 @@
+/* @flow */
 import { getGames } from '../../utils/api'
 
 export const SUBMIT_GET_GAMES = 'SUBMIT_GET_GAMES'
@@ -10,16 +11,16 @@ const submitGetGamesAsync = games => {
 }
 
 export const submitGetGames = () => {
-  return async dispatch => {
+  return async (dispatch: Function) => {
     let response = null
     try {
       response = await getGames()
       console.log('submitGetGames() response')
       console.log(response)
-      if (response.error) {
+      if (response && response.error) {
         return Promise.reject(response)
       }
-      if (response.status === 'success') {
+      if (response && response.status && response.status === 'success') {
         dispatch(submitGetGamesAsync(response.games))
       }
       return response

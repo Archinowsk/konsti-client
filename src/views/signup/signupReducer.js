@@ -1,3 +1,4 @@
+/* @flow */
 import {
   SUBMIT_SIGNUP,
   SUBMIT_SELECT_DATE,
@@ -9,7 +10,7 @@ import {
 
 const initialState = { status: false, date: '', selectedGames: [] }
 
-const signupReducer = (state = initialState, action) => {
+const signupReducer = (state: Object = initialState, action: Function) => {
   switch (action.type) {
     case SUBMIT_SIGNUP:
       return { ...state, status: action.status }

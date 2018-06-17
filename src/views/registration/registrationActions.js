@@ -1,3 +1,4 @@
+/* @flow */
 import { postRegistration } from '../../utils/api'
 import { submitLogin } from '../login/loginActions'
 
@@ -10,8 +11,8 @@ const submitRegistrationAsync = registrationResponse => {
   }
 }
 
-export const submitRegistration = registrationData => {
-  return async dispatch => {
+export const submitRegistration = (registrationData: Object) => {
+  return async (dispatch: Function) => {
     let response = null
     try {
       response = await postRegistration(registrationData)

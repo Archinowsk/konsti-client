@@ -1,8 +1,9 @@
+/* @flow */
 import { SUBMIT_GET_GAMES } from './allGamesActions'
 
 const initialState = { games: [] }
 
-const allGamesReducer = (state = initialState, action) => {
+const allGamesReducer = (state: Object = initialState, action: Function) => {
   switch (action.type) {
     case SUBMIT_GET_GAMES:
       return { ...state, games: action.games }

@@ -1,8 +1,9 @@
+/* @flow */
 import { SUBMIT_GET_RESULTS } from './allSignupsActions'
 
 const initialState = { results: [] }
 
-const allSignupsReducer = (state = initialState, action) => {
+const allSignupsReducer = (state: Object = initialState, action: Function) => {
   switch (action.type) {
     case SUBMIT_GET_RESULTS:
       return { ...state, results: action.results }

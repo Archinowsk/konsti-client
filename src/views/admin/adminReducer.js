@@ -1,3 +1,4 @@
+/* @flow */
 import {
   SUBMIT_GAMES_UPDATE,
   SUBMIT_PLAYERS_ASSIGN,
@@ -13,7 +14,7 @@ const initialState = {
   signupTime: '',
 }
 
-const loginReducer = (state = initialState, action) => {
+const loginReducer = (state: Object = initialState, action: Function) => {
   switch (action.type) {
     case SUBMIT_GAMES_UPDATE:
       return { ...state, updateResponse: action.payload }

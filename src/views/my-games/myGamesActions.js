@@ -1,3 +1,4 @@
+/* @flow */
 import { getUser, postFavorite } from '../../utils/api'
 
 export const SUBMIT_GET_USER_GAMES = 'SUBMIT_GET_USER_GAMES'
@@ -13,17 +14,17 @@ const submitGetUserAsync = (enteredGames, favoritedGames, signedGames) => {
   }
 }
 
-export const submitGetUser = username => {
-  return async dispatch => {
+export const submitGetUser = (username: string) => {
+  return async (dispatch: Function) => {
     let response = null
     try {
       response = await getUser(username)
       console.log('submitGetUser() response')
       console.log(response)
-      if (response.error) {
+      if (response && response.error) {
         return Promise.reject(response)
       }
-      if (response.status === 'success') {
+      if (response && response.status && response.status === 'success') {
         dispatch(
           submitGetUserAsync(
             response.games.enteredGames,
@@ -46,17 +47,17 @@ const submitUpdateFavoritesAsync = favoritedGames => {
   }
 }
 
-export const submitUpdateFavorites = favoriteData => {
-  return async dispatch => {
+export const submitUpdateFavorites = (favoriteData: Object) => {
+  return async (dispatch: Function) => {
     let response = null
     try {
       response = await postFavorite(favoriteData)
       console.log('submitUpdateFavorites() response')
       console.log(response)
-      if (response.error) {
+      if (response && response.error) {
         return Promise.reject(response)
       }
-      if (response.status === 'success') {
+      if (response && response.status && response.status === 'success') {
         dispatch(submitUpdateFavoritesAsync(favoriteData.favoritedGames))
       }
       return response

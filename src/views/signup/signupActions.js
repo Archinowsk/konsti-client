@@ -1,3 +1,4 @@
+/* @flow */
 import { postSignup } from '../../utils/api'
 
 export const SUBMIT_SIGNUP = 'SUBMIT_SIGNUP'
@@ -14,17 +15,17 @@ const submitSignupAsync = status => {
   }
 }
 
-export const submitSignup = signupData => {
-  return async dispatch => {
+export const submitSignup = (signupData: Object) => {
+  return async (dispatch: Function) => {
     let response = null
     try {
       response = await postSignup(signupData)
       console.log('submitSignup() response')
       console.log(response)
-      if (response.error) {
+      if (response && response.error) {
         return Promise.reject(response)
       }
-      if (response.status === 'success') {
+      if (response && response.status && response.status === 'success') {
         dispatch(submitSignupAsync(true))
       }
       return response
@@ -35,35 +36,35 @@ export const submitSignup = signupData => {
   }
 }
 
-export const submitSelectDate = date => {
+export const submitSelectDate = (date: Date) => {
   return {
     type: SUBMIT_SELECT_DATE,
     date,
   }
 }
 
-export const submitSelectGame = signupData => {
+export const submitSelectGame = (signupData: Object) => {
   return {
     type: SUBMIT_SELECT_GAME,
     signupData,
   }
 }
 
-export const submitDeselectGame = gameIndex => {
+export const submitDeselectGame = (gameIndex: number) => {
   return {
     type: SUBMIT_DESELECT_GAME,
     gameIndex,
   }
 }
 
-export const submitUpdatetGame = signupData => {
+export const submitUpdatetGame = (signupData: Object) => {
   return {
     type: SUBMIT_UPDATE_GAME,
     signupData,
   }
 }
 
-export const submitAllSelectedGames = selectedGames => {
+export const submitAllSelectedGames = (selectedGames: Object) => {
   return {
     type: SUBMIT_ALL_SELECTED_GAMES,
     selectedGames,

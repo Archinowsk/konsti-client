@@ -1,3 +1,4 @@
+/* @flow */
 import '@babel/polyfill'
 import React from 'react'
 import ReactDOM from 'react-dom'
@@ -19,6 +20,8 @@ import store from './utils/store'
 const rootElement = document.getElementById('main')
 
 const render = () => {
+  if (!rootElement) return
+
   ReactDOM.render(
     <Provider store={store}>
       <I18nextProvider i18n={i18n}>

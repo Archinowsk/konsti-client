@@ -1,3 +1,4 @@
+/* @flow */
 import {
   postGamesUpdate,
   postPlayersAssign,
@@ -19,17 +20,17 @@ const submitGamesUpdateAsync = updateResponse => {
   }
 }
 
-export const submitGamesUpdate = loginInfo => {
-  return async dispatch => {
+export const submitGamesUpdate = () => {
+  return async (dispatch: Function) => {
     let response = null
     try {
-      response = await postGamesUpdate(loginInfo)
+      response = await postGamesUpdate()
       console.log('submitGamesUpdate() response')
       console.log(response)
-      if (response.error) {
+      if (response && response.error) {
         return Promise.reject(response)
       }
-      if (response.status === 'success') {
+      if (response && response.status && response.status === 'success') {
         dispatch(submitGamesUpdateAsync(response))
       }
       return response
@@ -47,17 +48,17 @@ const submitPlayersAssignAsync = assignResponse => {
   }
 }
 
-export const submitPlayersAssign = signupTime => {
-  return async dispatch => {
+export const submitPlayersAssign = (signupTime: Date) => {
+  return async (dispatch: Function) => {
     let response = null
     try {
       response = await postPlayersAssign(signupTime)
       console.log('submitPlayersAssign() response')
       console.log(response)
-      if (response.error) {
+      if (response && response.error) {
         return Promise.reject(response)
       }
-      if (response.status === 'success') {
+      if (response && response.status && response.status === 'success') {
         dispatch(submitPlayersAssignAsync(response))
       }
       return response
@@ -74,17 +75,17 @@ const submitUpdateBlacklistAsync = blacklistedGames => {
   }
 }
 
-export const submitUpdateBlacklist = blacklistData => {
-  return async dispatch => {
+export const submitUpdateBlacklist = (blacklistData: Object) => {
+  return async (dispatch: Function) => {
     let response = null
     try {
       response = await postBlacklist(blacklistData)
       console.log('submitUpdateBlacklist() response')
       console.log(response)
-      if (response.error) {
+      if (response && response.error) {
         return Promise.reject(response)
       }
-      if (response.status === 'success') {
+      if (response && response.status && response.status === 'success') {
         dispatch(submitUpdateBlacklistAsync(blacklistData.blacklistedGames))
       }
       return response
@@ -103,16 +104,16 @@ const submitGetSettingsAsync = (blacklistedGames, signupTime) => {
 }
 
 export const submitGetSettings = () => {
-  return async dispatch => {
+  return async (dispatch: Function) => {
     let response = null
     try {
       response = await getSettings()
       console.log('submitGetSettings() response')
       console.log(response)
-      if (response.error) {
+      if (response && response.error) {
         return Promise.reject(response)
       }
-      if (response.status === 'success') {
+      if (response && response.status && response.status === 'success') {
         dispatch(
           submitGetSettingsAsync(
             response.games.blacklistedGames,
@@ -134,17 +135,17 @@ const submitSignupTimeAsync = signupTime => {
   }
 }
 
-export const submitSignupTime = signupTime => {
-  return async dispatch => {
+export const submitSignupTime = (signupTime: Date) => {
+  return async (dispatch: Function) => {
     let response = null
     try {
       response = await postSignupTime(signupTime)
       console.log('submitSignupTime() response')
       console.log(response)
-      if (response.error) {
+      if (response && response.error) {
         return Promise.reject(response)
       }
-      if (response.status === 'success') {
+      if (response && response.status && response.status === 'success') {
         dispatch(submitSignupTimeAsync(signupTime))
       }
       return response

@@ -1,3 +1,4 @@
+/* @flow */
 import { postLogin } from '../../utils/api'
 
 export const SUBMIT_LOGIN = 'SUBMIT_LOGIN'
@@ -13,17 +14,17 @@ const submitLoginAsync = (username, loggedIn, jwtToken, userGroup) => {
   }
 }
 
-export const submitLogin = loginData => {
-  return async dispatch => {
+export const submitLogin = (loginData: Object) => {
+  return async (dispatch: Function) => {
     let response = null
     try {
       response = await postLogin(loginData)
       console.log('submitLogin() response')
       console.log(response)
-      if (response.error) {
+      if (response && response.error) {
         return Promise.reject(response)
       }
-      if (response.status === 'success') {
+      if (response && response.status && response.status === 'success') {
         dispatch(
           submitLoginAsync(
             loginData.username,

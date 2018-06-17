@@ -1,3 +1,4 @@
+/* @flow */
 import {
   SUBMIT_GET_USER_GAMES,
   SUBMIT_UPDATE_FAVORITES,
@@ -10,7 +11,7 @@ const initialState = {
   signedGames: [],
 }
 
-const myGamesReducer = (state = initialState, action) => {
+const myGamesReducer = (state: Object = initialState, action: Function) => {
   switch (action.type) {
     case SUBMIT_GET_USER_GAMES:
       return {

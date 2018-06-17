@@ -1,3 +1,4 @@
+/* @flow */
 import axios from 'axios'
 import config from '../../config'
 import store from './store'
@@ -16,7 +17,7 @@ export const api = axios.create({
   },
 })
 
-export const postLogin = async loginData => {
+export const postLogin = async (loginData: Object) => {
   let response = null
   try {
     response = await api.post('/login', { loginData })
@@ -34,7 +35,7 @@ export const postLogin = async loginData => {
   }
 }
 
-export const postRegistration = async registrationData => {
+export const postRegistration = async (registrationData: Object) => {
   let response = null
   try {
     response = await api.post('/user', { registrationData })
@@ -72,7 +73,7 @@ export const postGamesUpdate = async () => {
   }
 }
 
-export const postPlayersAssign = async signupTime => {
+export const postPlayersAssign = async (signupTime: Date) => {
   setAuthToken()
 
   let response = null
@@ -110,7 +111,7 @@ export const getGames = async () => {
   }
 }
 
-export const getUser = async username => {
+export const getUser = async (username: string) => {
   setAuthToken()
 
   let response = null
@@ -174,7 +175,7 @@ export const getResults = async () => {
   }
 }
 
-export const postSignup = async signupData => {
+export const postSignup = async (signupData: Object) => {
   setAuthToken()
 
   let response = null
@@ -194,7 +195,7 @@ export const postSignup = async signupData => {
   }
 }
 
-export const postFavorite = async favoriteData => {
+export const postFavorite = async (favoriteData: Object) => {
   setAuthToken()
 
   let response = null
@@ -214,7 +215,7 @@ export const postFavorite = async favoriteData => {
   }
 }
 
-export const postBlacklist = async blacklistData => {
+export const postBlacklist = async (blacklistData: Object) => {
   setAuthToken()
 
   let response = null
@@ -234,7 +235,7 @@ export const postBlacklist = async blacklistData => {
   }
 }
 
-export const postSignupTime = async signupTime => {
+export const postSignupTime = async (signupTime: Date) => {
   setAuthToken()
 
   let response = null
@@ -254,7 +255,7 @@ export const postSignupTime = async signupTime => {
   }
 }
 
-export const postFeedback = async feedbackData => {
+export const postFeedback = async (feedbackData: Object) => {
   setAuthToken()
 
   let response = null

@@ -1,6 +1,7 @@
+/* @flow */
 const initialState = {}
 
-const settingsReducer = (state = initialState, action) => {
+const settingsReducer = (state: Object = initialState, action: Function) => {
   switch (action.type) {
     default:
       return state
