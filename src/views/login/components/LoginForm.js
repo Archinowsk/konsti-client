@@ -1,12 +1,19 @@
+/* @flow */
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Field, reduxForm } from 'redux-form'
 import { translate } from 'react-i18next'
 
 import validate from '../../../utils/validate'
 import FormField from '../../../components/FormField'
 
-const LoginForm = props => {
+type Props = {
+  handleSubmit: Function,
+  submitting: boolean,
+  t: Function,
+  error?: string,
+}
+
+const LoginForm = (props: Props) => {
   const { handleSubmit, submitting, t, error } = props
 
   return (
@@ -35,13 +42,6 @@ const LoginForm = props => {
       {error && <strong className="error">{error}</strong>}
     </div>
   )
-}
-
-LoginForm.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
-  submitting: PropTypes.bool.isRequired,
-  t: PropTypes.func.isRequired,
-  error: PropTypes.string,
 }
 
 export default translate()(

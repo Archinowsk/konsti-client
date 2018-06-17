@@ -1,15 +1,16 @@
+/* @flow */
 import React from 'react'
 import { connect } from 'react-redux'
 
-const SettingsView = props => {
+type Props = {}
+
+const SettingsView = (props: Props) => {
   return (
     <div>
       <p>SettingsView</p>
     </div>
   )
 }
-
-SettingsView.propTypes = {}
 
 const mapStateToProps = state => {
   return {}

@@ -1,9 +1,11 @@
+/* @flow */
 import React from 'react'
-import PropTypes from 'prop-types'
 import { translate } from 'react-i18next'
 import i18n from '../utils/i18n'
 
-const LanguageSelector = props => {
+type Props = { t: Function }
+
+const LanguageSelector = (props: Props) => {
   const { t } = props
 
   const language = i18n.language
@@ -22,10 +24,6 @@ const LanguageSelector = props => {
       </select>
     </React.Fragment>
   )
-}
-
-LanguageSelector.propTypes = {
-  t: PropTypes.func.isRequired,
 }
 
 export default translate()(LanguageSelector)

@@ -1,5 +1,5 @@
+/* @flow */
 import React from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { translate } from 'react-i18next'
 import moment from 'moment'
@@ -15,14 +15,35 @@ import { submitGetGames } from '../all-games/allGamesActions'
 import { submitSelectDate } from '../signup/signupActions'
 import TimesDropdown from '../../components/TimesDropdown'
 
-class AdminView extends React.Component {
-  constructor(props) {
+type Props = {
+  onSubmitGamesUpdate: Function,
+  onSubmitPlayersAssign: Function,
+  t: Function,
+  updateResponse: Object,
+  games: Array<any>,
+  onSubmitGetGames: Function,
+  onSubmitGetSettings: Function,
+  blacklistedGames: Array<any>,
+  onSubmitSelectDate: Function,
+  onSubmitSignupTime: Function,
+  date: string,
+  signupTime: string,
+}
+
+type State = {
+  submitting: boolean,
+}
+
+class AdminView extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props)
 
     this.state = {
       submitting: false,
     }
   }
+
+  props: Props
 
   componentDidMount() {
     /*
@@ -165,21 +186,6 @@ class AdminView extends React.Component {
       </div>
     )
   }
-}
-
-AdminView.propTypes = {
-  onSubmitGamesUpdate: PropTypes.func.isRequired,
-  onSubmitPlayersAssign: PropTypes.func.isRequired,
-  t: PropTypes.func.isRequired,
-  updateResponse: PropTypes.object.isRequired,
-  games: PropTypes.array.isRequired,
-  onSubmitGetGames: PropTypes.func.isRequired,
-  onSubmitGetSettings: PropTypes.func.isRequired,
-  blacklistedGames: PropTypes.array.isRequired,
-  onSubmitSelectDate: PropTypes.func.isRequired,
-  onSubmitSignupTime: PropTypes.func.isRequired,
-  date: PropTypes.string.isRequired,
-  signupTime: PropTypes.string.isRequired,
 }
 
 const mapStateToProps = state => {

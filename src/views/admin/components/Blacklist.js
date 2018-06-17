@@ -1,9 +1,14 @@
+/* @flow */
 import React from 'react'
-import PropTypes from 'prop-types'
 import { translate } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
-const Blacklist = props => {
+type Props = {
+  t: Function,
+  blacklistedGames: Array<any>,
+}
+
+const Blacklist = (props: Props) => {
   const { blacklistedGames, t } = props
 
   // Sort games by name
@@ -32,11 +37,6 @@ const Blacklist = props => {
       </ul>
     </div>
   )
-}
-
-Blacklist.propTypes = {
-  t: PropTypes.func.isRequired,
-  blacklistedGames: PropTypes.array.isRequired,
 }
 
 export default translate()(Blacklist)

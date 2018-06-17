@@ -1,11 +1,13 @@
+/* @flow */
 import React from 'react'
-import PropTypes from 'prop-types'
 
-const NetworkError = ({ meta: { touched, error } }) =>
-  touched && error ? <span>{error}</span> : false
+type Props = { meta: Object }
 
-NetworkError.propTypes = {
-  meta: PropTypes.object.isRequired,
+const NetworkError = (props: Props) => {
+  const {
+    meta: { touched, error },
+  } = props
+  return touched && error ? <span>{error}</span> : false
 }
 
 export default NetworkError

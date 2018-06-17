@@ -1,5 +1,5 @@
+/* @flow */
 import React from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { SubmissionError } from 'redux-form'
 import { translate } from 'react-i18next'
@@ -7,7 +7,12 @@ import { translate } from 'react-i18next'
 import { submitRegistration } from './registrationActions'
 import RegistrationForm from './components/RegistrationForm'
 
-const RegistrationView = props => {
+type Props = {
+  onSubmitLogin: Function,
+  t: Function,
+}
+
+const RegistrationView = (props: Props) => {
   const { onSubmitLogin, t } = props
 
   const submit = async form => {
@@ -43,11 +48,6 @@ const RegistrationView = props => {
       <RegistrationForm onSubmit={submit} />
     </div>
   )
-}
-
-RegistrationView.propTypes = {
-  onSubmitLogin: PropTypes.func.isRequired,
-  t: PropTypes.func.isRequired,
 }
 
 const mapDispatchToProps = dispatch => {

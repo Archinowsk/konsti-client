@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types'
+/* @flow */
 import React from 'react'
 import { translate } from 'react-i18next'
 import { connect } from 'react-redux'
@@ -10,7 +10,20 @@ import { submitSelectGame } from '../signup/signupActions'
 import { submitGetGames } from './allGamesActions'
 import AllGamesList from './components/AllGamesList'
 
-class AllGamesView extends React.Component {
+type Props = {
+  t: Function,
+  onSubmitGetGames: Function,
+  games: Array<any>,
+  blacklistedGames: Array<any>,
+  onSubmitGetSettings: Function,
+  // signedGames: PropTypes.array.isRequired,
+  // onSubmitSelectGame: PropTypes.func.isRequired,
+  username: string,
+  onSubmitGetUser: Function,
+}
+
+class AllGamesView extends React.Component<Props> {
+  props: Props
   componentDidMount() {
     /*
     if (!this.props.games || this.props.games.length === 0) {
@@ -65,18 +78,6 @@ class AllGamesView extends React.Component {
       </div>
     )
   }
-}
-
-AllGamesView.propTypes = {
-  t: PropTypes.func.isRequired,
-  onSubmitGetGames: PropTypes.func.isRequired,
-  games: PropTypes.array.isRequired,
-  blacklistedGames: PropTypes.array.isRequired,
-  onSubmitGetSettings: PropTypes.func.isRequired,
-  // signedGames: PropTypes.array.isRequired,
-  // onSubmitSelectGame: PropTypes.func.isRequired,
-  username: PropTypes.string.isRequired,
-  onSubmitGetUser: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => {

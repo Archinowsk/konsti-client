@@ -1,5 +1,5 @@
+/* @flow */
 import React from 'react'
-import PropTypes from 'prop-types'
 import { translate } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -13,8 +13,32 @@ import {
   submitAllSelectedGames,
 } from '../signupActions'
 
-class SignupList extends React.Component {
-  constructor(props) {
+type Props = {
+  t: Function,
+  games: Array<any>,
+  signupTime: string,
+  selectedGames: Array<any>,
+  onSubmitSelectGame: Function,
+  onSubmitDeselectGame: Function,
+  onSubmitSignup: Function,
+  username: string,
+  signedGames: Array<any>,
+  onSubmitUpdatetGame: Function,
+  blacklistedGames: Array<any>,
+  // onSubmitGetUser: PropTypes.func.isRequired,
+  onSubmitAllSelectedGames: Function,
+}
+
+type State = {
+  submitting: boolean,
+  first: boolean,
+  second: boolean,
+  third: boolean,
+  signupSubmitted: boolean,
+}
+
+class SignupList extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props)
 
     this.state = {
@@ -25,6 +49,8 @@ class SignupList extends React.Component {
       signupSubmitted: false,
     }
   }
+
+  props: Props
 
   componentDidMount() {
     this.props.onSubmitAllSelectedGames(this.props.signedGames)
@@ -189,16 +215,18 @@ class SignupList extends React.Component {
         }
       }
 
+      let oldValue = 0
+
       return (
         <p key={game.id} className="games-list">
           <select
             className="priority-select"
             defaultValue={priority}
             onFocus={event => {
-              this.oldValue = parseInt(event.target.value, 10)
+              oldValue = parseInt(event.target.value, 10)
             }}
             onChange={event => {
-              getSignupEvent(game.id, event, this.oldValue)
+              getSignupEvent(game.id, event, oldValue)
             }}
           >
             <option value="0">-</option>
@@ -266,22 +294,6 @@ class SignupList extends React.Component {
       </div>
     )
   }
-}
-
-SignupList.propTypes = {
-  t: PropTypes.func.isRequired,
-  games: PropTypes.array.isRequired,
-  signupTime: PropTypes.string.isRequired,
-  selectedGames: PropTypes.array.isRequired,
-  onSubmitSelectGame: PropTypes.func.isRequired,
-  onSubmitDeselectGame: PropTypes.func.isRequired,
-  onSubmitSignup: PropTypes.func.isRequired,
-  username: PropTypes.string.isRequired,
-  signedGames: PropTypes.array.isRequired,
-  onSubmitUpdatetGame: PropTypes.func.isRequired,
-  blacklistedGames: PropTypes.array.isRequired,
-  onSubmitAllSelectedGames: PropTypes.func.isRequired,
-  // onSubmitGetUser: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => {

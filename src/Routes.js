@@ -1,5 +1,5 @@
+/* @flow */
 import React from 'react'
-import PropTypes from 'prop-types'
 import { HashRouter, Route, Link, Switch, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { translate } from 'react-i18next'
@@ -17,7 +17,13 @@ import AllSignups from './views/all-signups/AllSignupsView'
 import { submitLogin } from './views/login/loginActions'
 import LogoutButton from './components/LogoutButton'
 
-const Routes = props => {
+type Props = {
+  loggedIn: boolean,
+  t: Function,
+  userGroup: string,
+}
+
+const Routes = (props: Props) => {
   const { loggedIn, t, userGroup } = props
 
   if (!loggedIn) {
@@ -112,12 +118,6 @@ const Routes = props => {
       </div>
     </HashRouter>
   )
-}
-
-Routes.propTypes = {
-  loggedIn: PropTypes.bool.isRequired,
-  t: PropTypes.func.isRequired,
-  userGroup: PropTypes.string.isRequired,
 }
 
 const mapStateToProps = state => {

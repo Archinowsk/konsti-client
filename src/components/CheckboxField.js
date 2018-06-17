@@ -1,9 +1,17 @@
+/* @flow */
 import React from 'react'
-import PropTypes from 'prop-types'
 import { translate } from 'react-i18next'
 import config from '../../config'
 
-const CheckboxField = props => {
+type Props = {
+  input: Object,
+  label?: string,
+  type: string,
+  meta: Object,
+  t: Function,
+}
+
+const CheckboxField = (props: Props) => {
   const {
     input,
     label = '',
@@ -43,14 +51,6 @@ const CheckboxField = props => {
       {touched && error && <div className="form-field-error">{error}</div>}
     </div>
   )
-}
-
-CheckboxField.propTypes = {
-  input: PropTypes.object.isRequired,
-  label: PropTypes.string,
-  type: PropTypes.string.isRequired,
-  meta: PropTypes.object.isRequired,
-  t: PropTypes.func.isRequired,
 }
 
 export default translate()(CheckboxField)

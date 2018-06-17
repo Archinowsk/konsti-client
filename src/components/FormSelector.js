@@ -1,8 +1,16 @@
+/* @flow */
 import React from 'react'
-import PropTypes from 'prop-types'
 import { translate } from 'react-i18next'
 
-const FormSelector = props => {
+type Props = {
+  input: Object,
+  meta: Object,
+  t: Function,
+  data: Array<any>,
+  label: string,
+}
+
+const FormSelector = (props: Props) => {
   const {
     input,
     meta: { touched, error },
@@ -39,14 +47,6 @@ const FormSelector = props => {
         )}
     </div>
   )
-}
-
-FormSelector.propTypes = {
-  input: PropTypes.object.isRequired,
-  meta: PropTypes.object.isRequired,
-  t: PropTypes.func.isRequired,
-  data: PropTypes.array.isRequired,
-  label: PropTypes.string.isRequired,
 }
 
 export default translate()(FormSelector)

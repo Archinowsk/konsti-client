@@ -1,11 +1,17 @@
+/* @flow */
 import React from 'react'
-import PropTypes from 'prop-types'
 import { translate } from 'react-i18next'
+
+type Props = {
+  t: Function,
+  results: Array<any>,
+}
+
 // import moment from 'moment'
 // import { Link } from 'react-router-dom';
 // import moment from 'moment';
 
-const AllSignupsList = props => {
+const AllSignupsList = (props: Props) => {
   const { t, results } = props
 
   // Sort games by name
@@ -27,11 +33,6 @@ const AllSignupsList = props => {
   ))
 
   return <div>{resultsList}</div>
-}
-
-AllSignupsList.propTypes = {
-  t: PropTypes.func.isRequired,
-  results: PropTypes.array.isRequired,
 }
 
 export default translate()(AllSignupsList)

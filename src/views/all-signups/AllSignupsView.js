@@ -1,5 +1,5 @@
+/* @flow */
 import React from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { translate } from 'react-i18next'
 import moment from 'moment'
@@ -9,9 +9,19 @@ import { submitGetGames } from '../all-games/allGamesActions'
 import { submitGetSettings } from '../admin/adminActions'
 
 import AllSignupsList from './components/AllSignupsList'
-// import GameDetails from '../../components/GameDetails';
 
-class AllSignupsView extends React.Component {
+type Props = {
+  t: Function,
+  onSubmitGetGames: Function,
+  games: Array<any>,
+  onSubmitGetResults: Function,
+  onSubmitGetSettings: Function,
+  results: Array<any>,
+  signupTime: string,
+}
+
+class AllSignupsView extends React.Component<Props> {
+  props: Props
   componentDidMount() {
     this.props.onSubmitGetGames()
     this.props.onSubmitGetSettings()
@@ -29,7 +39,7 @@ class AllSignupsView extends React.Component {
       return <p>{t('noResults')}</p>
     }
 
-    let selectedResult
+    let selectedResult = []
     for (let i = 0; i < results.length; i += 1) {
       if (results[i].time === signupTime) {
         selectedResult = results[i].result
@@ -60,16 +70,6 @@ class AllSignupsView extends React.Component {
       </div>
     )
   }
-}
-
-AllSignupsView.propTypes = {
-  t: PropTypes.func.isRequired,
-  onSubmitGetGames: PropTypes.func.isRequired,
-  games: PropTypes.array.isRequired,
-  onSubmitGetResults: PropTypes.func.isRequired,
-  onSubmitGetSettings: PropTypes.func.isRequired,
-  results: PropTypes.array.isRequired,
-  signupTime: PropTypes.string.isRequired,
 }
 
 const mapStateToProps = state => {

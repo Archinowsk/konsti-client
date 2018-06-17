@@ -1,5 +1,5 @@
+/* @flow */
 import React from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { translate } from 'react-i18next'
 import { SubmissionError } from 'redux-form'
@@ -7,7 +7,12 @@ import { SubmissionError } from 'redux-form'
 import { submitLogin } from './loginActions'
 import LoginForm from './components/LoginForm'
 
-const LoginView = props => {
+type Props = {
+  onSubmitLogin: Function,
+  t: Function,
+}
+
+const LoginView = (props: Props) => {
   const { onSubmitLogin, t } = props
 
   const submit = async form => {
@@ -37,11 +42,6 @@ const LoginView = props => {
       <LoginForm onSubmit={submit} />
     </div>
   )
-}
-
-LoginView.propTypes = {
-  onSubmitLogin: PropTypes.func.isRequired,
-  t: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => {

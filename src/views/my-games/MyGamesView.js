@@ -1,5 +1,5 @@
+/* @flow */
 import React from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { translate } from 'react-i18next'
 
@@ -10,7 +10,19 @@ import MySignupsList from './components/MySignupsList'
 import MyFavoritesList from './components/MyFavoritesList'
 import MyEnteredList from './components/MyEnteredList'
 
-class MyGamesView extends React.Component {
+type Props = {
+  signedGames: Array<any>,
+  favoritedGames: Array<any>,
+  enteredGames: Array<any>,
+  games: Array<any>,
+  onSubmitGetUser: Function,
+  username: string,
+  onSubmitGetGames: Function,
+  t: Function,
+}
+
+class MyGamesView extends React.Component<Props> {
+  props: Props
   componentDidMount() {
     /*
     if (!this.props.games || this.props.games.length === 0) {
@@ -56,17 +68,6 @@ class MyGamesView extends React.Component {
       </div>
     )
   }
-}
-
-MyGamesView.propTypes = {
-  signedGames: PropTypes.array.isRequired,
-  favoritedGames: PropTypes.array.isRequired,
-  enteredGames: PropTypes.array.isRequired,
-  games: PropTypes.array.isRequired,
-  onSubmitGetUser: PropTypes.func.isRequired,
-  username: PropTypes.string.isRequired,
-  onSubmitGetGames: PropTypes.func.isRequired,
-  t: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => {

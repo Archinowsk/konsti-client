@@ -1,10 +1,15 @@
+/* @flow */
 import React from 'react'
-import PropTypes from 'prop-types'
 import { translate } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 
-const MyFavoritesList = props => {
+type Props = {
+  t: Function,
+  favoritedGames: Array<any>,
+}
+
+const MyFavoritesList = (props: Props) => {
   const { favoritedGames, t } = props
 
   // Sort games by time and name
@@ -37,11 +42,6 @@ const MyFavoritesList = props => {
       </ul>
     </div>
   )
-}
-
-MyFavoritesList.propTypes = {
-  t: PropTypes.func.isRequired,
-  favoritedGames: PropTypes.array.isRequired,
 }
 
 export default translate()(MyFavoritesList)

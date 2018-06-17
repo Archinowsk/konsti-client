@@ -1,14 +1,21 @@
+/* @flow */
 import React from 'react'
-import PropTypes from 'prop-types'
 import moment from 'moment'
 import { translate } from 'react-i18next'
+
+type Props = {
+  games: Array<any>,
+  t: Function,
+  onChange: Function,
+  date: string,
+}
 
 // TODO: Only enable next open signup
 // Check current time and enable new timestamp
 // Show "signup starts xx:xx" on others
 // Toggle to show upcoming gameslots or all gameslots
 
-const TimesDropdown = props => {
+const TimesDropdown = (props: Props) => {
   const { games, t, onChange, date } = props
   const startTimes = []
 
@@ -38,13 +45,6 @@ const TimesDropdown = props => {
       </select>
     </div>
   )
-}
-
-TimesDropdown.propTypes = {
-  games: PropTypes.array.isRequired,
-  t: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired,
-  date: PropTypes.string.isRequired,
 }
 
 export default translate()(TimesDropdown)

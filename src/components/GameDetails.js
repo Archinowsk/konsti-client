@@ -1,5 +1,5 @@
+/* @flow */
 import React from 'react'
-import PropTypes from 'prop-types'
 import moment from 'moment'
 import { translate } from 'react-i18next'
 import { connect } from 'react-redux'
@@ -9,8 +9,34 @@ import { submitUpdateBlacklist } from '../views/admin/adminActions'
 import { submitGetGames } from '../views/all-games/allGamesActions'
 import { submitUpdateFavorites } from '../views/my-games/myGamesActions'
 
-class GameDetails extends React.Component {
-  constructor(props) {
+type Props = {
+  t: Function,
+  games: Array<any>,
+  match: Object,
+  history: Object,
+  onSubmitUpdateFavorites: Function,
+  username: string,
+  favoritedGames: Array<any>,
+  blacklistedGames: Array<any>,
+  loggedIn: boolean,
+  onSubmitGetGames: Function,
+  userGroup: string,
+  onSubmitUpdateBlacklist: Function,
+}
+
+type State = {
+  blacklisted: boolean,
+  hidden: boolean,
+  username: string,
+  game: Object,
+  submitting: boolean,
+  feedbackValue: string,
+  feedbackSent: boolean,
+  favorited: boolean,
+}
+
+class GameDetails extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props)
 
     this.state = {
@@ -21,6 +47,7 @@ class GameDetails extends React.Component {
       submitting: false,
       feedbackValue: '',
       feedbackSent: false,
+      favorited: false,
     }
 
     // Get the open game from games list
@@ -29,6 +56,8 @@ class GameDetails extends React.Component {
     const game = this.props.games.find(gameById)
     this.setState({ game })
   }
+
+  props: Props
 
   componentDidMount() {
     /*
@@ -309,7 +338,7 @@ class GameDetails extends React.Component {
 
         {loggedIn && (
           <textarea
-            value={this.state.feedback}
+            value={this.state.feedbackValue}
             onChange={handleChange}
             className="feedback-textarea"
             rows="4"
@@ -329,21 +358,6 @@ class GameDetails extends React.Component {
       </div>
     )
   }
-}
-
-GameDetails.propTypes = {
-  t: PropTypes.func.isRequired,
-  games: PropTypes.array.isRequired,
-  match: PropTypes.object.isRequired,
-  history: PropTypes.object.isRequired,
-  onSubmitUpdateFavorites: PropTypes.func.isRequired,
-  username: PropTypes.string.isRequired,
-  favoritedGames: PropTypes.array.isRequired,
-  blacklistedGames: PropTypes.array.isRequired,
-  loggedIn: PropTypes.bool.isRequired,
-  onSubmitGetGames: PropTypes.func.isRequired,
-  userGroup: PropTypes.string.isRequired,
-  onSubmitUpdateBlacklist: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => {

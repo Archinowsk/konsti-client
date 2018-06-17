@@ -1,10 +1,15 @@
+/* @flow */
 import React from 'react'
-import PropTypes from 'prop-types'
 import { translate } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 
-const MyEnteredList = props => {
+type Props = {
+  t: Function,
+  enteredGames: Array<any>,
+}
+
+const MyEnteredList = (props: Props) => {
   const { enteredGames, t } = props
 
   // Sort games by time and name
@@ -37,11 +42,6 @@ const MyEnteredList = props => {
       </ul>
     </div>
   )
-}
-
-MyEnteredList.propTypes = {
-  t: PropTypes.func.isRequired,
-  enteredGames: PropTypes.array.isRequired,
 }
 
 export default translate()(MyEnteredList)

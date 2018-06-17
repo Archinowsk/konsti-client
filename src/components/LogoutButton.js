@@ -1,12 +1,17 @@
+/* @flow */
 import React from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { translate } from 'react-i18next'
 // import { BrowserRouter, Route, Link, Switch, Redirect } from 'react-router-dom'
 
 import { submitLogout } from '../views/login/loginActions'
 
-const Logout = props => {
+type Props = {
+  onSubmitLogout: Function,
+  t: Function,
+}
+
+const Logout = (props: Props) => {
   const { onSubmitLogout, t } = props
 
   return (
@@ -23,11 +28,6 @@ const Logout = props => {
       </a>
     </span>
   )
-}
-
-Logout.propTypes = {
-  onSubmitLogout: PropTypes.func.isRequired,
-  t: PropTypes.func.isRequired,
 }
 
 // Hook up events with actions and Redux's dispatch method

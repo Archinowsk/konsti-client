@@ -1,8 +1,18 @@
+/* @flow */
 import React from 'react'
-import PropTypes from 'prop-types'
 import { translate } from 'react-i18next'
 
-const FormField = props => {
+type Props = {
+  input: Object,
+  label?: string,
+  type: string,
+  meta: Object,
+  t: Function,
+  required?: boolean,
+  tooltip?: boolean,
+}
+
+const FormField = (props: Props) => {
   const {
     input,
     label = '',
@@ -42,16 +52,6 @@ const FormField = props => {
       {touched && error && <div className="form-field-error">{error}</div>}
     </div>
   )
-}
-
-FormField.propTypes = {
-  input: PropTypes.object.isRequired,
-  label: PropTypes.string,
-  type: PropTypes.string.isRequired,
-  meta: PropTypes.object.isRequired,
-  t: PropTypes.func.isRequired,
-  required: PropTypes.bool,
-  tooltip: PropTypes.bool,
 }
 
 export default translate()(FormField)
