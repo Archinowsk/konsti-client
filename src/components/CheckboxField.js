@@ -30,7 +30,11 @@ const CheckboxField = props => {
         <label htmlFor={label}>
           {/* {t('agreeTerms')}{' '}} */}
           {t('iAgree')}{' '}
-          <a href={registerDescriptionLink} target="_blank">
+          <a
+            href={registerDescriptionLink}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             {t('registerDescription')}
           </a>
         </label>

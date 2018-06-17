@@ -36,10 +36,8 @@ const signupReducer = (state = initialState, action) => {
         selectedGames: state.selectedGames.map(
           selectedGame =>
             selectedGame.id === action.signupData.id
-              ? // transform the one with a matching id
-                { ...selectedGame, priority: action.signupData.priority }
-              : // otherwise return original todo
-                selectedGame
+              ? { ...selectedGame, priority: action.signupData.priority }
+              : selectedGame
         ),
       }
     default:
