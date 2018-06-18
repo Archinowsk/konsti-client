@@ -371,7 +371,7 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: Function) => {
   return {
     onSubmitUpdateFavorites: id => dispatch(submitUpdateFavorites(id)),
     onSubmitUpdateBlacklist: id => dispatch(submitUpdateBlacklist(id)),

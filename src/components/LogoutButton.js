@@ -31,7 +31,7 @@ const Logout = (props: Props) => {
 }
 
 // Hook up events with actions and Redux's dispatch method
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: Function) => {
   return {
     onSubmitLogout: () => dispatch(submitLogout()),
   }

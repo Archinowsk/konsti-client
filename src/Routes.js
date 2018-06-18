@@ -14,7 +14,6 @@ import Registration from './views/registration/RegistrationView'
 import Admin from './views/admin/AdminView'
 import AllSignups from './views/all-signups/AllSignupsView'
 
-import { submitLogin } from './views/login/loginActions'
 import LogoutButton from './components/LogoutButton'
 
 type Props = {
@@ -127,15 +126,4 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onLogin: loginInfo => dispatch(submitLogin(loginInfo)),
-  }
-}
-
-export default translate()(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(Routes)
-)
+export default translate()(connect(mapStateToProps)(Routes))

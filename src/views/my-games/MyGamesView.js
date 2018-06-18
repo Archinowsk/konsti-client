@@ -80,7 +80,7 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: Function) => {
   return {
     onSubmitGetUser: username => dispatch(submitGetUser(username)),
     onSubmitGetGames: () => dispatch(submitGetGames()),

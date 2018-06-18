@@ -6,7 +6,7 @@ import { Route, Switch } from 'react-router-dom'
 import GameDetails from '../../components/GameDetails'
 import { submitGetSettings } from '../admin/adminActions'
 import { submitGetUser } from '../my-games/myGamesActions'
-import { submitSelectGame } from '../signup/signupActions'
+// import { submitSelectGame } from '../signup/signupActions'
 import { submitGetGames } from './allGamesActions'
 import AllGamesList from './components/AllGamesList'
 
@@ -89,11 +89,11 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: Function) => {
   return {
     onSubmitGetGames: () => dispatch(submitGetGames()),
     onSubmitGetSettings: () => dispatch(submitGetSettings()),
-    onSubmitSelectGame: id => dispatch(submitSelectGame(id)),
+    // onSubmitSelectGame: id => dispatch(submitSelectGame(id)),
     onSubmitGetUser: username => dispatch(submitGetUser(username)),
   }
 }

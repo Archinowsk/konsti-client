@@ -16,7 +16,7 @@ const mapStateToProps = state => {
   return {}
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: Function) => {
   return {}
 }
 

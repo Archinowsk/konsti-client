@@ -50,7 +50,7 @@ const RegistrationView = (props: Props) => {
   )
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: Function) => {
   return {
     onSubmitLogin: registrationInfo =>
       dispatch(submitRegistration(registrationInfo)),
