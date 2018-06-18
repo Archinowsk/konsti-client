@@ -15,5 +15,7 @@ module.file_ext=.scss
 ; Map scss files to empty modules
 module.name_mapper.extension='scss' -> 'empty/object'
 
+suppress_comment= \\(.\\|\n\\)*\\$FlowFixMe
+suppress_comment= \\(.\\|\n\\)*\\$FlowIgnoreMe
 
 [strict]
