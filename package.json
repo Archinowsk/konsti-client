@@ -1,9 +1,9 @@
 {
-  "name": "ropecon-rpg-signup",
+  "name": "konsti-client",
   "version": "0.0.1",
   "private": true,
   "main": "server.js",
-  "description": "Ropecon RPG Signup",
+  "description": "Konsti signup tool client",
   "author": {
     "name": "Arttu Hanska"
   },
