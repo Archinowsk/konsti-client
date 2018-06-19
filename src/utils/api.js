@@ -1,6 +1,6 @@
 /* @flow */
 import axios from 'axios'
-import config from '../../config'
+import config from '../config'
 import store from './store'
 
 const setAuthToken = () => {

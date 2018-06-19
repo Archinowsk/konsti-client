@@ -9,7 +9,7 @@ const path = require('path')
 const webpack = require('webpack')
 const webpackMerge = require('webpack-merge')
 
-const appConfig = require('./config')
+const appConfig = require('./src/config')
 let config = null
 const TARGET = process.env.npm_lifecycle_event
 
