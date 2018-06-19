@@ -316,7 +316,7 @@ class GameDetails extends React.Component<Props, State> {
           <span className="game-details-title">
             {t('gameInfo.numberOfPlayers')}
           </span>
-          {this.state.game.min_attendance} - {this.state.game.max_attendance}
+          {this.state.game.minAttendance} - {this.state.game.maxAttendance}
         </div>
         <div className="game-details-row">
           <span className="game-details-title">{t('gameInfo.duration')}</span>
