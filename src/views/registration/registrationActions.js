@@ -16,8 +16,6 @@ export const submitRegistration = (registrationData: Object) => {
     let response = null
     try {
       response = await postRegistration(registrationData)
-      console.log('submitRegistration() response')
-      console.log(response)
       if (response.error) {
         return Promise.reject(response)
       }

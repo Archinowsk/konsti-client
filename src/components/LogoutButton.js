@@ -2,7 +2,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { translate } from 'react-i18next'
-// import { BrowserRouter, Route, Link, Switch, Redirect } from 'react-router-dom'
 
 import { submitLogout } from '../views/login/loginActions'
 
@@ -18,7 +17,6 @@ const Logout = (props: Props) => {
     <span>
       <a
         role="link"
-        // tabIndex={0}
         className="router-link"
         onClick={() => {
           onSubmitLogout()

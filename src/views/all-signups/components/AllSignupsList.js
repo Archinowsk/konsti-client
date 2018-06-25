@@ -7,10 +7,6 @@ type Props = {
   results: Array<any>,
 }
 
-// import moment from 'moment'
-// import { Link } from 'react-router-dom';
-// import moment from 'moment';
-
 const AllSignupsList = (props: Props) => {
   const { t, results } = props
 

@@ -20,8 +20,6 @@ export const submitSignup = (signupData: Object) => {
     let response = null
     try {
       response = await postSignup(signupData)
-      console.log('submitSignup() response')
-      console.log(response)
       if (response && response.error) {
         return Promise.reject(response)
       }

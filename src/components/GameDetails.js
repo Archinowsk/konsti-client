@@ -60,11 +60,6 @@ class GameDetails extends React.Component<Props, State> {
   props: Props
 
   componentDidMount() {
-    /*
-    if (!this.props.games || this.props.games.length === 0) {
-      this.props.onSubmitGetGames();
-    }
-    */
     this.props.onSubmitGetGames()
 
     // Check if in favorites
@@ -376,8 +371,6 @@ const mapDispatchToProps = (dispatch: Function) => {
     onSubmitUpdateFavorites: id => dispatch(submitUpdateFavorites(id)),
     onSubmitUpdateBlacklist: id => dispatch(submitUpdateBlacklist(id)),
     onSubmitGetGames: () => dispatch(submitGetGames()),
-    // onSubmitSendFeedback: feedbackData =>
-    // dispatch(submitSendFeedback(feedbackData)),
   }
 }
 

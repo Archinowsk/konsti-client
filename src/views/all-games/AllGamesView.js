@@ -6,7 +6,6 @@ import { Route, Switch } from 'react-router-dom'
 import GameDetails from '../../components/GameDetails'
 import { submitGetSettings } from '../admin/adminActions'
 import { submitGetUser } from '../my-games/myGamesActions'
-// import { submitSelectGame } from '../signup/signupActions'
 import { submitGetGames } from './allGamesActions'
 import AllGamesList from './components/AllGamesList'
 
@@ -16,8 +15,6 @@ type Props = {
   games: Array<any>,
   blacklistedGames: Array<any>,
   onSubmitGetSettings: Function,
-  // signedGames: PropTypes.array.isRequired,
-  // onSubmitSelectGame: PropTypes.func.isRequired,
   username: string,
   onSubmitGetUser: Function,
 }
@@ -25,14 +22,8 @@ type Props = {
 class AllGamesView extends React.Component<Props> {
   props: Props
   componentDidMount() {
-    /*
-    if (!this.props.games || this.props.games.length === 0) {
-      this.props.onSubmitGetGames();
-    }
-    */
     this.props.onSubmitGetGames()
     this.props.onSubmitGetSettings()
-    // this.props.onSubmitGetUser(this.props.username)
   }
 
   render() {
@@ -93,7 +84,6 @@ const mapDispatchToProps = (dispatch: Function) => {
   return {
     onSubmitGetGames: () => dispatch(submitGetGames()),
     onSubmitGetSettings: () => dispatch(submitGetSettings()),
-    // onSubmitSelectGame: id => dispatch(submitSelectGame(id)),
     onSubmitGetUser: username => dispatch(submitGetUser(username)),
   }
 }

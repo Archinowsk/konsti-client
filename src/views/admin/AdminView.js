@@ -131,7 +131,6 @@ class AdminView extends React.Component<Props, State> {
       }
     }
 
-    // submitSelectDate(signupTime);
     const formattedDate = moment.utc(signupTime).format('DD.M.YYYY HH:mm')
 
     return (

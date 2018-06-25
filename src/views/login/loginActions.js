@@ -19,8 +19,6 @@ export const submitLogin = (loginData: Object) => {
     let response = null
     try {
       response = await postLogin(loginData)
-      console.log('submitLogin() response')
-      console.log(response)
       if (response && response.error) {
         return Promise.reject(response)
       }

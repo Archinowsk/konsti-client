@@ -26,11 +26,10 @@ const FormSelector = (props: Props) => {
         <div className="form-input-wrapper">
           <select className="form-input" {...input}>
             <option value="">-</option>
-            {data.map((
-              val // First letter to uppercase
-            ) => (
+            {data.map(val => (
               <option value={val} key={val}>
-                {val.charAt(0).toUpperCase() + val.slice(1)}
+                {// First letter to uppercase
+                val.charAt(0).toUpperCase() + val.slice(1)}
               </option>
             ))}
           </select>

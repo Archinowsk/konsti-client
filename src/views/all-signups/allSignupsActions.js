@@ -15,8 +15,6 @@ export const submitGetResults = () => {
     let response = null
     try {
       response = await getResults()
-      console.log('submitGetResults() response')
-      console.log(response)
       if (response && response.error) {
         return Promise.reject(response)
       }
@@ -26,7 +24,6 @@ export const submitGetResults = () => {
       return response
     } catch (error) {
       console.log(error)
-      // dispatch(submitGetGamesAsync(error));
     }
   }
 }

@@ -25,8 +25,6 @@ export const submitGamesUpdate = () => {
     let response = null
     try {
       response = await postGamesUpdate()
-      console.log('submitGamesUpdate() response')
-      console.log(response)
       if (response && response.error) {
         return Promise.reject(response)
       }
@@ -36,7 +34,6 @@ export const submitGamesUpdate = () => {
       return response
     } catch (error) {
       console.log(error)
-      // dispatch(submitGamesUpdateAsync(error))
     }
   }
 }
@@ -53,8 +50,6 @@ export const submitPlayersAssign = (signupTime: Date) => {
     let response = null
     try {
       response = await postPlayersAssign(signupTime)
-      console.log('submitPlayersAssign() response')
-      console.log(response)
       if (response && response.error) {
         return Promise.reject(response)
       }
@@ -80,8 +75,6 @@ export const submitUpdateBlacklist = (blacklistData: Object) => {
     let response = null
     try {
       response = await postBlacklist(blacklistData)
-      console.log('submitUpdateBlacklist() response')
-      console.log(response)
       if (response && response.error) {
         return Promise.reject(response)
       }
@@ -108,8 +101,6 @@ export const submitGetSettings = () => {
     let response = null
     try {
       response = await getSettings()
-      console.log('submitGetSettings() response')
-      console.log(response)
       if (response && response.error) {
         return Promise.reject(response)
       }
@@ -140,8 +131,6 @@ export const submitSignupTime = (signupTime: Date) => {
     let response = null
     try {
       response = await postSignupTime(signupTime)
-      console.log('submitSignupTime() response')
-      console.log(response)
       if (response && response.error) {
         return Promise.reject(response)
       }
