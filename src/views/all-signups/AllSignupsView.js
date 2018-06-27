@@ -4,11 +4,11 @@ import { connect } from 'react-redux'
 import { translate } from 'react-i18next'
 import moment from 'moment'
 
-import { submitGetResults } from '../all-signups/allSignupsActions'
-import { submitGetGames } from '../all-games/allGamesActions'
-import { submitGetSettings } from '../admin/adminActions'
+import { submitGetResults } from '~/views/all-signups/allSignupsActions'
+import { submitGetGames } from '~/views/all-games/allGamesActions'
+import { submitGetSettings } from '~/views/admin/adminActions'
 
-import AllSignupsList from './components/AllSignupsList'
+import AllSignupsList from '~/views/all-signups/components/AllSignupsList'
 
 type Props = {
   t: Function,

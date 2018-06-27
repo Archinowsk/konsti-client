@@ -1,5 +1,5 @@
 /* @flow */
-import { getResults } from '../../utils/api'
+import { getResults } from '~/utils/api'
 
 export const SUBMIT_GET_RESULTS = 'SUBMIT_GET_RESULTS'
 

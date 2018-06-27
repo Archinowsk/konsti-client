@@ -11,7 +11,7 @@ import {
   submitSignup,
   submitUpdatetGame,
   submitAllSelectedGames,
-} from '../signupActions'
+} from '~/views/signup/signupActions'
 
 type Props = {
   t: Function,

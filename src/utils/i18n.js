@@ -4,8 +4,8 @@ import XHR from 'i18next-xhr-backend'
 // import Cache from 'i18next-localstorage-cache'
 import LanguageDetector from 'i18next-browser-languagedetector'
 
-import en from '../locales/en.json'
-import fi from '../locales/fi.json'
+import en from '~/locales/en.json'
+import fi from '~/locales/fi.json'
 
 const loadLocales = (url, options, callback) => {
   if (url === 'en') {

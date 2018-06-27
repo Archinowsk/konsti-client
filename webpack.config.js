@@ -40,6 +40,12 @@ const commonConfig = {
     filename: '[name].bundle.js',
   },
 
+  resolve: {
+    alias: {
+      '~': path.resolve(__dirname, 'src'),
+    },
+  },
+
   plugins: [
     new HtmlWebpackPlugin({
       // html-webpack-plugin configs

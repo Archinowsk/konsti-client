@@ -4,11 +4,11 @@ import { connect } from 'react-redux'
 import { translate } from 'react-i18next'
 
 import { submitGetUser } from './myGamesActions'
-import { submitGetGames } from '../all-games/allGamesActions'
+import { submitGetGames } from '~/views/all-games/allGamesActions'
 
-import MySignupsList from './components/MySignupsList'
-import MyFavoritesList from './components/MyFavoritesList'
-import MyEnteredList from './components/MyEnteredList'
+import MySignupsList from '~/views/my-games/components/MySignupsList'
+import MyFavoritesList from '~/views/my-games/components/MyFavoritesList'
+import MyEnteredList from '~/views/my-games/components/MyEnteredList'
 
 type Props = {
   signedGames: Array<any>,

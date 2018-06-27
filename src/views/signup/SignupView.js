@@ -4,11 +4,11 @@ import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import { translate } from 'react-i18next'
 
-import { submitGetGames } from '../all-games/allGamesActions'
-import { submitGetSettings } from '../admin/adminActions'
-import { submitGetUser } from '../my-games/myGamesActions'
-import SignupList from './components/SignupList'
-import GameDetails from '../../components/GameDetails'
+import { submitGetGames } from '~/views/all-games/allGamesActions'
+import { submitGetSettings } from '~/views/admin/adminActions'
+import { submitGetUser } from '~/views/my-games/myGamesActions'
+import SignupList from '~/views/signup/components/SignupList'
+import GameDetails from '~/components/GameDetails'
 
 type Props = {
   t: Function,

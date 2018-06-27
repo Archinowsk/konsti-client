@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react'
 import { translate } from 'react-i18next'
-import config from '../config'
+import config from '~/config'
 
 type Props = {
   input: Object,

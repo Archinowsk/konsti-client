@@ -5,7 +5,7 @@ import {
   postBlacklist,
   getSettings,
   postSignupTime,
-} from '../../utils/api'
+} from '~/utils/api'
 
 export const SUBMIT_GAMES_UPDATE = 'SUBMIT_GAMES_UPDATE'
 export const SUBMIT_PLAYERS_ASSIGN = 'SUBMIT_PLAYERS_ASSIGN'
