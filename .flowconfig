@@ -5,6 +5,7 @@
 [libs]
 
 [lints]
+deprecated-call-syntax=off
 
 [options]
 ; Supported file extensions
