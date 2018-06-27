@@ -5,7 +5,7 @@ import {
   SUBMIT_UPDATE_BLACKLIST,
   SUBMIT_GET_SETTINGS,
   SUBMIT_SELECT_SIGNUP_TIME,
-} from './adminActions'
+} from '~/views/admin/adminActions'
 
 const initialState = {
   updateResponse: { data: { errors: '' } },

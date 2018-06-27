@@ -3,7 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { translate } from 'react-i18next'
 
-import { submitGetUser } from './myGamesActions'
+import { submitGetUser } from '~/views/my-games/myGamesActions'
 import { submitGetGames } from '~/views/all-games/allGamesActions'
 
 import MySignupsList from '~/views/my-games/components/MySignupsList'

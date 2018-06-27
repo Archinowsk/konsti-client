@@ -1,5 +1,5 @@
 /* @flow */
-import { SUBMIT_GET_GAMES } from './allGamesActions'
+import { SUBMIT_GET_GAMES } from '~/views/all-games/allGamesActions'
 
 const initialState = { games: [] }
 
