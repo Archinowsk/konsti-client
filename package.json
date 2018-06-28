@@ -13,7 +13,7 @@
     "eslint": "eslint src",
     "flow": "flow check",
     "flow-typed-install": "flow-typed install --skip --overwrite --ignoreDeps peer bundle",
-    "precommit": "npm run flow && lint-staged",
+    "precommit": "lint-staged",
     "prettier": "prettier --write \"src/**/*.{js,json,scss}\"",
     "start": "webpack-dev-server",
     "stylelint": "stylelint \"src/**/*.scss\" --fix"
