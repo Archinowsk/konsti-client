@@ -4,16 +4,16 @@ import { connect } from 'react-redux'
 import { translate } from 'react-i18next'
 import moment from 'moment'
 
-import Blacklist from '~/views/admin/components/Blacklist'
+import Blacklist from '/views/admin/components/Blacklist'
 import {
   submitGamesUpdate,
   submitPlayersAssign,
   submitGetSettings,
   submitSignupTime,
-} from '~/views/admin/adminActions'
-import { submitGetGames } from '~/views/all-games/allGamesActions'
-import { submitSelectDate } from '~/views/signup/signupActions'
-import TimesDropdown from '~/components/TimesDropdown'
+} from '/views/admin/adminActions'
+import { submitGetGames } from '/views/all-games/allGamesActions'
+import { submitSelectDate } from '/views/signup/signupActions'
+import TimesDropdown from '/components/TimesDropdown'
 
 type Props = {
   onSubmitGamesUpdate: Function,

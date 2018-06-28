@@ -3,7 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { translate } from 'react-i18next'
 
-import { submitLogout } from '~/views/login/loginActions'
+import { submitLogout } from '/views/login/loginActions'
 
 type Props = {
   onSubmitLogout: Function,

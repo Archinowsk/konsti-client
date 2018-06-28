@@ -3,8 +3,8 @@ import React from 'react'
 import { hot } from 'react-hot-loader'
 import { translate } from 'react-i18next'
 import { connect } from 'react-redux'
-import Routes from '~/Routes'
-import LanguageSelector from '~/components/LanguageSelector'
+import Routes from '/Routes'
+import LanguageSelector from '/components/LanguageSelector'
 
 type Props = {
   t: Function,

@@ -6,16 +6,16 @@ import { Provider } from 'react-redux'
 import { I18nextProvider } from 'react-i18next'
 
 // Styles
-import '~/styles/style.scss'
+import '/styles/style.scss'
 
 // Root component
-import App from '~/App'
+import App from '/App'
 
 // Initialized i18next instance
-import i18n from '~/utils/i18n'
+import i18n from '/utils/i18n'
 
 // Redux store
-import store from '~/utils/store'
+import store from '/utils/store'
 
 const rootElement = document.getElementById('main')
 

@@ -1,5 +1,5 @@
 /* @flow */
-import { getUser, postFavorite } from '~/utils/api'
+import { getUser, postFavorite } from '/utils/api'
 
 export const SUBMIT_GET_USER_GAMES = 'SUBMIT_GET_USER_GAMES'
 export const SUBMIT_UPDATE_FAVORITES = 'SUBMIT_UPDATE_FAVORITES'

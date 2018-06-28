@@ -2,7 +2,7 @@
 import {
   SUBMIT_GET_USER_GAMES,
   SUBMIT_UPDATE_FAVORITES,
-} from '~/views/my-games/myGamesActions'
+} from '/views/my-games/myGamesActions'
 
 const initialState = {
   enteredGames: [],

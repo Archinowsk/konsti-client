@@ -5,16 +5,16 @@ import { connect } from 'react-redux'
 import { translate } from 'react-i18next'
 
 // Views
-import AllGames from '~/views/all-games/AllGamesView'
-import Login from '~/views/login/LoginView'
-import MyGames from '~/views/my-games/MyGamesView'
-import Signup from '~/views/signup/SignupView'
-// import Settings from '~/views/settings/SettingsView';
-import Registration from '~/views/registration/RegistrationView'
-import Admin from '~/views/admin/AdminView'
-import AllSignups from '~/views/all-signups/AllSignupsView'
+import AllGames from '/views/all-games/AllGamesView'
+import Login from '/views/login/LoginView'
+import MyGames from '/views/my-games/MyGamesView'
+import Signup from '/views/signup/SignupView'
+// import Settings from '/views/settings/SettingsView';
+import Registration from '/views/registration/RegistrationView'
+import Admin from '/views/admin/AdminView'
+import AllSignups from '/views/all-signups/AllSignupsView'
 
-import LogoutButton from '~/components/LogoutButton'
+import LogoutButton from '/components/LogoutButton'
 
 type Props = {
   loggedIn: boolean,

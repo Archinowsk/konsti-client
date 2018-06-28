@@ -1,5 +1,5 @@
 /* @flow */
-import { SUBMIT_LOGIN, SUBMIT_LOGOUT } from '~/views/login/loginActions'
+import { SUBMIT_LOGIN, SUBMIT_LOGOUT } from '/views/login/loginActions'
 
 const initialState = {
   username: '',
