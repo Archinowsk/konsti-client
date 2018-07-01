@@ -1,17 +1,17 @@
 module.exports = {
   extends: [
     'standard',
-    // 'plugin:flowtype/recommended',
+    'plugin:flowtype/recommended',
     'plugin:react/recommended',
     'prettier',
-    // 'prettier/flowtype',
+    'prettier/flowtype',
     'prettier/react',
     'prettier/standard',
     // 'plugin:jsx-a11y/recommended',
   ],
   plugins: [
-    // 'flowtype',
-    // 'flowtype-errors',
+    'flowtype',
+    'flowtype-errors',
     'react',
     'prettier',
     'standard',
@@ -34,7 +34,7 @@ module.exports = {
   */
   rules: {
     'prettier/prettier': 'error',
-    // 'flowtype-errors/show-errors': 'error',
+    'flowtype-errors/show-errors': 'error',
     'compat/compat': 'error',
   },
 }
