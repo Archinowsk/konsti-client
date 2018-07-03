@@ -11,7 +11,7 @@ module.exports = {
   ],
   plugins: [
     'flowtype',
-    'flowtype-errors',
+    // 'flowtype-errors',
     'react',
     'prettier',
     'standard',
@@ -34,7 +34,7 @@ module.exports = {
   */
   rules: {
     'prettier/prettier': 'error',
-    'flowtype-errors/show-errors': 'error',
+    // 'flowtype-errors/show-errors': 'error',
     'compat/compat': 'error',
   },
 }
