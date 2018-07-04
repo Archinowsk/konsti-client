@@ -97,17 +97,17 @@
   },
   "lint-staged": {
     "src/**/*.json": [
-      "npm run prettier",
+      "prettier --parser json --write",
       "git add"
     ],
     "src/**/*.scss": [
-      "npm run stylelint",
-      "npm run prettier",
+      "stylelint --syntax=scss --fix",
+      "prettier --parser scss --write",
       "git add"
     ],
     "src/**/*.js": [
-      "npm run eslint",
-      "npm run prettier",
+      "eslint --fix",
+      "prettier --parser flow --write",
       "git add"
     ]
   }
