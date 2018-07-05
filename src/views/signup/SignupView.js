@@ -50,7 +50,10 @@ class SignupView extends React.Component<Props> {
           <Route
             exact
             path="/signup"
-            render={props => <SignupList {...props} games={games} />}
+            render={props => (
+              // $FlowFixMe
+              <SignupList {...props} games={games} />
+            )}
           />
           <Route
             exact

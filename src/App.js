@@ -30,6 +30,7 @@ const App = (props: Props) => {
       </header>
 
       <div>
+        {/* $FlowFixMe */}
         <Routes />
       </div>
       {/*
