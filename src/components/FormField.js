@@ -36,15 +36,6 @@ const FormField = (props: Props) => {
             id={input.name}
           />
         </div>
-
-        {/*
-        {tooltip === true &&
-          <div className="help-tip">
-            <p>
-              {t(`tooltip.${input.name}`)}
-            </p>
-          </div>}
-        */}
       </div>
 
       {touched && error && <div className="form-field-error">{error}</div>}

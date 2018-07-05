@@ -24,13 +24,6 @@ const LoginView = (props: Props) => {
           _error: t('error.loginFailed'),
         })
       }
-      /*
-      else {
-        throw new SubmissionError({
-          _error: t('error.unknown'),
-        });
-      }
-      */
     } catch (error) {
       console.log(error)
     }

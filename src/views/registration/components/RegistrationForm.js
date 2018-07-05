@@ -54,22 +54,6 @@ const RegistrationForm = (props: Props) => {
           component={CheckboxField}
         />
 
-        {/*
-        <label htmlFor="registerDescription">
-          I agree to the terms and{' '}
-          <a href="https://konsti.ropecon.fi/rekisteriseloste.txt">
-            register description
-          </a>
-        </label>
-        <p>
-          <input type="checkbox" />
-          <span> I agree to the terms and </span>
-          <a href="https://konsti.ropecon.fi/rekisteriseloste.txt">
-            register description
-          </a>
-        </p>
-        */}
-
         <button type="submit" disabled={submitting}>
           {t('button.register')}
         </button>

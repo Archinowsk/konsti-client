@@ -33,13 +33,6 @@ const App = (props: Props) => {
         {/* $FlowFixMe */}
         <Routes />
       </div>
-      {/*
-      <footer>
-        <p>
-          {t('footer')}
-        </p>
-      </footer>
-      */}
     </div>
   )
 }
