@@ -64,10 +64,6 @@ class AdminView extends React.Component<Props, State> {
       signupTime,
     } = this.props
 
-    if (!games || games.length === 0) {
-      return <p>{t('loading')}</p>
-    }
-
     // Assign game info to blacklisted games list
     games.forEach(game => {
       blacklistedGames.forEach(blacklistedGame => {
