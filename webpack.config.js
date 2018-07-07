@@ -104,7 +104,10 @@ const devConfig = {
         test: /\.scss$/,
         use: [
           { loader: 'style-loader', options: { sourceMap: true } },
-          { loader: 'css-loader', options: { sourceMap: true } },
+          {
+            loader: 'css-loader',
+            options: { importLoaders: 2, sourceMap: true },
+          },
           {
             loader: 'postcss-loader',
             options: { sourceMap: true, parser: 'postcss-scss' },
@@ -135,7 +138,10 @@ const prodConfig = {
         use: ExtractTextWebpackPlugin.extract({
           fallback: 'style-loader',
           use: [
-            { loader: 'css-loader' },
+            {
+              loader: 'css-loader',
+              options: { importLoaders: 2 },
+            },
             { loader: 'postcss-loader', options: { parser: 'postcss-scss' } },
             { loader: 'sass-loader' },
           ],
