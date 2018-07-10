@@ -26,3 +26,5 @@ module.name_mapper='^/\(.*\)$' -> '<PROJECT_ROOT>/src/\1'
 # include_warnings=true
 
 [strict]
+
+[declarations]
