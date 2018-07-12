@@ -1,5 +1,5 @@
-// flow-typed signature: 6543cb342cdcec61de7fd59021765eac
-// flow-typed version: e94381d642/react-router-dom_v4.x.x/flow_>=v0.63.x
+// flow-typed signature: e4d8067376d4387caae0c18afedfeba8
+// flow-typed version: 187bd8b1be/react-router-dom_v4.x.x/flow_>=v0.63.x
 
 declare module "react-router-dom" {
   declare export class BrowserRouter extends React$Component<{|
@@ -170,6 +170,9 @@ declare module "react-router-dom" {
 
   declare export function matchPath(
     pathname: string,
-    options?: MatchPathOptions | string
+    options?: MatchPathOptions | string,
+    parent?: Match
   ): null | Match;
+  
+  declare export function generatePath(pattern?: string, params?: Object): string;
 }
