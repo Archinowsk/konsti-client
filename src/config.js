@@ -6,8 +6,7 @@ config.appName = 'Konsti'
 // Variables for production environment
 if (process.env.NODE_ENV === 'production') {
   config.env = 'production'
-  config.apiServerURL =
-    'http://awseb-e-x-awsebloa-1hrdkdgbzl6v4-2140903285.eu-west-1.elb.amazonaws.com'
+  config.apiServerURL = 'https://konsti.ropecon.fi'
 }
 
 // Variables for development environment
