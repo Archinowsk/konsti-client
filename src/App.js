@@ -5,6 +5,7 @@ import { translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import Routes from '/Routes'
 import LanguageSelector from '/components/LanguageSelector'
+import config from '/config'
 
 type Props = {
   t: Function,
@@ -14,6 +15,7 @@ type Props = {
 
 const App = (props: Props) => {
   const { t, username, loggedIn } = props
+  const { appOpen } = config
 
   return (
     <div className="main-container">
@@ -30,8 +32,9 @@ const App = (props: Props) => {
       </header>
 
       <div>
+        {!appOpen && t('closingMessage')}
         {/* $FlowFixMe */}
-        <Routes />
+        {appOpen && <Routes />}
       </div>
     </div>
   )
