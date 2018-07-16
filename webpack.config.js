@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const TemplateWebpackPlugin = require('html-webpack-template')
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin')
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+const Dotenv = require('dotenv-webpack')
 const path = require('path')
 const webpack = require('webpack')
 const webpackMerge = require('webpack-merge')
@@ -178,6 +179,17 @@ const prodConfig = {
     splitChunks: {
       chunks: 'all',
     },
+  },
+}
+
+const prodEnv = {
+  plugins: [
+    new Dotenv({
+      path: './.prod.env', // Path to .env file (this is the default)
+    }),
+  ],
+
+  optimization: {
     minimizer: [
       new UglifyJSPlugin({
         uglifyOptions: {
@@ -193,8 +205,18 @@ const prodConfig = {
   },
 }
 
+const stagingEnv = {
+  plugins: [
+    new Dotenv({
+      path: './.staging.env', // Path to .env file (this is the default)
+    }),
+  ],
+}
+
 if (TARGET === 'build' || TARGET === 'analyze') {
-  config = webpackMerge(commonConfig, prodConfig)
+  config = webpackMerge(commonConfig, prodConfig, prodEnv)
+} else if (TARGET === 'build-staging') {
+  config = webpackMerge(commonConfig, prodConfig, stagingEnv)
 } else if (TARGET === 'start' || TARGET === 'watch') {
   config = webpackMerge(commonConfig, devConfig)
 }

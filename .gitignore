@@ -18,3 +18,6 @@ build/*
 # Analyzer files
 report.html
 stats.json
+
+# Environment variables
+*.env

@@ -9,11 +9,11 @@ config.appOpen = false
 // Variables for production environment
 if (process.env.NODE_ENV === 'production') {
   config.env = 'production'
-  config.apiServerURL = 'https://konsti.ropecon.fi'
+  config.apiServerURL = process.env.API_SERVER_URL
 }
 
 // Variables for development environment
-if (process.env.NODE_ENV === 'development') {
+else if (process.env.NODE_ENV === 'development') {
   config.env = 'development'
   config.apiServerURL = 'http://localhost:3000'
 }

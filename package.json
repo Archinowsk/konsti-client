@@ -10,6 +10,7 @@
   "scripts": {
     "analyze": "webpack-cli --profile --json > stats.json && webpack-bundle-analyzer stats.json -m assets -r report.html",
     "build": "webpack-cli",
+    "build-staging": "webpack-cli",
     "eslint": "eslint src",
     "flow": "flow check",
     "flow-typed-install": "flow-typed install --skip --overwrite --ignoreDeps peer bundle",
@@ -51,6 +52,7 @@
     "copy-webpack-plugin": "4.5.2",
     "css-loader": "1.0.0",
     "doiuse": "4.1.0",
+    "dotenv-webpack": "1.5.7",
     "eslint": "5.1.0",
     "eslint-config-prettier": "2.9.0",
     "eslint-config-standard": "11.0.0",
