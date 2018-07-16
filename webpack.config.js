@@ -5,6 +5,7 @@ const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const TemplateWebpackPlugin = require('html-webpack-template')
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin')
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const path = require('path')
 const webpack = require('webpack')
 const webpackMerge = require('webpack-merge')
@@ -177,6 +178,18 @@ const prodConfig = {
     splitChunks: {
       chunks: 'all',
     },
+    minimizer: [
+      new UglifyJSPlugin({
+        uglifyOptions: {
+          compress: {
+            drop_console: true,
+          },
+          output: {
+            comments: false,
+          },
+        },
+      }),
+    ],
   },
 }
 
