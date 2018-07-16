@@ -1,6 +1,7 @@
 /* @flow */
 import React from 'react'
 import { translate } from 'react-i18next'
+import moment from 'moment'
 import i18n from '/utils/i18n'
 
 type Props = { t: Function }
@@ -14,6 +15,7 @@ const LanguageSelector = (props: Props) => {
   const toggle = lng => i18n.changeLanguage(lng)
   const setLanguage = event => {
     toggle(event.target.value)
+    moment.locale(event.target.value)
   }
 
   return (

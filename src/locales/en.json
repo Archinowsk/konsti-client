@@ -22,6 +22,7 @@
   "serial": "Registration serial",
   "loading": "Loading...",
   "hours": "hours",
+  "minutes": "minutes",
   "language": {
     "english": "English",
     "finnish": "Finnish"
@@ -39,16 +40,46 @@
   },
   "gameInfo": {
     "title": "Title",
-    "programType": "Program types",
-    "startTime": "Starting time",
+    "gameStyles": "Game styles",
+    "runTime": "Time",
     "description": "Description",
     "location": "Location",
     "numberOfPlayers": "Number of players",
-    "duration": "Length",
+    "duration": "length",
     "gamemaster": "Game master(s)",
     "tags": "Tags",
     "time": "Starting time",
-    "gamesystem": "Game system"
+    "gamesystem": "Game system",
+    "genres": "Genres"
+  },
+  "gameStyle": {
+    "serious": "Serious game style",
+    "light": "Light game style",
+    "rules_heavy": "Rules heavy",
+    "rules_light": "Rules light",
+    "story_driven": "Story driven",
+    "character_driven": "Character driven",
+    "combat_driven": "Combat driven"
+  },
+  "genre": {
+    "fantasy": "Fantasy",
+    "scifi": "Sci-fi",
+    "historical": "Historical",
+    "modern": "Modern",
+    "war": "War",
+    "horror": "Horror",
+    "exploration": "Exploration",
+    "mystery": "Mystery",
+    "drama": "Drama",
+    "humor": "Humor"
+  },
+  "gameTags": {
+    "noLanguage": "No language requirement",
+    "englishOk": "Played in English",
+    "childrenFriendly": "Children friendly",
+    "ageRestricted": "Age requirement 18+",
+    "beginnerFriendly": "Beginner friendly",
+    "intendedForExperiencedParticipants": "Experienced participants preferred"
   },
   "pageTitle": {
     "login": "Please login",

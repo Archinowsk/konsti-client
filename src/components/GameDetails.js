@@ -38,61 +38,42 @@ type State = {
 class GameDetails extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props)
+    const { games, match, username } = this.props
 
-    const game = this.props.games.filter(game => {
-      return game.id === this.props.match.params.id
+    // Get the open game from games list
+    const game = games.filter(game => {
+      return game.id === match.params.id
     })
 
     this.state = {
       blacklisted: false,
       hidden: false,
-      username: this.props.username,
+      username: username,
       game: game[0],
       submitting: false,
       feedbackValue: '',
       feedbackSent: false,
       favorited: false,
     }
-
-    // Get the open game from games list
-    /*
-    const gameById = game => {
-      console.log(game.id)
-      console.log(this.props.match.params.id)
-      return game.id === this.props.match.params.id
-    }
-
-    console.log('gamebyid', gameById)
-    const game = this.props.games.find(gameById)
-    console.log('game', game)
-    */
-
-    /*
-    const game = this.props.games.filter(game => {
-      return game.id === this.props.match.params.id
-    })
-
-    console.log(game)
-    this.setState({ game })
-    */
   }
 
-  props: Props
-
   componentDidMount() {
+    const { game } = this.state
+    const { favoritedGames, blacklistedGames } = this.props
+
     this.props.onSubmitGetGames()
 
     // Check if in favorites
-    for (let i = 0; i < this.props.favoritedGames.length; i += 1) {
-      if (this.props.favoritedGames[i].id === this.state.game.id) {
+    for (let i = 0; i < favoritedGames.length; i += 1) {
+      if (favoritedGames[i].id === game.id) {
         this.setState({ favorited: true })
         break
       }
     }
 
     // Check if blacklisted
-    for (let i = 0; i < this.props.blacklistedGames.length; i += 1) {
-      if (this.props.blacklistedGames[i].id === this.state.game.id) {
+    for (let i = 0; i < blacklistedGames.length; i += 1) {
+      if (blacklistedGames[i].id === game.id) {
         this.setState({ blacklisted: true })
         break
       }
@@ -111,16 +92,16 @@ class GameDetails extends React.Component<Props, State> {
 
   // Favorite / unfavorite clicked
   async addFavoriteEvent(action) {
+    const { game, username } = this.state
+    const { favoritedGames } = this.props
+
     this.setState({ submitting: true })
-    const gameIndex = this.findGame(
-      this.state.game.id,
-      this.props.favoritedGames
-    )
-    const allFavoritedGames = this.props.favoritedGames.slice()
+    const gameIndex = this.findGame(game.id, favoritedGames)
+    const allFavoritedGames = favoritedGames.slice()
 
     if (action === 'add') {
       if (gameIndex === -1) {
-        allFavoritedGames.push({ id: this.state.game.id })
+        allFavoritedGames.push({ id: game.id })
       }
     } else if (action === 'del') {
       if (gameIndex > -1) {
@@ -135,7 +116,7 @@ class GameDetails extends React.Component<Props, State> {
     })
 
     const favoriteData = {
-      username: this.state.username,
+      username: username,
       favoritedGames: favoritedGameIds,
     }
 
@@ -158,16 +139,16 @@ class GameDetails extends React.Component<Props, State> {
 
   // Hide / unhide clicked
   async addBlacklistEvent(action) {
+    const { game } = this.state
+    const { blacklistedGames } = this.props
+
     this.setState({ submitting: true })
-    const gameIndex = this.findGame(
-      this.state.game.id,
-      this.props.blacklistedGames
-    )
-    const allBlacklistedGames = this.props.blacklistedGames.slice()
+    const gameIndex = this.findGame(game.id, blacklistedGames)
+    const allBlacklistedGames = blacklistedGames.slice()
 
     if (action === 'add') {
       if (gameIndex === -1) {
-        allBlacklistedGames.push({ id: this.state.game.id })
+        allBlacklistedGames.push({ id: game.id })
       }
     } else if (action === 'del') {
       if (gameIndex > -1) {
@@ -203,11 +184,13 @@ class GameDetails extends React.Component<Props, State> {
 
   // Hide / unhide clicked
   async sendFeedbackEvent() {
+    const { game, feedbackValue } = this.state
+
     this.setState({ submitting: true })
 
     const feedbackData = {
-      id: this.state.game.id,
-      feedback: this.state.feedbackValue,
+      id: game.id,
+      feedback: feedbackValue,
     }
 
     try {
@@ -218,23 +201,65 @@ class GameDetails extends React.Component<Props, State> {
 
   render() {
     const { t, history, loggedIn, games, userGroup } = this.props
+    const {
+      game,
+      favorited,
+      submitting,
+      blacklisted,
+      feedbackValue,
+      feedbackSent,
+    } = this.state
 
     if (!games || games.length === 0) {
       return <p>{t('loading')}</p>
     }
 
-    const tagsList = this.state.game.tags.map(tag => <li key={tag}>{tag}</li>)
+    const tagsList = []
 
-    const genresList = this.state.game.genres.map(genre => (
-      <li key={genre}>{genre}</li>
+    if (game.noLanguage) {
+      tagsList.push(<li key={'noLanguage'}>{t(`gameTags.noLanguage`)}</li>)
+    }
+
+    if (game.englishOk) {
+      tagsList.push(<li key={'englishOk'}>{t(`gameTags.englishOk`)}</li>)
+    }
+
+    if (game.childrenFriendly) {
+      tagsList.push(
+        <li key={'childrenFriendly'}>{t(`gameTags.childrenFriendly`)}</li>
+      )
+    }
+
+    if (game.ageRestricted) {
+      tagsList.push(
+        <li key={'ageRestricted'}>{t(`gameTags.ageRestricted`)}</li>
+      )
+    }
+
+    if (game.beginnerFriendly) {
+      tagsList.push(
+        <li key={'beginnerFriendly'}>{t(`gameTags.beginnerFriendly`)}</li>
+      )
+    }
+
+    if (game.intendedForExperiencedParticipants) {
+      tagsList.push(
+        <li key={'intendedForExperiencedParticipants'}>
+          {t(`gameTags.intendedForExperiencedParticipants`)}
+        </li>
+      )
+    }
+
+    const genresList = game.genres.map(genre => (
+      <li key={genre}>{t(`genre.${genre}`)}</li>
     ))
-    const stylesList = this.state.game.styles.map(style => (
-      <li key={style}>{style}</li>
+    const stylesList = game.styles.map(style => (
+      <li key={style}>{t(`gameStyle.${style}`)}</li>
     ))
 
-    const formattedDate = moment
-      .utc(this.state.game.startTime)
-      .format('DD.M.YYYY HH:mm')
+    const formattedStartTime = moment.utc(game.startTime).format('dddd HH:mm')
+
+    const formattedEndTime = moment.utc(game.endTime).format('HH:mm')
 
     const handleChange = event => {
       this.setState({ feedbackValue: event.target.value })
@@ -254,44 +279,44 @@ class GameDetails extends React.Component<Props, State> {
           {t('button.back')}
         </button>
 
-        {this.state.favorited &&
+        {favorited &&
           loggedIn &&
           userGroup === 'user' && (
             <button
-              disabled={this.state.submitting}
+              disabled={submitting}
               onClick={() => this.addFavoriteEvent('del')}
             >
               {t('button.removeFavorite')}
             </button>
           )}
 
-        {!this.state.favorited &&
+        {!favorited &&
           loggedIn &&
           userGroup === 'user' && (
             <button
-              disabled={this.state.submitting}
+              disabled={submitting}
               onClick={() => this.addFavoriteEvent('add')}
             >
               {t('button.favorite')}
             </button>
           )}
 
-        {this.state.blacklisted &&
+        {blacklisted &&
           loggedIn &&
           userGroup === 'admin' && (
             <button
-              disabled={this.state.submitting}
+              disabled={submitting}
               onClick={() => this.addBlacklistEvent('del')}
             >
               {t('button.unhide')}
             </button>
           )}
 
-        {!this.state.blacklisted &&
+        {!blacklisted &&
           loggedIn &&
           userGroup === 'admin' && (
             <button
-              disabled={this.state.submitting}
+              disabled={submitting}
               onClick={() => this.addBlacklistEvent('add')}
             >
               {t('button.hide')}
@@ -300,70 +325,63 @@ class GameDetails extends React.Component<Props, State> {
 
         <div className="game-details-row">
           <span className="game-details-title">{t('gameInfo.title')}</span>
-          {this.state.game.title}
-        </div>
-        <div className="game-details-row">
-          <span className="game-details-title">
-            {t('gameInfo.programType')}
-          </span>
-          <ul>{genresList}</ul>
-        </div>
-        <div className="game-details-row">
-          <span className="game-details-title">
-            {t('gameInfo.programType')}
-          </span>
-          <ul>{stylesList}</ul>
-        </div>
-        <div className="game-details-row">
-          <span className="game-details-title">{t('gameInfo.startTime')}</span>
-          {formattedDate}
-        </div>
-        <div className="game-details-row">
-          <span className="game-details-title">
-            {t('gameInfo.description')}
-          </span>
-          {this.state.game.description}
-        </div>
-        <div className="game-details-row">
-          <span className="game-details-title">{t('gameInfo.gamesystem')}</span>
-          {this.state.game.gameSystem}
-        </div>
-        <div className="game-details-row">
-          <span className="game-details-title">{t('gameInfo.location')}</span>
-          {this.state.game.location}
-        </div>
-        <div className="game-details-row">
-          <span className="game-details-title">
-            {t('gameInfo.numberOfPlayers')}
-          </span>
-          {this.state.game.minAttendance} - {this.state.game.maxAttendance}
-        </div>
-        <div className="game-details-row">
-          <span className="game-details-title">{t('gameInfo.duration')}</span>
-          {this.state.game.mins / 60} {t('hours')}
+          {game.title}
         </div>
         <div className="game-details-row">
           <span className="game-details-title">{t('gameInfo.gamemaster')}</span>
-          {this.state.game.people}
+          {game.people}
+        </div>
+        <div className="game-details-row">
+          <span className="game-details-title">{t('gameInfo.genres')}</span>
+          <ul>{genresList}</ul>
         </div>
         <div className="game-details-row">
           <span className="game-details-title">{t('gameInfo.tags')}</span>
           <ul>{tagsList}</ul>
         </div>
+        <div className="game-details-row">
+          <span className="game-details-title">{t('gameInfo.runTime')}</span>
+          {formattedStartTime} - {formattedEndTime} (
+          {game.mins / 60} {t('hours')})
+        </div>
+        <div className="game-details-row">
+          <span className="game-details-title">
+            {t('gameInfo.description')}
+          </span>
+          {game.description}
+        </div>
+        <div className="game-details-row">
+          <span className="game-details-title">{t('gameInfo.gamesystem')}</span>
+          {game.gameSystem}
+        </div>
+        <div className="game-details-row">
+          <span className="game-details-title">{t('gameInfo.gameStyles')}</span>
+          <ul>{stylesList}</ul>
+        </div>
+        <div className="game-details-row">
+          <span className="game-details-title">{t('gameInfo.location')}</span>
+          {game.location}
+        </div>
+        <div className="game-details-row">
+          <span className="game-details-title">
+            {t('gameInfo.numberOfPlayers')}
+          </span>
+          {game.minAttendance} - {game.maxAttendance}
+        </div>
 
         {loggedIn && (
           <textarea
-            value={this.state.feedbackValue}
+            value={feedbackValue}
             onChange={handleChange}
             className="feedback-textarea"
             rows="4"
           />
         )}
-        {this.state.feedbackSent && <p>{t('button.feedbackSent')}</p>}
+        {feedbackSent && <p>{t('button.feedbackSent')}</p>}
         {loggedIn && (
           <p>
             <button
-              disabled={this.state.submitting}
+              disabled={submitting}
               onClick={() => this.sendFeedbackEvent()}
             >
               {t('button.sendFeedback')}

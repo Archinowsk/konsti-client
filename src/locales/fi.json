@@ -22,6 +22,7 @@
   "serial": "Kirjautumiskoodi",
   "loading": "Ladataan...",
   "hours": "tuntia",
+  "minutes": "minuuttia",
   "language": {
     "english": "Englanti",
     "finnish": "Suomi"
@@ -39,17 +40,48 @@
   },
   "gameInfo": {
     "title": "Pelin nimi",
-    "programType": "Ohjelmatyypit",
-    "startTime": "Aloitusaika",
+    "playStyles": "Pelityylit",
+    "runTime": "Aika",
     "description": "Kuvaus",
     "location": "Pelihuone",
     "numberOfPlayers": "Pelaajamäärä",
-    "duration": "Pelin kesto",
+    "duration": "kesto",
     "gamemaster": "Pelinjohtaja(t)",
     "tags": "Tagit",
     "time": "Aloitusaika",
-    "gamesystem": "Pelijärjestelmä"
+    "gamesystem": "Pelijärjestelmä",
+    "genres": "Genret"
   },
+  "gameStyle": {
+    "serious": "Vakava pelityyli",
+    "light": "Kevyt pelityyli",
+    "rules_heavy": "Raskaat säännöt",
+    "rules_light": "Kevyet säännöt",
+    "story_driven": "Tarinavetoinen",
+    "character_driven": "Hahmovetoinen",
+    "combat_driven": "Taisteluvetoinen"
+  },
+  "genre": {
+    "fantasy": "Fantasia",
+    "scifi": "Sci-fi",
+    "historical": "Historiallinen",
+    "modern": "Moderni",
+    "war": "Sota",
+    "horror": "Kauhu",
+    "exploration": "Seikkailu",
+    "mystery": "Mysteeri",
+    "drama": "Draama",
+    "humor": "Draama"
+  },
+  "gameTags": {
+    "noLanguage": "Ei kielivaatimusta",
+    "englishOk": "Pelataan englanniksi",
+    "childrenFriendly": "Lapsiystävällinen",
+    "ageRestricted": "Ikävaatimus 18+",
+    "beginnerFriendly": "Aloittelijaystävällinen",
+    "intendedForExperiencedParticipants": "Peli suosii kokeneita pelaajia"
+  },
+
   "pageTitle": {
     "login": "Kirjaudu sisään",
     "registration": "Rekisteröi käyttäjätunnus"
