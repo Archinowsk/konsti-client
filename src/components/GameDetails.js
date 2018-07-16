@@ -250,12 +250,19 @@ class GameDetails extends React.Component<Props, State> {
       )
     }
 
-    const genresList = game.genres.map(genre => (
-      <li key={genre}>{t(`genre.${genre}`)}</li>
-    ))
-    const stylesList = game.styles.map(style => (
-      <li key={style}>{t(`gameStyle.${style}`)}</li>
-    ))
+    let genresList = []
+    if (game.genres) {
+      genresList = game.genres.map(genre => (
+        <li key={genre}>{t(`genre.${genre}`)}</li>
+      ))
+    }
+
+    let stylesList = []
+    if (game.styles) {
+      stylesList = game.styles.map(style => (
+        <li key={style}>{t(`gameStyle.${style}`)}</li>
+      ))
+    }
 
     const formattedStartTime = moment.utc(game.startTime).format('dddd HH:mm')
 
@@ -323,51 +330,78 @@ class GameDetails extends React.Component<Props, State> {
             </button>
           )}
 
-        <div className="game-details-row">
-          <span className="game-details-title">{t('gameInfo.title')}</span>
-          {game.title}
-        </div>
-        <div className="game-details-row">
-          <span className="game-details-title">{t('gameInfo.gamemaster')}</span>
-          {game.people}
-        </div>
-        <div className="game-details-row">
-          <span className="game-details-title">{t('gameInfo.genres')}</span>
-          <ul>{genresList}</ul>
-        </div>
-        <div className="game-details-row">
-          <span className="game-details-title">{t('gameInfo.tags')}</span>
-          <ul>{tagsList}</ul>
-        </div>
-        <div className="game-details-row">
-          <span className="game-details-title">{t('gameInfo.runTime')}</span>
-          {formattedStartTime} - {formattedEndTime} (
-          {game.mins / 60} {t('hours')})
-        </div>
-        <div className="game-details-row">
-          <span className="game-details-title">
-            {t('gameInfo.description')}
-          </span>
-          {game.description}
-        </div>
-        <div className="game-details-row">
-          <span className="game-details-title">{t('gameInfo.gamesystem')}</span>
-          {game.gameSystem}
-        </div>
-        <div className="game-details-row">
-          <span className="game-details-title">{t('gameInfo.gameStyles')}</span>
-          <ul>{stylesList}</ul>
-        </div>
-        <div className="game-details-row">
-          <span className="game-details-title">{t('gameInfo.location')}</span>
-          {game.location}
-        </div>
-        <div className="game-details-row">
-          <span className="game-details-title">
-            {t('gameInfo.numberOfPlayers')}
-          </span>
-          {game.minAttendance} - {game.maxAttendance}
-        </div>
+        {game.title && (
+          <div className="game-details-row">
+            <span className="game-details-title">{t('gameInfo.title')}</span>
+            {game.title}
+          </div>
+        )}
+        {game.people && (
+          <div className="game-details-row">
+            <span className="game-details-title">
+              {t('gameInfo.gamemaster')}
+            </span>
+            {game.people}
+          </div>
+        )}
+        {genresList.length > 0 && (
+          <div className="game-details-row">
+            <span className="game-details-title">{t('gameInfo.genres')}</span>
+            <ul>{genresList}</ul>
+          </div>
+        )}
+        {tagsList.length > 0 && (
+          <div className="game-details-row">
+            <span className="game-details-title">{t('gameInfo.tags')}</span>
+            <ul>{tagsList}</ul>
+          </div>
+        )}
+        {game.mins && (
+          <div className="game-details-row">
+            <span className="game-details-title">{t('gameInfo.runTime')}</span>
+            {formattedStartTime} - {formattedEndTime} (
+            {game.mins / 60} {t('hours')})
+          </div>
+        )}
+        {game.description && (
+          <div className="game-details-row">
+            <span className="game-details-title">
+              {t('gameInfo.description')}
+            </span>
+            {game.description}
+          </div>
+        )}
+        {game.gameSystem && (
+          <div className="game-details-row">
+            <span className="game-details-title">
+              {t('gameInfo.gamesystem')}
+            </span>
+            {game.gameSystem}
+          </div>
+        )}
+        {stylesList.length > 0 && (
+          <div className="game-details-row">
+            <span className="game-details-title">
+              {t('gameInfo.gameStyles')}
+            </span>
+            <ul>{stylesList}</ul>
+          </div>
+        )}
+        {game.location && (
+          <div className="game-details-row">
+            <span className="game-details-title">{t('gameInfo.location')}</span>
+            {game.location}
+          </div>
+        )}
+        {game.minAttendance &&
+          game.maxAttendance && (
+            <div className="game-details-row">
+              <span className="game-details-title">
+                {t('gameInfo.numberOfPlayers')}
+              </span>
+              {game.minAttendance} - {game.maxAttendance}
+            </div>
+          )}
 
         {loggedIn && (
           <textarea
