@@ -14,15 +14,15 @@ const MyEnteredList = (props: Props) => {
 
   // Sort games by time and name
   const sortedGames = enteredGames.sort((a, b) => {
-    const keyA = moment(a.date) + a.title
-    const keyB = moment(b.date) + b.title
+    const keyA = moment(a.startTime) + a.title
+    const keyB = moment(b.startTime) + b.title
     if (keyA < keyB) return -1
     if (keyA > keyB) return 1
     return 0
   })
 
   const GamesList = sortedGames.map(game => {
-    const formattedDate = moment.utc(game.date).format('DD.M.YYYY HH:mm')
+    const formattedDate = moment.utc(game.startTime).format('DD.M.YYYY HH:mm')
 
     return (
       <li key={game.id}>

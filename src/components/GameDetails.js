@@ -39,11 +39,15 @@ class GameDetails extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props)
 
+    const game = this.props.games.filter(game => {
+      return game.id === this.props.match.params.id
+    })
+
     this.state = {
       blacklisted: false,
       hidden: false,
       username: this.props.username,
-      game: {},
+      game: game[0],
       submitting: false,
       feedbackValue: '',
       feedbackSent: false,
@@ -51,10 +55,26 @@ class GameDetails extends React.Component<Props, State> {
     }
 
     // Get the open game from games list
-    const gameById = game =>
-      game.id === parseInt(this.props.match.params.id, 10)
+    /*
+    const gameById = game => {
+      console.log(game.id)
+      console.log(this.props.match.params.id)
+      return game.id === this.props.match.params.id
+    }
+
+    console.log('gamebyid', gameById)
     const game = this.props.games.find(gameById)
+    console.log('game', game)
+    */
+
+    /*
+    const game = this.props.games.filter(game => {
+      return game.id === this.props.match.params.id
+    })
+
+    console.log(game)
     this.setState({ game })
+    */
   }
 
   props: Props
@@ -205,16 +225,15 @@ class GameDetails extends React.Component<Props, State> {
 
     const tagsList = this.state.game.tags.map(tag => <li key={tag}>{tag}</li>)
 
-    const gamemastersList = this.state.game.people.map(person => (
-      <li key={person}>{person}</li>
+    const genresList = this.state.game.genres.map(genre => (
+      <li key={genre}>{genre}</li>
     ))
-
-    const attributesList = this.state.game.attributes.map(attribute => (
-      <li key={attribute}>{attribute}</li>
+    const stylesList = this.state.game.styles.map(style => (
+      <li key={style}>{style}</li>
     ))
 
     const formattedDate = moment
-      .utc(this.state.game.date)
+      .utc(this.state.game.startTime)
       .format('DD.M.YYYY HH:mm')
 
     const handleChange = event => {
@@ -287,10 +306,16 @@ class GameDetails extends React.Component<Props, State> {
           <span className="game-details-title">
             {t('gameInfo.programType')}
           </span>
-          <ul>{attributesList}</ul>
+          <ul>{genresList}</ul>
         </div>
         <div className="game-details-row">
-          <span className="game-details-title">{t('gameInfo.date')}</span>
+          <span className="game-details-title">
+            {t('gameInfo.programType')}
+          </span>
+          <ul>{stylesList}</ul>
+        </div>
+        <div className="game-details-row">
+          <span className="game-details-title">{t('gameInfo.startTime')}</span>
           {formattedDate}
         </div>
         <div className="game-details-row">
@@ -301,7 +326,7 @@ class GameDetails extends React.Component<Props, State> {
         </div>
         <div className="game-details-row">
           <span className="game-details-title">{t('gameInfo.gamesystem')}</span>
-          {this.state.game.notes}
+          {this.state.game.gameSystem}
         </div>
         <div className="game-details-row">
           <span className="game-details-title">{t('gameInfo.location')}</span>
@@ -319,13 +344,8 @@ class GameDetails extends React.Component<Props, State> {
         </div>
         <div className="game-details-row">
           <span className="game-details-title">{t('gameInfo.gamemaster')}</span>
-          <ul>{gamemastersList}</ul>
+          {this.state.game.people}
         </div>
-        {/*
-        <div className="game-details-row">
-          {t('gameInfo.table')}: {this.state.game.table}
-        </div>
-        */}
         <div className="game-details-row">
           <span className="game-details-title">{t('gameInfo.tags')}</span>
           <ul>{tagsList}</ul>

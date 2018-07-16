@@ -63,19 +63,19 @@ class SignupList extends React.Component<Props, State> {
     this.props.signedGames.forEach(signedGame => {
       if (
         signedGame.priority === 1 &&
-        signedGame.time === this.props.signupTime
+        signedGame.startTime === this.props.signupTime
       ) {
         // console.log('priority and starting time match for 1');
         this.setState({ first: true })
       } else if (
         signedGame.priority === 2 &&
-        signedGame.time === this.props.signupTime
+        signedGame.startTime === this.props.signupTime
       ) {
         // console.log('priority and starting time match for 2');
         this.setState({ second: true })
       } else if (
         signedGame.priority === 3 &&
-        signedGame.time === this.props.signupTime
+        signedGame.startTime === this.props.signupTime
       ) {
         // console.log('priority and starting time match for 3');
         this.setState({ third: true })
@@ -126,7 +126,7 @@ class SignupList extends React.Component<Props, State> {
     const filteredGames = []
 
     visibleGames.forEach(game => {
-      if (game.date === signupTime) {
+      if (game.startTime === signupTime) {
         filteredGames.push(game)
       }
     })

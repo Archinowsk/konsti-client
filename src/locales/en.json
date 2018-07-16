@@ -40,13 +40,12 @@
   "gameInfo": {
     "title": "Title",
     "programType": "Program types",
-    "date": "Starting time",
+    "startTime": "Starting time",
     "description": "Description",
     "location": "Location",
     "numberOfPlayers": "Number of players",
     "duration": "Length",
     "gamemaster": "Game master(s)",
-    "table": "Table",
     "tags": "Tags",
     "time": "Starting time",
     "gamesystem": "Game system"

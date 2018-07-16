@@ -20,7 +20,7 @@ const TimesDropdown = (props: Props) => {
   const startTimes = []
 
   games.forEach(game => {
-    startTimes.push(game.date)
+    startTimes.push(game.startTime)
   })
 
   const sortedTimes = [...new Set(startTimes)].sort()

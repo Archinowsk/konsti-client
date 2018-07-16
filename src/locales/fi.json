@@ -40,13 +40,12 @@
   "gameInfo": {
     "title": "Pelin nimi",
     "programType": "Ohjelmatyypit",
-    "date": "Aloitusaika",
+    "startTime": "Aloitusaika",
     "description": "Kuvaus",
     "location": "Pelihuone",
     "numberOfPlayers": "Pelaajamäärä",
     "duration": "Pelin kesto",
     "gamemaster": "Pelinjohtaja(t)",
-    "table": "Pelipöytä",
     "tags": "Tagit",
     "time": "Aloitusaika",
     "gamesystem": "Pelijärjestelmä"

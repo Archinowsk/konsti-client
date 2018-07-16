@@ -41,7 +41,7 @@ class AllSignupsView extends React.Component<Props> {
 
     let selectedResult = []
     for (let i = 0; i < results.length; i += 1) {
-      if (results[i].time === signupTime) {
+      if (results[i].startTime === signupTime) {
         selectedResult = results[i].result
         break
       }
