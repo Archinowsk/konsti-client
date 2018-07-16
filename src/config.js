@@ -4,7 +4,7 @@ const config = {}
 config.appName = 'Konsti'
 
 // App status
-config.appOpen = false
+config.appOpen = true
 
 // Variables for production environment
 if (process.env.NODE_ENV === 'production') {
