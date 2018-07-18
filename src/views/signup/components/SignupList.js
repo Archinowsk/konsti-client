@@ -4,7 +4,7 @@ import { translate } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import moment from 'moment'
-
+import config from '/config'
 import {
   submitSelectGame,
   submitDeselectGame,
@@ -98,6 +98,8 @@ class SignupList extends React.Component<Props, State> {
       blacklistedGames,
       // onSubmitGetUser,
     } = this.props
+
+    const { SIGNUP_END_TIME } = config
 
     if (!games || games.length === 0) {
       return <p>{t('loading')}</p>
@@ -253,7 +255,7 @@ class SignupList extends React.Component<Props, State> {
       .subtract(1, 'hours')
       .format('HH:mm')
     const endingTime = moment(signupTime)
-      .subtract(15, 'minutes')
+      .subtract(SIGNUP_END_TIME, 'minutes')
       .format('HH:mm')
 
     return (

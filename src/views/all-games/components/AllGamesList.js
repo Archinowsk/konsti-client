@@ -3,6 +3,7 @@ import React from 'react'
 import { translate } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
+import config from '/config'
 
 type Props = {
   t: Function,
@@ -11,6 +12,7 @@ type Props = {
 
 const AllGamesList = (props: Props) => {
   const { games, t } = props
+  const { SIGNUP_END_TIME } = config
 
   // Sort games by starting time and name
   const sortedGames = games.sort((a, b) => {
@@ -27,7 +29,7 @@ const AllGamesList = (props: Props) => {
       .subtract(1, 'hours')
       .format('HH:mm')
     const endingTime = moment(game.startTime)
-      .subtract(15, 'minutes')
+      .subtract(SIGNUP_END_TIME, 'minutes')
       .format('HH:mm')
 
     // First title

@@ -5,6 +5,7 @@ config.appName = 'Konsti'
 
 // App status
 config.appOpen = true
+config.SIGNUP_END_TIME = 30 // minutes
 
 // Variables for production environment
 if (process.env.NODE_ENV === 'production') {
