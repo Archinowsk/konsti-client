@@ -264,9 +264,9 @@ class GameDetails extends React.Component<Props, State> {
       ))
     }
 
-    const formattedStartTime = moment.utc(game.startTime).format('dddd HH:mm')
+    const formattedStartTime = moment(game.startTime).format('dddd HH:mm')
 
-    const formattedEndTime = moment.utc(game.endTime).format('HH:mm')
+    const formattedEndTime = moment(game.endTime).format('HH:mm')
 
     const handleChange = event => {
       this.setState({ feedbackValue: event.target.value })

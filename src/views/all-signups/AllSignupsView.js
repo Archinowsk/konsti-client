@@ -59,7 +59,7 @@ class AllSignupsView extends React.Component<Props> {
       })
     })
 
-    const formattedDate = moment.utc(signupTime).format('DD.M.YYYY HH:mm')
+    const formattedDate = moment(signupTime).format('DD.M.YYYY HH:mm')
 
     return (
       <div>

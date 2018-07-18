@@ -26,7 +26,7 @@ const TimesDropdown = (props: Props) => {
   const sortedTimes = [...new Set(startTimes)].sort()
 
   const times = sortedTimes.map(sortedTime => {
-    const formattedDate = moment.utc(sortedTime).format('DD.M.YYYY HH:mm')
+    const formattedDate = moment(sortedTime).format('DD.M.YYYY HH:mm')
     return (
       <option value={sortedTime} key={sortedTime}>
         {formattedDate}

@@ -246,15 +246,13 @@ class SignupList extends React.Component<Props, State> {
       )
     })
 
-    // const resultsTime = moment.utc(signupTime).format('HH:mm');
+    // const resultsTime = moment(signupTime).format('HH:mm');
 
-    const formattedDate = moment.utc(signupTime).format('DD.M.YYYY HH:mm')
-    const startingTime = moment
-      .utc(signupTime)
+    const formattedDate = moment(signupTime).format('DD.M.YYYY HH:mm')
+    const startingTime = moment(signupTime)
       .subtract(1, 'hours')
       .format('HH:mm')
-    const endingTime = moment
-      .utc(signupTime)
+    const endingTime = moment(signupTime)
       .subtract(15, 'minutes')
       .format('HH:mm')
 

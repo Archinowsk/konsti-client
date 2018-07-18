@@ -13,7 +13,7 @@ const MySignupsList = (props: Props) => {
   const { signedGames, t } = props
 
   const GamesList = signedGames.map(game => {
-    const formattedDate = moment.utc(game.startTime).format('DD.M.YYYY HH:mm')
+    const formattedDate = moment(game.startTime).format('DD.M.YYYY HH:mm')
 
     return (
       <li key={game.id}>

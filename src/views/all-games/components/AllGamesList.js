@@ -22,13 +22,11 @@ const AllGamesList = (props: Props) => {
   })
 
   const GamesList = sortedGames.map((game, index, array) => {
-    const formattedDate = moment.utc(game.startTime).format('DD.M.YYYY HH:mm')
-    const startingTime = moment
-      .utc(game.startTime)
+    const formattedDate = moment(game.startTime).format('DD.M.YYYY HH:mm')
+    const startingTime = moment(game.startTime)
       .subtract(1, 'hours')
       .format('HH:mm')
-    const endingTime = moment
-      .utc(game.startTime)
+    const endingTime = moment(game.startTime)
       .subtract(15, 'minutes')
       .format('HH:mm')
 

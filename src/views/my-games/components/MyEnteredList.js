@@ -22,7 +22,7 @@ const MyEnteredList = (props: Props) => {
   })
 
   const GamesList = sortedGames.map(game => {
-    const formattedDate = moment.utc(game.startTime).format('DD.M.YYYY HH:mm')
+    const formattedDate = moment(game.startTime).format('DD.M.YYYY HH:mm')
 
     return (
       <li key={game.id}>

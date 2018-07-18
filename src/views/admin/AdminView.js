@@ -122,7 +122,7 @@ class AdminView extends React.Component<Props, State> {
       }
     }
 
-    const formattedDate = moment.utc(signupTime).format('DD.M.YYYY HH:mm')
+    const formattedDate = moment(signupTime).format('DD.M.YYYY HH:mm')
 
     return (
       <div>
