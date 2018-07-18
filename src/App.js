@@ -20,7 +20,11 @@ const App = (props: Props) => {
   return (
     <div className="main-container">
       <header>
-        <h1>Konsti</h1>
+        <h1>
+          <a href="/" className="logo">
+            Konsti
+          </a>
+        </h1>
         <p>{t('header')}</p>
         <LanguageSelector />
 
