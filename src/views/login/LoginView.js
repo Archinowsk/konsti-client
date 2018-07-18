@@ -19,13 +19,14 @@ const LoginView = (props: Props) => {
     let response = null
     try {
       response = await onSubmitLogin(form)
-      if (response.code === 21) {
-        throw new SubmissionError({
-          _error: t('error.loginFailed'),
-        })
-      }
     } catch (error) {
       console.log(error)
+    }
+
+    if (response && response.code === 21) {
+      throw new SubmissionError({
+        _error: t('error.loginFailed'),
+      })
     }
   }
 

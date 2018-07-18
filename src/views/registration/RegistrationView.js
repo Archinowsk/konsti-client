@@ -19,19 +19,20 @@ const RegistrationView = (props: Props) => {
     let response = null
     try {
       response = await onSubmitLogin(form)
-      if (response.code === 11) {
-        throw new SubmissionError({
-          username: t('error.usernameTaken'),
-          _error: t('error.registrationFailed'),
-        })
-      } else if (response.code === 12) {
-        throw new SubmissionError({
-          serial: t('error.invalidSerial'),
-          _error: t('error.registrationFailed'),
-        })
-      }
     } catch (error) {
       console.log(error)
+    }
+
+    if (response && response.code === 11) {
+      throw new SubmissionError({
+        username: t('error.usernameTaken'),
+        _error: t('error.registrationFailed'),
+      })
+    } else if (response && response.code === 12) {
+      throw new SubmissionError({
+        serial: t('error.invalidSerial'),
+        _error: t('error.registrationFailed'),
+      })
     }
   }
 
