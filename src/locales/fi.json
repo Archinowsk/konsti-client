@@ -118,5 +118,6 @@
   "signupSaved": "Ilmoittautuminen tallennettu",
   "signupResultHint":
     "Voit katsoa ilmoittautumistulokset 'Omat Pelini' sivulta klo",
-  "closingMessage": "Konsti on suljettu ja avautuu ennen seuraavaa Ropeconia."
+  "closingMessage": "Konsti on suljettu ja avautuu ennen seuraavaa Ropeconia.",
+  "exceptionInTime": "Poikkeus ilmoittautumisajan: auki 15 minuuttia pidempään"
 }

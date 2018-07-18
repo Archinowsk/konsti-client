@@ -12,7 +12,7 @@ type Props = {
 
 const AllGamesList = (props: Props) => {
   const { games, t } = props
-  const { SIGNUP_END_TIME } = config
+  const { SIGNUP_OPEN_TIME, SIGNUP_END_TIME, CONVENTION_START_TIME } = config
 
   // Sort games by starting time and name
   const sortedGames = games.sort((a, b) => {
@@ -24,23 +24,40 @@ const AllGamesList = (props: Props) => {
   })
 
   const GamesList = sortedGames.map((game, index, array) => {
-    const formattedDate = moment(game.startTime).format('DD.M.YYYY HH:mm')
-    const startingTime = moment(game.startTime)
-      .subtract(1, 'hours')
-      .format('HH:mm')
-    const endingTime = moment(game.startTime)
+    const formattedStartTime = moment(game.startTime).format('DD.M.YYYY HH:mm')
+
+    let signupStartTime = null
+    // If signup time is before convention start time, show convention start time
+    if (
+      moment(game.startTime)
+        .subtract(SIGNUP_OPEN_TIME, 'hours')
+        .isBefore(moment(CONVENTION_START_TIME))
+    ) {
+      signupStartTime = moment(CONVENTION_START_TIME).format('HH:mm')
+    } else {
+      signupStartTime = moment(game.startTime)
+        .subtract(SIGNUP_OPEN_TIME, 'hours')
+        .format('HH:mm')
+    }
+
+    let signupEndTime = moment(game.startTime)
       .subtract(SIGNUP_END_TIME, 'minutes')
       .format('HH:mm')
 
     // First title
     if (index === 0) {
+      signupEndTime = moment(game.startTime)
+        .subtract(15, 'minutes')
+        .format('HH:mm')
+
       return (
         <div key={game.id}>
           <p className="title">
-            {formattedDate} ({t('signupOpenBetween')} {startingTime}-{
-              endingTime
+            {formattedStartTime} ({t('signupOpenBetween')} {signupStartTime}-{
+              signupEndTime
             })
           </p>
+          <p className="exception"> {t('exceptionInTime')}</p>
           <p className="games-list">
             <Link to={`/games/${game.id}`}>{game.title}</Link>
           </p>
@@ -54,8 +71,8 @@ const AllGamesList = (props: Props) => {
       return (
         <div key={game.id}>
           <p className="title">
-            {formattedDate} ({t('signupOpenBetween')} {startingTime}-{
-              endingTime
+            {formattedStartTime} ({t('signupOpenBetween')} {signupStartTime}-{
+              signupEndTime
             })
           </p>
           <p className="games-list">

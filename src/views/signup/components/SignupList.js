@@ -25,7 +25,6 @@ type Props = {
   signedGames: Array<any>,
   onSubmitUpdatetGame: Function,
   blacklistedGames: Array<any>,
-  // onSubmitGetUser: PropTypes.func.isRequired,
   onSubmitAllSelectedGames: Function,
 }
 
@@ -55,29 +54,22 @@ class SignupList extends React.Component<Props, State> {
   componentDidMount() {
     this.props.onSubmitAllSelectedGames(this.props.signedGames)
 
-    // this.setState({ first: false });
-    // this.setState({ second: false });
-    // this.setState({ third: false });
-
     // TODO: Check that starting time matches
     this.props.signedGames.forEach(signedGame => {
       if (
         signedGame.priority === 1 &&
         signedGame.startTime === this.props.signupTime
       ) {
-        // console.log('priority and starting time match for 1');
         this.setState({ first: true })
       } else if (
         signedGame.priority === 2 &&
         signedGame.startTime === this.props.signupTime
       ) {
-        // console.log('priority and starting time match for 2');
         this.setState({ second: true })
       } else if (
         signedGame.priority === 3 &&
         signedGame.startTime === this.props.signupTime
       ) {
-        // console.log('priority and starting time match for 3');
         this.setState({ third: true })
       }
     })
@@ -96,10 +88,9 @@ class SignupList extends React.Component<Props, State> {
       signedGames,
       onSubmitUpdatetGame,
       blacklistedGames,
-      // onSubmitGetUser,
     } = this.props
 
-    const { SIGNUP_END_TIME } = config
+    const { SIGNUP_OPEN_TIME, SIGNUP_END_TIME } = config
 
     if (!games || games.length === 0) {
       return <p>{t('loading')}</p>
@@ -195,7 +186,6 @@ class SignupList extends React.Component<Props, State> {
       const signupData = {
         username,
         selectedGames: selectedGameIds,
-        // time: signupTime,
       }
 
       try {
@@ -248,11 +238,9 @@ class SignupList extends React.Component<Props, State> {
       )
     })
 
-    // const resultsTime = moment(signupTime).format('HH:mm');
-
     const formattedDate = moment(signupTime).format('DD.M.YYYY HH:mm')
     const startingTime = moment(signupTime)
-      .subtract(1, 'hours')
+      .subtract(SIGNUP_OPEN_TIME, 'hours')
       .format('HH:mm')
     const endingTime = moment(signupTime)
       .subtract(SIGNUP_END_TIME, 'minutes')
