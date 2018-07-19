@@ -10,6 +10,7 @@ config.SIGNUP_OPEN_TIME = 4 // hours
 
 // TODO: Move to admin view
 config.CONVENTION_START_TIME = '2018-07-27T12:00:00Z' // UTC date
+config.DAY_START_TIME = 8 // 08:00
 
 // Variables for production environment
 if (process.env.NODE_ENV === 'production') {

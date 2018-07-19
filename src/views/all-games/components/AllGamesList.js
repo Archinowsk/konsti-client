@@ -3,7 +3,7 @@ import React from 'react'
 import { translate } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
-import config from 'config'
+import timeFormatter from 'utils/timeFormatter'
 
 type Props = {
   t: Function,
@@ -12,7 +12,6 @@ type Props = {
 
 const AllGamesList = (props: Props) => {
   const { games, t } = props
-  const { SIGNUP_OPEN_TIME, SIGNUP_END_TIME, CONVENTION_START_TIME } = config
 
   // Sort games by starting time and name
   const sortedGames = games.sort((a, b) => {
@@ -26,29 +25,13 @@ const AllGamesList = (props: Props) => {
   const GamesList = sortedGames.map((game, index, array) => {
     const formattedStartTime = moment(game.startTime).format('DD.M.YYYY HH:mm')
 
-    let signupStartTime = null
-    // If signup time is before convention start time, show convention start time
-    if (
-      moment(game.startTime)
-        .subtract(SIGNUP_OPEN_TIME, 'hours')
-        .isBefore(moment(CONVENTION_START_TIME))
-    ) {
-      signupStartTime = moment(CONVENTION_START_TIME).format('HH:mm')
-    } else {
-      signupStartTime = moment(game.startTime)
-        .subtract(SIGNUP_OPEN_TIME, 'hours')
-        .format('HH:mm')
-    }
-
-    let signupEndTime = moment(game.startTime)
-      .subtract(SIGNUP_END_TIME, 'minutes')
-      .format('HH:mm')
+    const signupStartTime = timeFormatter.startTime(game.startTime)
+    let signupEndTime = timeFormatter.endTime(game.startTime)
 
     // First title
     if (index === 0) {
-      signupEndTime = moment(game.startTime)
-        .subtract(15, 'minutes')
-        .format('HH:mm')
+      const customTime = 15
+      signupEndTime = timeFormatter.endTime(game.startTime, customTime)
 
       return (
         <div key={game.id}>
