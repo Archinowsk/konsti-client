@@ -4,7 +4,7 @@ import { translate } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import moment from 'moment'
-import config from 'config'
+import timeFormatter from 'utils/timeFormatter'
 import {
   submitSelectGame,
   submitDeselectGame,
@@ -89,8 +89,6 @@ class SignupList extends React.Component<Props, State> {
       onSubmitUpdatetGame,
       blacklistedGames,
     } = this.props
-
-    const { SIGNUP_OPEN_TIME, SIGNUP_END_TIME } = config
 
     if (!games || games.length === 0) {
       return <p>{t('loading')}</p>
@@ -239,12 +237,9 @@ class SignupList extends React.Component<Props, State> {
     })
 
     const formattedDate = moment(signupTime).format('DD.M.YYYY HH:mm')
-    const startingTime = moment(signupTime)
-      .subtract(SIGNUP_OPEN_TIME, 'hours')
-      .format('HH:mm')
-    const endingTime = moment(signupTime)
-      .subtract(SIGNUP_END_TIME, 'minutes')
-      .format('HH:mm')
+
+    const startingTime = timeFormatter.startTime(signupTime)
+    const endingTime = timeFormatter.endTime(signupTime)
 
     return (
       <div>

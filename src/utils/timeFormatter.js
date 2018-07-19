@@ -41,6 +41,14 @@ const endTime = (startTime, customTime) => {
   if (customTime) {
     signupEndTime = moment(startTime).subtract(customTime, 'minutes')
   }
+  // First signup will be open longer
+  else if (
+    moment(startTime)
+      .subtract(1, 'hours')
+      .isSame(moment(CONVENTION_START_TIME))
+  ) {
+    signupEndTime = moment(startTime).subtract(15, 'minutes')
+  }
   // Use default signup end time
   else {
     signupEndTime = moment(startTime).subtract(SIGNUP_END_TIME, 'minutes')

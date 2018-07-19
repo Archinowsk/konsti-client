@@ -26,13 +26,10 @@ const AllGamesList = (props: Props) => {
     const formattedStartTime = moment(game.startTime).format('DD.M.YYYY HH:mm')
 
     const signupStartTime = timeFormatter.startTime(game.startTime)
-    let signupEndTime = timeFormatter.endTime(game.startTime)
+    const signupEndTime = timeFormatter.endTime(game.startTime)
 
     // First title
     if (index === 0) {
-      const customTime = 15
-      signupEndTime = timeFormatter.endTime(game.startTime, customTime)
-
       return (
         <div key={game.id}>
           <p className="title">
