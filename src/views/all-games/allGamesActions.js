@@ -1,5 +1,5 @@
 /* @flow */
-import { getGames } from '/utils/api'
+import { getGames } from 'utils/api'
 
 export const SUBMIT_GET_GAMES = 'SUBMIT_GET_GAMES'
 

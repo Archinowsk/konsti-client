@@ -4,8 +4,8 @@ import { connect } from 'react-redux'
 import { translate } from 'react-i18next'
 import { SubmissionError } from 'redux-form'
 
-import { submitLogin } from '/views/login/loginActions'
-import LoginForm from '/views/login/components/LoginForm'
+import { submitLogin } from 'views/login/loginActions'
+import LoginForm from 'views/login/components/LoginForm'
 
 type Props = {
   onSubmitLogin: Function,

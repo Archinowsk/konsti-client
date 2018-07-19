@@ -3,8 +3,8 @@ import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { translate } from 'react-i18next'
 
-import validate from '/utils/validate'
-import FormField from '/components/FormField'
+import validate from 'utils/validate'
+import FormField from 'components/FormField'
 
 type Props = {
   handleSubmit: Function,

@@ -2,7 +2,7 @@
 import React from 'react'
 import { translate } from 'react-i18next'
 import moment from 'moment'
-import i18n from '/utils/i18n'
+import i18n from 'utils/i18n'
 
 type Props = { t: Function }
 

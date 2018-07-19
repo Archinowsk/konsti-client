@@ -1,5 +1,5 @@
 /* @flow */
-import { SUBMIT_REGISTRATION } from '/views/registration/registrationActions'
+import { SUBMIT_REGISTRATION } from 'views/registration/registrationActions'
 
 const initialState = {}
 

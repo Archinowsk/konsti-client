@@ -1,5 +1,5 @@
 /* @flow */
-import { SUBMIT_GET_RESULTS } from '/views/all-signups/allSignupsActions'
+import { SUBMIT_GET_RESULTS } from 'views/all-signups/allSignupsActions'
 
 const initialState = { results: [] }
 

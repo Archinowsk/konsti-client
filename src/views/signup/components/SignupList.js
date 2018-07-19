@@ -4,14 +4,14 @@ import { translate } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import moment from 'moment'
-import config from '/config'
+import config from 'config'
 import {
   submitSelectGame,
   submitDeselectGame,
   submitSignup,
   submitUpdatetGame,
   submitAllSelectedGames,
-} from '/views/signup/signupActions'
+} from 'views/signup/signupActions'
 
 type Props = {
   t: Function,

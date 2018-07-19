@@ -1,6 +1,6 @@
 /* @flow */
-import { postRegistration } from '/utils/api'
-import { submitLogin } from '/views/login/loginActions'
+import { postRegistration } from 'utils/api'
+import { submitLogin } from 'views/login/loginActions'
 
 export const SUBMIT_REGISTRATION = 'SUBMIT_REGISTRATION'
 

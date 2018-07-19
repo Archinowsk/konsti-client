@@ -3,7 +3,7 @@ import React from 'react'
 import { translate } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
-import config from '/config'
+import config from 'config'
 
 type Props = {
   t: Function,

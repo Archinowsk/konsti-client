@@ -4,10 +4,10 @@ import moment from 'moment'
 import { translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { postFeedback } from '/utils/api'
-import { submitUpdateBlacklist } from '/views/admin/adminActions'
-import { submitGetGames } from '/views/all-games/allGamesActions'
-import { submitUpdateFavorites } from '/views/my-games/myGamesActions'
+import { postFeedback } from 'utils/api'
+import { submitUpdateBlacklist } from 'views/admin/adminActions'
+import { submitGetGames } from 'views/all-games/allGamesActions'
+import { submitUpdateFavorites } from 'views/my-games/myGamesActions'
 
 type Props = {
   t: Function,

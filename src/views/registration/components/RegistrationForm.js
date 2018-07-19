@@ -3,9 +3,9 @@ import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { translate } from 'react-i18next'
 
-import validate from '/utils/validate'
-import FormField from '/components/FormField'
-import CheckboxField from '/components/CheckboxField'
+import validate from 'utils/validate'
+import FormField from 'components/FormField'
+import CheckboxField from 'components/CheckboxField'
 
 type Props = {
   handleSubmit: Function,
