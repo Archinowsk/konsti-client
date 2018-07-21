@@ -32,6 +32,7 @@ const commonConfig = {
 
   // Array of entry files
   entry: {
+    oldbrowser: [path.join(__dirname, 'src', 'oldbrowser')],
     client: [path.join(__dirname, 'src', 'index')],
   },
 
@@ -65,7 +66,7 @@ const commonConfig = {
         preserveLineBreaks: true,
       },
       // html-webpack-template configs
-      appMountId: 'main',
+      appMountIds: ['outdated', 'main'],
       meta: {
         'application-name': appConfig.appName,
       },
@@ -81,7 +82,6 @@ const commonConfig = {
         test: /\.js$/,
         include: [path.resolve(__dirname, 'src')],
         loader: 'babel-loader',
-        exclude: /node_modules/,
       },
     ],
   },
@@ -120,7 +120,6 @@ const devConfig = {
           },
           { loader: 'sass-loader', options: { sourceMap: true } },
         ],
-        exclude: /node_modules/,
       },
     ],
   },
