@@ -116,7 +116,7 @@ const devConfig = {
           },
           {
             loader: 'postcss-loader',
-            options: { sourceMap: true, parser: 'postcss-scss' },
+            options: { sourceMap: true },
           },
           { loader: 'sass-loader', options: { sourceMap: true } },
         ],
@@ -147,7 +147,7 @@ const prodConfig = {
               loader: 'css-loader',
               options: { importLoaders: 2 },
             },
-            { loader: 'postcss-loader', options: { parser: 'postcss-scss' } },
+            { loader: 'postcss-loader' },
             { loader: 'sass-loader' },
           ],
           publicPath: '/',
