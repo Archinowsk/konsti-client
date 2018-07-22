@@ -44,7 +44,7 @@
     "@babel/preset-env": "7.0.0-beta.54",
     "@babel/preset-flow": "7.0.0-beta.54",
     "@babel/preset-react": "7.0.0-beta.54",
-    "autoprefixer": "9.0.0",
+    "autoprefixer": "9.0.1",
     "babel-eslint": "8.2.6",
     "babel-loader": "8.0.0-beta.4",
     "bundle-loader": "0.5.6",
