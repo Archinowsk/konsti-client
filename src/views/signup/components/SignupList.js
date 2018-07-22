@@ -12,6 +12,7 @@ import {
   submitUpdatetGame,
   submitAllSelectedGames,
 } from 'views/signup/signupActions'
+import DnDList from 'views/signup/components/DragAndDropList'
 
 type Props = {
   t: Function,
@@ -48,8 +49,6 @@ class SignupList extends React.Component<Props, State> {
       signupSubmitted: false,
     }
   }
-
-  props: Props
 
   componentDidMount() {
     this.props.onSubmitAllSelectedGames(this.props.signedGames)
@@ -243,6 +242,8 @@ class SignupList extends React.Component<Props, State> {
 
     return (
       <div>
+        <DnDList games={filteredGames} />
+
         <ul className="signup-list">
           {filteredGames.length === 0 && (
             <p className="page-title">{t('noOpenSignups')}</p>
