@@ -20,7 +20,6 @@ type Props = {
 }
 
 class AllGamesView extends React.Component<Props> {
-  props: Props
   componentDidMount() {
     this.props.onSubmitGetGames()
     this.props.onSubmitGetSettings()

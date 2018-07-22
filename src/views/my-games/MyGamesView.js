@@ -22,7 +22,6 @@ type Props = {
 }
 
 class MyGamesView extends React.Component<Props> {
-  props: Props
   componentDidMount() {
     this.props.onSubmitGetGames()
     this.props.onSubmitGetUser(this.props.username)

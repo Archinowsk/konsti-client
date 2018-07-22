@@ -43,8 +43,6 @@ class AdminView extends React.Component<Props, State> {
     }
   }
 
-  props: Props
-
   componentDidMount() {
     this.props.onSubmitGetGames()
     this.props.onSubmitGetSettings()
