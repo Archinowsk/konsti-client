@@ -22,6 +22,8 @@
   "dependencies": {
     "@babel/polyfill": "7.0.0-beta.54",
     "axios": "0.18.0",
+    "bowser": "2.0.0-alpha.2",
+    "browserslist": "4.0.1",
     "i18next": "11.4.0",
     "i18next-browser-languagedetector": "2.2.2",
     "i18next-xhr-backend": "1.5.1",
