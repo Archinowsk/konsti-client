@@ -1,5 +1,5 @@
-// flow-typed signature: 6f0a66855d2a6f516405b1dfba40ed9b
-// flow-typed version: c5d8a135ce/react-redux_v5.x.x/flow_>=v0.63.0
+// flow-typed signature: e9c34d32f6f5f2a234109fa70da276b3
+// flow-typed version: 844b6ca3d3/react-redux_v5.x.x/flow_>=v0.63.0
 
 import type { Dispatch, Store } from "redux";
 
@@ -122,7 +122,7 @@ declare module "react-redux" {
     ST: $Subtype<{[_: $Keys<Com>]: any}>
     >(
     mapStateToProps: MapStateToProps<S, SP, RSP>,
-    mapDispatchToPRops: MDP
+    mapDispatchToProps: MDP
   ): (component: Com) => ComponentType<$Diff<CP, MDP> & SP> & $Shape<ST>;
 
   declare export function connect<
