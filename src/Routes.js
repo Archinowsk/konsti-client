@@ -28,18 +28,20 @@ const Routes = (props: Props) => {
   if (!loggedIn) {
     return (
       <HashRouter>
-        <div>
-          <Link to="/games" className="router-link">
-            {t('pages.allGames')}
-          </Link>
-          <Link to="/login" className="router-link">
-            {t('button.login')}
-          </Link>
-          <Link to="/registration" className="router-link">
-            {t('button.register')}
-          </Link>
+        <React.Fragment>
+          <div className="routes">
+            <Link to="/games" className="router-link">
+              {t('pages.allGames')}
+            </Link>
+            <Link to="/login" className="router-link">
+              {t('button.login')}
+            </Link>
+            <Link to="/registration" className="router-link">
+              {t('button.register')}
+            </Link>
 
-          <hr />
+            <hr />
+          </div>
 
           <Switch>
             <Route exact path="/" component={AllGames} />
@@ -48,51 +50,52 @@ const Routes = (props: Props) => {
             <Route path="/games" component={AllGames} />
             <Redirect from="/*" to="/login" />
           </Switch>
-        </div>
+        </React.Fragment>
       </HashRouter>
     )
   }
 
   return (
     <HashRouter>
-      <div>
-        <Link to="/games" className="router-link">
-          {t('pages.allGames')}
-        </Link>
-
-        {userGroup === 'user' && (
-          <Link to="/mygames" className="router-link">
-            {t('pages.myGames')}
+      <React.Fragment>
+        <div className="routes">
+          <Link to="/games" className="router-link">
+            {t('pages.allGames')}
           </Link>
-        )}
 
-        {(userGroup === 'user' || userGroup === 'admin') && (
-          <Link to="/signup" className="router-link">
-            {t('pages.signUp')}
-          </Link>
-        )}
+          {(userGroup === 'user' || userGroup === 'admin') && (
+            <Link to="/mygames" className="router-link">
+              {t('pages.myGames')}
+            </Link>
+          )}
 
-        {(userGroup === 'user' || userGroup === 'admin') && (
-          <Link to="/allsignups" className="router-link">
-            {t('pages.allsignups')}
-          </Link>
-        )}
+          {(userGroup === 'user' || userGroup === 'admin') && (
+            <Link to="/signup" className="router-link">
+              {t('pages.signUp')}
+            </Link>
+          )}
 
-        {/*
+          {(userGroup === 'user' || userGroup === 'admin') && (
+            <Link to="/allsignups" className="router-link">
+              {t('pages.allsignups')}
+            </Link>
+          )}
+
+          {/*
           <Link to="/settings" className="router-link">
           {t('pages.settings')}
         </Link>
         */}
-        {userGroup === 'admin' && (
-          <Link to="/admin" className="router-link">
-            {t('pages.admin')}
-          </Link>
-        )}
+          {userGroup === 'admin' && (
+            <Link to="/admin" className="router-link">
+              {t('pages.admin')}
+            </Link>
+          )}
 
-        <LogoutButton />
+          <LogoutButton />
 
-        <hr />
-
+          <hr />
+        </div>
         <Switch>
           <Route exact path="/" component={AllGames} />
           <Route path="/games" component={AllGames} />
@@ -104,7 +107,7 @@ const Routes = (props: Props) => {
           <Route path="/admin" component={Admin} />
           <Redirect from="/*" to="/" />
         </Switch>
-      </div>
+      </React.Fragment>
     </HashRouter>
   )
 }

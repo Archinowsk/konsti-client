@@ -55,7 +55,7 @@ class MyGamesView extends React.Component<Props> {
     })
 
     return (
-      <div>
+      <div className="my-games-view">
         <MyFavoritesList favoritedGames={favoritedGames} />
         <MyEnteredList enteredGames={enteredGames} />
         <MySignupsList signedGames={signedGames} />

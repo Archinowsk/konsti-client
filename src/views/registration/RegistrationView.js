@@ -37,7 +37,7 @@ const RegistrationView = (props: Props) => {
   }
 
   return (
-    <div>
+    <div className="registration-view">
       <RegistrationForm onSubmit={submit} />
     </div>
   )

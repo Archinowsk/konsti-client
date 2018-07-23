@@ -39,7 +39,7 @@ class SignupView extends React.Component<Props> {
     }
 
     return (
-      <div>
+      <div className="signup-view">
         <Switch>
           <Route
             exact

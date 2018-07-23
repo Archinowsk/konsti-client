@@ -6,7 +6,7 @@ type Props = {}
 
 const SettingsView = (props: Props) => {
   return (
-    <div>
+    <div className="settings-view">
       <p>SettingsView</p>
     </div>
   )

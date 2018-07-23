@@ -123,7 +123,7 @@ class AdminView extends React.Component<Props, State> {
     const formattedDate = moment(signupTime).format('DD.M.YYYY HH:mm')
 
     return (
-      <div>
+      <div className="admin-view">
         <button
           disabled={this.state.submitting}
           onClick={() => {

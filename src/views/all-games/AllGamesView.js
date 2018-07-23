@@ -48,7 +48,7 @@ class AllGamesView extends React.Component<Props> {
     }
 
     return (
-      <div>
+      <div className="all-games-view">
         <Switch>
           <Route
             exact

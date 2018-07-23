@@ -261,16 +261,16 @@ class SignupList extends React.Component<Props, State> {
 
           {filteredGames.length !== 0 && <p>{t('signupGuide')}</p>}
 
+          <p>
+            {t('signupResultHint')} {endingTime}
+          </p>
+
           <DnDList games={filteredGames} />
 
           {GamesList}
         </ul>
 
         {this.state.signupSubmitted && <p>{t('signupSaved')}</p>}
-
-        <p>
-          {t('signupResultHint')} {endingTime}
-        </p>
 
         <button disabled={this.state.submitting} onClick={onSubmitClick}>
           {t('button.signup')}

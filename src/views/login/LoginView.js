@@ -31,7 +31,7 @@ const LoginView = (props: Props) => {
   }
 
   return (
-    <div>
+    <div className="login-view">
       <LoginForm onSubmit={submit} />
     </div>
   )

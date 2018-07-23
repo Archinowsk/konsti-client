@@ -35,7 +35,7 @@ const App = (props: Props) => {
         )}
       </header>
 
-      <div>
+      <div className="body">
         {!appOpen && t('closingMessage')}
         {/* $FlowFixMe */}
         {appOpen && <Routes />}

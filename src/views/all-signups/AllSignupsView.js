@@ -61,7 +61,7 @@ class AllSignupsView extends React.Component<Props> {
     const formattedDate = moment(signupTime).format('DD.M.YYYY HH:mm')
 
     return (
-      <div>
+      <div className="all-signups-view">
         <p className="page-title">
           {t('signupResultsfor')} {formattedDate}
         </p>
