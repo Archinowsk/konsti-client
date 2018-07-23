@@ -44,8 +44,10 @@ class AdminView extends React.Component<Props, State> {
   }
 
   componentDidMount() {
-    this.props.onSubmitGetGames()
-    this.props.onSubmitGetSettings()
+    const { onSubmitGetGames, onSubmitGetSettings } = this.props
+
+    onSubmitGetGames()
+    onSubmitGetSettings()
   }
 
   render() {

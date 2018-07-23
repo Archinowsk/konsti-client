@@ -22,6 +22,7 @@ type Props = {
 class AllGamesView extends React.Component<Props> {
   componentDidMount() {
     const { onSubmitGetGames } = this.props
+
     onSubmitGetGames()
   }
 

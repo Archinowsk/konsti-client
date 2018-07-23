@@ -59,9 +59,9 @@ class GameDetails extends React.Component<Props, State> {
 
   componentDidMount() {
     const { game } = this.state
-    const { favoritedGames, blacklistedGames } = this.props
+    const { favoritedGames, blacklistedGames, onSubmitGetGames } = this.props
 
-    this.props.onSubmitGetGames()
+    onSubmitGetGames()
 
     // Check if in favorites
     for (let i = 0; i < favoritedGames.length; i += 1) {
@@ -93,7 +93,7 @@ class GameDetails extends React.Component<Props, State> {
   // Favorite / unfavorite clicked
   async addFavoriteEvent(action) {
     const { game, username } = this.state
-    const { favoritedGames } = this.props
+    const { favoritedGames, onSubmitUpdateFavorites } = this.props
 
     this.setState({ submitting: true })
     const gameIndex = this.findGame(game.id, favoritedGames)
@@ -122,7 +122,7 @@ class GameDetails extends React.Component<Props, State> {
 
     let response = null
     try {
-      response = await this.props.onSubmitUpdateFavorites(favoriteData)
+      response = await onSubmitUpdateFavorites(favoriteData)
 
       this.setState({ submitting: false })
       if (response.status === 'success') {
@@ -140,7 +140,7 @@ class GameDetails extends React.Component<Props, State> {
   // Hide / unhide clicked
   async addBlacklistEvent(action) {
     const { game } = this.state
-    const { blacklistedGames } = this.props
+    const { blacklistedGames, onSubmitUpdateBlacklist } = this.props
 
     this.setState({ submitting: true })
     const gameIndex = this.findGame(game.id, blacklistedGames)
@@ -168,7 +168,7 @@ class GameDetails extends React.Component<Props, State> {
 
     let response = null
     try {
-      response = await this.props.onSubmitUpdateBlacklist(blacklistData)
+      response = await onSubmitUpdateBlacklist(blacklistData)
       this.setState({ submitting: false })
       if (response.status === 'success') {
         if (action === 'add') {

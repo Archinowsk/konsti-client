@@ -22,9 +22,16 @@ type Props = {
 
 class SignupView extends React.Component<Props> {
   componentDidMount() {
-    this.props.onSubmitGetGames()
-    this.props.onSubmitGetSettings()
-    this.props.onSubmitGetUser(this.props.username)
+    const {
+      onSubmitGetGames,
+      onSubmitGetSettings,
+      onSubmitGetUser,
+      username,
+    } = this.props
+
+    onSubmitGetGames()
+    onSubmitGetSettings()
+    onSubmitGetUser(username)
   }
 
   render() {

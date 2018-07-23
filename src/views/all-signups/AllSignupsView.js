@@ -22,9 +22,15 @@ type Props = {
 
 class AllSignupsView extends React.Component<Props> {
   componentDidMount() {
-    this.props.onSubmitGetGames()
-    this.props.onSubmitGetSettings()
-    this.props.onSubmitGetResults()
+    const {
+      onSubmitGetGames,
+      onSubmitGetSettings,
+      onSubmitGetResults,
+    } = this.props
+
+    onSubmitGetGames()
+    onSubmitGetSettings()
+    onSubmitGetResults()
   }
 
   render() {
