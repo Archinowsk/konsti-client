@@ -8,6 +8,7 @@ import { submitGetSettings } from 'views/admin/adminActions'
 import { submitGetUser } from 'views/my-games/myGamesActions'
 import { submitGetGames } from 'views/all-games/allGamesActions'
 import AllGamesList from 'views/all-games/components/AllGamesList'
+import addGameInfoById from 'utils/addGameInfoById'
 
 type Props = {
   t: Function,
@@ -20,6 +21,7 @@ type Props = {
   loggedIn: boolean,
   myGamesLoaded: boolean,
   adminSettingsLoaded: boolean,
+  myGames: Object,
 }
 
 type State = {
@@ -78,8 +80,10 @@ class AllGamesView extends React.Component<Props, State> {
   }
 
   render() {
-    const { t } = this.props
+    const { t, games, myGames } = this.props
     const { loading } = this.state
+
+    addGameInfoById({ games, myGames })
 
     const visibleGames = this.getVisibleGames()
 
@@ -118,6 +122,7 @@ const mapStateToProps = state => {
     loggedIn: state.login.loggedIn,
     myGamesLoaded: state.myGames.myGamesLoaded,
     adminSettingsLoaded: state.admin.adminSettingsLoaded,
+    myGames: state.myGames,
   }
 }
 

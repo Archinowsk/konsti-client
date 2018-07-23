@@ -2,13 +2,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { translate } from 'react-i18next'
-
 import { submitGetUser } from 'views/my-games/myGamesActions'
 import { submitGetGames } from 'views/all-games/allGamesActions'
-
 import MySignupsList from 'views/my-games/components/MySignupsList'
 import MyFavoritesList from 'views/my-games/components/MyFavoritesList'
 import MyEnteredList from 'views/my-games/components/MyEnteredList'
+import addGameInfoById from 'utils/addGameInfoById'
 
 type Props = {
   signedGames: Array<any>,
@@ -19,6 +18,7 @@ type Props = {
   username: string,
   onSubmitGetGames: Function,
   t: Function,
+  myGames: Object,
 }
 
 class MyGamesView extends React.Component<Props> {
@@ -30,31 +30,20 @@ class MyGamesView extends React.Component<Props> {
   }
 
   render() {
-    const { signedGames, favoritedGames, enteredGames, games, t } = this.props
+    const {
+      signedGames,
+      favoritedGames,
+      enteredGames,
+      games,
+      myGames,
+      t,
+    } = this.props
 
     if (!games || games.length === 0) {
       return <p>{t('loading')}</p>
     }
 
-    games.forEach(game => {
-      signedGames.forEach(signedGame => {
-        if (game.id === signedGame.id) {
-          Object.assign(signedGame, game)
-        }
-      })
-
-      favoritedGames.forEach(favoritedGame => {
-        if (game.id === favoritedGame.id) {
-          Object.assign(favoritedGame, game)
-        }
-      })
-
-      enteredGames.forEach(enteredGame => {
-        if (game.id === enteredGame.id) {
-          Object.assign(enteredGame, game)
-        }
-      })
-    })
+    addGameInfoById({ games, myGames })
 
     return (
       <div className="my-games-view">
@@ -73,6 +62,7 @@ const mapStateToProps = state => {
     enteredGames: state.myGames.enteredGames,
     username: state.login.username,
     games: state.allGames.games,
+    myGames: state.myGames,
   }
 }
 
