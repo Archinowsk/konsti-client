@@ -3,10 +3,7 @@ import { postSignup } from 'utils/api'
 
 export const SUBMIT_SIGNUP = 'SUBMIT_SIGNUP'
 export const SUBMIT_SELECT_DATE = 'SUBMIT_SELECT_DATE'
-export const SUBMIT_SELECT_GAME = 'SUBMIT_SELECT_GAME'
-export const SUBMIT_DESELECT_GAME = 'SUBMIT_DESELECT_GAME'
-export const SUBMIT_UPDATE_GAME = 'SUBMIT_UPDATE_GAME'
-export const SUBMIT_ALL_SELECTED_GAMES = 'SUBMIT_ALL_SELECTED_GAMES'
+export const SUBMIT_SELECTED_GAMES = 'SUBMIT_SELECTED_GAMES'
 
 const submitSignupAsync = status => {
   return {
@@ -16,21 +13,23 @@ const submitSignupAsync = status => {
 }
 
 export const submitSignup = (signupData: Object) => {
+  console.log(signupData)
   return async (dispatch: Function) => {
     let response = null
     try {
       response = await postSignup(signupData)
-      if (response && response.error) {
-        return Promise.reject(response)
-      }
-      if (response && response.status && response.status === 'success') {
-        dispatch(submitSignupAsync(true))
-      }
-      return response
     } catch (error) {
       console.log(error)
-      dispatch(submitSignupAsync(false))
+      dispatch(submitSignupAsync('submitError'))
     }
+
+    if (response && response.error) {
+      return Promise.reject(response)
+    } else if (response && response.status === 'success') {
+      dispatch(submitSignupAsync('submitSuccess'))
+    }
+
+    return response
   }
 }
 
@@ -41,30 +40,9 @@ export const submitSelectDate = (date: Date) => {
   }
 }
 
-export const submitSelectGame = (signupData: Object) => {
+export const submitSelectedGames = (selectedGames: Object) => {
   return {
-    type: SUBMIT_SELECT_GAME,
-    signupData,
-  }
-}
-
-export const submitDeselectGame = (gameIndex: number) => {
-  return {
-    type: SUBMIT_DESELECT_GAME,
-    gameIndex,
-  }
-}
-
-export const submitUpdatetGame = (signupData: Object) => {
-  return {
-    type: SUBMIT_UPDATE_GAME,
-    signupData,
-  }
-}
-
-export const submitAllSelectedGames = (selectedGames: Object) => {
-  return {
-    type: SUBMIT_ALL_SELECTED_GAMES,
+    type: SUBMIT_SELECTED_GAMES,
     selectedGames,
   }
 }

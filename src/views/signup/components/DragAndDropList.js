@@ -8,6 +8,9 @@ import { reorder, move } from 'utils/dragAndDrop'
 
 type Props = {
   games: Array<Object>,
+  callback: Function,
+  signedGames: Array<Object>,
+  signupTime: Date,
   t: Function,
 }
 
@@ -31,6 +34,37 @@ class DnDList extends React.Component<Props, State> {
     }
   }
 
+  // Load existing state from store
+  componentDidMount() {
+    const { signedGames, signupTime } = this.props
+
+    const priority1 = []
+    const priority2 = []
+    const priority3 = []
+
+    for (let signedGame of signedGames) {
+      if (signedGame.priority === 1 && signedGame.startTime === signupTime) {
+        priority1.push(signedGame)
+      } else if (
+        signedGame.priority === 2 &&
+        signedGame.startTime === signupTime
+      ) {
+        priority2.push(signedGame)
+      } else if (
+        signedGame.priority === 3 &&
+        signedGame.startTime === signupTime
+      ) {
+        priority3.push(signedGame)
+      }
+    }
+
+    this.setState({
+      priority1,
+      priority2,
+      priority3,
+    })
+  }
+
   /**
    * A semi-generic way to handle multiple lists. Matches
    * the IDs of the droppable container to the names of the
@@ -48,7 +82,6 @@ class DnDList extends React.Component<Props, State> {
   }
 
   onDragEnd = (result: Object) => {
-    console.log(result)
     const { source, destination } = result
 
     // Dropped outside the list
@@ -88,7 +121,30 @@ class DnDList extends React.Component<Props, State> {
 
       const state = { ...this.state, ...result }
       this.setState(state)
+
+      this.doCallback()
     }
+  }
+
+  // Send changes to parent
+  doCallback = () => {
+    const { callback } = this.props
+    const { priority1, priority2, priority3 } = this.state
+
+    const selectedGames = []
+    for (let game of priority1) {
+      selectedGames.push({ id: game.id, priority: 1 })
+    }
+
+    for (let game of priority2) {
+      selectedGames.push({ id: game.id, priority: 2 })
+    }
+
+    for (let game of priority3) {
+      selectedGames.push({ id: game.id, priority: 3 })
+    }
+
+    callback(selectedGames)
   }
 
   render() {
