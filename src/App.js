@@ -18,7 +18,7 @@ const App = (props: Props) => {
   const { appOpen } = config
 
   return (
-    <div className="main-container">
+    <React.Fragment>
       <header>
         <h1>
           <a href="/" className="logo">
@@ -40,7 +40,7 @@ const App = (props: Props) => {
         {/* $FlowFixMe */}
         {appOpen && <Routes />}
       </div>
-    </div>
+    </React.Fragment>
   )
 }
 
