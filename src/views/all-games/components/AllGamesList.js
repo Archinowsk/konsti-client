@@ -31,17 +31,21 @@ const AllGamesList = (props: Props) => {
     // First title
     if (index === 0) {
       return (
-        <div key={game.id}>
-          <p className="title">
-            {formattedStartTime} ({t('signupOpenBetween')} {signupStartTime}-{
-              signupEndTime
-            })
-          </p>
-          <p className="exception"> {t('exceptionInTime')}</p>
-          <p className="games-list">
-            <Link to={`/games/${game.id}`}>{game.title}</Link>
-          </p>
-        </div>
+        <React.Fragment key={game.id}>
+          <div>
+            <p className="title">
+              {formattedStartTime} ({t('signupOpenBetween')} {signupStartTime}-{
+                signupEndTime
+              })
+            </p>
+            <p className="exception"> {t('exceptionInTime')}</p>
+          </div>
+          <div>
+            <p className="games-list">
+              <Link to={`/games/${game.id}`}>{game.title}</Link>
+            </p>
+          </div>
+        </React.Fragment>
       )
       // Set title if the previous starting time is diffenrent
     } else if (
@@ -71,7 +75,7 @@ const AllGamesList = (props: Props) => {
     )
   })
 
-  return <div>{GamesList}</div>
+  return <div className="games-list">{GamesList}</div>
 }
 
 export default translate()(AllGamesList)

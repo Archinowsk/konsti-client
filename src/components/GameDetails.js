@@ -273,7 +273,7 @@ class GameDetails extends React.Component<Props, State> {
     }
 
     return (
-      <div>
+      <div className="game-details">
         <button
           onClick={() => {
             if (history.action === 'PUSH') {

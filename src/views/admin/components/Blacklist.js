@@ -27,7 +27,7 @@ const Blacklist = (props: Props) => {
   ))
 
   return (
-    <div>
+    <div className="blacklist">
       <p>{t('blacklistedGames')}</p>
       <ul>
         {blacklistedGames.length === 0 && (

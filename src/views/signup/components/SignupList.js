@@ -241,7 +241,7 @@ class SignupList extends React.Component<Props, State> {
     const endingTime = timeFormatter.endTime(signupTime)
 
     return (
-      <div>
+      <div className="signup-list">
         <ul className="signup-list">
           {filteredGames.length === 0 && (
             <p className="page-title">{t('noOpenSignups')}</p>

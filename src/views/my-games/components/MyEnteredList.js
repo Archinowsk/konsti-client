@@ -34,7 +34,7 @@ const MyEnteredList = (props: Props) => {
   })
 
   return (
-    <div>
+    <div className="my-entered-games">
       <p>{t('enteredGames')}</p>
       <ul>
         {enteredGames.length === 0 && <span>{t('noEnteredGames')}</span>}

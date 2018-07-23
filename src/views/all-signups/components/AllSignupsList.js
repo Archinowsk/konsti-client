@@ -28,7 +28,7 @@ const AllSignupsList = (props: Props) => {
     </p>
   ))
 
-  return <div>{resultsList}</div>
+  return <div className="results-list">{resultsList}</div>
 }
 
 export default translate()(AllSignupsList)

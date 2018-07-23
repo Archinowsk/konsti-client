@@ -34,7 +34,7 @@ const MyFavoritesList = (props: Props) => {
   })
 
   return (
-    <div>
+    <div className="my-favorites-list">
       <p>{t('favoritedGames')}</p>
       <ul>
         {favoritedGames.length === 0 && <span>{t('noFavoritedGames')}</span>}

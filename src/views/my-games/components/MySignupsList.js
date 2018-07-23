@@ -25,7 +25,7 @@ const MySignupsList = (props: Props) => {
   })
 
   return (
-    <div>
+    <div className="my-signups-list">
       <p>{t('signedGames')}</p>
       <ul>
         {signedGames.length === 0 && <span>{t('noSignedGames')}</span>}

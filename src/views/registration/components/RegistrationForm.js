@@ -18,7 +18,7 @@ const RegistrationForm = (props: Props) => {
   const { handleSubmit, submitting, t, error } = props
 
   return (
-    <div>
+    <div className="registration-form">
       <p className="page-title">{t('pageTitle.registration')}</p>
       <form onSubmit={handleSubmit}>
         <Field

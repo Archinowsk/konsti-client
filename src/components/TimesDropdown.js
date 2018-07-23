@@ -35,7 +35,7 @@ const TimesDropdown = (props: Props) => {
   })
 
   return (
-    <div>
+    <div className="times-dropdown">
       <select onChange={onChange} value={date}>
         <option>{t('selectTime')}</option>
         <option value="2000-01-01T23:59:00.000Z">

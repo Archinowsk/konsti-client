@@ -17,7 +17,7 @@ const LoginForm = (props: Props) => {
   const { handleSubmit, submitting, t, error } = props
 
   return (
-    <div>
+    <div className="login-form">
       <p className="page-title">{t('pageTitle.login')}</p>
       <form onSubmit={handleSubmit}>
         <Field

@@ -20,7 +20,7 @@ const FormSelector = (props: Props) => {
   } = props
 
   return (
-    <div>
+    <React.Fragment>
       <div className="form-selector">
         <label htmlFor={label}>{label}</label>
         <div className="form-input-wrapper">
@@ -44,7 +44,7 @@ const FormSelector = (props: Props) => {
             <span>{error}</span>
           </div>
         )}
-    </div>
+    </React.Fragment>
   )
 }
 
