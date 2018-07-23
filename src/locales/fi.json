@@ -116,6 +116,7 @@
   "noResults": "Ei ilmoittautumistietoja vielä",
   "signupGuide": "Ensimmäinen vaihtoehto: 1, toinen: 2, kolmas: 3",
   "signupSaved": "Ilmoittautuminen tallennettu",
+  "signupFailed": "Ilmoittautuminen epäonnistui",
   "signupResultHint":
     "Voit katsoa ilmoittautumistulokset 'Omat Pelini' sivulta klo",
   "closingMessage": "Konsti on suljettu ja avautuu ennen seuraavaa Ropeconia.",
