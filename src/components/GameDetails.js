@@ -4,10 +4,9 @@ import moment from 'moment'
 import { translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { postFeedback } from 'services/feedbackServices'
 import { submitUpdateBlacklist } from 'views/admin/adminActions'
-import { submitGetGames } from 'views/all-games/allGamesActions'
 import { submitUpdateFavorites } from 'views/my-games/myGamesActions'
+import FeedbackForm from 'components/FeedbackForm'
 
 type Props = {
   t: Function,
@@ -19,7 +18,6 @@ type Props = {
   favoritedGames: Array<any>,
   blacklistedGames: Array<any>,
   loggedIn: boolean,
-  onSubmitGetGames: Function,
   userGroup: string,
   onSubmitUpdateBlacklist: Function,
 }
@@ -30,8 +28,6 @@ type State = {
   username: string,
   game: Object,
   submitting: boolean,
-  feedbackValue: string,
-  feedbackSent: boolean,
   favorited: boolean,
 }
 
@@ -51,18 +47,17 @@ class GameDetails extends React.Component<Props, State> {
       username: username,
       game: game[0],
       submitting: false,
-      feedbackValue: '',
-      feedbackSent: false,
       favorited: false,
     }
   }
 
   componentDidMount() {
+    this.checkGameState()
+  }
+
+  checkGameState = () => {
     const { game } = this.state
-    const { favoritedGames, blacklistedGames, onSubmitGetGames } = this.props
-
-    onSubmitGetGames()
-
+    const { favoritedGames, blacklistedGames } = this.props
     // Check if in favorites
     for (let i = 0; i < favoritedGames.length; i += 1) {
       if (favoritedGames[i].id === game.id) {
@@ -81,7 +76,7 @@ class GameDetails extends React.Component<Props, State> {
   }
 
   // Find selected game index
-  findGame(id, array) {
+  findGame = (id, array) => {
     for (let i = 0; i < array.length; i += 1) {
       if (array[i].id === id) {
         return i
@@ -91,7 +86,7 @@ class GameDetails extends React.Component<Props, State> {
   }
 
   // Favorite / unfavorite clicked
-  async addFavoriteEvent(action) {
+  addFavoriteEvent = async action => {
     const { game, username } = this.state
     const { favoritedGames, onSubmitUpdateFavorites } = this.props
 
@@ -139,7 +134,7 @@ class GameDetails extends React.Component<Props, State> {
   }
 
   // Hide / unhide clicked
-  async addBlacklistEvent(action) {
+  addBlacklistEvent = async action => {
     const { game } = this.state
     const { blacklistedGames, onSubmitUpdateBlacklist } = this.props
 
@@ -185,37 +180,9 @@ class GameDetails extends React.Component<Props, State> {
     }
   }
 
-  // Hide / unhide clicked
-  async sendFeedbackEvent() {
-    const { game, feedbackValue } = this.state
-
-    this.setState({ submitting: true })
-
-    const feedbackData = {
-      id: game.id,
-      feedback: feedbackValue,
-    }
-
-    try {
-      await postFeedback(feedbackData)
-      this.setState({ feedbackSent: true, submitting: false })
-    } catch (error) {}
-  }
-
-  render() {
-    const { t, history, loggedIn, games, userGroup } = this.props
-    const {
-      game,
-      favorited,
-      submitting,
-      blacklisted,
-      feedbackValue,
-      feedbackSent,
-    } = this.state
-
-    if (!games || games.length === 0) {
-      return <p>{t('loading')}</p>
-    }
+  getTags = () => {
+    const { t } = this.props
+    const { game } = this.state
 
     const tagsList = []
 
@@ -253,6 +220,12 @@ class GameDetails extends React.Component<Props, State> {
       )
     }
 
+    return tagsList
+  }
+
+  getGenres = () => {
+    const { t } = this.props
+    const { game } = this.state
     let genresList = []
     if (game.genres) {
       genresList = game.genres.map(genre => (
@@ -260,6 +233,12 @@ class GameDetails extends React.Component<Props, State> {
       ))
     }
 
+    return genresList
+  }
+
+  getStyles = () => {
+    const { t } = this.props
+    const { game } = this.state
     let stylesList = []
     if (game.styles) {
       stylesList = game.styles.map(style => (
@@ -267,13 +246,18 @@ class GameDetails extends React.Component<Props, State> {
       ))
     }
 
+    return stylesList
+  }
+
+  render() {
+    const { t, history, loggedIn, userGroup } = this.props
+    const { game, favorited, submitting, blacklisted } = this.state
+
+    const tagsList = this.getTags()
+    const genresList = this.getGenres()
+    const stylesList = this.getStyles()
     const formattedStartTime = moment(game.startTime).format('dddd HH:mm')
-
     const formattedEndTime = moment(game.endTime).format('HH:mm')
-
-    const handleChange = event => {
-      this.setState({ feedbackValue: event.target.value })
-    }
 
     return (
       <div className="game-details">
@@ -406,25 +390,7 @@ class GameDetails extends React.Component<Props, State> {
             </div>
           )}
 
-        {loggedIn && (
-          <textarea
-            value={feedbackValue}
-            onChange={handleChange}
-            className="feedback-textarea"
-            rows="4"
-          />
-        )}
-        {feedbackSent && <p>{t('button.feedbackSent')}</p>}
-        {loggedIn && (
-          <p>
-            <button
-              disabled={submitting}
-              onClick={() => this.sendFeedbackEvent()}
-            >
-              {t('button.sendFeedback')}
-            </button>
-          </p>
-        )}
+        {loggedIn && <FeedbackForm game={game} />}
       </div>
     )
   }
@@ -445,7 +411,6 @@ const mapDispatchToProps = (dispatch: Function) => {
   return {
     onSubmitUpdateFavorites: id => dispatch(submitUpdateFavorites(id)),
     onSubmitUpdateBlacklist: id => dispatch(submitUpdateBlacklist(id)),
-    onSubmitGetGames: () => dispatch(submitGetGames()),
   }
 }
 
