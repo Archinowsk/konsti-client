@@ -1,5 +1,5 @@
 /* @flow */
-import { postLogin } from 'utils/api'
+import { postLogin } from 'services/loginServices'
 
 export const SUBMIT_LOGIN = 'SUBMIT_LOGIN'
 export const SUBMIT_LOGOUT = 'SUBMIT_LOGOUT'

@@ -1,11 +1,9 @@
 /* @flow */
-import {
-  postGamesUpdate,
-  postPlayersAssign,
-  postBlacklist,
-  getSettings,
-  postSignupTime,
-} from 'utils/api'
+import { postGamesUpdate } from 'services/gamesServices'
+import { postPlayersAssign } from 'services/playersServices'
+import { postBlacklist } from 'services/blacklistServices'
+import { getSettings } from 'services/settingsServices'
+import { postSignupTime } from 'services/signuptimeServices'
 
 export const SUBMIT_GAMES_UPDATE = 'SUBMIT_GAMES_UPDATE'
 export const SUBMIT_PLAYERS_ASSIGN = 'SUBMIT_PLAYERS_ASSIGN'
