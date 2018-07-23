@@ -98,7 +98,7 @@ class AdminView extends React.Component<Props, State> {
         await onSubmitGamesUpdate()
         this.setState({ submitting: false })
       } catch (error) {
-        console.log(error)
+        console.log(`onSubmitGamesUpdate error: ${error}`)
       }
     }
 
@@ -107,10 +107,11 @@ class AdminView extends React.Component<Props, State> {
 
       try {
         await onSubmitPlayersAssign(signupTime)
-        this.setState({ submitting: false })
       } catch (error) {
-        console.log(error)
+        console.log(`onSubmitPlayersAssign error: ${error}`)
       }
+
+      this.setState({ submitting: false })
     }
 
     const submitTime = async () => {
@@ -118,10 +119,11 @@ class AdminView extends React.Component<Props, State> {
 
       try {
         await onSubmitSignupTime(date)
-        this.setState({ submitting: false })
       } catch (error) {
-        console.log(error)
+        console.log(`onSubmitSignupTime error: ${error}`)
       }
+
+      this.setState({ submitting: false })
     }
 
     const formattedDate = moment(signupTime).format('DD.M.YYYY HH:mm')

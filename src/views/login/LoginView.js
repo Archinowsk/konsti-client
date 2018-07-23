@@ -20,7 +20,7 @@ const LoginView = (props: Props) => {
     try {
       response = await onSubmitLogin(form)
     } catch (error) {
-      console.log(error)
+      console.log(`onSubmitLogin error: ${error}`)
     }
 
     if (response && response.code === 21) {

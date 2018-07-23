@@ -18,7 +18,7 @@ export const submitSignup = (signupData: Object) => {
     try {
       response = await postSignup(signupData)
     } catch (error) {
-      console.log(error)
+      console.log(`postSignup error: ${error}`)
       dispatch(submitSignupAsync('submitError'))
     }
 

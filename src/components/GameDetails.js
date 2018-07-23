@@ -123,17 +123,18 @@ class GameDetails extends React.Component<Props, State> {
     let response = null
     try {
       response = await onSubmitUpdateFavorites(favoriteData)
-
-      this.setState({ submitting: false })
-      if (response.status === 'success') {
-        if (action === 'add') {
-          this.setState({ favorited: true })
-        } else if (action === 'del') {
-          this.setState({ favorited: false })
-        }
-      }
     } catch (error) {
-      console.log(error)
+      console.log(`onSubmitUpdateFavorites error: ${error}`)
+    }
+
+    this.setState({ submitting: false })
+
+    if (response && response.status === 'success') {
+      if (action === 'add') {
+        this.setState({ favorited: true })
+      } else if (action === 'del') {
+        this.setState({ favorited: false })
+      }
     }
   }
 
@@ -169,16 +170,18 @@ class GameDetails extends React.Component<Props, State> {
     let response = null
     try {
       response = await onSubmitUpdateBlacklist(blacklistData)
-      this.setState({ submitting: false })
-      if (response.status === 'success') {
-        if (action === 'add') {
-          this.setState({ blacklisted: true })
-        } else if (action === 'del') {
-          this.setState({ blacklisted: false })
-        }
-      }
     } catch (error) {
-      console.log(error)
+      console.log(`onSubmitUpdateBlacklist error: ${error}`)
+    }
+
+    this.setState({ submitting: false })
+
+    if (response && response.status === 'success') {
+      if (action === 'add') {
+        this.setState({ blacklisted: true })
+      } else if (action === 'del') {
+        this.setState({ blacklisted: false })
+      }
     }
   }
 
