@@ -119,5 +119,11 @@
   "signupResultHint":
     "Voit katsoa ilmoittautumistulokset 'Omat Pelini' sivulta klo",
   "closingMessage": "Konsti on suljettu ja avautuu ennen seuraavaa Ropeconia.",
-  "exceptionInTime": "Huomaa poikkeava ilmoittautumisen päättymisaika."
+  "exceptionInTime": "Huomaa poikkeava ilmoittautumisen päättymisaika.",
+  "signupView": {
+    "signupOpenGames": "Avoimet pelit",
+    "priority1": "Vaihtoehto 1",
+    "priority2": "Vaihtoehto 2",
+    "priority3": "Vaihtoehto 3"
+  }
 }

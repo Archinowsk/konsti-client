@@ -1,5 +1,6 @@
 /* @flow */
 import React from 'react'
+import { translate } from 'react-i18next'
 /* $FlowFixMe */
 import { DragDropContext } from 'react-beautiful-dnd'
 import DropRow from 'views/signup/components/DropRow'
@@ -7,6 +8,7 @@ import { reorder, move } from 'utils/dragAndDrop'
 
 type Props = {
   games: Array<Object>,
+  t: Function,
 }
 
 type State = {
@@ -90,6 +92,7 @@ class DnDList extends React.Component<Props, State> {
   }
 
   render() {
+    const { t } = this.props
     return (
       <div className="drop-rows">
         <DragDropContext onDragEnd={this.onDragEnd}>
@@ -97,24 +100,24 @@ class DnDList extends React.Component<Props, State> {
             <DropRow
               droppableId="gameList"
               items={this.state.gameList}
-              label="Games"
+              label={t('signupView.signupOpenGames')}
             />
           </div>
           <div className="priority-row">
             <DropRow
               droppableId="priority1"
               items={this.state.priority1}
-              label="Priority 1"
+              label={t('signupView.priority1')}
             />
             <DropRow
               droppableId="priority2"
               items={this.state.priority2}
-              label="Priority 2"
+              label={t('signupView.priority2')}
             />
             <DropRow
               droppableId="priority3"
               items={this.state.priority3}
-              label="Priority 3"
+              label={t('signupView.priority3')}
             />
           </div>
         </DragDropContext>
@@ -123,4 +126,4 @@ class DnDList extends React.Component<Props, State> {
   }
 }
 
-export default DnDList
+export default translate()(DnDList)

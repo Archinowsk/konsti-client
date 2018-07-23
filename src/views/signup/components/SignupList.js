@@ -242,8 +242,6 @@ class SignupList extends React.Component<Props, State> {
 
     return (
       <div>
-        <DnDList games={filteredGames} />
-
         <ul className="signup-list">
           {filteredGames.length === 0 && (
             <p className="page-title">{t('noOpenSignups')}</p>
@@ -262,6 +260,8 @@ class SignupList extends React.Component<Props, State> {
           )}
 
           {filteredGames.length !== 0 && <p>{t('signupGuide')}</p>}
+
+          <DnDList games={filteredGames} />
 
           {GamesList}
         </ul>

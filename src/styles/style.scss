@@ -1,7 +1,7 @@
 @import './variables';
 
 html {
-  color: #030303;
+  color: $text-color;
   display: flex;
   font-family: Helvetica, Arial, Verdana, Tahoma, sans-serif;
   padding-bottom: 32px;
@@ -190,7 +190,7 @@ input:focus {
 }
 
 .logo {
-  color: #030303;
+  color: $text-color;
   text-decoration: none;
 }
 
@@ -219,6 +219,7 @@ input:focus {
 }
 
 .drop-row {
+  border: 1px solid $text-color;
   min-height: 100px;
   width: 400px;
 }

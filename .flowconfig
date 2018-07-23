@@ -1,4 +1,5 @@
 [ignore]
+<PROJECT_ROOT>/node_modules/react-beautiful-dnd/src
 
 [include]
 
