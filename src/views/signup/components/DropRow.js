@@ -2,6 +2,7 @@
 import React from 'react'
 /* $FlowFixMe */
 import { Droppable, Draggable } from 'react-beautiful-dnd'
+import { Link } from 'react-router-dom'
 
 type Props = {
   droppableId: string,
@@ -24,7 +25,7 @@ const DropRow = (props: Props) => {
                   {...provided.draggableProps}
                   {...provided.dragHandleProps}
                 >
-                  {item.title}
+                  <Link to={`/games/${item.id}`}>{item.title}</Link>
                 </div>
               )}
             </Draggable>
