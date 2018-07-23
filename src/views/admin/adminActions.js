@@ -11,7 +11,7 @@ export const SUBMIT_UPDATE_BLACKLIST = 'SUBMIT_UPDATE_BLACKLIST'
 export const SUBMIT_GET_SETTINGS = 'SUBMIT_GET_SETTINGS'
 export const SUBMIT_SELECT_SIGNUP_TIME = 'SUBMIT_SELECT_SIGNUP_TIME'
 
-const submitGamesUpdateAsync = updateResponse => {
+const submitGamesUpdateAsync = ({ updateResponse }) => {
   return {
     type: SUBMIT_GAMES_UPDATE,
     payload: updateResponse,
@@ -31,14 +31,14 @@ export const submitGamesUpdate = () => {
       return Promise.reject(response)
     }
     if (response && response.status === 'success') {
-      dispatch(submitGamesUpdateAsync(response))
+      dispatch(submitGamesUpdateAsync({ updateResponse: response }))
     }
 
     return response
   }
 }
 
-const submitPlayersAssignAsync = assignResponse => {
+const submitPlayersAssignAsync = ({ assignResponse }) => {
   return {
     type: SUBMIT_PLAYERS_ASSIGN,
     payload: assignResponse,
@@ -52,21 +52,21 @@ export const submitPlayersAssign = (signupTime: Date) => {
       response = await postPlayersAssign(signupTime)
     } catch (error) {
       console.log(`postPlayersAssign error: ${error}`)
-      dispatch(submitPlayersAssignAsync(error))
+      dispatch(submitPlayersAssignAsync({ assignResponse: error }))
     }
 
     if (response && response.error) {
       return Promise.reject(response)
     }
     if (response && response.status === 'success') {
-      dispatch(submitPlayersAssignAsync(response))
+      dispatch(submitPlayersAssignAsync({ assignResponse: response }))
     }
 
     return response
   }
 }
 
-const submitUpdateBlacklistAsync = blacklistedGames => {
+const submitUpdateBlacklistAsync = ({ blacklistedGames }) => {
   return {
     type: SUBMIT_UPDATE_BLACKLIST,
     blacklistedGames,
@@ -86,14 +86,18 @@ export const submitUpdateBlacklist = (blacklistData: Object) => {
       return Promise.reject(response)
     }
     if (response && response.status === 'success') {
-      dispatch(submitUpdateBlacklistAsync(blacklistData.blacklistedGames))
+      dispatch(
+        submitUpdateBlacklistAsync({
+          blacklistedGames: blacklistData.blacklistedGames,
+        })
+      )
     }
 
     return response
   }
 }
 
-const submitGetSettingsAsync = (blacklistedGames, signupTime) => {
+const submitGetSettingsAsync = ({ blacklistedGames, signupTime }) => {
   return {
     type: SUBMIT_GET_SETTINGS,
     blacklistedGames,
@@ -115,10 +119,10 @@ export const submitGetSettings = () => {
     }
     if (response && response.status === 'success') {
       dispatch(
-        submitGetSettingsAsync(
-          response.games.blacklistedGames,
-          response.signupTime
-        )
+        submitGetSettingsAsync({
+          blacklistedGames: response.games.blacklistedGames,
+          signupTime: response.signupTime,
+        })
       )
     }
 
@@ -126,7 +130,7 @@ export const submitGetSettings = () => {
   }
 }
 
-const submitSignupTimeAsync = signupTime => {
+const submitSignupTimeAsync = ({ signupTime }) => {
   return {
     type: SUBMIT_SELECT_SIGNUP_TIME,
     signupTime,
@@ -146,7 +150,7 @@ export const submitSignupTime = (signupTime: Date) => {
       return Promise.reject(response)
     }
     if (response && response.status === 'success') {
-      dispatch(submitSignupTimeAsync(signupTime))
+      dispatch(submitSignupTimeAsync({ signupTime: signupTime }))
     }
 
     return response

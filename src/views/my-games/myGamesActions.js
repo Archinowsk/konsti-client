@@ -5,7 +5,7 @@ import { postFavorite } from 'services/favoriteServices'
 export const SUBMIT_GET_USER_GAMES = 'SUBMIT_GET_USER_GAMES'
 export const SUBMIT_UPDATE_FAVORITES = 'SUBMIT_UPDATE_FAVORITES'
 
-const submitGetUserAsync = (enteredGames, favoritedGames, signedGames) => {
+const submitGetUserAsync = ({ enteredGames, favoritedGames, signedGames }) => {
   return {
     type: SUBMIT_GET_USER_GAMES,
     enteredGames,
@@ -28,11 +28,11 @@ export const submitGetUser = (username: string) => {
     }
     if (response && response.status === 'success') {
       dispatch(
-        submitGetUserAsync(
-          response.games.enteredGames,
-          response.games.favoritedGames,
-          response.games.signedGames
-        )
+        submitGetUserAsync({
+          enteredGames: response.games.enteredGames,
+          favoritedGames: response.games.favoritedGames,
+          signedGames: response.games.signedGames,
+        })
       )
     }
 
@@ -40,7 +40,7 @@ export const submitGetUser = (username: string) => {
   }
 }
 
-const submitUpdateFavoritesAsync = favoritedGames => {
+const submitUpdateFavoritesAsync = ({ favoritedGames }) => {
   return {
     type: SUBMIT_UPDATE_FAVORITES,
     favoritedGames,
@@ -60,7 +60,11 @@ export const submitUpdateFavorites = (favoriteData: Object) => {
       return Promise.reject(response)
     }
     if (response && response.status === 'success') {
-      dispatch(submitUpdateFavoritesAsync(favoriteData.favoritedGames))
+      dispatch(
+        submitUpdateFavoritesAsync({
+          favoritedGames: favoriteData.favoritedGames,
+        })
+      )
     }
 
     return response

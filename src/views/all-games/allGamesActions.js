@@ -3,7 +3,7 @@ import { getGames } from 'services/gamesServices'
 
 export const SUBMIT_GET_GAMES = 'SUBMIT_GET_GAMES'
 
-const submitGetGamesAsync = games => {
+const submitGetGamesAsync = ({ games }) => {
   return {
     type: SUBMIT_GET_GAMES,
     games,
@@ -23,7 +23,7 @@ export const submitGetGames = () => {
       return Promise.reject(response)
     }
     if (response && response.status === 'success') {
-      dispatch(submitGetGamesAsync(response.games))
+      dispatch(submitGetGamesAsync({ games: response.games }))
     }
 
     return response

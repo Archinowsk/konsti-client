@@ -4,7 +4,7 @@ import { postLogin } from 'services/loginServices'
 export const SUBMIT_LOGIN = 'SUBMIT_LOGIN'
 export const SUBMIT_LOGOUT = 'SUBMIT_LOGOUT'
 
-const submitLoginAsync = (username, loggedIn, jwtToken, userGroup) => {
+const submitLoginAsync = ({ username, loggedIn, jwtToken, userGroup }) => {
   return {
     type: SUBMIT_LOGIN,
     username,
@@ -29,12 +29,12 @@ export const submitLogin = (loginData: Object) => {
     }
     if (response && response.status === 'success') {
       dispatch(
-        submitLoginAsync(
-          loginData.username,
-          true,
-          response.jwtToken,
-          response.userGroup
-        )
+        submitLoginAsync({
+          username: loginData.username,
+          loggedIn: true,
+          jwtToken: response.jwtToken,
+          userGroup: response.userGroup,
+        })
       )
     }
 

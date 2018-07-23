@@ -5,7 +5,7 @@ export const SUBMIT_SIGNUP = 'SUBMIT_SIGNUP'
 export const SUBMIT_SELECT_DATE = 'SUBMIT_SELECT_DATE'
 export const SUBMIT_SELECTED_GAMES = 'SUBMIT_SELECTED_GAMES'
 
-const submitSignupAsync = status => {
+const submitSignupAsync = ({ status }) => {
   return {
     type: SUBMIT_SIGNUP,
     status,
@@ -19,13 +19,13 @@ export const submitSignup = (signupData: Object) => {
       response = await postSignup(signupData)
     } catch (error) {
       console.log(`postSignup error: ${error}`)
-      dispatch(submitSignupAsync('submitError'))
+      dispatch(submitSignupAsync({ status: 'submitError' }))
     }
 
     if (response && response.error) {
       return Promise.reject(response)
     } else if (response && response.status === 'success') {
-      dispatch(submitSignupAsync('submitSuccess'))
+      dispatch(submitSignupAsync({ status: 'submitSuccess' }))
     }
 
     return response

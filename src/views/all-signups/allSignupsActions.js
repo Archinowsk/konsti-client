@@ -3,7 +3,7 @@ import { getResults } from 'services/resultsServices'
 
 export const SUBMIT_GET_RESULTS = 'SUBMIT_GET_RESULTS'
 
-const submitGetResultsAsync = results => {
+const submitGetResultsAsync = ({ results }) => {
   return {
     type: SUBMIT_GET_RESULTS,
     results,
@@ -23,7 +23,7 @@ export const submitGetResults = () => {
       return Promise.reject(response)
     }
     if (response && response.status === 'success') {
-      dispatch(submitGetResultsAsync(response.results))
+      dispatch(submitGetResultsAsync({ results: response.results }))
     }
 
     return response
