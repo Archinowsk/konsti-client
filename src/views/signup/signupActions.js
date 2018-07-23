@@ -13,7 +13,6 @@ const submitSignupAsync = status => {
 }
 
 export const submitSignup = (signupData: Object) => {
-  console.log(signupData)
   return async (dispatch: Function) => {
     let response = null
     try {

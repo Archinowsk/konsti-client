@@ -19,23 +19,26 @@ export const submitLogin = (loginData: Object) => {
     let response = null
     try {
       response = await postLogin(loginData)
-      if (response && response.error) {
-        return Promise.reject(response)
-      }
-      if (response && response.status && response.status === 'success') {
-        dispatch(
-          submitLoginAsync(
-            loginData.username,
-            true,
-            response.jwtToken,
-            response.userGroup
-          )
-        )
-      }
-      return response
     } catch (error) {
+      console.log(`postLogin error: ${error}`)
       dispatch(submitLoginAsync(error))
     }
+
+    if (response && response.error) {
+      return Promise.reject(response)
+    }
+    if (response && response.status && response.status === 'success') {
+      dispatch(
+        submitLoginAsync(
+          loginData.username,
+          true,
+          response.jwtToken,
+          response.userGroup
+        )
+      )
+    }
+
+    return response
   }
 }
 

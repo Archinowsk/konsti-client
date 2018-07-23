@@ -16,16 +16,19 @@ export const submitRegistration = (registrationData: Object) => {
     let response = null
     try {
       response = await postRegistration(registrationData)
-      if (response.error) {
-        return Promise.reject(response)
-      }
-      if (response.status === 'success') {
-        dispatch(submitRegistrationAsync(true))
-        dispatch(submitLogin(registrationData))
-      }
-      return response
     } catch (error) {
+      console.log(`postRegistration error: ${error}`)
       dispatch(submitRegistrationAsync(error))
     }
+
+    if (response.error) {
+      return Promise.reject(response)
+    }
+    if (response.status === 'success') {
+      dispatch(submitRegistrationAsync(true))
+      dispatch(submitLogin(registrationData))
+    }
+
+    return response
   }
 }

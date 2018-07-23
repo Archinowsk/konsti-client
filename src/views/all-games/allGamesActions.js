@@ -15,15 +15,17 @@ export const submitGetGames = () => {
     let response = null
     try {
       response = await getGames()
-      if (response && response.error) {
-        return Promise.reject(response)
-      }
-      if (response && response.status && response.status === 'success') {
-        dispatch(submitGetGamesAsync(response.games))
-      }
-      return response
     } catch (error) {
-      console.log(error)
+      console.log(`getGames error: ${error}`)
     }
+
+    if (response && response.error) {
+      return Promise.reject(response)
+    }
+    if (response && response.status && response.status === 'success') {
+      dispatch(submitGetGamesAsync(response.games))
+    }
+
+    return response
   }
 }

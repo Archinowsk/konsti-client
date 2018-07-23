@@ -23,16 +23,18 @@ export const submitGamesUpdate = () => {
     let response = null
     try {
       response = await postGamesUpdate()
-      if (response && response.error) {
-        return Promise.reject(response)
-      }
-      if (response && response.status && response.status === 'success') {
-        dispatch(submitGamesUpdateAsync(response))
-      }
-      return response
     } catch (error) {
-      console.log(error)
+      console.log(`postGamesUpdate error: ${error}`)
     }
+
+    if (response && response.error) {
+      return Promise.reject(response)
+    }
+    if (response && response.status && response.status === 'success') {
+      dispatch(submitGamesUpdateAsync(response))
+    }
+
+    return response
   }
 }
 
@@ -48,16 +50,19 @@ export const submitPlayersAssign = (signupTime: Date) => {
     let response = null
     try {
       response = await postPlayersAssign(signupTime)
-      if (response && response.error) {
-        return Promise.reject(response)
-      }
-      if (response && response.status && response.status === 'success') {
-        dispatch(submitPlayersAssignAsync(response))
-      }
-      return response
     } catch (error) {
+      console.log(`postPlayersAssign error: ${error}`)
       dispatch(submitPlayersAssignAsync(error))
     }
+
+    if (response && response.error) {
+      return Promise.reject(response)
+    }
+    if (response && response.status && response.status === 'success') {
+      dispatch(submitPlayersAssignAsync(response))
+    }
+
+    return response
   }
 }
 
@@ -73,16 +78,18 @@ export const submitUpdateBlacklist = (blacklistData: Object) => {
     let response = null
     try {
       response = await postBlacklist(blacklistData)
-      if (response && response.error) {
-        return Promise.reject(response)
-      }
-      if (response && response.status && response.status === 'success') {
-        dispatch(submitUpdateBlacklistAsync(blacklistData.blacklistedGames))
-      }
-      return response
     } catch (error) {
-      console.log(error)
+      console.log(`submitUpdateBlacklist error: ${error}`)
     }
+
+    if (response && response.error) {
+      return Promise.reject(response)
+    }
+    if (response && response.status && response.status === 'success') {
+      dispatch(submitUpdateBlacklistAsync(blacklistData.blacklistedGames))
+    }
+
+    return response
   }
 }
 
@@ -99,21 +106,23 @@ export const submitGetSettings = () => {
     let response = null
     try {
       response = await getSettings()
-      if (response && response.error) {
-        return Promise.reject(response)
-      }
-      if (response && response.status && response.status === 'success') {
-        dispatch(
-          submitGetSettingsAsync(
-            response.games.blacklistedGames,
-            response.signupTime
-          )
-        )
-      }
-      return response
     } catch (error) {
-      console.log(error)
+      console.log(`getSettings error: ${error}`)
     }
+
+    if (response && response.error) {
+      return Promise.reject(response)
+    }
+    if (response && response.status && response.status === 'success') {
+      dispatch(
+        submitGetSettingsAsync(
+          response.games.blacklistedGames,
+          response.signupTime
+        )
+      )
+    }
+
+    return response
   }
 }
 
@@ -129,15 +138,17 @@ export const submitSignupTime = (signupTime: Date) => {
     let response = null
     try {
       response = await postSignupTime(signupTime)
-      if (response && response.error) {
-        return Promise.reject(response)
-      }
-      if (response && response.status && response.status === 'success') {
-        dispatch(submitSignupTimeAsync(signupTime))
-      }
-      return response
     } catch (error) {
-      console.log(error)
+      console.log(`postSignupTime error: ${error}`)
     }
+
+    if (response && response.error) {
+      return Promise.reject(response)
+    }
+    if (response && response.status && response.status === 'success') {
+      dispatch(submitSignupTimeAsync(signupTime))
+    }
+
+    return response
   }
 }
