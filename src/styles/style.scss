@@ -80,6 +80,10 @@ button:disabled:hover {
   color: $error-red;
 }
 
+.success {
+  color: $success-green;
+}
+
 .title {
   display: flex;
   flex: 0 1 auto;
@@ -151,10 +155,6 @@ input:focus {
   width: 100%;
 }
 
-.games-list {
-  padding: 0 0 0 20px;
-}
-
 .game-details-title {
   font-weight: 600;
   padding: 0 10px 0 0;
@@ -172,10 +172,6 @@ input:focus {
 
 .help {
   font-size: 12px;
-}
-
-.priority-select {
-  margin: 0 10px 0 0;
 }
 
 .bold {
