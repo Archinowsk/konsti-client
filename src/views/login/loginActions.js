@@ -45,7 +45,5 @@ export const submitLogin = (loginData: Object) => {
 export const submitLogout = () => {
   return {
     type: SUBMIT_LOGOUT,
-    username: '',
-    loggedIn: false,
   }
 }

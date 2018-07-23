@@ -13,8 +13,7 @@ import Signup from 'views/signup/SignupView'
 import Registration from 'views/registration/RegistrationView'
 import Admin from 'views/admin/AdminView'
 import AllSignups from 'views/all-signups/AllSignupsView'
-
-import LogoutButton from 'components/LogoutButton'
+import LogoutView from 'views/logout/LogoutView'
 
 type Props = {
   loggedIn: boolean,
@@ -84,15 +83,20 @@ const Routes = (props: Props) => {
           {/*
           <Link to="/settings" className="router-link">
           {t('pages.settings')}
-        </Link>
-        */}
+          </Link>
+          */}
+
           {userGroup === 'admin' && (
             <Link to="/admin" className="router-link">
               {t('pages.admin')}
             </Link>
           )}
 
-          <LogoutButton />
+          {(userGroup === 'user' || userGroup === 'admin') && (
+            <Link to="/logout" className="router-link">
+              {t('button.logout')}
+            </Link>
+          )}
 
           <hr />
         </div>
@@ -102,9 +106,9 @@ const Routes = (props: Props) => {
           <Route path="/mygames" component={MyGames} />
           <Route path="/signup" component={Signup} />
           <Route path="/allsignups" component={AllSignups} />
-
           {/* <Route path="/settings" component={Settings} /> */}
           <Route path="/admin" component={Admin} />
+          <Route path="/logout" component={LogoutView} />
           <Redirect from="/*" to="/" />
         </Switch>
       </React.Fragment>

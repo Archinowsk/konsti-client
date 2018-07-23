@@ -1,5 +1,5 @@
 /* @flow */
-import { SUBMIT_LOGIN, SUBMIT_LOGOUT } from 'views/login/loginActions'
+import { SUBMIT_LOGIN } from 'views/login/loginActions'
 
 const initialState = {
   username: '',
@@ -17,14 +17,6 @@ const loginReducer = (state: Object = initialState, action: Function) => {
         loggedIn: action.loggedIn,
         jwtToken: action.jwtToken,
         userGroup: action.userGroup,
-      }
-    case SUBMIT_LOGOUT:
-      return {
-        ...state,
-        username: action.username,
-        loggedIn: action.loggedIn,
-        jwtToken: '',
-        userGroup: '',
       }
     default:
       return state

@@ -12,6 +12,8 @@ import signupReducer from 'views/signup/signupReducer'
 import adminReducer from 'views/admin/adminReducer'
 import allSignupsReducer from 'views/all-signups/allSignupsReducer'
 
+import { SUBMIT_LOGOUT } from 'views/login/loginActions'
+
 // Set reducers
 const reducer = combineReducers({
   form: formReducer,
@@ -23,6 +25,15 @@ const reducer = combineReducers({
   admin: adminReducer,
   allSignups: allSignupsReducer,
 })
+
+// Reducer to reset state
+const rootReducer = (state, action) => {
+  if (action.type === SUBMIT_LOGOUT) {
+    state = undefined
+  }
+
+  return reducer(state, action)
+}
 
 // Set initial state
 const initialState = {}
@@ -42,6 +53,6 @@ if (isProduction) {
 }
 
 // Create a Redux store object that holds the app state
-const store = createStore(reducer, initialState, enhancer)
+const store = createStore(rootReducer, initialState, enhancer)
 
 export default store
