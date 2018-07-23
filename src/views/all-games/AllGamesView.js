@@ -17,55 +17,93 @@ type Props = {
   onSubmitGetSettings: Function,
   username: string,
   onSubmitGetUser: Function,
+  loggedIn: boolean,
+  myGamesLoaded: boolean,
+  adminSettingsLoaded: boolean,
 }
 
-class AllGamesView extends React.Component<Props> {
-  componentDidMount() {
-    const { onSubmitGetGames } = this.props
+type State = {
+  loading: boolean,
+}
 
-    onSubmitGetGames()
-  }
+class AllGamesView extends React.Component<Props, State> {
+  state = { loading: true }
 
-  render() {
-    const { games, t, blacklistedGames } = this.props
+  componentDidMount = async () => {
+    const {
+      onSubmitGetGames,
+      onSubmitGetUser,
+      onSubmitGetSettings,
+      username,
+      loggedIn,
+      myGamesLoaded,
+      adminSettingsLoaded,
+    } = this.props
 
-    if (!games || games.length === 0) {
-      return <p>{t('loading')}</p>
+    // Load games data if not loaded
+    await onSubmitGetGames()
+
+    if (loggedIn) {
+      // Load user data
+      if (!myGamesLoaded) {
+        await onSubmitGetUser(username)
+      }
+      // Load settings data
+      if (!adminSettingsLoaded) {
+        await onSubmitGetSettings()
+      }
     }
 
-    // Remove hidden games
+    this.setState({ loading: false })
+  }
+
+  // Remove hidden games
+  getVisibleGames = () => {
+    const { games, blacklistedGames } = this.props
+
     const visibleGames = []
-    for (let i = 0; i < games.length; i += 1) {
+    for (let game of games) {
       let match = false
-      for (let j = 0; j < blacklistedGames.length; j += 1) {
-        if (games[i].id === blacklistedGames[j].id) {
+      for (let blacklistedGame of blacklistedGames) {
+        if (game.id === blacklistedGame.id) {
           match = true
           break
         }
       }
       if (!match) {
-        visibleGames.push(games[i])
+        visibleGames.push(game)
       }
     }
+    return visibleGames
+  }
+
+  render() {
+    const { t } = this.props
+    const { loading } = this.state
+
+    const visibleGames = this.getVisibleGames()
 
     return (
       <div className="all-games-view">
-        <Switch>
-          <Route
-            exact
-            path="/"
-            render={props => <AllGamesList {...props} games={visibleGames} />}
-          />
-          <Route
-            exact
-            path="/games"
-            render={props => <AllGamesList {...props} games={visibleGames} />}
-          />
-          <Route
-            path="/games/:id"
-            render={props => <GameDetails {...props} games={visibleGames} />}
-          />
-        </Switch>
+        {loading && <p>{t('loading')}</p>}
+        {!loading && (
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={props => <AllGamesList {...props} games={visibleGames} />}
+            />
+            <Route
+              exact
+              path="/games"
+              render={props => <AllGamesList {...props} games={visibleGames} />}
+            />
+            <Route
+              path="/games/:id"
+              render={props => <GameDetails {...props} games={visibleGames} />}
+            />
+          </Switch>
+        )}
       </div>
     )
   }
@@ -77,6 +115,9 @@ const mapStateToProps = state => {
     blacklistedGames: state.admin.blacklistedGames,
     signedGames: state.myGames.signedGames,
     username: state.login.username,
+    loggedIn: state.login.loggedIn,
+    myGamesLoaded: state.myGames.myGamesLoaded,
+    adminSettingsLoaded: state.admin.adminSettingsLoaded,
   }
 }
 

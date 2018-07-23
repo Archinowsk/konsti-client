@@ -8,6 +8,7 @@ const initialState = {
   enteredGames: [],
   favoritedGames: [],
   signedGames: [],
+  myGamesLoaded: false,
 }
 
 const myGamesReducer = (state: Object = initialState, action: Function) => {
@@ -18,6 +19,7 @@ const myGamesReducer = (state: Object = initialState, action: Function) => {
         enteredGames: action.enteredGames,
         favoritedGames: action.favoritedGames,
         signedGames: action.signedGames,
+        myGamesLoaded: action.myGamesLoaded,
       }
     case SUBMIT_UPDATE_FAVORITES:
       return {

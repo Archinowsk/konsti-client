@@ -12,6 +12,7 @@ const initialState = {
   assignResponse: { data: { errors: '' } },
   blacklistedGames: [],
   signupTime: '',
+  adminSettingsLoaded: false,
 }
 
 const loginReducer = (state: Object = initialState, action: Function) => {
@@ -27,6 +28,7 @@ const loginReducer = (state: Object = initialState, action: Function) => {
         ...state,
         blacklistedGames: action.blacklistedGames,
         signupTime: action.signupTime,
+        adminSettingsLoaded: action.adminSettingsLoaded,
       }
     case SUBMIT_SELECT_SIGNUP_TIME:
       return { ...state, signupTime: action.signupTime }

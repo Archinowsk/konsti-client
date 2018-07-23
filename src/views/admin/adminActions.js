@@ -97,11 +97,16 @@ export const submitUpdateBlacklist = (blacklistData: Object) => {
   }
 }
 
-const submitGetSettingsAsync = ({ blacklistedGames, signupTime }) => {
+const submitGetSettingsAsync = ({
+  blacklistedGames,
+  signupTime,
+  adminSettingsLoaded,
+}) => {
   return {
     type: SUBMIT_GET_SETTINGS,
     blacklistedGames,
     signupTime,
+    adminSettingsLoaded,
   }
 }
 
@@ -122,6 +127,7 @@ export const submitGetSettings = () => {
         submitGetSettingsAsync({
           blacklistedGames: response.games.blacklistedGames,
           signupTime: response.signupTime,
+          adminSettingsLoaded: true,
         })
       )
     }

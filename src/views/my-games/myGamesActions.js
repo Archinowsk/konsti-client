@@ -5,12 +5,18 @@ import { postFavorite } from 'services/favoriteServices'
 export const SUBMIT_GET_USER_GAMES = 'SUBMIT_GET_USER_GAMES'
 export const SUBMIT_UPDATE_FAVORITES = 'SUBMIT_UPDATE_FAVORITES'
 
-const submitGetUserAsync = ({ enteredGames, favoritedGames, signedGames }) => {
+const submitGetUserAsync = ({
+  enteredGames,
+  favoritedGames,
+  signedGames,
+  myGamesLoaded,
+}) => {
   return {
     type: SUBMIT_GET_USER_GAMES,
     enteredGames,
     favoritedGames,
     signedGames,
+    myGamesLoaded,
   }
 }
 
@@ -32,6 +38,7 @@ export const submitGetUser = (username: string) => {
           enteredGames: response.games.enteredGames,
           favoritedGames: response.games.favoritedGames,
           signedGames: response.games.signedGames,
+          myGamesLoaded: true,
         })
       )
     }
