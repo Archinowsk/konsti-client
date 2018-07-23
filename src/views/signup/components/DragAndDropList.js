@@ -10,7 +10,7 @@ type Props = {
   games: Array<Object>,
   callback: Function,
   signedGames: Array<Object>,
-  signupTime: Date,
+  signupTime: string,
   t: Function,
 }
 

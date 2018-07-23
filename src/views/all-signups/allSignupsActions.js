@@ -22,7 +22,7 @@ export const submitGetResults = () => {
     if (response && response.error) {
       return Promise.reject(response)
     }
-    if (response && response.status && response.status === 'success') {
+    if (response && response.status === 'success') {
       dispatch(submitGetResultsAsync(response.results))
     }
 

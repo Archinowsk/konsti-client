@@ -13,10 +13,12 @@ export const postLogin = async (loginData: Object) => {
     }
   }
 
-  if (response.status !== 200 || !response.data) {
+  if ((response && response.status !== 200) || (response && !response.data)) {
     console.log('Response status !== 200, reject')
     return Promise.reject(response)
   }
 
-  return response.data
+  if (response) {
+    return response.data
+  }
 }

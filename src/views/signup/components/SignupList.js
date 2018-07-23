@@ -68,9 +68,9 @@ class SignupList extends React.Component<Props, State> {
       console.log(`onSubmitSignup error: ${error}`)
     }
 
-    if (response.status === 'success') {
+    if (response && response.status === 'success') {
       this.setState({ submitting: false, signupSubmitted: true })
-    } else if (response.status === 'error') {
+    } else if (response && response.status === 'error') {
       this.setState({ submitting: false, signupError: true })
     }
   }

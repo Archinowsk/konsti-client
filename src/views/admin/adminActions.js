@@ -30,7 +30,7 @@ export const submitGamesUpdate = () => {
     if (response && response.error) {
       return Promise.reject(response)
     }
-    if (response && response.status && response.status === 'success') {
+    if (response && response.status === 'success') {
       dispatch(submitGamesUpdateAsync(response))
     }
 
@@ -58,7 +58,7 @@ export const submitPlayersAssign = (signupTime: Date) => {
     if (response && response.error) {
       return Promise.reject(response)
     }
-    if (response && response.status && response.status === 'success') {
+    if (response && response.status === 'success') {
       dispatch(submitPlayersAssignAsync(response))
     }
 
@@ -85,7 +85,7 @@ export const submitUpdateBlacklist = (blacklistData: Object) => {
     if (response && response.error) {
       return Promise.reject(response)
     }
-    if (response && response.status && response.status === 'success') {
+    if (response && response.status === 'success') {
       dispatch(submitUpdateBlacklistAsync(blacklistData.blacklistedGames))
     }
 
@@ -113,7 +113,7 @@ export const submitGetSettings = () => {
     if (response && response.error) {
       return Promise.reject(response)
     }
-    if (response && response.status && response.status === 'success') {
+    if (response && response.status === 'success') {
       dispatch(
         submitGetSettingsAsync(
           response.games.blacklistedGames,
@@ -145,7 +145,7 @@ export const submitSignupTime = (signupTime: Date) => {
     if (response && response.error) {
       return Promise.reject(response)
     }
-    if (response && response.status && response.status === 'success') {
+    if (response && response.status === 'success') {
       dispatch(submitSignupTimeAsync(signupTime))
     }
 

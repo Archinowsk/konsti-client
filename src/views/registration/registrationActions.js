@@ -21,10 +21,10 @@ export const submitRegistration = (registrationData: Object) => {
       dispatch(submitRegistrationAsync(error))
     }
 
-    if (response.error) {
+    if (response && response.error) {
       return Promise.reject(response)
     }
-    if (response.status === 'success') {
+    if (response && response.status === 'success') {
       dispatch(submitRegistrationAsync(true))
       dispatch(submitLogin(registrationData))
     }

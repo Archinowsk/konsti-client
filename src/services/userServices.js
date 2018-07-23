@@ -14,12 +14,14 @@ export const postRegistration = async (registrationData: Object) => {
     }
   }
 
-  if (response.status !== 200 || !response.data) {
+  if ((response && response.status !== 200) || (response && !response.data)) {
     console.log('Response status !== 200, reject')
     return Promise.reject(response)
   }
 
-  return response.data
+  if (response) {
+    return response.data
+  }
 }
 
 export const getUser = async (username: string) => {
@@ -40,9 +42,12 @@ export const getUser = async (username: string) => {
     }
   }
 
-  if (response.status !== 200 || !response.data) {
+  if ((response && response.status !== 200) || (response && !response.data)) {
     console.log('Response status !== 200, reject')
     return Promise.reject(response)
   }
-  return response.data
+
+  if (response) {
+    return response.data
+  }
 }

@@ -26,7 +26,7 @@ export const submitGetUser = (username: string) => {
     if (response && response.error) {
       return Promise.reject(response)
     }
-    if (response && response.status && response.status === 'success') {
+    if (response && response.status === 'success') {
       dispatch(
         submitGetUserAsync(
           response.games.enteredGames,
@@ -59,7 +59,7 @@ export const submitUpdateFavorites = (favoriteData: Object) => {
     if (response && response.error) {
       return Promise.reject(response)
     }
-    if (response && response.status && response.status === 'success') {
+    if (response && response.status === 'success') {
       dispatch(submitUpdateFavoritesAsync(favoriteData.favoritedGames))
     }
 
