@@ -8,19 +8,19 @@ import { submitRegistration } from 'views/registration/registrationActions'
 import RegistrationForm from 'views/registration/components/RegistrationForm'
 
 type Props = {
-  onSubmitLogin: Function,
+  onSubmitRegistration: Function,
   t: Function,
 }
 
 const RegistrationView = (props: Props) => {
-  const { onSubmitLogin, t } = props
+  const { onSubmitRegistration, t } = props
 
   const submit = async form => {
     let response = null
     try {
-      response = await onSubmitLogin(form)
+      response = await onSubmitRegistration(form)
     } catch (error) {
-      console.log(`onSubmitLogin error: ${error}`)
+      console.log(`onSubmitRegistration error: ${error}`)
     }
 
     if (response && response.code === 11) {
@@ -45,7 +45,7 @@ const RegistrationView = (props: Props) => {
 
 const mapDispatchToProps = (dispatch: Function) => {
   return {
-    onSubmitLogin: registrationInfo =>
+    onSubmitRegistration: registrationInfo =>
       dispatch(submitRegistration(registrationInfo)),
   }
 }
