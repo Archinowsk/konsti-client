@@ -149,30 +149,31 @@ class DnDList extends React.Component<Props, State> {
 
   render() {
     const { t } = this.props
+    const { gameList, priority1, priority2, priority3 } = this.state
     return (
       <div className="drop-rows">
         <DragDropContext onDragEnd={this.onDragEnd}>
           <div className="games-row">
             <DropRow
               droppableId="gameList"
-              items={this.state.gameList}
+              items={gameList}
               label={t('signupView.signupOpenGames')}
             />
           </div>
           <div className="priority-row">
             <DropRow
               droppableId="priority1"
-              items={this.state.priority1}
+              items={priority1}
               label={t('signupView.priority1')}
             />
             <DropRow
               droppableId="priority2"
-              items={this.state.priority2}
+              items={priority2}
               label={t('signupView.priority2')}
             />
             <DropRow
               droppableId="priority3"
-              items={this.state.priority3}
+              items={priority3}
               label={t('signupView.priority3')}
             />
           </div>

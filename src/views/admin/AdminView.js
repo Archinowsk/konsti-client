@@ -62,6 +62,8 @@ class AdminView extends React.Component<Props, State> {
       signupTime,
     } = this.props
 
+    const { submitting } = this.state
+
     // Assign game info to blacklisted games list
     games.forEach(game => {
       blacklistedGames.forEach(blacklistedGame => {
@@ -125,7 +127,7 @@ class AdminView extends React.Component<Props, State> {
     return (
       <div className="admin-view">
         <button
-          disabled={this.state.submitting}
+          disabled={submitting}
           onClick={() => {
             submitUpdate()
           }}
@@ -134,7 +136,7 @@ class AdminView extends React.Component<Props, State> {
         </button>
 
         <button
-          disabled={this.state.submitting}
+          disabled={submitting}
           onClick={() => {
             submitAssign()
           }}
@@ -142,7 +144,7 @@ class AdminView extends React.Component<Props, State> {
           {t('button.assignPlayers')}
         </button>
 
-        {this.state.submitting && <p>{t('loading')}</p>}
+        {submitting && <p>{t('loading')}</p>}
 
         {updateResponse.data.errors && (
           <p className="error">{updateResponse.data.message}</p>
@@ -155,7 +157,7 @@ class AdminView extends React.Component<Props, State> {
         </p>
 
         <button
-          disabled={this.state.submitting}
+          disabled={submitting}
           onClick={() => {
             submitTime()
           }}
