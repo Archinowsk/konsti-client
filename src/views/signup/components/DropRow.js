@@ -13,30 +13,44 @@ type Props = {
 }
 const DropRow = (props: Props) => {
   const { droppableId, items, label, t } = props
-  return (
-    <Droppable droppableId={droppableId}>
-      {(provided, snapshot) => (
-        <div className={`drop-row ${droppableId}`} ref={provided.innerRef}>
-          <p>{label}</p>
 
-          {items.map((item, index) => (
-            <Draggable key={item.id} draggableId={item.id} index={index}>
-              {(provided, snapshot) => (
-                <div
-                  ref={provided.innerRef}
-                  {...provided.draggableProps}
-                  {...provided.dragHandleProps}
-                >
-                  {item.title}{' '}
-                  <Link to={`/games/${item.id}`}>({t('details')})</Link>
-                </div>
-              )}
-            </Draggable>
-          ))}
-          {provided.placeholder}
-        </div>
-      )}
-    </Droppable>
+  const getListStyle = dragging => {
+    if (dragging) return 'dragging'
+    else return ''
+  }
+
+  return (
+    <React.Fragment>
+      <p>{label}</p>
+
+      <Droppable droppableId={droppableId}>
+        {(provided, snapshot) => (
+          <div
+            className={`drop-row ${droppableId} ${getListStyle(
+              snapshot.isDraggingOver
+            )}`}
+            ref={provided.innerRef}
+          >
+            {items.map((item, index) => (
+              <Draggable key={item.id} draggableId={item.id} index={index}>
+                {(provided, snapshot) => (
+                  <div
+                    className="draggable-item"
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                  >
+                    {item.title}{' '}
+                    <Link to={`/games/${item.id}`}>({t('details')})</Link>
+                  </div>
+                )}
+              </Draggable>
+            ))}
+            {provided.placeholder}
+          </div>
+        )}
+      </Droppable>
+    </React.Fragment>
   )
 }
 

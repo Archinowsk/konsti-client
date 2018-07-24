@@ -5,6 +5,7 @@ import { translate } from 'react-i18next'
 import { DragDropContext } from 'react-beautiful-dnd'
 import DropRow from 'views/signup/components/DropRow'
 import { reorder, move } from 'utils/dragAndDrop'
+import sleep from 'utils/sleep'
 
 type Props = {
   games: Array<Object>,
@@ -19,6 +20,7 @@ type State = {
   priority1: Array<Object>,
   priority2: Array<Object>,
   priority3: Array<Object>,
+  showWarning: boolean,
 }
 
 class DnDList extends React.Component<Props, State> {
@@ -27,6 +29,7 @@ class DnDList extends React.Component<Props, State> {
     priority1: [],
     priority2: [],
     priority3: [],
+    showWarning: false,
   }
 
   // Load existing state from store
@@ -89,7 +92,14 @@ class DnDList extends React.Component<Props, State> {
     return this.state[this.id2List[id]]
   }
 
+  showWarning = async () => {
+    this.setState({ showWarning: true })
+    await sleep(2000)
+    this.setState({ showWarning: false })
+  }
+
   onDragEnd = (result: Object) => {
+    const { priority1, priority2, priority3 } = this.state
     const { source, destination } = result
 
     // Dropped outside the list
@@ -127,9 +137,26 @@ class DnDList extends React.Component<Props, State> {
         destination
       )
 
+      // Only allow one game in each priority
+      if (destination.droppableId === 'priority1' && priority1.length >= 1) {
+        this.showWarning()
+        return
+      } else if (
+        destination.droppableId === 'priority2' &&
+        priority2.length >= 1
+      ) {
+        this.showWarning()
+        return
+      } else if (
+        destination.droppableId === 'priority3' &&
+        priority3.length >= 1
+      ) {
+        this.showWarning()
+        return
+      }
+
       const state = { ...this.state, ...result }
       this.setState(state)
-
       this.doCallback()
     }
   }
@@ -157,36 +184,45 @@ class DnDList extends React.Component<Props, State> {
 
   render() {
     const { t } = this.props
-    const { gameList, priority1, priority2, priority3 } = this.state
+    const {
+      gameList,
+      priority1,
+      priority2,
+      priority3,
+      showWarning,
+    } = this.state
     return (
-      <div className="drop-rows">
-        <DragDropContext onDragEnd={this.onDragEnd}>
-          <div className="games-row">
-            <DropRow
-              droppableId="gameList"
-              items={gameList}
-              label={t('signupView.signupOpenGames')}
-            />
-          </div>
-          <div className="priority-row">
-            <DropRow
-              droppableId="priority1"
-              items={priority1}
-              label={t('signupView.priority1')}
-            />
-            <DropRow
-              droppableId="priority2"
-              items={priority2}
-              label={t('signupView.priority2')}
-            />
-            <DropRow
-              droppableId="priority3"
-              items={priority3}
-              label={t('signupView.priority3')}
-            />
-          </div>
-        </DragDropContext>
-      </div>
+      <React.Fragment>
+        <div className="drop-rows">
+          <DragDropContext onDragEnd={this.onDragEnd}>
+            <div className="games-row">
+              <DropRow
+                droppableId="gameList"
+                items={gameList}
+                label={t('signupView.signupOpenGames')}
+              />
+            </div>
+            <div className="priority-row">
+              <DropRow
+                droppableId="priority1"
+                items={priority1}
+                label={t('signupView.priority1')}
+              />
+              <DropRow
+                droppableId="priority2"
+                items={priority2}
+                label={t('signupView.priority2')}
+              />
+              <DropRow
+                droppableId="priority3"
+                items={priority3}
+                label={t('signupView.priority3')}
+              />
+            </div>
+          </DragDropContext>
+        </div>
+        {showWarning && <p className="error">{t('onlyOneGameWarning')}</p>}
+      </React.Fragment>
     )
   }
 }

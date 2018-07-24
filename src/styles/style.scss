@@ -193,24 +193,6 @@ input:focus {
   text-decoration: none;
 }
 
-/*
-.gameList {
-  background-color: red;
-}
-
-.priority1 {
-  background-color: blue;
-}
-
-.priority2 {
-  background-color: green;
-}
-
-.priority3 {
-  background-color: pink;
-}
-*/
-
 .drop-rows {
   display: flex;
   flex: 1 0 auto;
@@ -218,7 +200,19 @@ input:focus {
 }
 
 .drop-row {
-  border: 1px solid $text-color;
+  background-color: $background-gray;
   min-height: 100px;
-  width: 400px;
+  min-width: 200px;
+  padding: 10px;
+}
+
+.drop-row.dragging {
+  background-color: $dragging-background;
+}
+
+.draggable-item {
+  background-color: $draggable-background;
+  border: 1px solid $border-gray;
+  margin: 8px 0;
+  padding: 8px;
 }

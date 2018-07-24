@@ -125,5 +125,6 @@
     "priority2": "Priority 2",
     "priority3": "Priority 3"
   },
-  "details": "Details"
+  "details": "Details",
+  "onlyOneGameWarning": "Only one game allowed"
 }
