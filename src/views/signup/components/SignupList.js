@@ -113,7 +113,7 @@ class SignupList extends React.Component<Props, State> {
     const { submitting, signupSubmitted, signupError } = this.state
 
     const filteredGames = this.filterGames()
-    const formattedDate = moment(signupTime).format('DD.M.YYYY HH:mm')
+    const formattedDate = moment(signupTime).format('dddd HH:mm')
     const { signupStartTime } = timeFormatter.startTime(signupTime)
     const { signupEndTime } = timeFormatter.endTime(signupTime)
 
@@ -126,7 +126,7 @@ class SignupList extends React.Component<Props, State> {
         {filteredGames.length !== 0 && (
           <React.Fragment>
             <p className="page-title">
-              {t('signupOpen')} {formattedDate}
+              {t('signupOpen')}: {formattedDate}
             </p>
 
             <p>

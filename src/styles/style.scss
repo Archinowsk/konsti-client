@@ -202,8 +202,8 @@ input:focus {
 .drop-row {
   background-color: $background-gray;
   min-height: 40px;
-  min-width: 30vw;
   padding: 10px;
+  width: 30vw;
 }
 
 .drop-row.dragging {

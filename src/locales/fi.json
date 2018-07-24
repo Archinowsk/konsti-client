@@ -7,7 +7,7 @@
     "register": "Luo tili",
     "updateDb": "Päivitä pelitietokanta",
     "assignPlayers": "Sijoita pelaajat",
-    "signup": "Ilmoittaudu",
+    "signup": "Tallenna",
     "back": "Takaisin",
     "favorite": "Lisää suosikkeihin",
     "removeFavorite": "Poista suosikki",
@@ -33,7 +33,7 @@
   "pages": {
     "myGames": "Omat pelini",
     "allGames": "Kaikki pelit",
-    "signUp": "Tallenna",
+    "signUp": "Ilmoittaudu",
     "settings": "Asetukset",
     "admin": "Ylläpito",
     "allsignups": "Kaikki ilmoittautumistulokset"
@@ -107,7 +107,7 @@
   "noEnteredGames": "Ei vahvistuneita ilmoittautumisia",
   "noBlacklistedGames": "Ei piilotettuja pelejä",
   "noOpenSignups": "Ei avoimia ilmoittautumisia",
-  "signupOpen": "Ilmoittautuminen auki peleille, jotka alkavat",
+  "signupOpen": "Ilmoittautuminen auki",
   "selectOpenSignup": "Valitse avoin ilmoittautumisajankohta",
   "signupOpenBetween": "ilmoittautuminen auki ",
   "signupOpenBetweenCapital": "Ilmoittautuminen auki ",
