@@ -124,19 +124,14 @@ class SignupList extends React.Component<Props, State> {
     const { signupStartTime } = timeFormatter.startTime(signupTime)
     const { signupEndTime } = timeFormatter.endTime(signupTime)
 
-    if (signupTime === 'asd') {
-    }
-
-    const isActive = isActive => {
-      return isActive ? 'active' : ''
-    }
+    const isActive = isActive => (isActive ? 'active' : '')
 
     const signupTimes = getOpenSignupTimes(games)
     const signupTimeButtons = signupTimes.map(time => (
       <button
         key={time}
         onClick={() => this.selectSignupTime(time)}
-        className={`button-${signupTime} ${isActive(time === signupTime)}`}
+        className={`button-${time} ${isActive(time === signupTime)}`}
         disabled={time === signupTime}
       >
         {timeFormatter.weekdayAndTime(time)}

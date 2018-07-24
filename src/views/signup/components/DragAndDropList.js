@@ -182,15 +182,15 @@ class DragAndDropList extends React.Component<Props, State> {
       }
 
       const state = { ...this.state, ...result }
+      this.doCallback(state)
       this.setState(state)
-      this.doCallback()
     }
   }
 
   // Send changes to parent
-  doCallback = () => {
+  doCallback = state => {
     const { callback } = this.props
-    const { priority1, priority2, priority3 } = this.state
+    const { priority1, priority2, priority3 } = state
 
     const selectedGames = []
     for (let game of priority1) {
