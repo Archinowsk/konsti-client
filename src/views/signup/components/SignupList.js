@@ -29,16 +29,13 @@ type State = {
 }
 
 class SignupList extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props)
-    this.state = {
-      first: '',
-      second: '',
-      third: '',
-      submitting: false,
-      signupSubmitted: false,
-      signupError: false,
-    }
+  state = {
+    first: '',
+    second: '',
+    third: '',
+    submitting: false,
+    signupSubmitted: false,
+    signupError: false,
   }
 
   // Submit signup

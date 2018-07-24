@@ -15,14 +15,10 @@ type State = {
 }
 
 class FeedbackForm extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props)
-
-    this.state = {
-      submitting: false,
-      feedbackValue: '',
-      feedbackSent: false,
-    }
+  state = {
+    submitting: false,
+    feedbackValue: '',
+    feedbackSent: false,
   }
 
   // Hide / unhide clicked
