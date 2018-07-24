@@ -1,16 +1,18 @@
 /* @flow */
 import React from 'react'
+import { translate } from 'react-i18next'
 /* $FlowFixMe */
 import { Droppable, Draggable } from 'react-beautiful-dnd'
 import { Link } from 'react-router-dom'
 
 type Props = {
+  t: Function,
   droppableId: string,
   items: Array<Object>,
   label: string,
 }
 const DropRow = (props: Props) => {
-  const { droppableId, items, label } = props
+  const { droppableId, items, label, t } = props
   return (
     <Droppable droppableId={droppableId}>
       {(provided, snapshot) => (
@@ -25,7 +27,8 @@ const DropRow = (props: Props) => {
                   {...provided.draggableProps}
                   {...provided.dragHandleProps}
                 >
-                  <Link to={`/games/${item.id}`}>{item.title}</Link>
+                  {item.title}{' '}
+                  <Link to={`/games/${item.id}`}>({t('details')})</Link>
                 </div>
               )}
             </Draggable>
@@ -37,4 +40,4 @@ const DropRow = (props: Props) => {
   )
 }
 
-export default DropRow
+export default translate()(DropRow)

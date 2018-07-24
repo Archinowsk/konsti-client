@@ -126,5 +126,6 @@
     "priority1": "Vaihtoehto 1",
     "priority2": "Vaihtoehto 2",
     "priority3": "Vaihtoehto 3"
-  }
+  },
+  "details": "Tietoja"
 }
