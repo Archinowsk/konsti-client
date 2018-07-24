@@ -14,7 +14,7 @@ const getOpenSignupTimes = games => {
   const signupEndMinutes = config.SIGNUP_END_TIME
 
   let timeNow = moment()
-  if (config.env === 'development' || config.staging === true) {
+  if (config.env === 'development' || config.staging) {
     timeNow = moment(config.CONVENTION_START_TIME)
       .add(1, 'hours')
       .add(40, 'minutes')
