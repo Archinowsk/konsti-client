@@ -77,7 +77,9 @@
     "noLanguage": "Ei kielivaatimusta",
     "englishOk": "Pelataan englanniksi",
     "childrenFriendly": "Lapsiystävällinen",
-    "ageRestricted": "Ikävaatimus 18+",
+    "ageRestricted": "Ikäraja 18+",
+    "ageRestrictedLong":
+      "K18-peliin osallistuvan tulee olla 18 vuotta täyttänyt. Osallistujia saatetaan pyytää todistamaan ikänsä ennen peliä tai sen aikana.",
     "beginnerFriendly": "Aloittelijaystävällinen",
     "intendedForExperiencedParticipants": "Peli suosii kokeneita pelaajia"
   },

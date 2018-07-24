@@ -30,7 +30,10 @@ class GameInfo extends React.PureComponent<Props> {
 
     if (game.ageRestricted) {
       tagsList.push(
-        <li key={'ageRestricted'}>{t(`gameTags.ageRestricted`)}</li>
+        <li key={'ageRestricted'}>
+          {t(`gameTags.ageRestricted`)} (
+          {t(`gameTags.ageRestrictedLong`)})
+        </li>
       )
     }
 
