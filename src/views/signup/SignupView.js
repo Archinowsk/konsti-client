@@ -11,10 +11,13 @@ import Loading from 'components/Loading'
 type Props = {
   t: Function,
   games: Array<any>,
-  signedGames: Array<any>,
 }
 
-class SignupView extends React.Component<Props> {
+type State = {
+  loading: boolean,
+}
+
+class SignupView extends React.Component<Props, State> {
   state = { loading: true }
 
   componentDidMount = async () => {
@@ -54,7 +57,6 @@ class SignupView extends React.Component<Props> {
 const mapStateToProps = state => {
   return {
     games: state.allGames.games,
-    signedGames: state.myGames.signedGames,
   }
 }
 
