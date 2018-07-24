@@ -1,7 +1,7 @@
 import moment from 'moment'
 import config from 'config'
 
-const getStartTimes = games => {
+const getOpenSignupTimes = games => {
   const startTimes = []
 
   for (let game of games) {
@@ -18,6 +18,8 @@ const getStartTimes = games => {
     timeNow = moment(config.CONVENTION_START_TIME)
       .add(1, 'hours')
       .add(40, 'minutes')
+
+    console.log('set testing time: ', moment(timeNow).format())
   }
 
   // console.log('timeNow', moment(timeNow).format())
@@ -56,4 +58,4 @@ const getStartTimes = games => {
   return openSignupTimes
 }
 
-export default getStartTimes
+export default getOpenSignupTimes
