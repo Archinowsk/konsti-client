@@ -7,6 +7,7 @@ config.appName = 'Konsti'
 config.appOpen = true
 config.SIGNUP_END_TIME = 30 // minutes
 config.SIGNUP_OPEN_TIME = 4 // hours
+config.staging = process.env.STAGING || false
 
 // TODO: Move to admin view
 config.CONVENTION_START_TIME = '2018-07-27T12:00:00Z' // UTC date
