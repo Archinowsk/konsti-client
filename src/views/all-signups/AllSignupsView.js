@@ -20,58 +20,69 @@ type Props = {
   signupTime: string,
 }
 
-class AllSignupsView extends React.Component<Props> {
-  componentDidMount() {
+type State = {
+  loading: boolean,
+}
+
+class AllSignupsView extends React.Component<Props, State> {
+  state = {
+    loading: true,
+  }
+
+  componentDidMount = async () => {
     const {
       onSubmitGetGames,
       onSubmitGetSettings,
       onSubmitGetResults,
     } = this.props
 
-    onSubmitGetGames()
-    onSubmitGetSettings()
-    onSubmitGetResults()
+    await onSubmitGetGames()
+    await onSubmitGetSettings()
+    await onSubmitGetResults()
+
+    this.setState({ loading: false })
   }
 
   render() {
     const { games, t, results, signupTime } = this.props
-
-    if (!games || games.length === 0) {
-      return <p>{t('loading')}</p>
-    }
-
-    if (!results || results.length === 0 || !games || games.length === 0) {
-      return <p>{t('noResults')}</p>
-    }
+    const { loading } = this.state
 
     let selectedResult = []
-    for (let i = 0; i < results.length; i += 1) {
-      if (results[i].startTime === signupTime) {
-        selectedResult = results[i].result
+    for (let result of results) {
+      if (result.startTime === signupTime) {
+        selectedResult = result.result
         break
       }
     }
 
-    if (!selectedResult || selectedResult === 0) {
-      return <p>{t('noResults')}</p>
-    }
-
-    games.forEach(game => {
-      selectedResult.forEach(result => {
+    for (let game of games) {
+      for (let result of selectedResult) {
         if (game.id === result.enteredGame.id) {
           Object.assign(result.enteredGame, game)
         }
-      })
-    })
+      }
+    }
+
+    let resultsAvailable = false
+    if (selectedResult && selectedResult.length !== 0) {
+      resultsAvailable = true
+    }
 
     const formattedDate = moment(signupTime).format('DD.M.YYYY HH:mm')
 
     return (
       <div className="all-signups-view">
-        <p className="page-title">
-          {t('signupResultsfor')} {formattedDate}
-        </p>
-        <AllSignupsList results={selectedResult} />
+        {loading && <p className="page-title">{t('loading')}</p>}
+        {!resultsAvailable && <p className="page-title">{t('noResults')}</p>}
+        {!loading &&
+          resultsAvailable && (
+            <React.Fragment>
+              <p className="page-title">
+                {t('signupResultsfor')} {formattedDate}
+              </p>
+              <AllSignupsList results={selectedResult} />
+            </React.Fragment>
+          )}
       </div>
     )
   }
