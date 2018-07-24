@@ -157,11 +157,7 @@ const prodConfig = {
   },
 
   plugins: [
-    new CleanWebpackPlugin(['build'], {
-      root: path.resolve(__dirname),
-      verbose: false,
-      exclude: ['.keep'],
-    }),
+    new CleanWebpackPlugin(['build']),
     new CopyWebpackPlugin([{ from: 'assets' }]),
     // “en” is built into Moment and can’t be removed
     new MomentLocalesPlugin({
