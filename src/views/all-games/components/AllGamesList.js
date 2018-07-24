@@ -10,72 +10,97 @@ type Props = {
   games: Array<any>,
 }
 
-const AllGamesList = (props: Props) => {
-  const { games, t } = props
-
+class AllGamesList extends React.PureComponent<Props> {
   // Sort games by starting time and name
-  const sortedGames = games.sort((a, b) => {
-    const keyA = moment(a.startTime) + a.title
-    const keyB = moment(b.startTime) + b.title
-    if (keyA < keyB) return -1
-    if (keyA > keyB) return 1
-    return 0
-  })
+  sortGames = games => {
+    const sortedGames = {}
+    Object.keys(games)
+      .sort()
+      .forEach(key => {
+        // Sort games by name
+        sortedGames[key] = this.sortByNames(games[key])
+      })
 
-  const GamesList = sortedGames.map((game, index, array) => {
-    const formattedStartTime = moment(game.startTime).format('DD.M.YYYY HH:mm')
+    return sortedGames
+  }
 
-    const signupStartTime = timeFormatter.startTime(game.startTime)
-    const signupEndTime = timeFormatter.endTime(game.startTime)
+  sortByNames = games => {
+    return games.sort((a, b) => {
+      const keyA = a.title.toLowerCase()
+      const keyB = b.title.toLowerCase()
+      if (keyA < keyB) return -1
+      if (keyA > keyB) return 1
+      return 0
+    })
+  }
 
-    // First title
-    if (index === 0) {
-      return (
-        <React.Fragment key={game.id}>
-          <div>
-            <p className="title">
-              {formattedStartTime} ({t('signupOpenBetween')} {signupStartTime}-{
-                signupEndTime
-              })
-            </p>
-            <p className="exception"> {t('exceptionInTime')}</p>
-          </div>
-          <div>
-            <p className="games-list">
-              <Link to={`/games/${game.id}`}>{game.title}</Link>
-            </p>
-          </div>
-        </React.Fragment>
+  buildGamesList = games => {
+    const { t } = this.props
+
+    // Group all unique starting times
+    const groupedGames = games.reduce((acc, sortedGame) => {
+      acc[sortedGame['startTime']] = acc[sortedGame['startTime']] || []
+      acc[sortedGame['startTime']].push(sortedGame)
+      return acc
+    }, {})
+
+    const sortedGames = this.sortGames(groupedGames)
+
+    const GamesList = []
+
+    for (const [startTime, games] of Object.entries(sortedGames)) {
+      const formattedStartTime = moment(startTime).format('DD.M.YYYY HH:mm')
+
+      const { signupStartTime, startTimeException } = timeFormatter.startTime(
+        startTime
       )
-      // Set title if the previous starting time is diffenrent
-    } else if (
-      typeof array[index - 1] !== 'undefined' &&
-      game.startTime !== array[index - 1].startTime
-    ) {
-      return (
-        <div key={game.id}>
-          <p className="title">
-            {formattedStartTime} ({t('signupOpenBetween')} {signupStartTime}-{
-              signupEndTime
-            })
+      const { signupEndTime, endTimeException } = timeFormatter.endTime(
+        startTime
+      )
+
+      const title = (
+        <p key={startTime} className="title">
+          {formattedStartTime} ({t('signupOpenBetween')} {signupStartTime}-{
+            signupEndTime
+          })
+        </p>
+      )
+
+      GamesList.push(title)
+
+      // Show exception warning if there are changes in time
+      if (startTimeException || endTimeException) {
+        const exception = (
+          <p key={`${startTime}-exception`} className="exception">
+            {' '}
+            {t('exceptionInTime')}
           </p>
-          <p className="games-list">
+        )
+
+        GamesList.push(exception)
+      }
+
+      /* $FlowFixMe */
+      for (let game of games) {
+        const gameEntry = (
+          <p key={game.id} className="games-list">
             <Link to={`/games/${game.id}`}>{game.title}</Link>
           </p>
-        </div>
-      )
-    }
-    // Don't set new title
-    return (
-      <div key={game.id}>
-        <p className="games-list">
-          <Link to={`/games/${game.id}`}>{game.title}</Link>
-        </p>
-      </div>
-    )
-  })
+        )
 
-  return <div className="games-list">{GamesList}</div>
+        GamesList.push(gameEntry)
+      }
+    }
+
+    return GamesList
+  }
+
+  render() {
+    const { games } = this.props
+    const GamesList = this.buildGamesList(games)
+
+    return <div className="games-list">{GamesList}</div>
+  }
 }
 
 export default translate()(AllGamesList)

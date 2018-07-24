@@ -108,8 +108,6 @@ class SignupList extends React.Component<Props, State> {
   // Get data from child component
   callback = selectedGames => {
     const { onSubmitSelectedGames } = this.props
-
-    console.log(selectedGames)
     onSubmitSelectedGames(selectedGames)
   }
 
@@ -119,8 +117,8 @@ class SignupList extends React.Component<Props, State> {
 
     const filteredGames = this.filterGames()
     const formattedDate = moment(signupTime).format('DD.M.YYYY HH:mm')
-    const startingTime = timeFormatter.startTime(signupTime)
-    const endingTime = timeFormatter.endTime(signupTime)
+    const { signupStartTime } = timeFormatter.startTime(signupTime)
+    const { signupEndTime } = timeFormatter.endTime(signupTime)
 
     return (
       <div className="signup-list">
@@ -135,11 +133,11 @@ class SignupList extends React.Component<Props, State> {
             </p>
 
             <p>
-              {t('signupOpenBetweenCapital')} {startingTime}-{endingTime}
+              {t('signupOpenBetweenCapital')} {signupStartTime}-{signupEndTime}
             </p>
             <p>{t('signupGuide')}</p>
             <p>
-              {t('signupResultHint')} {endingTime}
+              {t('signupResultHint')} {signupEndTime}
             </p>
 
             <DnDList

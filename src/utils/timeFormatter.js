@@ -10,6 +10,7 @@ const {
 
 const startTime = startTime => {
   let signupStartTime = null
+  let startTimeException = false
 
   // Signup starts before convention
   if (
@@ -32,11 +33,18 @@ const startTime = startTime => {
     signupStartTime = moment(startTime).subtract(SIGNUP_OPEN_TIME, 'hours')
   }
 
-  return moment(signupStartTime).format('HH:mm')
+  const formattedTime = {
+    signupStartTime: moment(signupStartTime).format('HH:mm'),
+    startTimeException,
+  }
+
+  return formattedTime
 }
 
 const endTime = (startTime, customTime) => {
   let signupEndTime
+  let endTimeException = false
+
   // Use custom signup end time
   if (customTime) {
     signupEndTime = moment(startTime).subtract(customTime, 'minutes')
@@ -48,12 +56,19 @@ const endTime = (startTime, customTime) => {
       .isSame(moment(CONVENTION_START_TIME))
   ) {
     signupEndTime = moment(startTime).subtract(15, 'minutes')
+    endTimeException = true
   }
   // Use default signup end time
   else {
     signupEndTime = moment(startTime).subtract(SIGNUP_END_TIME, 'minutes')
   }
-  return moment(signupEndTime).format('HH:mm')
+
+  const formattedTime = {
+    signupEndTime: moment(signupEndTime).format('HH:mm'),
+    endTimeException,
+  }
+
+  return formattedTime
 }
 
 const timeFormatter = { startTime, endTime }
