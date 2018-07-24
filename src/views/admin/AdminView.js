@@ -43,30 +43,9 @@ class AdminView extends React.Component<Props, State> {
     this.setState({ loading: false })
   }
 
-  render() {
-    const {
-      onSubmitGamesUpdate,
-      onSubmitPlayersAssign,
-      t,
-      updateResponse,
-      games,
-      blacklistedGames,
-      onSubmitSelectDate,
-      onSubmitSignupTime,
-      date,
-      signupTime,
-    } = this.props
-
-    const { submitting, loading } = this.state
-
-    // Assign game info to blacklisted games list
-    games.forEach(game => {
-      blacklistedGames.forEach(blacklistedGame => {
-        if (game.id === blacklistedGame.id) {
-          Object.assign(blacklistedGame, game)
-        }
-      })
-    })
+  // Get games that are not blacklisted
+  getVisibleGames = () => {
+    const { games, blacklistedGames } = this.props
 
     const visibleGames = []
     // Remove hidden games
@@ -84,41 +63,68 @@ class AdminView extends React.Component<Props, State> {
       }
     }
 
-    const submitUpdate = async () => {
-      this.setState({ submitting: true })
+    return visibleGames
+  }
 
-      try {
-        await onSubmitGamesUpdate()
-        this.setState({ submitting: false })
-      } catch (error) {
-        console.log(`onSubmitGamesUpdate error: ${error}`)
-      }
+  // Assign game info to blacklisted games list
+  fillBlacklistedGameinfo = () => {
+    const { games, blacklistedGames } = this.props
+    games.forEach(game => {
+      blacklistedGames.forEach(blacklistedGame => {
+        if (game.id === blacklistedGame.id) {
+          Object.assign(blacklistedGame, game)
+        }
+      })
+    })
+  }
+
+  submitUpdate = async () => {
+    const { onSubmitGamesUpdate } = this.props
+    this.setState({ submitting: true })
+    try {
+      await onSubmitGamesUpdate()
+    } catch (error) {
+      console.log(`onSubmitGamesUpdate error: ${error}`)
     }
+    this.setState({ submitting: false })
+  }
 
-    const submitAssign = async () => {
-      this.setState({ submitting: true })
-
-      try {
-        await onSubmitPlayersAssign(signupTime)
-      } catch (error) {
-        console.log(`onSubmitPlayersAssign error: ${error}`)
-      }
-
-      this.setState({ submitting: false })
+  submitAssign = async () => {
+    const { onSubmitPlayersAssign, signupTime } = this.props
+    this.setState({ submitting: true })
+    try {
+      await onSubmitPlayersAssign(signupTime)
+    } catch (error) {
+      console.log(`onSubmitPlayersAssign error: ${error}`)
     }
+    this.setState({ submitting: false })
+  }
 
-    const submitTime = async () => {
-      this.setState({ submitting: true })
-
-      try {
-        await onSubmitSignupTime(date)
-      } catch (error) {
-        console.log(`onSubmitSignupTime error: ${error}`)
-      }
-
-      this.setState({ submitting: false })
+  submitTime = async () => {
+    const { onSubmitSignupTime, date } = this.props
+    this.setState({ submitting: true })
+    try {
+      await onSubmitSignupTime(date)
+    } catch (error) {
+      console.log(`onSubmitSignupTime error: ${error}`)
     }
+    this.setState({ submitting: false })
+  }
 
+  render() {
+    const {
+      t,
+      updateResponse,
+      blacklistedGames,
+      onSubmitSelectDate,
+      date,
+      signupTime,
+    } = this.props
+
+    const { submitting, loading } = this.state
+
+    const visibleGames = this.getVisibleGames()
+    this.fillBlacklistedGameinfo()
     const formattedDate = timeFormatter.weekdayAndTime(signupTime)
 
     return (
@@ -129,7 +135,7 @@ class AdminView extends React.Component<Props, State> {
             <button
               disabled={submitting}
               onClick={() => {
-                submitUpdate()
+                this.submitUpdate()
               }}
             >
               {t('button.updateDb')}
@@ -138,7 +144,7 @@ class AdminView extends React.Component<Props, State> {
             <button
               disabled={submitting}
               onClick={() => {
-                submitAssign()
+                this.submitAssign()
               }}
             >
               {t('button.assignPlayers')}
@@ -159,7 +165,7 @@ class AdminView extends React.Component<Props, State> {
             <button
               disabled={submitting}
               onClick={() => {
-                submitTime()
+                this.submitTime()
               }}
             >
               {t('button.saveTime')}
