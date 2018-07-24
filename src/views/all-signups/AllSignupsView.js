@@ -3,19 +3,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { translate } from 'react-i18next'
 import moment from 'moment'
-
-import { submitGetResults } from 'views/all-signups/allSignupsActions'
-import { submitGetGames } from 'views/all-games/allGamesActions'
-import { submitGetSettings } from 'views/admin/adminActions'
-
 import AllSignupsList from 'views/all-signups/components/AllSignupsList'
+import { getData } from 'utils/store'
 
 type Props = {
   t: Function,
-  onSubmitGetGames: Function,
   games: Array<any>,
-  onSubmitGetResults: Function,
-  onSubmitGetSettings: Function,
   results: Array<any>,
   signupTime: string,
 }
@@ -30,16 +23,7 @@ class AllSignupsView extends React.Component<Props, State> {
   }
 
   componentDidMount = async () => {
-    const {
-      onSubmitGetGames,
-      onSubmitGetSettings,
-      onSubmitGetResults,
-    } = this.props
-
-    await onSubmitGetGames()
-    await onSubmitGetSettings()
-    await onSubmitGetResults()
-
+    await getData()
     this.setState({ loading: false })
   }
 
@@ -72,7 +56,7 @@ class AllSignupsView extends React.Component<Props, State> {
 
     return (
       <div className="all-signups-view">
-        {loading && <p className="page-title">{t('loading')}</p>}
+        {loading && <p>{t('loading')}</p>}
         {!resultsAvailable && <p className="page-title">{t('noResults')}</p>}
         {!loading &&
           resultsAvailable && (
@@ -96,17 +80,9 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = (dispatch: Function) => {
-  return {
-    onSubmitGetGames: () => dispatch(submitGetGames()),
-    onSubmitGetResults: () => dispatch(submitGetResults()),
-    onSubmitGetSettings: () => dispatch(submitGetSettings()),
-  }
-}
-
 export default translate()(
   connect(
     mapStateToProps,
-    mapDispatchToProps
+    null
   )(AllSignupsView)
 )

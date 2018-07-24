@@ -3,17 +3,15 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { translate } from 'react-i18next'
 import moment from 'moment'
-
 import Blacklist from 'views/admin/components/Blacklist'
 import {
   submitGamesUpdate,
   submitPlayersAssign,
-  submitGetSettings,
   submitSignupTime,
 } from 'views/admin/adminActions'
-import { submitGetGames } from 'views/all-games/allGamesActions'
 import { submitSelectDate } from 'views/signup/signupActions'
 import TimesDropdown from 'components/TimesDropdown'
+import { getData } from 'utils/store'
 
 type Props = {
   onSubmitGamesUpdate: Function,
@@ -21,8 +19,6 @@ type Props = {
   t: Function,
   updateResponse: Object,
   games: Array<any>,
-  onSubmitGetGames: Function,
-  onSubmitGetSettings: Function,
   blacklistedGames: Array<any>,
   onSubmitSelectDate: Function,
   onSubmitSignupTime: Function,
@@ -32,22 +28,18 @@ type Props = {
 
 type State = {
   submitting: boolean,
+  loading: boolean,
 }
 
 class AdminView extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props)
-
-    this.state = {
-      submitting: false,
-    }
+  state = {
+    submitting: false,
+    loading: true,
   }
 
-  componentDidMount() {
-    const { onSubmitGetGames, onSubmitGetSettings } = this.props
-
-    onSubmitGetGames()
-    onSubmitGetSettings()
+  componentDidMount = async () => {
+    await getData()
+    this.setState({ loading: false })
   }
 
   render() {
@@ -64,7 +56,7 @@ class AdminView extends React.Component<Props, State> {
       signupTime,
     } = this.props
 
-    const { submitting } = this.state
+    const { submitting, loading } = this.state
 
     // Assign game info to blacklisted games list
     games.forEach(game => {
@@ -130,53 +122,58 @@ class AdminView extends React.Component<Props, State> {
 
     return (
       <div className="admin-view">
-        <button
-          disabled={submitting}
-          onClick={() => {
-            submitUpdate()
-          }}
-        >
-          {t('button.updateDb')}
-        </button>
+        {loading && <p>{t('loading')}</p>}
+        {!loading && (
+          <React.Fragment>
+            <button
+              disabled={submitting}
+              onClick={() => {
+                submitUpdate()
+              }}
+            >
+              {t('button.updateDb')}
+            </button>
 
-        <button
-          disabled={submitting}
-          onClick={() => {
-            submitAssign()
-          }}
-        >
-          {t('button.assignPlayers')}
-        </button>
+            <button
+              disabled={submitting}
+              onClick={() => {
+                submitAssign()
+              }}
+            >
+              {t('button.assignPlayers')}
+            </button>
 
-        {submitting && <p>{t('loading')}</p>}
+            {submitting && <p>{t('loading')}</p>}
 
-        {updateResponse.data.errors && (
-          <p className="error">{updateResponse.data.message}</p>
+            {updateResponse.data.errors && (
+              <p className="error">{updateResponse.data.message}</p>
+            )}
+
+            <p>{t('selectOpenSignup')}</p>
+
+            <p>
+              {t('signupOpen')} {formattedDate}
+            </p>
+
+            <button
+              disabled={submitting}
+              onClick={() => {
+                submitTime()
+              }}
+            >
+              {t('button.saveTime')}
+            </button>
+
+            <TimesDropdown
+              games={visibleGames}
+              onChange={onSubmitSelectDate}
+              date={date}
+              signupTime={signupTime}
+            />
+
+            <Blacklist blacklistedGames={blacklistedGames} />
+          </React.Fragment>
         )}
-
-        <p>{t('selectOpenSignup')}</p>
-
-        <p>
-          {t('signupOpen')} {formattedDate}
-        </p>
-
-        <button
-          disabled={submitting}
-          onClick={() => {
-            submitTime()
-          }}
-        >
-          {t('button.saveTime')}
-        </button>
-
-        <TimesDropdown
-          games={visibleGames}
-          onChange={onSubmitSelectDate}
-          date={date}
-          signupTime={signupTime}
-        />
-
-        <Blacklist blacklistedGames={blacklistedGames} />
       </div>
     )
   }
@@ -197,8 +194,6 @@ const mapDispatchToProps = (dispatch: Function) => {
     onSubmitGamesUpdate: () => dispatch(submitGamesUpdate()),
     onSubmitPlayersAssign: signupTime =>
       dispatch(submitPlayersAssign(signupTime)),
-    onSubmitGetGames: () => dispatch(submitGetGames()),
-    onSubmitGetSettings: () => dispatch(submitGetSettings()),
     onSubmitSelectDate: event => dispatch(submitSelectDate(event.target.value)),
     onSubmitSignupTime: date => dispatch(submitSignupTime(date)),
   }

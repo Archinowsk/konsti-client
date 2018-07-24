@@ -19,14 +19,12 @@ class LogoutPage extends React.Component<Props> {
   }
 }
 
-// Hook up events with actions and Redux's dispatch method
 const mapDispatchToProps = (dispatch: Function) => {
   return {
     onSubmitLogout: () => dispatch(submitLogout()),
   }
 }
 
-// Use connect method to hook up component with app state
 export default connect(
   null,
   mapDispatchToProps

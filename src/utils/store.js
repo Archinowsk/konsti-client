@@ -11,7 +11,7 @@ import settingsReducer from 'views/settings/settingsReducer'
 import signupReducer from 'views/signup/signupReducer'
 import adminReducer from 'views/admin/adminReducer'
 import allSignupsReducer from 'views/all-signups/allSignupsReducer'
-
+import loadData from 'utils/loadData'
 import { SUBMIT_LOGOUT } from 'views/login/loginActions'
 
 // Set reducers
@@ -54,5 +54,9 @@ if (isProduction) {
 
 // Create a Redux store object that holds the app state
 const store = createStore(rootReducer, initialState, enhancer)
+
+export const getData = () => {
+  return loadData(store)
+}
 
 export default store
