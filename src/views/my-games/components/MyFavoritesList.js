@@ -14,8 +14,8 @@ const MyFavoritesList = (props: Props) => {
 
   // Sort games by time and name
   const sortedGames = favoritedGames.sort((a, b) => {
-    const keyA = moment(a.startTime) + a.title
-    const keyB = moment(b.startTime) + b.title
+    const keyA = moment(a.startTime) + a.title.toLowerCase()
+    const keyB = moment(b.startTime) + b.title.toLowerCase()
     if (keyA < keyB) return -1
     if (keyA > keyB) return 1
     return 0
