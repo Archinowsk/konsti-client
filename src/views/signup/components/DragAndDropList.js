@@ -6,6 +6,7 @@ import { DragDropContext } from 'react-beautiful-dnd'
 import DropRow from 'views/signup/components/DropRow'
 import { reorder, move } from 'utils/dragAndDrop'
 import sleep from 'utils/sleep'
+import addGameInfoById from 'utils/addGameInfoById'
 
 type Props = {
   games: Array<Object>,
@@ -32,11 +33,28 @@ class DnDList extends React.Component<Props, State> {
     showWarning: false,
   }
 
-  // Load existing state from store
   componentDidMount() {
+    // Load existing state from store
+    this.loadState()
+  }
+
+  loadState = () => {
     const { games, signedGames, signupTime } = this.props
 
-    const gameList = this.sortGames(games)
+    // Fill game info
+    const myGames = { signedGames }
+    addGameInfoById(games, myGames)
+
+    const filteredGames = games.filter(game => {
+      for (let signedGame of signedGames) {
+        if (game.id === signedGame.id) {
+          return undefined
+        }
+      }
+      return game
+    })
+
+    const gameList = this.sortGames(filteredGames)
     const priority1 = []
     const priority2 = []
     const priority3 = []

@@ -52,7 +52,7 @@ class AllGamesView extends React.Component<Props, State> {
     const { games, myGames } = this.props
     const { loading } = this.state
 
-    addGameInfoById({ games, myGames })
+    addGameInfoById(games, myGames)
 
     const visibleGames = this.getVisibleGames()
 

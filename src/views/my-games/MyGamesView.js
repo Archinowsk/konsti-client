@@ -40,7 +40,7 @@ class MyGamesView extends React.Component<Props, State> {
     } = this.props
     const { loading } = this.state
 
-    addGameInfoById({ games, myGames })
+    addGameInfoById(games, myGames)
 
     return (
       <div className="my-games-view">
