@@ -22,22 +22,18 @@ type State = {
 }
 
 class DnDList extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props)
-    const { games } = this.props
-
-    this.state = {
-      gameList: games,
-      priority1: [],
-      priority2: [],
-      priority3: [],
-    }
+  state = {
+    gameList: [],
+    priority1: [],
+    priority2: [],
+    priority3: [],
   }
 
   // Load existing state from store
   componentDidMount() {
-    const { signedGames, signupTime } = this.props
+    const { games, signedGames, signupTime } = this.props
 
+    const gameList = this.sortGames(games)
     const priority1 = []
     const priority2 = []
     const priority3 = []
@@ -59,9 +55,21 @@ class DnDList extends React.Component<Props, State> {
     }
 
     this.setState({
+      gameList,
       priority1,
       priority2,
       priority3,
+    })
+  }
+
+  sortGames = games => {
+    // Sort games by name
+    return games.sort((a, b) => {
+      const keyA = a.title.toLowerCase()
+      const keyB = b.title.toLowerCase()
+      if (keyA < keyB) return -1
+      if (keyA > keyB) return 1
+      return 0
     })
   }
 
