@@ -148,12 +148,19 @@ class DnDList extends React.Component<Props, State> {
     }
     // Moved to new list
     else {
-      const result = move(
+      let result = move(
         this.getList(source.droppableId),
         this.getList(destination.droppableId),
         source,
         destination
       )
+
+      /*
+      // Sort games by name
+      if (destination.droppableId === 'gameList') {
+        result.gameList = this.sortGames(result.gameList)
+      }
+      */
 
       // Only allow one game in each priority
       if (destination.droppableId === 'priority1' && priority1.length >= 1) {
