@@ -73,6 +73,11 @@ button:disabled:hover {
   color: $font-gray;
 }
 
+.active {
+  background-color: $selected-button;
+  border: 2px solid $border-green;
+}
+
 .error {
   color: $error-red;
 }

@@ -9,10 +9,7 @@ import sleep from 'utils/sleep'
 import addGameInfoById from 'utils/addGameInfoById'
 
 type Props = {
-  games: Array<Object>,
   callback: Function,
-  signedGames: Array<Object>,
-  signupTime: string,
   t: Function,
 }
 
@@ -24,7 +21,7 @@ type State = {
   showWarning: boolean,
 }
 
-class DnDList extends React.Component<Props, State> {
+class DragAndDropList extends React.Component<Props, State> {
   state = {
     gameList: [],
     priority1: [],
@@ -35,11 +32,15 @@ class DnDList extends React.Component<Props, State> {
 
   componentDidMount() {
     // Load existing state from store
-    this.loadState()
+    this.loadState(this.props)
   }
 
-  loadState = () => {
-    const { games, signedGames, signupTime } = this.props
+  componentWillReceiveProps(nextProps) {
+    this.loadState(nextProps)
+  }
+
+  loadState = props => {
+    const { games, signedGames, signupTime } = props
 
     // Fill game info
     const myGames = { signedGames }
@@ -252,4 +253,4 @@ class DnDList extends React.Component<Props, State> {
   }
 }
 
-export default translate()(DnDList)
+export default translate()(DragAndDropList)

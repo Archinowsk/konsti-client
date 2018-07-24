@@ -4,13 +4,12 @@ import { translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import timeFormatter from 'utils/timeFormatter'
 import { submitSignup, submitSelectedGames } from 'views/signup/signupActions'
-import DnDList from 'views/signup/components/DragAndDropList'
+import DragAndDropList from 'views/signup/components/DragAndDropList'
 import getOpenSignupTimes from 'utils/getOpenSignupTimes'
 
 type Props = {
   t: Function,
   games: Array<any>,
-  signupTime: string,
   selectedGames: Array<any>,
   onSubmitSignup: Function,
   username: string,
@@ -26,6 +25,7 @@ type State = {
   submitting: boolean,
   signupSubmitted: boolean,
   signupError: boolean,
+  signupTime: string,
 }
 
 class SignupList extends React.Component<Props, State> {
@@ -36,11 +36,13 @@ class SignupList extends React.Component<Props, State> {
     submitting: false,
     signupSubmitted: false,
     signupError: false,
+    signupTime: null,
   }
 
   // Submit signup
   onSubmitClick = async () => {
-    const { signupTime, onSubmitSignup, selectedGames, username } = this.props
+    const { onSubmitSignup, selectedGames, username } = this.props
+    const { signupTime } = this.state
     this.setState({ submitting: true })
 
     // Send only game IDs and priorities to API
@@ -74,7 +76,8 @@ class SignupList extends React.Component<Props, State> {
 
   // Get games that have signup open and are not blacklisted
   filterGames = () => {
-    const { games, signupTime, blacklistedGames } = this.props
+    const { games, blacklistedGames } = this.props
+    const { signupTime } = this.state
 
     // Remove hidden games
     const visibleGames = []
@@ -108,31 +111,52 @@ class SignupList extends React.Component<Props, State> {
     onSubmitSelectedGames(selectedGames)
   }
 
+  selectSignupTime = signupTime => {
+    this.setState({ signupTime })
+  }
+
   render() {
-    const { games, t, signupTime, signedGames } = this.props
-    const { submitting, signupSubmitted, signupError } = this.state
+    const { games, t, signedGames } = this.props
+    const { submitting, signupSubmitted, signupError, signupTime } = this.state
 
     const filteredGames = this.filterGames()
+
     const { signupStartTime } = timeFormatter.startTime(signupTime)
     const { signupEndTime } = timeFormatter.endTime(signupTime)
 
+    if (signupTime === 'asd') {
+    }
+
+    const isActive = isActive => {
+      return isActive ? 'active' : ''
+    }
+
     const signupTimes = getOpenSignupTimes(games)
-    const formattedTimes = signupTimes.map(signupTime =>
-      timeFormatter.weekdayAndTime(signupTime)
-    )
+    const signupTimeButtons = signupTimes.map(time => (
+      <button
+        key={time}
+        onClick={() => this.selectSignupTime(time)}
+        className={`button-${signupTime} ${isActive(time === signupTime)}`}
+        disabled={time === signupTime}
+      >
+        {timeFormatter.weekdayAndTime(time)}
+      </button>
+    ))
 
     return (
       <div className="signup-list">
-        {filteredGames.length === 0 && (
+        {signupTimes.length === 0 && (
           <p className="page-title">{t('noOpenSignups')}</p>
+        )}
+
+        {signupTimes.length !== 0 && (
+          <p className="page-title">
+            {t('signupOpen')}: {signupTimeButtons}
+          </p>
         )}
 
         {filteredGames.length !== 0 && (
           <React.Fragment>
-            <p className="page-title">
-              {t('signupOpen')}: {formattedTimes.join(', ')}
-            </p>
-
             <p>
               {t('signupOpenBetweenCapital')} {signupStartTime}-{signupEndTime}
             </p>
@@ -141,7 +165,7 @@ class SignupList extends React.Component<Props, State> {
               {t('signupResultHint')} {signupEndTime}
             </p>
 
-            <DnDList
+            <DragAndDropList
               games={filteredGames}
               signedGames={signedGames}
               signupTime={signupTime}
@@ -161,7 +185,6 @@ class SignupList extends React.Component<Props, State> {
 
 const mapStateToProps = state => {
   return {
-    signupTime: state.admin.signupTime,
     selectedGames: state.signup.selectedGames,
     username: state.login.username,
     signedGames: state.myGames.signedGames,
