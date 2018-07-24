@@ -6,6 +6,7 @@ import { translate } from 'react-i18next'
 import SignupList from 'views/signup/components/SignupList'
 import GameDetails from 'components/GameDetails'
 import { getData } from 'utils/store'
+import Loading from 'components/Loading'
 
 type Props = {
   t: Function,
@@ -22,12 +23,12 @@ class SignupView extends React.Component<Props> {
   }
 
   render() {
-    const { games, t } = this.props
+    const { games } = this.props
     const { loading } = this.state
 
     return (
       <div className="signup-view">
-        {loading && <p>{t('loading')}</p>}
+        {loading && <Loading />}
         {!loading && (
           <Switch>
             <Route

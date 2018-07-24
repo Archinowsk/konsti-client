@@ -7,6 +7,7 @@ import GameDetails from 'components/GameDetails'
 import AllGamesList from 'views/all-games/components/AllGamesList'
 import addGameInfoById from 'utils/addGameInfoById'
 import { getData } from 'utils/store'
+import Loading from 'components/Loading'
 
 type Props = {
   t: Function,
@@ -48,7 +49,7 @@ class AllGamesView extends React.Component<Props, State> {
   }
 
   render() {
-    const { t, games, myGames } = this.props
+    const { games, myGames } = this.props
     const { loading } = this.state
 
     addGameInfoById({ games, myGames })
@@ -57,7 +58,7 @@ class AllGamesView extends React.Component<Props, State> {
 
     return (
       <div className="all-games-view">
-        {loading && <p>{t('loading')}</p>}
+        {loading && <Loading />}
         {!loading && (
           <Switch>
             <Route

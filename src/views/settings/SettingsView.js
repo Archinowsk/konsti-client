@@ -3,6 +3,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { translate } from 'react-i18next'
 import { getData } from 'utils/store'
+import Loading from 'components/Loading'
 
 type Props = {
   t: Function,
@@ -28,7 +29,7 @@ class MyGamesView extends React.Component<Props, State> {
 
     return (
       <div className="settings-view">
-        {loading && <p>{t('loading')}</p>}
+        {loading && <Loading />}
         {!loading && <p>{t('settings')}</p>}
       </div>
     )

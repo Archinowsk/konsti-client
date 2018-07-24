@@ -5,6 +5,7 @@ import { translate } from 'react-i18next'
 import moment from 'moment'
 import AllSignupsList from 'views/all-signups/components/AllSignupsList'
 import { getData } from 'utils/store'
+import Loading from 'components/Loading'
 
 type Props = {
   t: Function,
@@ -56,7 +57,7 @@ class AllSignupsView extends React.Component<Props, State> {
 
     return (
       <div className="all-signups-view">
-        {loading && <p>{t('loading')}</p>}
+        {loading && <Loading />}
         {!resultsAvailable && <p className="page-title">{t('noResults')}</p>}
         {!loading &&
           resultsAvailable && (

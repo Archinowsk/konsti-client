@@ -1,19 +1,18 @@
 /* @flow */
 import React from 'react'
 import { connect } from 'react-redux'
-import { translate } from 'react-i18next'
 import MySignupsList from 'views/my-games/components/MySignupsList'
 import MyFavoritesList from 'views/my-games/components/MyFavoritesList'
 import MyEnteredList from 'views/my-games/components/MyEnteredList'
 import addGameInfoById from 'utils/addGameInfoById'
 import { getData } from 'utils/store'
+import Loading from 'components/Loading'
 
 type Props = {
   signedGames: Array<any>,
   favoritedGames: Array<any>,
   enteredGames: Array<any>,
   games: Array<any>,
-  t: Function,
   myGames: Object,
 }
 
@@ -38,19 +37,14 @@ class MyGamesView extends React.Component<Props, State> {
       enteredGames,
       games,
       myGames,
-      t,
     } = this.props
     const { loading } = this.state
-
-    if (!games || games.length === 0) {
-      return <p>{t('loading')}</p>
-    }
 
     addGameInfoById({ games, myGames })
 
     return (
       <div className="my-games-view">
-        {loading && <p>{t('loading')}</p>}
+        {loading && <Loading />}
         {!loading && (
           <React.Fragment>
             <MyFavoritesList favoritedGames={favoritedGames} />
@@ -73,9 +67,7 @@ const mapStateToProps = state => {
   }
 }
 
-export default translate()(
-  connect(
-    mapStateToProps,
-    null
-  )(MyGamesView)
-)
+export default connect(
+  mapStateToProps,
+  null
+)(MyGamesView)

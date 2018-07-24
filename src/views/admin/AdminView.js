@@ -12,6 +12,7 @@ import {
 import { submitSelectDate } from 'views/signup/signupActions'
 import TimesDropdown from 'components/TimesDropdown'
 import { getData } from 'utils/store'
+import Loading from 'components/Loading'
 
 type Props = {
   onSubmitGamesUpdate: Function,
@@ -122,7 +123,7 @@ class AdminView extends React.Component<Props, State> {
 
     return (
       <div className="admin-view">
-        {loading && <p>{t('loading')}</p>}
+        {loading && <Loading />}
         {!loading && (
           <React.Fragment>
             <button
