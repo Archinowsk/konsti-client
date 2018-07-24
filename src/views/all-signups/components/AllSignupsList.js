@@ -12,8 +12,8 @@ const AllSignupsList = (props: Props) => {
 
   // Sort games by name
   const sortedResults = results.sort((a, b) => {
-    const keyA = a.username
-    const keyB = b.username
+    const keyA = a.username.toLowerCase()
+    const keyB = b.username.toLowerCase()
     if (keyA < keyB) return -1
     if (keyA > keyB) return 1
     return 0

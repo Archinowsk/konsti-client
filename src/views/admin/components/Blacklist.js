@@ -13,8 +13,8 @@ const Blacklist = (props: Props) => {
 
   // Sort games by name
   const sortedGames = blacklistedGames.sort((a, b) => {
-    const keyA = a.title
-    const keyB = b.title
+    const keyA = a.title.toLowerCase()
+    const keyB = b.title.toLowerCase()
     if (keyA < keyB) return -1
     if (keyA > keyB) return 1
     return 0
