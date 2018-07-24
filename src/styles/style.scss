@@ -201,8 +201,8 @@ input:focus {
 
 .drop-row {
   background-color: $background-gray;
-  min-height: 100px;
-  min-width: 200px;
+  min-height: 40px;
+  min-width: 30vw;
   padding: 10px;
 }
 
@@ -215,4 +215,8 @@ input:focus {
   border: 1px solid $border-gray;
   margin: 8px 0;
   padding: 8px;
+}
+
+.games-row {
+  margin: 0 10px 0 0;
 }
