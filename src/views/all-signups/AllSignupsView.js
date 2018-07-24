@@ -2,10 +2,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { translate } from 'react-i18next'
-import moment from 'moment'
 import AllSignupsList from 'views/all-signups/components/AllSignupsList'
 import { getData } from 'utils/store'
 import Loading from 'components/Loading'
+import timeFormatter from 'utils/timeFormatter'
 
 type Props = {
   t: Function,
@@ -53,7 +53,7 @@ class AllSignupsView extends React.Component<Props, State> {
       resultsAvailable = true
     }
 
-    const formattedDate = moment(signupTime).format('DD.M.YYYY HH:mm')
+    const formattedDate = timeFormatter.weekdayAndTime(signupTime)
 
     return (
       <div className="all-signups-view">

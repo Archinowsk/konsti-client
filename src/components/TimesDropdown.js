@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react'
-import moment from 'moment'
 import { translate } from 'react-i18next'
+import timeFormatter from 'utils/timeFormatter'
 
 type Props = {
   games: Array<any>,
@@ -26,7 +26,7 @@ const TimesDropdown = (props: Props) => {
   const sortedTimes = [...new Set(startTimes)].sort()
 
   const times = sortedTimes.map(sortedTime => {
-    const formattedDate = moment(sortedTime).format('DD.M.YYYY HH:mm')
+    const formattedDate = timeFormatter.weekdayAndTime(sortedTime)
     return (
       <option value={sortedTime} key={sortedTime}>
         {formattedDate}

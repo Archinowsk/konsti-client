@@ -2,7 +2,6 @@
 import React from 'react'
 import { translate } from 'react-i18next'
 import { connect } from 'react-redux'
-import moment from 'moment'
 import timeFormatter from 'utils/timeFormatter'
 import { submitSignup, submitSelectedGames } from 'views/signup/signupActions'
 import DnDList from 'views/signup/components/DragAndDropList'
@@ -113,7 +112,7 @@ class SignupList extends React.Component<Props, State> {
     const { submitting, signupSubmitted, signupError } = this.state
 
     const filteredGames = this.filterGames()
-    const formattedDate = moment(signupTime).format('dddd HH:mm')
+    const formattedDate = timeFormatter.weekdayAndTime(signupTime)
     const { signupStartTime } = timeFormatter.startTime(signupTime)
     const { signupEndTime } = timeFormatter.endTime(signupTime)
 

@@ -2,7 +2,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { translate } from 'react-i18next'
-import moment from 'moment'
 import Blacklist from 'views/admin/components/Blacklist'
 import {
   submitGamesUpdate,
@@ -13,6 +12,7 @@ import { submitSelectDate } from 'views/signup/signupActions'
 import TimesDropdown from 'components/TimesDropdown'
 import { getData } from 'utils/store'
 import Loading from 'components/Loading'
+import timeFormatter from 'utils/timeFormatter'
 
 type Props = {
   onSubmitGamesUpdate: Function,
@@ -119,7 +119,7 @@ class AdminView extends React.Component<Props, State> {
       this.setState({ submitting: false })
     }
 
-    const formattedDate = moment(signupTime).format('DD.M.YYYY HH:mm')
+    const formattedDate = timeFormatter.weekdayAndTime(signupTime)
 
     return (
       <div className="admin-view">

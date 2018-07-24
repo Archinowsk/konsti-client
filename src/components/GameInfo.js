@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react'
 import { translate } from 'react-i18next'
-import moment from 'moment'
+import timeFormatter from 'utils/timeFormatter'
 
 type Props = {
   t: Function,
@@ -86,8 +86,8 @@ class GameInfo extends React.PureComponent<Props> {
     const tagsList = this.getTags()
     const genresList = this.getGenres()
     const stylesList = this.getStyles()
-    const formattedStartTime = moment(game.startTime).format('dddd HH:mm')
-    const formattedEndTime = moment(game.endTime).format('HH:mm')
+    const formattedStartTime = timeFormatter.weekdayAndTime(game.startTime)
+    const formattedEndTime = timeFormatter.timeOnly(game.startTime)
 
     return (
       <div>

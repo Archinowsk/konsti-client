@@ -2,7 +2,7 @@
 import React from 'react'
 import { translate } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import moment from 'moment'
+import timeFormatter from 'utils/timeFormatter'
 
 type Props = {
   t: Function,
@@ -13,7 +13,7 @@ const MySignupsList = (props: Props) => {
   const { signedGames, t } = props
 
   const GamesList = signedGames.map(game => {
-    const formattedDate = moment(game.startTime).format('DD.M.YYYY HH:mm')
+    const formattedDate = timeFormatter.weekdayAndTime(game.startTime)
 
     return (
       <li key={game.id}>

@@ -2,7 +2,6 @@
 import React from 'react'
 import { translate } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import moment from 'moment'
 import timeFormatter from 'utils/timeFormatter'
 
 type Props = {
@@ -49,8 +48,7 @@ class AllGamesList extends React.PureComponent<Props> {
     const GamesList = []
 
     for (const [startTime, games] of Object.entries(sortedGames)) {
-      const formattedStartTime = moment(startTime).format('DD.M.YYYY HH:mm')
-
+      const formattedStartTime = timeFormatter.weekdayAndTime(startTime)
       const { signupStartTime, startTimeException } = timeFormatter.startTime(
         startTime
       )

@@ -71,6 +71,18 @@ const endTime = (startTime, customTime) => {
   return formattedTime
 }
 
-const timeFormatter = { startTime, endTime }
+const weekdayAndTime = time => {
+  return moment(time).format('dddd HH:mm')
+}
+
+const fullDate = time => {
+  return moment(time).format('DD.M.YYYY HH:mm')
+}
+
+const timeOnly = time => {
+  return moment(time).format('HH:mm')
+}
+
+const timeFormatter = { startTime, endTime, weekdayAndTime, fullDate, timeOnly }
 
 export default timeFormatter
