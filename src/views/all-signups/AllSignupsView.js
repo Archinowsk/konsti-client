@@ -58,7 +58,8 @@ class AllSignupsView extends React.Component<Props, State> {
     return (
       <div className="all-signups-view">
         {loading && <Loading />}
-        {!resultsAvailable && <p className="page-title">{t('noResults')}</p>}
+        {!loading &&
+          !resultsAvailable && <p className="page-title">{t('noResults')}</p>}
         {!loading &&
           resultsAvailable && (
             <React.Fragment>
