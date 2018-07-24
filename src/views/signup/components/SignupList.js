@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import timeFormatter from 'utils/timeFormatter'
 import { submitSignup, submitSelectedGames } from 'views/signup/signupActions'
 import DnDList from 'views/signup/components/DragAndDropList'
+import getOpenSignupTimes from 'utils/getOpenSignupTimes'
 
 type Props = {
   t: Function,
@@ -108,13 +109,17 @@ class SignupList extends React.Component<Props, State> {
   }
 
   render() {
-    const { t, signupTime, signedGames } = this.props
+    const { games, t, signupTime, signedGames } = this.props
     const { submitting, signupSubmitted, signupError } = this.state
 
     const filteredGames = this.filterGames()
-    const formattedDate = timeFormatter.weekdayAndTime(signupTime)
     const { signupStartTime } = timeFormatter.startTime(signupTime)
     const { signupEndTime } = timeFormatter.endTime(signupTime)
+
+    const signupTimes = getOpenSignupTimes(games)
+    const formattedTimes = signupTimes.map(signupTime =>
+      timeFormatter.weekdayAndTime(signupTime)
+    )
 
     return (
       <div className="signup-list">
@@ -125,7 +130,7 @@ class SignupList extends React.Component<Props, State> {
         {filteredGames.length !== 0 && (
           <React.Fragment>
             <p className="page-title">
-              {t('signupOpen')}: {formattedDate}
+              {t('signupOpen')}: {formattedTimes.join(', ')}
             </p>
 
             <p>
