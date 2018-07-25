@@ -28,7 +28,13 @@ class GroupView extends React.Component<Props, State> {
     return (
       <div className="group-view">
         {loading && <Loading />}
-        {!loading && <p className="page-title">{t('pages.group')}</p>}
+        {!loading && (
+          <React.Fragment>
+            <p className="page-title">{t('pages.group')}</p>
+            <button>{t('button.createGroup')}</button>
+            <button>{t('button.joinGroup')}</button>
+          </React.Fragment>
+        )}
       </div>
     )
   }
