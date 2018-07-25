@@ -9,10 +9,10 @@ import {
   submitSignupTime,
 } from 'views/admin/adminActions'
 import { submitSelectDate } from 'views/signup/signupActions'
-import TimesDropdown from 'components/TimesDropdown'
+// import TimesDropdown from 'components/TimesDropdown'
 import { getData } from 'utils/store'
 import Loading from 'components/Loading'
-import timeFormatter from 'utils/timeFormatter'
+// import timeFormatter from 'utils/timeFormatter'
 
 type Props = {
   onSubmitGamesUpdate: Function,
@@ -21,7 +21,7 @@ type Props = {
   updateResponse: Object,
   games: Array<any>,
   blacklistedGames: Array<any>,
-  onSubmitSelectDate: Function,
+  // onSubmitSelectDate: Function,
   onSubmitSignupTime: Function,
   date: string,
   signupTime: string,
@@ -116,16 +116,16 @@ class AdminView extends React.Component<Props, State> {
       t,
       updateResponse,
       blacklistedGames,
-      onSubmitSelectDate,
-      date,
-      signupTime,
+      // onSubmitSelectDate,
+      // date,
+      // signupTime,
     } = this.props
 
     const { submitting, loading } = this.state
 
-    const visibleGames = this.getVisibleGames()
+    // const visibleGames = this.getVisibleGames()
     this.fillBlacklistedGameinfo()
-    const formattedDate = timeFormatter.weekdayAndTime(signupTime)
+    // const formattedDate = timeFormatter.weekdayAndTime(signupTime)
 
     return (
       <div className="admin-view">
@@ -156,6 +156,7 @@ class AdminView extends React.Component<Props, State> {
               <p className="error">{updateResponse.data.message}</p>
             )}
 
+            {/*
             <p>{t('selectOpenSignup')}</p>
 
             <p>
@@ -177,7 +178,7 @@ class AdminView extends React.Component<Props, State> {
               date={date}
               signupTime={signupTime}
             />
-
+            */}
             <Blacklist blacklistedGames={blacklistedGames} />
           </React.Fragment>
         )}
