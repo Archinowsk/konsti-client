@@ -3,7 +3,11 @@ import React from 'react'
 import { translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import timeFormatter from 'utils/timeFormatter'
-import { submitSignup, submitSelectedGames } from 'views/signup/signupActions'
+import {
+  submitSignup,
+  submitSelectedGames,
+  submitSelectDate,
+} from 'views/signup/signupActions'
 import DragAndDropList from 'views/signup/components/DragAndDropList'
 import getOpenSignupTimes from 'utils/getOpenSignupTimes'
 import sleep from 'utils/sleep'
@@ -17,15 +21,15 @@ type Props = {
   username: string,
   blacklistedGames: Array<Object>,
   onSubmitSelectedGames: Function,
+  onSubmitSelectDate: Function,
+  signupTime: string,
 }
 
 type State = {
   submitting: boolean,
   signupSubmitted: boolean,
   signupError: boolean,
-  signupTime: string,
   signupTimes: Array<string>,
-  saved: boolean,
 }
 
 class SignupList extends React.Component<Props, State> {
@@ -39,15 +43,12 @@ class SignupList extends React.Component<Props, State> {
       signupSubmitted: false,
       signupError: false,
       signupTimes: signupTimes,
-      signupTime: null,
-      saved: true,
     }
   }
 
   // Submit signup
   onSubmitClick = async () => {
-    const { onSubmitSignup, selectedGames, username } = this.props
-    const { signupTime } = this.state
+    const { onSubmitSignup, selectedGames, username, signupTime } = this.props
     this.setState({ submitting: true })
 
     // Submit only games for selected time
@@ -81,11 +82,10 @@ class SignupList extends React.Component<Props, State> {
 
     if (response && response.status === 'success') {
       this.showMessage('signupSubmitted')
-      this.setState({ submitting: false, saved: true })
     } else if (response && response.status === 'error') {
       this.showMessage('signupError')
-      this.setState({ submitting: false, saved: true })
     }
+    this.setState({ submitting: false })
   }
 
   // Cancel signup
@@ -115,8 +115,7 @@ class SignupList extends React.Component<Props, State> {
 
   // Get games that have signup open and are not blacklisted
   filterGames = () => {
-    const { games, blacklistedGames } = this.props
-    const { signupTime } = this.state
+    const { games, blacklistedGames, signupTime } = this.props
 
     // Remove hidden games
     const visibleGames = []
@@ -146,8 +145,7 @@ class SignupList extends React.Component<Props, State> {
 
   // Get data from child component
   callback = games => {
-    const { onSubmitSelectedGames, selectedGames } = this.props
-    const { signupTime } = this.state
+    const { onSubmitSelectedGames, selectedGames, signupTime } = this.props
 
     // Combine new selected games to existing
     const temp = selectedGames.filter(
@@ -156,13 +154,12 @@ class SignupList extends React.Component<Props, State> {
     const combined = temp.concat(games)
 
     onSubmitSelectedGames(combined)
-
-    this.setState({ saved: false })
   }
 
-  // Select signup time from buttons
+  // Select signup time from buttons and store it
   selectSignupTime = signupTime => {
-    this.setState({ signupTime })
+    const { onSubmitSelectDate } = this.props
+    onSubmitSelectDate(signupTime)
   }
 
   showMessage = async message => {
@@ -176,15 +173,8 @@ class SignupList extends React.Component<Props, State> {
   }
 
   render() {
-    const { t, selectedGames } = this.props
-    const {
-      submitting,
-      signupSubmitted,
-      signupError,
-      signupTimes,
-      signupTime,
-      saved,
-    } = this.state
+    const { t, selectedGames, signupTime } = this.props
+    const { submitting, signupSubmitted, signupError, signupTimes } = this.state
 
     const filteredGames = this.filterGames()
 
@@ -193,16 +183,18 @@ class SignupList extends React.Component<Props, State> {
 
     const isActive = isActive => (isActive ? 'active' : '')
 
-    const signupTimeButtons = signupTimes.map(time => (
-      <button
-        key={time}
-        onClick={() => this.selectSignupTime(time)}
-        className={`button-${time} ${isActive(time === signupTime)}`}
-        disabled={time === signupTime}
-      >
-        {timeFormatter.weekdayAndTime(time)}
-      </button>
-    ))
+    const signupTimeButtons = signupTimes.map(time => {
+      return (
+        <button
+          key={time}
+          onClick={() => this.selectSignupTime(time)}
+          className={`button-${time} ${isActive(time === signupTime)}`}
+          disabled={time === signupTime}
+        >
+          {timeFormatter.weekdayAndTime(time)}
+        </button>
+      )
+    })
 
     return (
       <div className="signup-list">
@@ -226,10 +218,7 @@ class SignupList extends React.Component<Props, State> {
             <p>{t('signupGuide')}</p>
 
             <div>
-              <button
-                disabled={submitting || saved}
-                onClick={this.onSubmitClick}
-              >
+              <button disabled={submitting} onClick={this.onSubmitClick}>
                 {t('button.signup')}
               </button>
               <button disabled={submitting} onClick={this.onCancelClick}>
@@ -260,6 +249,7 @@ const mapStateToProps = state => {
     selectedGames: state.signup.selectedGames,
     username: state.login.username,
     blacklistedGames: state.admin.blacklistedGames,
+    signupTime: state.signup.date,
   }
 }
 
@@ -268,6 +258,7 @@ const mapDispatchToProps = (dispatch: Function) => {
     onSubmitSelectedGames: selectedGames =>
       dispatch(submitSelectedGames(selectedGames)),
     onSubmitSignup: signupData => dispatch(submitSignup(signupData)),
+    onSubmitSelectDate: signupTime => dispatch(submitSelectDate(signupTime)),
   }
 }
 
