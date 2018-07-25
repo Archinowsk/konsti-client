@@ -29,7 +29,7 @@ export const submitSignup = (signupData: Object) => {
       dispatch(
         submitSignupAsync({
           status: 'submitSuccess',
-          selectedGames: signupData.selectedGames,
+          selectedGames: response.signedGames,
         })
       )
     }

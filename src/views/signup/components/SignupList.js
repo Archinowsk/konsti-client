@@ -69,6 +69,7 @@ class SignupList extends React.Component<Props, State> {
     const signupData = {
       username,
       selectedGames: selectedGameIds,
+      time: signupTime,
     }
 
     let response = null
@@ -146,17 +147,12 @@ class SignupList extends React.Component<Props, State> {
   // Get data from child component
   callback = games => {
     const { onSubmitSelectedGames, selectedGames } = this.props
+    const { signupTime } = this.state
 
     // Combine new selected games to existing
-    const temp = selectedGames.filter(selectedGame => {
-      for (let game of games) {
-        if (selectedGame.time === game.time) {
-          return undefined
-        }
-      }
-      return selectedGame
-    })
-
+    const temp = selectedGames.filter(
+      selectedGame => selectedGame.time !== signupTime
+    )
     const combined = temp.concat(games)
 
     onSubmitSelectedGames(combined)
@@ -229,15 +225,23 @@ class SignupList extends React.Component<Props, State> {
             </p>
             <p>{t('signupGuide')}</p>
 
-            <button disabled={submitting || saved} onClick={this.onSubmitClick}>
-              {t('button.signup')}
-            </button>
-            <button disabled={submitting} onClick={this.onCancelClick}>
-              {t('button.cancelSignup')}
-            </button>
-            {signupSubmitted && <p className="success">{t('signupSaved')}</p>}
-            {signupError && <p className="error">{t('signupFailed')}</p>}
-
+            <div>
+              <button
+                disabled={submitting || saved}
+                onClick={this.onSubmitClick}
+              >
+                {t('button.signup')}
+              </button>
+              <button disabled={submitting} onClick={this.onCancelClick}>
+                {t('button.cancelSignup')}
+              </button>
+              {signupSubmitted && (
+                <span className="success">{t('signupSaved')}</span>
+              )}
+              {signupError && (
+                <span className="error">{t('signupFailed')}</span>
+              )}
+            </div>
             <DragAndDropList
               games={filteredGames}
               signupTime={signupTime}
