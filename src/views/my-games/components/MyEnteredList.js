@@ -15,8 +15,8 @@ const MyEnteredList = (props: Props) => {
 
   // Sort games by time and name
   const sortedGames = enteredGames.sort((a, b) => {
-    const keyA = moment(a.startTime) + a.details.title
-    const keyB = moment(b.startTime) + b.details.title
+    const keyA = moment(a.details.startTime) + a.details.title.toLowerCase()
+    const keyB = moment(b.details.startTime) + b.details.title.toLowerCase()
     if (keyA < keyB) return -1
     if (keyA > keyB) return 1
     return 0
