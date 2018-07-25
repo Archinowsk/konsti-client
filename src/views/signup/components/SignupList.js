@@ -11,11 +11,11 @@ import config from 'config'
 
 type Props = {
   t: Function,
-  games: Array<any>,
-  selectedGames: Array<any>,
+  games: Array<Object>,
+  selectedGames: Array<Object>,
   onSubmitSignup: Function,
   username: string,
-  blacklistedGames: Array<any>,
+  blacklistedGames: Array<Object>,
   onSubmitSelectedGames: Function,
 }
 
@@ -25,6 +25,7 @@ type State = {
   signupError: boolean,
   signupTime: string,
   signupTimes: Array<string>,
+  saved: boolean,
 }
 
 class SignupList extends React.Component<Props, State> {
@@ -39,6 +40,7 @@ class SignupList extends React.Component<Props, State> {
       signupError: false,
       signupTimes: signupTimes,
       signupTime: null,
+      saved: true,
     }
   }
 
@@ -46,7 +48,7 @@ class SignupList extends React.Component<Props, State> {
   onSubmitClick = async () => {
     const { onSubmitSignup, selectedGames, username } = this.props
     const { signupTime } = this.state
-    this.setState({ submitting: true })
+    this.setState({ submitting: true, saved: false })
 
     // Send only game IDs and priorities to API
     const selectedGameIds = []
@@ -136,9 +138,24 @@ class SignupList extends React.Component<Props, State> {
   }
 
   // Get data from child component
-  callback = selectedGames => {
-    const { onSubmitSelectedGames } = this.props
-    onSubmitSelectedGames(selectedGames)
+  callback = games => {
+    const { onSubmitSelectedGames, selectedGames } = this.props
+
+    // Combine new selected games to existing
+    const temp = selectedGames.filter(selectedGame => {
+      for (let game of games) {
+        if (selectedGame.time === game.time) {
+          return undefined
+        }
+      }
+      return selectedGame
+    })
+
+    const combined = temp.concat(games)
+
+    onSubmitSelectedGames(combined)
+
+    this.setState({ saved: false })
   }
 
   // Select signup time from buttons
@@ -164,6 +181,7 @@ class SignupList extends React.Component<Props, State> {
       signupError,
       signupTimes,
       signupTime,
+      saved,
     } = this.state
 
     const filteredGames = this.filterGames()
@@ -205,7 +223,7 @@ class SignupList extends React.Component<Props, State> {
             </p>
             <p>{t('signupGuide')}</p>
 
-            <button disabled={submitting} onClick={this.onSubmitClick}>
+            <button disabled={submitting || saved} onClick={this.onSubmitClick}>
               {t('button.signup')}
             </button>
             <button disabled={submitting} onClick={this.onCancelClick}>

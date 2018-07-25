@@ -196,8 +196,8 @@ class DragAndDropList extends React.Component<Props, State> {
       selectedGames.push({
         id: game.id,
         priority: 1,
-        details: game,
         time: game.startTime,
+        details: game,
       })
     }
 
@@ -205,8 +205,8 @@ class DragAndDropList extends React.Component<Props, State> {
       selectedGames.push({
         id: game.id,
         priority: 2,
-        details: game,
         time: game.startTime,
+        details: game,
       })
     }
 
@@ -214,8 +214,8 @@ class DragAndDropList extends React.Component<Props, State> {
       selectedGames.push({
         id: game.id,
         priority: 3,
-        details: game,
         time: game.startTime,
+        details: game,
       })
     }
 

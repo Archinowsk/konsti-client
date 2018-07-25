@@ -20,12 +20,10 @@ const loadData = async (store: Object) => {
     await store.dispatch(submitGetSettings())
   }
 
-  if (!myGamesLoaded) {
-    // Get results data
-    await store.dispatch(submitGetResults())
-  }
+  // Get results data
+  await store.dispatch(submitGetResults())
 
-  if (loggedIn) {
+  if (loggedIn && !myGamesLoaded) {
     // Get user data
     const username = state.login.username
     await store.dispatch(submitGetUser(username))
