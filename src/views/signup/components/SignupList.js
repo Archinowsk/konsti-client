@@ -90,11 +90,12 @@ class SignupList extends React.Component<Props, State> {
 
   // Cancel signup
   onCancelClick = async () => {
-    const { onSubmitSignup, username } = this.props
+    const { onSubmitSignup, username, signupTime } = this.props
 
     const signupData = {
       username,
       selectedGames: [],
+      time: signupTime,
     }
 
     let response = null
