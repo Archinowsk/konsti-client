@@ -45,7 +45,7 @@ export const submitSelectDate = (date: Date) => {
   }
 }
 
-export const submitSelectedGames = (selectedGames: Object) => {
+export const submitSelectedGames = (selectedGames: Array) => {
   return {
     type: SUBMIT_SELECTED_GAMES,
     selectedGames,

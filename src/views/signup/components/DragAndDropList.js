@@ -193,15 +193,30 @@ class DragAndDropList extends React.Component<Props, State> {
 
     const selectedGames = []
     for (let game of priority1) {
-      selectedGames.push({ id: game.id, priority: 1 })
+      selectedGames.push({
+        id: game.id,
+        priority: 1,
+        details: game,
+        time: game.startTime,
+      })
     }
 
     for (let game of priority2) {
-      selectedGames.push({ id: game.id, priority: 2 })
+      selectedGames.push({
+        id: game.id,
+        priority: 2,
+        details: game,
+        time: game.startTime,
+      })
     }
 
     for (let game of priority3) {
-      selectedGames.push({ id: game.id, priority: 3 })
+      selectedGames.push({
+        id: game.id,
+        priority: 3,
+        details: game,
+        time: game.startTime,
+      })
     }
 
     callback(selectedGames)
