@@ -18,7 +18,8 @@
     "sendFeedback": "Send feedback",
     "feedbackSent": "Feedback sent",
     "createGroup": "Create group",
-    "joinGroup": "Join group"
+    "joinGroup": "Join group",
+    "addMember": "Add member"
   },
   "username": "Username",
   "password": "Password",
@@ -134,5 +135,9 @@
     "priority3": "Game Wish 3"
   },
   "details": "Details",
-  "onlyOneGameWarning": "Only one game allowed"
+  "onlyOneGameWarning": "Only one game allowed",
+  "enterGroupMemberCode": "User's code",
+  "enterGroupLeaderCode": "Group leader's code",
+  "joinGroup": "Join group",
+  "addGroupMember": "Add group member"
 }

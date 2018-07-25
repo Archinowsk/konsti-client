@@ -18,7 +18,8 @@
     "sendFeedback": "Lähetä palautetta",
     "feedbackSent": "Palaute lähetetty",
     "createGroup": "Luo ryhmä",
-    "joinGroup": "Join group"
+    "joinGroup": "Join group",
+    "addMember": "Lisää jäsen"
   },
   "username": "Käyttäjänimi",
   "password": "Salasana",
@@ -136,5 +137,9 @@
     "priority3": "Pelitoive 3"
   },
   "details": "Tietoja",
-  "onlyOneGameWarning": "Vain yksi peli sallittu"
+  "onlyOneGameWarning": "Vain yksi peli sallittu",
+  "enterGroupMemberCode": "Käyttäjän koodi",
+  "enterGroupLeaderCode": "Ryhmänjohtajan koodi",
+  "joinGroup": "Liity ryhmään",
+  "addGroupMember": "Lisää jäsen ryhmään"
 }
