@@ -13,12 +13,14 @@ const MySignupsList = (props: Props) => {
   const { signedGames, t } = props
 
   const GamesList = signedGames.map(game => {
-    const formattedDate = timeFormatter.weekdayAndTime(game.startTime)
+    const formattedDate = timeFormatter.weekdayAndTime(game.details.startTime)
 
+    console.log(game.startTime)
+    console.log(formattedDate)
     return (
       <li key={game.id}>
         <Link to={`/games/${game.id}`}>
-          {formattedDate}: {game.title} ({game.priority})
+          {formattedDate}: {game.details.title} ({game.priority})
         </Link>
       </li>
     )

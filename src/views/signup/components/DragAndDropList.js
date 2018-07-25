@@ -6,7 +6,6 @@ import { DragDropContext } from 'react-beautiful-dnd'
 import DropRow from 'views/signup/components/DropRow'
 import { reorder, move } from 'utils/dragAndDrop'
 import sleep from 'utils/sleep'
-import addGameInfoById from 'utils/addGameInfoById'
 import config from 'config'
 
 type Props = {
@@ -41,15 +40,11 @@ class DragAndDropList extends React.Component<Props, State> {
   }
 
   loadState = props => {
-    const { games, signedGames, signupTime } = props
-
-    // Fill game info
-    const myGames = { signedGames }
-    addGameInfoById(games, myGames)
+    const { games, selectedGames, signupTime } = props
 
     const filteredGames = games.filter(game => {
-      for (let signedGame of signedGames) {
-        if (game.id === signedGame.id) {
+      for (let selectedGame of selectedGames) {
+        if (game.id === selectedGame.id) {
           return undefined
         }
       }
@@ -61,19 +56,22 @@ class DragAndDropList extends React.Component<Props, State> {
     const priority2 = []
     const priority3 = []
 
-    for (let signedGame of signedGames) {
-      if (signedGame.priority === 1 && signedGame.startTime === signupTime) {
-        priority1.push(signedGame)
-      } else if (
-        signedGame.priority === 2 &&
-        signedGame.startTime === signupTime
+    for (let selectedGame of selectedGames) {
+      if (
+        selectedGame.priority === 1 &&
+        selectedGame.startTime === signupTime
       ) {
-        priority2.push(signedGame)
+        priority1.push(selectedGame)
       } else if (
-        signedGame.priority === 3 &&
-        signedGame.startTime === signupTime
+        selectedGame.priority === 2 &&
+        selectedGame.startTime === signupTime
       ) {
-        priority3.push(signedGame)
+        priority2.push(selectedGame)
+      } else if (
+        selectedGame.priority === 3 &&
+        selectedGame.startTime === signupTime
+      ) {
+        priority3.push(selectedGame)
       }
     }
 

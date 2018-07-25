@@ -15,7 +15,6 @@ type Props = {
   selectedGames: Array<any>,
   onSubmitSignup: Function,
   username: string,
-  signedGames: Array<any>,
   blacklistedGames: Array<any>,
   onSubmitSelectedGames: Function,
 }
@@ -158,7 +157,7 @@ class SignupList extends React.Component<Props, State> {
   }
 
   render() {
-    const { t, signedGames } = this.props
+    const { t, selectedGames } = this.props
     const {
       submitting,
       signupSubmitted,
@@ -217,9 +216,9 @@ class SignupList extends React.Component<Props, State> {
 
             <DragAndDropList
               games={filteredGames}
-              signedGames={signedGames}
               signupTime={signupTime}
               callback={this.callback}
+              selectedGames={selectedGames}
             />
           </React.Fragment>
         )}
@@ -232,15 +231,14 @@ const mapStateToProps = state => {
   return {
     selectedGames: state.signup.selectedGames,
     username: state.login.username,
-    signedGames: state.myGames.signedGames,
     blacklistedGames: state.admin.blacklistedGames,
   }
 }
 
 const mapDispatchToProps = (dispatch: Function) => {
   return {
-    onSubmitSelectedGames: signedGames =>
-      dispatch(submitSelectedGames(signedGames)),
+    onSubmitSelectedGames: selectedGames =>
+      dispatch(submitSelectedGames(selectedGames)),
     onSubmitSignup: signupData => dispatch(submitSignup(signupData)),
   }
 }
