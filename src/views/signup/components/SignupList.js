@@ -7,6 +7,7 @@ import { submitSignup, submitSelectedGames } from 'views/signup/signupActions'
 import DragAndDropList from 'views/signup/components/DragAndDropList'
 import getOpenSignupTimes from 'utils/getOpenSignupTimes'
 import sleep from 'utils/sleep'
+import config from 'config'
 
 type Props = {
   t: Function,
@@ -152,7 +153,7 @@ class SignupList extends React.Component<Props, State> {
     } else if (message === 'signupError') {
       this.setState({ signupError: true })
     }
-    await sleep(2000)
+    await sleep(config.MESSAGE_DELAY)
     this.setState({ signupSubmitted: false, signupError: false })
   }
 

@@ -7,6 +7,7 @@ import DropRow from 'views/signup/components/DropRow'
 import { reorder, move } from 'utils/dragAndDrop'
 import sleep from 'utils/sleep'
 import addGameInfoById from 'utils/addGameInfoById'
+import config from 'config'
 
 type Props = {
   callback: Function,
@@ -113,7 +114,7 @@ class DragAndDropList extends React.Component<Props, State> {
 
   showWarning = async () => {
     this.setState({ showWarning: true })
-    await sleep(2000)
+    await sleep(config.MESSAGE_DELAY)
     this.setState({ showWarning: false })
   }
 
