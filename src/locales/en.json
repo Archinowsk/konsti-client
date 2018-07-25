@@ -37,7 +37,8 @@
     "signUp": "Sign Up",
     "settings": "Settings",
     "admin": "Admin",
-    "allsignups": "All signup results"
+    "allsignups": "All signup results",
+    "group": "Group"
   },
   "gameInfo": {
     "title": "Title",

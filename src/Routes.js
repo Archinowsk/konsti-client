@@ -13,7 +13,8 @@ import Signup from 'views/signup/SignupView'
 import Registration from 'views/registration/RegistrationView'
 import Admin from 'views/admin/AdminView'
 import AllSignups from 'views/all-signups/AllSignupsView'
-import LogoutView from 'views/logout/LogoutView'
+import Logout from 'views/logout/LogoutView'
+import Group from 'views/group/GroupView'
 
 type Props = {
   loggedIn: boolean,
@@ -61,22 +62,25 @@ const Routes = (props: Props) => {
           <Link to="/games" className="router-link">
             {t('pages.allGames')}
           </Link>
-
           {(userGroup === 'user' || userGroup === 'admin') && (
             <Link to="/mygames" className="router-link">
               {t('pages.myGames')}
             </Link>
           )}
-
           {(userGroup === 'user' || userGroup === 'admin') && (
             <Link to="/signup" className="router-link">
               {t('pages.signUp')}
             </Link>
           )}
-
           {(userGroup === 'user' || userGroup === 'admin') && (
             <Link to="/allsignups" className="router-link">
               {t('pages.allsignups')}
+            </Link>
+          )}
+
+          {(userGroup === 'user' || userGroup === 'admin') && (
+            <Link to="/group" className="router-link">
+              {t('pages.group')}
             </Link>
           )}
 
@@ -91,13 +95,11 @@ const Routes = (props: Props) => {
               {t('pages.admin')}
             </Link>
           )}
-
           {(userGroup === 'user' || userGroup === 'admin') && (
             <Link to="/logout" className="router-link">
               {t('button.logout')}
             </Link>
           )}
-
           <hr />
         </div>
         <Switch>
@@ -107,8 +109,9 @@ const Routes = (props: Props) => {
           <Route path="/signup" component={Signup} />
           <Route path="/allsignups" component={AllSignups} />
           {/* <Route path="/settings" component={Settings} /> */}
+          <Route path="/group" component={Group} />
           <Route path="/admin" component={Admin} />
-          <Route path="/logout" component={LogoutView} />
+          <Route path="/logout" component={Logout} />
           <Redirect from="/*" to="/" />
         </Switch>
       </React.Fragment>

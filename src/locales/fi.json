@@ -37,7 +37,8 @@
     "signUp": "Ilmoittaudu",
     "settings": "Asetukset",
     "admin": "Ylläpito",
-    "allsignups": "Kaikki ilmoittautumistulokset"
+    "allsignups": "Kaikki ilmoittautumistulokset",
+    "group": "Ryhmä"
   },
   "gameInfo": {
     "title": "Pelin nimi",
