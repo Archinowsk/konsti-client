@@ -53,7 +53,7 @@ class SignupList extends React.Component<Props, State> {
 
     // Submit only games for selected time
     const filteredGames = selectedGames.filter(
-      selectedGame => selectedGame.time === signupTime
+      selectedGame => selectedGame.details.startTime === signupTime
     )
 
     // Send only game IDs and priorities to API
@@ -63,7 +63,7 @@ class SignupList extends React.Component<Props, State> {
         id: filteredGame.id,
         priority: filteredGame.priority,
         time: signupTime,
-        details: filteredGame.details,
+        // details: filteredGame.details,
       })
     })
 
@@ -150,7 +150,7 @@ class SignupList extends React.Component<Props, State> {
 
     // Combine new selected games to existing
     const temp = selectedGames.filter(
-      selectedGame => selectedGame.time !== signupTime
+      selectedGame => selectedGame.details.startTime !== signupTime
     )
     const combined = temp.concat(games)
 
