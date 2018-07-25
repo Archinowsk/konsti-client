@@ -15,8 +15,6 @@ const MySignupsList = (props: Props) => {
   const GamesList = signedGames.map(game => {
     const formattedDate = timeFormatter.weekdayAndTime(game.details.startTime)
 
-    console.log(game.startTime)
-    console.log(formattedDate)
     return (
       <li key={game.id}>
         <Link to={`/games/${game.id}`}>
