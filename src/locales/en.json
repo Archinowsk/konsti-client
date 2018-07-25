@@ -117,7 +117,7 @@
   "signupResultsfor": "Signup results for games starting at",
   "noResults": "No signup results yet",
   "signupGuide":
-    "You can choose one game for each priority. Choose games by dragging. Remember to save changes.",
+    "You can choose three game wishes in order. Choose games by dragging. Remember to save changes.",
   "signupSaved": "Signup saved",
   "signupFailed": "Signup failed",
   "signupResultHint": "Sign up results are visible on 'My Games' page at",
@@ -125,9 +125,9 @@
   "exceptionInTime": "Please note the exception in signup end time.",
   "signupView": {
     "signupOpenGames": "Open games",
-    "priority1": "Priority 1",
-    "priority2": "Priority 2",
-    "priority3": "Priority 3"
+    "priority1": "Game Wish 1",
+    "priority2": "Game Wish 2",
+    "priority3": "Game Wish 3"
   },
   "details": "Details",
   "onlyOneGameWarning": "Only one game allowed"

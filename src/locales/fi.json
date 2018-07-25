@@ -118,7 +118,7 @@
   "signupResultsfor": "Ilmoittautumisen tulokset peleille jotka alkavat",
   "noResults": "Ei ilmoittautumistietoja vielä",
   "signupGuide":
-    "Voit valita yhden pelin jokaiselle prioriteetille. Valitse pelit vetämällä. Muista tallentaa muutokset.",
+    "Voit valita kolme pelitoivetta järjestyksessä. Valitse pelit vetämällä. Muista tallentaa muutokset.",
   "signupSaved": "Ilmoittautuminen tallennettu",
   "signupFailed": "Ilmoittautuminen epäonnistui",
   "signupResultHint":
@@ -127,9 +127,9 @@
   "exceptionInTime": "Huomaa poikkeava ilmoittautumisen päättymisaika.",
   "signupView": {
     "signupOpenGames": "Avoimet pelit",
-    "priority1": "Vaihtoehto 1",
-    "priority2": "Vaihtoehto 2",
-    "priority3": "Vaihtoehto 3"
+    "priority1": "Pelitoive 1",
+    "priority2": "Pelitoive 2",
+    "priority3": "Pelitoive 3"
   },
   "details": "Tietoja",
   "onlyOneGameWarning": "Vain yksi peli sallittu"
