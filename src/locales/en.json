@@ -8,6 +8,7 @@
     "updateDb": "Update games database",
     "assignPlayers": "Assign players",
     "signup": "Save",
+    "cancelSignup": "Cancel signup",
     "back": "Back",
     "favorite": "Favorite",
     "removeFavorite": "Remove favorite",

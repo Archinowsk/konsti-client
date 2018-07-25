@@ -6,6 +6,7 @@ import timeFormatter from 'utils/timeFormatter'
 import { submitSignup, submitSelectedGames } from 'views/signup/signupActions'
 import DragAndDropList from 'views/signup/components/DragAndDropList'
 import getOpenSignupTimes from 'utils/getOpenSignupTimes'
+import sleep from 'utils/sleep'
 
 type Props = {
   t: Function,
@@ -19,24 +20,26 @@ type Props = {
 }
 
 type State = {
-  first: string,
-  second: string,
-  third: string,
   submitting: boolean,
   signupSubmitted: boolean,
   signupError: boolean,
   signupTime: string,
+  signupTimes: Array<string>,
 }
 
 class SignupList extends React.Component<Props, State> {
-  state = {
-    first: '',
-    second: '',
-    third: '',
-    submitting: false,
-    signupSubmitted: false,
-    signupError: false,
-    signupTime: null,
+  constructor(props: Props) {
+    super(props)
+    const { games } = this.props
+    const signupTimes = getOpenSignupTimes(games)
+
+    this.state = {
+      submitting: false,
+      signupSubmitted: false,
+      signupError: false,
+      signupTimes: signupTimes,
+      signupTime: null,
+    }
   }
 
   // Submit signup
@@ -68,8 +71,35 @@ class SignupList extends React.Component<Props, State> {
     }
 
     if (response && response.status === 'success') {
-      this.setState({ submitting: false, signupSubmitted: true })
+      this.showMessage('signupSubmitted')
+      this.setState({ submitting: false })
     } else if (response && response.status === 'error') {
+      this.showMessage('signupError')
+      this.setState({ submitting: false })
+    }
+  }
+
+  // Cancel signup
+  onCancelClick = async () => {
+    const { onSubmitSignup, username } = this.props
+
+    const signupData = {
+      username,
+      selectedGames: [],
+    }
+
+    let response = null
+    try {
+      response = await onSubmitSignup(signupData)
+    } catch (error) {
+      console.log(`onSubmitSignup error: ${error}`)
+    }
+
+    if (response && response.status === 'success') {
+      this.showMessage('signupSubmitted')
+      this.setState({ submitting: false })
+    } else if (response && response.status === 'error') {
+      this.showMessage('signupError')
       this.setState({ submitting: false, signupError: true })
     }
   }
@@ -111,13 +141,30 @@ class SignupList extends React.Component<Props, State> {
     onSubmitSelectedGames(selectedGames)
   }
 
+  // Select signup time from buttons
   selectSignupTime = signupTime => {
     this.setState({ signupTime })
   }
 
+  showMessage = async message => {
+    if (message === 'signupSubmitted') {
+      this.setState({ signupSubmitted: true })
+    } else if (message === 'signupError') {
+      this.setState({ signupError: true })
+    }
+    await sleep(2000)
+    this.setState({ signupSubmitted: false, signupError: false })
+  }
+
   render() {
-    const { games, t, signedGames } = this.props
-    const { submitting, signupSubmitted, signupError, signupTime } = this.state
+    const { t, signedGames } = this.props
+    const {
+      submitting,
+      signupSubmitted,
+      signupError,
+      signupTimes,
+      signupTime,
+    } = this.state
 
     const filteredGames = this.filterGames()
 
@@ -126,7 +173,6 @@ class SignupList extends React.Component<Props, State> {
 
     const isActive = isActive => (isActive ? 'active' : '')
 
-    const signupTimes = getOpenSignupTimes(games)
     const signupTimeButtons = signupTimes.map(time => (
       <button
         key={time}
@@ -161,6 +207,9 @@ class SignupList extends React.Component<Props, State> {
 
             <button disabled={submitting} onClick={this.onSubmitClick}>
               {t('button.signup')}
+            </button>
+            <button disabled={submitting} onClick={this.onCancelClick}>
+              {t('button.cancelSignup')}
             </button>
             {signupSubmitted && <p className="success">{t('signupSaved')}</p>}
             {signupError && <p className="error">{t('signupFailed')}</p>}

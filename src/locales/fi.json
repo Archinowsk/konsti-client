@@ -8,6 +8,7 @@
     "updateDb": "Päivitä pelitietokanta",
     "assignPlayers": "Sijoita pelaajat",
     "signup": "Tallenna",
+    "cancelSignup": "Peru ilmoittautuminen",
     "back": "Takaisin",
     "favorite": "Lisää suosikkeihin",
     "removeFavorite": "Poista suosikki",
