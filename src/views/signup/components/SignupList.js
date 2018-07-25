@@ -48,7 +48,7 @@ class SignupList extends React.Component<Props, State> {
   onSubmitClick = async () => {
     const { onSubmitSignup, selectedGames, username } = this.props
     const { signupTime } = this.state
-    this.setState({ submitting: true, saved: false })
+    this.setState({ submitting: true })
 
     // Submit only games for selected time
     const filteredGames = selectedGames.filter(
@@ -80,10 +80,10 @@ class SignupList extends React.Component<Props, State> {
 
     if (response && response.status === 'success') {
       this.showMessage('signupSubmitted')
-      this.setState({ submitting: false })
+      this.setState({ submitting: false, saved: true })
     } else if (response && response.status === 'error') {
       this.showMessage('signupError')
-      this.setState({ submitting: false })
+      this.setState({ submitting: false, saved: true })
     }
   }
 
