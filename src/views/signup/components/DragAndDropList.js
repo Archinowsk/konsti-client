@@ -59,19 +59,19 @@ class DragAndDropList extends React.Component<Props, State> {
     for (let selectedGame of selectedGames) {
       if (
         selectedGame.priority === 1 &&
-        selectedGame.startTime === signupTime
+        selectedGame.details.startTime === signupTime
       ) {
-        priority1.push(selectedGame)
+        priority1.push(selectedGame.details)
       } else if (
         selectedGame.priority === 2 &&
-        selectedGame.startTime === signupTime
+        selectedGame.details.startTime === signupTime
       ) {
-        priority2.push(selectedGame)
+        priority2.push(selectedGame.details)
       } else if (
         selectedGame.priority === 3 &&
-        selectedGame.startTime === signupTime
+        selectedGame.details.startTime === signupTime
       ) {
-        priority3.push(selectedGame)
+        priority3.push(selectedGame.details)
       }
     }
 
@@ -224,24 +224,24 @@ class DragAndDropList extends React.Component<Props, State> {
             <div className="games-row">
               <DropRow
                 droppableId="gameList"
-                items={gameList}
+                games={gameList}
                 label={t('signupView.signupOpenGames')}
               />
             </div>
             <div className="priority-row">
               <DropRow
                 droppableId="priority1"
-                items={priority1}
+                games={priority1}
                 label={t('signupView.priority1')}
               />
               <DropRow
                 droppableId="priority2"
-                items={priority2}
+                games={priority2}
                 label={t('signupView.priority2')}
               />
               <DropRow
                 droppableId="priority3"
-                items={priority3}
+                games={priority3}
                 label={t('signupView.priority3')}
               />
             </div>

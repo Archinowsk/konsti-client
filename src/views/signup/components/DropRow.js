@@ -8,11 +8,11 @@ import { Link } from 'react-router-dom'
 type Props = {
   t: Function,
   droppableId: string,
-  items: Array<Object>,
+  games: Array<Object>,
   label: string,
 }
 const DropRow = (props: Props) => {
-  const { droppableId, items, label, t } = props
+  const { droppableId, games, label, t } = props
 
   const getListStyle = dragging => {
     if (dragging) return 'dragging'
@@ -31,8 +31,8 @@ const DropRow = (props: Props) => {
             )}`}
             ref={provided.innerRef}
           >
-            {items.map((item, index) => (
-              <Draggable key={item.id} draggableId={item.id} index={index}>
+            {games.map((game, index) => (
+              <Draggable key={game.id} draggableId={game.id} index={index}>
                 {(provided, snapshot) => (
                   <div
                     className="draggable-item"
@@ -40,8 +40,8 @@ const DropRow = (props: Props) => {
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                   >
-                    {item.title}{' '}
-                    <Link to={`/games/${item.id}`}>({t('details')})</Link>
+                    {game.title}{' '}
+                    <Link to={`/games/${game.id}`}>({t('details')})</Link>
                   </div>
                 )}
               </Draggable>
