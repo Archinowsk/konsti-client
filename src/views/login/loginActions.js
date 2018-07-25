@@ -4,13 +4,20 @@ import { postLogin } from 'services/loginServices'
 export const SUBMIT_LOGIN = 'SUBMIT_LOGIN'
 export const SUBMIT_LOGOUT = 'SUBMIT_LOGOUT'
 
-const submitLoginAsync = ({ username, loggedIn, jwtToken, userGroup }) => {
+const submitLoginAsync = ({
+  username,
+  loggedIn,
+  jwtToken,
+  userGroup,
+  serial,
+}) => {
   return {
     type: SUBMIT_LOGIN,
     username,
     loggedIn,
     jwtToken,
     userGroup,
+    serial,
   }
 }
 
@@ -34,6 +41,7 @@ export const submitLogin = (loginData: Object) => {
           loggedIn: true,
           jwtToken: response.jwtToken,
           userGroup: response.userGroup,
+          serial: response.serial,
         })
       )
     }

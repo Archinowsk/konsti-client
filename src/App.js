@@ -11,10 +11,11 @@ type Props = {
   t: Function,
   username: string,
   loggedIn: boolean,
+  serial: string,
 }
 
 const App = (props: Props) => {
-  const { t, username, loggedIn } = props
+  const { t, username, loggedIn, serial } = props
   const { appOpen } = config
 
   return (
@@ -30,7 +31,7 @@ const App = (props: Props) => {
 
         {loggedIn && (
           <span className="username">
-            {t('user')}: {username}
+            {t('user')}: {username} | {t('code')}: {serial}
           </span>
         )}
       </header>
@@ -47,6 +48,7 @@ const App = (props: Props) => {
 const mapStateToProps = state => {
   return {
     username: state.login.username,
+    serial: state.login.serial,
     loggedIn: state.login.loggedIn,
   }
 }

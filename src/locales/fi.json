@@ -16,11 +16,14 @@
     "unhide": "Poista piilotus",
     "saveTime": "Tallenna ilmoittautumisaika",
     "sendFeedback": "Lähetä palautetta",
-    "feedbackSent": "Palaute lähetetty"
+    "feedbackSent": "Palaute lähetetty",
+    "createGroup": "Luo ryhmä",
+    "joinGroup": "Join group"
   },
   "username": "Käyttäjänimi",
   "password": "Salasana",
   "serial": "Kirjautumiskoodi",
+  "code": "Koodi",
   "loading": "Ladataan...",
   "hours": "tuntia",
   "minutes": "minuuttia",

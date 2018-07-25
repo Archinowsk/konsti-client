@@ -17,6 +17,7 @@ const loginReducer = (state: Object = initialState, action: Function) => {
         loggedIn: action.loggedIn,
         jwtToken: action.jwtToken,
         userGroup: action.userGroup,
+        serial: action.serial,
       }
     default:
       return state

@@ -16,11 +16,14 @@
     "unhide": "Unhide",
     "saveTime": "Save signup time",
     "sendFeedback": "Send feedback",
-    "feedbackSent": "Feedback sent"
+    "feedbackSent": "Feedback sent",
+    "createGroup": "Create group",
+    "joinGroup": "Join group"
   },
   "username": "Username",
   "password": "Password",
   "serial": "Registration code",
+  "code": "Code",
   "loading": "Loading...",
   "hours": "hours",
   "minutes": "minutes",
