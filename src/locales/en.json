@@ -115,7 +115,8 @@
   "noSignupSelected": "No signup",
   "signupResultsfor": "Signup results for games starting at",
   "noResults": "No signup results yet",
-  "signupGuide": "You can choose one game for each priority",
+  "signupGuide":
+    "You can choose one game for each priority. Choose games by dragging. Remember to save changes.",
   "signupSaved": "Signup saved",
   "signupFailed": "Signup failed",
   "signupResultHint": "Sign up results are visible on 'My Games' page at",

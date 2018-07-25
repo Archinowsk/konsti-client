@@ -116,7 +116,8 @@
   "noSignupSelected": "Ei ilmoittautumista",
   "signupResultsfor": "Ilmoittautumisen tulokset peleille jotka alkavat",
   "noResults": "Ei ilmoittautumistietoja vielä",
-  "signupGuide": "Voit valita yhden pelin jokaiselle prioriteetille",
+  "signupGuide":
+    "Voit valita yhden pelin jokaiselle prioriteetille. Valitse pelit vetämällä. Muista tallentaa muutokset.",
   "signupSaved": "Ilmoittautuminen tallennettu",
   "signupFailed": "Ilmoittautuminen epäonnistui",
   "signupResultHint":

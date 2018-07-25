@@ -145,20 +145,25 @@ class SignupList extends React.Component<Props, State> {
         )}
 
         {signupTimes.length !== 0 && (
-          <p className="page-title">
-            {t('signupOpen')}: {signupTimeButtons}
-          </p>
+          <React.Fragment>
+            <p className="page-title">{t('signupOpen')}:</p>
+            <div>{signupTimeButtons}</div>
+          </React.Fragment>
         )}
 
         {filteredGames.length !== 0 && (
           <React.Fragment>
             <p>
-              {t('signupOpenBetweenCapital')} {signupStartTime}-{signupEndTime}
-            </p>
-            <p>{t('signupGuide')}</p>
-            <p>
+              {t('signupOpenBetweenCapital')} {signupStartTime}-{signupEndTime}.{' '}
               {t('signupResultHint')} {signupEndTime}
             </p>
+            <p>{t('signupGuide')}</p>
+
+            <button disabled={submitting} onClick={this.onSubmitClick}>
+              {t('button.signup')}
+            </button>
+            {signupSubmitted && <p className="success">{t('signupSaved')}</p>}
+            {signupError && <p className="error">{t('signupFailed')}</p>}
 
             <DragAndDropList
               games={filteredGames}
@@ -166,11 +171,6 @@ class SignupList extends React.Component<Props, State> {
               signupTime={signupTime}
               callback={this.callback}
             />
-            <button disabled={submitting} onClick={this.onSubmitClick}>
-              {t('button.signup')}
-            </button>
-            {signupSubmitted && <p className="success">{t('signupSaved')}</p>}
-            {signupError && <p className="error">{t('signupFailed')}</p>}
           </React.Fragment>
         )}
       </div>

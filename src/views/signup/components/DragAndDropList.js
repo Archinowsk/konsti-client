@@ -219,6 +219,7 @@ class DragAndDropList extends React.Component<Props, State> {
     } = this.state
     return (
       <React.Fragment>
+        {showWarning && <p className="error">{t('onlyOneGameWarning')}</p>}
         <div className="drop-rows">
           <DragDropContext onDragEnd={this.onDragEnd}>
             <div className="games-row">
@@ -247,7 +248,6 @@ class DragAndDropList extends React.Component<Props, State> {
             </div>
           </DragDropContext>
         </div>
-        {showWarning && <p className="error">{t('onlyOneGameWarning')}</p>}
       </React.Fragment>
     )
   }
