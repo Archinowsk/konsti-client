@@ -50,13 +50,19 @@ class SignupList extends React.Component<Props, State> {
     const { signupTime } = this.state
     this.setState({ submitting: true, saved: false })
 
+    // Submit only games for selected time
+    const filteredGames = selectedGames.filter(
+      selectedGame => selectedGame.time === signupTime
+    )
+
     // Send only game IDs and priorities to API
     const selectedGameIds = []
-    selectedGames.forEach(selectedGame => {
+    filteredGames.forEach(filteredGame => {
       selectedGameIds.push({
-        id: selectedGame.id,
-        priority: selectedGame.priority,
+        id: filteredGame.id,
+        priority: filteredGame.priority,
         time: signupTime,
+        details: filteredGame.details,
       })
     })
 
