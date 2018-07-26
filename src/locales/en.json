@@ -149,5 +149,7 @@
   "groupLeader": "Group leader",
   "groupMemberInfo":
     "Group leader will sign up to the games for the whole group",
-  "groupLeaderInfo": "You will sign up to the games for the whole group"
+  "groupLeaderInfo": "You will sign up to the games for the whole group",
+  "joiningGroupWillCancelGames":
+    "Joining a group will cancel all signups you may have done before"
 }

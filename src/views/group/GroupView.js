@@ -25,7 +25,7 @@ type Props = {
 
 type State = {
   loading: boolean,
-  showAddMember: boolean,
+  showCreateGroup: boolean,
   showJoinGroup: boolean,
   joinGroupValue: string,
 }
@@ -33,7 +33,7 @@ type State = {
 class GroupView extends React.Component<Props, State> {
   state = {
     loading: true,
-    showAddMember: false,
+    showCreateGroup: false,
     showJoinGroup: false,
     joinGroupValue: '',
   }
@@ -46,11 +46,11 @@ class GroupView extends React.Component<Props, State> {
   }
 
   openGroupForming = () => {
-    this.setState({ showAddMember: true, showJoinGroup: false })
+    this.setState({ showCreateGroup: true, showJoinGroup: false })
   }
 
   openJoinGroup = () => {
-    this.setState({ showJoinGroup: true, showAddMember: false })
+    this.setState({ showJoinGroup: true, showCreateGroup: false })
   }
 
   createGroup = async () => {
@@ -105,7 +105,12 @@ class GroupView extends React.Component<Props, State> {
 
   render() {
     const { t, groupMembers } = this.props
-    const { loading, showAddMember, showJoinGroup, joinGroupValue } = this.state
+    const {
+      loading,
+      showCreateGroup,
+      showJoinGroup,
+      joinGroupValue,
+    } = this.state
 
     const groupLeader = this.isGroupLeader()
     const inGroup = this.isInGroup()
@@ -132,6 +137,7 @@ class GroupView extends React.Component<Props, State> {
           !groupLeader &&
           !inGroup && (
             <React.Fragment>
+              <p>{t('joiningGroupWillCancelGames')}</p>
               <button onClick={() => this.openGroupForming()}>
                 {t('button.createGroup')}
               </button>
@@ -139,7 +145,7 @@ class GroupView extends React.Component<Props, State> {
                 {t('button.joinGroup')}
               </button>
 
-              {showAddMember && (
+              {showCreateGroup && (
                 <div>
                   <p>{t('createGroupConfirmationMessage')}</p>
                   <button onClick={() => this.createGroup()}>
