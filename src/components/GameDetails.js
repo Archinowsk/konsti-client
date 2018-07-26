@@ -96,7 +96,7 @@ class GameDetails extends React.Component<Props, State> {
 
     if (action === 'add') {
       if (gameIndex === -1) {
-        allFavoritedGames.push({ id: game.id })
+        allFavoritedGames.push(game)
       }
     } else if (action === 'del') {
       if (gameIndex > -1) {
@@ -104,15 +104,9 @@ class GameDetails extends React.Component<Props, State> {
       }
     }
 
-    // Send only game IDs to API
-    const favoritedGameIds = []
-    allFavoritedGames.forEach(favoritedGame => {
-      favoritedGameIds.push({ id: favoritedGame.id })
-    })
-
     const favoriteData = {
       username: username,
-      favoritedGames: favoritedGameIds,
+      favoritedGames: allFavoritedGames,
     }
 
     let response = null
