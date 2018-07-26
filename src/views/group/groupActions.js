@@ -20,6 +20,8 @@ export const submitJoinGroup = (groupData: Object) => {
       console.log(`postGroup error: ${error}`)
     }
 
+    console.log('response', response)
+
     if (response && response.error) {
       return Promise.reject(response)
     }
@@ -30,19 +32,6 @@ export const submitJoinGroup = (groupData: Object) => {
     return response
   }
 }
-
-/*
-export const submitJoinGroup = async (groupData: Object) => {
-  let response = null
-  try {
-    response = await postGroup(groupData)
-  } catch (error) {
-    console.log(`postGroup error: ${error}`)
-  }
-
-  return response
-}
-*/
 
 const submitCreateGroupAsync = ({ playerGroup }) => {
   return {
@@ -59,6 +48,8 @@ export const submitCreateGroup = (groupData: Object) => {
     } catch (error) {
       console.log(`postGroup error: ${error}`)
     }
+
+    console.log('response', response)
 
     if (response && response.error) {
       return Promise.reject(response)
@@ -87,11 +78,42 @@ export const submitGetGroup = (groupCode: string) => {
       console.log(`postGroup error: ${error}`)
     }
 
+    console.log('response', response)
+
     if (response && response.error) {
       return Promise.reject(response)
     }
     if (response && response.status === 'success') {
       dispatch(submitGetGroupAsync({ groupMembers: response.results }))
+    }
+
+    return response
+  }
+}
+
+const submitLeaveGroupAsync = () => {
+  return {
+    type: SUBMIT_UPDATE_GROUP,
+    playerGroup: 0,
+  }
+}
+
+export const submitLeaveGroup = (groupData: Object) => {
+  return async (dispatch: Function) => {
+    let response = null
+    try {
+      response = await postGroup(groupData)
+    } catch (error) {
+      console.log(`postGroup error: ${error}`)
+    }
+
+    console.log('response', response)
+
+    if (response && response.error) {
+      return Promise.reject(response)
+    }
+    if (response && response.status === 'success') {
+      dispatch(submitLeaveGroupAsync())
     }
 
     return response

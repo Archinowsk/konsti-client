@@ -8,6 +8,7 @@ import {
   submitJoinGroup,
   submitCreateGroup,
   submitGetGroup,
+  submitLeaveGroup,
 } from 'views/group/groupActions'
 import GroupMembersList from 'views/group/components/GroupMembersList'
 import SignedGamesList from 'views/group/components/SignedGamesList'
@@ -19,7 +20,8 @@ type Props = {
   onSubmitCreateGroup: Function,
   onSubmitJoinGroup: Function,
   onSubmitGetGroup: Function,
-  group: string,
+  onSubmitLeaveGroup: Function,
+  groupCode: string,
   groupMembers: Array<Object>,
 }
 
@@ -39,9 +41,9 @@ class GroupView extends React.Component<Props, State> {
   }
 
   componentDidMount = async () => {
-    const { onSubmitGetGroup, group } = this.props
+    const { onSubmitGetGroup, groupCode } = this.props
     await getData()
-    await onSubmitGetGroup(group)
+    await onSubmitGetGroup(groupCode)
     this.setState({ loading: false })
   }
 
@@ -77,14 +79,26 @@ class GroupView extends React.Component<Props, State> {
     await onSubmitJoinGroup(groupData)
   }
 
+  leaveGroup = async ({ leader }) => {
+    const { onSubmitLeaveGroup, username, serial, groupCode } = this.props
+    const groupData = {
+      username: username,
+      groupCode: groupCode,
+      leader,
+      ownSerial: serial,
+      leaveGroup: true,
+    }
+    await onSubmitLeaveGroup(groupData)
+  }
+
   handleJoinGroupChange = event => {
     this.setState({ joinGroupValue: event.target.value })
   }
 
   // Check if user is group leader
   isGroupLeader = () => {
-    const { group, serial } = this.props
-    if (group.toString() === serial.toString()) {
+    const { groupCode, serial } = this.props
+    if (groupCode.toString() === serial.toString()) {
       return true
     }
     return false
@@ -92,15 +106,11 @@ class GroupView extends React.Component<Props, State> {
 
   // Check if user is in leader
   isInGroup = () => {
-    const { group } = this.props
-    if (group) {
+    const { groupCode } = this.props
+    if (groupCode) {
       return true
     }
     return false
-  }
-
-  leaveGroup = () => {
-    console.log('leaveGroup')
   }
 
   render() {
@@ -148,6 +158,7 @@ class GroupView extends React.Component<Props, State> {
               {showCreateGroup && (
                 <div>
                   <p>{t('createGroupConfirmationMessage')}</p>
+                  <p>{t('groupLeaderWargnin')}</p>
                   <button onClick={() => this.createGroup()}>
                     {t('button.joinGroupConfirmation')}
                   </button>
@@ -175,7 +186,7 @@ class GroupView extends React.Component<Props, State> {
               <GroupMembersList groupMembers={groupMembers} />
               <p>{t('signedGames')}</p>
               <SignedGamesList groupMembers={groupMembers} />
-              <button onClick={() => this.leaveGroup()}>
+              <button onClick={() => this.leaveGroup({ leader: true })}>
                 {t('button.leaveGroup')}
               </button>
             </React.Fragment>
@@ -191,7 +202,7 @@ class GroupView extends React.Component<Props, State> {
               <GroupMembersList groupMembers={groupMembers} />
               <p>{t('signedGames')}</p>
               <SignedGamesList groupMembers={groupMembers} />
-              <button onClick={() => this.leaveGroup()}>
+              <button onClick={() => this.leaveGroup({ leader: false })}>
                 {t('button.leaveGroup')}
               </button>
             </React.Fragment>
@@ -205,7 +216,7 @@ const mapStateToProps = (state: Object) => {
   return {
     username: state.login.username,
     serial: state.login.serial,
-    group: state.login.playerGroup,
+    groupCode: state.login.playerGroup,
     groupMembers: state.login.groupMembers,
   }
 }
@@ -215,6 +226,7 @@ const mapDispatchToProps = (dispatch: Function) => {
     onSubmitCreateGroup: groupData => dispatch(submitCreateGroup(groupData)),
     onSubmitJoinGroup: groupData => dispatch(submitJoinGroup(groupData)),
     onSubmitGetGroup: groupData => dispatch(submitGetGroup(groupData)),
+    onSubmitLeaveGroup: groupData => dispatch(submitLeaveGroup(groupData)),
   }
 }
 

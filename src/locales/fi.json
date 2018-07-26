@@ -152,6 +152,8 @@
   "groupMemberInfo":
     "Ryhmänjohtaja ilmoittautuu peleihin ryhmän muiden jäsenten puolesta",
   "groupLeaderInfo": "Voit ilmoittautua peleihin koko ryhmän puolesta",
+  "groupLeaderWargnin":
+    "Ryhmänjohtaja ei voi poistua ryhmästä, jos ryhmässä on muita jäseniä",
   "joiningGroupWillCancelGames":
     "Ryhmään liittyminen peruu kaikki aikaisemmat ilmoittautumisesi"
 }

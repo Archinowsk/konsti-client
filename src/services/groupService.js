@@ -8,8 +8,6 @@ export const postGroup = async (groupData: Object) => {
   let response = null
   try {
     response = await api.post('/group', { groupData })
-
-    console.log('response', response)
   } catch (error) {
     if (error.message === 'Network Error') {
       console.log('Network error: no connection to server')

@@ -19,6 +19,8 @@ const SignedMembersList = (props: Props) => {
   )
 
   // Sort games by time and name
+  if (!leader || !leader[0]) return <div className="signed-games-list" />
+
   const sortedGames = leader[0].signedGames.sort((a, b) => {
     const keyA = moment(a.details.startTime) + a.details.title.toLowerCase()
     const keyB = moment(b.details.startTime) + b.details.title.toLowerCase()
