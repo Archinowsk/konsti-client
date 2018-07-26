@@ -151,10 +151,16 @@ class GroupView extends React.Component<Props, State> {
           !groupLeader &&
           !inGroup && (
             <React.Fragment>
-              <button onClick={() => this.openGroupForming()}>
+              <button
+                className={showCreateGroup ? 'active' : ''}
+                onClick={() => this.openGroupForming()}
+              >
                 {t('button.createGroup')}
               </button>
-              <button onClick={() => this.openJoinGroup()}>
+              <button
+                className={showJoinGroup ? 'active' : ''}
+                onClick={() => this.openJoinGroup()}
+              >
                 {t('button.joinGroup')}
               </button>
 
