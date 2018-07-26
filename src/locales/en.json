@@ -141,5 +141,9 @@
   "enterGroupLeaderCode": "Group leader's code",
   "joinGroup": "Join group",
   "addGroupMember": "Add group member",
-  "createGroupConfirmationMessage": "Do you want to create a group?"
+  "createGroupConfirmationMessage": "Do you want to create a group?",
+  "youAreGroupLeader": "You are group leader",
+  "youAreInGroup": "You are in a group",
+  "groupMembers": "Group members",
+  "groupLeader": "Group leader"
 }

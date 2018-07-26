@@ -1,7 +1,8 @@
 /* @flow */
-import { postGroup } from 'services/groupService'
+import { postGroup, getGroup } from 'services/groupService'
 
 export const SUBMIT_UPDATE_GROUP = 'SUBMIT_UPDATE_GROUP'
+export const SUBMIT_UPDATE_GROUP_MEMBERS = 'SUBMIT_UPDATE_GROUP_MEMBERS'
 
 const submitJoinGroupAsync = ({ playerGroup }) => {
   return {
@@ -69,6 +70,36 @@ export const submitCreateGroup = (groupData: Object) => {
     }
 
     console.log('response', response)
+
+    return response
+  }
+}
+
+const submitGetGroupAsync = ({ groupMembers }) => {
+  console.log('groupMembers', groupMembers)
+  return {
+    type: SUBMIT_UPDATE_GROUP_MEMBERS,
+    groupMembers,
+  }
+}
+
+export const submitGetGroup = (groupCode: string) => {
+  return async (dispatch: Function) => {
+    let response = null
+    try {
+      response = await getGroup(groupCode)
+
+      console.log('response', response)
+    } catch (error) {
+      console.log(`postGroup error: ${error}`)
+    }
+
+    if (response && response.error) {
+      return Promise.reject(response)
+    }
+    if (response && response.status === 'success') {
+      dispatch(submitGetGroupAsync({ groupMembers: response.results }))
+    }
 
     return response
   }

@@ -4,7 +4,12 @@ import { translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import { getData } from 'utils/store'
 import Loading from 'components/Loading'
-import { submitJoinGroup, submitCreateGroup } from 'views/group/groupActions'
+import {
+  submitJoinGroup,
+  submitCreateGroup,
+  submitGetGroup,
+} from 'views/group/groupActions'
+import GroupMembersList from 'views/group/components/GroupMembersList'
 
 type Props = {
   t: Function,
@@ -12,7 +17,9 @@ type Props = {
   serial: string,
   onSubmitCreateGroup: Function,
   onSubmitJoinGroup: Function,
-  // group: string,
+  onSubmitGetGroup: Function,
+  group: string,
+  groupMembers: Array<Object>,
 }
 
 type State = {
@@ -31,7 +38,9 @@ class GroupView extends React.Component<Props, State> {
   }
 
   componentDidMount = async () => {
+    const { onSubmitGetGroup, group } = this.props
     await getData()
+    await onSubmitGetGroup(group)
     this.setState({ loading: false })
   }
 
@@ -71,9 +80,30 @@ class GroupView extends React.Component<Props, State> {
     this.setState({ joinGroupValue: event.target.value })
   }
 
+  // Check if user is group leader
+  isGroupLeader = () => {
+    const { group, serial } = this.props
+    if (group.toString() === serial.toString()) {
+      return true
+    }
+    return false
+  }
+
+  // Check if user is in leader
+  isInGroup = () => {
+    const { group } = this.props
+    if (group) {
+      return true
+    }
+    return false
+  }
+
   render() {
-    const { t } = this.props
+    const { t, groupMembers } = this.props
     const { loading, showAddMember, showJoinGroup, joinGroupValue } = this.state
+
+    const groupLeader = this.isGroupLeader()
+    const inGroup = this.isInGroup()
 
     const joinGroupInput = (
       <div>
@@ -90,36 +120,57 @@ class GroupView extends React.Component<Props, State> {
 
     return (
       <div className="group-view">
+        <p className="page-title">{t('pages.group')}</p>
+
         {loading && <Loading />}
-        {!loading && (
-          <React.Fragment>
-            <p className="page-title">{t('pages.group')}</p>
-            <button onClick={() => this.openGroupForming()}>
-              {t('button.createGroup')}
-            </button>
-            <button onClick={() => this.openJoinGroup()}>
-              {t('button.joinGroup')}
-            </button>
+        {!loading &&
+          !groupLeader &&
+          !inGroup && (
+            <React.Fragment>
+              <button onClick={() => this.openGroupForming()}>
+                {t('button.createGroup')}
+              </button>
+              <button onClick={() => this.openJoinGroup()}>
+                {t('button.joinGroup')}
+              </button>
 
-            {showAddMember && (
-              <div>
-                <p>{t('createGroupConfirmationMessage')}</p>
-                <button onClick={() => this.createGroup()}>
-                  {t('button.joinGroupConfirmation')}
-                </button>
-              </div>
-            )}
+              {showAddMember && (
+                <div>
+                  <p>{t('createGroupConfirmationMessage')}</p>
+                  <button onClick={() => this.createGroup()}>
+                    {t('button.joinGroupConfirmation')}
+                  </button>
+                </div>
+              )}
 
-            {showJoinGroup && (
-              <div>
-                {joinGroupInput}
-                <button onClick={() => this.joinGroup()}>
-                  {t('button.joinGroup')}
-                </button>
-              </div>
-            )}
-          </React.Fragment>
-        )}
+              {showJoinGroup && (
+                <div>
+                  {joinGroupInput}
+                  <button onClick={() => this.joinGroup()}>
+                    {t('button.joinGroup')}
+                  </button>
+                </div>
+              )}
+            </React.Fragment>
+          )}
+        {!loading &&
+          groupLeader &&
+          inGroup && (
+            <React.Fragment>
+              <p>{t('youAreGroupLeader')}</p>
+              <p>{t('groupMembers')}</p>
+              <GroupMembersList groupMembers={groupMembers} />
+            </React.Fragment>
+          )}
+        {!loading &&
+          !groupLeader &&
+          inGroup && (
+            <React.Fragment>
+              <p>{t('youAreInGroup')}</p>
+              <p>{t('groupMembers')}</p>
+              <GroupMembersList groupMembers={groupMembers} />
+            </React.Fragment>
+          )}
       </div>
     )
   }
@@ -130,6 +181,7 @@ const mapStateToProps = (state: Object) => {
     username: state.login.username,
     serial: state.login.serial,
     group: state.login.playerGroup,
+    groupMembers: state.login.groupMembers,
   }
 }
 
@@ -137,6 +189,7 @@ const mapDispatchToProps = (dispatch: Function) => {
   return {
     onSubmitCreateGroup: groupData => dispatch(submitCreateGroup(groupData)),
     onSubmitJoinGroup: groupData => dispatch(submitJoinGroup(groupData)),
+    onSubmitGetGroup: groupData => dispatch(submitGetGroup(groupData)),
   }
 }
 

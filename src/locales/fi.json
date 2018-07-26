@@ -143,5 +143,9 @@
   "enterGroupLeaderCode": "Ryhmänjohtajan koodi",
   "joinGroup": "Liity ryhmään",
   "addGroupMember": "Lisää jäsen ryhmään",
-  "createGroupConfirmationMessage": "Halutko luoda ryhmän?"
+  "createGroupConfirmationMessage": "Halutko luoda ryhmän?",
+  "youAreGroupLeader": "You are group leader",
+  "youAreInGroup": "Olet ryhmässä",
+  "groupMembers": "Ryhmän jäsenet",
+  "groupLeader": "Ryhmänjohtaja"
 }

@@ -1,6 +1,9 @@
 /* @flow */
 import { SUBMIT_LOGIN } from 'views/login/loginActions'
-import { SUBMIT_UPDATE_GROUP } from 'views/group/groupActions'
+import {
+  SUBMIT_UPDATE_GROUP,
+  SUBMIT_UPDATE_GROUP_MEMBERS,
+} from 'views/group/groupActions'
 
 const initialState = {
   username: '',
@@ -9,6 +12,7 @@ const initialState = {
   userGroup: '',
   serial: '',
   playerGroup: '',
+  groupMembers: [],
 }
 
 const loginReducer = (state: Object = initialState, action: Function) => {
@@ -27,6 +31,11 @@ const loginReducer = (state: Object = initialState, action: Function) => {
       return {
         ...state,
         playerGroup: action.playerGroup,
+      }
+    case SUBMIT_UPDATE_GROUP_MEMBERS:
+      return {
+        ...state,
+        groupMembers: action.groupMembers,
       }
     default:
       return state
