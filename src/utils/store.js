@@ -11,6 +11,7 @@ import settingsReducer from 'views/settings/settingsReducer'
 import signupReducer from 'views/signup/signupReducer'
 import adminReducer from 'views/admin/adminReducer'
 import allSignupsReducer from 'views/all-signups/allSignupsReducer'
+// import groupReducer from 'views/group/groupReducer'
 import loadData from 'utils/loadData'
 import { SUBMIT_LOGOUT } from 'views/login/loginActions'
 
@@ -24,6 +25,7 @@ const reducer = combineReducers({
   signup: signupReducer,
   admin: adminReducer,
   allSignups: allSignupsReducer,
+  // group: groupReducer,
 })
 
 // Reducer to reset state
