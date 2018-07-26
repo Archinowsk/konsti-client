@@ -26,6 +26,7 @@ export const submitJoinGroup = (groupData: Object) => {
       return Promise.reject(response)
     }
     if (response && response.status === 'success') {
+      dispatch(submitGetGroup(groupData.groupCode))
       dispatch(submitJoinGroupAsync({ playerGroup: groupData.groupCode }))
     }
 
