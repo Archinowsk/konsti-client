@@ -147,5 +147,8 @@
   "youAreGroupLeader": "You are group leader",
   "youAreInGroup": "Olet ryhmässä",
   "groupMembers": "Ryhmän jäsenet",
-  "groupLeader": "Ryhmänjohtaja"
+  "groupLeader": "Ryhmänjohtaja",
+  "groupMemberInfo":
+    "Ryhmänjohtaja ilmoittautuu peleihin ryhmän muiden jäsenten puolesta",
+  "groupLeaderInfo": "Voit ilmoittautua peleihin koko ryhmän puolesta"
 }

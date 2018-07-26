@@ -69,14 +69,11 @@ export const submitCreateGroup = (groupData: Object) => {
       dispatch(submitCreateGroupAsync({ playerGroup: groupData.groupCode }))
     }
 
-    console.log('response', response)
-
     return response
   }
 }
 
 const submitGetGroupAsync = ({ groupMembers }) => {
-  console.log('groupMembers', groupMembers)
   return {
     type: SUBMIT_UPDATE_GROUP_MEMBERS,
     groupMembers,

@@ -145,5 +145,8 @@
   "youAreGroupLeader": "You are group leader",
   "youAreInGroup": "You are in a group",
   "groupMembers": "Group members",
-  "groupLeader": "Group leader"
+  "groupLeader": "Group leader",
+  "groupMemberInfo":
+    "Group leader will sign up to the games for the whole group",
+  "groupLeaderInfo": "You will sign up to the games for the whole group"
 }

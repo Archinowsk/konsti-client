@@ -157,7 +157,9 @@ class GroupView extends React.Component<Props, State> {
           groupLeader &&
           inGroup && (
             <React.Fragment>
-              <p>{t('youAreGroupLeader')}</p>
+              <p>
+                {t('youAreGroupLeader')}. {t('groupLeaderInfo')}.
+              </p>
               <p>{t('groupMembers')}</p>
               <GroupMembersList groupMembers={groupMembers} />
             </React.Fragment>
@@ -166,7 +168,9 @@ class GroupView extends React.Component<Props, State> {
           !groupLeader &&
           inGroup && (
             <React.Fragment>
-              <p>{t('youAreInGroup')}</p>
+              <p>
+                {t('youAreInGroup')}. {t('groupMemberInfo')}.
+              </p>
               <p>{t('groupMembers')}</p>
               <GroupMembersList groupMembers={groupMembers} />
             </React.Fragment>
