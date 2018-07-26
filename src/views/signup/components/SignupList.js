@@ -63,7 +63,6 @@ class SignupList extends React.Component<Props, State> {
         id: filteredGame.id,
         priority: filteredGame.priority,
         time: signupTime,
-        // details: filteredGame.details,
       })
     })
 

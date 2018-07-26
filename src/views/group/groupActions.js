@@ -20,8 +20,6 @@ export const submitJoinGroup = (groupData: Object) => {
       console.log(`postGroup error: ${error}`)
     }
 
-    console.log('response', response)
-
     if (response && response.error) {
       return Promise.reject(response)
     }
@@ -49,8 +47,6 @@ export const submitCreateGroup = (groupData: Object) => {
     } catch (error) {
       console.log(`postGroup error: ${error}`)
     }
-
-    console.log('response', response)
 
     if (response && response.error) {
       return Promise.reject(response)
@@ -80,8 +76,6 @@ export const submitGetGroup = (groupCode: string) => {
       console.log(`postGroup error: ${error}`)
     }
 
-    console.log('response', response)
-
     if (response && response.error) {
       return Promise.reject(response)
     }
@@ -108,8 +102,6 @@ export const submitLeaveGroup = (groupData: Object) => {
     } catch (error) {
       console.log(`postGroup error: ${error}`)
     }
-
-    console.log('response', response)
 
     if (response && response.error) {
       return Promise.reject(response)

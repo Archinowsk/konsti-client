@@ -17,8 +17,8 @@ type Props = {
 
 const TimesDropdown = (props: Props) => {
   const { games, t, onChange, date } = props
-  const startTimes = []
 
+  const startTimes = []
   games.forEach(game => {
     startTimes.push(game.startTime)
   })

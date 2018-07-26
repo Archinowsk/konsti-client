@@ -2,7 +2,13 @@
 import api from 'utils/api'
 import setAuthToken from 'utils/setAuthToken'
 
-export const postSignup = async (signupData: Object) => {
+type SignupData = {
+  username: string,
+  selectedGames: Array<Object>,
+  time: string,
+}
+
+export const postSignup = async (signupData: SignupData) => {
   setAuthToken()
 
   let response = null

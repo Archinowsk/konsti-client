@@ -5,6 +5,12 @@ export const SUBMIT_SELECT_DATE = 'SUBMIT_SELECT_DATE'
 export const SUBMIT_SELECTED_GAMES = 'SUBMIT_SELECTED_GAMES'
 export const UPDATE_SIGNED_GAMES = 'UPDATE_SIGNED_GAMES'
 
+type SignupData = {
+  username: string,
+  selectedGames: Array<Object>,
+  time: string,
+}
+
 const submitSignupAsync = ({ status, selectedGames }) => {
   return {
     type: SUBMIT_SIGNUP,
@@ -20,7 +26,7 @@ const submitUpdateSignedGamesAsync = signedGames => {
   }
 }
 
-export const submitSignup = (signupData: Object) => {
+export const submitSignup = (signupData: SignupData) => {
   return async (dispatch: Function) => {
     let response = null
     try {
