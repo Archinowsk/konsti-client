@@ -14,6 +14,7 @@ import GroupMembersList from 'views/group/components/GroupMembersList'
 import SignedGamesList from 'views/group/components/SignedGamesList'
 import sleep from 'utils/sleep'
 import config from 'config'
+import { submitSignup } from 'views/signup/signupActions'
 
 type Props = {
   t: Function,
@@ -25,6 +26,8 @@ type Props = {
   onSubmitLeaveGroup: Function,
   groupCode: string,
   groupMembers: Array<Object>,
+  onSubmitSignup: Function,
+  signedGames: Array<Object>,
 }
 
 type State = {
@@ -65,16 +68,6 @@ class GroupView extends React.Component<Props, State> {
     this.setState({ showJoinGroup: true, showCreateGroup: false })
   }
 
-  /*
-  30: Generic group error
-  31: Invalid group code
-  32: Group does not exist
-  33: Trying to join own group
-  34: Own group already exists
-  35: Failed to update group (add new or leave)
-  36: Leader cannot leave non-empty group
-  */
-
   createGroup = async () => {
     const { username, serial, onSubmitCreateGroup, t } = this.props
     const groupData = {
@@ -94,6 +87,30 @@ class GroupView extends React.Component<Props, State> {
     }
   }
 
+  // Remove al signups
+  removeSignups = async () => {
+    const { onSubmitSignup, username, signedGames } = this.props
+
+    const startTimes = []
+
+    signedGames.forEach(signedGame => {
+      startTimes.push(signedGame.time)
+    })
+
+    const sortedTimes = [...new Set(startTimes)].sort()
+
+    // Remove signups from all startTimes
+    for (let time of sortedTimes) {
+      const signupData = {
+        username,
+        selectedGames: [],
+        time: time,
+      }
+
+      await onSubmitSignup(signupData)
+    }
+  }
+
   joinGroup = async () => {
     const { username, serial, onSubmitJoinGroup, t } = this.props
     const { joinGroupValue } = this.state
@@ -108,6 +125,7 @@ class GroupView extends React.Component<Props, State> {
 
     if (response.status === 'success') {
       this.showMessage({ message: t('groupJoined'), style: response.status })
+      await this.removeSignups()
     } else if (response.status === 'error') {
       if (response.code === 31) {
         this.showMessage({
@@ -299,6 +317,7 @@ const mapStateToProps = (state: Object) => {
     serial: state.login.serial,
     groupCode: state.login.playerGroup,
     groupMembers: state.login.groupMembers,
+    signedGames: state.myGames.signedGames,
   }
 }
 
@@ -308,6 +327,7 @@ const mapDispatchToProps = (dispatch: Function) => {
     onSubmitJoinGroup: groupData => dispatch(submitJoinGroup(groupData)),
     onSubmitGetGroup: groupCode => dispatch(submitGetGroup(groupCode)),
     onSubmitLeaveGroup: groupData => dispatch(submitLeaveGroup(groupData)),
+    onSubmitSignup: signupData => dispatch(submitSignup(signupData)),
   }
 }
 
