@@ -163,5 +163,8 @@
   "groupJoined": "Joined to group",
   "generalJoinGroupError": "Error joining group",
   "leftGroup": "Left group",
-  "groupNotEmpty": "Leader cannot leave non-empty group"
+  "groupNotEmpty": "Leader cannot leave non-empty group",
+  "noSignupResult": "You didn't get into a game for starting time",
+  "noSignupResultHint":
+    "If you don't see a signup result here after the signup time had ended, you didn't get into a game. You might still find something to play at LARP and RPG desk if you come immediately after signup time has ended."
 }

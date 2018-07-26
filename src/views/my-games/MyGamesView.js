@@ -38,7 +38,10 @@ class MyGamesView extends React.Component<Props, State> {
           <React.Fragment>
             <MyFavoritesList favoritedGames={favoritedGames} />
             <MySignupsList signedGames={signedGames} />
-            <MyEnteredList enteredGames={enteredGames} />
+            <MyEnteredList
+              enteredGames={enteredGames}
+              signedGames={signedGames}
+            />
           </React.Fragment>
         )}
       </div>
