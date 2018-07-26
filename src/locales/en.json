@@ -155,5 +155,13 @@
   "joiningGroupWillCancelGames":
     "Joining a group will cancel all signups you may have done before",
   "groupSignupGuide":
-    "Joining a group is done with the registration code. Your own code can be found from the top of the page."
+    "Joining a group is done with the registration code. Your own code can be found from the top of the page.",
+  "groupCreated": "Group created",
+  "invalidGroupCode": "Invalid code",
+  "groupNotExist": "Group does not exist",
+  "generalCreateGroupError": "Error creating group",
+  "groupJoined": "Joined to group",
+  "generalJoinGroupError": "Error joining group",
+  "leftGroup": "Left group",
+  "groupNotEmpty": "Leader cannot leave non-empty group"
 }

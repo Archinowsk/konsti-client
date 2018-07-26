@@ -158,5 +158,13 @@
   "joiningGroupWillCancelGames":
     "Ryhmään liittyminen peruu kaikki aikaisemmat ilmoittautumisesi",
   "groupSignupGuide":
-    "Ryhmiin liitytään rekisteröintikoodilla. Näet oman koodisi sivun ylälaidasta."
+    "Ryhmiin liitytään rekisteröintikoodilla. Näet oman koodisi sivun ylälaidasta.",
+  "groupCreated": "Ryhmä luotu",
+  "invalidGroupCode": "Epäkelko koodi",
+  "groupNotExist": "Ryhmää ei ole olemassa",
+  "generalCreateGroupError": "Virhe ryhmää luodessa",
+  "groupJoined": "Liitytty ryhmään",
+  "generalJoinGroupError": "Virhe ryhmään liittyessä",
+  "leftGroup": "Poistuit ryhmästä",
+  "groupNotEmpty": "Johtaja ei voi poistua ryhmästä, jossa on muita jäseniä"
 }

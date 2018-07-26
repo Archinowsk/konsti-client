@@ -12,6 +12,8 @@ import {
 } from 'views/group/groupActions'
 import GroupMembersList from 'views/group/components/GroupMembersList'
 import SignedGamesList from 'views/group/components/SignedGamesList'
+import sleep from 'utils/sleep'
+import config from 'config'
 
 type Props = {
   t: Function,
@@ -30,6 +32,8 @@ type State = {
   showCreateGroup: boolean,
   showJoinGroup: boolean,
   joinGroupValue: string,
+  message: string,
+  messageStyle: string,
 }
 
 class GroupView extends React.Component<Props, State> {
@@ -38,6 +42,8 @@ class GroupView extends React.Component<Props, State> {
     showCreateGroup: false,
     showJoinGroup: false,
     joinGroupValue: '',
+    message: '',
+    messageStyle: '',
   }
 
   componentDidMount = async () => {
@@ -59,19 +65,37 @@ class GroupView extends React.Component<Props, State> {
     this.setState({ showJoinGroup: true, showCreateGroup: false })
   }
 
+  /*
+  30: Generic group error
+  31: Invalid group code
+  32: Group does not exist
+  33: Trying to join own group
+  34: Own group already exists
+  35: Failed to update group (add new or leave)
+  36: Leader cannot leave non-empty group
+  */
+
   createGroup = async () => {
-    const { username, serial, onSubmitCreateGroup } = this.props
+    const { username, serial, onSubmitCreateGroup, t } = this.props
     const groupData = {
       username: username,
       groupCode: serial,
       leader: true,
       ownSerial: serial,
     }
-    await onSubmitCreateGroup(groupData)
+    const response = await onSubmitCreateGroup(groupData)
+    if (response.status === 'success') {
+      this.showMessage({ message: t('groupCreated'), style: response.status })
+    } else if (response.status === 'error') {
+      this.showMessage({
+        message: t('generalCreateGroupError'),
+        style: response.status,
+      })
+    }
   }
 
   joinGroup = async () => {
-    const { username, serial, onSubmitJoinGroup } = this.props
+    const { username, serial, onSubmitJoinGroup, t } = this.props
     const { joinGroupValue } = this.state
     const groupData = {
       username: username,
@@ -80,11 +104,32 @@ class GroupView extends React.Component<Props, State> {
       ownSerial: serial,
     }
 
-    await onSubmitJoinGroup(groupData)
+    const response = await onSubmitJoinGroup(groupData)
+
+    if (response.status === 'success') {
+      this.showMessage({ message: t('groupJoined'), style: response.status })
+    } else if (response.status === 'error') {
+      if (response.code === 31) {
+        this.showMessage({
+          message: t('invalidGroupCode'),
+          style: response.status,
+        })
+      } else if (response.code === 32) {
+        this.showMessage({
+          message: t('groupNotExist'),
+          style: response.status,
+        })
+      } else {
+        this.showMessage({
+          message: t('generalCreateGroupError'),
+          style: response.status,
+        })
+      }
+    }
   }
 
   leaveGroup = async ({ leader }) => {
-    const { onSubmitLeaveGroup, username, serial, groupCode } = this.props
+    const { onSubmitLeaveGroup, username, serial, groupCode, t } = this.props
     const groupData = {
       username: username,
       groupCode: groupCode,
@@ -92,7 +137,23 @@ class GroupView extends React.Component<Props, State> {
       ownSerial: serial,
       leaveGroup: true,
     }
-    await onSubmitLeaveGroup(groupData)
+    const response = await onSubmitLeaveGroup(groupData)
+
+    if (response.status === 'success') {
+      this.showMessage({ message: t('leftGroup'), style: response.status })
+    } else if (response.status === 'error') {
+      if (response.code === 36) {
+        this.showMessage({
+          message: t('groupNotEmpty'),
+          style: response.status,
+        })
+      } else {
+        this.showMessage({
+          message: t('generalLeaveGroupError'),
+          style: response.status,
+        })
+      }
+    }
   }
 
   handleJoinGroupChange = event => {
@@ -117,6 +178,12 @@ class GroupView extends React.Component<Props, State> {
     return false
   }
 
+  showMessage = async ({ message, style }) => {
+    this.setState({ message, messageStyle: style })
+    await sleep(config.MESSAGE_DELAY)
+    this.setState({ message: '', messageStyle: '' })
+  }
+
   render() {
     const { t, groupMembers } = this.props
     const {
@@ -124,6 +191,8 @@ class GroupView extends React.Component<Props, State> {
       showCreateGroup,
       showJoinGroup,
       joinGroupValue,
+      message,
+      messageStyle,
     } = this.state
 
     const groupLeader = this.isGroupLeader()
@@ -218,6 +287,7 @@ class GroupView extends React.Component<Props, State> {
               </button>
             </React.Fragment>
           )}
+        <p className={messageStyle}>{message}</p>
       </div>
     )
   }
