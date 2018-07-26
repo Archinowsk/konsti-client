@@ -3,6 +3,7 @@ import {
   SUBMIT_GET_USER_GAMES,
   SUBMIT_UPDATE_FAVORITES,
 } from 'views/my-games/myGamesActions'
+import { UPDATE_SIGNED_GAMES } from 'views/signup/signupActions'
 
 const initialState = {
   enteredGames: [],
@@ -26,7 +27,11 @@ const myGamesReducer = (state: Object = initialState, action: Function) => {
         ...state,
         favoritedGames: action.favoritedGames,
       }
-
+    case UPDATE_SIGNED_GAMES:
+      return {
+        ...state,
+        signedGames: action.signedGames,
+      }
     default:
       return state
   }
