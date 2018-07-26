@@ -131,7 +131,6 @@ class GroupView extends React.Component<Props, State> {
 
     const joinGroupInput = (
       <div>
-        <p>{t('joinGroup')} </p>
         <input
           key="joinGroup"
           className="form-input"
@@ -145,13 +144,13 @@ class GroupView extends React.Component<Props, State> {
     return (
       <div className="group-view">
         <p className="page-title">{t('pages.group')}</p>
+        <p>{t('groupSignupGuide')}</p>
 
         {loading && <Loading />}
         {!loading &&
           !groupLeader &&
           !inGroup && (
             <React.Fragment>
-              <p>{t('joiningGroupWillCancelGames')}</p>
               <button onClick={() => this.openGroupForming()}>
                 {t('button.createGroup')}
               </button>
@@ -171,6 +170,8 @@ class GroupView extends React.Component<Props, State> {
 
               {showJoinGroup && (
                 <div>
+                  <p>{t('joiningGroupWillCancelGames')}</p>
+
                   {joinGroupInput}
                   <button onClick={() => this.joinGroup()}>
                     {t('button.joinGroup')}

@@ -25,7 +25,7 @@
   },
   "username": "Käyttäjänimi",
   "password": "Salasana",
-  "serial": "Kirjautumiskoodi",
+  "serial": "Rekisteröintikoodi",
   "code": "Koodi",
   "loading": "Ladataan...",
   "hours": "tuntia",
@@ -104,14 +104,15 @@
   "blacklistedGames": "Piilotetut pelit",
   "error": {
     "usernameTaken": "Käyttäjänimi on varattu",
-    "invalidSerial": "Epäkelpo kirjautumiskoodi",
+    "invalidSerial": "Epäkelpo rekisteröitymiskoodi",
     "registrationFailed": "Rekisteröityminen epäonnistui",
     "loginFailed": "Käyttäjänimi ja salasana eivät täsmää",
     "unkown": "Tuntematon virhe"
   },
   "iAgree": "Hyväksyn",
   "registerDescription": "rekisteriselosteen",
-  "registrationSerialHelp": "Nouda kirjautusmikoodi larp- ja roolipelitiskiltä",
+  "registrationSerialHelp":
+    "Nouda rekisteröintikoodi larp- ja roolipelitiskiltä",
   "noSignedGames": "Ei peli-ilmoittautumisia",
   "noFavoritedGames": "Ei suosikkipelejä",
   "noEnteredGames": "Ei vahvistuneita ilmoittautumisia",
@@ -155,5 +156,7 @@
   "groupLeaderWargnin":
     "Ryhmänjohtaja ei voi poistua ryhmästä, jos ryhmässä on muita jäseniä",
   "joiningGroupWillCancelGames":
-    "Ryhmään liittyminen peruu kaikki aikaisemmat ilmoittautumisesi"
+    "Ryhmään liittyminen peruu kaikki aikaisemmat ilmoittautumisesi",
+  "groupSignupGuide":
+    "Ryhmiin liitytään rekisteröintikoodilla. Näet oman koodisi sivun ylälaidasta."
 }
