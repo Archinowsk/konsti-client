@@ -1,15 +1,22 @@
 /* @flow */
 import { postSignup } from 'services/signupServices'
-import { submitGetUserAsync } from 'views/my-games/myGamesActions'
 export const SUBMIT_SIGNUP = 'SUBMIT_SIGNUP'
 export const SUBMIT_SELECT_DATE = 'SUBMIT_SELECT_DATE'
 export const SUBMIT_SELECTED_GAMES = 'SUBMIT_SELECTED_GAMES'
+export const UPDATE_SIGNED_GAMES = 'UPDATE_SIGNED_GAMES'
 
 const submitSignupAsync = ({ status, selectedGames }) => {
   return {
     type: SUBMIT_SIGNUP,
     status,
     selectedGames,
+  }
+}
+
+const submitUpdateSignedGamesAsync = signedGames => {
+  return {
+    type: UPDATE_SIGNED_GAMES,
+    signedGames,
   }
 }
 
@@ -33,11 +40,7 @@ export const submitSignup = (signupData: Object) => {
         })
       )
 
-      dispatch(
-        submitGetUserAsync({
-          signedGames: response.signedGames,
-        })
-      )
+      dispatch(submitUpdateSignedGamesAsync(response.signedGames))
     }
 
     return response
