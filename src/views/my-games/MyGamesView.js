@@ -37,8 +37,8 @@ class MyGamesView extends React.Component<Props, State> {
         {!loading && (
           <React.Fragment>
             <MyFavoritesList favoritedGames={favoritedGames} />
-            <MyEnteredList enteredGames={enteredGames} />
             <MySignupsList signedGames={signedGames} />
+            <MyEnteredList enteredGames={enteredGames} />
           </React.Fragment>
         )}
       </div>
