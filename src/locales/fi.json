@@ -158,7 +158,7 @@
   "joiningGroupWillCancelGames":
     "Ryhmään liittyminen peruu kaikki aikaisemmat ilmoittautumisesi",
   "groupSignupGuide":
-    "Ryhmiin liitytään rekisteröintikoodilla. Näet oman koodisi sivun ylälaidasta.",
+    "Ryhmiin liitytään rekisteröintikoodilla. Näet oman koodisi sivun ylälaidasta. Varmistathan, että ryhmä ei ole liian iso valitsemiisi peleihin liittymistä varten.",
   "groupCreated": "Ryhmä luotu",
   "invalidGroupCode": "Epäkelko koodi",
   "groupNotExist": "Ryhmää ei ole olemassa",

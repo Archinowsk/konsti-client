@@ -155,7 +155,7 @@
   "joiningGroupWillCancelGames":
     "Joining a group will cancel all signups you may have done before",
   "groupSignupGuide":
-    "Joining a group is done with the registration code. Your own code can be found from the top of the page.",
+    "Joining a group is done with the registration code. Your own code can be found from the top of the page. Please make sure that the group is not too big for the selected games.",
   "groupCreated": "Group created",
   "invalidGroupCode": "Invalid code",
   "groupNotExist": "Group does not exist",
