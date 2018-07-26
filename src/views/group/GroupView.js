@@ -4,19 +4,29 @@ import { translate } from 'react-i18next'
 import { connect } from 'react-redux'
 import { getData } from 'utils/store'
 import Loading from 'components/Loading'
+import { submitJoinGroup, submitAddMember } from 'views/group/groupActions'
 
 type Props = {
   t: Function,
+  username: string,
 }
 
 type State = {
   loading: boolean,
   showAddMember: boolean,
   showJoinGroup: boolean,
+  newMemberValue: string,
+  joinGroupValue: string,
 }
 
 class GroupView extends React.Component<Props, State> {
-  state = { loading: true, showAddMember: false, showJoinGroup: false }
+  state = {
+    loading: true,
+    showAddMember: false,
+    showJoinGroup: false,
+    newMemberValue: '',
+    joinGroupValue: '',
+  }
 
   componentDidMount = async () => {
     await getData()
@@ -31,52 +41,64 @@ class GroupView extends React.Component<Props, State> {
     this.setState({ showJoinGroup: true, showAddMember: false })
   }
 
-  addMember = () => {
-    console.log('add member')
+  addMember = async () => {
+    const { username } = this.props
+    const { newMemberValue } = this.state
+    const groupData = { username: username, groupCode: newMemberValue }
+    await submitAddMember(groupData)
   }
 
-  joinGroup = () => {
-    console.log('join group')
+  joinGroup = async () => {
+    const { username } = this.props
+    const { joinGroupValue } = this.state
+    const groupData = { username: username, groupCode: joinGroupValue }
+    await submitJoinGroup(groupData)
+  }
+
+  handleJoinGroupChange = event => {
+    this.setState({ joinGroupValue: event.target.value })
+  }
+
+  handleNewMemberChange = event => {
+    this.setState({ newMemberValue: event.target.value })
   }
 
   render() {
     const { t } = this.props
-    const { loading, showAddMember, showJoinGroup } = this.state
+    const {
+      loading,
+      showAddMember,
+      showJoinGroup,
+      joinGroupValue,
+      newMemberValue,
+    } = this.state
 
-    const AddMemberInput = () => {
-      const { t } = this.props
+    const addMemberInput = (
+      <div>
+        <p>{t('addGroupMember')} </p>
 
-      return (
-        <div>
-          <p>{t('addGroupMember')} </p>
+        <input
+          key="addGroupMember"
+          className="form-input"
+          placeholder={t('enterGroupMemberCode')}
+          value={newMemberValue}
+          onChange={this.handleNewMemberChange}
+        />
+      </div>
+    )
 
-          <input
-            className="form-input"
-            // {...input}
-            placeholder={t('enterGroupMemberCode')}
-            // type={type}
-            // id={input.name}
-          />
-        </div>
-      )
-    }
-
-    const JoinGroupInput = () => {
-      const { t } = this.props
-
-      return (
-        <div>
-          <p>{t('joinGroup')} </p>
-          <input
-            className="form-input"
-            // {...input}
-            placeholder={t('enterGroupLeaderCode')}
-            // type={type}
-            // id={input.name}
-          />
-        </div>
-      )
-    }
+    const joinGroupInput = (
+      <div>
+        <p>{t('joinGroup')} </p>
+        <input
+          key="joinGroup"
+          className="form-input"
+          placeholder={t('enterGroupLeaderCode')}
+          value={joinGroupValue}
+          onChange={this.handleJoinGroupChange}
+        />
+      </div>
+    )
 
     return (
       <div className="group-view">
@@ -93,7 +115,7 @@ class GroupView extends React.Component<Props, State> {
 
             {showAddMember && (
               <div>
-                <AddMemberInput />
+                {addMemberInput}
                 <button onClick={() => this.addMember()}>
                   {t('button.addMember')}
                 </button>
@@ -102,7 +124,7 @@ class GroupView extends React.Component<Props, State> {
 
             {showJoinGroup && (
               <div>
-                <JoinGroupInput />
+                {joinGroupInput}
                 <button onClick={() => this.joinGroup()}>
                   {t('button.joinGroup')}
                 </button>
@@ -116,7 +138,9 @@ class GroupView extends React.Component<Props, State> {
 }
 
 const mapStateToProps = (state: Object) => {
-  return {}
+  return {
+    username: state.login.username,
+  }
 }
 
 const mapDispatchToProps = (dispatch: Function) => {
