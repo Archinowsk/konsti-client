@@ -11,6 +11,9 @@ import config from 'config'
 type Props = {
   callback: Function,
   t: Function,
+  games: Array<Object>,
+  selectedGames: Array<Object>,
+  signupTime: string,
 }
 
 type State = {
@@ -31,12 +34,16 @@ class DragAndDropList extends React.Component<Props, State> {
   }
 
   componentDidMount() {
+    const { games, selectedGames, signupTime } = this.props
     // Load existing state from store
-    this.loadState(this.props)
+    this.loadState({ games, selectedGames, signupTime })
+    // this.loadState(this.props)
   }
 
   componentWillReceiveProps(nextProps) {
-    this.loadState(nextProps)
+    const { games, selectedGames, signupTime } = nextProps
+    this.loadState({ games, selectedGames, signupTime })
+    // this.loadState(nextProps)
   }
 
   loadState = props => {

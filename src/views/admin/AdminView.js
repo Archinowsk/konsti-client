@@ -8,7 +8,7 @@ import {
   submitPlayersAssign,
   submitSignupTime,
 } from 'views/admin/adminActions'
-import { submitSelectDate } from 'views/signup/signupActions'
+// import { submitSelectDate } from 'views/signup/signupActions'
 // import TimesDropdown from 'components/TimesDropdown'
 import { getData } from 'utils/store'
 import Loading from 'components/Loading'
@@ -202,7 +202,7 @@ const mapDispatchToProps = (dispatch: Function) => {
     onSubmitGamesUpdate: () => dispatch(submitGamesUpdate()),
     onSubmitPlayersAssign: signupTime =>
       dispatch(submitPlayersAssign(signupTime)),
-    onSubmitSelectDate: event => dispatch(submitSelectDate(event.target.value)),
+    // onSubmitSelectDate: event => dispatch(submitSelectDate(event.target.value)),
     onSubmitSignupTime: date => dispatch(submitSignupTime(date)),
   }
 }
