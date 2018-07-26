@@ -1,11 +1,14 @@
 /* @flow */
 import { SUBMIT_LOGIN } from 'views/login/loginActions'
+import { SUBMIT_UPDATE_GROUP } from 'views/group/groupActions'
 
 const initialState = {
   username: '',
   loggedIn: false,
   jwtToken: '',
   userGroup: '',
+  serial: '',
+  playerGroup: '',
 }
 
 const loginReducer = (state: Object = initialState, action: Function) => {
@@ -18,6 +21,12 @@ const loginReducer = (state: Object = initialState, action: Function) => {
         jwtToken: action.jwtToken,
         userGroup: action.userGroup,
         serial: action.serial,
+        playerGroup: action.playerGroup,
+      }
+    case SUBMIT_UPDATE_GROUP:
+      return {
+        ...state,
+        playerGroup: action.playerGroup,
       }
     default:
       return state

@@ -10,6 +10,7 @@ const submitLoginAsync = ({
   jwtToken,
   userGroup,
   serial,
+  playerGroup,
 }) => {
   return {
     type: SUBMIT_LOGIN,
@@ -18,6 +19,7 @@ const submitLoginAsync = ({
     jwtToken,
     userGroup,
     serial,
+    playerGroup,
   }
 }
 
@@ -42,6 +44,7 @@ export const submitLogin = (loginData: Object) => {
           jwtToken: response.jwtToken,
           userGroup: response.userGroup,
           serial: response.serial,
+          playerGroup: response.playerGroup,
         })
       )
     }

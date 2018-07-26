@@ -10,6 +10,9 @@ type Props = {
   t: Function,
   username: string,
   serial: string,
+  onSubmitCreateGroup: Function,
+  onSubmitJoinGroup: Function,
+  // group: string,
 }
 
 type State = {
@@ -41,18 +44,18 @@ class GroupView extends React.Component<Props, State> {
   }
 
   createGroup = async () => {
-    const { username, serial } = this.props
+    const { username, serial, onSubmitCreateGroup } = this.props
     const groupData = {
       username: username,
       groupCode: serial,
       leader: true,
       ownSerial: serial,
     }
-    await submitCreateGroup(groupData)
+    await onSubmitCreateGroup(groupData)
   }
 
   joinGroup = async () => {
-    const { username, serial } = this.props
+    const { username, serial, onSubmitJoinGroup } = this.props
     const { joinGroupValue } = this.state
     const groupData = {
       username: username,
@@ -60,7 +63,8 @@ class GroupView extends React.Component<Props, State> {
       leader: false,
       ownSerial: serial,
     }
-    await submitJoinGroup(groupData)
+
+    await onSubmitJoinGroup(groupData)
   }
 
   handleJoinGroupChange = event => {
@@ -125,11 +129,15 @@ const mapStateToProps = (state: Object) => {
   return {
     username: state.login.username,
     serial: state.login.serial,
+    group: state.login.playerGroup,
   }
 }
 
 const mapDispatchToProps = (dispatch: Function) => {
-  return {}
+  return {
+    onSubmitCreateGroup: groupData => dispatch(submitCreateGroup(groupData)),
+    onSubmitJoinGroup: groupData => dispatch(submitJoinGroup(groupData)),
+  }
 }
 
 export default translate()(
