@@ -12,7 +12,7 @@ const GroupMembersList = (props: Props) => {
 
   if (!groupMembers) return <div className="group-members-list" />
 
-  const list = groupMembers.map(member => {
+  const membersList = groupMembers.map(member => {
     const leader = member.serial.toString() === member.playerGroup.toString()
     return (
       <React.Fragment key={member.username}>
@@ -23,7 +23,7 @@ const GroupMembersList = (props: Props) => {
     )
   })
 
-  return <div className="group-members-list">{list}</div>
+  return <div className="group-members-list">{membersList}</div>
 }
 
 export default translate()(GroupMembersList)

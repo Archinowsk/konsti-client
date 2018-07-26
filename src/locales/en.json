@@ -20,7 +20,8 @@
     "createGroup": "Create group",
     "joinGroup": "Join group",
     "addMember": "Add member",
-    "joinGroupConfirmation": "Create"
+    "joinGroupConfirmation": "Create",
+    "leaveGroup": "Leave group"
   },
   "username": "Username",
   "password": "Password",

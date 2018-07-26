@@ -20,7 +20,8 @@
     "createGroup": "Luo ryhmä",
     "joinGroup": "Liity ryhmään",
     "addMember": "Lisää jäsen",
-    "joinGroupConfirmation": "Luo"
+    "joinGroupConfirmation": "Luo",
+    "leaveGroup": "Poistu ryhmästä"
   },
   "username": "Käyttäjänimi",
   "password": "Salasana",

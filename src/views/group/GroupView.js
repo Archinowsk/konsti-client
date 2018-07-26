@@ -10,6 +10,7 @@ import {
   submitGetGroup,
 } from 'views/group/groupActions'
 import GroupMembersList from 'views/group/components/GroupMembersList'
+import SignedGamesList from 'views/group/components/SignedGamesList'
 
 type Props = {
   t: Function,
@@ -98,6 +99,10 @@ class GroupView extends React.Component<Props, State> {
     return false
   }
 
+  leaveGroup = () => {
+    console.log('leaveGroup')
+  }
+
   render() {
     const { t, groupMembers } = this.props
     const { loading, showAddMember, showJoinGroup, joinGroupValue } = this.state
@@ -162,6 +167,11 @@ class GroupView extends React.Component<Props, State> {
               </p>
               <p>{t('groupMembers')}</p>
               <GroupMembersList groupMembers={groupMembers} />
+              <p>{t('signedGames')}</p>
+              <SignedGamesList groupMembers={groupMembers} />
+              <button onClick={() => this.leaveGroup()}>
+                {t('button.leaveGroup')}
+              </button>
             </React.Fragment>
           )}
         {!loading &&
@@ -173,6 +183,11 @@ class GroupView extends React.Component<Props, State> {
               </p>
               <p>{t('groupMembers')}</p>
               <GroupMembersList groupMembers={groupMembers} />
+              <p>{t('signedGames')}</p>
+              <SignedGamesList groupMembers={groupMembers} />
+              <button onClick={() => this.leaveGroup()}>
+                {t('button.leaveGroup')}
+              </button>
             </React.Fragment>
           )}
       </div>

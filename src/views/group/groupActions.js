@@ -27,8 +27,6 @@ export const submitJoinGroup = (groupData: Object) => {
       dispatch(submitJoinGroupAsync({ playerGroup: groupData.groupCode }))
     }
 
-    console.log('response', response)
-
     return response
   }
 }
@@ -85,8 +83,6 @@ export const submitGetGroup = (groupCode: string) => {
     let response = null
     try {
       response = await getGroup(groupCode)
-
-      console.log('response', response)
     } catch (error) {
       console.log(`postGroup error: ${error}`)
     }
