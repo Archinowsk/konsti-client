@@ -2,9 +2,6 @@
 import { postGroup } from 'services/groupService'
 
 export const submitJoinGroup = async (groupData: Object) => {
-  console.log('submitGroupJoinGroup')
-  console.log(groupData)
-
   let response = null
   try {
     response = await postGroup(groupData)
@@ -12,9 +9,7 @@ export const submitJoinGroup = async (groupData: Object) => {
     console.log(`postGroup error: ${error}`)
   }
 
-  if (response) {
-    return response.data
-  }
+  return response
 
   /*
   return async (dispatch: Function) => {
@@ -41,10 +36,7 @@ export const submitJoinGroup = async (groupData: Object) => {
   */
 }
 
-export const submitAddMember = async (groupData: Object) => {
-  console.log('submitAddMember')
-  console.log(groupData)
-
+export const submitCreateGroup = async (groupData: Object) => {
   let response = null
   try {
     response = await postGroup(groupData)
@@ -52,7 +44,5 @@ export const submitAddMember = async (groupData: Object) => {
     console.log(`postGroup error: ${error}`)
   }
 
-  if (response) {
-    return response.data
-  }
+  return response
 }

@@ -19,7 +19,8 @@
     "feedbackSent": "Feedback sent",
     "createGroup": "Create group",
     "joinGroup": "Join group",
-    "addMember": "Add member"
+    "addMember": "Add member",
+    "joinGroupConfirmation": "Create"
   },
   "username": "Username",
   "password": "Password",
@@ -139,5 +140,6 @@
   "enterGroupMemberCode": "User's code",
   "enterGroupLeaderCode": "Group leader's code",
   "joinGroup": "Join group",
-  "addGroupMember": "Add group member"
+  "addGroupMember": "Add group member",
+  "createGroupConfirmationMessage": "Do you want to create a group?"
 }

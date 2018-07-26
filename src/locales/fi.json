@@ -18,8 +18,9 @@
     "sendFeedback": "Lähetä palautetta",
     "feedbackSent": "Palaute lähetetty",
     "createGroup": "Luo ryhmä",
-    "joinGroup": "Join group",
-    "addMember": "Lisää jäsen"
+    "joinGroup": "Liity ryhmään",
+    "addMember": "Lisää jäsen",
+    "joinGroupConfirmation": "Luo"
   },
   "username": "Käyttäjänimi",
   "password": "Salasana",
@@ -141,5 +142,6 @@
   "enterGroupMemberCode": "Käyttäjän koodi",
   "enterGroupLeaderCode": "Ryhmänjohtajan koodi",
   "joinGroup": "Liity ryhmään",
-  "addGroupMember": "Lisää jäsen ryhmään"
+  "addGroupMember": "Lisää jäsen ryhmään",
+  "createGroupConfirmationMessage": "Halutko luoda ryhmän?"
 }
