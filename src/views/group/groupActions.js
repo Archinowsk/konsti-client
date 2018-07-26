@@ -55,6 +55,7 @@ export const submitCreateGroup = (groupData: Object) => {
       return Promise.reject(response)
     }
     if (response && response.status === 'success') {
+      dispatch(submitGetGroup(groupData.groupCode))
       dispatch(submitCreateGroupAsync({ playerGroup: groupData.groupCode }))
     }
 

@@ -43,7 +43,11 @@ class GroupView extends React.Component<Props, State> {
   componentDidMount = async () => {
     const { onSubmitGetGroup, groupCode } = this.props
     await getData()
-    await onSubmitGetGroup(groupCode)
+
+    // Get group members if user is in a group
+    if (groupCode !== 0) {
+      await onSubmitGetGroup(groupCode)
+    }
     this.setState({ loading: false })
   }
 
@@ -225,7 +229,7 @@ const mapDispatchToProps = (dispatch: Function) => {
   return {
     onSubmitCreateGroup: groupData => dispatch(submitCreateGroup(groupData)),
     onSubmitJoinGroup: groupData => dispatch(submitJoinGroup(groupData)),
-    onSubmitGetGroup: groupData => dispatch(submitGetGroup(groupData)),
+    onSubmitGetGroup: groupCode => dispatch(submitGetGroup(groupCode)),
     onSubmitLeaveGroup: groupData => dispatch(submitLeaveGroup(groupData)),
   }
 }
