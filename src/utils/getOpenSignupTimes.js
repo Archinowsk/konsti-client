@@ -10,14 +10,21 @@ const getOpenSignupTimes = games => {
 
   const sortedTimes = [...new Set(startTimes)].sort()
 
+  console.log('sortedTimes', sortedTimes)
+
   const signupOpenDuration = config.SIGNUP_OPEN_TIME
   const signupEndMinutes = config.SIGNUP_END_TIME
+  const conventionStartTime = config.CONVENTION_START_TIME
 
   let timeNow = moment()
+  /*
   if (config.env === 'development' || config.staging) {
     timeNow = moment(config.TIME_NOW)
     console.log('set testing time: ', moment(timeNow).format())
   }
+  */
+
+  console.log(moment(timeNow).format())
 
   // console.log('timeNow', moment(timeNow).format())
 
@@ -25,9 +32,13 @@ const getOpenSignupTimes = games => {
   // 16:40 -> 18:00, 19:00, 20:00
   // 17:10 -> 18:00, 19:00, 20:00, 21:00
 
-  const earliestSignupTime = moment(timeNow)
+  let earliestSignupTime = moment(timeNow)
     .add(signupEndMinutes, 'minutes')
     .endOf('hour')
+
+  if (moment(earliestSignupTime).isBefore(moment(conventionStartTime))) {
+    earliestSignupTime = moment(conventionStartTime)
+  }
 
   const minutes = moment(timeNow).format('m')
 
@@ -36,8 +47,8 @@ const getOpenSignupTimes = games => {
     .subtract(minutes, 'minutes')
     .startOf('hour')
 
-  // console.log('earliestSignupTime', moment(earliestSignupTime).format())
-  // console.log('lastSignupTime', moment(lastSignupTime).format())
+  console.log('earliestSignupTime', moment(earliestSignupTime).format())
+  console.log('lastSignupTime', moment(lastSignupTime).format())
 
   const openSignupTimes = []
   for (let sortedTime of sortedTimes) {

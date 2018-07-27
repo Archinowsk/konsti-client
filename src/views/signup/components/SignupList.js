@@ -6,7 +6,7 @@ import timeFormatter from 'utils/timeFormatter'
 import {
   submitSignup,
   submitSelectedGames,
-  submitSelectDate,
+  // submitSelectDate,
 } from 'views/signup/signupActions'
 import DragAndDropList from 'views/signup/components/DragAndDropList'
 import getOpenSignupTimes from 'utils/getOpenSignupTimes'
@@ -21,8 +21,8 @@ type Props = {
   username: string,
   blacklistedGames: Array<Object>,
   onSubmitSelectedGames: Function,
-  onSubmitSelectDate: Function,
-  signupTime: string,
+  // onSubmitSelectDate: Function,
+  // signupTime: string,
 }
 
 type State = {
@@ -30,6 +30,7 @@ type State = {
   signupSubmitted: boolean,
   signupError: boolean,
   signupTimes: Array<string>,
+  signupTime: string,
 }
 
 class SignupList extends React.Component<Props, State> {
@@ -43,12 +44,14 @@ class SignupList extends React.Component<Props, State> {
       signupSubmitted: false,
       signupError: false,
       signupTimes: signupTimes,
+      signupTime: '',
     }
   }
 
   // Submit signup
   onSubmitClick = async () => {
-    const { onSubmitSignup, selectedGames, username, signupTime } = this.props
+    const { onSubmitSignup, selectedGames, username } = this.props
+    const { signupTime } = this.state
     this.setState({ submitting: true })
 
     // Submit only games for selected time
@@ -89,7 +92,8 @@ class SignupList extends React.Component<Props, State> {
 
   // Cancel signup
   onCancelClick = async () => {
-    const { onSubmitSignup, username, signupTime } = this.props
+    const { onSubmitSignup, username } = this.props
+    const { signupTime } = this.state
 
     const signupData = {
       username,
@@ -115,7 +119,8 @@ class SignupList extends React.Component<Props, State> {
 
   // Get games that have signup open and are not blacklisted
   filterGames = () => {
-    const { games, blacklistedGames, signupTime } = this.props
+    const { games, blacklistedGames } = this.props
+    const { signupTime } = this.state
 
     // Remove hidden games
     const visibleGames = []
@@ -145,7 +150,8 @@ class SignupList extends React.Component<Props, State> {
 
   // Get data from child component
   callback = games => {
-    const { onSubmitSelectedGames, selectedGames, signupTime } = this.props
+    const { onSubmitSelectedGames, selectedGames } = this.props
+    const { signupTime } = this.state
 
     // Combine new selected games to existing
     const temp = selectedGames.filter(
@@ -158,8 +164,9 @@ class SignupList extends React.Component<Props, State> {
 
   // Select signup time from buttons and store it
   selectSignupTime = signupTime => {
-    const { onSubmitSelectDate } = this.props
-    onSubmitSelectDate(signupTime)
+    // const { onSubmitSelectDate } = this.props
+    // onSubmitSelectDate(signupTime)
+    this.setState({ signupTime })
   }
 
   showMessage = async message => {
@@ -173,8 +180,14 @@ class SignupList extends React.Component<Props, State> {
   }
 
   render() {
-    const { t, selectedGames, signupTime } = this.props
-    const { submitting, signupSubmitted, signupError, signupTimes } = this.state
+    const { t, selectedGames } = this.props
+    const {
+      submitting,
+      signupSubmitted,
+      signupError,
+      signupTimes,
+      signupTime,
+    } = this.state
 
     const filteredGames = this.filterGames()
 
@@ -249,7 +262,7 @@ const mapStateToProps = state => {
     selectedGames: state.signup.selectedGames,
     username: state.login.username,
     blacklistedGames: state.admin.blacklistedGames,
-    signupTime: state.signup.date,
+    // signupTime: state.signup.date,
   }
 }
 
@@ -258,7 +271,7 @@ const mapDispatchToProps = (dispatch: Function) => {
     onSubmitSelectedGames: selectedGames =>
       dispatch(submitSelectedGames(selectedGames)),
     onSubmitSignup: signupData => dispatch(submitSignup(signupData)),
-    onSubmitSelectDate: signupTime => dispatch(submitSelectDate(signupTime)),
+    // onSubmitSelectDate: signupTime => dispatch(submitSelectDate(signupTime)),
   }
 }
 
