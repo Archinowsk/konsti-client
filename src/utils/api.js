@@ -4,7 +4,7 @@ import config from 'config'
 
 export const api = axios.create({
   baseURL: `${config.apiServerURL}/api`,
-  timeout: 10000, // 10s
+  timeout: 60000, // 60s
   headers: {
     'Content-Type': 'application/json',
   },
