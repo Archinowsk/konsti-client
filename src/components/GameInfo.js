@@ -87,7 +87,7 @@ class GameInfo extends React.PureComponent<Props> {
     const genresList = this.getGenres()
     const stylesList = this.getStyles()
     const formattedStartTime = timeFormatter.weekdayAndTime(game.startTime)
-    const formattedEndTime = timeFormatter.timeOnly(game.startTime)
+    const formattedEndTime = timeFormatter.timeOnly(game.endTime)
 
     return (
       <div>
