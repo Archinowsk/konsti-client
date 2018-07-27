@@ -30,12 +30,16 @@ type Props = {
 type State = {
   submitting: boolean,
   loading: boolean,
+  message: string,
+  messageStyle: string,
 }
 
 class AdminView extends React.Component<Props, State> {
   state = {
     submitting: false,
     loading: true,
+    message: '',
+    messageStyle: '',
   }
 
   componentDidMount = async () => {
@@ -92,12 +96,30 @@ class AdminView extends React.Component<Props, State> {
   submitAssign = async () => {
     const { onSubmitPlayersAssign, signupTime } = this.props
     this.setState({ submitting: true })
+
+    let response = null
     try {
-      await onSubmitPlayersAssign(signupTime)
+      response = await onSubmitPlayersAssign(signupTime)
     } catch (error) {
       console.log(`onSubmitPlayersAssign error: ${error}`)
     }
     this.setState({ submitting: false })
+
+    if (response.status === 'success') {
+      this.showMessage({
+        message: response.results.message,
+        style: response.status,
+      })
+    } else if (response.status === 'error') {
+      this.showMessage({
+        message: 'Error assigning players',
+        style: response.status,
+      })
+    }
+  }
+
+  showMessage = async ({ message, style }) => {
+    this.setState({ message, messageStyle: style })
   }
 
   submitTime = async () => {
@@ -121,7 +143,7 @@ class AdminView extends React.Component<Props, State> {
       signupTime,
     } = this.props
 
-    const { submitting, loading } = this.state
+    const { submitting, loading, message, messageStyle } = this.state
 
     const visibleGames = this.getVisibleGames()
     this.fillBlacklistedGameinfo()
@@ -151,6 +173,8 @@ class AdminView extends React.Component<Props, State> {
             </button>
 
             {submitting && <p>{t('loading')}</p>}
+
+            <p className={messageStyle}>{message}</p>
 
             {updateResponse.data.errors && (
               <p className="error">{updateResponse.data.message}</p>
