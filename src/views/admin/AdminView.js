@@ -105,12 +105,12 @@ class AdminView extends React.Component<Props, State> {
     }
     this.setState({ submitting: false })
 
-    if (response.status === 'success') {
+    if (response && response.status === 'success') {
       this.showMessage({
         message: response.results.message,
         style: response.status,
       })
-    } else if (response.status === 'error') {
+    } else if (response && response.status === 'error') {
       this.showMessage({
         message: 'Error assigning players',
         style: response.status,
