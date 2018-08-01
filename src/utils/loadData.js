@@ -8,22 +8,27 @@ import { submitSelectedGames } from 'views/signup/signupActions'
 const loadData = async (store: Object) => {
   const state = store.getState()
 
-  const adminSettingsLoaded = state.admin.adminSettingsLoaded
-  const myGamesLoaded = state.myGames.myGamesLoaded
+  // const adminSettingsLoaded = state.admin.adminSettingsLoaded
+  // const myGamesLoaded = state.myGames.myGamesLoaded
   const loggedIn = state.login.loggedIn
 
   // Get games data
   await store.dispatch(submitGetGames())
 
+  /*
   if (!adminSettingsLoaded) {
     // Get settings data
     await store.dispatch(submitGetSettings())
   }
+  */
 
-  // Get results data
-  await store.dispatch(submitGetResults())
+  if (loggedIn) {
+    // Get settings data
+    await store.dispatch(submitGetSettings())
 
-  if (loggedIn && !myGamesLoaded) {
+    // Get results data
+    await store.dispatch(submitGetResults())
+
     // Get user data
     const username = state.login.username
     await store.dispatch(submitGetUser(username))
