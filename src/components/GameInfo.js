@@ -31,8 +31,7 @@ class GameInfo extends React.PureComponent<Props> {
     if (game.ageRestricted) {
       tagsList.push(
         <li key={'ageRestricted'}>
-          {t(`gameTags.ageRestricted`)} (
-          {t(`gameTags.ageRestrictedLong`)})
+          {t(`gameTags.ageRestricted`)} ({t(`gameTags.ageRestrictedLong`)})
         </li>
       )
     }
@@ -120,8 +119,8 @@ class GameInfo extends React.PureComponent<Props> {
         {game.mins && (
           <div className="game-details-row">
             <span className="game-details-title">{t('gameInfo.runTime')}</span>
-            {formattedStartTime} - {formattedEndTime} (
-            {game.mins / 60} {t('hours')})
+            {formattedStartTime} - {formattedEndTime} ({game.mins / 60}{' '}
+            {t('hours')})
           </div>
         )}
         {game.description && (

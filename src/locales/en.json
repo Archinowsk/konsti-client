@@ -86,8 +86,7 @@
     "englishOk": "Played in English",
     "childrenFriendly": "Children friendly",
     "ageRestricted": "Age limit 18+",
-    "ageRestrictedLong":
-      "You must be 18+ years old to participate in a K18 (18+) game. Participants may be asked to verify their age by ID before or during the game.",
+    "ageRestrictedLong": "You must be 18+ years old to participate in a K18 (18+) game. Participants may be asked to verify their age by ID before or during the game.",
     "beginnerFriendly": "Beginner friendly",
     "intendedForExperiencedParticipants": "Experienced participants preferred"
   },
@@ -123,8 +122,7 @@
   "noSignupSelected": "No signup",
   "signupResultsfor": "Signup results for games starting at",
   "noResults": "No signup results yet",
-  "signupGuide":
-    "You can choose three game wishes in order. Choose games by dragging. Remember to save changes.",
+  "signupGuide": "You can choose three game wishes in order. Choose games by dragging. Remember to save changes.",
   "signupSaved": "Signup saved",
   "signupFailed": "Signup failed",
   "signupResultHint": "Sign up results are visible on 'My Games' page at",
@@ -147,15 +145,11 @@
   "youAreInGroup": "You are in a group",
   "groupMembers": "Group members",
   "groupLeader": "Group leader",
-  "groupMemberInfo":
-    "Group leader will sign up to the games for the whole group",
+  "groupMemberInfo": "Group leader will sign up to the games for the whole group",
   "groupLeaderInfo": "You will sign up to the games for the whole group",
-  "groupLeaderWargnin":
-    "Group leader cannot leave the group if there are other members",
-  "joiningGroupWillCancelGames":
-    "Joining a group will cancel all signups you may have done before",
-  "groupSignupGuide":
-    "Joining a group is done with the registration code. Your own code can be found from the top of the page. Please make sure that the group is not too big for the selected games.",
+  "groupLeaderWargnin": "Group leader cannot leave the group if there are other members",
+  "joiningGroupWillCancelGames": "Joining a group will cancel all signups you may have done before",
+  "groupSignupGuide": "Joining a group is done with the registration code. Your own code can be found from the top of the page. Please make sure that the group is not too big for the selected games.",
   "groupCreated": "Group created",
   "invalidGroupCode": "Invalid code",
   "groupNotExist": "Group does not exist",
@@ -165,6 +159,5 @@
   "leftGroup": "Left group",
   "groupNotEmpty": "Leader cannot leave non-empty group",
   "noSignupResult": "You didn't get into a game for starting time",
-  "noSignupResultHint":
-    "If you don't see a signup result here after the signup time had ended, you didn't get into a game. You might still find something to play at LARP and RPG desk if you come immediately after signup has ended."
+  "noSignupResultHint": "If you don't see a signup result here after the signup time had ended, you didn't get into a game. You might still find something to play at LARP and RPG desk if you come immediately after signup has ended."
 }

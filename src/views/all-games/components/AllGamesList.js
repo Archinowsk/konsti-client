@@ -58,9 +58,8 @@ class AllGamesList extends React.PureComponent<Props> {
 
       const title = (
         <p key={startTime} className="title">
-          {formattedStartTime} ({t('signupOpenBetween')} {signupStartTime}-{
-            signupEndTime
-          })
+          {formattedStartTime} ({t('signupOpenBetween')} {signupStartTime}-
+          {signupEndTime})
         </p>
       )
 
