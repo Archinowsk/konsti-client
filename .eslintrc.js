@@ -7,6 +7,7 @@ module.exports = {
     // 'plugin:promise/recommended',
     // 'plugin:jsx-a11y/recommended',
     // 'plugin:unicorn/recommended',
+    'plugin:eslint-comments/recommended',
     'prettier',
     'prettier/flowtype',
     'prettier/react',
