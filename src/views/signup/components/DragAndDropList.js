@@ -37,13 +37,13 @@ class DragAndDropList extends React.Component<Props, State> {
     const { games, selectedGames, signupTime } = this.props
     // Load existing state from store
     this.loadState({ games, selectedGames, signupTime })
-    // this.loadState(this.props)
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { games, selectedGames, signupTime } = nextProps
-    this.loadState({ games, selectedGames, signupTime })
-    // this.loadState(nextProps)
+  componentDidUpdate(prevProps) {
+    if (this.props.signupTime !== prevProps.signupTime) {
+      const { games, selectedGames, signupTime } = this.props
+      this.loadState({ games, selectedGames, signupTime })
+    }
   }
 
   loadState = props => {

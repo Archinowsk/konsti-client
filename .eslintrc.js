@@ -1,9 +1,10 @@
 module.exports = {
   extends: [
     'standard',
-    'standard-react',
-    'plugin:security/recommended',
+    'plugin:react/recommended',
+    // 'plugin:security/recommended',
     'plugin:flowtype/recommended',
+    // 'plugin:promise/recommended',
     // 'plugin:jsx-a11y/recommended',
     'prettier',
     'prettier/flowtype',
@@ -15,7 +16,7 @@ module.exports = {
     'prettier',
     'compat',
     'security',
-    // 'jsx-a11y',
+    'jsx-a11y',
     // 'flowtype-errors',
   ],
   parser: 'babel-eslint',

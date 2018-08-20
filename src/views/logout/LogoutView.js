@@ -9,7 +9,7 @@ type Props = {
 }
 
 class LogoutPage extends React.Component<Props> {
-  componentWillMount() {
+  componentDidMount() {
     const { onSubmitLogout } = this.props
     onSubmitLogout()
   }
