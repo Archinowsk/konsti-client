@@ -71,6 +71,7 @@
     "eslint-plugin-prettier": "2.6.2",
     "eslint-plugin-promise": "4.0.0",
     "eslint-plugin-react": "7.11.1",
+    "eslint-plugin-security": "1.4.0",
     "eslint-plugin-standard": "3.1.0",
     "extract-text-webpack-plugin": "4.0.0-beta.0",
     "flow-bin": "0.79.1",

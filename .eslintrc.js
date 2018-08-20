@@ -2,6 +2,7 @@ module.exports = {
   extends: [
     'standard',
     'standard-react',
+    'plugin:security/recommended',
     'plugin:flowtype/recommended',
     // 'plugin:jsx-a11y/recommended',
     'prettier',
@@ -13,6 +14,7 @@ module.exports = {
     'flowtype',
     'prettier',
     'compat',
+    'security',
     // 'jsx-a11y',
     // 'flowtype-errors',
   ],
@@ -24,6 +26,11 @@ module.exports = {
   env: {
     es6: true,
     browser: true,
+  },
+  settings: {
+    react: {
+      version: '16.3',
+    },
   },
   /*
   settings: {
