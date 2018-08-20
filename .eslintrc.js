@@ -17,6 +17,7 @@ module.exports = {
     'compat',
     'security',
     'jsx-a11y',
+    'promise',
     // 'flowtype-errors',
   ],
   parser: 'babel-eslint',
