@@ -165,12 +165,9 @@ const prodConfig = {
     }),
     new ExtractTextWebpackPlugin('[name].bundle.css'),
     new CompressionPlugin({
-      asset: '[path].gz[query]',
+      filename: '[path].gz[query]',
       algorithm: 'gzip',
       test: /\.js$/,
-      // test: /\.js$|\.css$|\.html$/,
-      // threshold: 10240,
-      // minRatio: 0.8
     }),
   ],
 
