@@ -15,7 +15,7 @@ const SignedMembersList = (props: Props) => {
   if (!groupMembers) return <div className="signed-games-list" />
 
   const leader = groupMembers.filter(
-    member => member.serial.toString() === member.playerGroup.toString()
+    member => member.serial === member.playerGroup
   )
 
   // Sort games by time and name

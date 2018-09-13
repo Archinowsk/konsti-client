@@ -13,7 +13,7 @@ const GroupMembersList = (props: Props) => {
   if (!groupMembers) return <div className="group-members-list" />
 
   const membersList = groupMembers.map(member => {
-    const leader = member.serial.toString() === member.playerGroup.toString()
+    const leader = member.serial === member.playerGroup
     return (
       <React.Fragment key={member.username}>
         <li>

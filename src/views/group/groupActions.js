@@ -2,6 +2,7 @@
 import { postGroup, getGroup } from 'services/groupService'
 
 export const SUBMIT_UPDATE_GROUP = 'SUBMIT_UPDATE_GROUP'
+export const SUBMIT_LEAVE_GROUP = 'SUBMIT_LEAVE_GROUP'
 export const SUBMIT_UPDATE_GROUP_MEMBERS = 'SUBMIT_UPDATE_GROUP_MEMBERS'
 
 const submitJoinGroupAsync = ({ playerGroup }) => {
@@ -88,9 +89,9 @@ export const submitGetGroup = (groupCode: string) => {
 }
 
 const submitLeaveGroupAsync = () => {
+  console.log('leave group')
   return {
-    type: SUBMIT_UPDATE_GROUP,
-    playerGroup: 0,
+    type: SUBMIT_LEAVE_GROUP,
   }
 }
 

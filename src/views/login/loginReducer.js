@@ -3,6 +3,7 @@ import { SUBMIT_LOGIN } from 'views/login/loginActions'
 import {
   SUBMIT_UPDATE_GROUP,
   SUBMIT_UPDATE_GROUP_MEMBERS,
+  SUBMIT_LEAVE_GROUP,
 } from 'views/group/groupActions'
 
 const initialState = {
@@ -11,7 +12,7 @@ const initialState = {
   jwtToken: '',
   userGroup: '',
   serial: '',
-  playerGroup: '',
+  playerGroup: '0',
   groupMembers: [],
 }
 
@@ -37,6 +38,8 @@ const loginReducer = (state: Object = initialState, action: Function) => {
         ...state,
         groupMembers: action.groupMembers,
       }
+    case SUBMIT_LEAVE_GROUP:
+      return { ...state, playerGroup: '0', groupMembers: [] }
     default:
       return state
   }

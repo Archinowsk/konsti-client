@@ -54,7 +54,7 @@ class GroupView extends React.Component<Props, State> {
     await getData()
 
     // Get group members if user is in a group
-    if (groupCode !== 0) {
+    if (groupCode !== '0') {
       await onSubmitGetGroup(groupCode)
     }
     this.setState({ loading: false })
@@ -181,7 +181,7 @@ class GroupView extends React.Component<Props, State> {
   // Check if user is group leader
   isGroupLeader = () => {
     const { groupCode, serial } = this.props
-    if (groupCode.toString() === serial.toString()) {
+    if (groupCode === serial) {
       return true
     }
     return false
@@ -190,7 +190,7 @@ class GroupView extends React.Component<Props, State> {
   // Check if user is in leader
   isInGroup = () => {
     const { groupCode } = this.props
-    if (groupCode) {
+    if (groupCode && groupCode !== '0') {
       return true
     }
     return false
