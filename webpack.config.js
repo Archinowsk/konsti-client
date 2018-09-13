@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const TemplateWebpackPlugin = require('html-webpack-template')
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin')
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
+const BrotliPlugin = require('brotli-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
 const path = require('path')
 const webpack = require('webpack')
@@ -167,6 +168,10 @@ const prodConfig = {
     new CompressionPlugin({
       filename: '[path].gz[query]',
       algorithm: 'gzip',
+      test: /\.js$/,
+    }),
+    new BrotliPlugin({
+      asset: '[path].br[query]',
       test: /\.js$/,
     }),
   ],
