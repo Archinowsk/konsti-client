@@ -95,6 +95,7 @@
     "postcss-normalize": "7.0.1",
     "postcss-preset-env": "6.0.7",
     "postcss-scss": "2.0.0",
+    "prepack-webpack-plugin": "1.1.1",
     "prettier": "1.14.3",
     "react-hot-loader": "4.3.11",
     "sass-loader": "7.1.0",
