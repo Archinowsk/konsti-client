@@ -7,7 +7,7 @@ const TemplateWebpackPlugin = require('html-webpack-template')
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin')
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const BrotliPlugin = require('brotli-webpack-plugin')
-const PrepackWebpackPlugin = require('prepack-webpack-plugin').default
+// const PrepackWebpackPlugin = require('prepack-webpack-plugin').default
 const Dotenv = require('dotenv-webpack')
 const path = require('path')
 const webpack = require('webpack')
@@ -160,7 +160,7 @@ const prodConfig = {
 
   plugins: [
     new CleanWebpackPlugin(['build']),
-    new PrepackWebpackPlugin(),
+    // new PrepackWebpackPlugin(),
     new CopyWebpackPlugin([{ from: 'assets' }]),
     // “en” is built into Moment and can’t be removed
     new MomentLocalesPlugin({
@@ -197,7 +197,7 @@ const prodEnv = {
       new UglifyJSPlugin({
         uglifyOptions: {
           compress: {
-            drop_console: true,
+            drop_console: !appConfig.staging,
           },
           output: {
             comments: false,
