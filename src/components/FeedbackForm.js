@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react'
-import { translate } from 'react-i18next'
+import { withNamespaces } from 'react-i18next'
 import { postFeedback } from 'services/feedbackServices'
 
 type Props = {
@@ -75,4 +75,4 @@ class FeedbackForm extends React.Component<Props, State> {
   }
 }
 
-export default translate()(FeedbackForm)
+export default withNamespaces()(FeedbackForm)

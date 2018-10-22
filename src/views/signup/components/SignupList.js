@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react'
-import { translate } from 'react-i18next'
+import { withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
 import timeFormatter from 'utils/timeFormatter'
 import {
@@ -275,7 +275,7 @@ const mapDispatchToProps = (dispatch: Function) => {
   }
 }
 
-export default translate()(
+export default withNamespaces()(
   connect(
     mapStateToProps,
     mapDispatchToProps

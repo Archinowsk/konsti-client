@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react'
 import { connect } from 'react-redux'
-import { translate } from 'react-i18next'
+import { withNamespaces } from 'react-i18next'
 import { getData } from 'utils/store'
 import Loading from 'components/Loading'
 
@@ -40,7 +40,7 @@ const mapStateToProps = state => {
   return {}
 }
 
-export default translate()(
+export default withNamespaces()(
   connect(
     mapStateToProps,
     null

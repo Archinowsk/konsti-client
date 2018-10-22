@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react'
 import { hot } from 'react-hot-loader'
-import { translate } from 'react-i18next'
+import { withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
 import Routes from 'Routes'
 import LanguageSelector from 'components/LanguageSelector'
@@ -58,7 +58,7 @@ const mapDispatchToProps = (dispatch: Function) => {
 }
 
 export default hot(module)(
-  translate()(
+  withNamespaces()(
     connect(
       mapStateToProps,
       mapDispatchToProps

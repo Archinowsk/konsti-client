@@ -2,7 +2,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { SubmissionError } from 'redux-form'
-import { translate } from 'react-i18next'
+import { withNamespaces } from 'react-i18next'
 
 import { submitRegistration } from 'views/registration/registrationActions'
 import RegistrationForm from 'views/registration/components/RegistrationForm'
@@ -50,7 +50,7 @@ const mapDispatchToProps = (dispatch: Function) => {
   }
 }
 
-export default translate()(
+export default withNamespaces()(
   connect(
     null,
     mapDispatchToProps

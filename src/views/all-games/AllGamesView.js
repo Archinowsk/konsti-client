@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react'
-import { translate } from 'react-i18next'
+import { withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import GameDetails from 'components/GameDetails'
@@ -86,7 +86,7 @@ const mapStateToProps = state => {
   }
 }
 
-export default translate()(
+export default withNamespaces()(
   connect(
     mapStateToProps,
     null

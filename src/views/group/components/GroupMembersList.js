@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react'
-import { translate } from 'react-i18next'
+import { withNamespaces } from 'react-i18next'
 
 type Props = {
   groupMembers: Array<Object>,
@@ -26,4 +26,4 @@ const GroupMembersList = (props: Props) => {
   return <div className="group-members-list">{membersList}</div>
 }
 
-export default translate()(GroupMembersList)
+export default withNamespaces()(GroupMembersList)

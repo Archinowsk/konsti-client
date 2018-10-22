@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react'
-import { translate } from 'react-i18next'
+import { withNamespaces } from 'react-i18next'
 import config from 'config'
 
 type Props = {
@@ -52,4 +52,4 @@ const CheckboxField = (props: Props) => {
   )
 }
 
-export default translate()(CheckboxField)
+export default withNamespaces()(CheckboxField)

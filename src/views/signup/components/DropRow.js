@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react'
-import { translate } from 'react-i18next'
+import { withNamespaces } from 'react-i18next'
 /* $FlowFixMe */
 import { Droppable, Draggable } from 'react-beautiful-dnd'
 import { Link } from 'react-router-dom'
@@ -54,4 +54,4 @@ const DropRow = (props: Props) => {
   )
 }
 
-export default translate()(DropRow)
+export default withNamespaces()(DropRow)

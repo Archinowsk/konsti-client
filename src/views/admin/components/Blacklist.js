@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react'
-import { translate } from 'react-i18next'
+import { withNamespaces } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
 type Props = {
@@ -39,4 +39,4 @@ const Blacklist = (props: Props) => {
   )
 }
 
-export default translate()(Blacklist)
+export default withNamespaces()(Blacklist)

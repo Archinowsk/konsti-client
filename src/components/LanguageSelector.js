@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react'
-import { translate } from 'react-i18next'
+import { withNamespaces } from 'react-i18next'
 import moment from 'moment'
 import i18n from 'utils/i18n'
 
@@ -28,4 +28,4 @@ const LanguageSelector = (props: Props) => {
   )
 }
 
-export default translate()(LanguageSelector)
+export default withNamespaces()(LanguageSelector)

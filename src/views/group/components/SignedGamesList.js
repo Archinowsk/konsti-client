@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react'
-import { translate } from 'react-i18next'
+import { withNamespaces } from 'react-i18next'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
 import timeFormatter from 'utils/timeFormatter'
@@ -47,4 +47,4 @@ const SignedMembersList = (props: Props) => {
   return <div className="signed-games-list">{signedGamesList}</div>
 }
 
-export default translate()(SignedMembersList)
+export default withNamespaces()(SignedMembersList)

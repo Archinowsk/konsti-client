@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react'
-import { translate } from 'react-i18next'
+import { withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { submitUpdateBlacklist } from 'views/admin/adminActions'
@@ -262,7 +262,7 @@ const mapDispatchToProps = (dispatch: Function) => {
 }
 
 export default withRouter(
-  translate()(
+  withNamespaces()(
     connect(
       mapStateToProps,
       mapDispatchToProps

@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react'
-import { translate } from 'react-i18next'
+import { withNamespaces } from 'react-i18next'
 
 type Props = {
   t: Function,
@@ -33,4 +33,4 @@ const AllSignupsList = (props: Props) => {
   return <div className="results-list">{resultsList}</div>
 }
 
-export default translate()(AllSignupsList)
+export default withNamespaces()(AllSignupsList)

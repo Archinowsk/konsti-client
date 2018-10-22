@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react'
-import { translate } from 'react-i18next'
+import { withNamespaces } from 'react-i18next'
 
 type Props = {
   input: Object,
@@ -48,4 +48,4 @@ const FormSelector = (props: Props) => {
   )
 }
 
-export default translate()(FormSelector)
+export default withNamespaces()(FormSelector)

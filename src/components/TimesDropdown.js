@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react'
-import { translate } from 'react-i18next'
+import { withNamespaces } from 'react-i18next'
 import timeFormatter from 'utils/timeFormatter'
 
 type Props = {
@@ -47,4 +47,4 @@ const TimesDropdown = (props: Props) => {
   )
 }
 
-export default translate()(TimesDropdown)
+export default withNamespaces()(TimesDropdown)

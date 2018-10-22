@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react'
 import { connect } from 'react-redux'
-import { translate } from 'react-i18next'
+import { withNamespaces } from 'react-i18next'
 import Blacklist from 'views/admin/components/Blacklist'
 import {
   submitGamesUpdate,
@@ -230,7 +230,7 @@ const mapDispatchToProps = (dispatch: Function) => {
   }
 }
 
-export default translate()(
+export default withNamespaces()(
   connect(
     mapStateToProps,
     mapDispatchToProps

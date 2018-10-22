@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react'
-import { translate } from 'react-i18next'
+import { withNamespaces } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 import timeFormatter from 'utils/timeFormatter'
@@ -45,4 +45,4 @@ const MySignupsList = (props: Props) => {
   )
 }
 
-export default translate()(MySignupsList)
+export default withNamespaces()(MySignupsList)
