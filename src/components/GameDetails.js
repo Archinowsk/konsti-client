@@ -192,49 +192,41 @@ class GameDetails extends React.Component<Props, State> {
           {t('button.back')}
         </button>
 
-        {favorited &&
-          loggedIn &&
-          userGroup === 'user' && (
-            <button
-              disabled={submitting}
-              onClick={() => this.addFavoriteEvent('del')}
-            >
-              {t('button.removeFavorite')}
-            </button>
-          )}
+        {favorited && loggedIn && userGroup === 'user' && (
+          <button
+            disabled={submitting}
+            onClick={() => this.addFavoriteEvent('del')}
+          >
+            {t('button.removeFavorite')}
+          </button>
+        )}
 
-        {!favorited &&
-          loggedIn &&
-          userGroup === 'user' && (
-            <button
-              disabled={submitting}
-              onClick={() => this.addFavoriteEvent('add')}
-            >
-              {t('button.favorite')}
-            </button>
-          )}
+        {!favorited && loggedIn && userGroup === 'user' && (
+          <button
+            disabled={submitting}
+            onClick={() => this.addFavoriteEvent('add')}
+          >
+            {t('button.favorite')}
+          </button>
+        )}
 
-        {blacklisted &&
-          loggedIn &&
-          userGroup === 'admin' && (
-            <button
-              disabled={submitting}
-              onClick={() => this.addBlacklistEvent('del')}
-            >
-              {t('button.unhide')}
-            </button>
-          )}
+        {blacklisted && loggedIn && userGroup === 'admin' && (
+          <button
+            disabled={submitting}
+            onClick={() => this.addBlacklistEvent('del')}
+          >
+            {t('button.unhide')}
+          </button>
+        )}
 
-        {!blacklisted &&
-          loggedIn &&
-          userGroup === 'admin' && (
-            <button
-              disabled={submitting}
-              onClick={() => this.addBlacklistEvent('add')}
-            >
-              {t('button.hide')}
-            </button>
-          )}
+        {!blacklisted && loggedIn && userGroup === 'admin' && (
+          <button
+            disabled={submitting}
+            onClick={() => this.addBlacklistEvent('add')}
+          >
+            {t('button.hide')}
+          </button>
+        )}
 
         <GameInfo game={game} />
         {loggedIn && <FeedbackForm game={game} />}

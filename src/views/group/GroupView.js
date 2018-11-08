@@ -234,77 +234,71 @@ class GroupView extends React.Component<Props, State> {
         <p>{t('groupSignupGuide')}</p>
 
         {loading && <Loading />}
-        {!loading &&
-          !groupLeader &&
-          !inGroup && (
-            <React.Fragment>
-              <button
-                className={showCreateGroup ? 'active' : ''}
-                onClick={() => this.openGroupForming()}
-              >
-                {t('button.createGroup')}
-              </button>
-              <button
-                className={showJoinGroup ? 'active' : ''}
-                onClick={() => this.openJoinGroup()}
-              >
-                {t('button.joinGroup')}
-              </button>
+        {!loading && !groupLeader && !inGroup && (
+          <React.Fragment>
+            <button
+              className={showCreateGroup ? 'active' : ''}
+              onClick={() => this.openGroupForming()}
+            >
+              {t('button.createGroup')}
+            </button>
+            <button
+              className={showJoinGroup ? 'active' : ''}
+              onClick={() => this.openJoinGroup()}
+            >
+              {t('button.joinGroup')}
+            </button>
 
-              {showCreateGroup && (
-                <div>
-                  <p>{t('createGroupConfirmationMessage')}</p>
-                  <p>{t('groupLeaderWargnin')}</p>
-                  <button onClick={() => this.createGroup()}>
-                    {t('button.joinGroupConfirmation')}
-                  </button>
-                </div>
-              )}
+            {showCreateGroup && (
+              <div>
+                <p>{t('createGroupConfirmationMessage')}</p>
+                <p>{t('groupLeaderWargnin')}</p>
+                <button onClick={() => this.createGroup()}>
+                  {t('button.joinGroupConfirmation')}
+                </button>
+              </div>
+            )}
 
-              {showJoinGroup && (
-                <div>
-                  <p>{t('joiningGroupWillCancelGames')}</p>
+            {showJoinGroup && (
+              <div>
+                <p>{t('joiningGroupWillCancelGames')}</p>
 
-                  {joinGroupInput}
-                  <button onClick={() => this.joinGroup()}>
-                    {t('button.joinGroup')}
-                  </button>
-                </div>
-              )}
-            </React.Fragment>
-          )}
-        {!loading &&
-          groupLeader &&
-          inGroup && (
-            <React.Fragment>
-              <p>
-                {t('youAreGroupLeader')}. {t('groupLeaderInfo')}.
-              </p>
-              <p>{t('groupMembers')}</p>
-              <GroupMembersList groupMembers={groupMembers} />
-              <p>{t('signedGames')}</p>
-              <SignedGamesList groupMembers={groupMembers} />
-              <button onClick={() => this.leaveGroup({ leader: true })}>
-                {t('button.leaveGroup')}
-              </button>
-            </React.Fragment>
-          )}
-        {!loading &&
-          !groupLeader &&
-          inGroup && (
-            <React.Fragment>
-              <p>
-                {t('youAreInGroup')}. {t('groupMemberInfo')}.
-              </p>
-              <p>{t('groupMembers')}</p>
-              <GroupMembersList groupMembers={groupMembers} />
-              <p>{t('signedGames')}</p>
-              <SignedGamesList groupMembers={groupMembers} />
-              <button onClick={() => this.leaveGroup({ leader: false })}>
-                {t('button.leaveGroup')}
-              </button>
-            </React.Fragment>
-          )}
+                {joinGroupInput}
+                <button onClick={() => this.joinGroup()}>
+                  {t('button.joinGroup')}
+                </button>
+              </div>
+            )}
+          </React.Fragment>
+        )}
+        {!loading && groupLeader && inGroup && (
+          <React.Fragment>
+            <p>
+              {t('youAreGroupLeader')}. {t('groupLeaderInfo')}.
+            </p>
+            <p>{t('groupMembers')}</p>
+            <GroupMembersList groupMembers={groupMembers} />
+            <p>{t('signedGames')}</p>
+            <SignedGamesList groupMembers={groupMembers} />
+            <button onClick={() => this.leaveGroup({ leader: true })}>
+              {t('button.leaveGroup')}
+            </button>
+          </React.Fragment>
+        )}
+        {!loading && !groupLeader && inGroup && (
+          <React.Fragment>
+            <p>
+              {t('youAreInGroup')}. {t('groupMemberInfo')}.
+            </p>
+            <p>{t('groupMembers')}</p>
+            <GroupMembersList groupMembers={groupMembers} />
+            <p>{t('signedGames')}</p>
+            <SignedGamesList groupMembers={groupMembers} />
+            <button onClick={() => this.leaveGroup({ leader: false })}>
+              {t('button.leaveGroup')}
+            </button>
+          </React.Fragment>
+        )}
         <p className={messageStyle}>{message}</p>
       </div>
     )

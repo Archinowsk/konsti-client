@@ -38,12 +38,11 @@ const FormSelector = (props: Props) => {
           <p>{t(`tooltip.${input.name}`)}</p>
         </div>
       </div>
-      {touched &&
-        error && (
-          <div className="form-field-error">
-            <span>{error}</span>
-          </div>
-        )}
+      {touched && error && (
+        <div className="form-field-error">
+          <span>{error}</span>
+        </div>
+      )}
     </React.Fragment>
   )
 }

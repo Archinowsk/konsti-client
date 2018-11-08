@@ -153,15 +153,14 @@ class GameInfo extends React.PureComponent<Props> {
             {game.location}
           </div>
         )}
-        {game.minAttendance &&
-          game.maxAttendance && (
-            <div className="game-details-row">
-              <span className="game-details-title">
-                {t('gameInfo.numberOfPlayers')}
-              </span>
-              {game.minAttendance} - {game.maxAttendance}
-            </div>
-          )}
+        {game.minAttendance && game.maxAttendance && (
+          <div className="game-details-row">
+            <span className="game-details-title">
+              {t('gameInfo.numberOfPlayers')}
+            </span>
+            {game.minAttendance} - {game.maxAttendance}
+          </div>
+        )}
       </div>
     )
   }
