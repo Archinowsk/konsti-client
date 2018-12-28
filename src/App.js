@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react'
-import { hot } from 'react-hot-loader'
+import { hot } from 'react-hot-loader/root'
 import { withNamespaces } from 'react-i18next'
 import { connect } from 'react-redux'
 import Routes from 'Routes'
@@ -57,7 +57,7 @@ const mapDispatchToProps = (dispatch: Function) => {
   return {}
 }
 
-export default hot(module)(
+export default hot(
   withNamespaces()(
     connect(
       mapStateToProps,
