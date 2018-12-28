@@ -55,6 +55,7 @@ if (isProduction) {
 }
 
 // Create a Redux store object that holds the app state
+/* $FlowFixMe: Redux flow-typed missing generics types */
 const store = createStore(rootReducer, initialState, enhancer)
 
 export const getData = () => {
