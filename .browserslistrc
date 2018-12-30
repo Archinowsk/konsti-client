@@ -27,9 +27,6 @@ Safari >= 10.1
 # iOS Safari
 iOS >= 10.3
 
-# Android WebView
-Android >= 4.4.4
-
 # Chrome for Android
 ChromeAndroid >= 64
 
@@ -66,3 +63,6 @@ FirefoxAndroid >= 57
 
 # Internet Explorer Mobile
 # ExplorerMobile >= 11
+
+# Android WebView
+# Android >= 4.4.4
