@@ -30,13 +30,13 @@ class SignupView extends React.Component<Props, State> {
     const { loading } = this.state
 
     return (
-      <div className="signup-view">
+      <div className='signup-view'>
         {loading && <Loading />}
         {!loading && (
           <Switch>
             <Route
               exact
-              path="/signup"
+              path='/signup'
               render={props => (
                 // $FlowFixMe
                 <SignupList {...props} games={games} />
@@ -44,7 +44,7 @@ class SignupView extends React.Component<Props, State> {
             />
             <Route
               exact
-              path="/games/:id"
+              path='/games/:id'
               render={props => <GameDetails {...props} />}
             />
           </Switch>

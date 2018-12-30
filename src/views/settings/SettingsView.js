@@ -28,7 +28,7 @@ class MyGamesView extends React.Component<Props, State> {
     const { loading } = this.state
 
     return (
-      <div className="settings-view">
+      <div className='settings-view'>
         {loading && <Loading />}
         {!loading && <p>{t('settings')}</p>}
       </div>

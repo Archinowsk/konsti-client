@@ -89,7 +89,7 @@ const MyEnteredList = (props: Props) => {
   // const missedList = checkIfNoEntry()
 
   return (
-    <div className="my-entered-games">
+    <div className='my-entered-games'>
       <p>{t('enteredGames')}</p>
       <ul>
         {enteredGames.length === 0 && <span>{t('noEnteredGames')}</span>}

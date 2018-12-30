@@ -22,7 +22,7 @@ const App = (props: Props) => {
     <React.Fragment>
       <header>
         <h1>
-          <a href="/" className="logo">
+          <a href='/' className='logo'>
             Konsti
           </a>
         </h1>
@@ -30,13 +30,13 @@ const App = (props: Props) => {
         <LanguageSelector />
 
         {loggedIn && (
-          <span className="username">
+          <span className='username'>
             {t('user')}: {username} | {t('code')}: {serial}
           </span>
         )}
       </header>
 
-      <div className="body">
+      <div className='body'>
         {!appOpen && t('closingMessage')}
         {/* $FlowFixMe */}
         {appOpen && <Routes />}

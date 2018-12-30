@@ -210,14 +210,14 @@ class SignupList extends React.Component<Props, State> {
     })
 
     return (
-      <div className="signup-list">
+      <div className='signup-list'>
         {signupTimes.length === 0 && (
-          <p className="page-title">{t('noOpenSignups')}</p>
+          <p className='page-title'>{t('noOpenSignups')}</p>
         )}
 
         {signupTimes.length !== 0 && (
           <React.Fragment>
-            <p className="page-title">{t('signupOpen')}:</p>
+            <p className='page-title'>{t('signupOpen')}:</p>
             <div>{signupTimeButtons}</div>
           </React.Fragment>
         )}
@@ -238,10 +238,10 @@ class SignupList extends React.Component<Props, State> {
                 {t('button.cancelSignup')}
               </button>
               {signupSubmitted && (
-                <span className="success">{t('signupSaved')}</span>
+                <span className='success'>{t('signupSaved')}</span>
               )}
               {signupError && (
-                <span className="error">{t('signupFailed')}</span>
+                <span className='error'>{t('signupFailed')}</span>
               )}
             </div>
             <DragAndDropList

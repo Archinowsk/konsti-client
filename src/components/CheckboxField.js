@@ -23,11 +23,11 @@ const CheckboxField = (props: Props) => {
   const registerDescriptionLink = `${config.apiServerURL}/rekisteriseloste.txt`
 
   return (
-    <div className="form-row">
-      <div className="form-field">
-        <div className="form-input-wrapper" id={`${input.name}-wrapper`}>
+    <div className='form-row'>
+      <div className='form-field'>
+        <div className='form-input-wrapper' id={`${input.name}-wrapper`}>
           <input
-            className="form-input checkbox"
+            className='form-input checkbox'
             {...input}
             placeholder={label}
             type={type}
@@ -39,15 +39,15 @@ const CheckboxField = (props: Props) => {
           {t('iAgree')}{' '}
           <a
             href={registerDescriptionLink}
-            target="_blank"
-            rel="noopener noreferrer"
+            target='_blank'
+            rel='noopener noreferrer'
           >
             {t('registerDescription')}
           </a>
         </label>
       </div>
 
-      {touched && error && <div className="form-field-error">{error}</div>}
+      {touched && error && <div className='form-field-error'>{error}</div>}
     </div>
   )
 }

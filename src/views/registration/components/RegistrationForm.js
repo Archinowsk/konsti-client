@@ -18,48 +18,48 @@ const RegistrationForm = (props: Props) => {
   const { handleSubmit, submitting, t, error } = props
 
   return (
-    <div className="registration-form">
-      <p className="page-title">{t('pageTitle.registration')}</p>
+    <div className='registration-form'>
+      <p className='page-title'>{t('pageTitle.registration')}</p>
       <form onSubmit={handleSubmit}>
         <Field
-          name="username"
-          type="text"
+          name='username'
+          type='text'
           component={FormField}
           label={t('username')}
         />
 
         <Field
-          name="password"
-          type="password"
+          name='password'
+          type='password'
           component={FormField}
           label={t('password')}
         />
 
         <Field
-          name="serial"
-          id="serial"
-          type="text"
+          name='serial'
+          id='serial'
+          type='text'
           component={FormField}
           label={t('serial')}
         />
 
-        <label htmlFor="serial" className="help">
+        <label htmlFor='serial' className='help'>
           {t('registrationSerialHelp')}
         </label>
 
         <Field
-          name="registerDescription"
-          id="registerDescription"
-          type="checkbox"
+          name='registerDescription'
+          id='registerDescription'
+          type='checkbox'
           component={CheckboxField}
         />
 
-        <button type="submit" disabled={submitting}>
+        <button type='submit' disabled={submitting}>
           {t('button.register')}
         </button>
       </form>
 
-      {error && <strong className="error">{error}</strong>}
+      {error && <strong className='error'>{error}</strong>}
     </div>
   )
 }

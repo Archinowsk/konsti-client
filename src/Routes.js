@@ -29,14 +29,14 @@ const Routes = (props: Props) => {
     return (
       <HashRouter>
         <React.Fragment>
-          <div className="routes">
-            <Link to="/games" className="router-link">
+          <div className='routes'>
+            <Link to='/games' className='router-link'>
               {t('pages.allGames')}
             </Link>
-            <Link to="/login" className="router-link">
+            <Link to='/login' className='router-link'>
               {t('button.login')}
             </Link>
-            <Link to="/registration" className="router-link">
+            <Link to='/registration' className='router-link'>
               {t('button.register')}
             </Link>
 
@@ -44,11 +44,11 @@ const Routes = (props: Props) => {
           </div>
 
           <Switch>
-            <Route exact path="/" component={AllGames} />
-            <Route path="/login" component={Login} />
-            <Route path="/registration" component={Registration} />
-            <Route path="/games" component={AllGames} />
-            <Redirect from="/*" to="/login" />
+            <Route exact path='/' component={AllGames} />
+            <Route path='/login' component={Login} />
+            <Route path='/registration' component={Registration} />
+            <Route path='/games' component={AllGames} />
+            <Redirect from='/*' to='/login' />
           </Switch>
         </React.Fragment>
       </HashRouter>
@@ -58,28 +58,28 @@ const Routes = (props: Props) => {
   return (
     <HashRouter>
       <React.Fragment>
-        <div className="routes">
-          <Link to="/games" className="router-link">
+        <div className='routes'>
+          <Link to='/games' className='router-link'>
             {t('pages.allGames')}
           </Link>
           {(userGroup === 'user' || userGroup === 'admin') && (
-            <Link to="/mygames" className="router-link">
+            <Link to='/mygames' className='router-link'>
               {t('pages.myGames')}
             </Link>
           )}
           {(userGroup === 'user' || userGroup === 'admin') && (
-            <Link to="/signup" className="router-link">
+            <Link to='/signup' className='router-link'>
               {t('pages.signUp')}
             </Link>
           )}
           {(userGroup === 'user' || userGroup === 'admin') && (
-            <Link to="/allsignups" className="router-link">
+            <Link to='/allsignups' className='router-link'>
               {t('pages.allsignups')}
             </Link>
           )}
 
           {(userGroup === 'user' || userGroup === 'admin') && (
-            <Link to="/group" className="router-link">
+            <Link to='/group' className='router-link'>
               {t('pages.group')}
             </Link>
           )}
@@ -91,28 +91,28 @@ const Routes = (props: Props) => {
           */}
 
           {userGroup === 'admin' && (
-            <Link to="/admin" className="router-link">
+            <Link to='/admin' className='router-link'>
               {t('pages.admin')}
             </Link>
           )}
           {(userGroup === 'user' || userGroup === 'admin') && (
-            <Link to="/logout" className="router-link">
+            <Link to='/logout' className='router-link'>
               {t('button.logout')}
             </Link>
           )}
           <hr />
         </div>
         <Switch>
-          <Route exact path="/" component={AllGames} />
-          <Route path="/games" component={AllGames} />
-          <Route path="/mygames" component={MyGames} />
-          <Route path="/signup" component={Signup} />
-          <Route path="/allsignups" component={AllSignups} />
+          <Route exact path='/' component={AllGames} />
+          <Route path='/games' component={AllGames} />
+          <Route path='/mygames' component={MyGames} />
+          <Route path='/signup' component={Signup} />
+          <Route path='/allsignups' component={AllSignups} />
           {/* <Route path="/settings" component={Settings} /> */}
-          <Route path="/group" component={Group} />
-          <Route path="/admin" component={Admin} />
-          <Route path="/logout" component={Logout} />
-          <Redirect from="/*" to="/" />
+          <Route path='/group' component={Group} />
+          <Route path='/admin' component={Admin} />
+          <Route path='/logout' component={Logout} />
+          <Redirect from='/*' to='/' />
         </Switch>
       </React.Fragment>
     </HashRouter>

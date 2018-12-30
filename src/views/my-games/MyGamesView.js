@@ -32,7 +32,7 @@ class MyGamesView extends React.Component<Props, State> {
     const { loading } = this.state
 
     return (
-      <div className="my-games-view">
+      <div className='my-games-view'>
         {loading && <Loading />}
         {!loading && (
           <React.Fragment>

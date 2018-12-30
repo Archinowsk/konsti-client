@@ -53,22 +53,22 @@ class AllGamesView extends React.Component<Props, State> {
     const visibleGames = this.getVisibleGames()
 
     return (
-      <div className="all-games-view">
+      <div className='all-games-view'>
         {loading && <Loading />}
         {!loading && (
           <Switch>
             <Route
               exact
-              path="/"
+              path='/'
               render={props => <AllGamesList {...props} games={visibleGames} />}
             />
             <Route
               exact
-              path="/games"
+              path='/games'
               render={props => <AllGamesList {...props} games={visibleGames} />}
             />
             <Route
-              path="/games/:id"
+              path='/games/:id'
               render={props => <GameDetails {...props} games={visibleGames} />}
             />
           </Switch>

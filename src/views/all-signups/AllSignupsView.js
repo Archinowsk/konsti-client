@@ -56,14 +56,14 @@ class AllSignupsView extends React.Component<Props, State> {
     const formattedDate = timeFormatter.weekdayAndTime(signupTime)
 
     return (
-      <div className="all-signups-view">
+      <div className='all-signups-view'>
         {loading && <Loading />}
         {!loading && !resultsAvailable && (
-          <p className="page-title">{t('noResults')}</p>
+          <p className='page-title'>{t('noResults')}</p>
         )}
         {!loading && resultsAvailable && (
           <React.Fragment>
-            <p className="page-title">
+            <p className='page-title'>
               {t('signupResultsfor')} {formattedDate}
             </p>
             <AllSignupsList results={selectedResult} />

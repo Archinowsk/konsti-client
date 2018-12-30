@@ -57,7 +57,7 @@ class AllGamesList extends React.PureComponent<Props> {
       )
 
       const title = (
-        <p key={startTime} className="title">
+        <p key={startTime} className='title'>
           {formattedStartTime} ({t('signupOpenBetween')} {signupStartTime}-
           {signupEndTime})
         </p>
@@ -68,7 +68,7 @@ class AllGamesList extends React.PureComponent<Props> {
       // Show exception warning if there are changes in time
       if (startTimeException || endTimeException) {
         const exception = (
-          <p key={`${startTime}-exception`} className="exception">
+          <p key={`${startTime}-exception`} className='exception'>
             {' '}
             {t('exceptionInTime')}
           </p>
@@ -80,7 +80,7 @@ class AllGamesList extends React.PureComponent<Props> {
       /* $FlowFixMe */
       for (let game of games) {
         const gameEntry = (
-          <p key={game.id} className="games-list">
+          <p key={game.id} className='games-list'>
             <Link to={`/games/${game.id}`}>{game.title}</Link>
           </p>
         )
@@ -96,7 +96,7 @@ class AllGamesList extends React.PureComponent<Props> {
     const { games } = this.props
     const GamesList = this.buildGamesList(games)
 
-    return <div className="games-list">{GamesList}</div>
+    return <div className='games-list'>{GamesList}</div>
   }
 }
 

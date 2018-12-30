@@ -22,14 +22,14 @@ const FormField = (props: Props) => {
   } = props
 
   return (
-    <div className="form-row">
-      <div className="form-field">
+    <div className='form-row'>
+      <div className='form-field'>
         {!required && <label htmlFor={label}>{label}</label>}
         {required === true && <label htmlFor={label}>{label} *</label>}
 
-        <div className="form-input-wrapper" id={`${input.name}-wrapper`}>
+        <div className='form-input-wrapper' id={`${input.name}-wrapper`}>
           <input
-            className="form-input"
+            className='form-input'
             {...input}
             placeholder={label}
             type={type}
@@ -38,7 +38,7 @@ const FormField = (props: Props) => {
         </div>
       </div>
 
-      {touched && error && <div className="form-field-error">{error}</div>}
+      {touched && error && <div className='form-field-error'>{error}</div>}
     </div>
   )
 }

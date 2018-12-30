@@ -17,29 +17,29 @@ const LoginForm = (props: Props) => {
   const { handleSubmit, submitting, t, error } = props
 
   return (
-    <div className="login-form">
-      <p className="page-title">{t('pageTitle.login')}</p>
+    <div className='login-form'>
+      <p className='page-title'>{t('pageTitle.login')}</p>
       <form onSubmit={handleSubmit}>
         <Field
-          name="username"
-          type="text"
+          name='username'
+          type='text'
           component={FormField}
           label={t('username')}
         />
 
         <Field
-          name="password"
-          type="password"
+          name='password'
+          type='password'
           component={FormField}
           label={t('password')}
         />
 
-        <button type="submit" disabled={submitting}>
+        <button type='submit' disabled={submitting}>
           {t('button.login')}
         </button>
       </form>
 
-      {error && <strong className="error">{error}</strong>}
+      {error && <strong className='error'>{error}</strong>}
     </div>
   )
 }

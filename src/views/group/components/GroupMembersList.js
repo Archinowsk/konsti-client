@@ -10,7 +10,7 @@ type Props = {
 const GroupMembersList = (props: Props) => {
   const { t, groupMembers } = props
 
-  if (!groupMembers) return <div className="group-members-list" />
+  if (!groupMembers) return <div className='group-members-list' />
 
   const membersList = groupMembers.map(member => {
     const leader = member.serial === member.playerGroup
@@ -23,7 +23,7 @@ const GroupMembersList = (props: Props) => {
     )
   })
 
-  return <div className="group-members-list">{membersList}</div>
+  return <div className='group-members-list'>{membersList}</div>
 }
 
 export default withNamespaces()(GroupMembersList)

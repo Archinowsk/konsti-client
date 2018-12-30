@@ -35,7 +35,7 @@ const DropRow = (props: Props) => {
               <Draggable key={game.id} draggableId={game.id} index={index}>
                 {(provided, snapshot) => (
                   <div
-                    className="draggable-item"
+                    className='draggable-item'
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}

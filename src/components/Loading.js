@@ -7,7 +7,7 @@ type Props = { t: Function }
 const Loading = (props: Props) => {
   const { t } = props
   return (
-    <div className="loading">
+    <div className='loading'>
       <p>{t('loading')}</p>
     </div>
   )

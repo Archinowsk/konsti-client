@@ -12,14 +12,14 @@ type Props = {
 const SignedMembersList = (props: Props) => {
   const { groupMembers } = props
 
-  if (!groupMembers) return <div className="signed-games-list" />
+  if (!groupMembers) return <div className='signed-games-list' />
 
   const leader = groupMembers.filter(
     member => member.serial === member.playerGroup
   )
 
   // Sort games by time and name
-  if (!leader || !leader[0]) return <div className="signed-games-list" />
+  if (!leader || !leader[0]) return <div className='signed-games-list' />
 
   const sortedGames = leader[0].signedGames.sort((a, b) => {
     const keyA = moment(a.details.startTime) + a.details.title.toLowerCase()
@@ -44,7 +44,7 @@ const SignedMembersList = (props: Props) => {
       </React.Fragment>
     )
   })
-  return <div className="signed-games-list">{signedGamesList}</div>
+  return <div className='signed-games-list'>{signedGamesList}</div>
 }
 
 export default withNamespaces()(SignedMembersList)

@@ -150,7 +150,7 @@ class AdminView extends React.Component<Props, State> {
     const formattedDate = timeFormatter.weekdayAndTime(signupTime)
 
     return (
-      <div className="admin-view">
+      <div className='admin-view'>
         {loading && <Loading />}
         {!loading && (
           <React.Fragment>
@@ -177,7 +177,7 @@ class AdminView extends React.Component<Props, State> {
             <p className={messageStyle}>{message}</p>
 
             {updateResponse.data.errors && (
-              <p className="error">{updateResponse.data.message}</p>
+              <p className='error'>{updateResponse.data.message}</p>
             )}
 
             <p>{t('selectOpenSignup')}</p>

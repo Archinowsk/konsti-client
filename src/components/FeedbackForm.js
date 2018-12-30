@@ -56,8 +56,8 @@ class FeedbackForm extends React.Component<Props, State> {
             <textarea
               value={feedbackValue}
               onChange={handleFeedbackChange}
-              className="feedback-textarea"
-              rows="4"
+              className='feedback-textarea'
+              rows='4'
             />
 
             <button
@@ -69,7 +69,7 @@ class FeedbackForm extends React.Component<Props, State> {
           </React.Fragment>
         )}
 
-        {feedbackSent && <p className="success">{t('button.feedbackSent')}</p>}
+        {feedbackSent && <p className='success'>{t('button.feedbackSent')}</p>}
       </div>
     )
   }

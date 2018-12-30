@@ -219,8 +219,8 @@ class GroupView extends React.Component<Props, State> {
     const joinGroupInput = (
       <div>
         <input
-          key="joinGroup"
-          className="form-input"
+          key='joinGroup'
+          className='form-input'
           placeholder={t('enterGroupLeaderCode')}
           value={joinGroupValue}
           onChange={this.handleJoinGroupChange}
@@ -229,8 +229,8 @@ class GroupView extends React.Component<Props, State> {
     )
 
     return (
-      <div className="group-view">
-        <p className="page-title">{t('pages.group')}</p>
+      <div className='group-view'>
+        <p className='page-title'>{t('pages.group')}</p>
         <p>{t('groupSignupGuide')}</p>
 
         {loading && <Loading />}

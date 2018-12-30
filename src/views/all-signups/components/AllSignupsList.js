@@ -21,16 +21,16 @@ const AllSignupsList = (props: Props) => {
 
   const resultsList = sortedResults.map(result => (
     <p key={result.username}>
-      <span className="bold">{result.username}:</span>{' '}
+      <span className='bold'>{result.username}:</span>{' '}
       {result.enteredGame.title} (
-      <span className="bold">
+      <span className='bold'>
         {t('gameInfo.location')}: {result.enteredGame.location}
       </span>
       )
     </p>
   ))
 
-  return <div className="results-list">{resultsList}</div>
+  return <div className='results-list'>{resultsList}</div>
 }
 
 export default withNamespaces()(AllSignupsList)

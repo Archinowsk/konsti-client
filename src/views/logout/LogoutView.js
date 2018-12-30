@@ -15,7 +15,7 @@ class LogoutPage extends React.Component<Props> {
   }
 
   render() {
-    return <Redirect to="/" />
+    return <Redirect to='/' />
   }
 }
 

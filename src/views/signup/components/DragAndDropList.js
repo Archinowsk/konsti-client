@@ -240,29 +240,29 @@ class DragAndDropList extends React.Component<Props, State> {
     } = this.state
     return (
       <React.Fragment>
-        {showWarning && <p className="error">{t('onlyOneGameWarning')}</p>}
-        <div className="drop-rows">
+        {showWarning && <p className='error'>{t('onlyOneGameWarning')}</p>}
+        <div className='drop-rows'>
           <DragDropContext onDragEnd={this.onDragEnd}>
-            <div className="games-row">
+            <div className='games-row'>
               <DropRow
-                droppableId="gameList"
+                droppableId='gameList'
                 games={gameList}
                 label={t('signupView.signupOpenGames')}
               />
             </div>
-            <div className="priority-row">
+            <div className='priority-row'>
               <DropRow
-                droppableId="priority1"
+                droppableId='priority1'
                 games={priority1}
                 label={t('signupView.priority1')}
               />
               <DropRow
-                droppableId="priority2"
+                droppableId='priority2'
                 games={priority2}
                 label={t('signupView.priority2')}
               />
               <DropRow
-                droppableId="priority3"
+                droppableId='priority3'
                 games={priority3}
                 label={t('signupView.priority3')}
               />

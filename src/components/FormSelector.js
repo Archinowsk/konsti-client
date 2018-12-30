@@ -21,11 +21,11 @@ const FormSelector = (props: Props) => {
 
   return (
     <React.Fragment>
-      <div className="form-selector">
+      <div className='form-selector'>
         <label htmlFor={label}>{label}</label>
-        <div className="form-input-wrapper">
-          <select className="form-input" {...input}>
-            <option value="">-</option>
+        <div className='form-input-wrapper'>
+          <select className='form-input' {...input}>
+            <option value=''>-</option>
             {data.map(val => (
               <option value={val} key={val}>
                 {// First letter to uppercase
@@ -34,12 +34,12 @@ const FormSelector = (props: Props) => {
             ))}
           </select>
         </div>
-        <div className="help-tip">
+        <div className='help-tip'>
           <p>{t(`tooltip.${input.name}`)}</p>
         </div>
       </div>
       {touched && error && (
-        <div className="form-field-error">
+        <div className='form-field-error'>
           <span>{error}</span>
         </div>
       )}
