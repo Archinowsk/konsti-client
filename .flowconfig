@@ -1,5 +1,6 @@
 [ignore]
-.*/node_modules/react-beautiful-dnd
+<PROJECT_ROOT>/node_modules/react-beautiful-dnd
+<PROJECT_ROOT>/node_modules/css-box-model
 
 [include]
 
