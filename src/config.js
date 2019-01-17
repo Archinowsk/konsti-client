@@ -1,10 +1,28 @@
-const config = {}
+/* @flow */
+
+// webpack config must be babeled for this to work
+type Config = {
+  appName: string,
+  staging: boolean,
+  appOpen: boolean,
+  SIGNUP_END_TIME: number,
+  SIGNUP_OPEN_TIME: number,
+  MESSAGE_DELAY: number,
+  TIME_NOW: string,
+  CONVENTION_START_TIME: string,
+  DAY_START_TIME: number,
+  env: string,
+  apiServerURL: string,
+}
+
+const config: Config = {}
 
 // App info
 config.appName = 'Konsti'
 
 // App status
-config.staging = process.env.STAGING || false
+config.staging = process.env.STAGING === 'true' || false
+config.apiServerURL = process.env.API_SERVER_URL || 'http://localhost:3000'
 
 // App settings
 config.appOpen = true
@@ -20,13 +38,11 @@ config.DAY_START_TIME = 8 // 08:00
 // Variables for production environment
 if (process.env.NODE_ENV === 'production') {
   config.env = 'production'
-  config.apiServerURL = process.env.API_SERVER_URL
 }
 
 // Variables for development environment
 else if (process.env.NODE_ENV === 'development') {
   config.env = 'development'
-  config.apiServerURL = 'http://localhost:3000'
 }
 
 module.exports = config
