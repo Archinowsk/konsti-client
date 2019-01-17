@@ -21,3 +21,6 @@ stats.json
 
 # Environment variables
 *.env
+
+# Mac
+.DS_Store
