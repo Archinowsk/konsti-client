@@ -1,5 +1,5 @@
-// flow-typed signature: db5d82f17229ec3dcb276467d999ea56
-// flow-typed version: 1517003b23/react-hot-loader_v4.x.x/flow_>=v0.53.0
+// flow-typed signature: 64a43324c0adfb84516e93ca3b805565
+// flow-typed version: 2b063ece62/react-hot-loader_v4.x.x/flow_>=v0.53.0
 
 // @flow
 declare module "react-hot-loader" {
@@ -7,14 +7,32 @@ declare module "react-hot-loader" {
     id: string
   };
 
+  declare type errorReporterProps = {|
+    error: Error,
+    errorInfo: { componentStack: string }
+  |};
+
   declare type AppContainerProps = {|
     children: React$Element<any>,
     errorBoundary?: boolean,
-    errorReporter?: React$ComponentType<{
-      error: Error,
-      errorInfo: { componentStack: string }
-    }>
+    errorReporter?: React$ComponentType<errorReporterProps>
   |};
+
+  declare export function setConfig(config: {|
+    logLevel?: 'debug' | 'log' | 'warn' | 'error',
+    pureSFC?: boolean,
+    pureRender?: boolean,
+    allowSFC?: boolean,
+    disableHotRenderer?: boolean,
+    disableHotRendererWhenInjected?: boolean,
+    onComponentRegister?: boolean,
+    onComponentCreate?: boolean,
+    ignoreSFC?: boolean,
+    ignoreSFCWhenInjected?: boolean,
+    ignoreComponents?: boolean,
+    errorReporter?: React$ComponentType<errorReporterProps>,
+    ErrorOverlay?: React$ComponentType<*>,
+  |}): void;
 
   declare export class AppContainer extends React$Component<
     AppContainerProps
