@@ -23,6 +23,7 @@ module.exports = {
     'promise',
     'unicorn',
     'eslint-plugin',
+    'react-hooks',
     // 'flowtype-errors',
   ],
   parser: 'babel-eslint',
@@ -45,6 +46,7 @@ module.exports = {
   },
   */
   rules: {
+    'react-hooks/rules-of-hooks': 'error',
     'prettier/prettier': 'error',
     'compat/compat': 'error',
     // 'flowtype-errors/show-errors': 'error',
