@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react'
-import { withNamespaces } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 
 type Props = { t: Function }
 
@@ -13,4 +13,4 @@ const Loading = (props: Props) => {
   )
 }
 
-export default withNamespaces()(Loading)
+export default withTranslation()(Loading)

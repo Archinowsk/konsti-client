@@ -2,7 +2,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
-import { withNamespaces } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 import SignupList from 'views/signup/components/SignupList'
 import GameDetails from 'components/GameDetails'
 import { getData } from 'utils/store'
@@ -60,7 +60,7 @@ const mapStateToProps = state => {
   }
 }
 
-export default withNamespaces()(
+export default withTranslation()(
   connect(
     mapStateToProps,
     null

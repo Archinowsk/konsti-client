@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react'
-import { withNamespaces } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 /* $FlowFixMe */
 import { DragDropContext } from 'react-beautiful-dnd'
 import DropRow from 'views/signup/components/DropRow'
@@ -274,4 +274,4 @@ class DragAndDropList extends React.Component<Props, State> {
   }
 }
 
-export default withNamespaces()(DragAndDropList)
+export default withTranslation()(DragAndDropList)

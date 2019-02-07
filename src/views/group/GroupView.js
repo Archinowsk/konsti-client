@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react'
-import { withNamespaces } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { getData } from 'utils/store'
 import Loading from 'components/Loading'
@@ -325,7 +325,7 @@ const mapDispatchToProps = (dispatch: Function) => {
   }
 }
 
-export default withNamespaces()(
+export default withTranslation()(
   connect(
     mapStateToProps,
     mapDispatchToProps

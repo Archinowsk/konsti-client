@@ -8,7 +8,7 @@ module.exports = api => {
       '@babel/preset-env',
       {
         debug: false,
-        modules: false,
+        // modules: false,
         // "useBuiltIns" disabled because auto polyfilling is broken
         // useBuiltIns: 'entry',
         // Ignore browserslist for the same reason

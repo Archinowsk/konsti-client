@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react'
-import { withNamespaces } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import timeFormatter from 'utils/timeFormatter'
 
@@ -100,4 +100,4 @@ class AllGamesList extends React.PureComponent<Props> {
   }
 }
 
-export default withNamespaces()(AllGamesList)
+export default withTranslation()(AllGamesList)

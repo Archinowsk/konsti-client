@@ -2,7 +2,7 @@
 import React from 'react'
 import { HashRouter, Route, Link, Switch, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { withNamespaces } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 
 // Views
 import AllGames from 'views/all-games/AllGamesView'
@@ -126,4 +126,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default withNamespaces()(connect(mapStateToProps)(Routes))
+export default withTranslation()(connect(mapStateToProps)(Routes))

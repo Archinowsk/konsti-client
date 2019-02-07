@@ -38,7 +38,7 @@ i18n
     },
     */
 
-    // Override default options for withNamespaces HOC
+    // Override default options for withTranslation HOC
     react: {
       wait: false,
     },

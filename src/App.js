@@ -1,8 +1,7 @@
 /* @flow */
-import '@babel/polyfill'
 import React from 'react'
 import { hot } from 'react-hot-loader/root'
-import { withNamespaces } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import Routes from 'Routes'
 import LanguageSelector from 'components/LanguageSelector'
@@ -59,7 +58,7 @@ const mapDispatchToProps = (dispatch: Function) => {
 }
 
 export default hot(
-  withNamespaces()(
+  withTranslation()(
     connect(
       mapStateToProps,
       mapDispatchToProps

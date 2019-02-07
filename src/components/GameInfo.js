@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react'
-import { withNamespaces } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 import timeFormatter from 'utils/timeFormatter'
 
 type Props = {
@@ -166,4 +166,4 @@ class GameInfo extends React.PureComponent<Props> {
   }
 }
 
-export default withNamespaces()(GameInfo)
+export default withTranslation()(GameInfo)

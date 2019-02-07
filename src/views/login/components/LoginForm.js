@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
-import { withNamespaces } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 
 import validate from 'utils/validate'
 import FormField from 'components/FormField'
@@ -44,7 +44,7 @@ const LoginForm = (props: Props) => {
   )
 }
 
-export default withNamespaces()(
+export default withTranslation()(
   reduxForm({
     form: 'login',
     validate,

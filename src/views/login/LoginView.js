@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react'
 import { connect } from 'react-redux'
-import { withNamespaces } from 'react-i18next'
+import { withTranslation } from 'react-i18next'
 import { SubmissionError } from 'redux-form'
 
 import { submitLogin } from 'views/login/loginActions'
@@ -49,7 +49,7 @@ const mapDispatchToProps = (dispatch: Function) => {
   }
 }
 
-export default withNamespaces()(
+export default withTranslation()(
   connect(
     mapStateToProps,
     mapDispatchToProps
