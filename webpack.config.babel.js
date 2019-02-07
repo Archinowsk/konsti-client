@@ -1,19 +1,19 @@
-const CleanWebpackPlugin = require('clean-webpack-plugin')
-const CompressionPlugin = require('compression-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const TemplateWebpackPlugin = require('html-webpack-template')
-const MomentLocalesPlugin = require('moment-locales-webpack-plugin')
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
-const BrotliPlugin = require('brotli-webpack-plugin')
-// const PrepackWebpackPlugin = require('prepack-webpack-plugin').default
-const Dotenv = require('dotenv-webpack')
-const path = require('path')
-const webpack = require('webpack')
-const webpackMerge = require('webpack-merge')
+import CleanWebpackPlugin from 'clean-webpack-plugin'
+import CompressionPlugin from 'compression-webpack-plugin'
+import CopyWebpackPlugin from 'copy-webpack-plugin'
+import ExtractTextWebpackPlugin from 'extract-text-webpack-plugin'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import TemplateWebpackPlugin from 'html-webpack-template'
+import MomentLocalesPlugin from 'moment-locales-webpack-plugin'
+import UglifyJSPlugin from 'uglifyjs-webpack-plugin'
+import BrotliPlugin from 'brotli-webpack-plugin'
+// import PrepackWebpackPlugin from 'prepack-webpack-plugin'
+import Dotenv from 'dotenv-webpack'
+import path from 'path'
+import webpack from 'webpack'
+import webpackMerge from 'webpack-merge'
+import appConfig from './src/config'
 
-const appConfig = require('./src/config')
 let config = null
 const TARGET = process.env.npm_lifecycle_event
 
@@ -224,4 +224,4 @@ if (TARGET === 'build' || TARGET === 'analyze') {
   config = webpackMerge(commonConfig, devConfig)
 }
 
-module.exports = config
+export default config
