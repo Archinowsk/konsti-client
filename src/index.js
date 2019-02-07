@@ -23,7 +23,6 @@ const render = () => {
   if (!rootElement) return
 
   ReactDOM.render(
-    // $FlowFixMe: React Flow typings are not updated to React 16.3 yet
     // <React.StrictMode>
     <Provider store={store}>
       <I18nextProvider i18n={i18n}>
