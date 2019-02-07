@@ -1,7 +1,4 @@
 [ignore]
-<PROJECT_ROOT>/node_modules/react-beautiful-dnd
-<PROJECT_ROOT>/node_modules/css-box-model
-<PROJECT_ROOT>/node_modules/stylelint
 
 [include]
 
@@ -31,3 +28,6 @@ module.name_mapper='^\(.*\)$' -> '<PROJECT_ROOT>/src/\1'
 [untyped]
 
 [declarations]
+<PROJECT_ROOT>/node_modules/react-beautiful-dnd
+<PROJECT_ROOT>/node_modules/css-box-model
+<PROJECT_ROOT>/node_modules/stylelint
