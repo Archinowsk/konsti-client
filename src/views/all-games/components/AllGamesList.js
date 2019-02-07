@@ -77,7 +77,7 @@ class AllGamesList extends React.PureComponent<Props> {
         GamesList.push(exception)
       }
 
-      /* $FlowFixMe */
+      /* $FlowFixMe: property `@@iterator` is missing in  mixed [1] but exists in  `$Iterable` [2]. */
       for (let game of games) {
         const gameEntry = (
           <p key={game.id} className='games-list'>

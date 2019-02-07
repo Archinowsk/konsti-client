@@ -2,7 +2,7 @@
 
 // Help with reordering the result
 const reorder = (list: Array<Object>, startIndex: number, endIndex: number) => {
-  /* $FlowFixMe */
+  /* $FlowFixMe: Missing type annotation for `A`. `A` is a type parameter declared in  function type [1] and was implicitly instantiated at  call of method `from` [2]. */
   const result = Array.from(list)
   const [removed] = result.splice(startIndex, 1)
   result.splice(endIndex, 0, removed)

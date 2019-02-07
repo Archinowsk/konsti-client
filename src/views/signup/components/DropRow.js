@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react'
 import { withTranslation } from 'react-i18next'
-/* $FlowFixMe */
+/* $FlowFixMe: Cannot import `Droppable` because there is no `Droppable` export in `react-beautiful-dnd`. */
 import { Droppable, Draggable } from 'react-beautiful-dnd'
 import { Link } from 'react-router-dom'
 
@@ -11,6 +11,7 @@ type Props = {
   games: Array<Object>,
   label: string,
 }
+
 const DropRow = (props: Props) => {
   const { droppableId, games, label, t } = props
 

@@ -38,7 +38,6 @@ const App = (props: Props) => {
 
       <div className='body'>
         {!appOpen && t('closingMessage')}
-        {/* $FlowFixMe */}
         {appOpen && <Routes />}
       </div>
     </React.Fragment>

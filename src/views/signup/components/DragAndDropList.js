@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react'
 import { withTranslation } from 'react-i18next'
-/* $FlowFixMe */
+/* $FlowFixMe: Cannot import `DragDropContext` because there is no `DragDropContext` export in `react-beautiful-dnd`. */
 import { DragDropContext } from 'react-beautiful-dnd'
 import DropRow from 'views/signup/components/DropRow'
 import { reorder, move } from 'utils/dragAndDrop'
