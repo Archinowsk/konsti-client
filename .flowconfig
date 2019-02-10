@@ -8,14 +8,9 @@
 
 [options]
 # Supported file extensions
-module.file_ext=.css
 module.file_ext=.js
 module.file_ext=.json
-module.file_ext=.jsx
 module.file_ext=.scss
-
-# Map scss files to empty modules
-module.name_mapper.extension='scss' -> 'empty/object'
 
 # Root import
 module.name_mapper='^\(.*\)$' -> '<PROJECT_ROOT>/src/\1'
