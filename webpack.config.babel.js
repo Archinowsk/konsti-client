@@ -99,6 +99,12 @@ const devConfig = {
     stats,
   },
 
+  resolve: {
+    alias: {
+      'react-dom': '@hot-loader/react-dom',
+    },
+  },
+
   module: {
     // Loaders to transform sources
     rules: [
