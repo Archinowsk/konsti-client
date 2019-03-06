@@ -19,7 +19,15 @@ module.exports = api => {
     '@babel/preset-flow',
   ]
 
-  const plugins = ['@babel/plugin-proposal-class-properties']
+  const plugins = [
+    '@babel/plugin-proposal-class-properties',
+    [
+      'babel-plugin-module-resolver',
+      {
+        root: ['./src'],
+      },
+    ],
+  ]
 
   if (target === 'start') {
     plugins.push(['react-hot-loader/babel'])
