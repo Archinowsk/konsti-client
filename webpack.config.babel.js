@@ -160,7 +160,7 @@ const prodConfig = {
   },
 
   plugins: [
-    new CleanWebpackPlugin(['build']),
+    new CleanWebpackPlugin(),
     // new PrepackWebpackPlugin(),
     new CopyWebpackPlugin([{ from: 'assets' }]),
     // “en” is built into Moment and can’t be removed
