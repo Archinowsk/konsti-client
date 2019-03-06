@@ -1,6 +1,7 @@
 module.exports = {
   extends: [
     'standard',
+    'plugin:jest/recommended',
     'plugin:react/recommended',
     // 'plugin:security/recommended',
     'plugin:flowtype/recommended',
@@ -24,6 +25,7 @@ module.exports = {
     'unicorn',
     'eslint-plugin',
     'react-hooks',
+    'jest',
     // 'flowtype-errors',
   ],
   parser: 'babel-eslint',
@@ -34,6 +36,7 @@ module.exports = {
   env: {
     es6: true,
     browser: true,
+    jest: true,
   },
   settings: {
     react: {
