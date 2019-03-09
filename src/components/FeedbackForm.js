@@ -14,19 +14,16 @@ type State = {
   feedbackSent: boolean,
 }
 
-class FeedbackForm extends React.Component<Props, State> {
-  state = {
-    submitting: false,
-    feedbackValue: '',
-    feedbackSent: false,
-  }
+const FeedbackForm = (props: Props, state: State) => {
+  const [submitting, setSubmitting] = React.useState(false)
+  const [feedbackValue, setFeedbackValue] = React.useState('')
+  const [feedbackSent, setFeedbackSent] = React.useState(false)
 
   // Hide / unhide clicked
-  sendFeedbackEvent = async () => {
-    const { game } = this.props
-    const { feedbackValue } = this.state
+  const sendFeedbackEvent = async () => {
+    const { game } = props
 
-    this.setState({ submitting: true })
+    setSubmitting(true)
 
     const feedbackData = {
       id: game.id,
@@ -38,41 +35,36 @@ class FeedbackForm extends React.Component<Props, State> {
     } catch (error) {
       console.log(`postFeedback error: ${error}`)
     }
-    this.setState({ feedbackSent: true, submitting: false })
+    setFeedbackSent(true)
+    setSubmitting(false)
   }
 
-  render() {
-    const { t } = this.props
-    const { submitting, feedbackValue, feedbackSent } = this.state
+  const { t } = props
 
-    const handleFeedbackChange = event => {
-      this.setState({ feedbackValue: event.target.value })
-    }
-
-    return (
-      <div>
-        {!feedbackSent && (
-          <React.Fragment>
-            <textarea
-              value={feedbackValue}
-              onChange={handleFeedbackChange}
-              className='feedback-textarea'
-              rows='4'
-            />
-
-            <button
-              disabled={submitting}
-              onClick={() => this.sendFeedbackEvent()}
-            >
-              {t('button.sendFeedback')}
-            </button>
-          </React.Fragment>
-        )}
-
-        {feedbackSent && <p className='success'>{t('button.feedbackSent')}</p>}
-      </div>
-    )
+  const handleFeedbackChange = event => {
+    setFeedbackValue(event.target.value)
   }
+
+  return (
+    <div>
+      {!feedbackSent && (
+        <React.Fragment>
+          <textarea
+            value={feedbackValue}
+            onChange={handleFeedbackChange}
+            className='feedback-textarea'
+            rows='4'
+          />
+
+          <button disabled={submitting} onClick={() => sendFeedbackEvent()}>
+            {t('button.sendFeedback')}
+          </button>
+        </React.Fragment>
+      )}
+
+      {feedbackSent && <p className='success'>{t('button.feedbackSent')}</p>}
+    </div>
+  )
 }
 
 export default withTranslation()(FeedbackForm)
