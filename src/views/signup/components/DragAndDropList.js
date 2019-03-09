@@ -21,7 +21,7 @@ type State = {
   priority1: Array<Object>,
   priority2: Array<Object>,
   priority3: Array<Object>,
-  showWarning: boolean,
+  warningVisible: boolean,
 }
 
 class DragAndDropList extends React.Component<Props, State> {
@@ -30,7 +30,7 @@ class DragAndDropList extends React.Component<Props, State> {
     priority1: [],
     priority2: [],
     priority3: [],
-    showWarning: false,
+    warningVisible: false,
   }
 
   componentDidMount() {
@@ -118,9 +118,9 @@ class DragAndDropList extends React.Component<Props, State> {
   }
 
   showWarning = async () => {
-    this.setState({ showWarning: true })
+    this.setState({ warningVisible: true })
     await sleep(config.MESSAGE_DELAY)
-    this.setState({ showWarning: false })
+    this.setState({ warningVisible: false })
   }
 
   onDragEnd = (result: Object) => {
@@ -161,13 +161,6 @@ class DragAndDropList extends React.Component<Props, State> {
         source,
         destination
       )
-
-      /*
-      // Sort games by name
-      if (destination.droppableId === 'gameList') {
-        result.gameList = this.sortGames(result.gameList)
-      }
-      */
 
       // Only allow one game in each priority
       if (destination.droppableId === 'priority1' && priority1.length >= 1) {
@@ -236,11 +229,11 @@ class DragAndDropList extends React.Component<Props, State> {
       priority1,
       priority2,
       priority3,
-      showWarning,
+      warningVisible,
     } = this.state
     return (
       <React.Fragment>
-        {showWarning && <p className='error'>{t('onlyOneGameWarning')}</p>}
+        {warningVisible && <p className='error'>{t('onlyOneGameWarning')}</p>}
         <div className='drop-rows'>
           <DragDropContext onDragEnd={this.onDragEnd}>
             <div className='games-row'>
