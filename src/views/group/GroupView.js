@@ -22,7 +22,7 @@ type Props = {
   serial: string,
   onSubmitCreateGroup: Function,
   onSubmitJoinGroup: Function,
-  onSubmitGetGroup: Function,
+  onSubmitGetGroup: Function, // eslint-disable-line react/no-unused-prop-types
   onSubmitLeaveGroup: Function,
   groupCode: string,
   groupMembers: Array<Object>,
@@ -39,37 +39,40 @@ type State = {
   messageStyle: string,
 }
 
-class GroupView extends React.Component<Props, State> {
-  state = {
-    loading: true,
-    showCreateGroup: false,
-    showJoinGroup: false,
-    joinGroupValue: '',
-    message: '',
-    messageStyle: '',
-  }
+const GroupView = (props: Props, state: State) => {
+  const [loading, setLoading] = React.useState(true)
+  const [showCreateGroup, setShowCreateGroup] = React.useState(false)
+  const [showJoinGroup, setShowJoinGroup] = React.useState(false)
+  const [joinGroupValue, setJoinGroupValue] = React.useState('')
+  const [message, setMessage] = React.useState('')
+  const [messageStyle, setMessageStyle] = React.useState('')
 
-  componentDidMount = async () => {
-    const { onSubmitGetGroup, groupCode } = this.props
-    await getData()
+  React.useEffect(() => {
+    const fetchData = async () => {
+      const { onSubmitGetGroup, groupCode } = props
+      await getData()
 
-    // Get group members if user is in a group
-    if (groupCode !== '0') {
-      await onSubmitGetGroup(groupCode)
+      // Get group members if user is in a group
+      if (groupCode !== '0') {
+        await onSubmitGetGroup(groupCode)
+      }
     }
-    this.setState({ loading: false })
+    fetchData()
+    setLoading(false)
+  }, [])
+
+  const openGroupForming = () => {
+    setShowCreateGroup(true)
+    setShowJoinGroup(false)
   }
 
-  openGroupForming = () => {
-    this.setState({ showCreateGroup: true, showJoinGroup: false })
+  const openJoinGroup = () => {
+    setShowJoinGroup(true)
+    setShowCreateGroup(false)
   }
 
-  openJoinGroup = () => {
-    this.setState({ showJoinGroup: true, showCreateGroup: false })
-  }
-
-  createGroup = async () => {
-    const { username, serial, onSubmitCreateGroup, t } = this.props
+  const createGroup = async () => {
+    const { username, serial, onSubmitCreateGroup, t } = props
     const groupData = {
       username: username,
       groupCode: serial,
@@ -78,9 +81,9 @@ class GroupView extends React.Component<Props, State> {
     }
     const response = await onSubmitCreateGroup(groupData)
     if (response.status === 'success') {
-      this.showMessage({ message: t('groupCreated'), style: response.status })
+      showMessage({ message: t('groupCreated'), style: response.status })
     } else if (response.status === 'error') {
-      this.showMessage({
+      showMessage({
         message: t('generalCreateGroupError'),
         style: response.status,
       })
@@ -88,8 +91,8 @@ class GroupView extends React.Component<Props, State> {
   }
 
   // Remove al signups
-  removeSignups = async () => {
-    const { onSubmitSignup, username, signedGames } = this.props
+  const removeSignups = async () => {
+    const { onSubmitSignup, username, signedGames } = props
 
     const startTimes = []
 
@@ -111,9 +114,8 @@ class GroupView extends React.Component<Props, State> {
     }
   }
 
-  joinGroup = async () => {
-    const { username, serial, onSubmitJoinGroup, t } = this.props
-    const { joinGroupValue } = this.state
+  const joinGroup = async () => {
+    const { username, serial, onSubmitJoinGroup, t } = props
     const groupData = {
       username: username,
       groupCode: joinGroupValue,
@@ -124,21 +126,21 @@ class GroupView extends React.Component<Props, State> {
     const response = await onSubmitJoinGroup(groupData)
 
     if (response.status === 'success') {
-      this.showMessage({ message: t('groupJoined'), style: response.status })
-      await this.removeSignups()
+      showMessage({ message: t('groupJoined'), style: response.status })
+      await removeSignups()
     } else if (response.status === 'error') {
       if (response.code === 31) {
-        this.showMessage({
+        showMessage({
           message: t('invalidGroupCode'),
           style: response.status,
         })
       } else if (response.code === 32) {
-        this.showMessage({
+        showMessage({
           message: t('groupNotExist'),
           style: response.status,
         })
       } else {
-        this.showMessage({
+        showMessage({
           message: t('generalCreateGroupError'),
           style: response.status,
         })
@@ -146,8 +148,8 @@ class GroupView extends React.Component<Props, State> {
     }
   }
 
-  leaveGroup = async ({ leader }) => {
-    const { onSubmitLeaveGroup, username, serial, groupCode, t } = this.props
+  const leaveGroup = async ({ leader }) => {
+    const { onSubmitLeaveGroup, username, serial, groupCode, t } = props
     const groupData = {
       username: username,
       groupCode: groupCode,
@@ -158,15 +160,15 @@ class GroupView extends React.Component<Props, State> {
     const response = await onSubmitLeaveGroup(groupData)
 
     if (response.status === 'success') {
-      this.showMessage({ message: t('leftGroup'), style: response.status })
+      showMessage({ message: t('leftGroup'), style: response.status })
     } else if (response.status === 'error') {
       if (response.code === 36) {
-        this.showMessage({
+        showMessage({
           message: t('groupNotEmpty'),
           style: response.status,
         })
       } else {
-        this.showMessage({
+        showMessage({
           message: t('generalLeaveGroupError'),
           style: response.status,
         })
@@ -174,135 +176,125 @@ class GroupView extends React.Component<Props, State> {
     }
   }
 
-  handleJoinGroupChange = event => {
-    this.setState({ joinGroupValue: event.target.value })
+  const handleJoinGroupChange = event => {
+    setJoinGroupValue(event.target.value)
   }
 
-  // Check if user is group leader
-  isGroupLeader = () => {
-    const { groupCode, serial } = this.props
+  const isGroupLeader = () => {
+    const { groupCode, serial } = props
     if (groupCode === serial) {
       return true
     }
     return false
   }
 
-  // Check if user is in leader
-  isInGroup = () => {
-    const { groupCode } = this.props
+  const isInGroup = () => {
+    const { groupCode } = props
     if (groupCode && groupCode !== '0') {
       return true
     }
     return false
   }
 
-  showMessage = async ({ message, style }) => {
-    this.setState({ message, messageStyle: style })
+  const showMessage = async ({ message, style }) => {
+    setMessage(message)
+    setMessageStyle(style)
     await sleep(config.MESSAGE_DELAY)
-    this.setState({ message: '', messageStyle: '' })
+    setMessage('')
+    setMessageStyle('')
   }
 
-  render() {
-    const { t, groupMembers } = this.props
-    const {
-      loading,
-      showCreateGroup,
-      showJoinGroup,
-      joinGroupValue,
-      message,
-      messageStyle,
-    } = this.state
+  const { t, groupMembers } = props
 
-    const groupLeader = this.isGroupLeader()
-    const inGroup = this.isInGroup()
+  const groupLeader = isGroupLeader()
+  const inGroup = isInGroup()
 
-    const joinGroupInput = (
-      <div>
-        <input
-          key='joinGroup'
-          className='form-input'
-          placeholder={t('enterGroupLeaderCode')}
-          value={joinGroupValue}
-          onChange={this.handleJoinGroupChange}
-        />
-      </div>
-    )
+  const joinGroupInput = (
+    <div>
+      <input
+        key='joinGroup'
+        className='form-input'
+        placeholder={t('enterGroupLeaderCode')}
+        value={joinGroupValue}
+        onChange={handleJoinGroupChange}
+      />
+    </div>
+  )
 
-    return (
-      <div className='group-view'>
-        <p className='page-title'>{t('pages.group')}</p>
-        <p>{t('groupSignupGuide')}</p>
+  return (
+    <div className='group-view'>
+      <p className='page-title'>{t('pages.group')}</p>
+      <p>{t('groupSignupGuide')}</p>
 
-        {loading && <Loading />}
-        {!loading && !groupLeader && !inGroup && (
-          <React.Fragment>
-            <button
-              className={showCreateGroup ? 'active' : ''}
-              onClick={() => this.openGroupForming()}
-            >
-              {t('button.createGroup')}
-            </button>
-            <button
-              className={showJoinGroup ? 'active' : ''}
-              onClick={() => this.openJoinGroup()}
-            >
-              {t('button.joinGroup')}
-            </button>
+      {loading && <Loading />}
+      {!loading && !groupLeader && !inGroup && (
+        <React.Fragment>
+          <button
+            className={showCreateGroup ? 'active' : ''}
+            onClick={() => openGroupForming()}
+          >
+            {t('button.createGroup')}
+          </button>
+          <button
+            className={showJoinGroup ? 'active' : ''}
+            onClick={() => openJoinGroup()}
+          >
+            {t('button.joinGroup')}
+          </button>
 
-            {showCreateGroup && (
-              <div>
-                <p>{t('createGroupConfirmationMessage')}</p>
-                <p>{t('groupLeaderWargnin')}</p>
-                <button onClick={() => this.createGroup()}>
-                  {t('button.joinGroupConfirmation')}
-                </button>
-              </div>
-            )}
+          {showCreateGroup && (
+            <div>
+              <p>{t('createGroupConfirmationMessage')}</p>
+              <p>{t('groupLeaderWargnin')}</p>
+              <button onClick={() => createGroup()}>
+                {t('button.joinGroupConfirmation')}
+              </button>
+            </div>
+          )}
 
-            {showJoinGroup && (
-              <div>
-                <p>{t('joiningGroupWillCancelGames')}</p>
+          {showJoinGroup && (
+            <div>
+              <p>{t('joiningGroupWillCancelGames')}</p>
 
-                {joinGroupInput}
-                <button onClick={() => this.joinGroup()}>
-                  {t('button.joinGroup')}
-                </button>
-              </div>
-            )}
-          </React.Fragment>
-        )}
-        {!loading && groupLeader && inGroup && (
-          <React.Fragment>
-            <p>
-              {t('youAreGroupLeader')}. {t('groupLeaderInfo')}.
-            </p>
-            <p>{t('groupMembers')}</p>
-            <GroupMembersList groupMembers={groupMembers} />
-            <p>{t('signedGames')}</p>
-            <SignedGamesList groupMembers={groupMembers} />
-            <button onClick={() => this.leaveGroup({ leader: true })}>
-              {t('button.leaveGroup')}
-            </button>
-          </React.Fragment>
-        )}
-        {!loading && !groupLeader && inGroup && (
-          <React.Fragment>
-            <p>
-              {t('youAreInGroup')}. {t('groupMemberInfo')}.
-            </p>
-            <p>{t('groupMembers')}</p>
-            <GroupMembersList groupMembers={groupMembers} />
-            <p>{t('signedGames')}</p>
-            <SignedGamesList groupMembers={groupMembers} />
-            <button onClick={() => this.leaveGroup({ leader: false })}>
-              {t('button.leaveGroup')}
-            </button>
-          </React.Fragment>
-        )}
-        <p className={messageStyle}>{message}</p>
-      </div>
-    )
-  }
+              {joinGroupInput}
+              <button onClick={() => joinGroup()}>
+                {t('button.joinGroup')}
+              </button>
+            </div>
+          )}
+        </React.Fragment>
+      )}
+      {!loading && groupLeader && inGroup && (
+        <React.Fragment>
+          <p>
+            {t('youAreGroupLeader')}. {t('groupLeaderInfo')}.
+          </p>
+          <p>{t('groupMembers')}</p>
+          <GroupMembersList groupMembers={groupMembers} />
+          <p>{t('signedGames')}</p>
+          <SignedGamesList groupMembers={groupMembers} />
+          <button onClick={() => leaveGroup({ leader: true })}>
+            {t('button.leaveGroup')}
+          </button>
+        </React.Fragment>
+      )}
+      {!loading && !groupLeader && inGroup && (
+        <React.Fragment>
+          <p>
+            {t('youAreInGroup')}. {t('groupMemberInfo')}.
+          </p>
+          <p>{t('groupMembers')}</p>
+          <GroupMembersList groupMembers={groupMembers} />
+          <p>{t('signedGames')}</p>
+          <SignedGamesList groupMembers={groupMembers} />
+          <button onClick={() => leaveGroup({ leader: false })}>
+            {t('button.leaveGroup')}
+          </button>
+        </React.Fragment>
+      )}
+      <p className={messageStyle}>{message}</p>
+    </div>
+  )
 }
 
 const mapStateToProps = (state: Object) => {
