@@ -8,15 +8,14 @@ type Props = {
   onSubmitLogout: Function,
 }
 
-class LogoutPage extends React.Component<Props> {
-  componentDidMount() {
-    const { onSubmitLogout } = this.props
-    onSubmitLogout()
-  }
+const LogoutPage = (props: Props) => {
+  const { onSubmitLogout } = props
 
-  render() {
-    return <Redirect to='/' />
-  }
+  React.useEffect(() => {
+    onSubmitLogout()
+  })
+
+  return <Redirect to='/' />
 }
 
 const mapDispatchToProps = (dispatch: Function) => {
