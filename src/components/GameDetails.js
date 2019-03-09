@@ -7,6 +7,7 @@ import { submitUpdateBlacklist } from 'views/admin/adminActions'
 import { submitUpdateFavorites } from 'views/my-games/myGamesActions'
 import FeedbackForm from 'components/FeedbackForm'
 import GameInfo from 'components/GameInfo'
+import Loading from 'components/Loading'
 
 type Props = {
   t: Function,
@@ -24,44 +25,35 @@ type Props = {
 
 type State = {
   blacklisted: boolean,
-  hidden: boolean,
-  username: string,
   game: Object,
   submitting: boolean,
   favorited: boolean,
+  loading: boolean,
 }
 
-class GameDetails extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props)
-    const { games, match, username } = this.props
+const GameDetails = (props: Props, state: State) => {
+  const { games, match, username } = props
 
-    // Get the open game from games list
-    const game = games.filter(game => {
-      return game.id === match.params.id
-    })
+  const game = games.find(game => game.id === match.params.id)
 
-    this.state = {
-      blacklisted: false,
-      hidden: false,
-      username: username,
-      game: game[0],
-      submitting: false,
-      favorited: false,
-    }
-  }
+  const [blacklisted, setBlacklisted] = React.useState(false)
+  const [submitting, setSubmitting] = React.useState(false)
+  const [favorited, setFavorited] = React.useState(false)
+  const [loading, setLoading] = React.useState(true)
 
-  componentDidMount() {
-    this.checkGameState()
-  }
+  React.useEffect(() => {
+    checkGameState()
+    setLoading(false)
+  })
 
-  checkGameState = () => {
-    const { game } = this.state
-    const { favoritedGames, blacklistedGames } = this.props
+  const checkGameState = () => {
+    if (!game || !game.id) return
+
+    const { favoritedGames, blacklistedGames } = props
     // Check if in favorites
     for (let i = 0; i < favoritedGames.length; i += 1) {
       if (favoritedGames[i].id === game.id) {
-        this.setState({ favorited: true })
+        setFavorited(true)
         break
       }
     }
@@ -69,14 +61,14 @@ class GameDetails extends React.Component<Props, State> {
     // Check if blacklisted
     for (let i = 0; i < blacklistedGames.length; i += 1) {
       if (blacklistedGames[i].id === game.id) {
-        this.setState({ blacklisted: true })
+        setBlacklisted(true)
         break
       }
     }
   }
 
   // Find selected game index
-  findGame = (id, array) => {
+  const findGame = (id, array) => {
     for (let i = 0; i < array.length; i += 1) {
       if (array[i].id === id) {
         return i
@@ -86,12 +78,13 @@ class GameDetails extends React.Component<Props, State> {
   }
 
   // Favorite / unfavorite clicked
-  addFavoriteEvent = async action => {
-    const { game, username } = this.state
-    const { favoritedGames, onSubmitUpdateFavorites } = this.props
+  const addFavoriteEvent = async action => {
+    if (!game || !game.id) return
 
-    this.setState({ submitting: true })
-    const gameIndex = this.findGame(game.id, favoritedGames)
+    const { favoritedGames, onSubmitUpdateFavorites } = props
+
+    setSubmitting(true)
+    const gameIndex = findGame(game.id, favoritedGames)
     const allFavoritedGames = favoritedGames.slice()
 
     if (action === 'add') {
@@ -116,24 +109,25 @@ class GameDetails extends React.Component<Props, State> {
       console.log(`onSubmitUpdateFavorites error: ${error}`)
     }
 
-    this.setState({ submitting: false })
+    setSubmitting(false)
 
     if (response && response.status === 'success') {
       if (action === 'add') {
-        this.setState({ favorited: true })
+        setFavorited(true)
       } else if (action === 'del') {
-        this.setState({ favorited: false })
+        setFavorited(false)
       }
     }
   }
 
   // Hide / unhide clicked
-  addBlacklistEvent = async action => {
-    const { game } = this.state
-    const { blacklistedGames, onSubmitUpdateBlacklist } = this.props
+  const addBlacklistEvent = async action => {
+    if (!game || !game.id) return
 
-    this.setState({ submitting: true })
-    const gameIndex = this.findGame(game.id, blacklistedGames)
+    const { blacklistedGames, onSubmitUpdateBlacklist } = props
+
+    setSubmitting(true)
+    const gameIndex = findGame(game.id, blacklistedGames)
     const allBlacklistedGames = blacklistedGames.slice()
 
     if (action === 'add') {
@@ -163,76 +157,78 @@ class GameDetails extends React.Component<Props, State> {
       console.log(`onSubmitUpdateBlacklist error: ${error}`)
     }
 
-    this.setState({ submitting: false })
+    setSubmitting(false)
 
     if (response && response.status === 'success') {
       if (action === 'add') {
-        this.setState({ blacklisted: true })
+        setBlacklisted(true)
       } else if (action === 'del') {
-        this.setState({ blacklisted: false })
+        setBlacklisted(false)
       }
     }
   }
 
-  render() {
-    const { t, history, loggedIn, userGroup } = this.props
-    const { game, favorited, submitting, blacklisted } = this.state
+  const { t, history, loggedIn, userGroup } = props
 
-    return (
-      <div className='game-details'>
-        <button
-          onClick={() => {
-            if (history.action === 'PUSH') {
-              history.goBack()
-            } else {
-              history.push('/')
-            }
-          }}
-        >
-          {t('button.back')}
-        </button>
-
-        {favorited && loggedIn && userGroup === 'user' && (
+  return (
+    <div className='game-details'>
+      {loading && <Loading />}
+      {!loading && (
+        <React.Fragment>
           <button
-            disabled={submitting}
-            onClick={() => this.addFavoriteEvent('del')}
+            onClick={() => {
+              if (history.action === 'PUSH') {
+                history.goBack()
+              } else {
+                history.push('/')
+              }
+            }}
           >
-            {t('button.removeFavorite')}
+            {t('button.back')}
           </button>
-        )}
 
-        {!favorited && loggedIn && userGroup === 'user' && (
-          <button
-            disabled={submitting}
-            onClick={() => this.addFavoriteEvent('add')}
-          >
-            {t('button.favorite')}
-          </button>
-        )}
+          {favorited && loggedIn && userGroup === 'user' && (
+            <button
+              disabled={submitting}
+              onClick={() => addFavoriteEvent('del')}
+            >
+              {t('button.removeFavorite')}
+            </button>
+          )}
 
-        {blacklisted && loggedIn && userGroup === 'admin' && (
-          <button
-            disabled={submitting}
-            onClick={() => this.addBlacklistEvent('del')}
-          >
-            {t('button.unhide')}
-          </button>
-        )}
+          {!favorited && loggedIn && userGroup === 'user' && (
+            <button
+              disabled={submitting}
+              onClick={() => addFavoriteEvent('add')}
+            >
+              {t('button.favorite')}
+            </button>
+          )}
 
-        {!blacklisted && loggedIn && userGroup === 'admin' && (
-          <button
-            disabled={submitting}
-            onClick={() => this.addBlacklistEvent('add')}
-          >
-            {t('button.hide')}
-          </button>
-        )}
+          {blacklisted && loggedIn && userGroup === 'admin' && (
+            <button
+              disabled={submitting}
+              onClick={() => addBlacklistEvent('del')}
+            >
+              {t('button.unhide')}
+            </button>
+          )}
 
-        <GameInfo game={game} />
-        {loggedIn && <FeedbackForm game={game} />}
-      </div>
-    )
-  }
+          {!blacklisted && loggedIn && userGroup === 'admin' && (
+            <button
+              disabled={submitting}
+              onClick={() => addBlacklistEvent('add')}
+            >
+              {t('button.hide')}
+            </button>
+          )}
+
+          <GameInfo game={game} />
+          {loggedIn && <FeedbackForm game={game} />}
+        </React.Fragment>
+      )}
+    </div>
+  )
 }
 
 const mapStateToProps = state => {
