@@ -48,7 +48,7 @@
   },
   "gameInfo": {
     "title": "Title",
-    "gameStyles": "Game styles",
+    "gameStyle": "Game style",
     "runTime": "Time",
     "description": "Description",
     "location": "Location",

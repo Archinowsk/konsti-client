@@ -48,7 +48,7 @@
   },
   "gameInfo": {
     "title": "Pelin nimi",
-    "playStyles": "Pelityylit",
+    "gameStyle": "Pelityyli",
     "runTime": "Aika",
     "description": "Kuvaus",
     "location": "Pelihuone",
