@@ -17,36 +17,34 @@ type State = {
   loading: boolean,
 }
 
-class MyGamesView extends React.Component<Props, State> {
-  state = {
-    loading: true,
-  }
+const MyGamesView = (props: Props, state: State) => {
+  const [loading, setLoading] = React.useState(true)
 
-  componentDidMount = async () => {
-    await getData()
-    this.setState({ loading: false })
-  }
+  React.useEffect(() => {
+    const fetchData = async () => {
+      await getData()
+    }
+    fetchData()
+    setLoading(false)
+  }, [])
 
-  render() {
-    const { signedGames, favoritedGames, enteredGames } = this.props
-    const { loading } = this.state
+  const { signedGames, favoritedGames, enteredGames } = props
 
-    return (
-      <div className='my-games-view'>
-        {loading && <Loading />}
-        {!loading && (
-          <React.Fragment>
-            <MyFavoritesList favoritedGames={favoritedGames} />
-            <MySignupsList signedGames={signedGames} />
-            <MyEnteredList
-              enteredGames={enteredGames}
-              signedGames={signedGames}
-            />
-          </React.Fragment>
-        )}
-      </div>
-    )
-  }
+  return (
+    <div className='my-games-view'>
+      {loading && <Loading />}
+      {!loading && (
+        <React.Fragment>
+          <MyFavoritesList favoritedGames={favoritedGames} />
+          <MySignupsList signedGames={signedGames} />
+          <MyEnteredList
+            enteredGames={enteredGames}
+            signedGames={signedGames}
+          />
+        </React.Fragment>
+      )}
+    </div>
+  )
 }
 
 const mapStateToProps = state => {
