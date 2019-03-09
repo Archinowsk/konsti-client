@@ -18,60 +18,58 @@ type State = {
   loading: boolean,
 }
 
-class AllSignupsView extends React.Component<Props, State> {
-  state = {
-    loading: true,
+const AllSignupsView = (props: Props, state: State) => {
+  const [loading, setLoading] = React.useState(true)
+
+  React.useEffect(() => {
+    const fetchData = async () => {
+      await getData()
+    }
+    fetchData()
+    setLoading(false)
+  }, [])
+
+  const { games, t, results, signupTime } = props
+
+  let selectedResult = []
+  for (let result of results) {
+    if (result.startTime === signupTime) {
+      selectedResult = result.result
+      break
+    }
   }
 
-  componentDidMount = async () => {
-    await getData()
-    this.setState({ loading: false })
-  }
-
-  render() {
-    const { games, t, results, signupTime } = this.props
-    const { loading } = this.state
-
-    let selectedResult = []
-    for (let result of results) {
-      if (result.startTime === signupTime) {
-        selectedResult = result.result
-        break
+  for (let game of games) {
+    for (let result of selectedResult) {
+      if (game.id === result.enteredGame.id) {
+        Object.assign(result.enteredGame, game)
       }
     }
-
-    for (let game of games) {
-      for (let result of selectedResult) {
-        if (game.id === result.enteredGame.id) {
-          Object.assign(result.enteredGame, game)
-        }
-      }
-    }
-
-    let resultsAvailable = false
-    if (selectedResult && selectedResult.length !== 0) {
-      resultsAvailable = true
-    }
-
-    const formattedDate = timeFormatter.weekdayAndTime(signupTime)
-
-    return (
-      <div className='all-signups-view'>
-        {loading && <Loading />}
-        {!loading && !resultsAvailable && (
-          <p className='page-title'>{t('noResults')}</p>
-        )}
-        {!loading && resultsAvailable && (
-          <React.Fragment>
-            <p className='page-title'>
-              {t('signupResultsfor')} {formattedDate}
-            </p>
-            <AllSignupsList results={selectedResult} />
-          </React.Fragment>
-        )}
-      </div>
-    )
   }
+
+  let resultsAvailable = false
+  if (selectedResult && selectedResult.length !== 0) {
+    resultsAvailable = true
+  }
+
+  const formattedDate = timeFormatter.weekdayAndTime(signupTime)
+
+  return (
+    <div className='all-signups-view'>
+      {loading && <Loading />}
+      {!loading && !resultsAvailable && (
+        <p className='page-title'>{t('noResults')}</p>
+      )}
+      {!loading && resultsAvailable && (
+        <React.Fragment>
+          <p className='page-title'>
+            {t('signupResultsfor')} {formattedDate}
+          </p>
+          <AllSignupsList results={selectedResult} />
+        </React.Fragment>
+      )}
+    </div>
+  )
 }
 
 const mapStateToProps = state => {
