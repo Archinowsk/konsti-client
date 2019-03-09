@@ -17,38 +17,38 @@ type State = {
   loading: boolean,
 }
 
-class SignupView extends React.Component<Props, State> {
-  state = { loading: true }
+const SignupView = (props: Props, state: State) => {
+  const [loading, setLoading] = React.useState(true)
 
-  componentDidMount = async () => {
-    await getData()
-    this.setState({ loading: false })
-  }
+  React.useEffect(() => {
+    const fetchData = async () => {
+      await getData()
+    }
+    fetchData()
+    setLoading(false)
+  }, [])
 
-  render() {
-    const { games } = this.props
-    const { loading } = this.state
+  const { games } = props
 
-    return (
-      <div className='signup-view'>
-        {loading && <Loading />}
-        {!loading && (
-          <Switch>
-            <Route
-              exact
-              path='/signup'
-              render={props => <SignupList {...props} games={games} />}
-            />
-            <Route
-              exact
-              path='/games/:id'
-              render={props => <GameDetails {...props} />}
-            />
-          </Switch>
-        )}
-      </div>
-    )
-  }
+  return (
+    <div className='signup-view'>
+      {loading && <Loading />}
+      {!loading && (
+        <Switch>
+          <Route
+            exact
+            path='/signup'
+            render={props => <SignupList {...props} games={games} />}
+          />
+          <Route
+            exact
+            path='/games/:id'
+            render={props => <GameDetails {...props} />}
+          />
+        </Switch>
+      )}
+    </div>
+  )
 }
 
 const mapStateToProps = state => {
