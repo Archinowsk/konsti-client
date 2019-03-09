@@ -9,21 +9,8 @@ type Props = {
   games: Array<any>,
 }
 
-class AllGamesList extends React.PureComponent<Props> {
-  // Sort games by starting time and name
-  sortGames = games => {
-    const sortedGames = {}
-    Object.keys(games)
-      .sort()
-      .forEach(key => {
-        // Sort games by name
-        sortedGames[key] = this.sortByNames(games[key])
-      })
-
-    return sortedGames
-  }
-
-  sortByNames = games => {
+const AllGamesList = (props: Props) => {
+  const sortByNames = games => {
     return games.sort((a, b) => {
       const keyA = a.title.toLowerCase()
       const keyB = b.title.toLowerCase()
@@ -33,8 +20,21 @@ class AllGamesList extends React.PureComponent<Props> {
     })
   }
 
-  buildGamesList = games => {
-    const { t } = this.props
+  // Sort games by starting time and name
+  const sortGames = games => {
+    const sortedGames = {}
+    Object.keys(games)
+      .sort()
+      .forEach(key => {
+        // Sort games by name
+        sortedGames[key] = sortByNames(games[key])
+      })
+
+    return sortedGames
+  }
+
+  const buildGamesList = games => {
+    const { t } = props
 
     // Group all unique starting times
     const groupedGames = games.reduce((acc, sortedGame) => {
@@ -43,7 +43,7 @@ class AllGamesList extends React.PureComponent<Props> {
       return acc
     }, {})
 
-    const sortedGames = this.sortGames(groupedGames)
+    const sortedGames = sortGames(groupedGames)
 
     const GamesList = []
 
@@ -92,12 +92,10 @@ class AllGamesList extends React.PureComponent<Props> {
     return GamesList
   }
 
-  render() {
-    const { games } = this.props
-    const GamesList = this.buildGamesList(games)
+  const { games } = props
+  const GamesList = buildGamesList(games)
 
-    return <div className='games-list'>{GamesList}</div>
-  }
+  return <div className='games-list'>{GamesList}</div>
 }
 
 export default withTranslation()(AllGamesList)
