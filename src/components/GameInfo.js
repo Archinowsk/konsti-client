@@ -8,9 +8,9 @@ type Props = {
   game: Object,
 }
 
-class GameInfo extends React.PureComponent<Props> {
-  getTags = () => {
-    const { t, game } = this.props
+const GameInfo = (props: Props) => {
+  const getTags = () => {
+    const { t, game } = props
 
     const tagsList = []
 
@@ -53,8 +53,8 @@ class GameInfo extends React.PureComponent<Props> {
     return tagsList
   }
 
-  getGenres = () => {
-    const { t, game } = this.props
+  const getGenres = () => {
+    const { t, game } = props
 
     let genresList = []
     if (game.genres) {
@@ -66,8 +66,8 @@ class GameInfo extends React.PureComponent<Props> {
     return genresList
   }
 
-  getStyles = () => {
-    const { t, game } = this.props
+  const getStyles = () => {
+    const { t, game } = props
 
     let stylesList = []
     if (game.styles) {
@@ -79,91 +79,83 @@ class GameInfo extends React.PureComponent<Props> {
     return stylesList
   }
 
-  render() {
-    const { t, game } = this.props
+  const { t, game } = props
 
-    const tagsList = this.getTags()
-    const genresList = this.getGenres()
-    const stylesList = this.getStyles()
-    const formattedStartTime = timeFormatter.weekdayAndTime(game.startTime)
-    const formattedEndTime = timeFormatter.timeOnly(game.endTime)
+  const tagsList = getTags()
+  const genresList = getGenres()
+  const stylesList = getStyles()
+  const formattedStartTime = timeFormatter.weekdayAndTime(game.startTime)
+  const formattedEndTime = timeFormatter.timeOnly(game.endTime)
 
-    return (
-      <div>
-        {game.title && (
-          <div className='game-details-row'>
-            <span className='game-details-title'>{t('gameInfo.title')}</span>
-            {game.title}
-          </div>
-        )}
-        {game.people && (
-          <div className='game-details-row'>
-            <span className='game-details-title'>
-              {t('gameInfo.gamemaster')}
-            </span>
-            {game.people}
-          </div>
-        )}
-        {genresList.length > 0 && (
-          <div className='game-details-row'>
-            <span className='game-details-title'>{t('gameInfo.genres')}</span>
-            <ul>{genresList}</ul>
-          </div>
-        )}
-        {tagsList.length > 0 && (
-          <div className='game-details-row'>
-            <span className='game-details-title'>{t('gameInfo.tags')}</span>
-            <ul>{tagsList}</ul>
-          </div>
-        )}
-        {game.mins && (
-          <div className='game-details-row'>
-            <span className='game-details-title'>{t('gameInfo.runTime')}</span>
-            {formattedStartTime} - {formattedEndTime} ({game.mins / 60}{' '}
-            {t('hours')})
-          </div>
-        )}
-        {game.description && (
-          <div className='game-details-row'>
-            <span className='game-details-title'>
-              {t('gameInfo.description')}
-            </span>
-            {game.description}
-          </div>
-        )}
-        {game.gameSystem && (
-          <div className='game-details-row'>
-            <span className='game-details-title'>
-              {t('gameInfo.gamesystem')}
-            </span>
-            {game.gameSystem}
-          </div>
-        )}
-        {stylesList.length > 0 && (
-          <div className='game-details-row'>
-            <span className='game-details-title'>
-              {t('gameInfo.gameStyles')}
-            </span>
-            <ul>{stylesList}</ul>
-          </div>
-        )}
-        {game.location && (
-          <div className='game-details-row'>
-            <span className='game-details-title'>{t('gameInfo.location')}</span>
-            {game.location}
-          </div>
-        )}
-        {game.minAttendance && game.maxAttendance && (
-          <div className='game-details-row'>
-            <span className='game-details-title'>
-              {t('gameInfo.numberOfPlayers')}
-            </span>
-            {game.minAttendance} - {game.maxAttendance}
-          </div>
-        )}
-      </div>
-    )
-  }
+  return (
+    <div>
+      {game.title && (
+        <div className='game-details-row'>
+          <span className='game-details-title'>{t('gameInfo.title')}</span>
+          {game.title}
+        </div>
+      )}
+      {game.people && (
+        <div className='game-details-row'>
+          <span className='game-details-title'>{t('gameInfo.gamemaster')}</span>
+          {game.people}
+        </div>
+      )}
+      {genresList.length > 0 && (
+        <div className='game-details-row'>
+          <span className='game-details-title'>{t('gameInfo.genres')}</span>
+          <ul>{genresList}</ul>
+        </div>
+      )}
+      {tagsList.length > 0 && (
+        <div className='game-details-row'>
+          <span className='game-details-title'>{t('gameInfo.tags')}</span>
+          <ul>{tagsList}</ul>
+        </div>
+      )}
+      {game.mins && (
+        <div className='game-details-row'>
+          <span className='game-details-title'>{t('gameInfo.runTime')}</span>
+          {formattedStartTime} - {formattedEndTime} ({game.mins / 60}{' '}
+          {t('hours')})
+        </div>
+      )}
+      {game.description && (
+        <div className='game-details-row'>
+          <span className='game-details-title'>
+            {t('gameInfo.description')}
+          </span>
+          {game.description}
+        </div>
+      )}
+      {game.gameSystem && (
+        <div className='game-details-row'>
+          <span className='game-details-title'>{t('gameInfo.gamesystem')}</span>
+          {game.gameSystem}
+        </div>
+      )}
+      {stylesList.length > 0 && (
+        <div className='game-details-row'>
+          <span className='game-details-title'>{t('gameInfo.gameStyle')}</span>
+          <ul>{stylesList}</ul>
+        </div>
+      )}
+      {game.location && (
+        <div className='game-details-row'>
+          <span className='game-details-title'>{t('gameInfo.location')}</span>
+          {game.location}
+        </div>
+      )}
+      {game.minAttendance && game.maxAttendance && (
+        <div className='game-details-row'>
+          <span className='game-details-title'>
+            {t('gameInfo.numberOfPlayers')}
+          </span>
+          {game.minAttendance} - {game.maxAttendance}
+        </div>
+      )}
+    </div>
+  )
 }
 
 export default withTranslation()(GameInfo)
