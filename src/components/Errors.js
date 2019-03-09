@@ -8,8 +8,6 @@ const NetworkError = (props: Props) => {
     meta: { touched, error },
   } = props
 
-  if (!touched) return
-
   return touched && error ? <span>{error}</span> : false
 }
 
