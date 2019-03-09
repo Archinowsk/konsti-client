@@ -22,7 +22,7 @@ type Props = {
   serial: string,
   onSubmitCreateGroup: Function,
   onSubmitJoinGroup: Function,
-  onSubmitGetGroup: Function, // eslint-disable-line react/no-unused-prop-types
+  onSubmitGetGroup: Function,
   onSubmitLeaveGroup: Function,
   groupCode: string,
   groupMembers: Array<Object>,
@@ -40,6 +40,8 @@ type State = {
 }
 
 const GroupView = (props: Props, state: State) => {
+  const { onSubmitGetGroup, groupCode } = props
+
   const [loading, setLoading] = React.useState(true)
   const [showCreateGroup, setShowCreateGroup] = React.useState(false)
   const [showJoinGroup, setShowJoinGroup] = React.useState(false)
@@ -49,7 +51,6 @@ const GroupView = (props: Props, state: State) => {
 
   React.useEffect(() => {
     const fetchData = async () => {
-      const { onSubmitGetGroup, groupCode } = props
       await getData()
 
       // Get group members if user is in a group
