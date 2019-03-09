@@ -34,22 +34,23 @@ type State = {
   messageStyle: string,
 }
 
-class AdminView extends React.Component<Props, State> {
-  state = {
-    submitting: false,
-    loading: true,
-    message: '',
-    messageStyle: '',
-  }
+const AdminView = (props: Props, state: State) => {
+  const [submitting, setSubmitting] = React.useState(false)
+  const [loading, setLoading] = React.useState(true)
+  const [message, setMessage] = React.useState('')
+  const [messageStyle, setMessageStyle] = React.useState('')
 
-  componentDidMount = async () => {
-    await getData()
-    this.setState({ loading: false })
-  }
+  React.useEffect(() => {
+    const fetchData = async () => {
+      await getData()
+    }
+    fetchData()
+    setLoading(false)
+  }, [])
 
   // Get games that are not blacklisted
-  getVisibleGames = () => {
-    const { games, blacklistedGames } = this.props
+  const getVisibleGames = () => {
+    const { games, blacklistedGames } = props
 
     const visibleGames = []
     // Remove hidden games
@@ -71,8 +72,8 @@ class AdminView extends React.Component<Props, State> {
   }
 
   // Assign game info to blacklisted games list
-  fillBlacklistedGameinfo = () => {
-    const { games, blacklistedGames } = this.props
+  const fillBlacklistedGameinfo = () => {
+    const { games, blacklistedGames } = props
     games.forEach(game => {
       blacklistedGames.forEach(blacklistedGame => {
         if (game.id === blacklistedGame.id) {
@@ -82,20 +83,20 @@ class AdminView extends React.Component<Props, State> {
     })
   }
 
-  submitUpdate = async () => {
-    const { onSubmitGamesUpdate } = this.props
-    this.setState({ submitting: true })
+  const submitUpdate = async () => {
+    const { onSubmitGamesUpdate } = props
+    setSubmitting(true)
     try {
       await onSubmitGamesUpdate()
     } catch (error) {
       console.log(`onSubmitGamesUpdate error: ${error}`)
     }
-    this.setState({ submitting: false })
+    setSubmitting(false)
   }
 
-  submitAssign = async () => {
-    const { onSubmitPlayersAssign, signupTime } = this.props
-    this.setState({ submitting: true })
+  const submitAssign = async () => {
+    const { onSubmitPlayersAssign, signupTime } = props
+    setSubmitting(true)
 
     let response = null
     try {
@@ -103,111 +104,108 @@ class AdminView extends React.Component<Props, State> {
     } catch (error) {
       console.log(`onSubmitPlayersAssign error: ${error}`)
     }
-    this.setState({ submitting: false })
+    setSubmitting(false)
 
     if (response && response.status === 'success') {
-      this.showMessage({
+      showMessage({
         message: response.results.message,
         style: response.status,
       })
     } else if (response && response.status === 'error') {
-      this.showMessage({
+      showMessage({
         message: 'Error assigning players',
         style: response.status,
       })
     }
   }
 
-  showMessage = async ({ message, style }) => {
-    this.setState({ message, messageStyle: style })
+  const showMessage = async ({ message, style }) => {
+    setMessage(message)
+    setMessageStyle(style)
   }
 
-  submitTime = async () => {
-    const { onSubmitSignupTime, date } = this.props
-    this.setState({ submitting: true })
+  const submitTime = async () => {
+    const { onSubmitSignupTime, date } = props
+    setSubmitting(true)
     try {
       await onSubmitSignupTime(date)
     } catch (error) {
       console.log(`onSubmitSignupTime error: ${error}`)
     }
-    this.setState({ submitting: false })
+    setSubmitting(false)
   }
 
-  render() {
-    const {
-      t,
-      updateResponse,
-      blacklistedGames,
-      onSubmitSelectDate,
-      date,
-      signupTime,
-    } = this.props
+  const {
+    t,
+    updateResponse,
+    blacklistedGames,
+    onSubmitSelectDate,
+    date,
+    signupTime,
+  } = props
 
-    const { submitting, loading, message, messageStyle } = this.state
+  const visibleGames = getVisibleGames()
+  fillBlacklistedGameinfo()
+  const formattedDate = timeFormatter.weekdayAndTime(signupTime)
 
-    const visibleGames = this.getVisibleGames()
-    this.fillBlacklistedGameinfo()
-    const formattedDate = timeFormatter.weekdayAndTime(signupTime)
+  return (
+    <div className='admin-view'>
+      {loading && <Loading />}
+      {!loading && (
+        <React.Fragment>
+          <button
+            disabled={submitting}
+            onClick={() => {
+              submitUpdate()
+            }}
+          >
+            {t('button.updateDb')}
+          </button>
 
-    return (
-      <div className='admin-view'>
-        {loading && <Loading />}
-        {!loading && (
-          <React.Fragment>
-            <button
-              disabled={submitting}
-              onClick={() => {
-                this.submitUpdate()
-              }}
-            >
-              {t('button.updateDb')}
-            </button>
+          <button
+            disabled={submitting}
+            onClick={() => {
+              submitAssign()
+            }}
+          >
+            {t('button.assignPlayers')}
+          </button>
 
-            <button
-              disabled={submitting}
-              onClick={() => {
-                this.submitAssign()
-              }}
-            >
-              {t('button.assignPlayers')}
-            </button>
+          {submitting && <p>{t('loading')}</p>}
 
-            {submitting && <p>{t('loading')}</p>}
+          <p className={messageStyle}>{message}</p>
 
-            <p className={messageStyle}>{message}</p>
+          {updateResponse.data.errors && (
+            <p className='error'>{updateResponse.data.message}</p>
+          )}
 
-            {updateResponse.data.errors && (
-              <p className='error'>{updateResponse.data.message}</p>
-            )}
+          <p>{t('selectOpenSignup')}</p>
 
-            <p>{t('selectOpenSignup')}</p>
+          <p>
+            {t('signupOpen')} {formattedDate}
+          </p>
 
-            <p>
-              {t('signupOpen')} {formattedDate}
-            </p>
+          <button
+            disabled={submitting}
+            onClick={() => {
+              submitTime()
+            }}
+          >
+            {t('button.saveTime')}
+          </button>
 
-            <button
-              disabled={submitting}
-              onClick={() => {
-                this.submitTime()
-              }}
-            >
-              {t('button.saveTime')}
-            </button>
+          <TimesDropdown
+            games={visibleGames}
+            onChange={onSubmitSelectDate}
+            date={date}
+            signupTime={signupTime}
+          />
 
-            <TimesDropdown
-              games={visibleGames}
-              onChange={onSubmitSelectDate}
-              date={date}
-              signupTime={signupTime}
-            />
-
-            <Blacklist blacklistedGames={blacklistedGames} />
-          </React.Fragment>
-        )}
-      </div>
-    )
-  }
+          <Blacklist blacklistedGames={blacklistedGames} />
+        </React.Fragment>
+      )}
+    </div>
+  )
 }
 
 const mapStateToProps = state => {
