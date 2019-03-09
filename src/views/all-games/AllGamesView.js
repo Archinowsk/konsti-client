@@ -19,17 +19,20 @@ type State = {
   loading: boolean,
 }
 
-class AllGamesView extends React.Component<Props, State> {
-  state = { loading: true }
+const AllGamesView = (props: Props, state: State) => {
+  const [loading, setLoading] = React.useState(true)
 
-  componentDidMount = async () => {
-    await getData()
-    this.setState({ loading: false })
-  }
+  React.useEffect(() => {
+    const fetchData = async () => {
+      await getData()
+    }
+    fetchData()
+    setLoading(false)
+  }, [])
 
   // Remove hidden games
-  getVisibleGames = () => {
-    const { games, blacklistedGames } = this.props
+  const getVisibleGames = () => {
+    const { games, blacklistedGames } = props
 
     const visibleGames = []
     for (let game of games) {
@@ -47,35 +50,31 @@ class AllGamesView extends React.Component<Props, State> {
     return visibleGames
   }
 
-  render() {
-    const { loading } = this.state
+  const visibleGames = getVisibleGames()
 
-    const visibleGames = this.getVisibleGames()
-
-    return (
-      <div className='all-games-view'>
-        {loading && <Loading />}
-        {!loading && (
-          <Switch>
-            <Route
-              exact
-              path='/'
-              render={props => <AllGamesList {...props} games={visibleGames} />}
-            />
-            <Route
-              exact
-              path='/games'
-              render={props => <AllGamesList {...props} games={visibleGames} />}
-            />
-            <Route
-              path='/games/:id'
-              render={props => <GameDetails {...props} games={visibleGames} />}
-            />
-          </Switch>
-        )}
-      </div>
-    )
-  }
+  return (
+    <div className='all-games-view'>
+      {loading && <Loading />}
+      {!loading && (
+        <Switch>
+          <Route
+            exact
+            path='/'
+            render={props => <AllGamesList {...props} games={visibleGames} />}
+          />
+          <Route
+            exact
+            path='/games'
+            render={props => <AllGamesList {...props} games={visibleGames} />}
+          />
+          <Route
+            path='/games/:id'
+            render={props => <GameDetails {...props} games={visibleGames} />}
+          />
+        </Switch>
+      )}
+    </div>
+  )
 }
 
 const mapStateToProps = state => {
