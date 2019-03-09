@@ -24,29 +24,31 @@ type State = {
   warningVisible: boolean,
 }
 
-class DragAndDropList extends React.Component<Props, State> {
-  state = {
-    gameList: [],
-    priority1: [],
-    priority2: [],
-    priority3: [],
-    warningVisible: false,
-  }
+const DragAndDropList = (props: Props, state: State) => {
+  const { games, selectedGames, signupTime } = props
 
-  componentDidMount() {
-    const { games, selectedGames, signupTime } = this.props
-    // Load existing state from store
-    this.loadState({ games, selectedGames, signupTime })
-  }
+  const [gameList, setGameList] = React.useState([])
+  const [priority1, setPriority1] = React.useState([])
+  const [priority2, setPriority2] = React.useState([])
+  const [priority3, setPriority3] = React.useState([])
+  const [warningVisible, setWarningVisible] = React.useState(false)
 
+  // TODO: Changing signupTime does not work
+  // TODO: useEffect + componentDidUpdate needs work
+  React.useEffect(() => {
+    loadState({ games, selectedGames, signupTime })
+  }, [])
+
+  /*
   componentDidUpdate(prevProps) {
-    if (this.props.signupTime !== prevProps.signupTime) {
-      const { games, selectedGames, signupTime } = this.props
-      this.loadState({ games, selectedGames, signupTime })
+    if (props.signupTime !== prevProps.signupTime) {
+      const { games, selectedGames, signupTime } = props
+      loadState({ games, selectedGames, signupTime })
     }
   }
+  */
 
-  loadState = props => {
+  const loadState = props => {
     const { games, selectedGames, signupTime } = props
 
     const filteredGames = games.filter(game => {
@@ -58,7 +60,7 @@ class DragAndDropList extends React.Component<Props, State> {
       return game
     })
 
-    const gameList = this.sortGames(filteredGames)
+    const gameList = sortGames(filteredGames)
     const priority1 = []
     const priority2 = []
     const priority3 = []
@@ -82,15 +84,13 @@ class DragAndDropList extends React.Component<Props, State> {
       }
     }
 
-    this.setState({
-      gameList,
-      priority1,
-      priority2,
-      priority3,
-    })
+    setGameList(gameList)
+    setPriority1(priority1)
+    setPriority2(priority2)
+    setPriority3(priority3)
   }
 
-  sortGames = games => {
+  const sortGames = games => {
     // Sort games by name
     return games.sort((a, b) => {
       const keyA = a.title.toLowerCase()
@@ -101,30 +101,20 @@ class DragAndDropList extends React.Component<Props, State> {
     })
   }
 
-  /**
-   * A semi-generic way to handle multiple lists. Matches
-   * the IDs of the droppable container to the names of the
-   * source arrays stored in the state.
-   */
-  id2List = {
-    gameList: 'gameList',
-    priority1: 'priority1',
-    priority2: 'priority2',
-    priority3: 'priority3',
+  const getList = (id: string) => {
+    if (id === 'gameList') return gameList
+    else if (id === 'priority1') return priority1
+    else if (id === 'priority2') return priority2
+    else if (id === 'priority3') return priority3
   }
 
-  getList = (id: string) => {
-    return this.state[this.id2List[id]]
-  }
-
-  showWarning = async () => {
-    this.setState({ warningVisible: true })
+  const showWarning = async () => {
+    setWarningVisible(true)
     await sleep(config.MESSAGE_DELAY)
-    this.setState({ warningVisible: false })
+    setWarningVisible(false)
   }
 
-  onDragEnd = (result: Object) => {
-    const { priority1, priority2, priority3 } = this.state
+  const onDragEnd = (result: Object) => {
     const { source, destination } = result
 
     // Dropped outside the list
@@ -134,62 +124,78 @@ class DragAndDropList extends React.Component<Props, State> {
 
     // Dropped to same list
     if (source.droppableId === destination.droppableId) {
-      const items = reorder(
-        this.getList(source.droppableId),
-        source.index,
-        destination.index
-      )
+      const newOrder = getList(source.droppableId)
+      if (!newOrder) return
+      const items = reorder(newOrder, source.index, destination.index)
 
-      let state = null
       if (source.droppableId === 'gameList') {
-        state = { gameList: items }
+        setGameList(items)
       } else if (source.droppableId === 'priority1') {
-        state = { priority1: items }
+        setPriority1(items)
       } else if (source.droppableId === 'priority2') {
-        state = { priority2: items }
+        setPriority2(items)
       } else if (source.droppableId === 'priority3') {
-        state = { priority3: items }
+        setPriority3(items)
       }
-
-      this.setState(state)
     }
     // Moved to new list
     else {
+      const newItemsSource = getList(source.droppableId)
+      const newItemsDestination = getList(destination.droppableId)
+      if (!newItemsSource || !newItemsDestination) return
+
       let result = move(
-        this.getList(source.droppableId),
-        this.getList(destination.droppableId),
+        newItemsSource,
+        newItemsDestination,
         source,
         destination
       )
 
       // Only allow one game in each priority
       if (destination.droppableId === 'priority1' && priority1.length >= 1) {
-        this.showWarning()
+        showWarning()
         return
       } else if (
         destination.droppableId === 'priority2' &&
         priority2.length >= 1
       ) {
-        this.showWarning()
+        showWarning()
         return
       } else if (
         destination.droppableId === 'priority3' &&
         priority3.length >= 1
       ) {
-        this.showWarning()
+        showWarning()
         return
       }
 
-      const state = { ...this.state, ...result }
-      this.doCallback(state)
-      this.setState(state)
+      /* $FlowFixMe: propety 'gameList' is missing in object literal */
+      if (result.gameList) {
+        setGameList(result.gameList)
+      }
+
+      /* $FlowFixMe: propety 'priority1' is missing in object literal */
+      if (result.priority1) {
+        setPriority1(result.priority1)
+      }
+
+      /* $FlowFixMe: propety 'priority2' is missing in object literal */
+      if (result.priority2) {
+        setPriority2(result.priority2)
+      }
+
+      /* $FlowFixMe: propety 'priority3' is missing in object literal */
+      if (result.priority3) {
+        setPriority3(result.priority3)
+      }
+
+      doCallback()
     }
   }
 
   // Send changes to parent
-  doCallback = state => {
-    const { callback } = this.props
-    const { priority1, priority2, priority3 } = state
+  const doCallback = () => {
+    const { callback } = props
 
     const selectedGames = []
     for (let game of priority1) {
@@ -222,49 +228,40 @@ class DragAndDropList extends React.Component<Props, State> {
     callback(selectedGames)
   }
 
-  render() {
-    const { t } = this.props
-    const {
-      gameList,
-      priority1,
-      priority2,
-      priority3,
-      warningVisible,
-    } = this.state
-    return (
-      <React.Fragment>
-        {warningVisible && <p className='error'>{t('onlyOneGameWarning')}</p>}
-        <div className='drop-rows'>
-          <DragDropContext onDragEnd={this.onDragEnd}>
-            <div className='games-row'>
-              <DropRow
-                droppableId='gameList'
-                games={gameList}
-                label={t('signupView.signupOpenGames')}
-              />
-            </div>
-            <div className='priority-row'>
-              <DropRow
-                droppableId='priority1'
-                games={priority1}
-                label={t('signupView.priority1')}
-              />
-              <DropRow
-                droppableId='priority2'
-                games={priority2}
-                label={t('signupView.priority2')}
-              />
-              <DropRow
-                droppableId='priority3'
-                games={priority3}
-                label={t('signupView.priority3')}
-              />
-            </div>
-          </DragDropContext>
-        </div>
-      </React.Fragment>
-    )
-  }
+  const { t } = props
+  return (
+    <React.Fragment>
+      {warningVisible && <p className='error'>{t('onlyOneGameWarning')}</p>}
+      <div className='drop-rows'>
+        <DragDropContext onDragEnd={onDragEnd}>
+          <div className='games-row'>
+            <DropRow
+              droppableId='gameList'
+              games={gameList}
+              label={t('signupView.signupOpenGames')}
+            />
+          </div>
+          <div className='priority-row'>
+            <DropRow
+              droppableId='priority1'
+              games={priority1}
+              label={t('signupView.priority1')}
+            />
+            <DropRow
+              droppableId='priority2'
+              games={priority2}
+              label={t('signupView.priority2')}
+            />
+            <DropRow
+              droppableId='priority3'
+              games={priority3}
+              label={t('signupView.priority3')}
+            />
+          </div>
+        </DragDropContext>
+      </div>
+    </React.Fragment>
+  )
 }
 
 export default withTranslation()(DragAndDropList)
