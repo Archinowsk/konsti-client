@@ -13,27 +13,25 @@ type State = {
   loading: boolean,
 }
 
-class MyGamesView extends React.Component<Props, State> {
-  state = {
-    loading: true,
-  }
+const MyGamesView = (props: Props, state: State) => {
+  const [loading, setLoading] = React.useState(true)
 
-  componentDidMount = async () => {
-    await getData()
-    this.setState({ loading: false })
-  }
+  React.useEffect(() => {
+    const fetchData = async () => {
+      await getData()
+    }
+    fetchData()
+    setLoading(false)
+  }, [])
 
-  render() {
-    const { t } = this.props
-    const { loading } = this.state
+  const { t } = props
 
-    return (
-      <div className='settings-view'>
-        {loading && <Loading />}
-        {!loading && <p>{t('settings')}</p>}
-      </div>
-    )
-  }
+  return (
+    <div className='settings-view'>
+      {loading && <Loading />}
+      {!loading && <p>{t('settings')}</p>}
+    </div>
+  )
 }
 
 const mapStateToProps = state => {
