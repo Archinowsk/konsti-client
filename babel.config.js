@@ -20,7 +20,6 @@ module.exports = api => {
   ]
 
   const plugins = [
-    '@babel/plugin-proposal-class-properties',
     [
       'babel-plugin-module-resolver',
       {
