@@ -1,11 +1,20 @@
 /* @flow */
 import React from 'react'
 import { shallow } from 'enzyme'
-import FormSelector from '../FormSelector'
+import FormField from '../FormField'
+import type { Props } from '../FormField'
 
-describe('FormSelector', () => {
+describe('FormField', () => {
   it('should render correctly', () => {
-    const component = shallow(<FormSelector />)
+    const props: Props = {
+      input: null,
+      label: '',
+      type: '',
+      meta: { touched: false, error: null },
+      required: false,
+      tooltip: false,
+    }
+    const component = shallow(<FormField {...props} />)
     expect(component).toMatchSnapshot()
   })
 })

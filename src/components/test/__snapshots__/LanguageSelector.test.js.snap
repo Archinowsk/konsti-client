@@ -1,9 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`LanguageSelector should render correctly 1`] = `
-<LanguageSelector
-  i18n={Object {}}
-  t={[Function]}
-  tReady={true}
-/>
+<Fragment>
+  <select
+    id="language"
+    onChange={[Function]}
+    type="text"
+  >
+    <option
+      value="en"
+    >
+      language.english
+    </option>
+    <option
+      value="fi"
+    >
+      language.finnish
+    </option>
+  </select>
+</Fragment>
 `;

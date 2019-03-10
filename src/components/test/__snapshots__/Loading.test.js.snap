@@ -1,9 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Loading should render correctly 1`] = `
-<Loading
-  i18n={Object {}}
-  t={[Function]}
-  tReady={true}
-/>
+<div
+  className="loading"
+>
+  <p>
+    loading
+  </p>
+</div>
 `;

@@ -19,6 +19,8 @@ const FormField = (props: Props) => {
     meta: { touched, error },
   } = props
 
+  if (!input) return <p />
+
   return (
     <div className='form-row'>
       <div className='form-field'>

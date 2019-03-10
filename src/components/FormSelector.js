@@ -18,6 +18,8 @@ const FormSelector = (props: Props) => {
   } = props
   const { t } = useTranslation()
 
+  if (!input) return <p />
+
   return (
     <React.Fragment>
       <div className='form-selector'>

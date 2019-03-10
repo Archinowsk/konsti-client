@@ -1,9 +1,3 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FormSelector should render correctly 1`] = `
-<FormSelector
-  i18n={Object {}}
-  t={[Function]}
-  tReady={true}
-/>
-`;
+exports[`FormField should render correctly 1`] = `<p />`;

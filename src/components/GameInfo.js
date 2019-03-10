@@ -9,10 +9,11 @@ export type Props = {
 
 const GameInfo = (props: Props) => {
   const { t } = useTranslation()
+  const { game } = props
+
+  if (!game) return <p />
 
   const getTags = () => {
-    const { game } = props
-
     const tagsList = []
 
     if (game.noLanguage) {
@@ -79,8 +80,6 @@ const GameInfo = (props: Props) => {
 
     return stylesList
   }
-
-  const { game } = props
 
   const tagsList = getTags()
   const genresList = getGenres()

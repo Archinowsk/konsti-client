@@ -19,6 +19,8 @@ const CheckboxField = (props: Props) => {
   } = props
   const { t } = useTranslation()
 
+  if (!input) return <p />
+
   const registerDescriptionLink = `${config.apiServerURL}/rekisteriseloste.txt`
 
   return (
