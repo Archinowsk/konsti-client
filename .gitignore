@@ -24,3 +24,6 @@ stats.json
 
 # Mac
 .DS_Store
+
+# Coverage report
+coverage
