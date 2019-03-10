@@ -2,7 +2,7 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { useTranslation } from 'react-i18next'
-import validate from 'utils/validate'
+import { required } from 'utils/validate'
 import FormField from 'components/FormField'
 
 type Props = {
@@ -24,6 +24,7 @@ const LoginForm = (props: Props) => {
           type='text'
           component={FormField}
           label={t('username')}
+          validate={required}
         />
 
         <Field
@@ -31,6 +32,7 @@ const LoginForm = (props: Props) => {
           type='password'
           component={FormField}
           label={t('password')}
+          validate={required}
         />
 
         <button type='submit' disabled={submitting}>
@@ -45,5 +47,4 @@ const LoginForm = (props: Props) => {
 
 export default reduxForm({
   form: 'login',
-  validate,
 })(LoginForm)

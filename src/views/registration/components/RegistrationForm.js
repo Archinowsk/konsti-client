@@ -2,9 +2,9 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { useTranslation } from 'react-i18next'
-import validate from 'utils/validate'
 import FormField from 'components/FormField'
 import CheckboxField from 'components/CheckboxField'
+import { required } from 'utils/validate'
 
 type Props = {
   handleSubmit: Function,
@@ -25,6 +25,7 @@ const RegistrationForm = (props: Props) => {
           type='text'
           component={FormField}
           label={t('username')}
+          validate={required}
         />
 
         <Field
@@ -32,6 +33,7 @@ const RegistrationForm = (props: Props) => {
           type='password'
           component={FormField}
           label={t('password')}
+          validate={required}
         />
 
         <Field
@@ -40,6 +42,7 @@ const RegistrationForm = (props: Props) => {
           type='text'
           component={FormField}
           label={t('serial')}
+          validate={required}
         />
 
         <label htmlFor='serial' className='help'>
@@ -51,6 +54,7 @@ const RegistrationForm = (props: Props) => {
           id='registerDescription'
           type='checkbox'
           component={CheckboxField}
+          validate={required}
         />
 
         <button type='submit' disabled={submitting}>
@@ -65,5 +69,4 @@ const RegistrationForm = (props: Props) => {
 
 export default reduxForm({
   form: 'registration',
-  validate,
 })(RegistrationForm)
