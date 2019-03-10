@@ -1,15 +1,16 @@
 /* @flow */
 import React from 'react'
-import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import timeFormatter from 'utils/timeFormatter'
 
 type Props = {
-  t: Function,
   games: Array<any>,
 }
 
 const AllGamesList = (props: Props) => {
+  const { t } = useTranslation()
+
   const sortByNames = games => {
     return games.sort((a, b) => {
       const keyA = a.title.toLowerCase()
@@ -34,8 +35,6 @@ const AllGamesList = (props: Props) => {
   }
 
   const buildGamesList = games => {
-    const { t } = props
-
     // Group all unique starting times
     const groupedGames = games.reduce((acc, sortedGame) => {
       acc[sortedGame['startTime']] = acc[sortedGame['startTime']] || []
@@ -98,4 +97,4 @@ const AllGamesList = (props: Props) => {
   return <div className='games-list'>{GamesList}</div>
 }
 
-export default withTranslation()(AllGamesList)
+export default AllGamesList

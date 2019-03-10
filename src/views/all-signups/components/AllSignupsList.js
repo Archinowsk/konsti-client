@@ -1,14 +1,14 @@
 /* @flow */
 import React from 'react'
-import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
-  t: Function,
   results: Array<any>,
 }
 
 const AllSignupsList = (props: Props) => {
-  const { t, results } = props
+  const { results } = props
+  const { t } = useTranslation()
 
   // Sort games by name
   const sortedResults = results.sort((a, b) => {
@@ -33,4 +33,4 @@ const AllSignupsList = (props: Props) => {
   return <div className='results-list'>{resultsList}</div>
 }
 
-export default withTranslation()(AllSignupsList)
+export default AllSignupsList

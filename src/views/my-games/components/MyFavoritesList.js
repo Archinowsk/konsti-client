@@ -1,17 +1,17 @@
 /* @flow */
 import React from 'react'
-import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import moment from 'moment'
 import timeFormatter from 'utils/timeFormatter'
 
 type Props = {
-  t: Function,
   favoritedGames: Array<any>,
 }
 
 const MyFavoritesList = (props: Props) => {
-  const { favoritedGames, t } = props
+  const { favoritedGames } = props
+  const { t } = useTranslation()
 
   // Sort games by time and name
   const sortedGames = favoritedGames.sort((a, b) => {
@@ -45,4 +45,4 @@ const MyFavoritesList = (props: Props) => {
   )
 }
 
-export default withTranslation()(MyFavoritesList)
+export default MyFavoritesList

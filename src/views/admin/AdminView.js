@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react'
 import { connect } from 'react-redux'
-import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import Blacklist from 'views/admin/components/Blacklist'
 import {
   submitGamesUpdate,
@@ -17,7 +17,6 @@ import timeFormatter from 'utils/timeFormatter'
 type Props = {
   onSubmitGamesUpdate: Function,
   onSubmitPlayersAssign: Function,
-  t: Function,
   updateResponse: Object,
   games: Array<any>,
   blacklistedGames: Array<any>,
@@ -39,6 +38,8 @@ const AdminView = (props: Props, state: State) => {
   const [loading, setLoading] = React.useState(true)
   const [message, setMessage] = React.useState('')
   const [messageStyle, setMessageStyle] = React.useState('')
+
+  const { t } = useTranslation()
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -136,7 +137,6 @@ const AdminView = (props: Props, state: State) => {
   }
 
   const {
-    t,
     updateResponse,
     blacklistedGames,
     onSubmitSelectDate,
@@ -228,9 +228,7 @@ const mapDispatchToProps = (dispatch: Function) => {
   }
 }
 
-export default withTranslation()(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(AdminView)
-)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AdminView)

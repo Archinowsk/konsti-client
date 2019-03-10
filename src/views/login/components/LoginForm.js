@@ -1,20 +1,19 @@
 /* @flow */
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
-import { withTranslation } from 'react-i18next'
-
+import { useTranslation } from 'react-i18next'
 import validate from 'utils/validate'
 import FormField from 'components/FormField'
 
 type Props = {
   handleSubmit: Function,
   submitting: boolean,
-  t: Function,
   error?: string,
 }
 
 const LoginForm = (props: Props) => {
-  const { handleSubmit, submitting, t, error } = props
+  const { handleSubmit, submitting, error } = props
+  const { t } = useTranslation()
 
   return (
     <div className='login-form'>
@@ -44,9 +43,7 @@ const LoginForm = (props: Props) => {
   )
 }
 
-export default withTranslation()(
-  reduxForm({
-    form: 'login',
-    validate,
-  })(LoginForm)
-)
+export default reduxForm({
+  form: 'login',
+  validate,
+})(LoginForm)

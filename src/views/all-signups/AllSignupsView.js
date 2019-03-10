@@ -1,14 +1,13 @@
 /* @flow */
 import React from 'react'
 import { connect } from 'react-redux'
-import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import AllSignupsList from 'views/all-signups/components/AllSignupsList'
 import { getData } from 'utils/store'
 import Loading from 'components/Loading'
 import timeFormatter from 'utils/timeFormatter'
 
 type Props = {
-  t: Function,
   games: Array<any>,
   results: Array<any>,
   signupTime: string,
@@ -20,6 +19,7 @@ type State = {
 
 const AllSignupsView = (props: Props, state: State) => {
   const [loading, setLoading] = React.useState(true)
+  const { t } = useTranslation()
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -29,7 +29,7 @@ const AllSignupsView = (props: Props, state: State) => {
     setLoading(false)
   }, [])
 
-  const { games, t, results, signupTime } = props
+  const { games, results, signupTime } = props
 
   let selectedResult = []
   for (let result of results) {
@@ -80,9 +80,7 @@ const mapStateToProps = state => {
   }
 }
 
-export default withTranslation()(
-  connect(
-    mapStateToProps,
-    null
-  )(AllSignupsView)
-)
+export default connect(
+  mapStateToProps,
+  null
+)(AllSignupsView)

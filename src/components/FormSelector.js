@@ -1,11 +1,10 @@
 /* @flow */
 import React from 'react'
-import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 
-type Props = {
+export type Props = {
   input: Object,
   meta: Object,
-  t: Function,
   data: Array<any>,
   label: string,
 }
@@ -14,10 +13,10 @@ const FormSelector = (props: Props) => {
   const {
     input,
     meta: { touched, error },
-    t,
     data,
     label,
   } = props
+  const { t } = useTranslation()
 
   return (
     <React.Fragment>
@@ -47,4 +46,4 @@ const FormSelector = (props: Props) => {
   )
 }
 
-export default withTranslation()(FormSelector)
+export default FormSelector

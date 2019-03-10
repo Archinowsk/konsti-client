@@ -1,11 +1,7 @@
 /* @flow */
+import { t } from 'i18next'
 
-type Props = {
-  t: Function,
-}
-
-const validate = (values: Object, props: Props) => {
-  const { t } = props
+const validate = (values: Object) => {
   const errors = {}
 
   if (!values.username) {

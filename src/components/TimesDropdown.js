@@ -1,11 +1,10 @@
 /* @flow */
 import React from 'react'
-import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import timeFormatter from 'utils/timeFormatter'
 
-type Props = {
+export type Props = {
   games: Array<any>,
-  t: Function,
   onChange: Function,
   date: string,
 }
@@ -16,7 +15,8 @@ type Props = {
 // Toggle to show upcoming gameslots or all gameslots
 
 const TimesDropdown = (props: Props) => {
-  const { games, t, onChange, date } = props
+  const { games, onChange, date } = props
+  const { t } = useTranslation()
 
   const startTimes = []
   games.forEach(game => {
@@ -47,4 +47,4 @@ const TimesDropdown = (props: Props) => {
   )
 }
 
-export default withTranslation()(TimesDropdown)
+export default TimesDropdown

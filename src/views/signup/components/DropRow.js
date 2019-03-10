@@ -1,19 +1,19 @@
 /* @flow */
 import React from 'react'
-import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 /* $FlowFixMe: Cannot import `Droppable` because there is no `Droppable` export in `react-beautiful-dnd`. */
 import { Droppable, Draggable } from 'react-beautiful-dnd'
 import { Link } from 'react-router-dom'
 
 type Props = {
-  t: Function,
   droppableId: string,
   games: Array<Object>,
   label: string,
 }
 
 const DropRow = (props: Props) => {
-  const { droppableId, games, label, t } = props
+  const { droppableId, games, label } = props
+  const { t } = useTranslation()
 
   const getListStyle = dragging => {
     if (dragging) return 'dragging'
@@ -55,4 +55,4 @@ const DropRow = (props: Props) => {
   )
 }
 
-export default withTranslation()(DropRow)
+export default DropRow

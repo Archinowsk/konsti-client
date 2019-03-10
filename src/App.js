@@ -1,22 +1,22 @@
 /* @flow */
 import React from 'react'
 import { hot } from 'react-hot-loader/root'
-import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import Routes from 'Routes'
 import LanguageSelector from 'components/LanguageSelector'
 import config from 'config'
 
 type Props = {
-  t: Function,
   username: string,
   loggedIn: boolean,
   serial: string,
 }
 
 const App = (props: Props) => {
-  const { t, username, loggedIn, serial } = props
+  const { username, loggedIn, serial } = props
   const { appOpen } = config
+  const { t } = useTranslation()
 
   return (
     <React.Fragment>
@@ -57,10 +57,8 @@ const mapDispatchToProps = (dispatch: Function) => {
 }
 
 export default hot(
-  withTranslation()(
-    connect(
-      mapStateToProps,
-      mapDispatchToProps
-    )(App)
-  )
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(App)
 )

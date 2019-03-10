@@ -1,13 +1,11 @@
 /* @flow */
 import React from 'react'
-import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import moment from 'moment'
 import i18n from 'utils/i18n'
 
-type Props = { t: Function }
-
-const LanguageSelector = (props: Props) => {
-  const { t } = props
+const LanguageSelector = () => {
+  const { t } = useTranslation()
 
   const language = i18n.language
 
@@ -28,4 +26,4 @@ const LanguageSelector = (props: Props) => {
   )
 }
 
-export default withTranslation()(LanguageSelector)
+export default LanguageSelector

@@ -2,7 +2,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
-import { withTranslation } from 'react-i18next'
 import SignupList from 'views/signup/components/SignupList'
 import GameDetails from 'components/GameDetails'
 import { getData } from 'utils/store'
@@ -57,9 +56,7 @@ const mapStateToProps = state => {
   }
 }
 
-export default withTranslation()(
-  connect(
-    mapStateToProps,
-    null
-  )(SignupView)
-)
+export default connect(
+  mapStateToProps,
+  null
+)(SignupView)

@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react'
-import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { getData } from 'utils/store'
 import Loading from 'components/Loading'
@@ -17,7 +17,6 @@ import config from 'config'
 import { submitSignup } from 'views/signup/signupActions'
 
 type Props = {
-  t: Function,
   username: string,
   serial: string,
   onSubmitCreateGroup: Function,
@@ -41,6 +40,7 @@ type State = {
 
 const GroupView = (props: Props, state: State) => {
   const { onSubmitGetGroup, groupCode } = props
+  const { t } = useTranslation()
 
   const [loading, setLoading] = React.useState(true)
   const [showCreateGroup, setShowCreateGroup] = React.useState(false)
@@ -73,7 +73,7 @@ const GroupView = (props: Props, state: State) => {
   }
 
   const createGroup = async () => {
-    const { username, serial, onSubmitCreateGroup, t } = props
+    const { username, serial, onSubmitCreateGroup } = props
     const groupData = {
       username: username,
       groupCode: serial,
@@ -116,7 +116,7 @@ const GroupView = (props: Props, state: State) => {
   }
 
   const joinGroup = async () => {
-    const { username, serial, onSubmitJoinGroup, t } = props
+    const { username, serial, onSubmitJoinGroup } = props
     const groupData = {
       username: username,
       groupCode: joinGroupValue,
@@ -150,7 +150,7 @@ const GroupView = (props: Props, state: State) => {
   }
 
   const leaveGroup = async ({ leader }) => {
-    const { onSubmitLeaveGroup, username, serial, groupCode, t } = props
+    const { onSubmitLeaveGroup, username, serial, groupCode } = props
     const groupData = {
       username: username,
       groupCode: groupCode,
@@ -205,7 +205,7 @@ const GroupView = (props: Props, state: State) => {
     setMessageStyle('')
   }
 
-  const { t, groupMembers } = props
+  const { groupMembers } = props
 
   const groupLeader = isGroupLeader()
   const inGroup = isInGroup()
@@ -318,9 +318,7 @@ const mapDispatchToProps = (dispatch: Function) => {
   }
 }
 
-export default withTranslation()(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(GroupView)
-)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(GroupView)

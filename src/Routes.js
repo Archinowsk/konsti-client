@@ -2,7 +2,7 @@
 import React from 'react'
 import { HashRouter, Route, Link, Switch, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 
 // Views
 import AllGames from 'views/all-games/AllGamesView'
@@ -18,12 +18,12 @@ import Group from 'views/group/GroupView'
 
 type Props = {
   loggedIn: boolean,
-  t: Function,
   userGroup: string,
 }
 
 const Routes = (props: Props) => {
-  const { loggedIn, t, userGroup } = props
+  const { loggedIn, userGroup } = props
+  const { t } = useTranslation()
 
   if (!loggedIn) {
     return (
@@ -126,4 +126,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default withTranslation()(connect(mapStateToProps)(Routes))
+export default connect(mapStateToProps)(Routes)

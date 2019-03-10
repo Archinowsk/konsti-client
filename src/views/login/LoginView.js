@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react'
 import { connect } from 'react-redux'
-import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { SubmissionError } from 'redux-form'
 
 import { submitLogin } from 'views/login/loginActions'
@@ -9,11 +9,11 @@ import LoginForm from 'views/login/components/LoginForm'
 
 type Props = {
   onSubmitLogin: Function,
-  t: Function,
 }
 
 const LoginView = (props: Props) => {
-  const { onSubmitLogin, t } = props
+  const { onSubmitLogin } = props
+  const { t } = useTranslation()
 
   const submit = async form => {
     let response = null
@@ -49,9 +49,7 @@ const mapDispatchToProps = (dispatch: Function) => {
   }
 }
 
-export default withTranslation()(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(LoginView)
-)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LoginView)

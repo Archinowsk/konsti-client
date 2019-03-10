@@ -1,14 +1,14 @@
 /* @flow */
 import React from 'react'
-import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
   groupMembers: Array<Object>,
-  t: Function,
 }
 
 const GroupMembersList = (props: Props) => {
-  const { t, groupMembers } = props
+  const { groupMembers } = props
+  const { t } = useTranslation()
 
   if (!groupMembers) return <div className='group-members-list' />
 
@@ -26,4 +26,4 @@ const GroupMembersList = (props: Props) => {
   return <div className='group-members-list'>{membersList}</div>
 }
 
-export default withTranslation()(GroupMembersList)
+export default GroupMembersList

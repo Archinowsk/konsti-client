@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react'
-import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { submitUpdateBlacklist } from 'views/admin/adminActions'
@@ -10,7 +10,6 @@ import GameInfo from 'components/GameInfo'
 import Loading from 'components/Loading'
 
 type Props = {
-  t: Function,
   games: Array<any>,
   match: Object,
   history: Object,
@@ -33,6 +32,7 @@ type State = {
 
 const GameDetails = (props: Props, state: State) => {
   const { games, match, username } = props
+  const { t } = useTranslation()
 
   const game = games.find(game => game.id === match.params.id)
 
@@ -168,7 +168,7 @@ const GameDetails = (props: Props, state: State) => {
     }
   }
 
-  const { t, history, loggedIn, userGroup } = props
+  const { history, loggedIn, userGroup } = props
 
   return (
     <div className='game-details'>
@@ -250,10 +250,8 @@ const mapDispatchToProps = (dispatch: Function) => {
 }
 
 export default withRouter(
-  withTranslation()(
-    connect(
-      mapStateToProps,
-      mapDispatchToProps
-    )(GameDetails)
-  )
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(GameDetails)
 )

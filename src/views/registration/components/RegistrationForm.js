@@ -1,8 +1,7 @@
 /* @flow */
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
-import { withTranslation } from 'react-i18next'
-
+import { useTranslation } from 'react-i18next'
 import validate from 'utils/validate'
 import FormField from 'components/FormField'
 import CheckboxField from 'components/CheckboxField'
@@ -10,12 +9,12 @@ import CheckboxField from 'components/CheckboxField'
 type Props = {
   handleSubmit: Function,
   submitting: boolean,
-  t: Function,
   error?: string,
 }
 
 const RegistrationForm = (props: Props) => {
-  const { handleSubmit, submitting, t, error } = props
+  const { handleSubmit, submitting, error } = props
+  const { t } = useTranslation()
 
   return (
     <div className='registration-form'>
@@ -64,9 +63,7 @@ const RegistrationForm = (props: Props) => {
   )
 }
 
-export default withTranslation()(
-  reduxForm({
-    form: 'registration',
-    validate,
-  })(RegistrationForm)
-)
+export default reduxForm({
+  form: 'registration',
+  validate,
+})(RegistrationForm)

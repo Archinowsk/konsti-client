@@ -1,14 +1,13 @@
 /* @flow */
 import React from 'react'
-import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import config from 'config'
 
-type Props = {
+export type Props = {
   input: Object,
   label?: string,
   type: string,
   meta: Object,
-  t: Function,
 }
 
 const CheckboxField = (props: Props) => {
@@ -17,8 +16,8 @@ const CheckboxField = (props: Props) => {
     label = '',
     type,
     meta: { touched, error },
-    t,
   } = props
+  const { t } = useTranslation()
 
   const registerDescriptionLink = `${config.apiServerURL}/rekisteriseloste.txt`
 
@@ -52,4 +51,4 @@ const CheckboxField = (props: Props) => {
   )
 }
 
-export default withTranslation()(CheckboxField)
+export default CheckboxField

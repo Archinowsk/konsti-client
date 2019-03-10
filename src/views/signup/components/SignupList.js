@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react'
-import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import timeFormatter from 'utils/timeFormatter'
 import { submitSignup, submitSelectedGames } from 'views/signup/signupActions'
@@ -10,7 +10,6 @@ import sleep from 'utils/sleep'
 import config from 'config'
 
 type Props = {
-  t: Function,
   games: Array<Object>,
   selectedGames: Array<Object>,
   onSubmitSignup: Function,
@@ -29,6 +28,8 @@ type State = {
 
 const SignupList = (props: Props, state: State) => {
   const { games } = props
+  const { t } = useTranslation()
+
   const signupTimes = getOpenSignupTimes(games)
 
   const [submitting, setSubmitting] = React.useState(false)
@@ -163,7 +164,7 @@ const SignupList = (props: Props, state: State) => {
     setSignupError(false)
   }
 
-  const { t, selectedGames } = props
+  const { selectedGames } = props
 
   const filteredGames = filterGames()
 
@@ -246,9 +247,7 @@ const mapDispatchToProps = (dispatch: Function) => {
   }
 }
 
-export default withTranslation()(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(SignupList)
-)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SignupList)

@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react'
-import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 /* $FlowFixMe: Cannot import `DragDropContext` because there is no `DragDropContext` export in `react-beautiful-dnd`. */
 import { DragDropContext } from 'react-beautiful-dnd'
 import DropRow from 'views/signup/components/DropRow'
@@ -10,7 +10,6 @@ import config from 'config'
 
 type Props = {
   callback: Function,
-  t: Function,
   games: Array<Object>,
   selectedGames: Array<Object>,
   signupTime: string,
@@ -26,6 +25,7 @@ type State = {
 
 const DragAndDropList = (props: Props, state: State) => {
   const { games, selectedGames, signupTime } = props
+  const { t } = useTranslation()
 
   const [gameList, setGameList] = React.useState([])
   const [priority1, setPriority1] = React.useState([])
@@ -217,7 +217,6 @@ const DragAndDropList = (props: Props, state: State) => {
     callback(selectedGames)
   }
 
-  const { t } = props
   return (
     <React.Fragment>
       {warningVisible && <p className='error'>{t('onlyOneGameWarning')}</p>}
@@ -253,4 +252,4 @@ const DragAndDropList = (props: Props, state: State) => {
   )
 }
 
-export default withTranslation()(DragAndDropList)
+export default DragAndDropList

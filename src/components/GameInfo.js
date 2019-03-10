@@ -1,16 +1,17 @@
 /* @flow */
 import React from 'react'
-import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import timeFormatter from 'utils/timeFormatter'
 
-type Props = {
-  t: Function,
+export type Props = {
   game: Object,
 }
 
 const GameInfo = (props: Props) => {
+  const { t } = useTranslation()
+
   const getTags = () => {
-    const { t, game } = props
+    const { game } = props
 
     const tagsList = []
 
@@ -54,7 +55,7 @@ const GameInfo = (props: Props) => {
   }
 
   const getGenres = () => {
-    const { t, game } = props
+    const { game } = props
 
     let genresList = []
     if (game.genres) {
@@ -67,7 +68,7 @@ const GameInfo = (props: Props) => {
   }
 
   const getStyles = () => {
-    const { t, game } = props
+    const { game } = props
 
     let stylesList = []
     if (game.styles) {
@@ -79,7 +80,7 @@ const GameInfo = (props: Props) => {
     return stylesList
   }
 
-  const { t, game } = props
+  const { game } = props
 
   const tagsList = getTags()
   const genresList = getGenres()
@@ -158,4 +159,4 @@ const GameInfo = (props: Props) => {
   )
 }
 
-export default withTranslation()(GameInfo)
+export default GameInfo

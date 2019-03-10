@@ -1,10 +1,9 @@
 /* @flow */
 import React from 'react'
-import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { postFeedback } from 'services/feedbackServices'
 
 type Props = {
-  t: Function,
   game: Object,
 }
 
@@ -18,6 +17,7 @@ const FeedbackForm = (props: Props, state: State) => {
   const [submitting, setSubmitting] = React.useState(false)
   const [feedbackValue, setFeedbackValue] = React.useState('')
   const [feedbackSent, setFeedbackSent] = React.useState(false)
+  const { t } = useTranslation()
 
   // Hide / unhide clicked
   const sendFeedbackEvent = async () => {
@@ -38,8 +38,6 @@ const FeedbackForm = (props: Props, state: State) => {
     setFeedbackSent(true)
     setSubmitting(false)
   }
-
-  const { t } = props
 
   const handleFeedbackChange = event => {
     setFeedbackValue(event.target.value)
@@ -67,4 +65,4 @@ const FeedbackForm = (props: Props, state: State) => {
   )
 }
 
-export default withTranslation()(FeedbackForm)
+export default FeedbackForm

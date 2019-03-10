@@ -2,18 +2,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { SubmissionError } from 'redux-form'
-import { withTranslation } from 'react-i18next'
-
+import { useTranslation } from 'react-i18next'
 import { submitRegistration } from 'views/registration/registrationActions'
 import RegistrationForm from 'views/registration/components/RegistrationForm'
 
 type Props = {
   onSubmitRegistration: Function,
-  t: Function,
 }
 
 const RegistrationView = (props: Props) => {
-  const { onSubmitRegistration, t } = props
+  const { onSubmitRegistration } = props
+  const { t } = useTranslation()
 
   const submit = async form => {
     let response = null
@@ -50,9 +49,7 @@ const mapDispatchToProps = (dispatch: Function) => {
   }
 }
 
-export default withTranslation()(
-  connect(
-    null,
-    mapDispatchToProps
-  )(RegistrationView)
-)
+export default connect(
+  null,
+  mapDispatchToProps
+)(RegistrationView)

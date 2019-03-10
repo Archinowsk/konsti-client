@@ -1,13 +1,11 @@
 /* @flow */
 import React from 'react'
-import { withTranslation } from 'react-i18next'
 
-type Props = {
+export type Props = {
   input: Object,
   label?: string,
   type: string,
   meta: Object,
-  t: Function,
   required?: boolean,
   tooltip?: boolean,
 }
@@ -43,4 +41,4 @@ const FormField = (props: Props) => {
   )
 }
 
-export default withTranslation()(FormField)
+export default FormField

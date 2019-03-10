@@ -1,6 +1,5 @@
 /* @flow */
 import React from 'react'
-import { withTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import GameDetails from 'components/GameDetails'
@@ -9,7 +8,6 @@ import { getData } from 'utils/store'
 import Loading from 'components/Loading'
 
 type Props = {
-  t: Function,
   games: Array<any>,
   blacklistedGames: Array<any>,
   myGames: Object,
@@ -85,9 +83,7 @@ const mapStateToProps = state => {
   }
 }
 
-export default withTranslation()(
-  connect(
-    mapStateToProps,
-    null
-  )(AllGamesView)
-)
+export default connect(
+  mapStateToProps,
+  null
+)(AllGamesView)

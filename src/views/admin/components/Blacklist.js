@@ -1,15 +1,15 @@
 /* @flow */
 import React from 'react'
-import { withTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
 type Props = {
-  t: Function,
   blacklistedGames: Array<any>,
 }
 
 const Blacklist = (props: Props) => {
-  const { blacklistedGames, t } = props
+  const { blacklistedGames } = props
+  const { t } = useTranslation()
 
   // Sort games by name
   const sortedGames = blacklistedGames.sort((a, b) => {
@@ -39,4 +39,4 @@ const Blacklist = (props: Props) => {
   )
 }
 
-export default withTranslation()(Blacklist)
+export default Blacklist
