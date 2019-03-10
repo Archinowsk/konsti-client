@@ -14,6 +14,8 @@ type State = {
 }
 
 const FeedbackForm = (props: Props, state: State) => {
+  const { game } = props
+
   const [submitting, setSubmitting] = React.useState(false)
   const [feedbackValue, setFeedbackValue] = React.useState('')
   const [feedbackSent, setFeedbackSent] = React.useState(false)
@@ -21,8 +23,6 @@ const FeedbackForm = (props: Props, state: State) => {
 
   // Hide / unhide clicked
   const sendFeedbackEvent = async () => {
-    const { game } = props
-
     setSubmitting(true)
 
     const feedbackData = {

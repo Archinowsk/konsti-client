@@ -18,8 +18,9 @@ type State = {
 }
 
 const AllSignupsView = (props: Props, state: State) => {
-  const [loading, setLoading] = React.useState(true)
+  const { games, results, signupTime } = props
   const { t } = useTranslation()
+  const [loading, setLoading] = React.useState(true)
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -28,8 +29,6 @@ const AllSignupsView = (props: Props, state: State) => {
     fetchData()
     setLoading(false)
   }, [])
-
-  const { games, results, signupTime } = props
 
   let selectedResult = []
   for (let result of results) {

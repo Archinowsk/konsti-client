@@ -10,28 +10,40 @@ import GameInfo from 'components/GameInfo'
 import Loading from 'components/Loading'
 
 type Props = {
-  games: Array<any>,
-  match: Object,
-  history: Object,
-  onSubmitUpdateFavorites: Function,
-  username: string,
-  favoritedGames: Array<any>,
   blacklistedGames: Array<any>,
+  favoritedGames: Array<any>,
+  games: Array<any>,
+  history: Object,
   loggedIn: boolean,
-  userGroup: string,
+  match: Object,
   onSubmitUpdateBlacklist: Function,
+  onSubmitUpdateFavorites: Function,
+  userGroup: string,
+  username: string,
 }
 
 type State = {
   blacklisted: boolean,
-  game: Object,
-  submitting: boolean,
   favorited: boolean,
+  game: Object,
   loading: boolean,
+  submitting: boolean,
 }
 
 const GameDetails = (props: Props, state: State) => {
-  const { games, match, username } = props
+  const {
+    blacklistedGames,
+    favoritedGames,
+    games,
+    history,
+    loggedIn,
+    match,
+    onSubmitUpdateBlacklist,
+    onSubmitUpdateFavorites,
+    userGroup,
+    username,
+  } = props
+
   const { t } = useTranslation()
 
   const game = games.find(game => game.id === match.params.id)
@@ -49,7 +61,6 @@ const GameDetails = (props: Props, state: State) => {
   const checkGameState = () => {
     if (!game || !game.id) return
 
-    const { favoritedGames, blacklistedGames } = props
     // Check if in favorites
     for (let i = 0; i < favoritedGames.length; i += 1) {
       if (favoritedGames[i].id === game.id) {
@@ -80,8 +91,6 @@ const GameDetails = (props: Props, state: State) => {
   // Favorite / unfavorite clicked
   const addFavoriteEvent = async action => {
     if (!game || !game.id) return
-
-    const { favoritedGames, onSubmitUpdateFavorites } = props
 
     setSubmitting(true)
     const gameIndex = findGame(game.id, favoritedGames)
@@ -124,8 +133,6 @@ const GameDetails = (props: Props, state: State) => {
   const addBlacklistEvent = async action => {
     if (!game || !game.id) return
 
-    const { blacklistedGames, onSubmitUpdateBlacklist } = props
-
     setSubmitting(true)
     const gameIndex = findGame(game.id, blacklistedGames)
     const allBlacklistedGames = blacklistedGames.slice()
@@ -167,8 +174,6 @@ const GameDetails = (props: Props, state: State) => {
       }
     }
   }
-
-  const { history, loggedIn, userGroup } = props
 
   return (
     <div className='game-details'>

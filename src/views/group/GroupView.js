@@ -17,16 +17,16 @@ import config from 'config'
 import { submitSignup } from 'views/signup/signupActions'
 
 type Props = {
-  username: string,
-  serial: string,
-  onSubmitCreateGroup: Function,
-  onSubmitJoinGroup: Function,
-  onSubmitGetGroup: Function,
-  onSubmitLeaveGroup: Function,
   groupCode: string,
   groupMembers: Array<Object>,
+  onSubmitCreateGroup: Function,
+  onSubmitGetGroup: Function,
+  onSubmitJoinGroup: Function,
+  onSubmitLeaveGroup: Function,
   onSubmitSignup: Function,
+  serial: string,
   signedGames: Array<Object>,
+  username: string,
 }
 
 type State = {
@@ -39,7 +39,19 @@ type State = {
 }
 
 const GroupView = (props: Props, state: State) => {
-  const { onSubmitGetGroup, groupCode } = props
+  const {
+    groupCode,
+    groupMembers,
+    onSubmitCreateGroup,
+    onSubmitGetGroup,
+    onSubmitJoinGroup,
+    onSubmitLeaveGroup,
+    onSubmitSignup,
+    serial,
+    signedGames,
+    username,
+  } = props
+
   const { t } = useTranslation()
 
   const [loading, setLoading] = React.useState(true)
@@ -73,7 +85,6 @@ const GroupView = (props: Props, state: State) => {
   }
 
   const createGroup = async () => {
-    const { username, serial, onSubmitCreateGroup } = props
     const groupData = {
       username: username,
       groupCode: serial,
@@ -93,8 +104,6 @@ const GroupView = (props: Props, state: State) => {
 
   // Remove al signups
   const removeSignups = async () => {
-    const { onSubmitSignup, username, signedGames } = props
-
     const startTimes = []
 
     signedGames.forEach(signedGame => {
@@ -116,7 +125,6 @@ const GroupView = (props: Props, state: State) => {
   }
 
   const joinGroup = async () => {
-    const { username, serial, onSubmitJoinGroup } = props
     const groupData = {
       username: username,
       groupCode: joinGroupValue,
@@ -150,7 +158,6 @@ const GroupView = (props: Props, state: State) => {
   }
 
   const leaveGroup = async ({ leader }) => {
-    const { onSubmitLeaveGroup, username, serial, groupCode } = props
     const groupData = {
       username: username,
       groupCode: groupCode,
@@ -182,7 +189,6 @@ const GroupView = (props: Props, state: State) => {
   }
 
   const isGroupLeader = () => {
-    const { groupCode, serial } = props
     if (groupCode === serial) {
       return true
     }
@@ -190,7 +196,6 @@ const GroupView = (props: Props, state: State) => {
   }
 
   const isInGroup = () => {
-    const { groupCode } = props
     if (groupCode && groupCode !== '0') {
       return true
     }
@@ -204,8 +209,6 @@ const GroupView = (props: Props, state: State) => {
     setMessage('')
     setMessageStyle('')
   }
-
-  const { groupMembers } = props
 
   const groupLeader = isGroupLeader()
   const inGroup = isInGroup()

@@ -24,7 +24,7 @@ type State = {
 }
 
 const DragAndDropList = (props: Props, state: State) => {
-  const { games, selectedGames, signupTime } = props
+  const { games, selectedGames, signupTime, callback } = props
   const { t } = useTranslation()
 
   const [gameList, setGameList] = React.useState([])
@@ -34,12 +34,10 @@ const DragAndDropList = (props: Props, state: State) => {
   const [warningVisible, setWarningVisible] = React.useState(false)
 
   React.useEffect(() => {
-    loadState({ games, selectedGames, signupTime })
+    loadState()
   }, [signupTime])
 
-  const loadState = props => {
-    const { games, selectedGames, signupTime } = props
-
+  const loadState = () => {
     const filteredGames = games.filter(game => {
       for (let selectedGame of selectedGames) {
         if (game.id === selectedGame.id) {
@@ -184,8 +182,6 @@ const DragAndDropList = (props: Props, state: State) => {
 
   // Send changes to parent
   const doCallback = () => {
-    const { callback } = props
-
     const selectedGames = []
     for (let game of priority1) {
       selectedGames.push({

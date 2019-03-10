@@ -18,6 +18,7 @@ type State = {
 }
 
 const MyGamesView = (props: Props, state: State) => {
+  const { signedGames, favoritedGames, enteredGames } = props
   const [loading, setLoading] = React.useState(true)
 
   React.useEffect(() => {
@@ -27,8 +28,6 @@ const MyGamesView = (props: Props, state: State) => {
     fetchData()
     setLoading(false)
   }, [])
-
-  const { signedGames, favoritedGames, enteredGames } = props
 
   return (
     <div className='my-games-view'>

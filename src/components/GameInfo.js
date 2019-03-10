@@ -8,8 +8,8 @@ export type Props = {
 }
 
 const GameInfo = (props: Props) => {
-  const { t } = useTranslation()
   const { game } = props
+  const { t } = useTranslation()
 
   if (!game) return <p />
 
@@ -56,8 +56,6 @@ const GameInfo = (props: Props) => {
   }
 
   const getGenres = () => {
-    const { game } = props
-
     let genresList = []
     if (game.genres) {
       genresList = game.genres.map(genre => (
@@ -69,8 +67,6 @@ const GameInfo = (props: Props) => {
   }
 
   const getStyles = () => {
-    const { game } = props
-
     let stylesList = []
     if (game.styles) {
       stylesList = game.styles.map(style => (

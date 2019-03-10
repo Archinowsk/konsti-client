@@ -9,6 +9,7 @@ type Props = {
 }
 
 const AllGamesList = (props: Props) => {
+  const { games } = props
   const { t } = useTranslation()
 
   const sortByNames = games => {
@@ -91,7 +92,6 @@ const AllGamesList = (props: Props) => {
     return GamesList
   }
 
-  const { games } = props
   const GamesList = buildGamesList(games)
 
   return <div className='games-list'>{GamesList}</div>

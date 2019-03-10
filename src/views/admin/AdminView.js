@@ -15,15 +15,15 @@ import Loading from 'components/Loading'
 import timeFormatter from 'utils/timeFormatter'
 
 type Props = {
+  blacklistedGames: Array<any>,
+  date: string,
+  games: Array<any>,
   onSubmitGamesUpdate: Function,
   onSubmitPlayersAssign: Function,
-  updateResponse: Object,
-  games: Array<any>,
-  blacklistedGames: Array<any>,
   onSubmitSelectDate: Function,
   onSubmitSignupTime: Function,
-  date: string,
   signupTime: string,
+  updateResponse: Object,
 }
 
 type State = {
@@ -34,6 +34,18 @@ type State = {
 }
 
 const AdminView = (props: Props, state: State) => {
+  const {
+    blacklistedGames,
+    date,
+    games,
+    onSubmitGamesUpdate,
+    onSubmitPlayersAssign,
+    onSubmitSelectDate,
+    onSubmitSignupTime,
+    signupTime,
+    updateResponse,
+  } = props
+
   const [submitting, setSubmitting] = React.useState(false)
   const [loading, setLoading] = React.useState(true)
   const [message, setMessage] = React.useState('')
@@ -51,8 +63,6 @@ const AdminView = (props: Props, state: State) => {
 
   // Get games that are not blacklisted
   const getVisibleGames = () => {
-    const { games, blacklistedGames } = props
-
     const visibleGames = []
     // Remove hidden games
     for (let i = 0; i < games.length; i += 1) {
@@ -74,7 +84,6 @@ const AdminView = (props: Props, state: State) => {
 
   // Assign game info to blacklisted games list
   const fillBlacklistedGameinfo = () => {
-    const { games, blacklistedGames } = props
     games.forEach(game => {
       blacklistedGames.forEach(blacklistedGame => {
         if (game.id === blacklistedGame.id) {
@@ -85,7 +94,6 @@ const AdminView = (props: Props, state: State) => {
   }
 
   const submitUpdate = async () => {
-    const { onSubmitGamesUpdate } = props
     setSubmitting(true)
     try {
       await onSubmitGamesUpdate()
@@ -96,7 +104,6 @@ const AdminView = (props: Props, state: State) => {
   }
 
   const submitAssign = async () => {
-    const { onSubmitPlayersAssign, signupTime } = props
     setSubmitting(true)
 
     let response = null
@@ -126,7 +133,6 @@ const AdminView = (props: Props, state: State) => {
   }
 
   const submitTime = async () => {
-    const { onSubmitSignupTime, date } = props
     setSubmitting(true)
     try {
       await onSubmitSignupTime(date)
@@ -135,14 +141,6 @@ const AdminView = (props: Props, state: State) => {
     }
     setSubmitting(false)
   }
-
-  const {
-    updateResponse,
-    blacklistedGames,
-    onSubmitSelectDate,
-    date,
-    signupTime,
-  } = props
 
   const visibleGames = getVisibleGames()
   fillBlacklistedGameinfo()

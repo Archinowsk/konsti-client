@@ -18,6 +18,7 @@ type State = {
 }
 
 const AllGamesView = (props: Props, state: State) => {
+  const { games, blacklistedGames } = props
   const [loading, setLoading] = React.useState(true)
 
   React.useEffect(() => {
@@ -30,8 +31,6 @@ const AllGamesView = (props: Props, state: State) => {
 
   // Remove hidden games
   const getVisibleGames = () => {
-    const { games, blacklistedGames } = props
-
     const visibleGames = []
     for (let game of games) {
       let match = false

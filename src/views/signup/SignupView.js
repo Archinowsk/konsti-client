@@ -17,6 +17,7 @@ type State = {
 }
 
 const SignupView = (props: Props, state: State) => {
+  const { games } = props
   const [loading, setLoading] = React.useState(true)
 
   React.useEffect(() => {
@@ -26,8 +27,6 @@ const SignupView = (props: Props, state: State) => {
     fetchData()
     setLoading(false)
   }, [])
-
-  const { games } = props
 
   return (
     <div className='signup-view'>

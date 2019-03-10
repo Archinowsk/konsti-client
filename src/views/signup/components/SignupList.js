@@ -10,12 +10,12 @@ import sleep from 'utils/sleep'
 import config from 'config'
 
 type Props = {
-  games: Array<Object>,
-  selectedGames: Array<Object>,
-  onSubmitSignup: Function,
-  username: string,
   blacklistedGames: Array<Object>,
+  games: Array<Object>,
   onSubmitSelectedGames: Function,
+  onSubmitSignup: Function,
+  selectedGames: Array<Object>,
+  username: string,
 }
 
 type State = {
@@ -27,7 +27,15 @@ type State = {
 }
 
 const SignupList = (props: Props, state: State) => {
-  const { games } = props
+  const {
+    blacklistedGames,
+    games,
+    onSubmitSelectedGames,
+    onSubmitSignup,
+    selectedGames,
+    username,
+  } = props
+
   const { t } = useTranslation()
 
   const signupTimes = getOpenSignupTimes(games)
@@ -39,7 +47,6 @@ const SignupList = (props: Props, state: State) => {
 
   // Submit signup
   const onSubmitClick = async () => {
-    const { onSubmitSignup, selectedGames, username } = props
     setSubmitting(true)
 
     // Submit only games for selected time
@@ -80,8 +87,6 @@ const SignupList = (props: Props, state: State) => {
 
   // Cancel signup
   const onCancelClick = async () => {
-    const { onSubmitSignup, username } = props
-
     const signupData = {
       username,
       selectedGames: [],
@@ -107,8 +112,6 @@ const SignupList = (props: Props, state: State) => {
 
   // Get games that have signup open and are not blacklisted
   const filterGames = () => {
-    const { games, blacklistedGames } = props
-
     // Remove hidden games
     const visibleGames = []
     for (let game of games) {
@@ -137,8 +140,6 @@ const SignupList = (props: Props, state: State) => {
 
   // Get data from child component
   const callback = games => {
-    const { onSubmitSelectedGames, selectedGames } = props
-
     // Combine new selected games to existing
     const temp = selectedGames.filter(
       selectedGame => selectedGame.details.startTime !== signupTime
@@ -163,8 +164,6 @@ const SignupList = (props: Props, state: State) => {
     setSignupSubmitted(false)
     setSignupError(false)
   }
-
-  const { selectedGames } = props
 
   const filteredGames = filterGames()
 
