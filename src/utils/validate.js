@@ -1,7 +1,14 @@
 /* @flow */
 import { t } from 'i18next'
 
-const validate = (values: Object) => {
+type Values = {
+  username: string,
+  password: string,
+  serial: string,
+  registerDescription: string,
+}
+
+const validate = (values: Values) => {
   const errors = {}
 
   if (!values.username) {
