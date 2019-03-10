@@ -2,11 +2,9 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import moment from 'moment'
-import i18n from 'utils/i18n'
 
 const LanguageSelector = () => {
-  const { t } = useTranslation()
-
+  const { t, i18n } = useTranslation()
   const language = i18n.language
 
   // Language toggle

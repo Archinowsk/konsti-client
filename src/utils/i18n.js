@@ -1,8 +1,9 @@
 /* @flow */
 import i18n from 'i18next'
-import XHR from 'i18next-xhr-backend'
+import Backend from 'i18next-xhr-backend'
 // import Cache from 'i18next-localstorage-cache'
 import LanguageDetector from 'i18next-browser-languagedetector'
+import { initReactI18next } from 'react-i18next'
 
 import en from 'locales/en.json'
 import fi from 'locales/fi.json'
@@ -16,9 +17,10 @@ const loadLocales = (url, options, callback) => {
 }
 
 i18n
-  .use(XHR)
+  .use(Backend)
   // .use(Cache)
   .use(LanguageDetector)
+  .use(initReactI18next)
   .init({
     backend: {
       loadPath: '{{lng}}',
@@ -28,7 +30,7 @@ i18n
 
     lng: 'en',
     fallbackLng: 'en',
-    // debug: true,
+    debug: false,
 
     /*
     // Enable for production
@@ -38,9 +40,8 @@ i18n
     },
     */
 
-    // Override default options for withTranslation HOC
-    react: {
-      wait: false,
+    interpolation: {
+      escapeValue: false, // not needed for react as it escapes by default
     },
   })
 
