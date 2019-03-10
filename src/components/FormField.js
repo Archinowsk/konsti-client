@@ -1,13 +1,12 @@
 /* @flow */
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 
 export type Props = {
   input: Object,
   label?: string,
   type: string,
   meta: Object,
-  required?: boolean,
-  tooltip?: boolean,
 }
 
 const FormField = (props: Props) => {
@@ -15,18 +14,15 @@ const FormField = (props: Props) => {
     input,
     label = '',
     type,
-    required = false,
     meta: { touched, error },
   } = props
+  const { t } = useTranslation()
 
   if (!input) return <p />
 
   return (
     <div className='form-row'>
       <div className='form-field'>
-        {!required && <label htmlFor={label}>{label}</label>}
-        {required === true && <label htmlFor={label}>{label} *</label>}
-
         <div className='form-input-wrapper' id={`${input.name}-wrapper`}>
           <input
             className='form-input'
@@ -38,7 +34,7 @@ const FormField = (props: Props) => {
         </div>
       </div>
 
-      {touched && error && <div className='form-field-error'>{error}</div>}
+      {touched && error && <div className='form-field-error'>{t(error)}</div>}
     </div>
   )
 }

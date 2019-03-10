@@ -48,7 +48,7 @@ const CheckboxField = (props: Props) => {
         </label>
       </div>
 
-      {touched && error && <div className='form-field-error'>{error}</div>}
+      {touched && error && <div className='form-field-error'>{t(error)}</div>}
     </div>
   )
 }
