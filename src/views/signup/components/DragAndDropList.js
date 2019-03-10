@@ -33,20 +33,9 @@ const DragAndDropList = (props: Props, state: State) => {
   const [priority3, setPriority3] = React.useState([])
   const [warningVisible, setWarningVisible] = React.useState(false)
 
-  // TODO: Changing signupTime does not work
-  // TODO: useEffect + componentDidUpdate needs work
   React.useEffect(() => {
     loadState({ games, selectedGames, signupTime })
-  }, [])
-
-  /*
-  componentDidUpdate(prevProps) {
-    if (props.signupTime !== prevProps.signupTime) {
-      const { games, selectedGames, signupTime } = props
-      loadState({ games, selectedGames, signupTime })
-    }
-  }
-  */
+  }, [signupTime])
 
   const loadState = props => {
     const { games, selectedGames, signupTime } = props
