@@ -21,8 +21,8 @@ const config: Config = {}
 config.appName = 'Konsti'
 
 // App status
-config.staging = process.env.STAGING === 'true' || false
 config.apiServerURL = process.env.API_SERVER_URL || 'http://localhost:3000'
+config.env = process.env.ENVIRONMENT || 'development'
 
 // App settings
 config.appOpen = true
@@ -34,15 +34,5 @@ config.TIME_NOW = '2018-07-27T13:40:00Z' // UTC date
 // TODO: Move to admin view
 config.CONVENTION_START_TIME = '2018-07-27T12:00:00Z' // UTC date
 config.DAY_START_TIME = 8 // 08:00
-
-// Variables for production environment
-if (process.env.NODE_ENV === 'production') {
-  config.env = 'production'
-}
-
-// Variables for development environment
-else if (process.env.NODE_ENV === 'development') {
-  config.env = 'development'
-}
 
 module.exports = config
