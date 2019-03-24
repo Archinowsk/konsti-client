@@ -2,7 +2,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-import Blacklist from 'views/admin/components/Blacklist'
+import Hidden from 'views/admin/components/Hidden'
 import {
   submitGamesUpdate,
   submitPlayersAssign,
@@ -15,7 +15,7 @@ import Loading from 'components/Loading'
 import timeFormatter from 'utils/timeFormatter'
 
 type Props = {
-  blacklistedGames: Array<any>,
+  hiddenGames: Array<any>,
   date: string,
   games: Array<any>,
   onSubmitGamesUpdate: Function,
@@ -35,7 +35,7 @@ type State = {
 
 const AdminView = (props: Props, state: State) => {
   const {
-    blacklistedGames,
+    hiddenGames,
     date,
     games,
     onSubmitGamesUpdate,
@@ -61,15 +61,15 @@ const AdminView = (props: Props, state: State) => {
     setLoading(false)
   }, [])
 
-  // Get games that are not blacklisted
+  // Get games that are not hidden
   const getVisibleGames = () => {
     const visibleGames = []
     // Remove hidden games
     for (let i = 0; i < games.length; i += 1) {
       let match = false
 
-      for (let j = 0; j < blacklistedGames.length; j += 1) {
-        if (games[i].id === blacklistedGames[j].id) {
+      for (let j = 0; j < hiddenGames.length; j += 1) {
+        if (games[i].id === hiddenGames[j].id) {
           match = true
           break
         }
@@ -82,12 +82,12 @@ const AdminView = (props: Props, state: State) => {
     return visibleGames
   }
 
-  // Assign game info to blacklisted games list
-  const fillBlacklistedGameinfo = () => {
+  // Assign game info to hidden games list
+  const fillHiddenGameinfo = () => {
     games.forEach(game => {
-      blacklistedGames.forEach(blacklistedGame => {
-        if (game.id === blacklistedGame.id) {
-          Object.assign(blacklistedGame, game)
+      hiddenGames.forEach(hiddenGame => {
+        if (game.id === hiddenGame.id) {
+          Object.assign(hiddenGame, game)
         }
       })
     })
@@ -143,7 +143,7 @@ const AdminView = (props: Props, state: State) => {
   }
 
   const visibleGames = getVisibleGames()
-  fillBlacklistedGameinfo()
+  fillHiddenGameinfo()
   const formattedDate = timeFormatter.weekdayAndTime(signupTime)
 
   return (
@@ -199,7 +199,7 @@ const AdminView = (props: Props, state: State) => {
             signupTime={signupTime}
           />
 
-          <Blacklist blacklistedGames={blacklistedGames} />
+          <Hidden hiddenGames={hiddenGames} />
         </React.Fragment>
       )}
     </div>
@@ -210,7 +210,7 @@ const mapStateToProps = state => {
   return {
     updateResponse: state.admin.updateResponse,
     games: state.allGames.games,
-    blacklistedGames: state.admin.blacklistedGames,
+    hiddenGames: state.admin.hiddenGames,
     date: state.signup.date,
     signupTime: state.admin.signupTime,
   }

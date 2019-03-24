@@ -3,27 +3,27 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { submitUpdateBlacklist } from 'views/admin/adminActions'
+import { submitUpdateHidden } from 'views/admin/adminActions'
 import { submitUpdateFavorites } from 'views/my-games/myGamesActions'
 import FeedbackForm from 'components/FeedbackForm'
 import GameInfo from 'components/GameInfo'
 import Loading from 'components/Loading'
 
 type Props = {
-  blacklistedGames: Array<any>,
+  hiddenGames: Array<any>,
   favoritedGames: Array<any>,
   games: Array<any>,
   history: Object,
   loggedIn: boolean,
   match: Object,
-  onSubmitUpdateBlacklist: Function,
+  onSubmitUpdateHidden: Function,
   onSubmitUpdateFavorites: Function,
   userGroup: string,
   username: string,
 }
 
 type State = {
-  blacklisted: boolean,
+  hidden: boolean,
   favorited: boolean,
   game: Object,
   loading: boolean,
@@ -32,13 +32,13 @@ type State = {
 
 const GameDetails = (props: Props, state: State) => {
   const {
-    blacklistedGames,
+    hiddenGames,
     favoritedGames,
     games,
     history,
     loggedIn,
     match,
-    onSubmitUpdateBlacklist,
+    onSubmitUpdateHidden,
     onSubmitUpdateFavorites,
     userGroup,
     username,
@@ -48,7 +48,7 @@ const GameDetails = (props: Props, state: State) => {
 
   const game = games.find(game => game.id === match.params.id)
 
-  const [blacklisted, setBlacklisted] = React.useState(false)
+  const [hidden, setHidden] = React.useState(false)
   const [submitting, setSubmitting] = React.useState(false)
   const [favorited, setFavorited] = React.useState(false)
   const [loading, setLoading] = React.useState(true)
@@ -69,10 +69,10 @@ const GameDetails = (props: Props, state: State) => {
       }
     }
 
-    // Check if blacklisted
-    for (let i = 0; i < blacklistedGames.length; i += 1) {
-      if (blacklistedGames[i].id === game.id) {
-        setBlacklisted(true)
+    // Check if hidden
+    for (let i = 0; i < hiddenGames.length; i += 1) {
+      if (hiddenGames[i].id === game.id) {
+        setHidden(true)
         break
       }
     }
@@ -130,47 +130,47 @@ const GameDetails = (props: Props, state: State) => {
   }
 
   // Hide / unhide clicked
-  const addBlacklistEvent = async action => {
+  const addHiddenEvent = async action => {
     if (!game || !game.id) return
 
     setSubmitting(true)
-    const gameIndex = findGame(game.id, blacklistedGames)
-    const allBlacklistedGames = blacklistedGames.slice()
+    const gameIndex = findGame(game.id, hiddenGames)
+    const allHiddenGames = hiddenGames.slice()
 
     if (action === 'add') {
       if (gameIndex === -1) {
-        allBlacklistedGames.push({ id: game.id })
+        allHiddenGames.push({ id: game.id })
       }
     } else if (action === 'del') {
       if (gameIndex > -1) {
-        allBlacklistedGames.splice(gameIndex, 1)
+        allHiddenGames.splice(gameIndex, 1)
       }
     }
 
     // Send only game IDs to API
-    const blacklistedGameIds = []
-    allBlacklistedGames.forEach(blacklistedGame => {
-      blacklistedGameIds.push({ id: blacklistedGame.id })
+    const hiddenGameIds = []
+    allHiddenGames.forEach(hiddenGame => {
+      hiddenGameIds.push({ id: hiddenGame.id })
     })
 
-    const blacklistData = {
-      blacklistedGames: blacklistedGameIds,
+    const hiddenData = {
+      hiddenGames: hiddenGameIds,
     }
 
     let response = null
     try {
-      response = await onSubmitUpdateBlacklist(blacklistData)
+      response = await onSubmitUpdateHidden(hiddenData)
     } catch (error) {
-      console.log(`onSubmitUpdateBlacklist error: ${error}`)
+      console.log(`onSubmitUpdateHidden error: ${error}`)
     }
 
     setSubmitting(false)
 
     if (response && response.status === 'success') {
       if (action === 'add') {
-        setBlacklisted(true)
+        setHidden(true)
       } else if (action === 'del') {
-        setBlacklisted(false)
+        setHidden(false)
       }
     }
   }
@@ -210,20 +210,14 @@ const GameDetails = (props: Props, state: State) => {
             </button>
           )}
 
-          {blacklisted && loggedIn && userGroup === 'admin' && (
-            <button
-              disabled={submitting}
-              onClick={() => addBlacklistEvent('del')}
-            >
+          {hidden && loggedIn && userGroup === 'admin' && (
+            <button disabled={submitting} onClick={() => addHiddenEvent('del')}>
               {t('button.unhide')}
             </button>
           )}
 
-          {!blacklisted && loggedIn && userGroup === 'admin' && (
-            <button
-              disabled={submitting}
-              onClick={() => addBlacklistEvent('add')}
-            >
+          {!hidden && loggedIn && userGroup === 'admin' && (
+            <button disabled={submitting} onClick={() => addHiddenEvent('add')}>
               {t('button.hide')}
             </button>
           )}
@@ -240,7 +234,7 @@ const mapStateToProps = state => {
   return {
     username: state.login.username,
     favoritedGames: state.myGames.favoritedGames,
-    blacklistedGames: state.admin.blacklistedGames,
+    hiddenGames: state.admin.hiddenGames,
     loggedIn: state.login.loggedIn,
     games: state.allGames.games,
     userGroup: state.login.userGroup,
@@ -250,7 +244,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch: Function) => {
   return {
     onSubmitUpdateFavorites: id => dispatch(submitUpdateFavorites(id)),
-    onSubmitUpdateBlacklist: id => dispatch(submitUpdateBlacklist(id)),
+    onSubmitUpdateHidden: id => dispatch(submitUpdateHidden(id)),
   }
 }
 

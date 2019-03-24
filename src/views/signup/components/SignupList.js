@@ -10,7 +10,7 @@ import sleep from 'utils/sleep'
 import config from 'config'
 
 type Props = {
-  blacklistedGames: Array<Object>,
+  hiddenGames: Array<Object>,
   games: Array<Object>,
   onSubmitSelectedGames: Function,
   onSubmitSignup: Function,
@@ -28,7 +28,7 @@ type State = {
 
 const SignupList = (props: Props, state: State) => {
   const {
-    blacklistedGames,
+    hiddenGames,
     games,
     onSubmitSelectedGames,
     onSubmitSignup,
@@ -110,14 +110,14 @@ const SignupList = (props: Props, state: State) => {
     }
   }
 
-  // Get games that have signup open and are not blacklisted
+  // Get games that have signup open and are not hidden
   const filterGames = () => {
     // Remove hidden games
     const visibleGames = []
     for (let game of games) {
       let match = false
-      for (let blacklistedGame of blacklistedGames) {
-        if (game.id === blacklistedGame.id) {
+      for (let hiddenGame of hiddenGames) {
+        if (game.id === hiddenGame.id) {
           match = true
           break
         }
@@ -234,7 +234,7 @@ const mapStateToProps = state => {
   return {
     selectedGames: state.signup.selectedGames,
     username: state.login.username,
-    blacklistedGames: state.admin.blacklistedGames,
+    hiddenGames: state.admin.hiddenGames,
   }
 }
 

@@ -99,7 +99,7 @@
   "favoritedGames": "Favorited games",
   "signedGames": "Signed up games",
   "enteredGames": "Signup results",
-  "blacklistedGames": "Hidden games",
+  "hiddenGames": "Hidden games",
   "error": {
     "usernameTaken": "Username not free",
     "invalidSerial": "Invalid code",
@@ -113,7 +113,7 @@
   "noSignedGames": "No signed up games",
   "noFavoritedGames": "No favorited games",
   "noEnteredGames": "No signup results",
-  "noBlacklistedGames": "No hidden games",
+  "noHiddenGames": "No hidden games",
   "noOpenSignups": "No open signups",
   "signupOpen": "Signup open",
   "selectOpenSignup": "Select open signup time",

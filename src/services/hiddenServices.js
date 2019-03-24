@@ -2,17 +2,17 @@
 import api from 'utils/api'
 import setAuthToken from 'utils/setAuthToken'
 
-export const postBlacklist = async (blacklistData: Object) => {
+export const postHidden = async (hiddenData: Object) => {
   setAuthToken()
 
   let response = null
   try {
-    response = await api.post('/blacklist', { blacklistData })
+    response = await api.post('/hidden', { hiddenData })
   } catch (error) {
     if (error.message === 'Network Error') {
       console.log('Network error: no connection to server')
     } else {
-      console.log(`postBlacklist error: ${error}`)
+      console.log(`postHidden error: ${error}`)
     }
   }
 

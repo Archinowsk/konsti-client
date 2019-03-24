@@ -4,15 +4,15 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
 type Props = {
-  blacklistedGames: Array<any>,
+  hiddenGames: Array<any>,
 }
 
-const Blacklist = (props: Props) => {
-  const { blacklistedGames } = props
+const Hidden = (props: Props) => {
+  const { hiddenGames } = props
   const { t } = useTranslation()
 
   // Sort games by name
-  const sortedGames = blacklistedGames.sort((a, b) => {
+  const sortedGames = hiddenGames.sort((a, b) => {
     const keyA = a.title.toLowerCase()
     const keyB = b.title.toLowerCase()
     if (keyA < keyB) return -1
@@ -27,16 +27,14 @@ const Blacklist = (props: Props) => {
   ))
 
   return (
-    <div className='blacklist'>
-      <p>{t('blacklistedGames')}</p>
+    <div className='hidden'>
+      <p>{t('hiddenGames')}</p>
       <ul>
-        {blacklistedGames.length === 0 && (
-          <span>{t('noBlacklistedGames')}</span>
-        )}
+        {hiddenGames.length === 0 && <span>{t('noHiddenGames')}</span>}
         {GamesList}
       </ul>
     </div>
   )
 }
 
-export default Blacklist
+export default Hidden

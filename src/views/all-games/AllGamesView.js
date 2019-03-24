@@ -9,7 +9,7 @@ import Loading from 'components/Loading'
 
 type Props = {
   games: Array<any>,
-  blacklistedGames: Array<any>,
+  hiddenGames: Array<any>,
   myGames: Object,
 }
 
@@ -18,7 +18,7 @@ type State = {
 }
 
 const AllGamesView = (props: Props, state: State) => {
-  const { games, blacklistedGames } = props
+  const { games, hiddenGames } = props
   const [loading, setLoading] = React.useState(true)
 
   React.useEffect(() => {
@@ -34,8 +34,8 @@ const AllGamesView = (props: Props, state: State) => {
     const visibleGames = []
     for (let game of games) {
       let match = false
-      for (let blacklistedGame of blacklistedGames) {
-        if (game.id === blacklistedGame.id) {
+      for (let hiddenGame of hiddenGames) {
+        if (game.id === hiddenGame.id) {
           match = true
           break
         }
@@ -77,7 +77,7 @@ const AllGamesView = (props: Props, state: State) => {
 const mapStateToProps = state => {
   return {
     games: state.allGames.games,
-    blacklistedGames: state.admin.blacklistedGames,
+    hiddenGames: state.admin.hiddenGames,
     myGames: state.myGames,
   }
 }

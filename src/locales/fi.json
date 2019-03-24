@@ -100,7 +100,7 @@
   "favoritedGames": "Suosikkipelit",
   "signedGames": "Ilmoittautumiset",
   "enteredGames": "Vahvistuneet ilmoittautumiset",
-  "blacklistedGames": "Piilotetut pelit",
+  "hiddenGames": "Piilotetut pelit",
   "error": {
     "usernameTaken": "Käyttäjänimi on varattu",
     "invalidSerial": "Epäkelpo rekisteröitymiskoodi",
@@ -114,7 +114,7 @@
   "noSignedGames": "Ei peli-ilmoittautumisia",
   "noFavoritedGames": "Ei suosikkipelejä",
   "noEnteredGames": "Ei vahvistuneita ilmoittautumisia",
-  "noBlacklistedGames": "Ei piilotettuja pelejä",
+  "noHiddenGames": "Ei piilotettuja pelejä",
   "noOpenSignups": "Ei avoimia ilmoittautumisia",
   "signupOpen": "Ilmoittautuminen auki",
   "selectOpenSignup": "Valitse avoin ilmoittautumisajankohta",

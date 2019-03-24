@@ -1,13 +1,13 @@
 /* @flow */
 import { postGamesUpdate } from 'services/gamesServices'
 import { postPlayersAssign } from 'services/playersServices'
-import { postBlacklist } from 'services/blacklistServices'
+import { postHidden } from 'services/hiddenServices'
 import { getSettings } from 'services/settingsServices'
 import { postSignupTime } from 'services/signuptimeServices'
 
 export const SUBMIT_GAMES_UPDATE = 'SUBMIT_GAMES_UPDATE'
 export const SUBMIT_PLAYERS_ASSIGN = 'SUBMIT_PLAYERS_ASSIGN'
-export const SUBMIT_UPDATE_BLACKLIST = 'SUBMIT_UPDATE_BLACKLIST'
+export const SUBMIT_UPDATE_HIDDEN = 'SUBMIT_UPDATE_HIDDEN'
 export const SUBMIT_GET_SETTINGS = 'SUBMIT_GET_SETTINGS'
 export const SUBMIT_SELECT_SIGNUP_TIME = 'SUBMIT_SELECT_SIGNUP_TIME'
 
@@ -66,20 +66,20 @@ export const submitPlayersAssign = (signupTime: Date) => {
   }
 }
 
-const submitUpdateBlacklistAsync = ({ blacklistedGames }) => {
+const submitUpdateHiddenAsync = ({ hiddenGames }) => {
   return {
-    type: SUBMIT_UPDATE_BLACKLIST,
-    blacklistedGames,
+    type: SUBMIT_UPDATE_HIDDEN,
+    hiddenGames,
   }
 }
 
-export const submitUpdateBlacklist = (blacklistData: Object) => {
+export const submitUpdateHidden = (hiddenData: Object) => {
   return async (dispatch: Function) => {
     let response = null
     try {
-      response = await postBlacklist(blacklistData)
+      response = await postHidden(hiddenData)
     } catch (error) {
-      console.log(`submitUpdateBlacklist error: ${error}`)
+      console.log(`submitUpdateHidden error: ${error}`)
     }
 
     if (response && response.error) {
@@ -87,8 +87,8 @@ export const submitUpdateBlacklist = (blacklistData: Object) => {
     }
     if (response && response.status === 'success') {
       dispatch(
-        submitUpdateBlacklistAsync({
-          blacklistedGames: blacklistData.blacklistedGames,
+        submitUpdateHiddenAsync({
+          hiddenGames: hiddenData.hiddenGames,
         })
       )
     }
@@ -98,13 +98,13 @@ export const submitUpdateBlacklist = (blacklistData: Object) => {
 }
 
 const submitGetSettingsAsync = ({
-  blacklistedGames,
+  hiddenGames,
   signupTime,
   adminSettingsLoaded,
 }) => {
   return {
     type: SUBMIT_GET_SETTINGS,
-    blacklistedGames,
+    hiddenGames,
     signupTime,
     adminSettingsLoaded,
   }
@@ -125,7 +125,7 @@ export const submitGetSettings = () => {
     if (response && response.status === 'success') {
       dispatch(
         submitGetSettingsAsync({
-          blacklistedGames: response.games.blacklistedGames,
+          hiddenGames: response.games.hiddenGames,
           signupTime: response.signupTime,
           adminSettingsLoaded: true,
         })
