@@ -22,10 +22,10 @@ const loadData = async (store: Object) => {
   }
   */
 
-  if (loggedIn) {
-    // Get settings data
-    await store.dispatch(submitGetSettings())
+  // Get settings data
+  await store.dispatch(submitGetSettings())
 
+  if (loggedIn) {
     // Get results data
     await store.dispatch(submitGetResults())
 
