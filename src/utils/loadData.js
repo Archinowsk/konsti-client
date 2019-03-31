@@ -3,7 +3,6 @@ import { submitGetResults } from 'views/all-signups/allSignupsActions'
 import { submitGetGames } from 'views/all-games/allGamesActions'
 import { submitGetSettings } from 'views/admin/adminActions'
 import { submitGetUser } from 'views/my-games/myGamesActions'
-import { submitSelectedGames } from 'views/signup/signupActions'
 
 const loadData = async (store: Object) => {
   const state = store.getState()
@@ -32,10 +31,6 @@ const loadData = async (store: Object) => {
     // Get user data
     const username = state.login.username
     await store.dispatch(submitGetUser(username))
-
-    // Set selected games
-    const selectedGames = store.getState().myGames.signedGames
-    await store.dispatch(submitSelectedGames(selectedGames))
   }
 }
 
