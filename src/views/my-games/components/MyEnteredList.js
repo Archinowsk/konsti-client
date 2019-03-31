@@ -15,19 +15,19 @@ const MyEnteredList = (props: Props) => {
 
   // Sort games by time and name
   const sortedGames = enteredGames.sort((a, b) => {
-    const keyA = moment(a.details.startTime) + a.details.title.toLowerCase()
-    const keyB = moment(b.details.startTime) + b.details.title.toLowerCase()
+    const keyA = moment(a.startTime) + a.title.toLowerCase()
+    const keyB = moment(b.startTime) + b.title.toLowerCase()
     if (keyA < keyB) return -1
     if (keyA > keyB) return 1
     return 0
   })
 
   const GamesList = sortedGames.map(game => {
-    const formattedDate = timeFormatter.weekdayAndTime(game.details.startTime)
+    const formattedDate = timeFormatter.weekdayAndTime(game.startTime)
     return (
       <li key={game.id}>
         <Link to={`/games/${game.id}`}>
-          {formattedDate}: {game.details.title}
+          {formattedDate}: {game.title}
         </Link>
       </li>
     )

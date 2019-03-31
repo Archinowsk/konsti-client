@@ -59,19 +59,19 @@ const DragAndDropList = (props: Props, state: State) => {
     for (let selectedGame of selectedGames) {
       if (
         selectedGame.priority === 1 &&
-        selectedGame.details.startTime === signupTime
+        selectedGame.startTime === signupTime
       ) {
-        priority1.push(selectedGame.details)
+        priority1.push(selectedGame)
       } else if (
         selectedGame.priority === 2 &&
-        selectedGame.details.startTime === signupTime
+        selectedGame.startTime === signupTime
       ) {
-        priority2.push(selectedGame.details)
+        priority2.push(selectedGame)
       } else if (
         selectedGame.priority === 3 &&
-        selectedGame.details.startTime === signupTime
+        selectedGame.startTime === signupTime
       ) {
-        priority3.push(selectedGame.details)
+        priority3.push(selectedGame)
       }
     }
 
@@ -186,30 +186,15 @@ const DragAndDropList = (props: Props, state: State) => {
   const doCallback = () => {
     const selectedGames = []
     for (let game of priority1) {
-      selectedGames.push({
-        id: game.id,
-        priority: 1,
-        time: game.startTime,
-        details: game,
-      })
+      selectedGames.push({ ...game, priority: 1 })
     }
 
     for (let game of priority2) {
-      selectedGames.push({
-        id: game.id,
-        priority: 2,
-        time: game.startTime,
-        details: game,
-      })
+      selectedGames.push({ ...game, priority: 2 })
     }
 
     for (let game of priority3) {
-      selectedGames.push({
-        id: game.id,
-        priority: 3,
-        time: game.startTime,
-        details: game,
-      })
+      selectedGames.push({ ...game, priority: 3 })
     }
 
     callback(selectedGames)
