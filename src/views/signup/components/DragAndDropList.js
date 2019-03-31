@@ -37,6 +37,10 @@ const DragAndDropList = (props: Props, state: State) => {
     loadState()
   }, [signupTime])
 
+  React.useEffect(() => {
+    doCallback()
+  }, [gameList, priority1, priority2, priority3])
+
   const loadState = () => {
     const filteredGames = games.filter(game => {
       for (let selectedGame of selectedGames) {
@@ -175,8 +179,6 @@ const DragAndDropList = (props: Props, state: State) => {
       if (result.priority3) {
         setPriority3(result.priority3)
       }
-
-      doCallback()
     }
   }
 
