@@ -1,3 +1,4 @@
+/* @flow */
 import outdatedBrowserRework from 'outdated-browser-rework'
 import 'outdated-browser-rework/style.scss'
 

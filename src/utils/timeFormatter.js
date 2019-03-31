@@ -1,3 +1,4 @@
+/* @flow */
 import moment from 'moment'
 import config from 'config'
 
@@ -8,7 +9,7 @@ const {
   DAY_START_TIME,
 } = config
 
-const startTime = startTime => {
+const startTime = (startTime: string) => {
   let signupStartTime = null
   let startTimeException = false
 
@@ -41,7 +42,7 @@ const startTime = startTime => {
   return formattedTime
 }
 
-const endTime = (startTime, customTime) => {
+const endTime = (startTime: string, customTime: string) => {
   let signupEndTime
   let endTimeException = false
 
@@ -71,15 +72,15 @@ const endTime = (startTime, customTime) => {
   return formattedTime
 }
 
-const weekdayAndTime = time => {
+const weekdayAndTime = (time: string) => {
   return moment(time).format('dddd HH:mm')
 }
 
-const fullDate = time => {
+const fullDate = (time: string) => {
   return moment(time).format('DD.M.YYYY HH:mm')
 }
 
-const timeOnly = time => {
+const timeOnly = (time: string) => {
   return moment(time).format('HH:mm')
 }
 

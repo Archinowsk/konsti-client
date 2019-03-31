@@ -1,7 +1,8 @@
+/* @flow */
 import moment from 'moment'
 import config from 'config'
 
-const getOpenSignupTimes = games => {
+const getOpenSignupTimes = (games: Array<Object>) => {
   const startTimes = []
 
   for (let game of games) {

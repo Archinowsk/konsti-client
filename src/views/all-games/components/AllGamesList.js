@@ -53,7 +53,8 @@ const AllGamesList = (props: Props) => {
         startTime
       )
       const { signupEndTime, endTimeException } = timeFormatter.endTime(
-        startTime
+        startTime,
+        ''
       )
 
       const title = (

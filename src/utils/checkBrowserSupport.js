@@ -1,3 +1,4 @@
+/* @flow */
 import browserslist from 'browserslist'
 import bowser from 'bowser'
 

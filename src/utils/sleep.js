@@ -1,5 +1,6 @@
-const sleep = ms => {
-  return new Promise(resolve => setTimeout(resolve, ms))
+/* @flow */
+const sleep = (ms: number) => {
+  return new Promise<void>(resolve => setTimeout(resolve, ms))
 }
 
 export default sleep

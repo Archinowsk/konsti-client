@@ -168,7 +168,7 @@ const SignupList = (props: Props, state: State) => {
   const filteredGames = filterGames()
 
   const { signupStartTime } = timeFormatter.startTime(signupTime)
-  const { signupEndTime } = timeFormatter.endTime(signupTime)
+  const { signupEndTime } = timeFormatter.endTime(signupTime, '')
 
   const isActive = isActive => (isActive ? 'active' : '')
 
