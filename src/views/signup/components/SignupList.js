@@ -8,6 +8,8 @@ import DragAndDropList from 'views/signup/components/DragAndDropList'
 import getOpenSignupTimes from 'utils/getOpenSignupTimes'
 import sleep from 'utils/sleep'
 import config from 'config'
+import { getData } from 'utils/store'
+import Loading from 'components/Loading'
 
 type Props = {
   hiddenGames: Array<Object>,
@@ -16,6 +18,7 @@ type Props = {
   onSubmitSignup: Function,
   selectedGames: Array<Object>,
   username: string,
+  signedGames: Array<Object>,
 }
 
 type State = {
@@ -34,32 +37,38 @@ const SignupList = (props: Props, state: State) => {
     onSubmitSignup,
     selectedGames,
     username,
+    signedGames,
   } = props
-
-  const { t } = useTranslation()
-
-  const signupTimes = getOpenSignupTimes(games)
 
   const [submitting, setSubmitting] = React.useState(false)
   const [signupSubmitted, setSignupSubmitted] = React.useState(false)
   const [signupError, setSignupError] = React.useState(false)
   const [signupTime, setSignupTime] = React.useState('')
+  const [loading, setLoading] = React.useState(true)
+
+  const { t } = useTranslation()
+
+  const signupTimes = getOpenSignupTimes(games)
+
+  React.useEffect(() => {
+    const fetchData = async () => {
+      await getData()
+      await onSubmitSelectedGames(signedGames)
+    }
+    fetchData()
+    setLoading(false)
+  }, [])
 
   // Submit signup
   const onSubmitClick = async () => {
     setSubmitting(true)
 
-    // Submit only games for selected time
-    const filteredGames = selectedGames.filter(
-      selectedGame => selectedGame.details.startTime === signupTime
-    )
-
     // Send only game IDs and priorities to API
     const selectedGameIds = []
-    filteredGames.forEach(filteredGame => {
+    selectedGames.forEach(selectedGame => {
       selectedGameIds.push({
-        id: filteredGame.id,
-        priority: filteredGame.priority,
+        id: selectedGame.id,
+        priority: selectedGame.priority,
         time: signupTime,
       })
     })
@@ -74,7 +83,7 @@ const SignupList = (props: Props, state: State) => {
     try {
       response = await onSubmitSignup(signupData)
     } catch (error) {
-      console.log(`onSubmitSignup error: ${error}`)
+      console.log(`onSubmitSignup error: `, error)
     }
 
     if (response && response.status === 'success') {
@@ -87,9 +96,20 @@ const SignupList = (props: Props, state: State) => {
 
   // Cancel signup
   const onCancelClick = async () => {
+    const selectedGameIds = []
+    selectedGames.forEach(selectedGame => {
+      if (selectedGame.startTime !== signupTime) {
+        selectedGameIds.push({
+          id: selectedGame.id,
+          priority: selectedGame.priority,
+          time: signupTime,
+        })
+      }
+    })
+
     const signupData = {
       username,
-      selectedGames: [],
+      selectedGames: selectedGameIds,
       time: signupTime,
     }
 
@@ -97,7 +117,7 @@ const SignupList = (props: Props, state: State) => {
     try {
       response = await onSubmitSignup(signupData)
     } catch (error) {
-      console.log(`onSubmitSignup error: ${error}`)
+      console.log(`onSubmitSignup error: `, error)
     }
 
     if (response && response.status === 'success') {
@@ -142,7 +162,7 @@ const SignupList = (props: Props, state: State) => {
   const callback = games => {
     // Combine new selected games to existing
     const temp = selectedGames.filter(
-      selectedGame => selectedGame.details.startTime !== signupTime
+      selectedGame => selectedGame.startTime !== signupTime
     )
     const combined = temp.concat(games)
 
@@ -187,18 +207,20 @@ const SignupList = (props: Props, state: State) => {
 
   return (
     <div className='signup-list'>
-      {signupTimes.length === 0 && (
+      {loading && <Loading />}
+
+      {!loading && signupTimes.length === 0 && (
         <p className='page-title'>{t('noOpenSignups')}</p>
       )}
 
-      {signupTimes.length !== 0 && (
+      {!loading && signupTimes.length !== 0 && (
         <React.Fragment>
           <p className='page-title'>{t('signupOpen')}:</p>
           <div>{signupTimeButtons}</div>
         </React.Fragment>
       )}
 
-      {filteredGames.length !== 0 && (
+      {!loading && filteredGames.length !== 0 && (
         <React.Fragment>
           <p>
             {t('signupOpenBetweenCapital')} {signupStartTime}-{signupEndTime}.{' '}
@@ -235,6 +257,7 @@ const mapStateToProps = state => {
     selectedGames: state.signup.selectedGames,
     username: state.login.username,
     hiddenGames: state.admin.hiddenGames,
+    signedGames: state.myGames.signedGames,
   }
 }
 
