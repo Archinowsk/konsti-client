@@ -23,6 +23,13 @@ type State = {
   warningVisible: boolean,
 }
 
+type UpdatedPositions = {
+  gameList?: Array<any>,
+  priority1?: Array<any>,
+  priority2?: Array<any>,
+  priority3?: Array<any>,
+}
+
 const DragAndDropList = (props: Props, state: State) => {
   const { games, selectedGames, signupTime, callback } = props
   const { t } = useTranslation()
@@ -135,7 +142,7 @@ const DragAndDropList = (props: Props, state: State) => {
       const newItemsDestination = getList(destination.droppableId)
       if (!newItemsSource || !newItemsDestination) return
 
-      let result = move(
+      const updatedPositions: UpdatedPositions = move(
         newItemsSource,
         newItemsDestination,
         source,
@@ -160,24 +167,20 @@ const DragAndDropList = (props: Props, state: State) => {
         return
       }
 
-      /* $FlowFixMe: propety 'gameList' is missing in object literal */
-      if (result.gameList) {
-        setGameList(result.gameList)
+      if (updatedPositions.gameList) {
+        setGameList(updatedPositions.gameList)
       }
 
-      /* $FlowFixMe: propety 'priority1' is missing in object literal */
-      if (result.priority1) {
-        setPriority1(result.priority1)
+      if (updatedPositions.priority1) {
+        setPriority1(updatedPositions.priority1)
       }
 
-      /* $FlowFixMe: propety 'priority2' is missing in object literal */
-      if (result.priority2) {
-        setPriority2(result.priority2)
+      if (updatedPositions.priority2) {
+        setPriority2(updatedPositions.priority2)
       }
 
-      /* $FlowFixMe: propety 'priority3' is missing in object literal */
-      if (result.priority3) {
-        setPriority3(result.priority3)
+      if (updatedPositions.priority3) {
+        setPriority3(updatedPositions.priority3)
       }
     }
   }
