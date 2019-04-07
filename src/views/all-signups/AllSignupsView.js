@@ -39,13 +39,13 @@ const AllSignupsView = (props: Props, state: State) => {
     }
   }
 
-  for (let game of games) {
-    for (let result of selectedResult) {
+  games.map(game => {
+    selectedResult.map(result => {
       if (game.gameId === result.enteredGame.gameId) {
         Object.assign(result.enteredGame, game)
       }
-    }
-  }
+    })
+  })
 
   let resultsAvailable = false
   if (selectedResult && selectedResult.length !== 0) {

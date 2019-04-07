@@ -85,8 +85,8 @@ const AdminView = (props: Props, state: State) => {
 
   // Assign game info to hidden games list
   const fillHiddenGameinfo = () => {
-    games.forEach(game => {
-      hiddenGames.forEach(hiddenGame => {
+    games.map(game => {
+      hiddenGames.map(hiddenGame => {
         if (game.gameId === hiddenGame.gameId) {
           Object.assign(hiddenGame, game)
         }
