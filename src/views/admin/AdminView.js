@@ -13,11 +13,12 @@ import TimesDropdown from 'components/TimesDropdown'
 import { getData } from 'utils/store'
 import Loading from 'components/Loading'
 import timeFormatter from 'utils/timeFormatter'
+import type { Game } from 'flow/game.flow'
 
 type Props = {
   hiddenGames: Array<any>,
   date: string,
-  games: Array<any>,
+  games: Array<Game>,
   onSubmitGamesUpdate: Function,
   onSubmitPlayersAssign: Function,
   onSubmitSelectDate: Function,

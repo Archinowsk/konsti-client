@@ -8,11 +8,12 @@ import { submitUpdateFavorites } from 'views/my-games/myGamesActions'
 import FeedbackForm from 'components/FeedbackForm'
 import GameInfo from 'components/GameInfo'
 import Loading from 'components/Loading'
+import type { Game } from 'flow/game.flow'
 
 type Props = {
   hiddenGames: Array<any>,
   favoritedGames: Array<any>,
-  games: Array<any>,
+  games: Array<Game>,
   history: Object,
   loggedIn: boolean,
   match: Object,

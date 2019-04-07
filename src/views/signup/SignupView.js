@@ -4,9 +4,10 @@ import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import SignupList from 'views/signup/components/SignupList'
 import GameDetails from 'components/GameDetails'
+import type { Game } from 'flow/game.flow'
 
 type Props = {
-  games: Array<any>,
+  games: Array<Game>,
 }
 
 type State = {

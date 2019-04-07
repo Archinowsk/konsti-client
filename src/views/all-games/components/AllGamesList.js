@@ -3,9 +3,10 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import timeFormatter from 'utils/timeFormatter'
+import type { Game } from 'flow/game.flow'
 
 type Props = {
-  games: Array<any>,
+  games: Array<Game>,
 }
 
 const AllGamesList = (props: Props) => {

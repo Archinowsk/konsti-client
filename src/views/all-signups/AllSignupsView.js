@@ -6,9 +6,10 @@ import AllSignupsList from 'views/all-signups/components/AllSignupsList'
 import { getData } from 'utils/store'
 import Loading from 'components/Loading'
 import timeFormatter from 'utils/timeFormatter'
+import type { Game } from 'flow/game.flow'
 
 type Props = {
-  games: Array<any>,
+  games: Array<Game>,
   results: Array<any>,
   signupTime: string,
 }

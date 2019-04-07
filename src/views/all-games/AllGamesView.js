@@ -6,9 +6,10 @@ import GameDetails from 'components/GameDetails'
 import AllGamesList from 'views/all-games/components/AllGamesList'
 import { getData } from 'utils/store'
 import Loading from 'components/Loading'
+import type { Game } from 'flow/game.flow'
 
 type Props = {
-  games: Array<any>,
+  games: Array<Game>,
   hiddenGames: Array<any>,
   myGames: Object,
 }
