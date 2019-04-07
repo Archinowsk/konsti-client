@@ -13,14 +13,14 @@ const SignedMembersList = (props: Props) => {
 
   if (!groupMembers) return <div className='signed-games-list' />
 
-  const leader = groupMembers.filter(
+  const leader = groupMembers.find(
     member => member.serial === member.playerGroup
   )
 
   // Sort games by time and name
-  if (!leader || !leader[0]) return <div className='signed-games-list' />
+  if (!leader) return <div className='signed-games-list' />
 
-  const sortedGames = leader[0].signedGames.sort((a, b) => {
+  const sortedGames = leader.signedGames.sort((a, b) => {
     const keyA = moment(a.startTime) + a.title.toLowerCase()
     const keyB = moment(b.startTime) + b.title.toLowerCase()
     if (keyA < keyB) return -1
