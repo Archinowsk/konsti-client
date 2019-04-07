@@ -3,6 +3,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import timeFormatter from 'utils/timeFormatter'
+import { sortArrayByKey } from 'utils/sort'
 import type { Game } from 'flow/game.flow'
 
 type Props = {
@@ -13,24 +14,13 @@ const AllGamesList = (props: Props) => {
   const { games } = props
   const { t } = useTranslation()
 
-  const sortByNames = games => {
-    return games.sort((a, b) => {
-      const keyA = a.title.toLowerCase()
-      const keyB = b.title.toLowerCase()
-      if (keyA < keyB) return -1
-      if (keyA > keyB) return 1
-      return 0
-    })
-  }
-
   // Sort games by starting time and name
   const sortGames = games => {
     const sortedGames = {}
     Object.keys(games)
       .sort()
       .forEach(key => {
-        // Sort games by name
-        sortedGames[key] = sortByNames(games[key])
+        sortedGames[key] = sortArrayByKey(games[key], 'title')
       })
 
     return sortedGames

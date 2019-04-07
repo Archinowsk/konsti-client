@@ -7,6 +7,7 @@ import DropRow from 'views/signup/components/DropRow'
 import { reorder, move } from 'utils/dragAndDrop'
 import sleep from 'utils/sleep'
 import config from 'config'
+import { sortArrayByKey } from 'utils/sort'
 
 type Props = {
   callback: Function,
@@ -58,7 +59,7 @@ const DragAndDropList = (props: Props, state: State) => {
       return game
     })
 
-    const gameList = sortGames(filteredGames)
+    const gameList = sortArrayByKey(filteredGames, 'title')
     const priority1 = []
     const priority2 = []
     const priority3 = []
@@ -86,17 +87,6 @@ const DragAndDropList = (props: Props, state: State) => {
     setPriority1(priority1)
     setPriority2(priority2)
     setPriority3(priority3)
-  }
-
-  const sortGames = games => {
-    // Sort games by name
-    return games.sort((a, b) => {
-      const keyA = a.title.toLowerCase()
-      const keyB = b.title.toLowerCase()
-      if (keyA < keyB) return -1
-      if (keyA > keyB) return 1
-      return 0
-    })
   }
 
   const getList = (id: string) => {

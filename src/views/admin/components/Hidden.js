@@ -2,6 +2,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
+import { sortArrayByKey } from 'utils/sort'
 
 type Props = {
   hiddenGames: Array<any>,
@@ -11,14 +12,7 @@ const Hidden = (props: Props) => {
   const { hiddenGames } = props
   const { t } = useTranslation()
 
-  // Sort games by name
-  const sortedGames = hiddenGames.sort((a, b) => {
-    const keyA = a.title.toLowerCase()
-    const keyB = b.title.toLowerCase()
-    if (keyA < keyB) return -1
-    if (keyA > keyB) return 1
-    return 0
-  })
+  const sortedGames = sortArrayByKey(hiddenGames, 'title')
 
   const GamesList = sortedGames.map(game => (
     <li key={game.gameId}>

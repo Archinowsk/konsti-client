@@ -1,6 +1,7 @@
 /* @flow */
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+import { sortArrayByKey } from 'utils/sort'
 
 type Props = {
   results: Array<any>,
@@ -10,14 +11,7 @@ const AllSignupsList = (props: Props) => {
   const { results } = props
   const { t } = useTranslation()
 
-  // Sort games by name
-  const sortedResults = results.sort((a, b) => {
-    const keyA = a.username.toLowerCase()
-    const keyB = b.username.toLowerCase()
-    if (keyA < keyB) return -1
-    if (keyA > keyB) return 1
-    return 0
-  })
+  const sortedResults = sortArrayByKey(results, 'username')
 
   const resultsList = sortedResults.map(result => (
     <p key={result.username}>
