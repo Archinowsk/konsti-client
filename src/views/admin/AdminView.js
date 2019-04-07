@@ -69,7 +69,7 @@ const AdminView = (props: Props, state: State) => {
       let match = false
 
       for (let j = 0; j < hiddenGames.length; j += 1) {
-        if (games[i].id === hiddenGames[j].id) {
+        if (games[i].gameId === hiddenGames[j].gameId) {
           match = true
           break
         }
@@ -86,7 +86,7 @@ const AdminView = (props: Props, state: State) => {
   const fillHiddenGameinfo = () => {
     games.forEach(game => {
       hiddenGames.forEach(hiddenGame => {
-        if (game.id === hiddenGame.id) {
+        if (game.gameId === hiddenGame.gameId) {
           Object.assign(hiddenGame, game)
         }
       })

@@ -35,7 +35,7 @@ const AllGamesView = (props: Props, state: State) => {
     for (let game of games) {
       let match = false
       for (let hiddenGame of hiddenGames) {
-        if (game.id === hiddenGame.id) {
+        if (game.gameId === hiddenGame.gameId) {
           match = true
           break
         }

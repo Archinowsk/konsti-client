@@ -25,8 +25,8 @@ const MyEnteredList = (props: Props) => {
   const GamesList = sortedGames.map(game => {
     const formattedDate = timeFormatter.weekdayAndTime(game.startTime)
     return (
-      <li key={game.id}>
-        <Link to={`/games/${game.id}`}>
+      <li key={game.gameId}>
+        <Link to={`/games/${game.gameId}`}>
           {formattedDate}: {game.title}
         </Link>
       </li>

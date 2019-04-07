@@ -44,7 +44,7 @@ const DragAndDropList = (props: Props, state: State) => {
   const loadState = () => {
     const filteredGames = games.filter(game => {
       for (let selectedGame of selectedGames) {
-        if (game.id === selectedGame.id) {
+        if (game.gameId === selectedGame.gameId) {
           return undefined
         }
       }

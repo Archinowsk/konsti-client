@@ -46,7 +46,7 @@ const GameDetails = (props: Props, state: State) => {
 
   const { t } = useTranslation()
 
-  const game = games.find(game => game.id === match.params.id)
+  const game = games.find(game => game.gameId === match.params.id)
 
   const [hidden, setHidden] = React.useState(false)
   const [submitting, setSubmitting] = React.useState(false)
@@ -59,11 +59,11 @@ const GameDetails = (props: Props, state: State) => {
   })
 
   const checkGameState = () => {
-    if (!game || !game.id) return
+    if (!game || !game.gameId) return
 
     // Check if in favorites
     for (let i = 0; i < favoritedGames.length; i += 1) {
-      if (favoritedGames[i].id === game.id) {
+      if (favoritedGames[i].gameId === game.gameId) {
         setFavorited(true)
         break
       }
@@ -71,7 +71,7 @@ const GameDetails = (props: Props, state: State) => {
 
     // Check if hidden
     for (let i = 0; i < hiddenGames.length; i += 1) {
-      if (hiddenGames[i].id === game.id) {
+      if (hiddenGames[i].gameId === game.gameId) {
         setHidden(true)
         break
       }
@@ -79,9 +79,9 @@ const GameDetails = (props: Props, state: State) => {
   }
 
   // Find selected game index
-  const findGame = (id, array) => {
+  const findGame = (gameId, array) => {
     for (let i = 0; i < array.length; i += 1) {
-      if (array[i].id === id) {
+      if (array[i].gameId === gameId) {
         return i
       }
     }
@@ -90,10 +90,10 @@ const GameDetails = (props: Props, state: State) => {
 
   // Favorite / unfavorite clicked
   const addFavoriteEvent = async action => {
-    if (!game || !game.id) return
+    if (!game || !game.gameId) return
 
     setSubmitting(true)
-    const gameIndex = findGame(game.id, favoritedGames)
+    const gameIndex = findGame(game.gameId, favoritedGames)
     const allFavoritedGames = favoritedGames.slice()
 
     if (action === 'add') {
@@ -131,15 +131,15 @@ const GameDetails = (props: Props, state: State) => {
 
   // Hide / unhide clicked
   const addHiddenEvent = async action => {
-    if (!game || !game.id) return
+    if (!game || !game.gameId) return
 
     setSubmitting(true)
-    const gameIndex = findGame(game.id, hiddenGames)
+    const gameIndex = findGame(game.gameId, hiddenGames)
     const allHiddenGames = hiddenGames.slice()
 
     if (action === 'add') {
       if (gameIndex === -1) {
-        allHiddenGames.push({ id: game.id })
+        allHiddenGames.push({ gameId: game.gameId })
       }
     } else if (action === 'del') {
       if (gameIndex > -1) {
@@ -150,7 +150,7 @@ const GameDetails = (props: Props, state: State) => {
     // Send only game IDs to API
     const hiddenGameIds = []
     allHiddenGames.forEach(hiddenGame => {
-      hiddenGameIds.push({ id: hiddenGame.id })
+      hiddenGameIds.push({ gameId: hiddenGame.gameId })
     })
 
     const hiddenData = {

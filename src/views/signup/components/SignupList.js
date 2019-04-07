@@ -67,7 +67,7 @@ const SignupList = (props: Props, state: State) => {
     const selectedGameIds = []
     selectedGames.forEach(selectedGame => {
       selectedGameIds.push({
-        id: selectedGame.id,
+        gameId: selectedGame.gameId,
         priority: selectedGame.priority,
         time: signupTime,
       })
@@ -100,7 +100,7 @@ const SignupList = (props: Props, state: State) => {
     selectedGames.forEach(selectedGame => {
       if (selectedGame.startTime !== signupTime) {
         selectedGameIds.push({
-          id: selectedGame.id,
+          gameId: selectedGame.gameId,
           priority: selectedGame.priority,
           time: signupTime,
         })
@@ -137,7 +137,7 @@ const SignupList = (props: Props, state: State) => {
     for (let game of games) {
       let match = false
       for (let hiddenGame of hiddenGames) {
-        if (game.id === hiddenGame.id) {
+        if (game.gameId === hiddenGame.gameId) {
           match = true
           break
         }

@@ -40,7 +40,7 @@ const AllSignupsView = (props: Props, state: State) => {
 
   for (let game of games) {
     for (let result of selectedResult) {
-      if (game.id === result.enteredGame.id) {
+      if (game.gameId === result.enteredGame.gameId) {
         Object.assign(result.enteredGame, game)
       }
     }

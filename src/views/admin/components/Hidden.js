@@ -21,8 +21,8 @@ const Hidden = (props: Props) => {
   })
 
   const GamesList = sortedGames.map(game => (
-    <li key={game.id}>
-      <Link to={`/games/${game.id}`}>{game.title}</Link>
+    <li key={game.gameId}>
+      <Link to={`/games/${game.gameId}`}>{game.title}</Link>
     </li>
   ))
 

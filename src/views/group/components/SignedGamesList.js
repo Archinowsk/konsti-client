@@ -32,9 +32,9 @@ const SignedMembersList = (props: Props) => {
     const formattedDate = timeFormatter.weekdayAndTime(signedGame.startTime)
 
     return (
-      <React.Fragment key={signedGame.id}>
+      <React.Fragment key={signedGame.gameId}>
         <li>
-          <Link to={`/games/${signedGame.id}`}>
+          <Link to={`/games/${signedGame.gameId}`}>
             {formattedDate}: {signedGame.title} ({signedGame.priority})
           </Link>
         </li>

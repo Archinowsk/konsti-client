@@ -26,7 +26,7 @@ const FeedbackForm = (props: Props, state: State) => {
     setSubmitting(true)
 
     const feedbackData = {
-      id: game.id,
+      gameId: game.gameId,
       feedback: feedbackValue,
     }
 

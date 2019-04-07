@@ -33,7 +33,11 @@ const DropRow = (props: Props) => {
             ref={provided.innerRef}
           >
             {games.map((game, index) => (
-              <Draggable key={game.id} draggableId={game.id} index={index}>
+              <Draggable
+                key={game.gameId}
+                draggableId={game.gameId}
+                index={index}
+              >
                 {(provided, snapshot) => (
                   <div
                     className='draggable-item'
@@ -42,7 +46,7 @@ const DropRow = (props: Props) => {
                     {...provided.dragHandleProps}
                   >
                     {game.title}{' '}
-                    <Link to={`/games/${game.id}`}>({t('details')})</Link>
+                    <Link to={`/games/${game.gameId}`}>({t('details')})</Link>
                   </div>
                 )}
               </Draggable>

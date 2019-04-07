@@ -81,8 +81,8 @@ const AllGamesList = (props: Props) => {
       /* $FlowFixMe: property `@@iterator` is missing in  mixed [1] but exists in  `$Iterable` [2]. */
       for (let game of games) {
         const gameEntry = (
-          <p key={game.id} className='games-list'>
-            <Link to={`/games/${game.id}`}>{game.title}</Link>
+          <p key={game.gameId} className='games-list'>
+            <Link to={`/games/${game.gameId}`}>{game.title}</Link>
           </p>
         )
 
