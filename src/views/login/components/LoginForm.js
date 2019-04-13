@@ -23,7 +23,6 @@ const LoginForm = (props: Props) => {
           name='username'
           type='text'
           component={FormField}
-          label={t('username')}
           validate={required}
         />
 
@@ -31,7 +30,6 @@ const LoginForm = (props: Props) => {
           name='password'
           type='password'
           component={FormField}
-          label={t('password')}
           validate={required}
         />
 

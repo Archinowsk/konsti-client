@@ -1,3 +1,48 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CheckboxField should render correctly 1`] = `<p />`;
+exports[`CheckboxField should render correctly 1`] = `
+<div
+  className="form-row"
+>
+  <div
+    className="form-field"
+  >
+    <div
+      className="form-input-wrapper"
+      id="password-wrapper"
+    >
+      <input
+        className="form-input checkbox"
+        id="password"
+        label="password"
+        name="password"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onDragStart={[Function]}
+        onDrop={[Function]}
+        onFocus={[Function]}
+        placeholder="password"
+        value=""
+      />
+    </div>
+    <label
+      htmlFor="password"
+    >
+      iAgree
+       
+      <a
+        href="http://localhost:3000/rekisteriseloste.txt"
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        registerDescription
+      </a>
+    </label>
+  </div>
+  <div
+    className="form-field-error"
+  >
+    validation.required
+  </div>
+</div>
+`;

@@ -24,7 +24,6 @@ const RegistrationForm = (props: Props) => {
           name='username'
           type='text'
           component={FormField}
-          label={t('username')}
           validate={required}
         />
 
@@ -32,7 +31,6 @@ const RegistrationForm = (props: Props) => {
           name='password'
           type='password'
           component={FormField}
-          label={t('password')}
           validate={required}
         />
 
@@ -41,7 +39,6 @@ const RegistrationForm = (props: Props) => {
           id='serial'
           type='text'
           component={FormField}
-          label={t('serial')}
           validate={required}
         />
 
