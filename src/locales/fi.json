@@ -99,7 +99,7 @@
   "selectTime": "Valitse aika",
   "favoritedGames": "Suosikkipelit",
   "signedGames": "Ilmoittautumiset",
-  "enteredGames": "Vahvistuneet ilmoittautumiset",
+  "enteredGames": "Ilmoittautumisen tulokset",
   "hiddenGames": "Piilotetut pelit",
   "error": {
     "usernameTaken": "Käyttäjänimi on varattu",
@@ -135,7 +135,7 @@
     "priority2": "Pelitoive 2",
     "priority3": "Pelitoive 3"
   },
-  "details": "Tietoja",
+  "details": "Lisätietoja",
   "onlyOneGameWarning": "Vain yksi peli sallittu",
   "enterGroupMemberCode": "Käyttäjän koodi",
   "enterGroupLeaderCode": "Ryhmänjohtajan koodi",
