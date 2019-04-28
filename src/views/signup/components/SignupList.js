@@ -13,10 +13,8 @@ import loadData from 'utils/loadData'
 import Loading from 'components/Loading'
 import type { Game } from 'flow/game.flow'
 
-type HiddenGame = { gameId: string }
-
 type Props = {
-  hiddenGames: Array<HiddenGame>,
+  hiddenGames: Array<Game>,
   games: Array<Game>,
   onSubmitSelectedGames: Function,
   onSubmitSignup: Function,

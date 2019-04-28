@@ -10,10 +10,8 @@ import GameInfo from 'components/GameInfo'
 import Loading from 'components/Loading'
 import type { Game } from 'flow/game.flow'
 
-type HiddenGame = { gameId: string }
-
 type Props = {
-  hiddenGames: Array<HiddenGame>,
+  hiddenGames: Array<Game>,
   favoritedGames: Array<Game>,
   games: Array<Game>,
   history: Object,
@@ -143,7 +141,7 @@ const GameDetails = (props: Props, state: State) => {
 
     if (action === 'add') {
       if (gameIndex === -1) {
-        allHiddenGames.push({ gameId: game.gameId })
+        allHiddenGames.push(game)
       }
     } else if (action === 'del') {
       if (gameIndex > -1) {
