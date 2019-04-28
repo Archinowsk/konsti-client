@@ -1,9 +1,10 @@
 /* @flow */
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+import type { GroupMember } from 'flow/group.flow'
 
 type Props = {
-  groupMembers: Array<Object>,
+  groupMembers: Array<GroupMember>,
 }
 
 const GroupMembersList = (props: Props) => {

@@ -16,17 +16,19 @@ import SignedGamesList from 'views/group/components/SignedGamesList'
 import sleep from 'utils/sleep'
 import config from 'config'
 import { submitSignup } from 'views/signup/signupActions'
+import type { Game } from 'flow/game.flow'
+import type { GroupMember } from 'flow/group.flow'
 
 type Props = {
   groupCode: string,
-  groupMembers: Array<Object>,
+  groupMembers: Array<GroupMember>,
   onSubmitCreateGroup: Function,
   onSubmitGetGroup: Function,
   onSubmitJoinGroup: Function,
   onSubmitLeaveGroup: Function,
   onSubmitSignup: Function,
   serial: string,
-  signedGames: Array<Object>,
+  signedGames: Array<Game>,
   username: string,
 }
 
@@ -103,12 +105,12 @@ const GroupView = (props: Props, state: State) => {
     }
   }
 
-  // Remove al signups
+  // Remove all signups
   const removeSignups = async () => {
     const startTimes = []
 
     signedGames.forEach(signedGame => {
-      startTimes.push(signedGame.time)
+      startTimes.push(signedGame.startTime)
     })
 
     const sortedTimes = [...new Set(startTimes)].sort()
