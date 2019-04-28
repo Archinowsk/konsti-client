@@ -1,5 +1,5 @@
-// flow-typed signature: 99ff7b9ed8cc028c163c24c7f1842e8c
-// flow-typed version: 2c899a110b/redux_v4.x.x/flow_>=v0.89.x
+// flow-typed signature: aee106125b87e361b9bdc978695bc7d2
+// flow-typed version: de5b3a01c6/redux_v4.x.x/flow_>=v0.89.x
 
 declare module 'redux' {
   /*
@@ -9,6 +9,10 @@ declare module 'redux' {
     D = Dispatch
 
   */
+
+  declare export type Action<T> = {
+    type: T
+  }
 
   declare export type DispatchAPI<A> = (action: A) => A;
 
