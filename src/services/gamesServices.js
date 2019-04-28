@@ -12,7 +12,7 @@ export const postGamesUpdate = async () => {
     if (error.message === 'Network Error') {
       console.log('Network error: no connection to server')
     } else {
-      console.log(`postGamesUpdate error: ${error}`)
+      console.log(`postGamesUpdate error:`, error)
     }
   }
 
@@ -34,7 +34,7 @@ export const getGames = async () => {
     if (error.message === 'Network Error') {
       console.log('Network error: no connection to server')
     } else {
-      console.log(`getGames error: ${error}`)
+      console.log(`getGames error:`, error)
     }
   }
 

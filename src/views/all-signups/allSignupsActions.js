@@ -16,7 +16,7 @@ export const submitGetResults = () => {
     try {
       response = await getResults()
     } catch (error) {
-      console.log(`getResults error: ${error}`)
+      console.log(`getResults error:`, error)
     }
 
     if (response && response.error) {

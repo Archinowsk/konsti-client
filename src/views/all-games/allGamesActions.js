@@ -16,7 +16,7 @@ export const submitGetGames = () => {
     try {
       response = await getGames()
     } catch (error) {
-      console.log(`getGames error: ${error}`)
+      console.log(`getGames error:`, error)
     }
 
     if (response && response.error) {

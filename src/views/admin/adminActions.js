@@ -24,7 +24,7 @@ export const submitGamesUpdate = () => {
     try {
       response = await postGamesUpdate()
     } catch (error) {
-      console.log(`postGamesUpdate error: ${error}`)
+      console.log(`postGamesUpdate error:`, error)
     }
 
     if (response && response.error) {
@@ -51,7 +51,7 @@ export const submitPlayersAssign = (signupTime: Date) => {
     try {
       response = await postPlayersAssign(signupTime)
     } catch (error) {
-      console.log(`postPlayersAssign error: ${error}`)
+      console.log(`postPlayersAssign error:`, error)
       dispatch(submitPlayersAssignAsync({ assignResponse: error }))
     }
 
@@ -79,7 +79,7 @@ export const submitUpdateHidden = (hiddenData: Object) => {
     try {
       response = await postHidden(hiddenData)
     } catch (error) {
-      console.log(`submitUpdateHidden error: ${error}`)
+      console.log(`submitUpdateHidden error:`, error)
     }
 
     if (response && response.error) {
@@ -116,7 +116,7 @@ export const submitGetSettings = () => {
     try {
       response = await getSettings()
     } catch (error) {
-      console.log(`getSettings error: ${error}`)
+      console.log(`getSettings error:`, error)
     }
 
     if (response && response.error) {
@@ -149,7 +149,7 @@ export const submitSignupTime = (signupTime: Date) => {
     try {
       response = await postSignupTime(signupTime)
     } catch (error) {
-      console.log(`postSignupTime error: ${error}`)
+      console.log(`postSignupTime error:`, error)
     }
 
     if (response && response.error) {

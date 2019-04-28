@@ -12,7 +12,7 @@ export const postHidden = async (hiddenData: Object) => {
     if (error.message === 'Network Error') {
       console.log('Network error: no connection to server')
     } else {
-      console.log(`postHidden error: ${error}`)
+      console.log(`postHidden error:`, error)
     }
   }
 

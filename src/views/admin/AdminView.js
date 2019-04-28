@@ -100,7 +100,7 @@ const AdminView = (props: Props, state: State) => {
     try {
       await onSubmitGamesUpdate()
     } catch (error) {
-      console.log(`onSubmitGamesUpdate error: ${error}`)
+      console.log(`onSubmitGamesUpdate error:`, error)
     }
     setSubmitting(false)
   }
@@ -112,7 +112,7 @@ const AdminView = (props: Props, state: State) => {
     try {
       response = await onSubmitPlayersAssign(signupTime)
     } catch (error) {
-      console.log(`onSubmitPlayersAssign error: ${error}`)
+      console.log(`onSubmitPlayersAssign error:`, error)
     }
     setSubmitting(false)
 
@@ -139,7 +139,7 @@ const AdminView = (props: Props, state: State) => {
     try {
       await onSubmitSignupTime(date)
     } catch (error) {
-      console.log(`onSubmitSignupTime error: ${error}`)
+      console.log(`onSubmitSignupTime error:`, error)
     }
     setSubmitting(false)
   }

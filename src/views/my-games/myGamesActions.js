@@ -32,7 +32,7 @@ export const submitGetUser = (username: string) => {
     try {
       response = await getUser(username)
     } catch (error) {
-      console.log(`getUser error: ${error}`)
+      console.log(`getUser error:`, error)
     }
 
     if (response && response.error) {
@@ -70,7 +70,7 @@ export const submitUpdateFavorites = (favoriteData: FavoriteData) => {
     try {
       response = await postFavorite(favoriteData)
     } catch (error) {
-      console.log(`postFavorite error: ${error}`)
+      console.log(`postFavorite error:`, error)
     }
 
     if (response && response.error) {

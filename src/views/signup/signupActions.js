@@ -17,7 +17,7 @@ export const submitSignup = (signupData: SignupData) => {
     try {
       response = await postSignup(signupData)
     } catch (error) {
-      console.log(`postSignup error: ${error}`)
+      console.log(`postSignup error:`, error)
     }
 
     if (response && response.error) {

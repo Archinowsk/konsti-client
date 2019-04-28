@@ -29,7 +29,7 @@ export const submitLogin = (loginData: Object) => {
     try {
       response = await postLogin(loginData)
     } catch (error) {
-      console.log(`postLogin error: ${error}`)
+      console.log(`postLogin error:`, error)
       dispatch(submitLoginAsync(error))
     }
 

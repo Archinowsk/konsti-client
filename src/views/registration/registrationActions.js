@@ -17,7 +17,7 @@ export const submitRegistration = (registrationData: Object) => {
     try {
       response = await postRegistration(registrationData)
     } catch (error) {
-      console.log(`postRegistration error: ${error}`)
+      console.log(`postRegistration error:`, error)
       dispatch(submitRegistrationAsync({ registrationResponse: error }))
     }
 

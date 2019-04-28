@@ -12,7 +12,7 @@ export const postPlayersAssign = async (signupTime: Date) => {
     if (error.message === 'Network Error') {
       console.log('Network error: no connection to server')
     } else {
-      console.log(`postPlayersAssign error: ${error}`)
+      console.log(`postPlayersAssign error:`, error)
     }
   }
 

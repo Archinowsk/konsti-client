@@ -18,7 +18,7 @@ export const submitJoinGroup = (groupData: Object) => {
     try {
       response = await postGroup(groupData)
     } catch (error) {
-      console.log(`postGroup error: ${error}`)
+      console.log(`postGroup error:`, error)
     }
 
     if (response && response.error) {
@@ -46,7 +46,7 @@ export const submitCreateGroup = (groupData: Object) => {
     try {
       response = await postGroup(groupData)
     } catch (error) {
-      console.log(`postGroup error: ${error}`)
+      console.log(`postGroup error:`, error)
     }
 
     if (response && response.error) {
@@ -74,7 +74,7 @@ export const submitGetGroup = (groupCode: string) => {
     try {
       response = await getGroup(groupCode)
     } catch (error) {
-      console.log(`postGroup error: ${error}`)
+      console.log(`postGroup error:`, error)
     }
 
     if (response && response.error) {
@@ -101,7 +101,7 @@ export const submitLeaveGroup = (groupData: Object) => {
     try {
       response = await postGroup(groupData)
     } catch (error) {
-      console.log(`postGroup error: ${error}`)
+      console.log(`postGroup error:`, error)
     }
 
     if (response && response.error) {

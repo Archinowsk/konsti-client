@@ -9,7 +9,7 @@ export const postLogin = async (loginData: Object) => {
     if (error.message === 'Network Error') {
       console.log('Network error: no connection to server')
     } else {
-      console.log(`postLogin error: ${error}`)
+      console.log(`postLogin error:`, error)
     }
   }
 

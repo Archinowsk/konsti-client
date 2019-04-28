@@ -117,7 +117,7 @@ const GameDetails = (props: Props, state: State) => {
     try {
       response = await onSubmitUpdateFavorites(favoriteData)
     } catch (error) {
-      console.log(`onSubmitUpdateFavorites error: ${error}`)
+      console.log(`onSubmitUpdateFavorites error:`, error)
     }
 
     setSubmitting(false)
@@ -163,7 +163,7 @@ const GameDetails = (props: Props, state: State) => {
     try {
       response = await onSubmitUpdateHidden(hiddenData)
     } catch (error) {
-      console.log(`onSubmitUpdateHidden error: ${error}`)
+      console.log(`onSubmitUpdateHidden error`, error)
     }
 
     setSubmitting(false)

@@ -12,7 +12,7 @@ export const postFavorite = async (favoriteData: Object) => {
     if (error.message === 'Network Error') {
       console.log('Network error: no connection to server')
     } else {
-      console.log(`postFavorite error: ${error}`)
+      console.log(`postFavorite error:`, error)
     }
   }
 

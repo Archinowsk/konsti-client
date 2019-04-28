@@ -12,7 +12,7 @@ export const getResults = async () => {
     if (error.message === 'Network Error') {
       console.log('Network error: no connection to server')
     } else {
-      console.log(`getResults error: ${error}`)
+      console.log(`getResults error:`, error)
     }
   }
 

@@ -34,7 +34,7 @@ const FeedbackForm = (props: Props, state: State) => {
     try {
       await postFeedback(feedbackData)
     } catch (error) {
-      console.log(`postFeedback error: ${error}`)
+      console.log(`postFeedback error:`, error)
     }
     setFeedbackSent(true)
     setSubmitting(false)

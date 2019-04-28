@@ -19,7 +19,7 @@ const RegistrationView = (props: Props) => {
     try {
       response = await onSubmitRegistration(form)
     } catch (error) {
-      console.log(`onSubmitRegistration error: ${error}`)
+      console.log(`onSubmitRegistration error:`, error)
     }
 
     if (response && response.code === 11) {

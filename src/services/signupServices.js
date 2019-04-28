@@ -19,7 +19,7 @@ export const postSignup = async (signupData: SignupData) => {
     if (error.message === 'Network Error') {
       console.log('Network error: no connection to server')
     } else {
-      console.log(`postSignup error: ${error}`)
+      console.log(`postSignup error:`, error)
     }
   }
 

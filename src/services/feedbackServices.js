@@ -12,7 +12,7 @@ export const postFeedback = async (feedbackData: Object) => {
     if (error.message === 'Network Error') {
       console.log('Network error: no connection to server')
     } else {
-      console.log(`postFeedback error: ${error}`)
+      console.log(`postFeedback error:`, error)
     }
   }
 

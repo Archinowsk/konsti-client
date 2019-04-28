@@ -12,7 +12,7 @@ export const postGroup = async (groupData: Object) => {
     if (error.message === 'Network Error') {
       console.log('Network error: no connection to server')
     } else {
-      console.log(`postGroup error: ${error}`)
+      console.log(`postGroup error:`, error)
     }
   }
 
@@ -41,7 +41,7 @@ export const getGroup = async (groupCode: string) => {
     if (error.message === 'Network Error') {
       console.log('Network error: no connection to server')
     } else {
-      console.log(`getGroup error: ${error}`)
+      console.log(`getGroup error:`, error)
     }
   }
 

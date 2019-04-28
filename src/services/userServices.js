@@ -10,7 +10,7 @@ export const postRegistration = async (registrationData: Object) => {
     if (error.message === 'Network Error') {
       console.log('Network error: no connection to server')
     } else {
-      console.log(`postRegistration error: ${error}`)
+      console.log(`postRegistration error:`, error)
     }
   }
 
@@ -38,7 +38,7 @@ export const getUser = async (username: string) => {
     if (error.message === 'Network Error') {
       console.log('Network error: no connection to server')
     } else {
-      console.log(`getUser error: ${error}`)
+      console.log(`getUser error:`, error)
     }
   }
 

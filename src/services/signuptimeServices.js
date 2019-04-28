@@ -12,7 +12,7 @@ export const postSignupTime = async (signupTime: Date) => {
     if (error.message === 'Network Error') {
       console.log('Network error: no connection to server')
     } else {
-      console.log(`postSignupTime error: ${error}`)
+      console.log(`postSignupTime error:`, error)
     }
   }
 
