@@ -2,11 +2,12 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import moment from 'moment'
 import timeFormatter from 'utils/timeFormatter'
+import { sortArrayByKey } from 'utils/sort'
+import type { Game } from 'flow/game.flow'
 
 type Props = {
-  enteredGames: Array<Object>,
+  enteredGames: Array<Game>,
 }
 
 const MyEnteredList = (props: Props) => {
@@ -14,13 +15,7 @@ const MyEnteredList = (props: Props) => {
   const { t } = useTranslation()
 
   // Sort games by time and name
-  const sortedGames = enteredGames.sort((a, b) => {
-    const keyA = moment(a.startTime) + a.title.toLowerCase()
-    const keyB = moment(b.startTime) + b.title.toLowerCase()
-    if (keyA < keyB) return -1
-    if (keyA > keyB) return 1
-    return 0
-  })
+  const sortedGames = sortArrayByKey(enteredGames, 'startTime', 'title')
 
   const GamesList = sortedGames.map(game => {
     const formattedDate = timeFormatter.weekdayAndTime(game.startTime)
