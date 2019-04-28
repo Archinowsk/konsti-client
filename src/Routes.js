@@ -9,7 +9,6 @@ import AllGames from 'views/all-games/AllGamesView'
 import Login from 'views/login/LoginView'
 import MyGames from 'views/my-games/MyGamesView'
 import Signup from 'views/signup/SignupView'
-// import Settings from 'views/settings/SettingsView';
 import Registration from 'views/registration/RegistrationView'
 import Admin from 'views/admin/AdminView'
 import AllSignups from 'views/all-signups/AllSignupsView'
@@ -84,12 +83,6 @@ const Routes = (props: Props) => {
             </Link>
           )}
 
-          {/*
-          <Link to="/settings" className="router-link">
-          {t('pages.settings')}
-          </Link>
-          */}
-
           {userGroup === 'admin' && (
             <Link to='/admin' className='router-link'>
               {t('pages.admin')}
@@ -108,7 +101,6 @@ const Routes = (props: Props) => {
           <Route path='/mygames' component={MyGames} />
           <Route path='/signup' component={Signup} />
           <Route path='/allsignups' component={AllSignups} />
-          {/* <Route path="/settings" component={Settings} /> */}
           <Route path='/group' component={Group} />
           <Route path='/admin' component={Admin} />
           <Route path='/logout' component={Logout} />
