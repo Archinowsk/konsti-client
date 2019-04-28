@@ -4,7 +4,7 @@ import {
   SUBMIT_SELECTED_GAMES,
 } from 'views/signup/signupActions'
 
-const initialState = { status: 'noSubmit', date: '', selectedGames: [] }
+const initialState = { date: '', selectedGames: [] }
 
 const signupReducer = (state: Object = initialState, action: Function) => {
   switch (action.type) {
