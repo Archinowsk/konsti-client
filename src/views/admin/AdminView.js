@@ -10,7 +10,8 @@ import {
 } from 'views/admin/adminActions'
 import { submitSelectDate } from 'views/signup/signupActions'
 import TimesDropdown from 'components/TimesDropdown'
-import { getData } from 'utils/store'
+import { getStore } from 'utils/store'
+import loadData from 'utils/loadData'
 import Loading from 'components/Loading'
 import timeFormatter from 'utils/timeFormatter'
 import type { Game } from 'flow/game.flow'
@@ -56,7 +57,7 @@ const AdminView = (props: Props, state: State) => {
 
   React.useEffect(() => {
     const fetchData = async () => {
-      await getData()
+      await loadData(getStore())
     }
     fetchData()
     setLoading(false)

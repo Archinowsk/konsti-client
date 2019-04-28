@@ -2,7 +2,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-import { getData } from 'utils/store'
+import { getStore } from 'utils/store'
+import loadData from 'utils/loadData'
 import Loading from 'components/Loading'
 
 type Props = {}
@@ -17,7 +18,7 @@ const MyGamesView = (props: Props, state: State) => {
 
   React.useEffect(() => {
     const fetchData = async () => {
-      await getData()
+      await loadData(getStore())
     }
     fetchData()
     setLoading(false)

@@ -4,7 +4,8 @@ import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import GameDetails from 'components/GameDetails'
 import AllGamesList from 'views/all-games/components/AllGamesList'
-import { getData } from 'utils/store'
+import { getStore } from 'utils/store'
+import loadData from 'utils/loadData'
 import Loading from 'components/Loading'
 import type { Game } from 'flow/game.flow'
 
@@ -24,7 +25,7 @@ const AllGamesView = (props: Props, state: State) => {
 
   React.useEffect(() => {
     const fetchData = async () => {
-      await getData()
+      await loadData(getStore())
     }
     fetchData()
     setLoading(false)

@@ -2,7 +2,8 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
-import { getData } from 'utils/store'
+import { getStore } from 'utils/store'
+import loadData from 'utils/loadData'
 import Loading from 'components/Loading'
 import {
   submitJoinGroup,
@@ -63,7 +64,7 @@ const GroupView = (props: Props, state: State) => {
 
   React.useEffect(() => {
     const fetchData = async () => {
-      await getData()
+      await loadData(getStore())
 
       // Get group members if user is in a group
       if (groupCode !== '0') {

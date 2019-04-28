@@ -3,7 +3,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import AllSignupsList from 'views/all-signups/components/AllSignupsList'
-import { getData } from 'utils/store'
+import { getStore } from 'utils/store'
+import loadData from 'utils/loadData'
 import Loading from 'components/Loading'
 import timeFormatter from 'utils/timeFormatter'
 import type { Game } from 'flow/game.flow'
@@ -25,7 +26,7 @@ const AllSignupsView = (props: Props, state: State) => {
 
   React.useEffect(() => {
     const fetchData = async () => {
-      await getData()
+      await loadData(getStore())
     }
     fetchData()
     setLoading(false)

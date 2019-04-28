@@ -12,7 +12,6 @@ import signupReducer from 'views/signup/signupReducer'
 import adminReducer from 'views/admin/adminReducer'
 import allSignupsReducer from 'views/all-signups/allSignupsReducer'
 // import groupReducer from 'views/group/groupReducer'
-import loadData from 'utils/loadData'
 import { SUBMIT_LOGOUT } from 'views/login/loginActions'
 
 // Set reducers
@@ -58,8 +57,8 @@ if (isProduction) {
 /* $FlowFixMe: Redux flow-typed missing generics types */
 const store = createStore(rootReducer, initialState, enhancer)
 
-export const getData = () => {
-  return loadData(store)
+export const getStore = () => {
+  return store
 }
 
 export default store

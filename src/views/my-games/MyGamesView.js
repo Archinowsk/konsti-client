@@ -4,7 +4,8 @@ import { connect } from 'react-redux'
 import MySignupsList from 'views/my-games/components/MySignupsList'
 import MyFavoritesList from 'views/my-games/components/MyFavoritesList'
 import MyEnteredList from 'views/my-games/components/MyEnteredList'
-import { getData } from 'utils/store'
+import { getStore } from 'utils/store'
+import loadData from 'utils/loadData'
 import Loading from 'components/Loading'
 
 type Props = {
@@ -23,7 +24,7 @@ const MyGamesView = (props: Props, state: State) => {
 
   React.useEffect(() => {
     const fetchData = async () => {
-      await getData()
+      await loadData(getStore())
     }
     fetchData()
     setLoading(false)

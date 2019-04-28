@@ -8,7 +8,8 @@ import DragAndDropList from 'views/signup/components/DragAndDropList'
 import getOpenSignupTimes from 'utils/getOpenSignupTimes'
 import sleep from 'utils/sleep'
 import config from 'config'
-import { getData } from 'utils/store'
+import { getStore } from 'utils/store'
+import loadData from 'utils/loadData'
 import Loading from 'components/Loading'
 
 type Props = {
@@ -52,7 +53,7 @@ const SignupList = (props: Props, state: State) => {
 
   React.useEffect(() => {
     const fetchData = async () => {
-      await getData()
+      await loadData(getStore())
       await onSubmitSelectedGames(signedGames)
     }
     fetchData()
