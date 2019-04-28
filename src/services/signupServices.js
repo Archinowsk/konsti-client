@@ -1,10 +1,11 @@
 /* @flow */
 import api from 'utils/api'
 import setAuthToken from 'utils/setAuthToken'
+import type { Game } from 'flow/game.flow'
 
 type SignupData = {
   username: string,
-  selectedGames: Array<Object>,
+  selectedGames: Array<Game>,
   time: string,
 }
 

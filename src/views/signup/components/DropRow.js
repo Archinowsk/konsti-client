@@ -4,10 +4,11 @@ import { useTranslation } from 'react-i18next'
 /* $FlowFixMe: Cannot import `Droppable` because there is no `Droppable` export in `react-beautiful-dnd`. */
 import { Droppable, Draggable } from 'react-beautiful-dnd'
 import { Link } from 'react-router-dom'
+import type { Game } from 'flow/game.flow'
 
 type Props = {
   droppableId: string,
-  games: Array<Object>,
+  games: Array<Game>,
   label: string,
 }
 

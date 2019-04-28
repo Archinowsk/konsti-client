@@ -10,9 +10,11 @@ import GameInfo from 'components/GameInfo'
 import Loading from 'components/Loading'
 import type { Game } from 'flow/game.flow'
 
+type HiddenGame = { gameId: string }
+
 type Props = {
-  hiddenGames: Array<any>,
-  favoritedGames: Array<any>,
+  hiddenGames: Array<HiddenGame>,
+  favoritedGames: Array<Game>,
   games: Array<Game>,
   history: Object,
   loggedIn: boolean,
@@ -26,7 +28,6 @@ type Props = {
 type State = {
   hidden: boolean,
   favorited: boolean,
-  game: Object,
   loading: boolean,
   submitting: boolean,
 }
@@ -58,6 +59,8 @@ const GameDetails = (props: Props, state: State) => {
     checkGameState()
     setLoading(false)
   })
+
+  if (!game || !game.gameId) return
 
   const checkGameState = () => {
     if (!game || !game.gameId) return

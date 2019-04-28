@@ -2,9 +2,10 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { postFeedback } from 'services/feedbackServices'
+import type { Game } from 'flow/game.flow'
 
 type Props = {
-  game: Object,
+  game: Game,
 }
 
 type State = {

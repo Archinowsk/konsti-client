@@ -2,9 +2,10 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import timeFormatter from 'utils/timeFormatter'
+import type { Game } from 'flow/game.flow'
 
 export type Props = {
-  game: Object,
+  game: Game,
 }
 
 const GameInfo = (props: Props) => {

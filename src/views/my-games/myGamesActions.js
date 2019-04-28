@@ -1,13 +1,14 @@
 /* @flow */
 import { getUser } from 'services/userServices'
 import { postFavorite } from 'services/favoriteServices'
+import type { Game } from 'flow/game.flow'
 
 export const SUBMIT_GET_USER_GAMES = 'SUBMIT_GET_USER_GAMES'
 export const SUBMIT_UPDATE_FAVORITES = 'SUBMIT_UPDATE_FAVORITES'
 
 type FavoriteData = {
   username: string,
-  favoritedGames: Array<Object>,
+  favoritedGames: Array<Game>,
 }
 
 const submitGetUserAsync = ({

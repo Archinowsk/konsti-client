@@ -21,4 +21,5 @@ export type Game = {
   ageRestricted: boolean,
   beginnerFriendly: boolean,
   intendedForExperiencedParticipants: boolean,
+  priority?: number,
 }

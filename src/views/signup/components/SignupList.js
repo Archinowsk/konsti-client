@@ -11,15 +11,18 @@ import config from 'config'
 import { getStore } from 'utils/store'
 import loadData from 'utils/loadData'
 import Loading from 'components/Loading'
+import type { Game } from 'flow/game.flow'
+
+type HiddenGame = { gameId: string }
 
 type Props = {
-  hiddenGames: Array<Object>,
-  games: Array<Object>,
+  hiddenGames: Array<HiddenGame>,
+  games: Array<Game>,
   onSubmitSelectedGames: Function,
   onSubmitSignup: Function,
-  selectedGames: Array<Object>,
+  selectedGames: Array<Game>,
   username: string,
-  signedGames: Array<Object>,
+  signedGames: Array<Game>,
 }
 
 type State = {

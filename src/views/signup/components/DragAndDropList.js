@@ -8,27 +8,28 @@ import { reorder, move } from 'utils/dragAndDrop'
 import sleep from 'utils/sleep'
 import config from 'config'
 import { sortArrayByKey } from 'utils/sort'
+import type { Game } from 'flow/game.flow'
 
 type Props = {
   callback: Function,
-  games: Array<Object>,
-  selectedGames: Array<Object>,
+  games: Array<Game>,
+  selectedGames: Array<Game>,
   signupTime: string,
 }
 
 type State = {
-  gameList: Array<Object>,
-  priority1: Array<Object>,
-  priority2: Array<Object>,
-  priority3: Array<Object>,
+  gameList: Array<Game>,
+  priority1: Array<Game>,
+  priority2: Array<Game>,
+  priority3: Array<Game>,
   warningVisible: boolean,
 }
 
 type UpdatedPositions = {
-  gameList?: Array<any>,
-  priority1?: Array<any>,
-  priority2?: Array<any>,
-  priority3?: Array<any>,
+  gameList?: Array<Game>,
+  priority1?: Array<Game>,
+  priority2?: Array<Game>,
+  priority3?: Array<Game>,
 }
 
 const DragAndDropList = (props: Props, state: State) => {
