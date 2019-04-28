@@ -39,21 +39,6 @@ export const submitGetUser = (username: string) => {
       return Promise.reject(response)
     }
     if (response && response.status === 'success') {
-      /*
-      // Group all unique start time
-      const groupGamesByTime = array => {
-        return array.reduce((acc, item) => {
-          acc[item['time']] = acc[item['time']] || []
-          acc[item['time']].push(item)
-          return acc
-        }, {})
-      }
-
-      const enteredGames = groupGamesByTime(response.games.enteredGames)
-      const favoritedGames = groupGamesByTime(response.games.favoritedGames)
-      const signedGames = groupGamesByTime(response.games.signedGames)
-      */
-
       const enteredGames = response.games.enteredGames
       const favoritedGames = response.games.favoritedGames
       const signedGames = response.games.signedGames
