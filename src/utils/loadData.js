@@ -10,6 +10,7 @@ const loadData = async (store: Object) => {
   // const adminSettingsLoaded = state.admin.adminSettingsLoaded
   // const myGamesLoaded = state.myGames.myGamesLoaded
   const loggedIn = state.login.loggedIn
+  const startTime = state.admin.signupTime
 
   // Get games data
   await store.dispatch(submitGetGames())
@@ -26,7 +27,9 @@ const loadData = async (store: Object) => {
 
   if (loggedIn) {
     // Get results data
-    await store.dispatch(submitGetResults())
+    if (startTime) {
+      await store.dispatch(submitGetResults(startTime))
+    }
 
     // Get user data
     const username = state.login.username

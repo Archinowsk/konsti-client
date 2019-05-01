@@ -9,9 +9,14 @@ import Loading from 'components/Loading'
 import timeFormatter from 'utils/timeFormatter'
 import type { Game } from 'flow/game.flow'
 
+export type Result = {
+  username: string,
+  enteredGame: Game,
+  signedGames: Array<Game>,
+}
+
 type Props = {
-  games: Array<Game>,
-  results: Array<any>,
+  results: Array<Result>,
   signupTime: string,
 }
 
@@ -20,7 +25,7 @@ type State = {
 }
 
 const AllSignupsView = (props: Props, state: State) => {
-  const { games, results, signupTime } = props
+  const { results, signupTime } = props
   const { t } = useTranslation()
   const [loading, setLoading] = React.useState(true)
 
@@ -32,41 +37,18 @@ const AllSignupsView = (props: Props, state: State) => {
     setLoading(false)
   }, [])
 
-  let selectedResult = []
-  for (let result of results) {
-    if (result.startTime === signupTime) {
-      selectedResult = result.result
-      break
-    }
-  }
-
-  games.map(game => {
-    selectedResult.map(result => {
-      if (game.gameId === result.enteredGame.gameId) {
-        Object.assign(result.enteredGame, game)
-      }
-    })
-  })
-
-  let resultsAvailable = false
-  if (selectedResult && selectedResult.length !== 0) {
-    resultsAvailable = true
-  }
-
   const formattedDate = timeFormatter.weekdayAndTime(signupTime)
 
   return (
     <div className='all-signups-view'>
       {loading && <Loading />}
-      {!loading && !resultsAvailable && (
-        <p className='page-title'>{t('noResults')}</p>
-      )}
-      {!loading && resultsAvailable && (
+      {!loading && !results && <p className='page-title'>{t('noResults')}</p>}
+      {!loading && results && (
         <React.Fragment>
           <p className='page-title'>
             {t('signupResultsfor')} {formattedDate}
           </p>
-          <AllSignupsList results={selectedResult} />
+          <AllSignupsList results={results} />
         </React.Fragment>
       )}
     </div>

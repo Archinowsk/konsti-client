@@ -10,11 +10,11 @@ const submitGetResultsAsync = ({ results }) => {
   }
 }
 
-export const submitGetResults = () => {
+export const submitGetResults = (startTime: string) => {
   return async (dispatch: Function) => {
     let response = null
     try {
-      response = await getResults()
+      response = await getResults(startTime)
     } catch (error) {
       console.log(`getResults error:`, error)
     }

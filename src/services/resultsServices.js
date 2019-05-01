@@ -2,12 +2,16 @@
 import api from 'utils/api'
 import setAuthToken from 'utils/setAuthToken'
 
-export const getResults = async () => {
+export const getResults = async (startTime: string) => {
   setAuthToken()
 
   let response = null
   try {
-    response = await api.get('/results')
+    response = await api.get('/results', {
+      params: {
+        startTime,
+      },
+    })
   } catch (error) {
     if (error.message === 'Network Error') {
       console.log('Network error: no connection to server')
