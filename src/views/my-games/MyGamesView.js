@@ -7,11 +7,12 @@ import MyEnteredList from 'views/my-games/components/MyEnteredList'
 import { getStore } from 'utils/store'
 import loadData from 'utils/loadData'
 import Loading from 'components/Loading'
+import type { Game } from 'flow/game.flow'
 
 type Props = {
-  signedGames: Array<any>,
-  favoritedGames: Array<any>,
-  enteredGames: Array<any>,
+  signedGames: Array<Game>,
+  favoritedGames: Array<Game>,
+  enteredGames: Array<Game>,
 }
 
 type State = {

@@ -2,9 +2,10 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { sortArrayByKey } from 'utils/sort'
+import type { Result } from 'flow/result.flow'
 
 type Props = {
-  results: Array<any>,
+  results: Array<Result>,
 }
 
 const AllSignupsList = (props: Props) => {

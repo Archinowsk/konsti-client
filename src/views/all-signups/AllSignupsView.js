@@ -7,13 +7,7 @@ import { getStore } from 'utils/store'
 import loadData from 'utils/loadData'
 import Loading from 'components/Loading'
 import timeFormatter from 'utils/timeFormatter'
-import type { Game } from 'flow/game.flow'
-
-export type Result = {
-  username: string,
-  enteredGame: Game,
-  signedGames: Array<Game>,
-}
+import type { Result } from 'flow/result.flow'
 
 type Props = {
   results: Array<Result>,
