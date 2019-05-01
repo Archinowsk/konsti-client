@@ -17,7 +17,7 @@ import timeFormatter from 'utils/timeFormatter'
 import type { Game } from 'flow/game.flow'
 
 type Props = {
-  hiddenGames: Array<any>,
+  hiddenGames: Array<Game>,
   date: string,
   games: Array<Game>,
   onSubmitGamesUpdate: Function,

@@ -11,7 +11,7 @@ import type { Game } from 'flow/game.flow'
 
 type Props = {
   games: Array<Game>,
-  hiddenGames: Array<any>,
+  hiddenGames: Array<Game>,
   myGames: Object,
 }
 

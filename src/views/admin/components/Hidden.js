@@ -3,9 +3,10 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { sortArrayByKey } from 'utils/sort'
+import type { Game } from 'flow/game.flow'
 
 type Props = {
-  hiddenGames: Array<any>,
+  hiddenGames: Array<Game>,
 }
 
 const Hidden = (props: Props) => {
