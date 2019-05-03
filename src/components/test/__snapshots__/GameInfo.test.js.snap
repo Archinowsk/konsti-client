@@ -1,3 +1,147 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`GameInfo should render correctly 1`] = `<p />`;
+exports[`GameInfo should render correctly 1`] = `
+<div>
+  <div
+    className="game-details-row"
+  >
+    <span
+      className="game-details-title"
+    >
+      gameInfo.title
+    </span>
+    Test game
+  </div>
+  <div
+    className="game-details-row"
+  >
+    <span
+      className="game-details-title"
+    >
+      gameInfo.gamemaster
+    </span>
+    Test GM
+  </div>
+  <div
+    className="game-details-row"
+  >
+    <span
+      className="game-details-title"
+    >
+      gameInfo.genres
+    </span>
+    <ul>
+      <li
+        key="fantasy"
+      >
+        genre.fantasy
+      </li>
+      <li
+        key="war"
+      >
+        genre.war
+      </li>
+      <li
+        key="exploration"
+      >
+        genre.exploration
+      </li>
+      <li
+        key="mystery"
+      >
+        genre.mystery
+      </li>
+      <li
+        key="drama"
+      >
+        genre.drama
+      </li>
+    </ul>
+  </div>
+  <div
+    className="game-details-row"
+  >
+    <span
+      className="game-details-title"
+    >
+      gameInfo.runTime
+    </span>
+    Saturday 19:00
+     - 
+    23:00
+     (
+    4
+     
+    hours
+    )
+  </div>
+  <div
+    className="game-details-row"
+  >
+    <span
+      className="game-details-title"
+    >
+      gameInfo.description
+    </span>
+    Test game description
+  </div>
+  <div
+    className="game-details-row"
+  >
+    <span
+      className="game-details-title"
+    >
+      gameInfo.gamesystem
+    </span>
+    Test gamesystem
+  </div>
+  <div
+    className="game-details-row"
+  >
+    <span
+      className="game-details-title"
+    >
+      gameInfo.gameStyle
+    </span>
+    <ul>
+      <li
+        key="serious"
+      >
+        gameStyle.serious
+      </li>
+      <li
+        key="story_driven"
+      >
+        gameStyle.story_driven
+      </li>
+      <li
+        key="character_driven"
+      >
+        gameStyle.character_driven
+      </li>
+    </ul>
+  </div>
+  <div
+    className="game-details-row"
+  >
+    <span
+      className="game-details-title"
+    >
+      gameInfo.location
+    </span>
+    Test location
+  </div>
+  <div
+    className="game-details-row"
+  >
+    <span
+      className="game-details-title"
+    >
+      gameInfo.numberOfPlayers
+    </span>
+    2
+     - 
+    4
+  </div>
+</div>
+`;
