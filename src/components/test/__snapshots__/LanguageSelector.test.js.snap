@@ -6,6 +6,7 @@ exports[`LanguageSelector should render correctly 1`] = `
     id="language"
     onChange={[Function]}
     type="text"
+    value="en"
   >
     <option
       value="en"
