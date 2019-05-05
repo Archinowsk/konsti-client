@@ -32,6 +32,8 @@
   "minutes": "minutes",
   "show": "Show",
   "hide": "Hide",
+  "sortBy": "Sort by",
+  "enteredGameTitle": "Game title",
   "language": {
     "english": "English",
     "finnish": "Finnish"

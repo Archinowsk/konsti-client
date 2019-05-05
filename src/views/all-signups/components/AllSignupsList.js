@@ -8,24 +8,63 @@ type Props = {
   results: Array<Result>,
 }
 
-const AllSignupsList = (props: Props) => {
+type State = {
+  sortedBy: string,
+}
+
+const AllSignupsList = (props: Props, state: State) => {
   const { results } = props
   const { t } = useTranslation()
+  const [sortedBy, setSortedBy] = React.useState('')
 
-  const sortedResults = sortArrayByKey(results, 'username')
+  React.useEffect(() => {
+    setSortedBy('username')
+  }, [])
 
-  const resultsList = sortedResults.map(result => (
-    <p key={result.username}>
-      <span className='bold'>{result.username}:</span>{' '}
-      {result.enteredGame.title} (
-      <span className='bold'>
-        {t('gameInfo.location')}: {result.enteredGame.location}
-      </span>
-      )
-    </p>
-  ))
+  const buttons = ['username', 'enteredGameTitle']
 
-  return <div className='results-list'>{resultsList}</div>
+  return (
+    <div className='results-list'>
+      <span>{t('sortBy')} </span>
+
+      {buttons.map(name => {
+        return (
+          <button
+            className={sortedBy === name ? 'active' : ''}
+            value={name}
+            onClick={() => setSortedBy(name)}
+            key={name}
+          >
+            {t(name)}
+          </button>
+        )
+      })}
+
+      {sortedBy === 'username' &&
+        sortArrayByKey(results, 'username').map(result => (
+          <p key={result.username}>
+            <span className='bold'>{result.username}: </span>
+            {result.enteredGame.title} (
+            <span className='bold'>
+              {t('gameInfo.location')}: {result.enteredGame.location}
+            </span>
+            )
+          </p>
+        ))}
+
+      {sortedBy === 'enteredGameTitle' &&
+        sortArrayByKey(results, 'enteredGame.title').map(result => (
+          <p key={result.username}>
+            <span className='bold'>{result.enteredGame.title}: </span>
+            {result.username} (
+            <span className='bold'>
+              {t('gameInfo.location')}: {result.enteredGame.location}
+            </span>
+            )
+          </p>
+        ))}
+    </div>
+  )
 }
 
 export default AllSignupsList

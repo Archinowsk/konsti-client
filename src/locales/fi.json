@@ -32,6 +32,8 @@
   "minutes": "minuuttia",
   "show": "Näytä",
   "hide": "Piilota",
+  "sortBy": "Järjestys",
+  "enteredGameTitle": "Pelin nimi",
   "language": {
     "english": "Englanti",
     "finnish": "Suomi"
