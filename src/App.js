@@ -6,6 +6,8 @@ import { connect } from 'react-redux'
 import Routes from 'Routes'
 import LanguageSelector from 'components/LanguageSelector'
 import config from 'config'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faAngleUp, faAngleDown } from '@fortawesome/free-solid-svg-icons'
 
 type Props = {
   username: string,
@@ -17,6 +19,8 @@ const App = (props: Props) => {
   const { username, loggedIn, serial } = props
   const { appOpen } = config
   const { t } = useTranslation()
+
+  library.add(faAngleUp, faAngleDown)
 
   return (
     <React.Fragment>
