@@ -23,7 +23,7 @@ const Accordian = (props: Props, state: State) => {
   return (
     <div className='accordian'>
       {open && (
-        <div>
+        <React.Fragment>
           <button onClick={() => onClick()}>
             <FontAwesomeIcon className='accordian-icon' icon='angle-up' />
             <span>
@@ -32,7 +32,7 @@ const Accordian = (props: Props, state: State) => {
           </button>
           <h3>{t(`${props.title}`)}</h3>
           <p>{t(`${props.text}`)}</p>
-        </div>
+        </React.Fragment>
       )}
       {!open && (
         <div>
