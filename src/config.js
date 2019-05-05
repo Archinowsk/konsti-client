@@ -22,7 +22,7 @@ config.appName = 'Konsti'
 
 // App status
 config.apiServerURL = process.env.API_SERVER_URL || 'http://localhost:3000'
-config.env = process.env.ENVIRONMENT || 'development'
+config.env = process.env.NODE_ENV || 'development'
 
 // App settings
 config.appOpen = true
