@@ -24,12 +24,12 @@ exports[`CheckboxField should render correctly 1`] = `
         placeholder="password"
         value=""
       />
+      <label
+        htmlFor="password"
+      >
+        agreeRegisterDescription
+      </label>
     </div>
-    <label
-      htmlFor="password"
-    >
-      agreeRegisterDescription
-    </label>
   </div>
   <div
     className="form-field-error"

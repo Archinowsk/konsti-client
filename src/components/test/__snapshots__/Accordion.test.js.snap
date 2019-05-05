@@ -29,7 +29,7 @@ exports[`Loading should render correctly 1`] = `
       <span>
         show
          
-        undefined
+        test title
       </span>
     </button>
   </div>
