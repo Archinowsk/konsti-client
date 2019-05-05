@@ -24,9 +24,8 @@ const CheckboxField = (field: FieldProps) => {
             type={field.type}
             label={t(name)}
           />
+          <label htmlFor={name}>{t('agreeRegisterDescription')}</label>
         </div>
-
-        <label htmlFor={name}>{t('agreeRegisterDescription')}</label>
       </div>
 
       {touched && error && <div className='form-field-error'>{t(error)}</div>}
