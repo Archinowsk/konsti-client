@@ -224,11 +224,19 @@ input:focus {
   flex-direction: row;
 }
 
+.games-row {
+  margin: 0 10px 0 0;
+  width: 50%;
+}
+
+.priority-row {
+  width: 50%;
+}
+
 .drop-row {
   background-color: $background-gray;
   min-height: 40px;
   padding: 10px;
-  width: 30vw;
 }
 
 .drop-row.dragging {
@@ -240,10 +248,6 @@ input:focus {
   border: 1px solid $border-gray;
   margin: 8px 0;
   padding: 8px;
-}
-
-.games-row {
-  margin: 0 10px 0 0;
 }
 
 .accordian-icon {
