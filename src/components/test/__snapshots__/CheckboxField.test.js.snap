@@ -28,15 +28,7 @@ exports[`CheckboxField should render correctly 1`] = `
     <label
       htmlFor="password"
     >
-      iAgree
-       
-      <a
-        href="http://localhost:3000/rekisteriseloste.txt"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        registerDescription
-      </a>
+      agreeRegisterDescription
     </label>
   </div>
   <div

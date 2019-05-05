@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loading should render correctly 1`] = `
+<div
+  className="accordian"
+>
+  <div>
+    <button
+      onClick={[Function]}
+    >
+      <FontAwesomeIcon
+        border={false}
+        className="accordian-icon"
+        fixedWidth={false}
+        flip={null}
+        icon="angle-down"
+        inverse={false}
+        listItem={false}
+        mask={null}
+        pull={null}
+        pulse={false}
+        rotation={null}
+        size={null}
+        spin={false}
+        symbol={false}
+        title=""
+        transform={null}
+      />
+      <span>
+        show
+         
+        undefined
+      </span>
+    </button>
+  </div>
+</div>
+`;
