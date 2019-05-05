@@ -1,5 +1,5 @@
 {
-  "header": "Ropecon 2018 Tabletop RPG Signup",
+  "header": "Ropecon 2019 Tabletop RPG Signup",
   "footer": "Footer",
   "button": {
     "logout": "Logout",
@@ -30,6 +30,8 @@
   "loading": "Loading...",
   "hours": "hours",
   "minutes": "minutes",
+  "show": "Show",
+  "hide": "Hide",
   "language": {
     "english": "English",
     "finnish": "Finnish"
@@ -106,8 +108,9 @@
     "loginFailed": "Username and password don't match",
     "unkown": "Unknown error"
   },
-  "iAgree": "I agree to the",
-  "registerDescription": "register description",
+  "agreeRegisterDescription": "I agree to the register description",
+  "registerDescriptionTitle": "Register description",
+  "registerDescriptionText": "Registered usernames are collected in the user register of the Konsti application. The registry information is used to organize Ropecon 2019 roleplaying games signups and after the event anonymised for compiling statistics. Data will not be disclosed outside of Ropecon 2019. Personal information is stored on servers managed by Amazon that may be located outside the EU / EEA. The information is password protected. The registrar is Ropecon ry, represented by Arttu Hanska, roolipelit@ropecon.fi.",
   "registrationSerialHelp": "Get code from LARP and RPG desk",
   "noSignedGames": "No signed up games",
   "noFavoritedGames": "No favorited games",

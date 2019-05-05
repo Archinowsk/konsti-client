@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import FormField from 'components/FormField'
 import CheckboxField from 'components/CheckboxField'
 import { required } from 'utils/validate'
+import Accordion from 'components/Accordion'
 
 type Props = {
   handleSubmit: Function,
@@ -52,6 +53,11 @@ const RegistrationForm = (props: Props) => {
           type='checkbox'
           component={CheckboxField}
           validate={required}
+        />
+
+        <Accordion
+          text='registerDescriptionText'
+          title='registerDescriptionTitle'
         />
 
         <button type='submit' disabled={submitting}>

@@ -2,7 +2,6 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import type { FieldProps } from 'redux-form'
-import config from 'config'
 
 const CheckboxField = (field: FieldProps) => {
   const { t } = useTranslation()
@@ -11,8 +10,6 @@ const CheckboxField = (field: FieldProps) => {
 
   const { name } = field.input
   const { touched, error } = field.meta
-
-  const registerDescriptionLink = `${config.apiServerURL}/rekisteriseloste.txt`
 
   return (
     <div className='form-row'>
@@ -29,16 +26,7 @@ const CheckboxField = (field: FieldProps) => {
           />
         </div>
 
-        <label htmlFor={name}>
-          {t('iAgree')}{' '}
-          <a
-            href={registerDescriptionLink}
-            target='_blank'
-            rel='noopener noreferrer'
-          >
-            {t('registerDescription')}
-          </a>
-        </label>
+        <label htmlFor={name}>{t('agreeRegisterDescription')}</label>
       </div>
 
       {touched && error && <div className='form-field-error'>{t(error)}</div>}
