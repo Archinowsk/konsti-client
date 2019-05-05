@@ -7,10 +7,18 @@ html {
   padding-bottom: 32px;
 }
 
+body {
+  background-color: #fafafa;
+  margin: 0 auto;
+  width: 800px;
+}
+
 /* stylelint-disable selector-max-id */
 #main {
-  margin: 10px;
-  max-width: 800px;
+  background-color: #fff;
+  border: solid 1px #e3e7eb;
+  margin-top: 20px;
+  padding: 30px;
 }
 /* stylelint-enable */
 
@@ -116,6 +124,14 @@ button:disabled:hover {
   padding: 8px 0;
 }
 
+.form-input-wrapper {
+  align-items: center;
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .router-link {
   display: inline-block;
   padding: 4px;
@@ -159,6 +175,10 @@ input:focus {
   height: 30px;
   padding: 0 0 0 10px;
   width: 100%;
+}
+
+.form-input.checkbox {
+  margin-right: 10px;
 }
 
 .game-details-title {
