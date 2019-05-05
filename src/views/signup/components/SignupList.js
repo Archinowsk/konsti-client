@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 import timeFormatter from 'utils/timeFormatter'
 import { submitSignup, submitSelectedGames } from 'views/signup/signupActions'
 import DragAndDropList from 'views/signup/components/DragAndDropList'
-import getOpenSignupTimes from 'utils/getOpenSignupTimes'
 import sleep from 'utils/sleep'
 import config from 'config'
 import { getStore } from 'utils/store'
@@ -21,13 +20,13 @@ type Props = {
   selectedGames: Array<Game>,
   username: string,
   signedGames: Array<Game>,
+  signupTimes: Array<string>,
 }
 
 type State = {
   submitting: boolean,
   signupSubmitted: boolean,
   signupError: boolean,
-  signupTimes: Array<string>,
   signupTime: string,
 }
 
@@ -40,6 +39,7 @@ const SignupList = (props: Props, state: State) => {
     selectedGames,
     username,
     signedGames,
+    signupTimes,
   } = props
 
   const [submitting, setSubmitting] = React.useState(false)
@@ -49,8 +49,6 @@ const SignupList = (props: Props, state: State) => {
   const [loading, setLoading] = React.useState(true)
 
   const { t } = useTranslation()
-
-  const signupTimes = getOpenSignupTimes(games)
 
   React.useEffect(() => {
     const fetchData = async () => {
