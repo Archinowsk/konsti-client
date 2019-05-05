@@ -11,6 +11,7 @@ const loadData = async (store: Object) => {
   // const myGamesLoaded = state.myGames.myGamesLoaded
   const loggedIn = state.login.loggedIn
   const startTime = state.admin.signupTime
+  const userGroup = state.login.userGroup
 
   // Get games data
   await store.dispatch(submitGetGames())
@@ -32,8 +33,10 @@ const loadData = async (store: Object) => {
     }
 
     // Get user data
-    const username = state.login.username
-    await store.dispatch(submitGetUser(username))
+    if (userGroup === 'user') {
+      const username = state.login.username
+      await store.dispatch(submitGetUser(username))
+    }
   }
 }
 
