@@ -4,7 +4,7 @@ export const sortArrayByKey = <T: Object>(
   key1: string,
   key2?: string
 ): Array<T> => {
-  if (!array) return []
+  if (!array || !key1) return []
 
   if (key2) {
     return array.sort((a, b) => {
