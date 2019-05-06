@@ -31,3 +31,6 @@ Tech:
   * Redux
   * ES6
   * Webpack
+  
+Development Suppported By
+[![BrowserStack](https://github.com/Archinowsk/konsti-client/blob/master/assets/Browserstack-logo.svg)](https://www.browserstack.com/)
