@@ -19,8 +19,8 @@ const getOpenSignupTimes = (games: Array<Game>) => {
   const conventionStartTime = config.CONVENTION_START_TIME
 
   let timeNow = moment()
-  if (config.env === 'development' || config.env === 'staging') {
-    timeNow = moment(config.TIME_NOW)
+  if (config.setTimeForTesting) {
+    timeNow = moment(config.testTime)
     console.log('set testing time: ', moment(timeNow).format())
   }
 

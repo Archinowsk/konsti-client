@@ -198,7 +198,7 @@ const prodEnv = {
       new UglifyJSPlugin({
         uglifyOptions: {
           compress: {
-            drop_console: !appConfig.staging,
+            drop_console: appConfig.dropConsole,
           },
           output: {
             comments: false,

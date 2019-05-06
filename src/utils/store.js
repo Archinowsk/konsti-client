@@ -36,13 +36,10 @@ const rootReducer = (state, action) => {
 
 // Set initial state
 const initialState = {}
-
-const isProduction = process.env.NODE_ENV === 'production'
-let enhancer
-
 const middlewares = applyMiddleware(thunk)
 
-if (isProduction) {
+let enhancer
+if (process.env.SETTINGS === 'production') {
   enhancer = compose(middlewares)
 } else {
   enhancer = compose(
