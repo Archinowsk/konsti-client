@@ -1,6 +1,7 @@
 /* @flow */
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
+import { composeWithDevTools } from 'redux-devtools-extension'
 
 // Reducers
 import { reducer as formReducer } from 'redux-form'
@@ -38,16 +39,7 @@ const rootReducer = (state, action) => {
 const initialState = {}
 const middlewares = applyMiddleware(thunk)
 
-const devTools =
-  process.env.NODE_ENV === 'development'
-    ? window.__REDUX_DEVTOOLS_EXTENSION__ &&
-      window.__REDUX_DEVTOOLS_EXTENSION__()
-    : null
-
-const enhancer = compose(
-  middlewares,
-  devTools
-)
+const enhancer = composeWithDevTools(middlewares)
 
 // Create a Redux store object that holds the app state
 /* $FlowFixMe: Redux flow-typed missing generics types */
