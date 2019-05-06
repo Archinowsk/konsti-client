@@ -38,15 +38,16 @@ const rootReducer = (state, action) => {
 const initialState = {}
 const middlewares = applyMiddleware(thunk)
 
-let enhancer
-if (process.env.SETTINGS === 'production') {
-  enhancer = compose(middlewares)
-} else {
-  enhancer = compose(
-    middlewares,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  )
-}
+const devTools =
+  process.env.NODE_ENV === 'development'
+    ? window.__REDUX_DEVTOOLS_EXTENSION__ &&
+      window.__REDUX_DEVTOOLS_EXTENSION__()
+    : null
+
+const enhancer = compose(
+  middlewares,
+  devTools
+)
 
 // Create a Redux store object that holds the app state
 /* $FlowFixMe: Redux flow-typed missing generics types */
