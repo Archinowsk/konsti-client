@@ -33,4 +33,8 @@ Tech:
   * Webpack
   
 Development Suppported By
-[![BrowserStack](https://github.com/Archinowsk/konsti-client/blob/master/assets/Browserstack-logo.svg)](https://www.browserstack.com/)
+
+<a href="https://www.sovellin.com/"><img src="https://github.com/Archinowsk/archinowsk.github.io/blob/master/assets/sovellin-logo.svg" height="40"></a>
+
+<a href="https://www.browserstack.com/"><img src="https://github.com/Archinowsk/archinowsk.github.io/blob/master/assets/browserstack-logo.svg" height="40"></a>
+
