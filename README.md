@@ -8,16 +8,16 @@ Konsti is designed for the roleplaying convention [Ropecon](https://ropecon.fi).
 
 ## Tech
 
-* Back-end (see [konsti-server](https://github.com/Archinowsk/konsti-server))
-  * Node.js
-  * Express
-  * AWS
-  * MongoDB
-* Front-end
-  * React
-  * Redux
-  * ES6
-  * Webpack
+- Back-end (see [konsti-server](https://github.com/Archinowsk/konsti-server))
+  - Node.js
+  - Express
+  - AWS
+  - MongoDB
+- Front-end
+  - React
+  - Redux
+  - ES6
+  - Webpack
 
 ## Development Suppported By
 
