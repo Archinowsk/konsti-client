@@ -28,25 +28,22 @@ const commonConfig = {
   SIGNUP_OPEN_TIME: 4, // hours
   MESSAGE_DELAY: 2000, // ms
 
-  // TODO: Move to admin view
+  // Convention settings
   CONVENTION_START_TIME: '2018-07-27T12:00:00Z', // UTC date
   DAY_START_TIME: 8, // 08:00
 }
 
 const prodConfig = {
-  dropConsole: true,
   setTimeForTesting: false,
   testTime: '', // UTC date
 }
 
 const stagingConfig = {
-  dropConsole: false,
   setTimeForTesting: true,
   testTime: '2018-07-27T13:40:00Z', // UTC date
 }
 
 const devConfig = {
-  dropConsole: false,
   setTimeForTesting: true,
   testTime: '2018-07-27T13:40:00Z', // UTC date
 }
