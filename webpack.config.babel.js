@@ -41,7 +41,7 @@ const commonConfig = {
   output: {
     path: path.join(__dirname, 'build'),
     publicPath: '/',
-    filename: '[name].bundle.js',
+    filename: '[name].[contenthash].bundle.js',
   },
 
   resolve: {
@@ -68,6 +68,7 @@ const commonConfig = {
       },
       mobile: true,
     }),
+    new webpack.HashedModuleIdsPlugin(), // so that file hashes don't change unexpectedly
   ],
 
   module: {
@@ -166,7 +167,7 @@ const prodConfig = {
     new MomentLocalesPlugin({
       localesToKeep: ['fi'],
     }),
-    new ExtractTextWebpackPlugin('[name].bundle.css'),
+    new ExtractTextWebpackPlugin('[name].[hash].bundle.css'),
     new CompressionPlugin({
       filename: '[path].gz[query]',
       algorithm: 'gzip',
@@ -191,6 +192,25 @@ const prodConfig = {
         },
       }),
     ],
+    // https://hackernoon.com/the-100-correct-way-to-split-your-chunks-with-webpack-f8a9df5b7758
+    runtimeChunk: 'single',
+    splitChunks: {
+      chunks: 'all',
+      maxInitialRequests: Infinity,
+      minSize: 0,
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name(module) {
+            const packageName = module.context.match(
+              /[\\/]node_modules[\\/](.*?)([\\/]|$)/
+            )[1]
+
+            return `npm.${packageName.replace('@', '')}`
+          },
+        },
+      },
+    },
   },
 }
 
@@ -231,7 +251,7 @@ const stagingConfig = {
     new MomentLocalesPlugin({
       localesToKeep: ['fi'],
     }),
-    new ExtractTextWebpackPlugin('[name].bundle.css'),
+    new ExtractTextWebpackPlugin('[name].[hash].bundle.css'),
     new CompressionPlugin({
       filename: '[path].gz[query]',
       algorithm: 'gzip',
@@ -252,6 +272,25 @@ const stagingConfig = {
     namedChunks: true,
     moduleIds: 'named',
     chunkIds: 'named',
+    // https://hackernoon.com/the-100-correct-way-to-split-your-chunks-with-webpack-f8a9df5b7758
+    runtimeChunk: 'single',
+    splitChunks: {
+      chunks: 'all',
+      maxInitialRequests: Infinity,
+      minSize: 0,
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name(module) {
+            const packageName = module.context.match(
+              /[\\/]node_modules[\\/](.*?)([\\/]|$)/
+            )[1]
+
+            return `npm.${packageName.replace('@', '')}`
+          },
+        },
+      },
+    },
   },
 }
 
