@@ -7,7 +7,6 @@ import TemplateWebpackPlugin from 'html-webpack-template'
 import MomentLocalesPlugin from 'moment-locales-webpack-plugin'
 import TerserPlugin from 'terser-webpack-plugin'
 import BrotliPlugin from 'brotli-webpack-plugin'
-// import PrepackWebpackPlugin from 'prepack-webpack-plugin'
 import Dotenv from 'dotenv-webpack'
 import path from 'path'
 import webpack from 'webpack'
@@ -41,7 +40,7 @@ const commonConfig = {
   output: {
     path: path.join(__dirname, 'build'),
     publicPath: '/',
-    filename: '[name].[contenthash].bundle.js',
+    filename: '[name].[hash].bundle.js',
   },
 
   resolve: {
@@ -50,6 +49,7 @@ const commonConfig = {
   },
 
   plugins: [
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       // html-webpack-plugin configs
       title: appConfig.appName,
@@ -160,14 +160,14 @@ const prodConfig = {
   },
 
   plugins: [
-    new CleanWebpackPlugin(),
-    // new PrepackWebpackPlugin(),
     new CopyWebpackPlugin([{ from: 'assets' }]),
-    // “en” is built into Moment and can’t be removed
     new MomentLocalesPlugin({
-      localesToKeep: ['fi'],
+      localesToKeep: ['fi'], // “en” is built into Moment and can’t be removed
     }),
     new ExtractTextWebpackPlugin('[name].[hash].bundle.css'),
+    new Dotenv({
+      path: './.prod.env',
+    }),
     new CompressionPlugin({
       filename: '[path].gz[query]',
       algorithm: 'gzip',
@@ -176,9 +176,6 @@ const prodConfig = {
     new BrotliPlugin({
       asset: '[path].br[query]',
       test: /\.js$/,
-    }),
-    new Dotenv({
-      path: './.prod.env',
     }),
   ],
 
@@ -219,7 +216,7 @@ const stagingConfig = {
 
   stats,
 
-  devtool: 'source-map',
+  // devtool: 'source-map',
 
   module: {
     // Loaders to transform sources
@@ -244,14 +241,14 @@ const stagingConfig = {
   },
 
   plugins: [
-    new CleanWebpackPlugin(),
-    // new PrepackWebpackPlugin(),
     new CopyWebpackPlugin([{ from: 'assets' }]),
-    // “en” is built into Moment and can’t be removed
     new MomentLocalesPlugin({
-      localesToKeep: ['fi'],
+      localesToKeep: ['fi'], // “en” is built into Moment and can’t be removed
     }),
     new ExtractTextWebpackPlugin('[name].[hash].bundle.css'),
+    new Dotenv({
+      path: './.staging.env',
+    }),
     new CompressionPlugin({
       filename: '[path].gz[query]',
       algorithm: 'gzip',
@@ -260,9 +257,6 @@ const stagingConfig = {
     new BrotliPlugin({
       asset: '[path].br[query]',
       test: /\.js$/,
-    }),
-    new Dotenv({
-      path: './.staging.env',
     }),
   ],
 
