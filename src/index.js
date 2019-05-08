@@ -25,13 +25,13 @@ const render = () => {
   if (!rootElement) return
 
   ReactDOM.render(
-    // <React.StrictMode>
-    <Provider store={store}>
-      <React.Suspense fallback={Loading}>
-        <App />
-      </React.Suspense>
-    </Provider>,
-    // </React.StrictMode>,
+    <React.StrictMode>
+      <Provider store={store}>
+        <React.Suspense fallback={Loading}>
+          <App />
+        </React.Suspense>
+      </Provider>
+    </React.StrictMode>,
     rootElement
   )
 }
