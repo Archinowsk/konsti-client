@@ -10,6 +10,9 @@ import 'styles/style.scss'
 // Root component
 import App from 'App'
 
+// Suspend fallback component
+import Loading from 'components/Loading'
+
 // Initialized i18next instance
 import 'utils/i18n'
 
@@ -24,7 +27,9 @@ const render = () => {
   ReactDOM.render(
     // <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <React.Suspense fallback={Loading}>
+        <App />
+      </React.Suspense>
     </Provider>,
     // </React.StrictMode>,
     rootElement
