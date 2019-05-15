@@ -5,12 +5,15 @@ import { SubmissionError } from 'redux-form'
 import { useTranslation } from 'react-i18next'
 import { submitRegistration } from 'views/registration/registrationActions'
 import RegistrationForm from 'views/registration/components/RegistrationForm'
+import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
   onSubmitRegistration: Function,
 }
 
-const RegistrationView = (props: Props) => {
+const RegistrationView: StatelessFunctionalComponent<Props> = (
+  props: Props
+) => {
   const { onSubmitRegistration } = props
   const { t } = useTranslation()
 

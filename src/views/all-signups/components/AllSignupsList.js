@@ -3,6 +3,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { sortArrayByKey } from 'utils/sort'
 import type { Result } from 'flow/result.flow'
+import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
   results: Array<Result>,
@@ -12,7 +13,10 @@ type State = {
   sortedBy: string,
 }
 
-const AllSignupsList = (props: Props, state: State) => {
+const AllSignupsList: StatelessFunctionalComponent<Props> = (
+  props: Props,
+  state: State
+) => {
   const { results } = props
   const { t } = useTranslation()
   const [sortedBy, setSortedBy] = React.useState('')

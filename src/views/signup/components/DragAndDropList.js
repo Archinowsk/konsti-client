@@ -9,6 +9,7 @@ import sleep from 'utils/sleep'
 import config from 'config'
 import { sortArrayByKey } from 'utils/sort'
 import type { Game } from 'flow/game.flow'
+import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
   callback: Function,
@@ -32,7 +33,10 @@ type UpdatedPositions = {
   priority3?: Array<Game>,
 }
 
-const DragAndDropList = (props: Props, state: State) => {
+const DragAndDropList: StatelessFunctionalComponent<Props> = (
+  props: Props,
+  state: State
+) => {
   const { games, selectedGames, signupTime, callback } = props
   const { t } = useTranslation()
 

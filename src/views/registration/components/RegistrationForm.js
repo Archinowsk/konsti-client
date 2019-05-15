@@ -6,6 +6,7 @@ import FormField from 'components/FormField'
 import CheckboxField from 'components/CheckboxField'
 import { required } from 'utils/validate'
 import Accordion from 'components/Accordion'
+import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
   handleSubmit: Function,
@@ -13,7 +14,9 @@ type Props = {
   error?: string,
 }
 
-const RegistrationForm = (props: Props) => {
+const RegistrationForm: StatelessFunctionalComponent<Props> = (
+  props: Props
+) => {
   const { handleSubmit, submitting, error } = props
   const { t } = useTranslation()
 

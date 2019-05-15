@@ -3,12 +3,13 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { submitLogout } from 'views/login/loginActions'
+import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
   onSubmitLogout: Function,
 }
 
-const LogoutPage = (props: Props) => {
+const LogoutPage: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { onSubmitLogout } = props
 
   React.useEffect(() => {

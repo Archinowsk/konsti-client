@@ -4,12 +4,15 @@ import { Link } from 'react-router-dom'
 import timeFormatter from 'utils/timeFormatter'
 import { sortArrayByKey } from 'utils/sort'
 import type { GroupMember } from 'flow/group.flow'
+import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
   groupMembers: Array<GroupMember>,
 }
 
-const SignedMembersList = (props: Props) => {
+const SignedMembersList: StatelessFunctionalComponent<Props> = (
+  props: Props
+) => {
   const { groupMembers } = props
 
   if (!groupMembers) return <div className='signed-games-list' />

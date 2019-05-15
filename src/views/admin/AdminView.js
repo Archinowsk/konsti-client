@@ -15,6 +15,7 @@ import loadData from 'utils/loadData'
 import Loading from 'components/Loading'
 import timeFormatter from 'utils/timeFormatter'
 import type { Game } from 'flow/game.flow'
+import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
   hiddenGames: Array<Game>,
@@ -35,7 +36,10 @@ type State = {
   messageStyle: string,
 }
 
-const AdminView = (props: Props, state: State) => {
+const AdminView: StatelessFunctionalComponent<Props> = (
+  props: Props,
+  state: State
+) => {
   const {
     hiddenGames,
     date,

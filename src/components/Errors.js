@@ -1,9 +1,10 @@
 /* @flow */
 import React from 'react'
+import type { StatelessFunctionalComponent } from 'react'
 
 type Props = { meta: Object }
 
-const NetworkError = (props: Props) => {
+const NetworkError: StatelessFunctionalComponent<Props> = (props: Props) => {
   const {
     meta: { touched, error },
   } = props

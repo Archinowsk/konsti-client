@@ -3,15 +3,15 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { SubmissionError } from 'redux-form'
-
 import { submitLogin } from 'views/login/loginActions'
 import LoginForm from 'views/login/components/LoginForm'
+import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
   onSubmitLogin: Function,
 }
 
-const LoginView = (props: Props) => {
+const LoginView: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { onSubmitLogin } = props
   const { t } = useTranslation()
 

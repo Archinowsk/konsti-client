@@ -8,6 +8,7 @@ import LanguageSelector from 'components/LanguageSelector'
 import config from 'config'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faAngleUp, faAngleDown } from '@fortawesome/free-solid-svg-icons'
+import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
   username: string,
@@ -15,7 +16,7 @@ type Props = {
   serial: string,
 }
 
-const App = (props: Props) => {
+const App: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { username, loggedIn, serial } = props
   const { appOpen } = config
   const { t } = useTranslation()

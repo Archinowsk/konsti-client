@@ -4,6 +4,7 @@ import { Field, reduxForm } from 'redux-form'
 import { useTranslation } from 'react-i18next'
 import { required } from 'utils/validate'
 import FormField from 'components/FormField'
+import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
   handleSubmit: Function,
@@ -11,7 +12,7 @@ type Props = {
   error?: string,
 }
 
-const LoginForm = (props: Props) => {
+const LoginForm: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { handleSubmit, submitting, error } = props
   const { t } = useTranslation()
 

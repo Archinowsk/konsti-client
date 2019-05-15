@@ -6,6 +6,7 @@ import SignupList from 'views/signup/components/SignupList'
 import GameDetails from 'components/GameDetails'
 import getOpenSignupTimes from 'utils/getOpenSignupTimes'
 import type { Game } from 'flow/game.flow'
+import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
   games: Array<Game>,
@@ -16,7 +17,10 @@ type State = {
   signupTimes: Array<string>,
 }
 
-const SignupView = (props: Props, state: State) => {
+const SignupView: StatelessFunctionalComponent<Props> = (
+  props: Props,
+  state: State
+) => {
   const { games } = props
   const [signupTimes, setSignupTimes] = React.useState([])
 

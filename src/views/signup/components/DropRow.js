@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { Droppable, Draggable } from 'react-beautiful-dnd'
 import { Link } from 'react-router-dom'
 import type { Game } from 'flow/game.flow'
+import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
   droppableId: string,
@@ -12,7 +13,7 @@ type Props = {
   label: string,
 }
 
-const DropRow = (props: Props) => {
+const DropRow: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { droppableId, games, label } = props
   const { t } = useTranslation()
 

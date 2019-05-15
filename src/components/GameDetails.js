@@ -9,6 +9,7 @@ import FeedbackForm from 'components/FeedbackForm'
 import GameInfo from 'components/GameInfo'
 import Loading from 'components/Loading'
 import type { Game } from 'flow/game.flow'
+import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
   hiddenGames: Array<Game>,
@@ -30,7 +31,10 @@ type State = {
   submitting: boolean,
 }
 
-const GameDetails = (props: Props, state: State) => {
+const GameDetails: StatelessFunctionalComponent<Props> = (
+  props: Props,
+  state: State
+) => {
   const {
     hiddenGames,
     favoritedGames,
@@ -58,7 +62,7 @@ const GameDetails = (props: Props, state: State) => {
     setLoading(false)
   })
 
-  if (!game || !game.gameId) return
+  if (!game || !game.gameId) return <div />
 
   const checkGameState = () => {
     if (!game || !game.gameId) return

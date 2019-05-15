@@ -8,6 +8,7 @@ import { getStore } from 'utils/store'
 import loadData from 'utils/loadData'
 import Loading from 'components/Loading'
 import type { Game } from 'flow/game.flow'
+import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
   games: Array<Game>,
@@ -19,7 +20,10 @@ type State = {
   loading: boolean,
 }
 
-const AllGamesView = (props: Props, state: State) => {
+const AllGamesView: StatelessFunctionalComponent<Props> = (
+  props: Props,
+  state: State
+) => {
   const { games, hiddenGames } = props
   const [loading, setLoading] = React.useState(true)
 

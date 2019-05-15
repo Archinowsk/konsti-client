@@ -2,12 +2,15 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import type { GroupMember } from 'flow/group.flow'
+import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
   groupMembers: Array<GroupMember>,
 }
 
-const GroupMembersList = (props: Props) => {
+const GroupMembersList: StatelessFunctionalComponent<Props> = (
+  props: Props
+) => {
   const { groupMembers } = props
   const { t } = useTranslation()
 

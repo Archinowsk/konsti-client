@@ -2,8 +2,11 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import type { FieldProps } from 'redux-form'
+import type { StatelessFunctionalComponent } from 'react'
 
-const FormField = (field: FieldProps) => {
+const FormField: StatelessFunctionalComponent<FieldProps> = (
+  field: FieldProps
+) => {
   const { t } = useTranslation()
 
   if (!field) return <p />

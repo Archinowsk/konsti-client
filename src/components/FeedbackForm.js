@@ -3,6 +3,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { postFeedback } from 'services/feedbackServices'
 import type { Game } from 'flow/game.flow'
+import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
   game: Game,
@@ -14,7 +15,10 @@ type State = {
   feedbackSent: boolean,
 }
 
-const FeedbackForm = (props: Props, state: State) => {
+const FeedbackForm: StatelessFunctionalComponent<Props> = (
+  props: Props,
+  state: State
+) => {
   const { game } = props
 
   const [submitting, setSubmitting] = React.useState(false)

@@ -3,6 +3,7 @@ import React from 'react'
 import { HashRouter, Route, Link, Switch, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { useTranslation } from 'react-i18next'
+import type { StatelessFunctionalComponent } from 'react'
 
 // Views
 import AllGames from 'views/all-games/AllGamesView'
@@ -20,7 +21,7 @@ type Props = {
   userGroup: string,
 }
 
-const Routes = (props: Props) => {
+const Routes: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { loggedIn, userGroup } = props
   const { t } = useTranslation()
 

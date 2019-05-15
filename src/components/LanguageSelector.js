@@ -2,8 +2,9 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import moment from 'moment'
+import type { StatelessFunctionalComponent } from 'react'
 
-const LanguageSelector = () => {
+const LanguageSelector: StatelessFunctionalComponent<{}> = () => {
   const { t, i18n } = useTranslation()
   const language = i18n.language
 

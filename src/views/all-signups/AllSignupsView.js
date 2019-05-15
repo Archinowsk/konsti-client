@@ -8,6 +8,7 @@ import loadData from 'utils/loadData'
 import Loading from 'components/Loading'
 import timeFormatter from 'utils/timeFormatter'
 import type { Result } from 'flow/result.flow'
+import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
   results: Array<Result>,
@@ -18,7 +19,10 @@ type State = {
   loading: boolean,
 }
 
-const AllSignupsView = (props: Props, state: State) => {
+const AllSignupsView: StatelessFunctionalComponent<Props> = (
+  props: Props,
+  state: State
+) => {
   const { results, signupTime } = props
   const { t } = useTranslation()
   const [loading, setLoading] = React.useState(true)

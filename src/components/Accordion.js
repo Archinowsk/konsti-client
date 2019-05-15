@@ -2,6 +2,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import type { StatelessFunctionalComponent } from 'react'
 
 export type Props = {
   text: string,
@@ -12,7 +13,10 @@ type State = {
   open: boolean,
 }
 
-const Accordian = (props: Props, state: State) => {
+const Accordian: StatelessFunctionalComponent<Props> = (
+  props: Props,
+  state: State
+) => {
   const [open, setOpen] = React.useState(false)
   const { t } = useTranslation()
 

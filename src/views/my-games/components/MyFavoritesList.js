@@ -5,12 +5,13 @@ import { Link } from 'react-router-dom'
 import timeFormatter from 'utils/timeFormatter'
 import { sortArrayByKey } from 'utils/sort'
 import type { Game } from 'flow/game.flow'
+import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
   favoritedGames: Array<Game>,
 }
 
-const MyFavoritesList = (props: Props) => {
+const MyFavoritesList: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { favoritedGames } = props
   const { t } = useTranslation()
 

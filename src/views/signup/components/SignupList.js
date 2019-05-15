@@ -11,6 +11,7 @@ import { getStore } from 'utils/store'
 import loadData from 'utils/loadData'
 import Loading from 'components/Loading'
 import type { Game } from 'flow/game.flow'
+import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
   hiddenGames: Array<Game>,
@@ -30,7 +31,10 @@ type State = {
   signupTime: string,
 }
 
-const SignupList = (props: Props, state: State) => {
+const SignupList: StatelessFunctionalComponent<Props> = (
+  props: Props,
+  state: State
+) => {
   const {
     hiddenGames,
     games,

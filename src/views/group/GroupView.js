@@ -18,6 +18,7 @@ import config from 'config'
 import { submitSignup } from 'views/signup/signupActions'
 import type { Game } from 'flow/game.flow'
 import type { GroupMember } from 'flow/group.flow'
+import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
   groupCode: string,
@@ -41,7 +42,10 @@ type State = {
   messageStyle: string,
 }
 
-const GroupView = (props: Props, state: State) => {
+const GroupView: StatelessFunctionalComponent<Props> = (
+  props: Props,
+  state: State
+) => {
   const {
     groupCode,
     groupMembers,

@@ -4,12 +4,13 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { sortArrayByKey } from 'utils/sort'
 import type { Game } from 'flow/game.flow'
+import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
   hiddenGames: Array<Game>,
 }
 
-const Hidden = (props: Props) => {
+const Hidden: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { hiddenGames } = props
   const { t } = useTranslation()
 

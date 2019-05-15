@@ -3,6 +3,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import timeFormatter from 'utils/timeFormatter'
 import type { Game } from 'flow/game.flow'
+import type { StatelessFunctionalComponent } from 'react'
 
 export type Props = {
   games: Array<Game>,
@@ -15,7 +16,7 @@ export type Props = {
 // Show "signup starts xx:xx" on others
 // Toggle to show upcoming gameslots or all gameslots
 
-const TimesDropdown = (props: Props) => {
+const TimesDropdown: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { games, onChange, date } = props
   const { t } = useTranslation()
 
