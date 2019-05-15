@@ -10,9 +10,6 @@ import 'styles/style.scss'
 // Root component
 import App from 'App'
 
-// Suspend fallback component
-import Loading from 'components/Loading'
-
 // Initialized i18next instance
 import 'utils/i18n'
 
@@ -26,13 +23,16 @@ if (process.env.NODE_ENV === 'development') {
 
 const rootElement = document.getElementById('main')
 
+// Suspend fallback element
+const loader = <div>Loading...</div>
+
 const render = () => {
   if (!rootElement) return
 
   ReactDOM.render(
     // <React.StrictMode>
     <Provider store={store}>
-      <React.Suspense fallback={Loading}>
+      <React.Suspense fallback={loader}>
         <App />
       </React.Suspense>
     </Provider>,
