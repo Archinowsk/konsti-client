@@ -1,7 +1,8 @@
 /* @flow */
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { sortArrayByKey } from 'utils/sort'
+import ResultsByGameTitle from './ResultsByGameTitle'
+import ResultsByUsername from './ResultsByUsername'
 import type { Result } from 'flow/result.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
@@ -28,44 +29,24 @@ const ResultsList: StatelessFunctionalComponent<Props> = (props: Props) => {
 
   return (
     <div className='results-list'>
-      <span>{t('sortBy')} </span>
+      <div className='results-buttons'>
+        <span>{t('sortBy')} </span>
 
-      {buttons.map(name => {
-        return (
-          <button
-            className={sortedBy === name ? 'active' : ''}
-            value={name}
-            onClick={() => setSortedBy(name)}
-            key={name}
-          >
-            {t(name)}
-          </button>
-        )
-      })}
-
-      {sortedBy === 'username' &&
-        sortArrayByKey(results, 'username').map(result => (
-          <p key={result.username}>
-            <span className='bold'>{result.username}: </span>
-            {result.enteredGame.title} (
-            <span className='bold'>
-              {t('gameInfo.location')}: {result.enteredGame.location}
-            </span>
-            )
-          </p>
-        ))}
-
-      {sortedBy === 'gameTitle' &&
-        sortArrayByKey(results, 'enteredGame.title').map(result => (
-          <p key={result.username}>
-            <span className='bold'>{result.enteredGame.title}: </span>
-            {result.username} (
-            <span className='bold'>
-              {t('gameInfo.location')}: {result.enteredGame.location}
-            </span>
-            )
-          </p>
-        ))}
+        {buttons.map(name => {
+          return (
+            <button
+              className={sortedBy === name ? 'active' : ''}
+              value={name}
+              onClick={() => setSortedBy(name)}
+              key={name}
+            >
+              {t(name)}
+            </button>
+          )
+        })}
+      </div>
+      {sortedBy === 'username' && <ResultsByUsername results={results} />}
+      {sortedBy === 'gameTitle' && <ResultsByGameTitle results={results} />}
     </div>
   )
 }
