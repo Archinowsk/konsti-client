@@ -17,7 +17,6 @@
     "table-rules": "eslint-index .eslintrc.js --format table",
     "flow": "flow check",
     "flow-typed-install": "rimraf flow-typed && flow-typed install --skip --ignoreDeps peer bundle",
-    "precommit": "lint-staged",
     "prettier": "prettier --write \"src/**/*.{js,json,scss}\"",
     "start": "webpack-dev-server",
     "stylelint": "stylelint \"src/**/*.scss\" --fix",
