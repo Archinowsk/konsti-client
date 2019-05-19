@@ -9,14 +9,13 @@ type Props = {
   results: Array<Result>,
 }
 
+/*
 type State = {
   sortedBy: string,
 }
+*/
 
-const AllSignupsList: StatelessFunctionalComponent<Props> = (
-  props: Props,
-  state: State
-) => {
+const AllSignupsList: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { results } = props
   const { t } = useTranslation()
   const [sortedBy, setSortedBy] = React.useState('')

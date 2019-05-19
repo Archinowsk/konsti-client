@@ -29,17 +29,16 @@ type Props = {
   updateResponse: Object,
 }
 
+/*
 type State = {
   submitting: boolean,
   loading: boolean,
   message: string,
   messageStyle: string,
 }
+*/
 
-const AdminView: StatelessFunctionalComponent<Props> = (
-  props: Props,
-  state: State
-) => {
+const AdminView: StatelessFunctionalComponent<Props> = (props: Props) => {
   const {
     hiddenGames,
     date,

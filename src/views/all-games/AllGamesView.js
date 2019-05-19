@@ -16,14 +16,13 @@ type Props = {
   myGames: Object,
 }
 
+/*
 type State = {
   loading: boolean,
 }
+*/
 
-const AllGamesView: StatelessFunctionalComponent<Props> = (
-  props: Props,
-  state: State
-) => {
+const AllGamesView: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { games, hiddenGames } = props
   const [loading, setLoading] = React.useState(true)
 

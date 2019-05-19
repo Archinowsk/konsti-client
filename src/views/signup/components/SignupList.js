@@ -24,17 +24,16 @@ type Props = {
   signupTimes: Array<string>,
 }
 
+/*
 type State = {
   submitting: boolean,
   signupSubmitted: boolean,
   signupError: boolean,
   signupTime: string,
 }
+*/
 
-const SignupList: StatelessFunctionalComponent<Props> = (
-  props: Props,
-  state: State
-) => {
+const SignupList: StatelessFunctionalComponent<Props> = (props: Props) => {
   const {
     hiddenGames,
     games,

@@ -12,15 +12,14 @@ type Props = {
   games: Array<Game>,
 }
 
+/*
 type State = {
   loading: boolean,
   signupTimes: Array<string>,
 }
+*/
 
-const SignupView: StatelessFunctionalComponent<Props> = (
-  props: Props,
-  state: State
-) => {
+const SignupView: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { games } = props
   const [signupTimes, setSignupTimes] = React.useState([])
 

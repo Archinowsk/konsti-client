@@ -9,16 +9,15 @@ type Props = {
   game: Game,
 }
 
+/*
 type State = {
   submitting: boolean,
   feedbackValue: string,
   feedbackSent: boolean,
 }
+*/
 
-const FeedbackForm: StatelessFunctionalComponent<Props> = (
-  props: Props,
-  state: State
-) => {
+const FeedbackForm: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { game } = props
 
   const [submitting, setSubmitting] = React.useState(false)

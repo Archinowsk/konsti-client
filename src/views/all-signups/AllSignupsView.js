@@ -15,14 +15,13 @@ type Props = {
   signupTime: string,
 }
 
+/*
 type State = {
   loading: boolean,
 }
+*/
 
-const AllSignupsView: StatelessFunctionalComponent<Props> = (
-  props: Props,
-  state: State
-) => {
+const AllSignupsView: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { results, signupTime } = props
   const { t } = useTranslation()
   const [loading, setLoading] = React.useState(true)

@@ -18,6 +18,7 @@ type Props = {
   signupTime: string,
 }
 
+/*
 type State = {
   gameList: Array<Game>,
   priority1: Array<Game>,
@@ -25,6 +26,7 @@ type State = {
   priority3: Array<Game>,
   warningVisible: boolean,
 }
+*/
 
 type UpdatedPositions = {
   gameList?: Array<Game>,
@@ -33,10 +35,7 @@ type UpdatedPositions = {
   priority3?: Array<Game>,
 }
 
-const DragAndDropList: StatelessFunctionalComponent<Props> = (
-  props: Props,
-  state: State
-) => {
+const DragAndDropList: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { games, selectedGames, signupTime, callback } = props
   const { t } = useTranslation()
 

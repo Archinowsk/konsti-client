@@ -24,17 +24,16 @@ type Props = {
   username: string,
 }
 
+/*
 type State = {
   hidden: boolean,
   favorited: boolean,
   loading: boolean,
   submitting: boolean,
 }
+*/
 
-const GameDetails: StatelessFunctionalComponent<Props> = (
-  props: Props,
-  state: State
-) => {
+const GameDetails: StatelessFunctionalComponent<Props> = (props: Props) => {
   const {
     hiddenGames,
     favoritedGames,
@@ -59,7 +58,7 @@ const GameDetails: StatelessFunctionalComponent<Props> = (
 
   React.useEffect(() => {
     checkGameState()
-    setLoading(false)
+    setLoading('asd')
   })
 
   if (!game || !game.gameId) return <div />

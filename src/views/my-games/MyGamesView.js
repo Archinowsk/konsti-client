@@ -16,14 +16,13 @@ type Props = {
   enteredGames: Array<Game>,
 }
 
+/*
 type State = {
   loading: boolean,
 }
+*/
 
-const MyGamesView: StatelessFunctionalComponent<Props> = (
-  props: Props,
-  state: State
-) => {
+const MyGamesView: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { signedGames, favoritedGames, enteredGames } = props
   const [loading, setLoading] = React.useState(true)
 

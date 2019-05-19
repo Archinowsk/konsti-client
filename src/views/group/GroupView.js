@@ -33,6 +33,7 @@ type Props = {
   username: string,
 }
 
+/*
 type State = {
   loading: boolean,
   showCreateGroup: boolean,
@@ -41,11 +42,9 @@ type State = {
   message: string,
   messageStyle: string,
 }
+*/
 
-const GroupView: StatelessFunctionalComponent<Props> = (
-  props: Props,
-  state: State
-) => {
+const GroupView: StatelessFunctionalComponent<Props> = (props: Props) => {
   const {
     groupCode,
     groupMembers,
