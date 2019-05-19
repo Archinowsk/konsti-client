@@ -10,7 +10,7 @@ import loginReducer from 'views/login/loginReducer'
 import myGamesReducer from 'views/my-games/myGamesReducer'
 import signupReducer from 'views/signup/signupReducer'
 import adminReducer from 'views/admin/adminReducer'
-import allSignupsReducer from 'views/all-signups/allSignupsReducer'
+import resultsReducer from 'views/results/resultsReducer'
 // import groupReducer from 'views/group/groupReducer'
 import { SUBMIT_LOGOUT } from 'views/login/loginActions'
 
@@ -22,7 +22,7 @@ const reducer = combineReducers({
   myGames: myGamesReducer,
   signup: signupReducer,
   admin: adminReducer,
-  allSignups: allSignupsReducer,
+  results: resultsReducer,
   // group: groupReducer,
 })
 

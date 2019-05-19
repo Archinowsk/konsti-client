@@ -1,5 +1,5 @@
 /* @flow */
-import { submitGetResults } from 'views/all-signups/allSignupsActions'
+import { submitGetResults } from 'views/results/resultsActions'
 import { submitGetGames } from 'views/all-games/allGamesActions'
 import { submitGetSettings } from 'views/admin/adminActions'
 import { submitGetUser } from 'views/my-games/myGamesActions'

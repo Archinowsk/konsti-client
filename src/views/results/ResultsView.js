@@ -2,7 +2,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-import AllSignupsList from 'views/all-signups/components/AllSignupsList'
+import ResultsList from 'views/results/components/ResultsList'
 import { getStore } from 'utils/store'
 import loadData from 'utils/loadData'
 import Loading from 'components/Loading'
@@ -21,7 +21,7 @@ type State = {
 }
 */
 
-const AllSignupsView: StatelessFunctionalComponent<Props> = (props: Props) => {
+const ResultsView: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { results, signupTime } = props
   const { t } = useTranslation()
   const [loading, setLoading] = React.useState(true)
@@ -37,7 +37,7 @@ const AllSignupsView: StatelessFunctionalComponent<Props> = (props: Props) => {
   const formattedDate = timeFormatter.weekdayAndTime(signupTime)
 
   return (
-    <div className='all-signups-view'>
+    <div className='results-view'>
       {loading && <Loading />}
       {!loading && !results && <p className='page-title'>{t('noResults')}</p>}
       {!loading && results && (
@@ -45,7 +45,7 @@ const AllSignupsView: StatelessFunctionalComponent<Props> = (props: Props) => {
           <p className='page-title'>
             {t('signupResultsfor')} {formattedDate}
           </p>
-          <AllSignupsList results={results} />
+          <ResultsList results={results} />
         </React.Fragment>
       )}
     </div>
@@ -55,7 +55,7 @@ const AllSignupsView: StatelessFunctionalComponent<Props> = (props: Props) => {
 const mapStateToProps = state => {
   return {
     games: state.allGames.games,
-    results: state.allSignups.results,
+    results: state.results.results,
     signupTime: state.admin.signupTime,
   }
 }
@@ -63,4 +63,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   null
-)(AllSignupsView)
+)(ResultsView)

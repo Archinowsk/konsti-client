@@ -12,7 +12,7 @@ import MyGames from 'views/my-games/MyGamesView'
 import Signup from 'views/signup/SignupView'
 import Registration from 'views/registration/RegistrationView'
 import Admin from 'views/admin/AdminView'
-import AllSignups from 'views/all-signups/AllSignupsView'
+import Results from 'views/results/ResultsView'
 import Logout from 'views/logout/LogoutView'
 import Group from 'views/group/GroupView'
 
@@ -73,8 +73,8 @@ const Routes: StatelessFunctionalComponent<Props> = (props: Props) => {
             </Link>
           )}
           {(userGroup === 'user' || userGroup === 'admin') && (
-            <Link to='/allsignups' className='router-link'>
-              {t('pages.allsignups')}
+            <Link to='/results' className='router-link'>
+              {t('pages.results')}
             </Link>
           )}
 
@@ -101,7 +101,7 @@ const Routes: StatelessFunctionalComponent<Props> = (props: Props) => {
           <Route path='/games' component={AllGames} />
           <Route path='/mygames' component={MyGames} />
           <Route path='/signup' component={Signup} />
-          <Route path='/allsignups' component={AllSignups} />
+          <Route path='/results' component={Results} />
           <Route path='/group' component={Group} />
           <Route path='/admin' component={Admin} />
           <Route path='/logout' component={Logout} />

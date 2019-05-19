@@ -1,9 +1,9 @@
 /* @flow */
-import { SUBMIT_GET_RESULTS } from 'views/all-signups/allSignupsActions'
+import { SUBMIT_GET_RESULTS } from 'views/results/resultsActions'
 
 const initialState = { results: [] }
 
-const allSignupsReducer = (state: Object = initialState, action: Function) => {
+const resultsReducer = (state: Object = initialState, action: Function) => {
   switch (action.type) {
     case SUBMIT_GET_RESULTS:
       return { ...state, results: action.results }
@@ -12,4 +12,4 @@ const allSignupsReducer = (state: Object = initialState, action: Function) => {
   }
 }
 
-export default allSignupsReducer
+export default resultsReducer

@@ -15,7 +15,7 @@ type State = {
 }
 */
 
-const AllSignupsList: StatelessFunctionalComponent<Props> = (props: Props) => {
+const ResultsList: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { results } = props
   const { t } = useTranslation()
   const [sortedBy, setSortedBy] = React.useState('')
@@ -70,4 +70,4 @@ const AllSignupsList: StatelessFunctionalComponent<Props> = (props: Props) => {
   )
 }
 
-export default AllSignupsList
+export default ResultsList
