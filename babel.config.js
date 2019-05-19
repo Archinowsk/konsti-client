@@ -26,6 +26,7 @@ module.exports = api => {
         root: ['./src'],
       },
     ],
+    'lodash',
   ]
 
   if (target === 'start') {
