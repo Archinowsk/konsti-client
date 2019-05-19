@@ -35,6 +35,7 @@
   "sortBy": "Järjestys",
   "gameTitle": "Pelin nimi",
   "players": "Pelaajat",
+  "player": "Pelaaja",
   "language": {
     "english": "Englanti",
     "finnish": "Suomi"

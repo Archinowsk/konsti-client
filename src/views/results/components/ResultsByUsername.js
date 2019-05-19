@@ -16,18 +16,24 @@ const ResultsByUsername: StatelessFunctionalComponent<Props> = (
 
   const sortedResults = sortArrayByKey(props.results, 'username').map(
     result => (
-      <p key={result.username}>
-        <span className='bold'>{result.username}: </span>
-        {result.enteredGame.title} (
-        <span className='bold'>
-          {t('gameInfo.location')}: {result.enteredGame.location}
-        </span>
-        )
-      </p>
+      <div className='flex-table-column' key={result.username}>
+        <div className='flex-table-row'>{result.username}</div>
+        <div className='flex-table-row'>{result.enteredGame.title}</div>
+        <div className='flex-table-row'>{result.enteredGame.location}</div>
+      </div>
     )
   )
 
-  const resultsByUsername = <div>{sortedResults}</div>
+  const resultsByUsername = (
+    <div className='flex-table-container'>
+      <div className='flex-table-column flex-table-header'>
+        <div className='flex-table-row'>{t('player')}</div>
+        <div className='flex-table-row'>{t('gameTitle')}</div>
+        <div className='flex-table-row'>{t('gameInfo.location')}</div>
+      </div>
+      <div>{sortedResults}</div>
+    </div>
+  )
 
   return resultsByUsername
 }
