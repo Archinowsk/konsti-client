@@ -24,7 +24,7 @@ const ResultsList: StatelessFunctionalComponent<Props> = (props: Props) => {
     setSortedBy('username')
   }, [])
 
-  const buttons = ['username', 'enteredGameTitle']
+  const buttons = ['username', 'gameTitle']
 
   return (
     <div className='results-list'>
@@ -55,7 +55,7 @@ const ResultsList: StatelessFunctionalComponent<Props> = (props: Props) => {
           </p>
         ))}
 
-      {sortedBy === 'enteredGameTitle' &&
+      {sortedBy === 'gameTitle' &&
         sortArrayByKey(results, 'enteredGame.title').map(result => (
           <p key={result.username}>
             <span className='bold'>{result.enteredGame.title}: </span>

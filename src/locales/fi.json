@@ -33,7 +33,7 @@
   "show": "Näytä",
   "hide": "Piilota",
   "sortBy": "Järjestys",
-  "enteredGameTitle": "Pelin nimi",
+  "gameTitle": "Pelin nimi",
   "language": {
     "english": "Englanti",
     "finnish": "Suomi"

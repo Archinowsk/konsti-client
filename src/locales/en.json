@@ -33,7 +33,7 @@
   "show": "Show",
   "hide": "Hide",
   "sortBy": "Sort by",
-  "enteredGameTitle": "Game title",
+  "gameTitle": "Game title",
   "language": {
     "english": "English",
     "finnish": "Finnish"
