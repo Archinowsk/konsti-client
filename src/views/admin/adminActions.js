@@ -4,6 +4,7 @@ import { postPlayersAssign } from 'services/playersServices'
 import { postHidden } from 'services/hiddenServices'
 import { getSettings } from 'services/settingsServices'
 import { postSignupTime } from 'services/signuptimeServices'
+import type { Game } from 'flow/game.flow'
 
 export const SUBMIT_GAMES_UPDATE = 'SUBMIT_GAMES_UPDATE'
 export const SUBMIT_PLAYERS_ASSIGN = 'SUBMIT_PLAYERS_ASSIGN'
@@ -73,11 +74,11 @@ const submitUpdateHiddenAsync = ({ hiddenGames }) => {
   }
 }
 
-export const submitUpdateHidden = (hiddenData: Object) => {
+export const submitUpdateHidden = (hiddenGames: Array<Game>) => {
   return async (dispatch: Function) => {
     let response = null
     try {
-      response = await postHidden(hiddenData)
+      response = await postHidden(hiddenGames)
     } catch (error) {
       console.log(`submitUpdateHidden error:`, error)
     }
@@ -88,7 +89,7 @@ export const submitUpdateHidden = (hiddenData: Object) => {
     if (response && response.status === 'success') {
       dispatch(
         submitUpdateHiddenAsync({
-          hiddenGames: hiddenData.hiddenGames,
+          hiddenGames,
         })
       )
     }

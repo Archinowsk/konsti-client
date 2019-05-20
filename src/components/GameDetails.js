@@ -152,19 +152,9 @@ const GameDetails: StatelessFunctionalComponent<Props> = (props: Props) => {
       }
     }
 
-    // Send only game IDs to API
-    const hiddenGameIds = []
-    allHiddenGames.forEach(hiddenGame => {
-      hiddenGameIds.push({ gameId: hiddenGame.gameId })
-    })
-
-    const hiddenData = {
-      hiddenGames: hiddenGameIds,
-    }
-
     let response = null
     try {
-      response = await onSubmitUpdateHidden(hiddenData)
+      response = await onSubmitUpdateHidden(allHiddenGames)
     } catch (error) {
       console.log(`onSubmitUpdateHidden error`, error)
     }
