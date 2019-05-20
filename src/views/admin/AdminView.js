@@ -63,10 +63,14 @@ const AdminView: StatelessFunctionalComponent<Props> = (props: Props) => {
     setLoading(false)
   }, [])
 
-  // Get games that are not hidden
-  const getVisibleGames = () => {
+  const showMessage = async ({ message, style }) => {
+    setMessage(message)
+    setMessageStyle(style)
+  }
+
+  const getStartingTimes = () => {
+    // Don't include hidden games
     const visibleGames = []
-    // Remove hidden games
     for (let i = 0; i < games.length; i += 1) {
       let match = false
 
@@ -81,18 +85,12 @@ const AdminView: StatelessFunctionalComponent<Props> = (props: Props) => {
       }
     }
 
-    return visibleGames
-  }
-
-  // Assign game info to hidden games list
-  const fillHiddenGameinfo = () => {
-    games.map(game => {
-      hiddenGames.map(hiddenGame => {
-        if (game.gameId === hiddenGame.gameId) {
-          Object.assign(hiddenGame, game)
-        }
-      })
+    const startTimes = []
+    visibleGames.forEach(game => {
+      startTimes.push(game.startTime)
     })
+
+    return [...new Set(startTimes)].sort()
   }
 
   const submitUpdate = async () => {
@@ -129,11 +127,6 @@ const AdminView: StatelessFunctionalComponent<Props> = (props: Props) => {
     }
   }
 
-  const showMessage = async ({ message, style }) => {
-    setMessage(message)
-    setMessageStyle(style)
-  }
-
   const submitTime = async () => {
     setSubmitting(true)
     try {
@@ -143,10 +136,6 @@ const AdminView: StatelessFunctionalComponent<Props> = (props: Props) => {
     }
     setSubmitting(false)
   }
-
-  const visibleGames = getVisibleGames()
-  fillHiddenGameinfo()
-  const formattedDate = timeFormatter.weekdayAndTime(signupTime)
 
   return (
     <div className='admin-view'>
@@ -182,7 +171,7 @@ const AdminView: StatelessFunctionalComponent<Props> = (props: Props) => {
           <p>{t('selectOpenSignup')}</p>
 
           <p>
-            {t('signupOpen')} {formattedDate}
+            {t('signupOpen')} {timeFormatter.weekdayAndTime(signupTime)}
           </p>
 
           <button
@@ -195,9 +184,9 @@ const AdminView: StatelessFunctionalComponent<Props> = (props: Props) => {
           </button>
 
           <TimesDropdown
-            games={visibleGames}
+            times={getStartingTimes()}
+            selectedTime={selectedSignupTime}
             onChange={event => setSelectedSignupTime(event.target.value)}
-            signupTime={selectedSignupTime}
           />
 
           <Hidden hiddenGames={hiddenGames} />
