@@ -58,7 +58,7 @@ const GameDetails: StatelessFunctionalComponent<Props> = (props: Props) => {
 
   React.useEffect(() => {
     checkGameState()
-    setLoading('asd')
+    setLoading(false)
   })
 
   if (!game || !game.gameId) return <div />
