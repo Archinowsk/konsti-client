@@ -8,7 +8,6 @@ import {
   submitPlayersAssign,
   submitSignupTime,
 } from 'views/admin/adminActions'
-import { submitSelectDate } from 'views/signup/signupActions'
 import TimesDropdown from 'components/TimesDropdown'
 import { getStore } from 'utils/store'
 import loadData from 'utils/loadData'
@@ -19,11 +18,9 @@ import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
   hiddenGames: Array<Game>,
-  date: string,
   games: Array<Game>,
   onSubmitGamesUpdate: Function,
   onSubmitPlayersAssign: Function,
-  onSubmitSelectDate: Function,
   onSubmitSignupTime: Function,
   signupTime: string,
   updateResponse: Object,
@@ -35,17 +32,16 @@ type State = {
   loading: boolean,
   message: string,
   messageStyle: string,
+  selectedSignupTime: string,
 }
 */
 
 const AdminView: StatelessFunctionalComponent<Props> = (props: Props) => {
   const {
     hiddenGames,
-    date,
     games,
     onSubmitGamesUpdate,
     onSubmitPlayersAssign,
-    onSubmitSelectDate,
     onSubmitSignupTime,
     signupTime,
     updateResponse,
@@ -55,6 +51,7 @@ const AdminView: StatelessFunctionalComponent<Props> = (props: Props) => {
   const [loading, setLoading] = React.useState(true)
   const [message, setMessage] = React.useState('')
   const [messageStyle, setMessageStyle] = React.useState('')
+  const [selectedSignupTime, setSelectedSignupTime] = React.useState('')
 
   const { t } = useTranslation()
 
@@ -140,7 +137,7 @@ const AdminView: StatelessFunctionalComponent<Props> = (props: Props) => {
   const submitTime = async () => {
     setSubmitting(true)
     try {
-      await onSubmitSignupTime(date)
+      await onSubmitSignupTime(selectedSignupTime)
     } catch (error) {
       console.log(`onSubmitSignupTime error:`, error)
     }
@@ -199,9 +196,8 @@ const AdminView: StatelessFunctionalComponent<Props> = (props: Props) => {
 
           <TimesDropdown
             games={visibleGames}
-            onChange={onSubmitSelectDate}
-            date={date}
-            signupTime={signupTime}
+            onChange={event => setSelectedSignupTime(event.target.value)}
+            signupTime={selectedSignupTime}
           />
 
           <Hidden hiddenGames={hiddenGames} />
@@ -216,7 +212,6 @@ const mapStateToProps = state => {
     updateResponse: state.admin.updateResponse,
     games: state.allGames.games,
     hiddenGames: state.admin.hiddenGames,
-    date: state.signup.date,
     signupTime: state.admin.signupTime,
   }
 }
@@ -226,8 +221,7 @@ const mapDispatchToProps = (dispatch: Function) => {
     onSubmitGamesUpdate: () => dispatch(submitGamesUpdate()),
     onSubmitPlayersAssign: signupTime =>
       dispatch(submitPlayersAssign(signupTime)),
-    onSubmitSelectDate: event => dispatch(submitSelectDate(event.target.value)),
-    onSubmitSignupTime: date => dispatch(submitSignupTime(date)),
+    onSubmitSignupTime: signupTime => dispatch(submitSignupTime(signupTime)),
   }
 }
 

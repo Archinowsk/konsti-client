@@ -8,7 +8,7 @@ import type { StatelessFunctionalComponent } from 'react'
 export type Props = {
   games: Array<Game>,
   onChange: Function,
-  date: string,
+  signupTime: string,
 }
 
 // TODO: Only enable next open signup
@@ -17,7 +17,7 @@ export type Props = {
 // Toggle to show upcoming gameslots or all gameslots
 
 const TimesDropdown: StatelessFunctionalComponent<Props> = (props: Props) => {
-  const { games, onChange, date } = props
+  const { games, onChange, signupTime } = props
   const { t } = useTranslation()
 
   const startTimes = []
@@ -38,8 +38,7 @@ const TimesDropdown: StatelessFunctionalComponent<Props> = (props: Props) => {
 
   return (
     <div className='times-dropdown'>
-      <select onChange={onChange} value={date}>
-        <option>{t('selectTime')}</option>
+      <select onChange={onChange} value={signupTime}>
         <option value='2000-01-01T23:59:00.000Z'>
           {t('noSignupSelected')}
         </option>

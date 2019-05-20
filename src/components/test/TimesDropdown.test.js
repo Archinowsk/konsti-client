@@ -6,7 +6,7 @@ import type { Props } from '../TimesDropdown'
 
 describe('TimesDropdown', () => {
   it('should render correctly', () => {
-    const props: Props = { games: [], onChange: () => {}, date: '' }
+    const props: Props = { games: [], onChange: () => {}, signupTime: '' }
     const component = shallow(<TimesDropdown {...props} />)
     expect(component).toMatchSnapshot()
   })
