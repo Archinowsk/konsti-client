@@ -4,13 +4,20 @@ html {
   color: $text-color;
   display: flex;
   font-family: Helvetica, Arial, Verdana, Tahoma, sans-serif;
-  padding-bottom: 32px;
 }
 
 body {
   background-color: #fafafa;
   margin: 0 auto;
+  padding-bottom: 32px;
   width: 800px;
+}
+
+@media (max-width: $breakpoint-phone) {
+  body {
+    background-color: #fff;
+    padding-bottom: 0;
+  }
 }
 
 /* stylelint-disable selector-max-id */
@@ -19,6 +26,15 @@ body {
   border: solid 1px #e3e7eb;
   margin-top: 20px;
   padding: 30px;
+}
+
+@media (max-width: $breakpoint-phone) {
+  #main {
+    background-color: #fff;
+    border: solid 1px #fff;
+    margin: 0;
+    padding: 0 10px;
+  }
 }
 /* stylelint-enable */
 
