@@ -26,7 +26,7 @@ const Hidden: StatelessFunctionalComponent<Props> = (props: Props) => {
     <div className='hidden'>
       <p>{t('hiddenGames')}</p>
       <ul>
-        {hiddenGames.length === 0 && <span>{t('noHiddenGames')}</span>}
+        {!hiddenGames && <span>{t('noHiddenGames')}</span>}
         {GamesList}
       </ul>
     </div>

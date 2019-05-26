@@ -68,8 +68,8 @@ const AdminView: StatelessFunctionalComponent<Props> = (props: Props) => {
     setMessageStyle(style)
   }
 
-  const getStartingTimes = () => {
-    // Don't include hidden games
+  const getVisibleGames = () => {
+    if (!hiddenGames) return games
     const visibleGames = []
     for (let i = 0; i < games.length; i += 1) {
       let match = false
@@ -84,12 +84,12 @@ const AdminView: StatelessFunctionalComponent<Props> = (props: Props) => {
         visibleGames.push(games[i])
       }
     }
+    return visibleGames
+  }
 
-    const startTimes = []
-    visibleGames.forEach(game => {
-      startTimes.push(game.startTime)
-    })
-
+  const getStartingTimes = () => {
+    const visibleGames = getVisibleGames()
+    const startTimes = visibleGames.map(game => game.startTime)
     return [...new Set(startTimes)].sort()
   }
 

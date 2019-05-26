@@ -126,7 +126,7 @@ export const submitGetSettings = () => {
     if (response && response.status === 'success') {
       dispatch(
         submitGetSettingsAsync({
-          hiddenGames: response.games.hiddenGames,
+          hiddenGames: response.hiddenGames,
           signupTime: response.signupTime,
           adminSettingsLoaded: true,
         })
