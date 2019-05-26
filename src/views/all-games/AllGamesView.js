@@ -13,7 +13,6 @@ import type { StatelessFunctionalComponent } from 'react'
 type Props = {
   games: Array<Game>,
   hiddenGames: Array<Game>,
-  myGames: Object,
 }
 
 /*
@@ -84,7 +83,6 @@ const mapStateToProps = state => {
   return {
     games: state.allGames.games,
     hiddenGames: state.admin.hiddenGames,
-    myGames: state.myGames,
   }
 }
 
