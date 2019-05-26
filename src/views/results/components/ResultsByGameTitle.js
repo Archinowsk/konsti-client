@@ -4,18 +4,19 @@ import { useTranslation } from 'react-i18next'
 import _ from 'lodash'
 import { sortArrayByKey } from 'utils/sort'
 import type { StatelessFunctionalComponent } from 'react'
-import type { Result } from 'flow/result.flow'
+import type { Results } from 'flow/result.flow'
 
 type Props = {
-  results: Array<Result>,
+  results: Results,
 }
 
 const ResultsByGameTitle: StatelessFunctionalComponent<Props> = (
   props: Props
 ) => {
+  const { results } = props
   const { t } = useTranslation()
 
-  const sortedResults = sortArrayByKey(props.results, 'enteredGame.title')
+  const sortedResults = sortArrayByKey(results.result, 'enteredGame.title')
   const groupedResults = _.groupBy(sortedResults, 'enteredGame.title')
 
   const resultsByGameTitle = []

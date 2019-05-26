@@ -8,13 +8,13 @@ import { reorder, move } from 'utils/dragAndDrop'
 import sleep from 'utils/sleep'
 import config from 'config'
 import { sortArrayByKey } from 'utils/sort'
-import type { Game } from 'flow/game.flow'
+import type { Game, GameWithPriority } from 'flow/game.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
   callback: Function,
   games: Array<Game>,
-  selectedGames: Array<Game>,
+  selectedGames: Array<GameWithPriority>,
   signupTime: string,
 }
 
@@ -56,7 +56,7 @@ const DragAndDropList: StatelessFunctionalComponent<Props> = (props: Props) => {
   const loadState = () => {
     const filteredGames = games.filter(game => {
       for (let selectedGame of selectedGames) {
-        if (game.gameId === selectedGame.gameId) {
+        if (game.gameId === selectedGame.gameDetails.gameId) {
           return undefined
         }
       }
@@ -71,19 +71,19 @@ const DragAndDropList: StatelessFunctionalComponent<Props> = (props: Props) => {
     for (let selectedGame of selectedGames) {
       if (
         selectedGame.priority === 1 &&
-        selectedGame.startTime === signupTime
+        selectedGame.gameDetails.startTime === signupTime
       ) {
-        priority1.push(selectedGame)
+        priority1.push(selectedGame.gameDetails)
       } else if (
         selectedGame.priority === 2 &&
-        selectedGame.startTime === signupTime
+        selectedGame.gameDetails.startTime === signupTime
       ) {
-        priority2.push(selectedGame)
+        priority2.push(selectedGame.gameDetails)
       } else if (
         selectedGame.priority === 3 &&
-        selectedGame.startTime === signupTime
+        selectedGame.gameDetails.startTime === signupTime
       ) {
-        priority3.push(selectedGame)
+        priority3.push(selectedGame.gameDetails)
       }
     }
 
@@ -183,15 +183,15 @@ const DragAndDropList: StatelessFunctionalComponent<Props> = (props: Props) => {
   const doCallback = () => {
     const selectedGames = []
     for (let game of priority1) {
-      selectedGames.push({ ...game, priority: 1 })
+      selectedGames.push({ gameDetails: { ...game }, priority: 1 })
     }
 
     for (let game of priority2) {
-      selectedGames.push({ ...game, priority: 2 })
+      selectedGames.push({ gameDetails: { ...game }, priority: 2 })
     }
 
     for (let game of priority3) {
-      selectedGames.push({ ...game, priority: 3 })
+      selectedGames.push({ gameDetails: { ...game }, priority: 3 })
     }
 
     callback(selectedGames)

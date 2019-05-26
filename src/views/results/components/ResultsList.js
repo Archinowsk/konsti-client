@@ -3,11 +3,11 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import ResultsByGameTitle from './ResultsByGameTitle'
 import ResultsByUsername from './ResultsByUsername'
-import type { Result } from 'flow/result.flow'
+import type { Results } from 'flow/result.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
-  results: Array<Result>,
+  results: Results,
 }
 
 /*

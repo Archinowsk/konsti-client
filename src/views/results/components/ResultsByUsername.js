@@ -3,26 +3,26 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { sortArrayByKey } from 'utils/sort'
 import type { StatelessFunctionalComponent } from 'react'
-import type { Result } from 'flow/result.flow'
+import type { Results } from 'flow/result.flow'
 
 type Props = {
-  results: Array<Result>,
+  results: Results,
 }
 
 const ResultsByUsername: StatelessFunctionalComponent<Props> = (
   props: Props
 ) => {
+  const { results } = props
   const { t } = useTranslation()
 
-  const sortedResults = sortArrayByKey(props.results, 'username').map(
-    result => (
-      <div className='flex-table-column' key={result.username}>
-        <div className='flex-table-row'>{result.username}</div>
-        <div className='flex-table-row'>{result.enteredGame.title}</div>
-        <div className='flex-table-row'>{result.enteredGame.location}</div>
-      </div>
-    )
-  )
+  const sortedResults = sortArrayByKey(results.result, 'username')
+  const resultsTable = sortedResults.map(result => (
+    <div className='flex-table-column' key={result.username}>
+      <div className='flex-table-row'>{result.username}</div>
+      <div className='flex-table-row'>{result.enteredGame.title}</div>
+      <div className='flex-table-row'>{result.enteredGame.location}</div>
+    </div>
+  ))
 
   const resultsByUsername = (
     <div className='flex-table-container'>
@@ -31,7 +31,7 @@ const ResultsByUsername: StatelessFunctionalComponent<Props> = (
         <div className='flex-table-row'>{t('gameTitle')}</div>
         <div className='flex-table-row'>{t('gameInfo.location')}</div>
       </div>
-      <div>{sortedResults}</div>
+      <div>{resultsTable}</div>
     </div>
   )
 

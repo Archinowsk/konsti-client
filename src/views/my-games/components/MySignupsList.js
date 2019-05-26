@@ -4,27 +4,32 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import timeFormatter from 'utils/timeFormatter'
 import { sortArrayByKey } from 'utils/sort'
-import type { Game } from 'flow/game.flow'
+import type { GameWithPriority } from 'flow/game.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
-  signedGames: Array<Game>,
+  signedGames: Array<GameWithPriority>,
 }
 
 const MySignupsList: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { signedGames } = props
   const { t } = useTranslation()
 
-  // Sort games by time and name
-  const sortedGames = sortArrayByKey(signedGames, 'startTime', 'title')
+  const sortedSignups = sortArrayByKey(
+    signedGames,
+    'gameDetails.startTime',
+    'gameDetails.title'
+  )
 
-  const GamesList = sortedGames.map(game => {
-    const formattedDate = timeFormatter.weekdayAndTime(game.startTime)
+  const GamesList = sortedSignups.map(signup => {
+    const formattedDate = timeFormatter.weekdayAndTime(
+      signup.gameDetails.startTime
+    )
 
     return (
-      <li key={game.gameId}>
-        <Link to={`/games/${game.gameId}`}>
-          {formattedDate}: {game.title} ({game.priority})
+      <li key={signup.gameDetails.gameId}>
+        <Link to={`/games/${signup.gameDetails.gameId}`}>
+          {formattedDate}: {signup.gameDetails.title} ({signup.priority})
         </Link>
       </li>
     )

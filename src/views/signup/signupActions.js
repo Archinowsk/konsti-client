@@ -1,14 +1,13 @@
 /* @flow */
 import { postSignup } from 'services/signupServices'
-import type { Game } from 'flow/game.flow'
+import type { GameWithPriority } from 'flow/game.flow'
 
 export const SUBMIT_SELECT_DATE = 'SUBMIT_SELECT_DATE'
 export const SUBMIT_SELECTED_GAMES = 'SUBMIT_SELECTED_GAMES'
 
 type SignupData = {
   username: string,
-  selectedGames: Array<Game>,
-  time: string,
+  selectedGames: Array<GameWithPriority>,
 }
 
 export const submitSignup = (signupData: SignupData) => {
@@ -36,7 +35,7 @@ export const submitSelectDate = (date: Date) => {
   }
 }
 
-export const submitSelectedGames = (selectedGames: Array<Game>) => {
+export const submitSelectedGames = (selectedGames: Array<GameWithPriority>) => {
   return {
     type: SUBMIT_SELECTED_GAMES,
     selectedGames,

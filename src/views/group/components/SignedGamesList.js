@@ -24,16 +24,23 @@ const SignedMembersList: StatelessFunctionalComponent<Props> = (
   // Sort games by time and name
   if (!leader) return <div className='signed-games-list' />
 
-  const sortedGames = sortArrayByKey(leader.signedGames, 'startTime', 'title')
+  const sortedGames = sortArrayByKey(
+    leader.signedGames,
+    'gameDetails.startTime',
+    'gameDetails.title'
+  )
 
   const signedGamesList = sortedGames.map(signedGame => {
-    const formattedDate = timeFormatter.weekdayAndTime(signedGame.startTime)
+    const formattedDate = timeFormatter.weekdayAndTime(
+      signedGame.gameDetails.startTime
+    )
 
     return (
-      <React.Fragment key={signedGame.gameId}>
+      <React.Fragment key={signedGame.gameDetails.gameId}>
         <li>
-          <Link to={`/games/${signedGame.gameId}`}>
-            {formattedDate}: {signedGame.title} ({signedGame.priority})
+          <Link to={`/games/${signedGame.gameDetails.gameId}`}>
+            {formattedDate}: {signedGame.gameDetails.title} (
+            {signedGame.priority})
           </Link>
         </li>
       </React.Fragment>

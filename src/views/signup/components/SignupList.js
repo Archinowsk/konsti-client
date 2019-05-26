@@ -10,7 +10,7 @@ import config from 'config'
 import { getStore } from 'utils/store'
 import loadData from 'utils/loadData'
 import Loading from 'components/Loading'
-import type { Game } from 'flow/game.flow'
+import type { Game, GameWithPriority } from 'flow/game.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
@@ -18,9 +18,9 @@ type Props = {
   games: Array<Game>,
   onSubmitSelectedGames: Function,
   onSubmitSignup: Function,
-  selectedGames: Array<Game>,
+  selectedGames: Array<GameWithPriority>,
   username: string,
-  signedGames: Array<Game>,
+  signedGames: Array<GameWithPriority>,
   signupTimes: Array<string>,
 }
 
@@ -66,11 +66,10 @@ const SignupList: StatelessFunctionalComponent<Props> = (props: Props) => {
   const onSubmitClick = async () => {
     setSubmitting(true)
 
-    // Send only game IDs and priorities to API
-    const selectedGameIds = []
+    const formattedGameData = []
     selectedGames.forEach(selectedGame => {
-      selectedGameIds.push({
-        gameId: selectedGame.gameId,
+      formattedGameData.push({
+        gameDetails: selectedGame.gameDetails,
         priority: selectedGame.priority,
         time: signupTime,
       })
@@ -78,8 +77,7 @@ const SignupList: StatelessFunctionalComponent<Props> = (props: Props) => {
 
     const signupData = {
       username,
-      selectedGames: selectedGameIds,
-      time: signupTime,
+      selectedGames: formattedGameData,
     }
 
     let response = null
@@ -101,9 +99,9 @@ const SignupList: StatelessFunctionalComponent<Props> = (props: Props) => {
   const onCancelClick = async () => {
     const selectedGameIds = []
     selectedGames.forEach(selectedGame => {
-      if (selectedGame.startTime !== signupTime) {
+      if (selectedGame.gameDetails.startTime !== signupTime) {
         selectedGameIds.push({
-          gameId: selectedGame.gameId,
+          gameId: selectedGame.gameDetails.gameId,
           priority: selectedGame.priority,
           time: signupTime,
         })
@@ -165,7 +163,7 @@ const SignupList: StatelessFunctionalComponent<Props> = (props: Props) => {
   const callback = games => {
     // Combine new selected games to existing
     const temp = selectedGames.filter(
-      selectedGame => selectedGame.startTime !== signupTime
+      selectedGame => selectedGame.gameDetails.startTime !== signupTime
     )
     const combined = temp.concat(games)
 

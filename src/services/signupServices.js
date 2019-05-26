@@ -1,12 +1,11 @@
 /* @flow */
 import api from 'utils/api'
 import setAuthToken from 'utils/setAuthToken'
-import type { Game } from 'flow/game.flow'
+import type { GameWithPriority } from 'flow/game.flow'
 
 type SignupData = {
   username: string,
-  selectedGames: Array<Game>,
-  time: string,
+  selectedGames: Array<GameWithPriority>,
 }
 
 export const postSignup = async (signupData: SignupData) => {

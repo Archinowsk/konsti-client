@@ -16,7 +16,6 @@ import SignedGamesList from 'views/group/components/SignedGamesList'
 import sleep from 'utils/sleep'
 import config from 'config'
 import { submitSignup } from 'views/signup/signupActions'
-import type { Game } from 'flow/game.flow'
 import type { GroupMember } from 'flow/group.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
@@ -29,7 +28,6 @@ type Props = {
   onSubmitLeaveGroup: Function,
   onSubmitSignup: Function,
   serial: string,
-  signedGames: Array<Game>,
   username: string,
 }
 
@@ -54,7 +52,6 @@ const GroupView: StatelessFunctionalComponent<Props> = (props: Props) => {
     onSubmitLeaveGroup,
     onSubmitSignup,
     serial,
-    signedGames,
     username,
   } = props
 
@@ -110,24 +107,12 @@ const GroupView: StatelessFunctionalComponent<Props> = (props: Props) => {
 
   // Remove all signups
   const removeSignups = async () => {
-    const startTimes = []
-
-    signedGames.forEach(signedGame => {
-      startTimes.push(signedGame.startTime)
-    })
-
-    const sortedTimes = [...new Set(startTimes)].sort()
-
-    // Remove signups from all startTimes
-    for (let time of sortedTimes) {
-      const signupData = {
-        username,
-        selectedGames: [],
-        time: time,
-      }
-
-      await onSubmitSignup(signupData)
+    const signupData = {
+      username,
+      selectedGames: [],
     }
+
+    await onSubmitSignup(signupData)
   }
 
   const joinGroup = async () => {
@@ -313,7 +298,6 @@ const mapStateToProps = (state: Object) => {
     serial: state.login.serial,
     groupCode: state.login.playerGroup,
     groupMembers: state.login.groupMembers,
-    signedGames: state.myGames.signedGames,
   }
 }
 
