@@ -67,18 +67,22 @@ const GameDetails: StatelessFunctionalComponent<Props> = (props: Props) => {
     if (!game || !game.gameId) return
 
     // Check if in favorites
-    for (let i = 0; i < favoritedGames.length; i += 1) {
-      if (favoritedGames[i].gameId === game.gameId) {
-        setFavorited(true)
-        break
+    if (favoritedGames) {
+      for (let i = 0; i < favoritedGames.length; i += 1) {
+        if (favoritedGames[i].gameId === game.gameId) {
+          setFavorited(true)
+          break
+        }
       }
     }
 
     // Check if hidden
-    for (let i = 0; i < hiddenGames.length; i += 1) {
-      if (hiddenGames[i].gameId === game.gameId) {
-        setHidden(true)
-        break
+    if (hiddenGames) {
+      for (let i = 0; i < hiddenGames.length; i += 1) {
+        if (hiddenGames[i].gameId === game.gameId) {
+          setHidden(true)
+          break
+        }
       }
     }
   }
