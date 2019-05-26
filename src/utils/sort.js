@@ -4,7 +4,7 @@ export const sortArrayByKey = <T: Object>(
   key1: string,
   key2?: string
 ): Array<T> => {
-  if (!array || !key1) return []
+  if (!array || !key1 || !Array.isArray(array)) return []
 
   if (key1.includes('.')) {
     return sortArrayByNestedKey(array, key1)
@@ -33,7 +33,7 @@ export const sortArrayByNestedKey = <T: Object>(
   array: Array<T>,
   key1: string
 ): Array<T> => {
-  if (!array || !key1) return []
+  if (!array || !key1 || !Array.isArray(array)) return []
 
   const splitKey = key1.split('.')
   const firstKey = splitKey[0]
