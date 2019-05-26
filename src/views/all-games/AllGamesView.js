@@ -36,6 +36,7 @@ const AllGamesView: StatelessFunctionalComponent<Props> = (props: Props) => {
 
   // Remove hidden games
   const getVisibleGames = () => {
+    if (!hiddenGames) return games
     const visibleGames = []
     for (let game of games) {
       let match = false
