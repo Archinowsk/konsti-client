@@ -3,11 +3,11 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 /* $FlowFixMe: Cannot import `DragDropContext` because there is no `DragDropContext` export in `react-beautiful-dnd`. */
 import { DragDropContext } from 'react-beautiful-dnd'
+import _ from 'lodash'
 import DropRow from 'views/signup/components/DropRow'
 import { reorder, move } from 'utils/dragAndDrop'
 import sleep from 'utils/sleep'
 import config from 'config'
-import { sortArrayByKey } from 'utils/sort'
 import type { Game, GameWithPriority } from 'flow/game.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
@@ -63,7 +63,7 @@ const DragAndDropList: StatelessFunctionalComponent<Props> = (props: Props) => {
       return game
     })
 
-    const gameList = sortArrayByKey(filteredGames, 'title')
+    const gameList = _.sortBy(filteredGames, ['title'])
     const priority1 = []
     const priority2 = []
     const priority3 = []

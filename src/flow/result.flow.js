@@ -1,9 +1,9 @@
 // @flow
-import type { Game, GameWithPriority } from 'flow/game.flow'
+import type { GameWithPriority } from 'flow/game.flow'
 
 export type Result = {
   username: string,
-  enteredGame: Game,
+  enteredGame: GameWithPriority,
   signedGames: Array<GameWithPriority>,
 }
 

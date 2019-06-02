@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { sortArrayByKey } from 'utils/sort'
+import _ from 'lodash'
 import type { StatelessFunctionalComponent } from 'react'
 import type { Results } from 'flow/result.flow'
 
@@ -15,12 +15,17 @@ const ResultsByUsername: StatelessFunctionalComponent<Props> = (
   const { results } = props
   const { t } = useTranslation()
 
-  const sortedResults = sortArrayByKey(results.result, 'username')
+  const sortedResults = _.sortBy(results.result, ['username'])
+
   const resultsTable = sortedResults.map(result => (
     <div className='flex-table-column' key={result.username}>
       <div className='flex-table-row'>{result.username}</div>
-      <div className='flex-table-row'>{result.enteredGame.title}</div>
-      <div className='flex-table-row'>{result.enteredGame.location}</div>
+      <div className='flex-table-row'>
+        {result.enteredGame.gameDetails.title}
+      </div>
+      <div className='flex-table-row'>
+        {result.enteredGame.gameDetails.location}
+      </div>
     </div>
   ))
 

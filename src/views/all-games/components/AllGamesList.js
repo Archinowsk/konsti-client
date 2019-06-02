@@ -2,8 +2,8 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
+import _ from 'lodash'
 import timeFormatter from 'utils/timeFormatter'
-import { sortArrayByKey } from 'utils/sort'
 import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
@@ -21,7 +21,7 @@ const AllGamesList: StatelessFunctionalComponent<Props> = (props: Props) => {
     Object.keys(games)
       .sort()
       .forEach(key => {
-        sortedGames[key] = sortArrayByKey(games[key], 'title')
+        sortedGames[key] = _.sortBy(games[key], ['title'])
       })
 
     return sortedGames

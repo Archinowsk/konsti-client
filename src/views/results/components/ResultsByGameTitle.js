@@ -2,7 +2,6 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import _ from 'lodash'
-import { sortArrayByKey } from 'utils/sort'
 import type { StatelessFunctionalComponent } from 'react'
 import type { Results } from 'flow/result.flow'
 
@@ -16,13 +15,19 @@ const ResultsByGameTitle: StatelessFunctionalComponent<Props> = (
   const { results } = props
   const { t } = useTranslation()
 
-  const sortedResults = sortArrayByKey(results.result, 'enteredGame.title')
-  const groupedResults = _.groupBy(sortedResults, 'enteredGame.title')
+  const sortedResults = _.sortBy(results.result, [
+    'enteredGame.gameDetails.title',
+  ])
+
+  const groupedResults = _.groupBy(
+    sortedResults,
+    'enteredGame.gameDetails.title'
+  )
 
   const resultsByGameTitle = []
 
   for (let result in groupedResults) {
-    const playerList = sortArrayByKey(groupedResults[result], 'username').map(
+    const playerList = _.sortBy(groupedResults[result], 'username').map(
       result => <p key={result.username}>{result.username}</p>
     )
 
@@ -33,7 +38,7 @@ const ResultsByGameTitle: StatelessFunctionalComponent<Props> = (
         </p>
         <p>
           <span className='bold'>{t('gameInfo.location')}:</span>{' '}
-          {_.head(groupedResults[result]).enteredGame.location}
+          {_.head(groupedResults[result]).enteredGame.gameDetails.location}
         </p>
         <p className='bold'>{t('players')}:</p>
         <div className='result-player-list'>{playerList}</div>

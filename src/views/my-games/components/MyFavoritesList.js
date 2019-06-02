@@ -2,8 +2,8 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
+import _ from 'lodash'
 import timeFormatter from 'utils/timeFormatter'
-import { sortArrayByKey } from 'utils/sort'
 import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
@@ -16,7 +16,7 @@ const MyFavoritesList: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { t } = useTranslation()
 
   // Sort games by time and name
-  const sortedGames = sortArrayByKey(favoritedGames, 'startTime', 'title')
+  const sortedGames = _.sortBy(favoritedGames, ['startTime', 'title'])
 
   const GamesList = sortedGames.map(game => {
     const formattedDate = timeFormatter.weekdayAndTime(game.startTime)

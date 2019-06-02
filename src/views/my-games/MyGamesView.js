@@ -13,7 +13,7 @@ import type { StatelessFunctionalComponent } from 'react'
 type Props = {
   signedGames: Array<GameWithPriority>,
   favoritedGames: Array<Game>,
-  enteredGames: Array<Game>,
+  enteredGames: Array<GameWithPriority>,
 }
 
 /*

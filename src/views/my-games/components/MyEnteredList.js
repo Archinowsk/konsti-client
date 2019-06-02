@@ -2,13 +2,13 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
+import _ from 'lodash'
 import timeFormatter from 'utils/timeFormatter'
-import { sortArrayByKey } from 'utils/sort'
-import type { Game } from 'flow/game.flow'
+import type { GameWithPriority } from 'flow/game.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
-  enteredGames: Array<Game>,
+  enteredGames: Array<GameWithPriority>,
 }
 
 const MyEnteredList: StatelessFunctionalComponent<Props> = (props: Props) => {
@@ -16,14 +16,19 @@ const MyEnteredList: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { t } = useTranslation()
 
   // Sort games by time and name
-  const sortedGames = sortArrayByKey(enteredGames, 'startTime', 'title')
+  const sortedGames = _.sortBy(enteredGames, [
+    'gameDetails.startTime',
+    'gameDetails.title',
+  ])
 
   const GamesList = sortedGames.map(game => {
-    const formattedDate = timeFormatter.weekdayAndTime(game.startTime)
+    const formattedDate = timeFormatter.weekdayAndTime(
+      game.gameDetails.startTime
+    )
     return (
-      <li key={game.gameId}>
-        <Link to={`/games/${game.gameId}`}>
-          {formattedDate}: {game.title}
+      <li key={game.gameDetails.gameId}>
+        <Link to={`/games/${game.gameDetails.gameId}`}>
+          {formattedDate}: {game.gameDetails.title}
         </Link>
       </li>
     )
