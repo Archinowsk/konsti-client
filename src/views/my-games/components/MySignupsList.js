@@ -17,7 +17,7 @@ const MySignupsList: StatelessFunctionalComponent<Props> = (props: Props) => {
 
   const sortedSignups = _.sortBy(signedGames, [
     'gameDetails.startTime',
-    'gameDetails.title',
+    'priority',
   ])
 
   const GamesList = sortedSignups.map(signup => {
