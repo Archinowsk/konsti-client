@@ -15,8 +15,10 @@ const MyFavoritesList: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { favoritedGames } = props
   const { t } = useTranslation()
 
-  // Sort games by time and name
-  const sortedGames = _.sortBy(favoritedGames, ['startTime', 'title'])
+  const sortedGames = _.sortBy(favoritedGames, [
+    favoritedGame => favoritedGame.startTime,
+    favoritedGame => favoritedGame.title.toLowerCase(),
+  ])
 
   const GamesList = sortedGames.map(game => {
     const formattedDate = timeFormatter.weekdayAndTime(game.startTime)

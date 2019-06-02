@@ -14,7 +14,9 @@ const Hidden: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { hiddenGames } = props
   const { t } = useTranslation()
 
-  const sortedGames = _.sortBy(hiddenGames, ['title'])
+  const sortedGames = _.sortBy(hiddenGames, [
+    hiddenGame => hiddenGame.title.toLowerCase(),
+  ])
 
   const GamesList = sortedGames.map(game => (
     <li key={game.gameId}>

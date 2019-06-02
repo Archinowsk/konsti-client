@@ -15,31 +15,13 @@ const AllGamesList: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { games } = props
   const { t } = useTranslation()
 
-  // Sort games by starting time and name
-  const sortGames = games => {
-    const sortedGames = {}
-    Object.keys(games)
-      .sort()
-      .forEach(key => {
-        sortedGames[key] = _.sortBy(games[key], ['title'])
-      })
-
-    return sortedGames
-  }
-
   const buildGamesList = games => {
-    // Group all unique starting times
-    const groupedGames = games.reduce((acc, sortedGame) => {
-      acc[sortedGame['startTime']] = acc[sortedGame['startTime']] || []
-      acc[sortedGame['startTime']].push(sortedGame)
-      return acc
-    }, {})
-
-    const sortedGames = sortGames(groupedGames)
+    const sortedGames = _.sortBy(games, [game => game.title.toLowerCase()])
+    const groupedGames = _.groupBy(sortedGames, 'startTime')
 
     const GamesList = []
 
-    for (const [startTime, games] of Object.entries(sortedGames)) {
+    for (const [startTime, games] of Object.entries(groupedGames)) {
       const formattedStartTime = timeFormatter.weekdayAndTime(startTime)
       const { signupStartTime, startTimeException } = timeFormatter.startTime(
         startTime

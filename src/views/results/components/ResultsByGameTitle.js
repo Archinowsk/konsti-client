@@ -16,7 +16,7 @@ const ResultsByGameTitle: StatelessFunctionalComponent<Props> = (
   const { t } = useTranslation()
 
   const sortedResults = _.sortBy(results.result, [
-    'enteredGame.gameDetails.title',
+    result => result.enteredGame.gameDetails.title.toLowerCase(),
   ])
 
   const groupedResults = _.groupBy(
@@ -27,9 +27,13 @@ const ResultsByGameTitle: StatelessFunctionalComponent<Props> = (
   const resultsByGameTitle = []
 
   for (let result in groupedResults) {
-    const playerList = _.sortBy(groupedResults[result], 'username').map(
-      result => <p key={result.username}>{result.username}</p>
-    )
+    const sortedResults = _.sortBy(groupedResults[result], [
+      result => result.username.toLowerCase(),
+    ])
+
+    const playerList = sortedResults.map(result => (
+      <p key={result.username}>{result.username}</p>
+    ))
 
     resultsByGameTitle.push(
       <div className='game-result' key={result}>

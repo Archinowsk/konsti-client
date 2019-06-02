@@ -21,12 +21,11 @@ const SignedMembersList: StatelessFunctionalComponent<Props> = (
     member => member.serial === member.playerGroup
   )
 
-  // Sort games by time and name
   if (!leader) return <div className='signed-games-list' />
 
   const sortedGames = _.sortBy(leader.signedGames, [
-    'gameDetails.startTime',
-    'gameDetails.title',
+    signedGame => signedGame.gameDetails.startTime,
+    signedGame => signedGame.priority,
   ])
 
   const signedGamesList = sortedGames.map(signedGame => {

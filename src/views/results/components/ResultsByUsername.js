@@ -15,7 +15,9 @@ const ResultsByUsername: StatelessFunctionalComponent<Props> = (
   const { results } = props
   const { t } = useTranslation()
 
-  const sortedResults = _.sortBy(results.result, ['username'])
+  const sortedResults = _.sortBy(results.result, [
+    result => result.username.toLowerCase(),
+  ])
 
   const resultsTable = sortedResults.map(result => (
     <div className='flex-table-column' key={result.username}>

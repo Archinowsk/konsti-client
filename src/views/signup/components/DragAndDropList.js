@@ -63,7 +63,10 @@ const DragAndDropList: StatelessFunctionalComponent<Props> = (props: Props) => {
       return game
     })
 
-    const gameList = _.sortBy(filteredGames, ['title'])
+    const gameList = _.sortBy(filteredGames, [
+      filteredGame => filteredGame.title.toLowerCase(),
+    ])
+
     const priority1 = []
     const priority2 = []
     const priority3 = []

@@ -15,10 +15,9 @@ const MyEnteredList: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { enteredGames } = props
   const { t } = useTranslation()
 
-  // Sort games by time and name
   const sortedGames = _.sortBy(enteredGames, [
-    'gameDetails.startTime',
-    'gameDetails.title',
+    enteredGame => enteredGame.gameDetails.startTime,
+    enteredGame => enteredGame.gameDetails.title.toLowerCase(),
   ])
 
   const GamesList = sortedGames.map(game => {
