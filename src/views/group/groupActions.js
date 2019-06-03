@@ -89,7 +89,6 @@ export const submitGetGroup = (groupCode: string) => {
 }
 
 const submitLeaveGroupAsync = () => {
-  console.log('leave group')
   return {
     type: SUBMIT_LEAVE_GROUP,
   }
