@@ -1,6 +1,6 @@
 /* @flow */
 import api from 'utils/api'
-import setAuthToken from 'utils/setAuthToken'
+import getJWT from 'utils/getJWT'
 
 export const postRegistration = async (registrationData: Object) => {
   let response = null
@@ -25,7 +25,7 @@ export const postRegistration = async (registrationData: Object) => {
 }
 
 export const getUser = async (username: string) => {
-  setAuthToken()
+  api.defaults.headers.common['Authorization'] = `Bearer ${getJWT()}`
 
   let response = null
   try {

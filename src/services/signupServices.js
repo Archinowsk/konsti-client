@@ -1,6 +1,6 @@
 /* @flow */
 import api from 'utils/api'
-import setAuthToken from 'utils/setAuthToken'
+import getJWT from 'utils/getJWT'
 import type { GameWithPriority } from 'flow/game.flow'
 
 type SignupData = {
@@ -9,7 +9,7 @@ type SignupData = {
 }
 
 export const postSignup = async (signupData: SignupData) => {
-  setAuthToken()
+  api.defaults.headers.common['Authorization'] = `Bearer ${getJWT()}`
 
   let response = null
   try {

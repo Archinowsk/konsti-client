@@ -1,9 +1,9 @@
 /* @flow */
 import api from 'utils/api'
-import setAuthToken from 'utils/setAuthToken'
+import getJWT from 'utils/getJWT'
 
 export const postGroup = async (groupData: Object) => {
-  setAuthToken()
+  api.defaults.headers.common['Authorization'] = `Bearer ${getJWT()}`
 
   let response = null
   try {
@@ -27,7 +27,7 @@ export const postGroup = async (groupData: Object) => {
 }
 
 export const getGroup = async (groupCode: string) => {
-  setAuthToken()
+  api.defaults.headers.common['Authorization'] = `Bearer ${getJWT()}`
 
   let response = null
   try {

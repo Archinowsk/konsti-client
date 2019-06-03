@@ -1,9 +1,9 @@
 /* @flow */
 import api from 'utils/api'
-import setAuthToken from 'utils/setAuthToken'
+import getJWT from 'utils/getJWT'
 
 export const postPlayersAssign = async (signupTime: Date) => {
-  setAuthToken()
+  api.defaults.headers.common['Authorization'] = `Bearer ${getJWT()}`
 
   let response = null
   try {
