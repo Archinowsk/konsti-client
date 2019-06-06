@@ -171,11 +171,15 @@ const prodConfig = {
     new CompressionPlugin({
       filename: '[path].gz[query]',
       algorithm: 'gzip',
-      test: /\.js$/,
+      test: /\.(js|css|html|svg)$/,
+      threshold: 10240,
+      minRatio: 0.8,
     }),
     new BrotliPlugin({
       asset: '[path].br[query]',
-      test: /\.js$/,
+      test: /\.(js|css|html|svg)$/,
+      threshold: 10240,
+      minRatio: 0.8,
     }),
   ],
 
@@ -252,11 +256,15 @@ const stagingConfig = {
     new CompressionPlugin({
       filename: '[path].gz[query]',
       algorithm: 'gzip',
-      test: /\.js$/,
+      test: /\.(js|css|html|svg)$/,
+      threshold: 10240,
+      minRatio: 0.8,
     }),
     new BrotliPlugin({
       asset: '[path].br[query]',
-      test: /\.js$/,
+      test: /\.(js|css|html|svg)$/,
+      threshold: 10240,
+      minRatio: 0.8,
     }),
   ],
 
