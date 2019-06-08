@@ -14,17 +14,18 @@ import config from 'config'
 import { getStore } from 'utils/store'
 import loadData from 'utils/loadData'
 import Loading from 'components/Loading'
-import type { Game, GameWithPriority } from 'flow/game.flow'
 import type { StatelessFunctionalComponent } from 'react'
+import type { Game } from 'flow/game.flow'
+import type { Signup } from 'flow/user.flow'
 
 type Props = {
   hiddenGames: Array<Game>,
   games: Array<Game>,
   onSubmitSelectedGames: Function,
   onSubmitSignup: Function,
-  selectedGames: Array<GameWithPriority>,
+  selectedGames: Array<Signup>,
   username: string,
-  signedGames: Array<GameWithPriority>,
+  signedGames: Array<Signup>,
   signupTimes: Array<string>,
   signupTime: string,
   onSubmitSignupTime: Function,

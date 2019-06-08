@@ -4,11 +4,11 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import _ from 'lodash'
 import timeFormatter from 'utils/timeFormatter'
-import type { GameWithPriority } from 'flow/game.flow'
+import type { Signup } from 'flow/user.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
-  enteredGames: Array<GameWithPriority>,
+  enteredGames: Array<Signup>,
 }
 
 const MyEnteredList: StatelessFunctionalComponent<Props> = (props: Props) => {

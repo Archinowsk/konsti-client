@@ -8,13 +8,14 @@ import DropRow from 'views/signup/components/DropRow'
 import { reorder, move } from 'utils/dragAndDrop'
 import sleep from 'utils/sleep'
 import config from 'config'
-import type { Game, GameWithPriority } from 'flow/game.flow'
 import type { StatelessFunctionalComponent } from 'react'
+import type { Game } from 'flow/game.flow'
+import type { Signup } from 'flow/user.flow'
 
 type Props = {
   callback: Function,
   games: Array<Game>,
-  selectedGames: Array<GameWithPriority>,
+  selectedGames: Array<Signup>,
   signupTime: string,
 }
 

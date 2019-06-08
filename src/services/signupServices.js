@@ -1,11 +1,11 @@
 /* @flow */
 import api from 'utils/api'
 import getJWT from 'utils/getJWT'
-import type { GameWithPriority } from 'flow/game.flow'
+import type { Signup } from 'flow/user.flow'
 
 type SignupData = {
   username: string,
-  selectedGames: Array<GameWithPriority>,
+  selectedGames: Array<Signup>,
 }
 
 export const postSignup = async (signupData: SignupData) => {

@@ -22,8 +22,3 @@ export type Game = {
   beginnerFriendly: boolean,
   intendedForExperiencedParticipants: boolean,
 }
-
-export type GameWithPriority = {
-  gameDetails: Game,
-  priority: number,
-}
