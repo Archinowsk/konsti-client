@@ -105,7 +105,7 @@
   "enteredGames": "Signup results",
   "hiddenGames": "Hidden games",
   "error": {
-    "usernameTaken": "Username not free",
+    "usernameTaken": "Username already taken",
     "invalidSerial": "Invalid code",
     "registrationFailed": "Registration failed",
     "loginFailed": "Username and password don't match",

@@ -106,7 +106,7 @@
   "enteredGames": "Ilmoittautumisen tulokset",
   "hiddenGames": "Piilotetut pelit",
   "error": {
-    "usernameTaken": "Käyttäjänimi on varattu",
+    "usernameTaken": "Käyttäjänimi on jo olemassa",
     "invalidSerial": "Epäkelpo rekisteröitymiskoodi",
     "registrationFailed": "Rekisteröityminen epäonnistui",
     "loginFailed": "Käyttäjänimi ja salasana eivät täsmää",
