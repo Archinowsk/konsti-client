@@ -101,7 +101,7 @@
   },
   "user": "User",
   "favoritedGames": "Favorited games",
-  "signedGames": "Signed up games",
+  "signedGames": "Selected games",
   "enteredGames": "Signup results",
   "hiddenGames": "Hidden games",
   "error": {
@@ -115,7 +115,7 @@
   "registerDescriptionTitle": "Register description",
   "registerDescriptionText": "Konsti application user register is used to collect registered usernames and signup details. The registry information is used to organize Ropecon 2019 tabletop roleplaying signups and after the event anonymised for compiling statistics. Data will not be disclosed outside of Ropecon 2019. Personal information is stored on servers managed by Amazon that may be located outside the EU / EEA. The information is password protected. The registrar is Ropecon ry, represented by Arttu Hanska, roolipelit@ropecon.fi.",
   "registrationSerialHelp": "Get code from LARP and RPG desk",
-  "noSignedGames": "No signed up games",
+  "noSignedGames": "No selected games",
   "noFavoritedGames": "No favorited games",
   "noEnteredGames": "No signup results",
   "noHiddenGames": "No hidden games",
