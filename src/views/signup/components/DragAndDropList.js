@@ -55,7 +55,7 @@ const DragAndDropList: StatelessFunctionalComponent<Props> = (props: Props) => {
   }, [gameList, priority1, priority2, priority3])
 
   const loadState = () => {
-    const filteredGames = games.filter(game => {
+    const notSelectedGames = games.filter(game => {
       for (let selectedGame of selectedGames) {
         if (game.gameId === selectedGame.gameDetails.gameId) {
           return undefined
@@ -64,8 +64,8 @@ const DragAndDropList: StatelessFunctionalComponent<Props> = (props: Props) => {
       return game
     })
 
-    const gameList = _.sortBy(filteredGames, [
-      filteredGame => filteredGame.title.toLowerCase(),
+    const gameList = _.sortBy(notSelectedGames, [
+      notSelectedGame => notSelectedGame.title.toLowerCase(),
     ])
 
     const priority1 = []
