@@ -1,10 +1,10 @@
 // @flow
-import type { Game, GameWithPriority } from 'flow/game.flow'
+import type { Signup } from 'flow/user.flow'
 
 export type GroupMember = {
-  enteredGames: Array<Game>,
+  enteredGames: Array<Signup>,
   playerGroup: string,
   serial: string,
-  signedGames: Array<GameWithPriority>,
+  signedGames: Array<Signup>,
   username: string,
 }

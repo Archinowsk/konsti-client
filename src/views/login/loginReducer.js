@@ -5,7 +5,7 @@ import {
   SUBMIT_UPDATE_GROUP_MEMBERS,
   SUBMIT_LEAVE_GROUP,
 } from 'views/group/groupActions'
-import type { User } from 'flow/user.flow'
+import type { GroupMember } from 'flow/group.flow'
 
 type State = {
   username: string,
@@ -14,7 +14,7 @@ type State = {
   userGroup: string,
   serial: string,
   playerGroup: string,
-  groupMembers: Array<User>,
+  groupMembers: Array<GroupMember>,
 }
 
 const initialState = {

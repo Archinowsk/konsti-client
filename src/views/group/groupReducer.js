@@ -1,11 +1,11 @@
 /* @flow */
 // import { SUBMIT_UPDATE_GROUP } from 'views/group/groupActions'
 // import { SUBMIT_LEAVE_GROUP } from 'views/group/groupActions'
-import type { User } from 'flow/user.flow'
+import type { GroupMember } from 'flow/group.flow'
 
 type State = {
   playerGroup: string,
-  groupMembers: Array<User>,
+  groupMembers: Array<GroupMember>,
 }
 
 const initialState = {
