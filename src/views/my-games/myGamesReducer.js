@@ -7,10 +7,10 @@ import type { Signup } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
 
 type State = {
-  enteredGames: Array<Signup>,
-  favoritedGames: Array<Game>,
-  signedGames: Array<Signup>,
-  myGamesLoaded: boolean,
+  +enteredGames: $ReadOnlyArray<Signup>,
+  +favoritedGames: $ReadOnlyArray<Game>,
+  +signedGames: $ReadOnlyArray<Signup>,
+  +myGamesLoaded: boolean,
 }
 
 const initialState = {

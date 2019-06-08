@@ -19,14 +19,14 @@ import type { Game } from 'flow/game.flow'
 import type { Signup } from 'flow/user.flow'
 
 type Props = {
-  hiddenGames: Array<Game>,
-  games: Array<Game>,
+  hiddenGames: $ReadOnlyArray<Game>,
+  games: $ReadOnlyArray<Game>,
   onSubmitSelectedGames: Function,
   onSubmitSignup: Function,
-  selectedGames: Array<Signup>,
+  selectedGames: $ReadOnlyArray<Signup>,
   username: string,
-  signedGames: Array<Signup>,
-  signupTimes: Array<string>,
+  signedGames: $ReadOnlyArray<Signup>,
+  signupTimes: $ReadOnlyArray<string>,
   signupTime: string,
   onSubmitSignupTime: Function,
 }

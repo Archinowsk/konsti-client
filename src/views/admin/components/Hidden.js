@@ -7,7 +7,7 @@ import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
-  hiddenGames: Array<Game>,
+  hiddenGames: $ReadOnlyArray<Game>,
 }
 
 const Hidden: StatelessFunctionalComponent<Props> = (props: Props) => {

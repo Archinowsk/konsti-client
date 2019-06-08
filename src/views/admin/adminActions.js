@@ -74,7 +74,7 @@ const submitUpdateHiddenAsync = ({ hiddenGames }) => {
   }
 }
 
-export const submitUpdateHidden = (hiddenGames: Array<Game>) => {
+export const submitUpdateHidden = (hiddenGames: $ReadOnlyArray<Game>) => {
   return async (dispatch: Function) => {
     let response = null
     try {

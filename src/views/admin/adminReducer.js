@@ -9,11 +9,11 @@ import {
 import type { Game } from 'flow/game.flow'
 
 type State = {
-  updateResponse: Object,
-  assignResponse: Object,
-  hiddenGames: Array<Game>,
-  signupTime: string,
-  adminSettingsLoaded: boolean,
+  +updateResponse: Object,
+  +assignResponse: Object,
+  +hiddenGames: $ReadOnlyArray<Game>,
+  +signupTime: string,
+  +adminSettingsLoaded: boolean,
 }
 
 const initialState = {

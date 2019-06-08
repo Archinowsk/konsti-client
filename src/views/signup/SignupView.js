@@ -9,13 +9,13 @@ import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
-  games: Array<Game>,
+  games: $ReadOnlyArray<Game>,
 }
 
 /*
 type State = {
   loading: boolean,
-  signupTimes: Array<string>,
+  signupTimes: $ReadOnlyArray<string>,
 }
 */
 

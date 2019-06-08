@@ -12,9 +12,9 @@ import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
-  hiddenGames: Array<Game>,
-  favoritedGames: Array<Game>,
-  games: Array<Game>,
+  hiddenGames: $ReadOnlyArray<Game>,
+  favoritedGames: $ReadOnlyArray<Game>,
+  games: $ReadOnlyArray<Game>,
   history: Object,
   loggedIn: boolean,
   match: Object,

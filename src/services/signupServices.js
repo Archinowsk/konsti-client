@@ -1,12 +1,7 @@
 /* @flow */
 import api from 'utils/api'
 import getJWT from 'utils/getJWT'
-import type { Signup } from 'flow/user.flow'
-
-type SignupData = {
-  username: string,
-  selectedGames: Array<Signup>,
-}
+import type { SignupData } from 'flow/user.flow'
 
 export const postSignup = async (signupData: SignupData) => {
   api.defaults.headers.common['Authorization'] = `Bearer ${getJWT()}`

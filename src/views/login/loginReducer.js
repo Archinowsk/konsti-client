@@ -8,13 +8,13 @@ import {
 import type { GroupMember } from 'flow/group.flow'
 
 type State = {
-  username: string,
-  loggedIn: boolean,
-  jwtToken: string,
-  userGroup: string,
-  serial: string,
-  playerGroup: string,
-  groupMembers: Array<GroupMember>,
+  +username: string,
+  +loggedIn: boolean,
+  +jwtToken: string,
+  +userGroup: string,
+  +serial: string,
+  +playerGroup: string,
+  +groupMembers: $ReadOnlyArray<GroupMember>,
 }
 
 const initialState = {

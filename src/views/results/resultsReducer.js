@@ -3,7 +3,7 @@ import { SUBMIT_GET_RESULTS } from 'views/results/resultsActions'
 import type { Result } from 'flow/result.flow'
 
 type State = {
-  results: Array<Result>,
+  +results: $ReadOnlyArray<Result>,
 }
 
 const initialState = { results: [] }

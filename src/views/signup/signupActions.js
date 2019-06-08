@@ -6,8 +6,8 @@ export const SUBMIT_SIGNUP_TIME = 'SUBMIT_SELECT_SIGNUPTIME'
 export const SUBMIT_SELECTED_GAMES = 'SUBMIT_SELECTED_GAMES'
 
 type SignupData = {
-  username: string,
-  selectedGames: Array<Signup>,
+  +username: string,
+  +selectedGames: $ReadOnlyArray<Signup>,
 }
 
 export const submitSignup = (signupData: SignupData) => {
@@ -35,7 +35,7 @@ export const submitSignupTime = (signupTime: string) => {
   }
 }
 
-export const submitSelectedGames = (selectedGames: Array<Signup>) => {
+export const submitSelectedGames = (selectedGames: $ReadOnlyArray<Signup>) => {
   return {
     type: SUBMIT_SELECTED_GAMES,
     selectedGames,

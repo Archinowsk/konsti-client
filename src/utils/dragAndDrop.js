@@ -2,7 +2,11 @@
 import type { Game } from 'flow/game.flow'
 
 // Help with reordering the result
-const reorder = (list: Array<Game>, startIndex: number, endIndex: number) => {
+const reorder = (
+  list: $ReadOnlyArray<Game>,
+  startIndex: number,
+  endIndex: number
+) => {
   /* $FlowFixMe: Missing type annotation for `A`. `A` is a type parameter declared in  function type [1] and was implicitly instantiated at  call of method `from` [2]. */
   const result = Array.from(list)
   const [removed] = result.splice(startIndex, 1)
@@ -12,8 +16,8 @@ const reorder = (list: Array<Game>, startIndex: number, endIndex: number) => {
 
 // Move item from one list to another
 const move = (
-  source: Array<Game>,
-  destination: Array<Game>,
+  source: $ReadOnlyArray<Game>,
+  destination: $ReadOnlyArray<Game>,
   droppableSource: Object,
   droppableDestination: Object
 ) => {

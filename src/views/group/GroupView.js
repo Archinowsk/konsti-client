@@ -21,7 +21,7 @@ import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
   groupCode: string,
-  groupMembers: Array<GroupMember>,
+  groupMembers: $ReadOnlyArray<GroupMember>,
   onSubmitCreateGroup: Function,
   onSubmitGetGroup: Function,
   onSubmitJoinGroup: Function,

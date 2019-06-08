@@ -3,7 +3,7 @@ import { SUBMIT_GET_GAMES } from 'views/all-games/allGamesActions'
 import type { Game } from 'flow/game.flow'
 
 type State = {
-  games: Array<Game>,
+  +games: $ReadOnlyArray<Game>,
 }
 
 const initialState = { games: [] }

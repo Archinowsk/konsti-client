@@ -7,7 +7,7 @@ import type { StatelessFunctionalComponent } from 'react'
 export type Props = {
   onChange: Function,
   selectedTime: string,
-  times: Array<string>,
+  times: $ReadOnlyArray<string>,
 }
 
 // TODO: Only enable next open signup

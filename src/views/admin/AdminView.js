@@ -17,8 +17,8 @@ import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
-  hiddenGames: Array<Game>,
-  games: Array<Game>,
+  hiddenGames: $ReadOnlyArray<Game>,
+  games: $ReadOnlyArray<Game>,
   onSubmitGamesUpdate: Function,
   onSubmitPlayersAssign: Function,
   onSubmitSignupTime: Function,

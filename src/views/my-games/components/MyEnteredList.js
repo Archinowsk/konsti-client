@@ -8,7 +8,7 @@ import type { Signup } from 'flow/user.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
-  enteredGames: Array<Signup>,
+  enteredGames: $ReadOnlyArray<Signup>,
 }
 
 const MyEnteredList: StatelessFunctionalComponent<Props> = (props: Props) => {

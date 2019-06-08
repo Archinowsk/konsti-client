@@ -7,7 +7,7 @@ import type { GroupMember } from 'flow/group.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
-  groupMembers: Array<GroupMember>,
+  groupMembers: $ReadOnlyArray<GroupMember>,
 }
 
 const SignedMembersList: StatelessFunctionalComponent<Props> = (

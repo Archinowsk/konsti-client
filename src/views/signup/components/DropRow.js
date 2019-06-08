@@ -9,7 +9,7 @@ import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
   droppableId: string,
-  games: Array<Game>,
+  games: $ReadOnlyArray<Game>,
   label: string,
 }
 

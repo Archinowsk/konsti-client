@@ -4,8 +4,8 @@
 import type { GroupMember } from 'flow/group.flow'
 
 type State = {
-  playerGroup: string,
-  groupMembers: Array<GroupMember>,
+  +playerGroup: string,
+  +groupMembers: $ReadOnlyArray<GroupMember>,
 }
 
 const initialState = {

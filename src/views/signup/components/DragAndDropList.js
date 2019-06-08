@@ -14,26 +14,26 @@ import type { Signup } from 'flow/user.flow'
 
 type Props = {
   callback: Function,
-  games: Array<Game>,
-  selectedGames: Array<Signup>,
+  games: $ReadOnlyArray<Game>,
+  selectedGames: $ReadOnlyArray<Signup>,
   signupTime: string,
 }
 
 /*
 type State = {
-  gameList: Array<Game>,
-  priority1: Array<Game>,
-  priority2: Array<Game>,
-  priority3: Array<Game>,
+  gameList: $ReadOnlyArray<Game>,
+  priority1: $ReadOnlyArray<Game>,
+  priority2: $ReadOnlyArray<Game>,
+  priority3: $ReadOnlyArray<Game>,
   warningVisible: boolean,
 }
 */
 
 type UpdatedPositions = {
-  gameList?: Array<Game>,
-  priority1?: Array<Game>,
-  priority2?: Array<Game>,
-  priority3?: Array<Game>,
+  gameList?: $ReadOnlyArray<Game>,
+  priority1?: $ReadOnlyArray<Game>,
+  priority2?: $ReadOnlyArray<Game>,
+  priority3?: $ReadOnlyArray<Game>,
 }
 
 const DragAndDropList: StatelessFunctionalComponent<Props> = (props: Props) => {

@@ -6,8 +6,8 @@ import {
 import type { Signup } from 'flow/user.flow'
 
 type State = {
-  signupTime: string,
-  selectedGames: Array<Signup>,
+  +signupTime: string,
+  +selectedGames: $ReadOnlyArray<Signup>,
 }
 
 const initialState = { signupTime: '', selectedGames: [] }

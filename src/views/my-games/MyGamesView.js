@@ -12,9 +12,9 @@ import type { Game } from 'flow/game.flow'
 import type { Signup } from 'flow/user.flow'
 
 type Props = {
-  signedGames: Array<Signup>,
-  favoritedGames: Array<Game>,
-  enteredGames: Array<Signup>,
+  signedGames: $ReadOnlyArray<Signup>,
+  favoritedGames: $ReadOnlyArray<Game>,
+  enteredGames: $ReadOnlyArray<Signup>,
 }
 
 /*
