@@ -105,11 +105,13 @@ const SignupList: StatelessFunctionalComponent<Props> = (props: Props) => {
 
   // Cancel signup
   const onCancelClick = async () => {
-    const selectedGameIds = []
+    setSubmitting(true)
+
+    const formattedGameData = []
     selectedGames.forEach(selectedGame => {
       if (selectedGame.gameDetails.startTime !== signupTime) {
-        selectedGameIds.push({
-          gameId: selectedGame.gameDetails.gameId,
+        formattedGameData.push({
+          gameDetails: selectedGame.gameDetails,
           priority: selectedGame.priority,
           time: signupTime,
         })
@@ -118,8 +120,7 @@ const SignupList: StatelessFunctionalComponent<Props> = (props: Props) => {
 
     const signupData = {
       username,
-      selectedGames: selectedGameIds,
-      time: signupTime,
+      selectedGames: formattedGameData,
     }
 
     let response = null
@@ -131,12 +132,11 @@ const SignupList: StatelessFunctionalComponent<Props> = (props: Props) => {
 
     if (response && response.status === 'success') {
       showMessage('signupSubmitted')
-      setSubmitting(false)
     } else if (response && response.status === 'error') {
       showMessage('signupError')
-      setSubmitting(false)
       setSignupError(true)
     }
+    setSubmitting(false)
   }
 
   // Get games that have signup open and are not hidden
