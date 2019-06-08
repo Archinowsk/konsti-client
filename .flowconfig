@@ -1,7 +1,7 @@
 [ignore]
 <PROJECT_ROOT>/node_modules/react-beautiful-dnd
 <PROJECT_ROOT>/node_modules/css-box-model
-<PROJECT_ROOT>/node_modules/stylelint
+<PROJECT_ROOT>/build
 
 [include]
 
@@ -10,11 +10,6 @@
 [lints]
 
 [options]
-# Supported file extensions
-module.file_ext=.js
-module.file_ext=.json
-module.file_ext=.css
-
 # Root import
 module.name_mapper='^\(.*\)$' -> '<PROJECT_ROOT>/src/\1'
 
