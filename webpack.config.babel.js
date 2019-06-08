@@ -115,7 +115,7 @@ const devConfig = {
           { loader: 'style-loader', options: { sourceMap: true } },
           {
             loader: 'css-loader',
-            options: { importLoaders: 2, sourceMap: true },
+            options: { importLoaders: 1, sourceMap: true },
           },
           {
             loader: 'postcss-loader',
@@ -147,7 +147,7 @@ const prodConfig = {
           use: [
             {
               loader: 'css-loader',
-              options: { importLoaders: 2 },
+              options: { importLoaders: 1 },
             },
             { loader: 'postcss-loader' },
           ],
@@ -231,7 +231,7 @@ const stagingConfig = {
           use: [
             {
               loader: 'css-loader',
-              options: { importLoaders: 2 },
+              options: { importLoaders: 1 },
             },
             { loader: 'postcss-loader' },
           ],
