@@ -6,3 +6,11 @@ export type Signup = {
   priority: number,
   time: string,
 }
+
+export type User = {
+  playerGroup: string,
+  signedGames: Array<Signup>,
+  enteredGames: Array<Signup>,
+  serial: string,
+  username: string,
+}
