@@ -3,7 +3,11 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { connect } from 'react-redux'
 import timeFormatter from 'utils/timeFormatter'
-import { submitSignup, submitSelectedGames } from 'views/signup/signupActions'
+import {
+  submitSignup,
+  submitSelectedGames,
+  submitSignupTime,
+} from 'views/signup/signupActions'
 import DragAndDropList from 'views/signup/components/DragAndDropList'
 import sleep from 'utils/sleep'
 import config from 'config'
@@ -22,6 +26,8 @@ type Props = {
   username: string,
   signedGames: Array<GameWithPriority>,
   signupTimes: Array<string>,
+  signupTime: string,
+  onSubmitSignupTime: Function,
 }
 
 /*
@@ -43,12 +49,13 @@ const SignupList: StatelessFunctionalComponent<Props> = (props: Props) => {
     username,
     signedGames,
     signupTimes,
+    signupTime,
+    onSubmitSignupTime,
   } = props
 
   const [submitting, setSubmitting] = React.useState(false)
   const [signupSubmitted, setSignupSubmitted] = React.useState(false)
   const [signupError, setSignupError] = React.useState(false)
-  const [signupTime, setSignupTime] = React.useState('')
   const [loading, setLoading] = React.useState(true)
 
   const { t } = useTranslation()
@@ -172,7 +179,7 @@ const SignupList: StatelessFunctionalComponent<Props> = (props: Props) => {
 
   // Select signup time from buttons and store it
   const selectSignupTime = signupTime => {
-    setSignupTime(signupTime)
+    onSubmitSignupTime(signupTime)
   }
 
   const showMessage = async message => {
@@ -256,6 +263,7 @@ const SignupList: StatelessFunctionalComponent<Props> = (props: Props) => {
 const mapStateToProps = state => {
   return {
     selectedGames: state.signup.selectedGames,
+    signupTime: state.signup.signupTime,
     username: state.login.username,
     hiddenGames: state.admin.hiddenGames,
     signedGames: state.myGames.signedGames,
@@ -267,6 +275,7 @@ const mapDispatchToProps = (dispatch: Function) => {
     onSubmitSelectedGames: selectedGames =>
       dispatch(submitSelectedGames(selectedGames)),
     onSubmitSignup: signupData => dispatch(submitSignup(signupData)),
+    onSubmitSignupTime: signupTime => dispatch(submitSignupTime(signupTime)),
   }
 }
 

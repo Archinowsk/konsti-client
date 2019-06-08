@@ -2,7 +2,7 @@
 import { postSignup } from 'services/signupServices'
 import type { GameWithPriority } from 'flow/game.flow'
 
-export const SUBMIT_SELECT_DATE = 'SUBMIT_SELECT_DATE'
+export const SUBMIT_SIGNUP_TIME = 'SUBMIT_SELECT_SIGNUPTIME'
 export const SUBMIT_SELECTED_GAMES = 'SUBMIT_SELECTED_GAMES'
 
 type SignupData = {
@@ -28,10 +28,10 @@ export const submitSignup = (signupData: SignupData) => {
   }
 }
 
-export const submitSelectDate = (date: Date) => {
+export const submitSignupTime = (signupTime: string) => {
   return {
-    type: SUBMIT_SELECT_DATE,
-    date,
+    type: SUBMIT_SIGNUP_TIME,
+    signupTime,
   }
 }
 
