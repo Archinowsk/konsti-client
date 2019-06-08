@@ -13,7 +13,7 @@
 # Supported file extensions
 module.file_ext=.js
 module.file_ext=.json
-module.file_ext=.scss
+module.file_ext=.css
 
 # Root import
 module.name_mapper='^\(.*\)$' -> '<PROJECT_ROOT>/src/\1'

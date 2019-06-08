@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 
 // Styles
-import 'styles/style.scss'
+import 'styles/style.css'
 
 // Root component
 import App from 'App'

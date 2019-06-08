@@ -1,6 +1,6 @@
 /* @flow */
 import outdatedBrowserRework from 'outdated-browser-rework'
-import 'outdated-browser-rework/style.scss'
+import 'outdated-browser-rework/dist/style.css'
 
 const browserSupport = {
   Chrome: 40, // Includes Chrome for mobile devices
@@ -15,10 +15,7 @@ const browserSupport = {
 
 outdatedBrowserRework({
   browserSupport,
-  // Show full screen warning
-  fullscreen: true,
-  // Ask Android users to install Chrome
-  requireChromeOnAndroid: true,
-  // Unknown browsers are considered to be out of date
-  isUnknownBrowserOK: false,
+  fullscreen: true, // Show full screen warning
+  requireChromeOnAndroid: true, // Ask Android users to install Chrome
+  isUnknownBrowserOK: false, // Unknown browsers are considered to be out of date
 })

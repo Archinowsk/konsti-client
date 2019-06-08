@@ -45,7 +45,7 @@ const commonConfig = {
 
   resolve: {
     modules: [path.resolve(__dirname, 'src'), 'node_modules'],
-    extensions: ['.js', '.scss'],
+    extensions: ['.js', '.css'],
   },
 
   plugins: [
@@ -109,8 +109,8 @@ const devConfig = {
     // Loaders to transform sources
     rules: [
       {
-        // SCSS loaders
-        test: /\.scss$/,
+        // CSS loaders
+        test: /\.css$/,
         use: [
           { loader: 'style-loader', options: { sourceMap: true } },
           {
@@ -121,7 +121,6 @@ const devConfig = {
             loader: 'postcss-loader',
             options: { sourceMap: true },
           },
-          { loader: 'sass-loader', options: { sourceMap: true } },
         ],
       },
     ],
@@ -141,8 +140,8 @@ const prodConfig = {
     // Loaders to transform sources
     rules: [
       {
-        // SCSS loaders
-        test: /\.scss$/,
+        // CSS loaders
+        test: /\.css$/,
         use: ExtractTextWebpackPlugin.extract({
           fallback: 'style-loader',
           use: [
@@ -151,7 +150,6 @@ const prodConfig = {
               options: { importLoaders: 2 },
             },
             { loader: 'postcss-loader' },
-            { loader: 'sass-loader' },
           ],
           publicPath: '/',
         }),
@@ -226,8 +224,8 @@ const stagingConfig = {
     // Loaders to transform sources
     rules: [
       {
-        // SCSS loaders
-        test: /\.scss$/,
+        // CSS loaders
+        test: /\.css$/,
         use: ExtractTextWebpackPlugin.extract({
           fallback: 'style-loader',
           use: [
@@ -236,7 +234,6 @@ const stagingConfig = {
               options: { importLoaders: 2 },
             },
             { loader: 'postcss-loader' },
-            { loader: 'sass-loader' },
           ],
           publicPath: '/',
         }),

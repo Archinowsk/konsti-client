@@ -17,9 +17,9 @@
     "table-rules": "eslint-index .eslintrc.js --format table",
     "flow": "flow check",
     "flow-typed-install": "rimraf flow-typed && flow-typed install --skip --ignoreDeps peer bundle",
-    "prettier": "prettier --write \"src/**/*.{js,json,scss}\"",
+    "prettier": "prettier --write \"src/**/*.{js,json,css}\"",
     "start": "webpack-dev-server",
-    "stylelint": "stylelint \"src/**/*.scss\" --fix",
+    "stylelint": "stylelint \"src/**/*.css\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage --colors",
@@ -105,25 +105,22 @@
     "jest": "24.8.0",
     "lint-staged": "8.2.0",
     "moment-locales-webpack-plugin": "1.0.7",
-    "node-sass": "4.12.0",
     "postcss": "7.0.17",
     "postcss-flexbugs-fixes": "4.1.0",
+    "postcss-import": "12.0.1",
     "postcss-loader": "3.0.0",
     "postcss-preset-env": "6.6.0",
-    "postcss-scss": "2.0.0",
+    "precss": "4.0.0",
     "prepack-webpack-plugin": "1.1.2",
     "prettier": "1.18.2",
     "react-hot-loader": "4.9.0",
     "redux-devtools-extension": "2.13.8",
     "rimraf": "2.6.3",
-    "sass-loader": "7.1.0",
     "style-loader": "0.23.1",
     "stylelint": "10.1.0",
     "stylelint-config-prettier": "5.2.0",
-    "stylelint-config-sass-guidelines": "6.0.0",
     "stylelint-config-standard": "18.3.0",
     "stylelint-no-unsupported-browser-features": "3.0.2",
-    "stylelint-scss": "3.8.0",
     "terser-webpack-plugin": "1.3.0",
     "uglifyjs-webpack-plugin": "2.1.3",
     "webpack": "4.33.0",
@@ -139,17 +136,17 @@
   },
   "lint-staged": {
     "src/**/*.json": [
-      "prettier --parser json --write",
+      "prettier  --write",
       "git add"
     ],
-    "src/**/*.scss": [
-      "stylelint --syntax=scss --fix",
-      "prettier --parser scss --write",
+    "src/**/*.css": [
+      "stylelint --fix",
+      "prettier --write",
       "git add"
     ],
     "src/**/*.js": [
       "eslint --fix",
-      "prettier --parser flow --write",
+      "prettier  --write",
       "git add"
     ]
   }
