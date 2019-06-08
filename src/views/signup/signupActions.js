@@ -1,14 +1,9 @@
 /* @flow */
 import { postSignup } from 'services/signupServices'
-import type { Signup } from 'flow/user.flow'
+import type { Signup, SignupData } from 'flow/user.flow'
 
 export const SUBMIT_SIGNUP_TIME = 'SUBMIT_SELECT_SIGNUPTIME'
 export const SUBMIT_SELECTED_GAMES = 'SUBMIT_SELECTED_GAMES'
-
-type SignupData = {
-  +username: string,
-  +selectedGames: $ReadOnlyArray<Signup>,
-}
 
 export const submitSignup = (signupData: SignupData) => {
   return async (dispatch: Function) => {
