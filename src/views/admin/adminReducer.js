@@ -6,6 +6,15 @@ import {
   SUBMIT_GET_SETTINGS,
   SUBMIT_SELECT_SIGNUP_TIME,
 } from 'views/admin/adminActions'
+import type { Game } from 'flow/game.flow'
+
+type State = {
+  updateResponse: Object,
+  assignResponse: Object,
+  hiddenGames: Array<Game>,
+  signupTime: string,
+  adminSettingsLoaded: boolean,
+}
 
 const initialState = {
   updateResponse: { data: { errors: '' } },
@@ -15,7 +24,7 @@ const initialState = {
   adminSettingsLoaded: false,
 }
 
-const loginReducer = (state: Object = initialState, action: Function) => {
+const loginReducer = (state: State = initialState, action: Function) => {
   switch (action.type) {
     case SUBMIT_GAMES_UPDATE:
       return { ...state, updateResponse: action.payload }

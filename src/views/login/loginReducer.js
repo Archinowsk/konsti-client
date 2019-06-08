@@ -5,6 +5,17 @@ import {
   SUBMIT_UPDATE_GROUP_MEMBERS,
   SUBMIT_LEAVE_GROUP,
 } from 'views/group/groupActions'
+import type { User } from 'flow/user.flow'
+
+type State = {
+  username: string,
+  loggedIn: boolean,
+  jwtToken: string,
+  userGroup: string,
+  serial: string,
+  playerGroup: string,
+  groupMembers: Array<User>,
+}
 
 const initialState = {
   username: '',
@@ -16,7 +27,7 @@ const initialState = {
   groupMembers: [],
 }
 
-const loginReducer = (state: Object = initialState, action: Function) => {
+const loginReducer = (state: State = initialState, action: Function) => {
   switch (action.type) {
     case SUBMIT_LOGIN:
       return {
