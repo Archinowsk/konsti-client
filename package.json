@@ -17,7 +17,7 @@
     "table-rules": "eslint-index .eslintrc.js --format table",
     "flow": "flow check",
     "flow-typed-install": "rimraf flow-typed && flow-typed install --skip --ignoreDeps peer bundle",
-    "prettier": "prettier --write src/**/*.{js,json,css}",
+    "prettier": "prettier --write src/**/*.{js,json,css,md}",
     "start": "webpack-dev-server",
     "stylelint": "stylelint src/**/*.css --fix",
     "test": "jest",
@@ -135,18 +135,22 @@
     }
   },
   "lint-staged": {
-    "src/**/*.json": [
-      "prettier  --write",
+    "*.js": [
+      "eslint --fix",
+      "prettier --write",
       "git add"
     ],
-    "src/**/*.css": [
+    "*.css": [
       "stylelint --fix",
       "prettier --write",
       "git add"
     ],
-    "src/**/*.js": [
-      "eslint --fix",
-      "prettier  --write",
+    "*.json": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.md": [
+      "prettier --write",
       "git add"
     ]
   }
