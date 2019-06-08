@@ -26,7 +26,6 @@ module.exports = {
     'eslint-plugin',
     'react-hooks',
     'jest',
-    // 'flowtype-errors',
   ],
   parser: 'babel-eslint',
   parserOptions: {
@@ -52,7 +51,6 @@ module.exports = {
     'react-hooks/rules-of-hooks': 'error',
     'prettier/prettier': 'error',
     'compat/compat': 'error',
-    // 'flowtype-errors/show-errors': 'error',
 
     // Rules from eslint-config-standard-react
     'react/jsx-no-bind': [
