@@ -1,7 +1,8 @@
 /* @flow */
 import { getUser } from 'services/userServices'
 import { postFavorite } from 'services/favoriteServices'
-import type { FavoriteData } from 'flow/user.flow'
+import type { FavoriteData, UserGames } from 'flow/user.flow'
+import type { Game } from 'flow/game.flow'
 
 export const SUBMIT_GET_USER_GAMES = 'SUBMIT_GET_USER_GAMES'
 export const SUBMIT_UPDATE_FAVORITES = 'SUBMIT_UPDATE_FAVORITES'
@@ -42,7 +43,7 @@ const submitGetUserAsync = ({
   favoritedGames,
   signedGames,
   myGamesLoaded,
-}) => {
+}: UserGames) => {
   return {
     type: SUBMIT_GET_USER_GAMES,
     enteredGames,
@@ -65,18 +66,14 @@ export const submitUpdateFavorites = (favoriteData: FavoriteData) => {
       return Promise.reject(response)
     }
     if (response && response.status === 'success') {
-      dispatch(
-        submitUpdateFavoritesAsync({
-          favoritedGames: favoriteData.favoritedGames,
-        })
-      )
+      dispatch(submitUpdateFavoritesAsync(favoriteData.favoritedGames))
     }
 
     return response
   }
 }
 
-const submitUpdateFavoritesAsync = ({ favoritedGames }) => {
+const submitUpdateFavoritesAsync = (favoritedGames: $ReadOnlyArray<Game>) => {
   return {
     type: SUBMIT_UPDATE_FAVORITES,
     favoritedGames,

@@ -37,3 +37,10 @@ export type RegistrationData = {
   +serial: string,
   +username: string,
 }
+
+export type UserGames = {
+  +enteredGames: $ReadOnlyArray<Signup>,
+  +favoritedGames: $ReadOnlyArray<Game>,
+  +signedGames: $ReadOnlyArray<Signup>,
+  +myGamesLoaded: boolean,
+}
