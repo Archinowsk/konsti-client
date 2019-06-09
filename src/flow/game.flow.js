@@ -23,3 +23,9 @@ export type Game = {
   +beginnerFriendly: boolean,
   +intendedForExperiencedParticipants: boolean,
 }
+
+export type GamesUpdataResponse = {
+  +data: $ReadOnlyArray<Game>,
+  +message: string,
+  +status: string,
+}

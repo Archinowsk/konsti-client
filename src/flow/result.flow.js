@@ -13,3 +13,18 @@ export type Results = {
   +createdAt: string,
   +updatedAt: string,
 }
+
+export type NewSignupData = {
+  +username: string,
+  +signedGames: $ReadOnlyArray<Signup>,
+}
+
+export type AssignResponse = {
+  +message: string,
+  +status: string,
+  +results: {
+    +message: string,
+    +newSignupData: $ReadOnlyArray<NewSignupData>,
+    +results: $ReadOnlyArray<Result>,
+  },
+}
