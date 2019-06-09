@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react'
-import { HashRouter, Route, Link, Switch, Redirect } from 'react-router-dom'
+import { BrowserRouter, Route, Link, Switch, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import type { StatelessFunctionalComponent } from 'react'
@@ -27,7 +27,7 @@ const Routes: StatelessFunctionalComponent<Props> = (props: Props) => {
 
   if (!loggedIn) {
     return (
-      <HashRouter>
+      <BrowserRouter>
         <React.Fragment>
           <div className='routes'>
             <Link to='/games' className='router-link'>
@@ -51,12 +51,12 @@ const Routes: StatelessFunctionalComponent<Props> = (props: Props) => {
             <Redirect from='/*' to='/login' />
           </Switch>
         </React.Fragment>
-      </HashRouter>
+      </BrowserRouter>
     )
   }
 
   return (
-    <HashRouter>
+    <BrowserRouter>
       <React.Fragment>
         <div className='routes'>
           <Link to='/games' className='router-link'>
@@ -108,7 +108,7 @@ const Routes: StatelessFunctionalComponent<Props> = (props: Props) => {
           <Redirect from='/*' to='/' />
         </Switch>
       </React.Fragment>
-    </HashRouter>
+    </BrowserRouter>
   )
 }
 
