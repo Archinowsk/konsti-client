@@ -87,7 +87,7 @@ const commonConfig = {
 const devConfig = {
   mode: 'development',
 
-  devtool: 'eval', // Use eval for best hot-loading perf
+  devtool: appConfig.reduxTrace ? 'source-map' : 'eval', // Use eval for best hot-loading perf
 
   // webpack-dev-server config
   devServer: {

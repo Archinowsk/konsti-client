@@ -2,6 +2,7 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
+import config from 'config'
 
 // Reducers
 import { reducer as formReducer } from 'redux-form'
@@ -39,7 +40,12 @@ const rootReducer = (state, action) => {
 const initialState = {}
 const middlewares = applyMiddleware(thunk)
 
-const enhancer = composeWithDevTools(middlewares)
+const composeEnhancers = composeWithDevTools({
+  trace: config.reduxTrace,
+  traceLimit: 25,
+})
+
+const enhancer = composeEnhancers(middlewares)
 
 // Create a Redux store object that holds the app state
 /* $FlowFixMe: Redux flow-typed missing generics types */

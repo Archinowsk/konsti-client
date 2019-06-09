@@ -12,6 +12,7 @@ type Config = {
   +apiServerURL: string,
   +setTimeForTesting: boolean,
   +testTime: string,
+  +reduxTrace: boolean,
 }
 
 const commonConfig = {
@@ -30,6 +31,9 @@ const commonConfig = {
   // Convention settings
   CONVENTION_START_TIME: '2018-07-27T12:00:00Z', // UTC date
   DAY_START_TIME: 8, // 08:00
+
+  // Dev
+  reduxTrace: true,
 }
 
 const prodConfig = {
