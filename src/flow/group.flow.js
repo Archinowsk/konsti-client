@@ -8,3 +8,10 @@ export type GroupMember = {
   +signedGames: $ReadOnlyArray<Signup>,
   +username: string,
 }
+
+export type GroupData = {
+  +groupCode: string,
+  +leader: boolean,
+  +ownSerial: string,
+  +username: string,
+}

@@ -1,8 +1,9 @@
 /* @flow */
 import api from 'utils/api'
 import getJWT from 'utils/getJWT'
+import type { RegistrationData } from 'flow/user.flow'
 
-export const postRegistration = async (registrationData: Object) => {
+export const postRegistration = async (registrationData: RegistrationData) => {
   let response = null
   try {
     response = await api.post('/user', { registrationData })

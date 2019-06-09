@@ -2,7 +2,7 @@
 import api from 'utils/api'
 import getJWT from 'utils/getJWT'
 
-export const postPlayersAssign = async (signupTime: Date) => {
+export const postPlayersAssign = async (signupTime: string) => {
   api.defaults.headers.common['Authorization'] = `Bearer ${getJWT()}`
 
   let response = null

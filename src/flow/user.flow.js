@@ -16,3 +16,15 @@ export type FavoriteData = {
   +username: string,
   +favoritedGames: $ReadOnlyArray<Game>,
 }
+
+export type Login = {
+  +username: string,
+  +password: string,
+}
+
+export type RegistrationData = {
+  +password: string,
+  +registerDescription: boolean,
+  +serial: string,
+  +username: string,
+}

@@ -1,4 +1,5 @@
 // @flow
+
 export type Game = {
   +gameId: string,
   +title: string,

@@ -46,7 +46,7 @@ const submitPlayersAssignAsync = ({ assignResponse }) => {
   }
 }
 
-export const submitPlayersAssign = (signupTime: Date) => {
+export const submitPlayersAssign = (signupTime: string) => {
   return async (dispatch: Function) => {
     let response = null
     try {
@@ -144,7 +144,7 @@ const submitSignupTimeAsync = ({ signupTime }) => {
   }
 }
 
-export const submitSignupTime = (signupTime: Date) => {
+export const submitSignupTime = (signupTime: string) => {
   return async (dispatch: Function) => {
     let response = null
     try {

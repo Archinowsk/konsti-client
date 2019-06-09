@@ -1,8 +1,9 @@
 /* @flow */
 import api from 'utils/api'
 import getJWT from 'utils/getJWT'
+import type { Game } from 'flow/game.flow'
 
-export const postHidden = async (hiddenData: Object) => {
+export const postHidden = async (hiddenData: $ReadOnlyArray<Game>) => {
   api.defaults.headers.common['Authorization'] = `Bearer ${getJWT()}`
 
   let response = null

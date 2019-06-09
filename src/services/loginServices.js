@@ -1,7 +1,8 @@
 /* @flow */
 import api from 'utils/api'
+import type { Login } from 'flow/user.flow'
 
-export const postLogin = async (loginData: Object) => {
+export const postLogin = async (loginData: Login) => {
   let response = null
   try {
     response = await api.post('/login', { loginData })
