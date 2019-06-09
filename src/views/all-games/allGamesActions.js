@@ -1,14 +1,8 @@
 /* @flow */
 import { getGames } from 'services/gamesServices'
+import type { Game } from 'flow/game.flow'
 
 export const SUBMIT_GET_GAMES = 'SUBMIT_GET_GAMES'
-
-const submitGetGamesAsync = ({ games }) => {
-  return {
-    type: SUBMIT_GET_GAMES,
-    games,
-  }
-}
 
 export const submitGetGames = () => {
   return async (dispatch: Function) => {
@@ -23,9 +17,16 @@ export const submitGetGames = () => {
       return Promise.reject(response)
     }
     if (response && response.status === 'success') {
-      dispatch(submitGetGamesAsync({ games: response.games }))
+      dispatch(submitGetGamesAsync(response.games))
     }
 
     return response
+  }
+}
+
+const submitGetGamesAsync = (games: $ReadOnlyArray<Game>) => {
+  return {
+    type: SUBMIT_GET_GAMES,
+    games,
   }
 }

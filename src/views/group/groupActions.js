@@ -5,13 +5,6 @@ export const SUBMIT_UPDATE_GROUP = 'SUBMIT_UPDATE_GROUP'
 export const SUBMIT_LEAVE_GROUP = 'SUBMIT_LEAVE_GROUP'
 export const SUBMIT_UPDATE_GROUP_MEMBERS = 'SUBMIT_UPDATE_GROUP_MEMBERS'
 
-const submitJoinGroupAsync = ({ playerGroup }) => {
-  return {
-    type: SUBMIT_UPDATE_GROUP,
-    playerGroup,
-  }
-}
-
 export const submitJoinGroup = (groupData: Object) => {
   return async (dispatch: Function) => {
     let response = null
@@ -33,7 +26,7 @@ export const submitJoinGroup = (groupData: Object) => {
   }
 }
 
-const submitCreateGroupAsync = ({ playerGroup }) => {
+const submitJoinGroupAsync = ({ playerGroup }) => {
   return {
     type: SUBMIT_UPDATE_GROUP,
     playerGroup,
@@ -61,10 +54,10 @@ export const submitCreateGroup = (groupData: Object) => {
   }
 }
 
-const submitGetGroupAsync = ({ groupMembers }) => {
+const submitCreateGroupAsync = ({ playerGroup }) => {
   return {
-    type: SUBMIT_UPDATE_GROUP_MEMBERS,
-    groupMembers,
+    type: SUBMIT_UPDATE_GROUP,
+    playerGroup,
   }
 }
 
@@ -88,9 +81,10 @@ export const submitGetGroup = (groupCode: string) => {
   }
 }
 
-const submitLeaveGroupAsync = () => {
+const submitGetGroupAsync = ({ groupMembers }) => {
   return {
-    type: SUBMIT_LEAVE_GROUP,
+    type: SUBMIT_UPDATE_GROUP_MEMBERS,
+    groupMembers,
   }
 }
 
@@ -111,5 +105,11 @@ export const submitLeaveGroup = (groupData: Object) => {
     }
 
     return response
+  }
+}
+
+const submitLeaveGroupAsync = () => {
+  return {
+    type: SUBMIT_LEAVE_GROUP,
   }
 }

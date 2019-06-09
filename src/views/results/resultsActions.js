@@ -3,13 +3,6 @@ import { getResults } from 'services/resultsServices'
 
 export const SUBMIT_GET_RESULTS = 'SUBMIT_GET_RESULTS'
 
-const submitGetResultsAsync = ({ results }) => {
-  return {
-    type: SUBMIT_GET_RESULTS,
-    results,
-  }
-}
-
 export const submitGetResults = (startTime: string) => {
   return async (dispatch: Function) => {
     let response = null
@@ -27,5 +20,12 @@ export const submitGetResults = (startTime: string) => {
     }
 
     return response
+  }
+}
+
+const submitGetResultsAsync = ({ results }) => {
+  return {
+    type: SUBMIT_GET_RESULTS,
+    results,
   }
 }

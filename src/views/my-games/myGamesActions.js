@@ -6,21 +6,6 @@ import type { FavoriteData } from 'flow/user.flow'
 export const SUBMIT_GET_USER_GAMES = 'SUBMIT_GET_USER_GAMES'
 export const SUBMIT_UPDATE_FAVORITES = 'SUBMIT_UPDATE_FAVORITES'
 
-const submitGetUserAsync = ({
-  enteredGames,
-  favoritedGames,
-  signedGames,
-  myGamesLoaded,
-}) => {
-  return {
-    type: SUBMIT_GET_USER_GAMES,
-    enteredGames,
-    favoritedGames,
-    signedGames,
-    myGamesLoaded,
-  }
-}
-
 export const submitGetUser = (username: string) => {
   return async (dispatch: Function) => {
     let response = null
@@ -52,10 +37,18 @@ export const submitGetUser = (username: string) => {
   }
 }
 
-const submitUpdateFavoritesAsync = ({ favoritedGames }) => {
+const submitGetUserAsync = ({
+  enteredGames,
+  favoritedGames,
+  signedGames,
+  myGamesLoaded,
+}) => {
   return {
-    type: SUBMIT_UPDATE_FAVORITES,
+    type: SUBMIT_GET_USER_GAMES,
+    enteredGames,
     favoritedGames,
+    signedGames,
+    myGamesLoaded,
   }
 }
 
@@ -80,5 +73,12 @@ export const submitUpdateFavorites = (favoriteData: FavoriteData) => {
     }
 
     return response
+  }
+}
+
+const submitUpdateFavoritesAsync = ({ favoritedGames }) => {
+  return {
+    type: SUBMIT_UPDATE_FAVORITES,
+    favoritedGames,
   }
 }

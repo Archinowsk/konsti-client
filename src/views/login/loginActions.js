@@ -4,25 +4,6 @@ import { postLogin } from 'services/loginServices'
 export const SUBMIT_LOGIN = 'SUBMIT_LOGIN'
 export const SUBMIT_LOGOUT = 'SUBMIT_LOGOUT'
 
-const submitLoginAsync = ({
-  username,
-  loggedIn,
-  jwtToken,
-  userGroup,
-  serial,
-  playerGroup,
-}) => {
-  return {
-    type: SUBMIT_LOGIN,
-    username,
-    loggedIn,
-    jwtToken,
-    userGroup,
-    serial,
-    playerGroup,
-  }
-}
-
 export const submitLogin = (loginData: Object) => {
   return async (dispatch: Function) => {
     let response = null
@@ -50,6 +31,25 @@ export const submitLogin = (loginData: Object) => {
     }
 
     return response
+  }
+}
+
+const submitLoginAsync = ({
+  username,
+  loggedIn,
+  jwtToken,
+  userGroup,
+  serial,
+  playerGroup,
+}) => {
+  return {
+    type: SUBMIT_LOGIN,
+    username,
+    loggedIn,
+    jwtToken,
+    userGroup,
+    serial,
+    playerGroup,
   }
 }
 
