@@ -165,5 +165,6 @@
   "leftGroup": "Poistuit ryhmästä",
   "groupNotEmpty": "Johtaja ei voi poistua ryhmästä, jossa on muita jäseniä",
   "noSignupResult": "Et mahtunut peleihin alkamisajalle",
-  "noSignupResultHint": "Jos et näe ilmoittautumistulosta tässä, et mahtunut peleihin. Voit kuitenkin löytää pelattavaa larp- ja roolipelitiskiltä, jos tulet heti ilmoittautumisajan päättymisen jälkeen."
+  "noSignupResultHint": "Jos et näe ilmoittautumistulosta tässä, et mahtunut peleihin. Voit kuitenkin löytää pelattavaa larp- ja roolipelitiskiltä, jos tulet heti ilmoittautumisajan päättymisen jälkeen.",
+  "invalidGameId": "Peliä ei löydy. Viallinen pelitunniste"
 }

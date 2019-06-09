@@ -35,16 +35,16 @@ type State = {
 
 const GameDetails: StatelessFunctionalComponent<Props> = (props: Props) => {
   const {
+    games,
     hiddenGames,
     favoritedGames,
-    games,
     history,
-    loggedIn,
     match,
-    onSubmitUpdateHidden,
-    onSubmitUpdateFavorites,
+    loggedIn,
     userGroup,
     username,
+    onSubmitUpdateHidden,
+    onSubmitUpdateFavorites,
   } = props
 
   const { t } = useTranslation()
@@ -52,39 +52,32 @@ const GameDetails: StatelessFunctionalComponent<Props> = (props: Props) => {
   const game = games.find(game => game.gameId === match.params.id)
 
   const [hidden, setHidden] = React.useState(false)
-  const [submitting, setSubmitting] = React.useState(false)
   const [favorited, setFavorited] = React.useState(false)
+  const [submitting, setSubmitting] = React.useState(false)
   const [loading, setLoading] = React.useState(true)
 
   React.useEffect(() => {
+    setLoading(true)
     checkGameState()
     setLoading(false)
   })
-
-  if (!game || !game.gameId) return <div />
 
   const checkGameState = () => {
     if (!game || !game.gameId) return
 
     // Check if in favorites
-    if (favoritedGames) {
-      for (let i = 0; i < favoritedGames.length; i += 1) {
-        if (favoritedGames[i].gameId === game.gameId) {
-          setFavorited(true)
-          break
-        }
+    favoritedGames.find(favoritedGameg => {
+      if (favoritedGameg.gameId === game.gameId) {
+        setFavorited(true)
       }
-    }
+    })
 
     // Check if hidden
-    if (hiddenGames) {
-      for (let i = 0; i < hiddenGames.length; i += 1) {
-        if (hiddenGames[i].gameId === game.gameId) {
-          setHidden(true)
-          break
-        }
+    hiddenGames.find(hiddenGame => {
+      if (hiddenGame.gameId === game.gameId) {
+        setHidden(true)
       }
-    }
+    })
   }
 
   // Find selected game index
@@ -176,21 +169,28 @@ const GameDetails: StatelessFunctionalComponent<Props> = (props: Props) => {
 
   return (
     <div className='game-details'>
-      {loading && <Loading />}
-      {!loading && (
-        <React.Fragment>
-          <button
-            onClick={() => {
-              if (history.action === 'PUSH') {
-                history.goBack()
-              } else {
-                history.push('/')
-              }
-            }}
-          >
-            {t('button.back')}
-          </button>
+      <button
+        onClick={() => {
+          if (history.action === 'PUSH') {
+            history.goBack()
+          } else {
+            history.push('/')
+          }
+        }}
+      >
+        {t('button.back')}
+      </button>
 
+      {loading && <Loading />}
+
+      {!loading && !game && (
+        <p>
+          {t('invalidGameId')} {match.params.id}.
+        </p>
+      )}
+
+      {!loading && game && (
+        <React.Fragment>
           {favorited && loggedIn && userGroup === 'user' && (
             <button
               disabled={submitting}
@@ -220,7 +220,6 @@ const GameDetails: StatelessFunctionalComponent<Props> = (props: Props) => {
               {t('button.hide')}
             </button>
           )}
-
           <GameInfo game={game} />
           {loggedIn && <FeedbackForm game={game} />}
         </React.Fragment>
@@ -242,8 +241,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch: Function) => {
   return {
-    onSubmitUpdateFavorites: id => dispatch(submitUpdateFavorites(id)),
-    onSubmitUpdateHidden: id => dispatch(submitUpdateHidden(id)),
+    onSubmitUpdateFavorites: gameId => dispatch(submitUpdateFavorites(gameId)),
+    onSubmitUpdateHidden: gameId => dispatch(submitUpdateHidden(gameId)),
   }
 }
 
