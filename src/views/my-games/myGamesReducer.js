@@ -3,6 +3,8 @@ import {
   SUBMIT_GET_USER_GAMES,
   SUBMIT_UPDATE_FAVORITES,
 } from 'views/my-games/myGamesActions'
+import { SUBMIT_SIGNED_GAMES } from 'views/signup/signupActions'
+
 import type { Signup } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
 
@@ -35,6 +37,8 @@ const myGamesReducer = (state: State = initialState, action: Function) => {
         ...state,
         favoritedGames: action.favoritedGames,
       }
+    case SUBMIT_SIGNED_GAMES:
+      return { ...state, signedGames: action.signedGames }
     default:
       return state
   }
