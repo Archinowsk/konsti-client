@@ -1,6 +1,6 @@
 // @flow
 
-export type Game = {
+export type Game = {|
   +gameId: string,
   +title: string,
   +description: string,
@@ -22,10 +22,10 @@ export type Game = {
   +ageRestricted: boolean,
   +beginnerFriendly: boolean,
   +intendedForExperiencedParticipants: boolean,
-}
+|}
 
-export type GamesUpdataResponse = {
+export type GamesUpdataResponse = {|
   +data: $ReadOnlyArray<Game>,
   +message: string,
   +status: string,
-}
+|}

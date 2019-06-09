@@ -5,10 +5,10 @@ import {
 } from 'views/signup/signupActions'
 import type { Signup } from 'flow/user.flow'
 
-type State = {
+type State = {|
   +signupTime: string,
   +selectedGames: $ReadOnlyArray<Signup>,
-}
+|}
 
 const initialState = { signupTime: '', selectedGames: [] }
 

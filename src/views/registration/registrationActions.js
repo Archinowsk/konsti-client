@@ -17,7 +17,12 @@ export const submitRegistration = (registrationData: RegistrationData) => {
     }
 
     if (response && response.status === 'success') {
-      dispatch(submitLogin(registrationData))
+      dispatch(
+        submitLogin({
+          username: registrationData.username,
+          password: registrationData.password,
+        })
+      )
     }
 
     return response

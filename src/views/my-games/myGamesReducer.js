@@ -8,12 +8,12 @@ import { SUBMIT_SIGNED_GAMES } from 'views/signup/signupActions'
 import type { Signup } from 'flow/user.flow'
 import type { Game } from 'flow/game.flow'
 
-type State = {
+type State = {|
   +enteredGames: $ReadOnlyArray<Signup>,
   +favoritedGames: $ReadOnlyArray<Game>,
   +signedGames: $ReadOnlyArray<Signup>,
   +myGamesLoaded: boolean,
-}
+|}
 
 const initialState = {
   enteredGames: [],

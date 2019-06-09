@@ -1,35 +1,35 @@
 // @flow
 import type { Game } from 'flow/game.flow'
 
-export type Signup = {
+export type Signup = {|
   +gameDetails: Game,
   +priority: number,
   +time: string,
-}
+|}
 
-export type SignupData = {
+export type SignupData = {|
   +username: string,
   +selectedGames: $ReadOnlyArray<Signup>,
-}
+|}
 
-export type FavoriteData = {
+export type FavoriteData = {|
   +username: string,
   +favoritedGames: $ReadOnlyArray<Game>,
-}
+|}
 
-export type Login = {
+export type Login = {|
   +username: string,
   +password: string,
-}
+|}
 
-export type LoginData = {
+export type LoginData = {|
   username: string,
   loggedIn: boolean,
   jwtToken: string,
   userGroup: string,
   serial: string,
   playerGroup: string,
-}
+|}
 
 export type RegistrationData = {
   +password: string,

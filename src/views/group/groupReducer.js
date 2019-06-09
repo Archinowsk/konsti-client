@@ -3,10 +3,10 @@
 // import { SUBMIT_LEAVE_GROUP } from 'views/group/groupActions'
 import type { GroupMember } from 'flow/group.flow'
 
-type State = {
+type State = {|
   +playerGroup: string,
   +groupMembers: $ReadOnlyArray<GroupMember>,
-}
+|}
 
 const initialState = {
   playerGroup: '0',

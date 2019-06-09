@@ -8,13 +8,13 @@ import {
 } from 'views/admin/adminActions'
 import type { Game } from 'flow/game.flow'
 
-type State = {
+type State = {|
   +updateResponse: Object,
   +assignResponse: Object,
   +hiddenGames: $ReadOnlyArray<Game>,
   +signupTime: string,
   +adminSettingsLoaded: boolean,
-}
+|}
 
 const initialState = {
   updateResponse: { data: { errors: '' } },

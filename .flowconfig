@@ -2,6 +2,7 @@
 <PROJECT_ROOT>/node_modules/react-beautiful-dnd
 <PROJECT_ROOT>/node_modules/css-box-model
 <PROJECT_ROOT>/node_modules/stylelint
+<PROJECT_ROOT>/node_modules/flow-coverage-report
 <PROJECT_ROOT>/build
 
 [include]

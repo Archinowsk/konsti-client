@@ -7,7 +7,7 @@ import {
 } from 'views/group/groupActions'
 import type { GroupMember } from 'flow/group.flow'
 
-type State = {
+type State = {|
   +username: string,
   +loggedIn: boolean,
   +jwtToken: string,
@@ -15,7 +15,7 @@ type State = {
   +serial: string,
   +playerGroup: string,
   +groupMembers: $ReadOnlyArray<GroupMember>,
-}
+|}
 
 const initialState = {
   username: '',
