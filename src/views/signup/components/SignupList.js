@@ -62,11 +62,12 @@ const SignupList: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { t } = useTranslation()
 
   React.useEffect(() => {
+    setLoading(true)
     const fetchData = async () => {
       await loadData(getStore())
-      await onSubmitSelectedGames(signedGames)
     }
     fetchData()
+    onSubmitSelectedGames(signedGames)
     setLoading(false)
   }, [])
 
@@ -74,18 +75,9 @@ const SignupList: StatelessFunctionalComponent<Props> = (props: Props) => {
   const onSubmitClick = async () => {
     setSubmitting(true)
 
-    const formattedGameData = []
-    selectedGames.forEach(selectedGame => {
-      formattedGameData.push({
-        gameDetails: selectedGame.gameDetails,
-        priority: selectedGame.priority,
-        time: signupTime,
-      })
-    })
-
     const signupData = {
       username,
-      selectedGames: formattedGameData,
+      selectedGames,
     }
 
     let response = null
@@ -107,20 +99,15 @@ const SignupList: StatelessFunctionalComponent<Props> = (props: Props) => {
   const onCancelClick = async () => {
     setSubmitting(true)
 
-    const formattedGameData = []
-    selectedGames.forEach(selectedGame => {
-      if (selectedGame.gameDetails.startTime !== signupTime) {
-        formattedGameData.push({
-          gameDetails: selectedGame.gameDetails,
-          priority: selectedGame.priority,
-          time: signupTime,
-        })
+    const gamesWithDifferentTime = selectedGames.filter(selectedGame => {
+      if (selectedGame.time !== signupTime) {
+        return selectedGame
       }
     })
 
     const signupData = {
       username,
-      selectedGames: formattedGameData,
+      selectedGames: gamesWithDifferentTime,
     }
 
     let response = null
@@ -167,14 +154,13 @@ const SignupList: StatelessFunctionalComponent<Props> = (props: Props) => {
     return filteredGames
   }
 
-  // Get data from child component
-  const callback = games => {
-    // Combine new selected games to existing
-    const temp = selectedGames.filter(
+  // Callback from child component
+  const updateSelectedGames = newGames => {
+    // Combine new selected games to existing games
+    const existingGames = selectedGames.filter(
       selectedGame => selectedGame.gameDetails.startTime !== signupTime
     )
-    const combined = temp.concat(games)
-
+    const combined = existingGames.concat(newGames)
     onSubmitSelectedGames(combined)
   }
 
@@ -252,8 +238,9 @@ const SignupList: StatelessFunctionalComponent<Props> = (props: Props) => {
           <DragAndDropList
             games={filteredGames}
             signupTime={signupTime}
-            callback={callback}
+            callback={updateSelectedGames}
             selectedGames={selectedGames}
+            signedGames={signedGames}
           />
         </React.Fragment>
       )}

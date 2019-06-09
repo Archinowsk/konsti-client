@@ -16,6 +16,7 @@ type Props = {
   callback: Function,
   games: $ReadOnlyArray<Game>,
   selectedGames: $ReadOnlyArray<Signup>,
+  signedGames: $ReadOnlyArray<Signup>,
   signupTime: string,
 }
 
@@ -37,7 +38,7 @@ type UpdatedPositions = {
 }
 
 const DragAndDropList: StatelessFunctionalComponent<Props> = (props: Props) => {
-  const { games, selectedGames, signupTime, callback } = props
+  const { games, selectedGames, signedGames, signupTime, callback } = props
   const { t } = useTranslation()
 
   const [gameList, setGameList] = React.useState([])
@@ -51,8 +52,46 @@ const DragAndDropList: StatelessFunctionalComponent<Props> = (props: Props) => {
   }, [signupTime])
 
   React.useEffect(() => {
+    resetState()
+  }, [signedGames])
+
+  React.useEffect(() => {
     doCallback()
   }, [gameList, priority1, priority2, priority3])
+
+  const resetState = () => {
+    const notSelectedGames = games.filter(game => {
+      for (let signedGame of signedGames) {
+        if (game.gameId === signedGame.gameDetails.gameId) {
+          return undefined
+        }
+      }
+      return game
+    })
+
+    const gameList = _.sortBy(notSelectedGames, [
+      notSelectedGame => notSelectedGame.title.toLowerCase(),
+    ])
+
+    const priority1 = []
+    const priority2 = []
+    const priority3 = []
+
+    for (let signedGame of signedGames) {
+      if (signedGame.priority === 1 && signedGame.time === signupTime) {
+        priority1.push(signedGame.gameDetails)
+      } else if (signedGame.priority === 2 && signedGame.time === signupTime) {
+        priority2.push(signedGame.gameDetails)
+      } else if (signedGame.priority === 3 && signedGame.time === signupTime) {
+        priority3.push(signedGame.gameDetails)
+      }
+    }
+
+    setGameList(gameList)
+    setPriority1(priority1)
+    setPriority2(priority2)
+    setPriority3(priority3)
+  }
 
   const loadState = () => {
     const notSelectedGames = games.filter(game => {
@@ -187,15 +226,27 @@ const DragAndDropList: StatelessFunctionalComponent<Props> = (props: Props) => {
   const doCallback = () => {
     const selectedGames = []
     for (let game of priority1) {
-      selectedGames.push({ gameDetails: { ...game }, priority: 1 })
+      selectedGames.push({
+        gameDetails: { ...game },
+        priority: 1,
+        time: signupTime,
+      })
     }
 
     for (let game of priority2) {
-      selectedGames.push({ gameDetails: { ...game }, priority: 2 })
+      selectedGames.push({
+        gameDetails: { ...game },
+        priority: 2,
+        time: signupTime,
+      })
     }
 
     for (let game of priority3) {
-      selectedGames.push({ gameDetails: { ...game }, priority: 3 })
+      selectedGames.push({
+        gameDetails: { ...game },
+        priority: 3,
+        time: signupTime,
+      })
     }
 
     callback(selectedGames)
