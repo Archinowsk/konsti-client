@@ -1,11 +1,12 @@
 /* @flow */
 import { postGroup, getGroup } from 'services/groupService'
+import type { GroupData, GroupMember } from 'flow/group.flow'
 
 export const SUBMIT_UPDATE_GROUP = 'SUBMIT_UPDATE_GROUP'
 export const SUBMIT_LEAVE_GROUP = 'SUBMIT_LEAVE_GROUP'
 export const SUBMIT_UPDATE_GROUP_MEMBERS = 'SUBMIT_UPDATE_GROUP_MEMBERS'
 
-export const submitJoinGroup = (groupData: Object) => {
+export const submitJoinGroup = (groupData: GroupData) => {
   return async (dispatch: Function) => {
     let response = null
     try {
@@ -19,21 +20,21 @@ export const submitJoinGroup = (groupData: Object) => {
     }
     if (response && response.status === 'success') {
       dispatch(submitGetGroup(groupData.groupCode))
-      dispatch(submitJoinGroupAsync({ playerGroup: groupData.groupCode }))
+      dispatch(submitJoinGroupAsync(groupData.groupCode))
     }
 
     return response
   }
 }
 
-const submitJoinGroupAsync = ({ playerGroup }) => {
+const submitJoinGroupAsync = (groupCode: string) => {
   return {
     type: SUBMIT_UPDATE_GROUP,
-    playerGroup,
+    playerGroup: groupCode,
   }
 }
 
-export const submitCreateGroup = (groupData: Object) => {
+export const submitCreateGroup = (groupData: GroupData) => {
   return async (dispatch: Function) => {
     let response = null
     try {
@@ -47,17 +48,17 @@ export const submitCreateGroup = (groupData: Object) => {
     }
     if (response && response.status === 'success') {
       dispatch(submitGetGroup(groupData.groupCode))
-      dispatch(submitCreateGroupAsync({ playerGroup: groupData.groupCode }))
+      dispatch(submitCreateGroupAsync(groupData.groupCode))
     }
 
     return response
   }
 }
 
-const submitCreateGroupAsync = ({ playerGroup }) => {
+const submitCreateGroupAsync = (groupCode: string) => {
   return {
     type: SUBMIT_UPDATE_GROUP,
-    playerGroup,
+    playerGroup: groupCode,
   }
 }
 
@@ -74,21 +75,21 @@ export const submitGetGroup = (groupCode: string) => {
       return Promise.reject(response)
     }
     if (response && response.status === 'success') {
-      dispatch(submitGetGroupAsync({ groupMembers: response.results }))
+      dispatch(submitGetGroupAsync(response.results))
     }
 
     return response
   }
 }
 
-const submitGetGroupAsync = ({ groupMembers }) => {
+const submitGetGroupAsync = (groupMembers: $ReadOnlyArray<GroupMember>) => {
   return {
     type: SUBMIT_UPDATE_GROUP_MEMBERS,
     groupMembers,
   }
 }
 
-export const submitLeaveGroup = (groupData: Object) => {
+export const submitLeaveGroup = (groupData: GroupData) => {
   return async (dispatch: Function) => {
     let response = null
     try {

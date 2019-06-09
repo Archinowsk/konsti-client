@@ -14,4 +14,5 @@ export type GroupData = {
   +leader: boolean,
   +ownSerial: string,
   +username: string,
+  +leaveGroup?: boolean,
 }
