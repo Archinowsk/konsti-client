@@ -13,6 +13,8 @@ import type { StatelessFunctionalComponent } from 'react'
 type Props = {
   games: $ReadOnlyArray<Game>,
   hiddenGames: $ReadOnlyArray<Game>,
+  history: Object,
+  match: Object,
 }
 
 /*
@@ -22,7 +24,7 @@ type State = {
 */
 
 const AllGamesView: StatelessFunctionalComponent<Props> = (props: Props) => {
-  const { games, hiddenGames } = props
+  const { games, hiddenGames, history, match } = props
   const [loading, setLoading] = React.useState(true)
 
   React.useEffect(() => {
@@ -62,16 +64,16 @@ const AllGamesView: StatelessFunctionalComponent<Props> = (props: Props) => {
           <Route
             exact
             path='/'
-            render={props => <AllGamesList {...props} games={visibleGames} />}
+            render={() => <AllGamesList games={visibleGames} />}
           />
           <Route
             exact
             path='/games'
-            render={props => <AllGamesList {...props} games={visibleGames} />}
+            render={() => <AllGamesList games={visibleGames} />}
           />
           <Route
             path='/games/:id'
-            render={props => <GameDetails {...props} games={visibleGames} />}
+            render={() => <GameDetails history={history} match={match} />}
           />
         </Switch>
       )}
