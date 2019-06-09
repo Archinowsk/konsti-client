@@ -22,11 +22,11 @@ import type { StatelessFunctionalComponent } from 'react'
 type Props = {
   groupCode: string,
   groupMembers: $ReadOnlyArray<GroupMember>,
-  onSubmitCreateGroup: Function,
-  onSubmitGetGroup: Function,
-  onSubmitJoinGroup: Function,
-  onSubmitLeaveGroup: Function,
-  onSubmitSignup: Function,
+  submitCreateGroup: Function,
+  submitGetGroup: Function,
+  submitJoinGroup: Function,
+  submitLeaveGroup: Function,
+  submitSignup: Function,
   serial: string,
   username: string,
 }
@@ -46,11 +46,11 @@ const GroupView: StatelessFunctionalComponent<Props> = (props: Props) => {
   const {
     groupCode,
     groupMembers,
-    onSubmitCreateGroup,
-    onSubmitGetGroup,
-    onSubmitJoinGroup,
-    onSubmitLeaveGroup,
-    onSubmitSignup,
+    submitCreateGroup,
+    submitGetGroup,
+    submitJoinGroup,
+    submitLeaveGroup,
+    submitSignup,
     serial,
     username,
   } = props
@@ -70,7 +70,7 @@ const GroupView: StatelessFunctionalComponent<Props> = (props: Props) => {
 
       // Get group members if user is in a group
       if (groupCode !== '0') {
-        await onSubmitGetGroup(groupCode)
+        await submitGetGroup(groupCode)
       }
     }
     fetchData()
@@ -94,7 +94,7 @@ const GroupView: StatelessFunctionalComponent<Props> = (props: Props) => {
       leader: true,
       ownSerial: serial,
     }
-    const response = await onSubmitCreateGroup(groupData)
+    const response = await submitCreateGroup(groupData)
     if (response.status === 'success') {
       showMessage({ message: t('groupCreated'), style: response.status })
     } else if (response.status === 'error') {
@@ -112,7 +112,7 @@ const GroupView: StatelessFunctionalComponent<Props> = (props: Props) => {
       selectedGames: [],
     }
 
-    await onSubmitSignup(signupData)
+    await submitSignup(signupData)
   }
 
   const joinGroup = async () => {
@@ -123,7 +123,7 @@ const GroupView: StatelessFunctionalComponent<Props> = (props: Props) => {
       ownSerial: serial,
     }
 
-    const response = await onSubmitJoinGroup(groupData)
+    const response = await submitJoinGroup(groupData)
 
     if (response.status === 'success') {
       showMessage({ message: t('groupJoined'), style: response.status })
@@ -156,7 +156,7 @@ const GroupView: StatelessFunctionalComponent<Props> = (props: Props) => {
       ownSerial: serial,
       leaveGroup: true,
     }
-    const response = await onSubmitLeaveGroup(groupData)
+    const response = await submitLeaveGroup(groupData)
 
     if (response.status === 'success') {
       showMessage({ message: t('leftGroup'), style: response.status })
@@ -301,17 +301,13 @@ const mapStateToProps = (state: Object) => {
   }
 }
 
-const mapDispatchToProps = (dispatch: Function) => {
-  return {
-    onSubmitCreateGroup: groupData => dispatch(submitCreateGroup(groupData)),
-    onSubmitJoinGroup: groupData => dispatch(submitJoinGroup(groupData)),
-    onSubmitGetGroup: groupCode => dispatch(submitGetGroup(groupCode)),
-    onSubmitLeaveGroup: groupData => dispatch(submitLeaveGroup(groupData)),
-    onSubmitSignup: signupData => dispatch(submitSignup(signupData)),
-  }
-}
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  {
+    submitCreateGroup,
+    submitJoinGroup,
+    submitGetGroup,
+    submitLeaveGroup,
+    submitSignup,
+  }
 )(GroupView)

@@ -21,14 +21,14 @@ import type { Signup } from 'flow/user.flow'
 type Props = {
   hiddenGames: $ReadOnlyArray<Game>,
   games: $ReadOnlyArray<Game>,
-  onSubmitSelectedGames: Function,
-  onSubmitSignup: Function,
+  submitSelectedGames: Function,
+  submitSignup: Function,
   selectedGames: $ReadOnlyArray<Signup>,
   username: string,
   signedGames: $ReadOnlyArray<Signup>,
   signupTimes: $ReadOnlyArray<string>,
   signupTime: string,
-  onSubmitSignupTime: Function,
+  submitSignupTime: Function,
 }
 
 /*
@@ -44,14 +44,14 @@ const SignupList: StatelessFunctionalComponent<Props> = (props: Props) => {
   const {
     hiddenGames,
     games,
-    onSubmitSelectedGames,
-    onSubmitSignup,
+    submitSelectedGames,
+    submitSignup,
     selectedGames,
     username,
     signedGames,
     signupTimes,
     signupTime,
-    onSubmitSignupTime,
+    submitSignupTime,
   } = props
 
   const [submitting, setSubmitting] = React.useState(false)
@@ -67,7 +67,7 @@ const SignupList: StatelessFunctionalComponent<Props> = (props: Props) => {
       await loadData(getStore())
     }
     fetchData()
-    onSubmitSelectedGames(signedGames)
+    submitSelectedGames(signedGames)
     setLoading(false)
   }, [])
 
@@ -82,7 +82,7 @@ const SignupList: StatelessFunctionalComponent<Props> = (props: Props) => {
 
     let response = null
     try {
-      response = await onSubmitSignup(signupData)
+      response = await submitSignup(signupData)
     } catch (error) {
       console.log(`onSubmitSignup error: `, error)
     }
@@ -112,7 +112,7 @@ const SignupList: StatelessFunctionalComponent<Props> = (props: Props) => {
 
     let response = null
     try {
-      response = await onSubmitSignup(signupData)
+      response = await submitSignup(signupData)
     } catch (error) {
       console.log(`onSubmitSignup error: `, error)
     }
@@ -161,12 +161,12 @@ const SignupList: StatelessFunctionalComponent<Props> = (props: Props) => {
       selectedGame => selectedGame.gameDetails.startTime !== signupTime
     )
     const combined = existingGames.concat(newGames)
-    onSubmitSelectedGames(combined)
+    submitSelectedGames(combined)
   }
 
   // Select signup time from buttons and store it
   const selectSignupTime = signupTime => {
-    onSubmitSignupTime(signupTime)
+    submitSignupTime(signupTime)
   }
 
   const showMessage = async message => {
@@ -258,16 +258,7 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = (dispatch: Function) => {
-  return {
-    onSubmitSelectedGames: selectedGames =>
-      dispatch(submitSelectedGames(selectedGames)),
-    onSubmitSignup: signupData => dispatch(submitSignup(signupData)),
-    onSubmitSignupTime: signupTime => dispatch(submitSignupTime(signupTime)),
-  }
-}
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  { submitSelectedGames, submitSignup, submitSignupTime }
 )(SignupList)

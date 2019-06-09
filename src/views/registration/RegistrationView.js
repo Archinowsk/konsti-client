@@ -8,19 +8,19 @@ import RegistrationForm from 'views/registration/components/RegistrationForm'
 import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
-  onSubmitRegistration: Function,
+  submitRegistration: Function,
 }
 
 const RegistrationView: StatelessFunctionalComponent<Props> = (
   props: Props
 ) => {
-  const { onSubmitRegistration } = props
+  const { submitRegistration } = props
   const { t } = useTranslation()
 
   const submit = async form => {
     let response = null
     try {
-      response = await onSubmitRegistration(form)
+      response = await submitRegistration(form)
     } catch (error) {
       console.log(`onSubmitRegistration error:`, error)
     }
@@ -45,14 +45,7 @@ const RegistrationView: StatelessFunctionalComponent<Props> = (
   )
 }
 
-const mapDispatchToProps = (dispatch: Function) => {
-  return {
-    onSubmitRegistration: registrationInfo =>
-      dispatch(submitRegistration(registrationInfo)),
-  }
-}
-
 export default connect(
   null,
-  mapDispatchToProps
+  { submitRegistration }
 )(RegistrationView)

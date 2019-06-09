@@ -57,13 +57,4 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = (dispatch: Function) => {
-  return {}
-}
-
-export default hot(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(App)
-)
+export default hot(connect(mapStateToProps)(App))

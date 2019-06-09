@@ -8,17 +8,17 @@ import LoginForm from 'views/login/components/LoginForm'
 import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
-  onSubmitLogin: Function,
+  submitLogin: Function,
 }
 
 const LoginView: StatelessFunctionalComponent<Props> = (props: Props) => {
-  const { onSubmitLogin } = props
+  const { submitLogin } = props
   const { t } = useTranslation()
 
   const submit = async form => {
     let response = null
     try {
-      response = await onSubmitLogin(form)
+      response = await submitLogin(form)
     } catch (error) {
       console.log(`onSubmitLogin error:`, error)
     }
@@ -43,13 +43,7 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = (dispatch: Function) => {
-  return {
-    onSubmitLogin: loginInfo => dispatch(submitLogin(loginInfo)),
-  }
-}
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  { submitLogin }
 )(LoginView)

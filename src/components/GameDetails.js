@@ -18,8 +18,8 @@ type Props = {
   history: Object,
   loggedIn: boolean,
   match: Object,
-  onSubmitUpdateHidden: Function,
-  onSubmitUpdateFavorites: Function,
+  submitUpdateHidden: Function,
+  submitUpdateFavorites: Function,
   userGroup: string,
   username: string,
 }
@@ -43,8 +43,8 @@ const GameDetails: StatelessFunctionalComponent<Props> = (props: Props) => {
     loggedIn,
     userGroup,
     username,
-    onSubmitUpdateHidden,
-    onSubmitUpdateFavorites,
+    submitUpdateHidden,
+    submitUpdateFavorites,
   } = props
 
   const { t } = useTranslation()
@@ -115,7 +115,7 @@ const GameDetails: StatelessFunctionalComponent<Props> = (props: Props) => {
 
     let response = null
     try {
-      response = await onSubmitUpdateFavorites(favoriteData)
+      response = await submitUpdateFavorites(favoriteData)
     } catch (error) {
       console.log(`onSubmitUpdateFavorites error:`, error)
     }
@@ -151,7 +151,7 @@ const GameDetails: StatelessFunctionalComponent<Props> = (props: Props) => {
 
     let response = null
     try {
-      response = await onSubmitUpdateHidden(allHiddenGames)
+      response = await submitUpdateHidden(allHiddenGames)
     } catch (error) {
       console.log(`onSubmitUpdateHidden error`, error)
     }
@@ -239,16 +239,9 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = (dispatch: Function) => {
-  return {
-    onSubmitUpdateFavorites: gameId => dispatch(submitUpdateFavorites(gameId)),
-    onSubmitUpdateHidden: gameId => dispatch(submitUpdateHidden(gameId)),
-  }
-}
-
 export default withRouter(
   connect(
     mapStateToProps,
-    mapDispatchToProps
+    { submitUpdateFavorites, submitUpdateHidden }
   )(GameDetails)
 )

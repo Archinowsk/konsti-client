@@ -6,26 +6,20 @@ import { submitLogout } from 'views/login/loginActions'
 import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
-  onSubmitLogout: Function,
+  submitLogout: Function,
 }
 
 const LogoutPage: StatelessFunctionalComponent<Props> = (props: Props) => {
-  const { onSubmitLogout } = props
+  const { submitLogout } = props
 
   React.useEffect(() => {
-    onSubmitLogout()
+    submitLogout()
   })
 
   return <Redirect to='/' />
 }
 
-const mapDispatchToProps = (dispatch: Function) => {
-  return {
-    onSubmitLogout: () => dispatch(submitLogout()),
-  }
-}
-
 export default connect(
   null,
-  mapDispatchToProps
+  { submitLogout }
 )(LogoutPage)

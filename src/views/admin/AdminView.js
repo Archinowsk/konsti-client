@@ -19,9 +19,9 @@ import type { StatelessFunctionalComponent } from 'react'
 type Props = {
   hiddenGames: $ReadOnlyArray<Game>,
   games: $ReadOnlyArray<Game>,
-  onSubmitGamesUpdate: Function,
-  onSubmitPlayersAssign: Function,
-  onSubmitSignupTime: Function,
+  submitGamesUpdate: Function,
+  submitPlayersAssign: Function,
+  submitSignupTime: Function,
   signupTime: string,
   updateResponse: Object,
 }
@@ -40,9 +40,9 @@ const AdminView: StatelessFunctionalComponent<Props> = (props: Props) => {
   const {
     hiddenGames,
     games,
-    onSubmitGamesUpdate,
-    onSubmitPlayersAssign,
-    onSubmitSignupTime,
+    submitGamesUpdate,
+    submitPlayersAssign,
+    submitSignupTime,
     signupTime,
     updateResponse,
   } = props
@@ -96,7 +96,7 @@ const AdminView: StatelessFunctionalComponent<Props> = (props: Props) => {
   const submitUpdate = async () => {
     setSubmitting(true)
     try {
-      await onSubmitGamesUpdate()
+      await submitGamesUpdate()
     } catch (error) {
       console.log(`onSubmitGamesUpdate error:`, error)
     }
@@ -108,7 +108,7 @@ const AdminView: StatelessFunctionalComponent<Props> = (props: Props) => {
 
     let response = null
     try {
-      response = await onSubmitPlayersAssign(signupTime)
+      response = await submitPlayersAssign(signupTime)
     } catch (error) {
       console.log(`onSubmitPlayersAssign error:`, error)
     }
@@ -130,7 +130,7 @@ const AdminView: StatelessFunctionalComponent<Props> = (props: Props) => {
   const submitTime = async () => {
     setSubmitting(true)
     try {
-      await onSubmitSignupTime(selectedSignupTime)
+      await submitSignupTime(selectedSignupTime)
     } catch (error) {
       console.log(`onSubmitSignupTime error:`, error)
     }
@@ -205,16 +205,7 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = (dispatch: Function) => {
-  return {
-    onSubmitGamesUpdate: () => dispatch(submitGamesUpdate()),
-    onSubmitPlayersAssign: signupTime =>
-      dispatch(submitPlayersAssign(signupTime)),
-    onSubmitSignupTime: signupTime => dispatch(submitSignupTime(signupTime)),
-  }
-}
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  { submitGamesUpdate, submitPlayersAssign, submitSignupTime }
 )(AdminView)
