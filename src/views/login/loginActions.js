@@ -1,10 +1,10 @@
 /* @flow */
 import { postLogin } from 'services/loginServices'
+import type { Login, LoginData } from 'flow/user.flow'
 
 export const SUBMIT_LOGIN = 'SUBMIT_LOGIN'
-export const SUBMIT_LOGOUT = 'SUBMIT_LOGOUT'
 
-export const submitLogin = (loginData: Object) => {
+export const submitLogin = (loginData: Login) => {
   return async (dispatch: Function) => {
     let response = null
     try {
@@ -41,7 +41,7 @@ const submitLoginAsync = ({
   userGroup,
   serial,
   playerGroup,
-}) => {
+}: LoginData) => {
   return {
     type: SUBMIT_LOGIN,
     username,
@@ -50,11 +50,5 @@ const submitLoginAsync = ({
     userGroup,
     serial,
     playerGroup,
-  }
-}
-
-export const submitLogout = () => {
-  return {
-    type: SUBMIT_LOGOUT,
   }
 }

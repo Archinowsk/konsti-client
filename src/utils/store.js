@@ -13,7 +13,7 @@ import signupReducer from 'views/signup/signupReducer'
 import adminReducer from 'views/admin/adminReducer'
 import resultsReducer from 'views/results/resultsReducer'
 // import groupReducer from 'views/group/groupReducer'
-import { SUBMIT_LOGOUT } from 'views/login/loginActions'
+import { SUBMIT_LOGOUT } from 'views/logout/logoutActions'
 
 // Set reducers
 const reducer = combineReducers({

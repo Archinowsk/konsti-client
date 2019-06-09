@@ -2,7 +2,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
-import { submitLogout } from 'views/login/loginActions'
+import { submitLogout } from 'views/logout/logoutActions'
 import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {

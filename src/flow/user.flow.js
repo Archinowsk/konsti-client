@@ -22,6 +22,15 @@ export type Login = {
   +password: string,
 }
 
+export type LoginData = {
+  username: string,
+  loggedIn: boolean,
+  jwtToken: string,
+  userGroup: string,
+  serial: string,
+  playerGroup: string,
+}
+
 export type RegistrationData = {
   +password: string,
   +registerDescription: boolean,
