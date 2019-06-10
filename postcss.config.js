@@ -4,12 +4,14 @@ const autoprefixer = require('autoprefixer')
 const postcssImport = require('postcss-import')
 const precss = require('precss')
 const cssnano = require('cssnano')
+const postcssNormalize = require('postcss-normalize')
 
 module.exports = {
   plugins: [
     postcssImport,
     precss,
     postcssPresetEnv,
+    postcssNormalize,
     postcssFlexbugsFixes,
     autoprefixer,
     cssnano,
