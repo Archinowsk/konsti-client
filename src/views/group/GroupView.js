@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { connect } from 'react-redux'
+import { connect, useSelector } from 'react-redux'
 import { getStore } from 'utils/store'
 import loadData from 'utils/loadData'
 import Loading from 'components/Loading'
@@ -20,15 +20,11 @@ import type { GroupMember } from 'flow/group.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
-  groupCode: string,
-  groupMembers: $ReadOnlyArray<GroupMember>,
   submitCreateGroup: Function,
   submitGetGroup: Function,
   submitJoinGroup: Function,
   submitLeaveGroup: Function,
   submitSignup: Function,
-  serial: string,
-  username: string,
 }
 
 /*
@@ -44,16 +40,19 @@ type State = {
 
 const GroupView: StatelessFunctionalComponent<Props> = (props: Props) => {
   const {
-    groupCode,
-    groupMembers,
     submitCreateGroup,
     submitGetGroup,
     submitJoinGroup,
     submitLeaveGroup,
     submitSignup,
-    serial,
-    username,
   } = props
+
+  const username: string = useSelector(state => state.login.username)
+  const serial: string = useSelector(state => state.login.serial)
+  const groupCode: string = useSelector(state => state.login.playerGroup)
+  const groupMembers: $ReadOnlyArray<GroupMember> = useSelector(
+    state => state.login.groupMembers
+  )
 
   const { t } = useTranslation()
 
@@ -292,17 +291,8 @@ const GroupView: StatelessFunctionalComponent<Props> = (props: Props) => {
   )
 }
 
-const mapStateToProps = (state: Object) => {
-  return {
-    username: state.login.username,
-    serial: state.login.serial,
-    groupCode: state.login.playerGroup,
-    groupMembers: state.login.groupMembers,
-  }
-}
-
 export default connect(
-  mapStateToProps,
+  null,
   {
     submitCreateGroup,
     submitJoinGroup,

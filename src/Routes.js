@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react'
 import { BrowserRouter, Route, Link, Switch, Redirect } from 'react-router-dom'
-import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import type { StatelessFunctionalComponent } from 'react'
 
@@ -16,13 +16,9 @@ import Results from 'views/results/ResultsView'
 import Logout from 'views/logout/LogoutView'
 import Group from 'views/group/GroupView'
 
-type Props = {
-  loggedIn: boolean,
-  userGroup: string,
-}
-
-const Routes: StatelessFunctionalComponent<Props> = (props: Props) => {
-  const { loggedIn, userGroup } = props
+const Routes: StatelessFunctionalComponent<{}> = () => {
+  const loggedIn: boolean = useSelector(state => state.login.loggedIn)
+  const userGroup: string = useSelector(state => state.login.userGroup)
   const { t } = useTranslation()
 
   if (!loggedIn) {
@@ -112,11 +108,4 @@ const Routes: StatelessFunctionalComponent<Props> = (props: Props) => {
   )
 }
 
-const mapStateToProps = state => {
-  return {
-    loggedIn: state.login.loggedIn,
-    userGroup: state.login.userGroup,
-  }
-}
-
-export default connect(mapStateToProps)(Routes)
+export default Routes

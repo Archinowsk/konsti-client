@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react'
-import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import ResultsList from 'views/results/components/ResultsList'
 import { getStore } from 'utils/store'
@@ -10,19 +10,16 @@ import timeFormatter from 'utils/timeFormatter'
 import type { Results } from 'flow/result.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
-type Props = {
-  results: Results,
-  signupTime: string,
-}
-
 /*
 type State = {
   loading: boolean,
 }
 */
 
-const ResultsView: StatelessFunctionalComponent<Props> = (props: Props) => {
-  const { results, signupTime } = props
+const ResultsView: StatelessFunctionalComponent<{}> = () => {
+  const results: Results = useSelector(state => state.results.results)
+  const signupTime: string = useSelector(state => state.admin.signupTime)
+
   const { t } = useTranslation()
   const [loading, setLoading] = React.useState(true)
 
@@ -52,15 +49,4 @@ const ResultsView: StatelessFunctionalComponent<Props> = (props: Props) => {
   )
 }
 
-const mapStateToProps = state => {
-  return {
-    games: state.allGames.games,
-    results: state.results.results,
-    signupTime: state.admin.signupTime,
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  null
-)(ResultsView)
+export default ResultsView

@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react'
-import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import GameDetails from 'components/GameDetails'
 import AllGamesList from 'views/all-games/components/AllGamesList'
@@ -10,19 +10,18 @@ import Loading from 'components/Loading'
 import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
-type Props = {
-  games: $ReadOnlyArray<Game>,
-  hiddenGames: $ReadOnlyArray<Game>,
-}
-
 /*
 type State = {
   loading: boolean,
 }
 */
 
-const AllGamesView: StatelessFunctionalComponent<Props> = (props: Props) => {
-  const { games, hiddenGames } = props
+const AllGamesView: StatelessFunctionalComponent<{}> = () => {
+  const games: $ReadOnlyArray<Game> = useSelector(state => state.allGames.games)
+  const hiddenGames: $ReadOnlyArray<Game> = useSelector(
+    state => state.admin.hiddenGames
+  )
+
   const [loading, setLoading] = React.useState(true)
 
   React.useEffect(() => {
@@ -76,14 +75,4 @@ const AllGamesView: StatelessFunctionalComponent<Props> = (props: Props) => {
   )
 }
 
-const mapStateToProps = state => {
-  return {
-    games: state.allGames.games,
-    hiddenGames: state.admin.hiddenGames,
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  null
-)(AllGamesView)
+export default AllGamesView

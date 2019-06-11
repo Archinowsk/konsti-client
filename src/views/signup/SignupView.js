@@ -1,15 +1,11 @@
 /* @flow */
 import React from 'react'
-import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import SignupList from 'views/signup/components/SignupList'
 import getOpenSignupTimes from 'utils/getOpenSignupTimes'
 import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent } from 'react'
-
-type Props = {
-  games: $ReadOnlyArray<Game>,
-}
 
 /*
 type State = {
@@ -18,8 +14,9 @@ type State = {
 }
 */
 
-const SignupView: StatelessFunctionalComponent<Props> = (props: Props) => {
-  const { games } = props
+const SignupView: StatelessFunctionalComponent<{}> = () => {
+  const games: $ReadOnlyArray<Game> = useSelector(state => state.allGames.games)
+
   const [signupTimes, setSignupTimes] = React.useState([])
 
   React.useEffect(() => {
@@ -39,13 +36,4 @@ const SignupView: StatelessFunctionalComponent<Props> = (props: Props) => {
   )
 }
 
-const mapStateToProps = state => {
-  return {
-    games: state.allGames.games,
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  null
-)(SignupView)
+export default SignupView

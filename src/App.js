@@ -2,7 +2,7 @@
 import React from 'react'
 import { hot } from 'react-hot-loader/root'
 import { useTranslation } from 'react-i18next'
-import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 import Routes from 'Routes'
 import LanguageSelector from 'components/LanguageSelector'
 import config from 'config'
@@ -10,15 +10,12 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { faAngleUp, faAngleDown } from '@fortawesome/free-solid-svg-icons'
 import type { StatelessFunctionalComponent } from 'react'
 
-type Props = {
-  username: string,
-  loggedIn: boolean,
-  serial: string,
-}
-
-const App: StatelessFunctionalComponent<Props> = (props: Props) => {
-  const { username, loggedIn, serial } = props
+const App: StatelessFunctionalComponent<{}> = () => {
   const { appOpen } = config
+  const username: string = useSelector(state => state.login.username)
+  const loggedIn: boolean = useSelector(state => state.login.loggedIn)
+  const serial: string = useSelector(state => state.login.serial)
+
   const { t } = useTranslation()
 
   library.add(faAngleUp, faAngleDown)
@@ -49,12 +46,4 @@ const App: StatelessFunctionalComponent<Props> = (props: Props) => {
   )
 }
 
-const mapStateToProps = state => {
-  return {
-    username: state.login.username,
-    serial: state.login.serial,
-    loggedIn: state.login.loggedIn,
-  }
-}
-
-export default hot(connect(mapStateToProps)(App))
+export default hot(App)

@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react'
-import { connect } from 'react-redux'
+import { useSelector } from 'react-redux'
 import MySignupsList from 'views/my-games/components/MySignupsList'
 import MyFavoritesList from 'views/my-games/components/MyFavoritesList'
 import MyEnteredList from 'views/my-games/components/MyEnteredList'
@@ -11,20 +11,23 @@ import type { StatelessFunctionalComponent } from 'react'
 import type { Game } from 'flow/game.flow'
 import type { Signup } from 'flow/user.flow'
 
-type Props = {
-  signedGames: $ReadOnlyArray<Signup>,
-  favoritedGames: $ReadOnlyArray<Game>,
-  enteredGames: $ReadOnlyArray<Signup>,
-}
-
 /*
 type State = {
   loading: boolean,
 }
 */
 
-const MyGamesView: StatelessFunctionalComponent<Props> = (props: Props) => {
-  const { signedGames, favoritedGames, enteredGames } = props
+const MyGamesView: StatelessFunctionalComponent<{}> = () => {
+  const signedGames: $ReadOnlyArray<Signup> = useSelector(
+    state => state.myGames.signedGames
+  )
+  const favoritedGames: $ReadOnlyArray<Game> = useSelector(
+    state => state.myGames.favoritedGames
+  )
+  const enteredGames: $ReadOnlyArray<Signup> = useSelector(
+    state => state.myGames.enteredGames
+  )
+
   const [loading, setLoading] = React.useState(true)
 
   React.useEffect(() => {
@@ -52,17 +55,4 @@ const MyGamesView: StatelessFunctionalComponent<Props> = (props: Props) => {
   )
 }
 
-const mapStateToProps = state => {
-  return {
-    signedGames: state.myGames.signedGames,
-    favoritedGames: state.myGames.favoritedGames,
-    enteredGames: state.myGames.enteredGames,
-    games: state.allGames.games,
-    myGames: state.myGames,
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  null
-)(MyGamesView)
+export default MyGamesView

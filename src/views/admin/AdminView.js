@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react'
-import { connect } from 'react-redux'
+import { connect, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import Hidden from 'views/admin/components/Hidden'
 import {
@@ -17,13 +17,9 @@ import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
-  hiddenGames: $ReadOnlyArray<Game>,
-  games: $ReadOnlyArray<Game>,
   submitGamesUpdate: Function,
   submitPlayersAssign: Function,
   submitSignupTime: Function,
-  signupTime: string,
-  updateResponse: Object,
 }
 
 /*
@@ -37,15 +33,16 @@ type State = {
 */
 
 const AdminView: StatelessFunctionalComponent<Props> = (props: Props) => {
-  const {
-    hiddenGames,
-    games,
-    submitGamesUpdate,
-    submitPlayersAssign,
-    submitSignupTime,
-    signupTime,
-    updateResponse,
-  } = props
+  const { submitGamesUpdate, submitPlayersAssign, submitSignupTime } = props
+
+  const games: $ReadOnlyArray<Game> = useSelector(state => state.allGames.games)
+  const signupTime: string = useSelector(state => state.admin.signupTime)
+  const hiddenGames: $ReadOnlyArray<Game> = useSelector(
+    state => state.admin.hiddenGames
+  )
+  const updateResponse: Object = useSelector(
+    state => state.admin.updateResponse
+  )
 
   const [submitting, setSubmitting] = React.useState(false)
   const [loading, setLoading] = React.useState(true)
@@ -196,16 +193,7 @@ const AdminView: StatelessFunctionalComponent<Props> = (props: Props) => {
   )
 }
 
-const mapStateToProps = state => {
-  return {
-    updateResponse: state.admin.updateResponse,
-    games: state.allGames.games,
-    hiddenGames: state.admin.hiddenGames,
-    signupTime: state.admin.signupTime,
-  }
-}
-
 export default connect(
-  mapStateToProps,
+  null,
   { submitGamesUpdate, submitPlayersAssign, submitSignupTime }
 )(AdminView)

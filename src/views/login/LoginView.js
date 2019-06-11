@@ -37,13 +37,7 @@ const LoginView: StatelessFunctionalComponent<Props> = (props: Props) => {
   )
 }
 
-const mapStateToProps = state => {
-  return {
-    username: state.login.username,
-  }
-}
-
 export default connect(
-  mapStateToProps,
+  null,
   { submitLogin }
 )(LoginView)

@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { connect } from 'react-redux'
+import { connect, useSelector } from 'react-redux'
 import timeFormatter from 'utils/timeFormatter'
 import {
   submitSignup,
@@ -19,15 +19,10 @@ import type { Game } from 'flow/game.flow'
 import type { Signup } from 'flow/user.flow'
 
 type Props = {
-  hiddenGames: $ReadOnlyArray<Game>,
   games: $ReadOnlyArray<Game>,
   submitSelectedGames: Function,
   submitSignup: Function,
-  selectedGames: $ReadOnlyArray<Signup>,
-  username: string,
-  signedGames: $ReadOnlyArray<Signup>,
   signupTimes: $ReadOnlyArray<string>,
-  signupTime: string,
   submitSignupTime: Function,
 }
 
@@ -42,24 +37,31 @@ type State = {
 
 const SignupList: StatelessFunctionalComponent<Props> = (props: Props) => {
   const {
-    hiddenGames,
     games,
     submitSelectedGames,
     submitSignup,
-    selectedGames,
-    username,
-    signedGames,
     signupTimes,
-    signupTime,
     submitSignupTime,
   } = props
+
+  const signupTime: string = useSelector(state => state.signup.signupTime)
+  const username: string = useSelector(state => state.login.username)
+  const hiddenGames: $ReadOnlyArray<Game> = useSelector(
+    state => state.admin.hiddenGames
+  )
+  const signedGames: $ReadOnlyArray<Signup> = useSelector(
+    state => state.myGames.signedGames
+  )
+  const selectedGames: $ReadOnlyArray<Signup> = useSelector(
+    state => state.signup.selectedGames
+  )
+
+  const { t } = useTranslation()
 
   const [submitting, setSubmitting] = React.useState(false)
   const [signupSubmitted, setSignupSubmitted] = React.useState(false)
   const [signupError, setSignupError] = React.useState(false)
   const [loading, setLoading] = React.useState(true)
-
-  const { t } = useTranslation()
 
   React.useEffect(() => {
     setLoading(true)
@@ -248,17 +250,7 @@ const SignupList: StatelessFunctionalComponent<Props> = (props: Props) => {
   )
 }
 
-const mapStateToProps = state => {
-  return {
-    selectedGames: state.signup.selectedGames,
-    signupTime: state.signup.signupTime,
-    username: state.login.username,
-    hiddenGames: state.admin.hiddenGames,
-    signedGames: state.myGames.signedGames,
-  }
-}
-
 export default connect(
-  mapStateToProps,
+  null,
   { submitSelectedGames, submitSignup, submitSignupTime }
 )(SignupList)
