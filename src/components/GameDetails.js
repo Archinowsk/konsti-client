@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { connect, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { submitUpdateHidden } from 'views/admin/adminActions'
 import { submitUpdateFavorites } from 'views/my-games/myGamesActions'
@@ -14,8 +14,6 @@ import type { StatelessFunctionalComponent } from 'react'
 type Props = {
   history: Object,
   match: Object,
-  submitUpdateHidden: Function,
-  submitUpdateFavorites: Function,
 }
 
 /*
@@ -28,7 +26,7 @@ type State = {
 */
 
 const GameDetails: StatelessFunctionalComponent<Props> = (props: Props) => {
-  const { history, match, submitUpdateHidden, submitUpdateFavorites } = props
+  const { history, match } = props
 
   const username: string = useSelector(state => state.login.username)
 
@@ -41,6 +39,7 @@ const GameDetails: StatelessFunctionalComponent<Props> = (props: Props) => {
   const hiddenGames: $ReadOnlyArray<Game> = useSelector(
     state => state.admin.hiddenGames
   )
+  const dispatch = useDispatch()
   const { t } = useTranslation()
 
   const game = games.find(game => game.gameId === match.params.id)
@@ -109,7 +108,7 @@ const GameDetails: StatelessFunctionalComponent<Props> = (props: Props) => {
 
     let response = null
     try {
-      response = await submitUpdateFavorites(favoriteData)
+      response = await dispatch(submitUpdateFavorites(favoriteData))
     } catch (error) {
       console.log(`onSubmitUpdateFavorites error:`, error)
     }
@@ -145,7 +144,7 @@ const GameDetails: StatelessFunctionalComponent<Props> = (props: Props) => {
 
     let response = null
     try {
-      response = await submitUpdateHidden(allHiddenGames)
+      response = await dispatch(submitUpdateHidden(allHiddenGames))
     } catch (error) {
       console.log(`onSubmitUpdateHidden error`, error)
     }
@@ -222,9 +221,4 @@ const GameDetails: StatelessFunctionalComponent<Props> = (props: Props) => {
   )
 }
 
-export default withRouter(
-  connect(
-    null,
-    { submitUpdateFavorites, submitUpdateHidden }
-  )(GameDetails)
-)
+export default withRouter(GameDetails)

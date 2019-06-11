@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react'
-import { connect, useSelector, useStore } from 'react-redux'
+import { useDispatch, useSelector, useStore } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import Hidden from 'views/admin/components/Hidden'
 import {
@@ -15,12 +15,6 @@ import timeFormatter from 'utils/timeFormatter'
 import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
-type Props = {
-  submitGamesUpdate: Function,
-  submitPlayersAssign: Function,
-  submitSignupTime: Function,
-}
-
 /*
 type State = {
   submitting: boolean,
@@ -31,9 +25,7 @@ type State = {
 }
 */
 
-const AdminView: StatelessFunctionalComponent<Props> = (props: Props) => {
-  const { submitGamesUpdate, submitPlayersAssign, submitSignupTime } = props
-
+const AdminView: StatelessFunctionalComponent<{}> = () => {
   const games: $ReadOnlyArray<Game> = useSelector(state => state.allGames.games)
   const signupTime: string = useSelector(state => state.admin.signupTime)
   const hiddenGames: $ReadOnlyArray<Game> = useSelector(
@@ -42,6 +34,7 @@ const AdminView: StatelessFunctionalComponent<Props> = (props: Props) => {
   const updateResponse: Object = useSelector(
     state => state.admin.updateResponse
   )
+  const dispatch = useDispatch()
   const store = useStore()
   const { t } = useTranslation()
 
@@ -92,7 +85,7 @@ const AdminView: StatelessFunctionalComponent<Props> = (props: Props) => {
   const submitUpdate = async () => {
     setSubmitting(true)
     try {
-      await submitGamesUpdate()
+      await dispatch(submitGamesUpdate())
     } catch (error) {
       console.log(`onSubmitGamesUpdate error:`, error)
     }
@@ -104,7 +97,7 @@ const AdminView: StatelessFunctionalComponent<Props> = (props: Props) => {
 
     let response = null
     try {
-      response = await submitPlayersAssign(signupTime)
+      response = await dispatch(submitPlayersAssign(signupTime))
     } catch (error) {
       console.log(`onSubmitPlayersAssign error:`, error)
     }
@@ -126,7 +119,7 @@ const AdminView: StatelessFunctionalComponent<Props> = (props: Props) => {
   const submitTime = async () => {
     setSubmitting(true)
     try {
-      await submitSignupTime(selectedSignupTime)
+      await dispatch(submitSignupTime(selectedSignupTime))
     } catch (error) {
       console.log(`onSubmitSignupTime error:`, error)
     }
@@ -192,7 +185,4 @@ const AdminView: StatelessFunctionalComponent<Props> = (props: Props) => {
   )
 }
 
-export default connect(
-  null,
-  { submitGamesUpdate, submitPlayersAssign, submitSignupTime }
-)(AdminView)
+export default AdminView

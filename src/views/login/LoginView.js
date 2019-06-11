@@ -1,24 +1,20 @@
 /* @flow */
 import React from 'react'
-import { connect } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { SubmissionError } from 'redux-form'
 import { submitLogin } from 'views/login/loginActions'
 import LoginForm from 'views/login/components/LoginForm'
 import type { StatelessFunctionalComponent } from 'react'
 
-type Props = {
-  submitLogin: Function,
-}
-
-const LoginView: StatelessFunctionalComponent<Props> = (props: Props) => {
-  const { submitLogin } = props
+const LoginView: StatelessFunctionalComponent<{}> = () => {
+  const dispatch = useDispatch()
   const { t } = useTranslation()
 
   const submit = async form => {
     let response = null
     try {
-      response = await submitLogin(form)
+      response = await dispatch(submitLogin(form))
     } catch (error) {
       console.log(`onSubmitLogin error:`, error)
     }
@@ -37,7 +33,4 @@ const LoginView: StatelessFunctionalComponent<Props> = (props: Props) => {
   )
 }
 
-export default connect(
-  null,
-  { submitLogin }
-)(LoginView)
+export default LoginView

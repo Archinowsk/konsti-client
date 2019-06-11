@@ -1,26 +1,20 @@
 /* @flow */
 import React from 'react'
-import { connect } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { SubmissionError } from 'redux-form'
 import { useTranslation } from 'react-i18next'
 import { submitRegistration } from 'views/registration/registrationActions'
 import RegistrationForm from 'views/registration/components/RegistrationForm'
 import type { StatelessFunctionalComponent } from 'react'
 
-type Props = {
-  submitRegistration: Function,
-}
-
-const RegistrationView: StatelessFunctionalComponent<Props> = (
-  props: Props
-) => {
-  const { submitRegistration } = props
+const RegistrationView: StatelessFunctionalComponent<{}> = () => {
+  const dispatch = useDispatch()
   const { t } = useTranslation()
 
   const submit = async form => {
     let response = null
     try {
-      response = await submitRegistration(form)
+      response = await dispatch(submitRegistration(form))
     } catch (error) {
       console.log(`onSubmitRegistration error:`, error)
     }
@@ -45,7 +39,4 @@ const RegistrationView: StatelessFunctionalComponent<Props> = (
   )
 }
 
-export default connect(
-  null,
-  { submitRegistration }
-)(RegistrationView)
+export default RegistrationView

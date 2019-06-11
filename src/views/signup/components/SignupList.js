@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { connect, useSelector, useStore } from 'react-redux'
+import { useDispatch, useSelector, useStore } from 'react-redux'
 import timeFormatter from 'utils/timeFormatter'
 import {
   submitSignup,
@@ -19,10 +19,7 @@ import type { Signup } from 'flow/user.flow'
 
 type Props = {
   games: $ReadOnlyArray<Game>,
-  submitSelectedGames: Function,
-  submitSignup: Function,
   signupTimes: $ReadOnlyArray<string>,
-  submitSignupTime: Function,
 }
 
 /*
@@ -35,13 +32,7 @@ type State = {
 */
 
 const SignupList: StatelessFunctionalComponent<Props> = (props: Props) => {
-  const {
-    games,
-    submitSelectedGames,
-    submitSignup,
-    signupTimes,
-    submitSignupTime,
-  } = props
+  const { games, signupTimes } = props
 
   const signupTime: string = useSelector(state => state.signup.signupTime)
   const username: string = useSelector(state => state.login.username)
@@ -54,6 +45,7 @@ const SignupList: StatelessFunctionalComponent<Props> = (props: Props) => {
   const selectedGames: $ReadOnlyArray<Signup> = useSelector(
     state => state.signup.selectedGames
   )
+  const dispatch = useDispatch()
   const store = useStore()
   const { t } = useTranslation()
 
@@ -68,7 +60,7 @@ const SignupList: StatelessFunctionalComponent<Props> = (props: Props) => {
       await loadData(store)
     }
     fetchData()
-    submitSelectedGames(signedGames)
+    dispatch(submitSelectedGames(signedGames))
     setLoading(false)
   }, [])
 
@@ -83,7 +75,7 @@ const SignupList: StatelessFunctionalComponent<Props> = (props: Props) => {
 
     let response = null
     try {
-      response = await submitSignup(signupData)
+      response = await dispatch(submitSignup(signupData))
     } catch (error) {
       console.log(`onSubmitSignup error: `, error)
     }
@@ -113,7 +105,7 @@ const SignupList: StatelessFunctionalComponent<Props> = (props: Props) => {
 
     let response = null
     try {
-      response = await submitSignup(signupData)
+      response = await dispatch(submitSignup(signupData))
     } catch (error) {
       console.log(`onSubmitSignup error: `, error)
     }
@@ -162,12 +154,12 @@ const SignupList: StatelessFunctionalComponent<Props> = (props: Props) => {
       selectedGame => selectedGame.gameDetails.startTime !== signupTime
     )
     const combined = existingGames.concat(newGames)
-    submitSelectedGames(combined)
+    dispatch(submitSelectedGames(combined))
   }
 
   // Select signup time from buttons and store it
   const selectSignupTime = signupTime => {
-    submitSignupTime(signupTime)
+    dispatch(submitSignupTime(signupTime))
   }
 
   const showMessage = async message => {
@@ -249,7 +241,4 @@ const SignupList: StatelessFunctionalComponent<Props> = (props: Props) => {
   )
 }
 
-export default connect(
-  null,
-  { submitSelectedGames, submitSignup, submitSignupTime }
-)(SignupList)
+export default SignupList

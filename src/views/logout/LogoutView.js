@@ -1,25 +1,18 @@
 /* @flow */
 import React from 'react'
-import { connect } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { submitLogout } from 'views/logout/logoutActions'
 import type { StatelessFunctionalComponent } from 'react'
 
-type Props = {
-  submitLogout: Function,
-}
-
-const LogoutPage: StatelessFunctionalComponent<Props> = (props: Props) => {
-  const { submitLogout } = props
+const LogoutPage: StatelessFunctionalComponent<{}> = () => {
+  const dispatch = useDispatch()
 
   React.useEffect(() => {
-    submitLogout()
+    dispatch(submitLogout())
   })
 
   return <Redirect to='/' />
 }
 
-export default connect(
-  null,
-  { submitLogout }
-)(LogoutPage)
+export default LogoutPage
