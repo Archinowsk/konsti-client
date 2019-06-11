@@ -1,9 +1,8 @@
 /* @flow */
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useStore } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import ResultsList from 'views/results/components/ResultsList'
-import { getStore } from 'utils/store'
 import loadData from 'utils/loadData'
 import Loading from 'components/Loading'
 import timeFormatter from 'utils/timeFormatter'
@@ -19,13 +18,13 @@ type State = {
 const ResultsView: StatelessFunctionalComponent<{}> = () => {
   const results: Results = useSelector(state => state.results.results)
   const signupTime: string = useSelector(state => state.admin.signupTime)
-
+  const store = useStore()
   const { t } = useTranslation()
   const [loading, setLoading] = React.useState(true)
 
   React.useEffect(() => {
     const fetchData = async () => {
-      await loadData(getStore())
+      await loadData(store)
     }
     fetchData()
     setLoading(false)

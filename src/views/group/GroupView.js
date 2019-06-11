@@ -1,8 +1,7 @@
 /* @flow */
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { connect, useSelector } from 'react-redux'
-import { getStore } from 'utils/store'
+import { connect, useSelector, useStore } from 'react-redux'
 import loadData from 'utils/loadData'
 import Loading from 'components/Loading'
 import {
@@ -53,7 +52,7 @@ const GroupView: StatelessFunctionalComponent<Props> = (props: Props) => {
   const groupMembers: $ReadOnlyArray<GroupMember> = useSelector(
     state => state.login.groupMembers
   )
-
+  const store = useStore()
   const { t } = useTranslation()
 
   const [loading, setLoading] = React.useState(true)
@@ -65,7 +64,7 @@ const GroupView: StatelessFunctionalComponent<Props> = (props: Props) => {
 
   React.useEffect(() => {
     const fetchData = async () => {
-      await loadData(getStore())
+      await loadData(store)
 
       // Get group members if user is in a group
       if (groupCode !== '0') {

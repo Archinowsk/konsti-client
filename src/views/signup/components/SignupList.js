@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { connect, useSelector } from 'react-redux'
+import { connect, useSelector, useStore } from 'react-redux'
 import timeFormatter from 'utils/timeFormatter'
 import {
   submitSignup,
@@ -11,7 +11,6 @@ import {
 import DragAndDropList from 'views/signup/components/DragAndDropList'
 import sleep from 'utils/sleep'
 import config from 'config'
-import { getStore } from 'utils/store'
 import loadData from 'utils/loadData'
 import Loading from 'components/Loading'
 import type { StatelessFunctionalComponent } from 'react'
@@ -55,7 +54,7 @@ const SignupList: StatelessFunctionalComponent<Props> = (props: Props) => {
   const selectedGames: $ReadOnlyArray<Signup> = useSelector(
     state => state.signup.selectedGames
   )
-
+  const store = useStore()
   const { t } = useTranslation()
 
   const [submitting, setSubmitting] = React.useState(false)
@@ -66,7 +65,7 @@ const SignupList: StatelessFunctionalComponent<Props> = (props: Props) => {
   React.useEffect(() => {
     setLoading(true)
     const fetchData = async () => {
-      await loadData(getStore())
+      await loadData(store)
     }
     fetchData()
     submitSelectedGames(signedGames)

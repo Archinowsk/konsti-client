@@ -1,6 +1,6 @@
 /* @flow */
 import React from 'react'
-import { connect, useSelector } from 'react-redux'
+import { connect, useSelector, useStore } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import Hidden from 'views/admin/components/Hidden'
 import {
@@ -9,7 +9,6 @@ import {
   submitSignupTime,
 } from 'views/admin/adminActions'
 import TimesDropdown from 'components/TimesDropdown'
-import { getStore } from 'utils/store'
 import loadData from 'utils/loadData'
 import Loading from 'components/Loading'
 import timeFormatter from 'utils/timeFormatter'
@@ -43,6 +42,8 @@ const AdminView: StatelessFunctionalComponent<Props> = (props: Props) => {
   const updateResponse: Object = useSelector(
     state => state.admin.updateResponse
   )
+  const store = useStore()
+  const { t } = useTranslation()
 
   const [submitting, setSubmitting] = React.useState(false)
   const [loading, setLoading] = React.useState(true)
@@ -50,11 +51,9 @@ const AdminView: StatelessFunctionalComponent<Props> = (props: Props) => {
   const [messageStyle, setMessageStyle] = React.useState('')
   const [selectedSignupTime, setSelectedSignupTime] = React.useState('')
 
-  const { t } = useTranslation()
-
   React.useEffect(() => {
     const fetchData = async () => {
-      await loadData(getStore())
+      await loadData(store)
     }
     fetchData()
     setLoading(false)

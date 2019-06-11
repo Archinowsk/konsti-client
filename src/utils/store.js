@@ -51,8 +51,4 @@ const enhancer = composeEnhancers(middlewares)
 /* $FlowFixMe: Redux flow-typed missing generics types */
 const store = createStore(rootReducer, initialState, enhancer)
 
-export const getStore = () => {
-  return store
-}
-
 export default store

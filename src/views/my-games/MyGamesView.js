@@ -1,10 +1,9 @@
 /* @flow */
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useStore } from 'react-redux'
 import MySignupsList from 'views/my-games/components/MySignupsList'
 import MyFavoritesList from 'views/my-games/components/MyFavoritesList'
 import MyEnteredList from 'views/my-games/components/MyEnteredList'
-import { getStore } from 'utils/store'
 import loadData from 'utils/loadData'
 import Loading from 'components/Loading'
 import type { StatelessFunctionalComponent } from 'react'
@@ -27,12 +26,13 @@ const MyGamesView: StatelessFunctionalComponent<{}> = () => {
   const enteredGames: $ReadOnlyArray<Signup> = useSelector(
     state => state.myGames.enteredGames
   )
+  const store = useStore()
 
   const [loading, setLoading] = React.useState(true)
 
   React.useEffect(() => {
     const fetchData = async () => {
-      await loadData(getStore())
+      await loadData(store)
     }
     fetchData()
     setLoading(false)

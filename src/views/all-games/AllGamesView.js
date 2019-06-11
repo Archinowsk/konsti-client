@@ -1,10 +1,9 @@
 /* @flow */
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useStore } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import GameDetails from 'components/GameDetails'
 import AllGamesList from 'views/all-games/components/AllGamesList'
-import { getStore } from 'utils/store'
 import loadData from 'utils/loadData'
 import Loading from 'components/Loading'
 import type { Game } from 'flow/game.flow'
@@ -21,12 +20,13 @@ const AllGamesView: StatelessFunctionalComponent<{}> = () => {
   const hiddenGames: $ReadOnlyArray<Game> = useSelector(
     state => state.admin.hiddenGames
   )
+  const store = useStore()
 
   const [loading, setLoading] = React.useState(true)
 
   React.useEffect(() => {
     const fetchData = async () => {
-      await loadData(getStore())
+      await loadData(store)
     }
     fetchData()
     setLoading(false)
