@@ -5,14 +5,16 @@ import type { FieldProps } from 'redux-form'
 import type { StatelessFunctionalComponent } from 'react'
 
 const FormField: StatelessFunctionalComponent<FieldProps> = (
-  field: FieldProps
+  props: FieldProps
 ) => {
   const { t } = useTranslation()
 
-  if (!field) return <p />
+  if (!props) return <p />
 
-  const { name } = field.input
-  const { touched, error } = field.meta
+  // $FlowFixMe: Cannot get field.type because property type is missing in FieldProps [1].
+  const { type } = props
+  const { name, onChange } = props.input
+  const { touched, error } = props.meta
 
   return (
     <div className='form-row'>
@@ -20,11 +22,10 @@ const FormField: StatelessFunctionalComponent<FieldProps> = (
         <div className='form-input-wrapper' id={`${name}-wrapper`}>
           <input
             className='form-input'
-            {...field.input}
+            onChange={onChange}
             placeholder={t(name)}
             id={name}
-            // $FlowFixMe: Cannot get field.type because property type is missing in FieldProps [1].
-            type={field.type}
+            type={type}
             label={t(name)}
           />
         </div>
