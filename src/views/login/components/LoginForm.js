@@ -39,7 +39,9 @@ const LoginForm: StatelessFunctionalComponent<Props> = (props: Props) => {
         </button>
       </form>
 
-      {error && <strong className='error'>{error}</strong>}
+      {typeof error === 'string' && error && (
+        <strong className='error'>{error}</strong>
+      )}
     </div>
   )
 }

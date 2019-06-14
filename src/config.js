@@ -6,7 +6,10 @@ const commonConfig = {
   appName: 'Konsti',
 
   // App status
-  apiServerURL: process.env.API_SERVER_URL || 'http://localhost:3000',
+  apiServerURL:
+    typeof process.env.API_SERVER_URL === 'string'
+      ? process.env.API_SERVER_URL
+      : 'http://localhost:3000',
 
   // App settings
   appOpen: true,

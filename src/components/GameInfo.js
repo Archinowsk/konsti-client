@@ -111,7 +111,7 @@ const GameInfo: StatelessFunctionalComponent<Props> = (props: Props) => {
           <ul>{tagsList}</ul>
         </div>
       )}
-      {game.mins && (
+      {!!game.mins && (
         <div className='game-details-row'>
           <span className='game-details-title'>{t('gameInfo.runTime')}</span>
           {formattedStartTime} - {formattedEndTime} ({game.mins / 60}{' '}
@@ -144,7 +144,7 @@ const GameInfo: StatelessFunctionalComponent<Props> = (props: Props) => {
           {game.location}
         </div>
       )}
-      {game.minAttendance && game.maxAttendance && (
+      {!!game.minAttendance && !!game.maxAttendance && (
         <div className='game-details-row'>
           <span className='game-details-title'>
             {t('gameInfo.numberOfPlayers')}

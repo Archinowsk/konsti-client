@@ -68,7 +68,9 @@ const RegistrationForm: StatelessFunctionalComponent<Props> = (
         </button>
       </form>
 
-      {error && <strong className='error'>{error}</strong>}
+      {typeof error === 'string' && error && (
+        <strong className='error'>{error}</strong>
+      )}
     </div>
   )
 }
