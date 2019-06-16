@@ -298,3 +298,11 @@ input:focus {
   font-weight: 700;
   padding-bottom: 20px;
 }
+
+.my-signups-games {
+  padding-left: 30px;
+}
+
+.my-signups-game-details {
+  padding-left: 30px;
+}

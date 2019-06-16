@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import _ from 'lodash'
 import timeFormatter from 'utils/timeFormatter'
+import { getStartTimes } from 'utils/getStartTimes'
 import type { Signup } from 'flow/user.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
@@ -20,27 +21,43 @@ const MySignupsList: StatelessFunctionalComponent<Props> = (props: Props) => {
     signedGame => signedGame.priority,
   ])
 
-  const GamesList = sortedSignups.map(signup => {
-    const formattedDate = timeFormatter.weekdayAndTime(
-      signup.gameDetails.startTime
-    )
+  const startTimes = getStartTimes(
+    signedGames.map(signedGame => signedGame.gameDetails)
+  )
 
+  const getGamesList = (startTime: string) => {
+    return sortedSignups.map(signup => {
+      if (signup.gameDetails.startTime === startTime) {
+        return (
+          <p
+            key={signup.gameDetails.gameId}
+            className='my-signups-game-details'
+          >
+            <Link to={`/games/${signup.gameDetails.gameId}`}>
+              {signup.gameDetails.title} ({signup.priority})
+            </Link>
+          </p>
+        )
+      }
+    })
+  }
+
+  const GamesByStartTimes = startTimes.map(startTime => {
     return (
-      <li key={signup.gameDetails.gameId}>
-        <Link to={`/games/${signup.gameDetails.gameId}`}>
-          {formattedDate}: {signup.gameDetails.title} ({signup.priority})
-        </Link>
-      </li>
+      <div key={startTime}>
+        <p className='bold'>{timeFormatter.weekdayAndTime(startTime)}</p>
+        {getGamesList(startTime)}
+      </div>
     )
   })
 
   return (
     <div className='my-signups-list'>
-      <p>{t('signedGames')}</p>
-      <ul>
+      <h3>{t('signedGames')}</h3>
+      <div className='my-signups-games'>
         {signedGames.length === 0 && <span>{t('noSignedGames')}</span>}
-        {GamesList}
-      </ul>
+        {GamesByStartTimes}
+      </div>
     </div>
   )
 }
