@@ -3,7 +3,6 @@ import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { useTranslation } from 'react-i18next'
 import FormField from 'components/FormField'
-import CheckboxField from 'components/CheckboxField'
 import { required } from 'utils/validate'
 import Accordion from 'components/Accordion'
 import type { StatelessFunctionalComponent } from 'react'
@@ -51,10 +50,10 @@ const RegistrationForm: StatelessFunctionalComponent<Props> = (
         </label>
 
         <Field
-          name='registerDescription'
-          id='registerDescription'
+          name='agreeRegisterDescription'
+          id='agreeRegisterDescription'
           type='checkbox'
-          component={CheckboxField}
+          component={FormField}
           validate={required}
         />
 
