@@ -3,16 +3,11 @@ import {
   SUBMIT_SIGNUP_TIME,
   SUBMIT_SELECTED_GAMES,
 } from 'views/signup/signupActions'
-import type { Signup } from 'flow/user.flow'
-
-type State = {|
-  +signupTime: string,
-  +selectedGames: $ReadOnlyArray<Signup>,
-|}
+import type { SignupState } from 'flow/redux.flow'
 
 const initialState = { signupTime: '', selectedGames: [] }
 
-const signupReducer = (state: State = initialState, action: Function) => {
+const signupReducer = (state: SignupState = initialState, action: Function) => {
   switch (action.type) {
     case SUBMIT_SIGNUP_TIME:
       return { ...state, signupTime: action.signupTime }

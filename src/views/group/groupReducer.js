@@ -1,19 +1,14 @@
 /* @flow */
 // import { SUBMIT_UPDATE_GROUP } from 'views/group/groupActions'
 // import { SUBMIT_LEAVE_GROUP } from 'views/group/groupActions'
-import type { GroupMember } from 'flow/group.flow'
-
-type State = {|
-  +playerGroup: string,
-  +groupMembers: $ReadOnlyArray<GroupMember>,
-|}
+import type { GroupState } from 'flow/redux.flow'
 
 const initialState = {
   playerGroup: '0',
   groupMembers: [],
 }
 
-const groupReducer = (state: State = initialState, action: Function) => {
+const groupReducer = (state: GroupState = initialState, action: Function) => {
   switch (action.type) {
     /*
     case SUBMIT_UPDATE_GROUP:

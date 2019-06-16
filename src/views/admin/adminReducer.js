@@ -6,15 +6,7 @@ import {
   SUBMIT_GET_SETTINGS,
   SUBMIT_SELECT_SIGNUP_TIME,
 } from 'views/admin/adminActions'
-import type { Game } from 'flow/game.flow'
-
-type State = {|
-  +updateResponse: Object,
-  +assignResponse: Object,
-  +hiddenGames: $ReadOnlyArray<Game>,
-  +signupTime: string,
-  +adminSettingsLoaded: boolean,
-|}
+import type { AdminState } from 'flow/redux.flow'
 
 const initialState = {
   updateResponse: { data: { errors: '' } },
@@ -24,7 +16,7 @@ const initialState = {
   adminSettingsLoaded: false,
 }
 
-const loginReducer = (state: State = initialState, action: Function) => {
+const adminReducer = (state: AdminState = initialState, action: Function) => {
   switch (action.type) {
     case SUBMIT_GAMES_UPDATE:
       return { ...state, updateResponse: action.payload }
@@ -46,4 +38,4 @@ const loginReducer = (state: State = initialState, action: Function) => {
   }
 }
 
-export default loginReducer
+export default adminReducer

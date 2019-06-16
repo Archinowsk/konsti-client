@@ -5,17 +5,7 @@ import {
   SUBMIT_UPDATE_GROUP_MEMBERS,
   SUBMIT_LEAVE_GROUP,
 } from 'views/group/groupActions'
-import type { GroupMember } from 'flow/group.flow'
-
-type State = {|
-  +username: string,
-  +loggedIn: boolean,
-  +jwtToken: string,
-  +userGroup: string,
-  +serial: string,
-  +playerGroup: string,
-  +groupMembers: $ReadOnlyArray<GroupMember>,
-|}
+import type { LoginState } from 'flow/redux.flow'
 
 const initialState = {
   username: '',
@@ -27,7 +17,7 @@ const initialState = {
   groupMembers: [],
 }
 
-const loginReducer = (state: State = initialState, action: Function) => {
+const loginReducer = (state: LoginState = initialState, action: Function) => {
   switch (action.type) {
     case SUBMIT_LOGIN:
       return {

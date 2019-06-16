@@ -1,14 +1,13 @@
 /* @flow */
 import { SUBMIT_GET_RESULTS } from 'views/results/resultsActions'
-import type { Result } from 'flow/result.flow'
-
-type State = {|
-  +results: $ReadOnlyArray<Result>,
-|}
+import type { ResultsState } from 'flow/redux.flow'
 
 const initialState = { results: [] }
 
-const resultsReducer = (state: State = initialState, action: Function) => {
+const resultsReducer = (
+  state: ResultsState = initialState,
+  action: Function
+) => {
   switch (action.type) {
     case SUBMIT_GET_RESULTS:
       return { ...state, results: action.results }
