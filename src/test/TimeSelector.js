@@ -18,7 +18,9 @@ export const TimeSelector: StatelessFunctionalComponent<{}> = () => {
     '2018-07-27T16:00:00Z',
   ]
 
-  dispatch(submitSetTestTime(times[0]))
+  React.useEffect(() => {
+    dispatch(submitSetTestTime(times[0]))
+  }, [])
 
   const setTestTime = event => {
     dispatch(submitSetTestTime(event.target.value))
