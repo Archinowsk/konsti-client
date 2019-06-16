@@ -16,7 +16,11 @@ const AllGamesList: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { t } = useTranslation()
 
   const buildGamesList = games => {
-    const sortedGames = _.sortBy(games, [game => game.title.toLowerCase()])
+    const sortedGames = _.sortBy(games, [
+      game => game.startTime,
+      game => game.title.toLowerCase(),
+    ])
+
     const groupedGames = _.groupBy(sortedGames, 'startTime')
 
     const GamesList = []
