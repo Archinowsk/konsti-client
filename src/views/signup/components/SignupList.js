@@ -17,10 +17,10 @@ import type { StatelessFunctionalComponent } from 'react'
 import type { Game } from 'flow/game.flow'
 import type { Signup } from 'flow/user.flow'
 
-type Props = {
+type Props = {|
   games: $ReadOnlyArray<Game>,
   signupTimes: $ReadOnlyArray<string>,
-}
+|}
 
 const SignupList: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { games, signupTimes } = props

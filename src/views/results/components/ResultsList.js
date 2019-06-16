@@ -6,9 +6,9 @@ import ResultsByUsername from './ResultsByUsername'
 import type { Results } from 'flow/result.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
-type Props = {
+type Props = {|
   results: Results,
-}
+|}
 
 const ResultsList: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { results } = props

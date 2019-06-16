@@ -6,10 +6,10 @@ import timeFormatter from 'utils/timeFormatter'
 import type { Signup, EmptySignup } from 'flow/user.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
-type Props = {
+type Props = {|
   signups: $ReadOnlyArray<Signup | EmptySignup>,
   startTimes: $ReadOnlyArray<string>,
-}
+|}
 
 const SignupsByStartTimes: StatelessFunctionalComponent<Props> = (
   props: Props

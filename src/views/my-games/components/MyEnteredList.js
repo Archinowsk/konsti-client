@@ -10,10 +10,10 @@ import config from 'config'
 import type { Signup } from 'flow/user.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
-type Props = {
+type Props = {|
   enteredGames: $ReadOnlyArray<Signup>,
   signedGames: $ReadOnlyArray<Signup>,
-}
+|}
 
 const MyEnteredList: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { enteredGames, signedGames } = props

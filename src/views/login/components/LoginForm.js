@@ -6,11 +6,11 @@ import { required } from 'utils/validate'
 import FormField from 'components/FormField'
 import type { StatelessFunctionalComponent } from 'react'
 
-type Props = {
+type Props = {|
   handleSubmit: Function,
   submitting: boolean,
   error?: string,
-}
+|}
 
 const LoginForm: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { handleSubmit, submitting, error } = props

@@ -5,10 +5,10 @@ import timeFormatter from 'utils/timeFormatter'
 import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
-type Props = {
+type Props = {|
   games: $ReadOnlyArray<Game>,
   startTimes: $ReadOnlyArray<string>,
-}
+|}
 
 const GamesByStartTimes: StatelessFunctionalComponent<Props> = (
   props: Props

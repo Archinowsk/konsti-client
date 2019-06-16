@@ -4,11 +4,11 @@ import { useTranslation } from 'react-i18next'
 import timeFormatter from 'utils/timeFormatter'
 import type { StatelessFunctionalComponent } from 'react'
 
-export type Props = {
+export type Props = {|
   onChange: Function,
   selectedTime: string,
   times: $ReadOnlyArray<string>,
-}
+|}
 
 // TODO: Only enable next open signup
 // Check current time and enable new timestamp

@@ -29,3 +29,10 @@ export type GamesUpdataResponse = {|
   +message: string,
   +status: string,
 |}
+
+export type UpdatedPositions = {|
+  +gameList?: $ReadOnlyArray<Game>,
+  +priority1?: $ReadOnlyArray<Game>,
+  +priority2?: $ReadOnlyArray<Game>,
+  +priority3?: $ReadOnlyArray<Game>,
+|}

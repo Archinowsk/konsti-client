@@ -2,7 +2,7 @@
 import React from 'react'
 import type { StatelessFunctionalComponent } from 'react'
 
-type Props = { meta: Object }
+type Props = {| meta: Object |}
 
 const NetworkError: StatelessFunctionalComponent<Props> = (props: Props) => {
   const {

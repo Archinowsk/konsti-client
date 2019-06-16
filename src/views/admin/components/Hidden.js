@@ -6,9 +6,9 @@ import _ from 'lodash'
 import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
-type Props = {
+type Props = {|
   hiddenGames: $ReadOnlyArray<Game>,
-}
+|}
 
 const Hidden: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { hiddenGames } = props

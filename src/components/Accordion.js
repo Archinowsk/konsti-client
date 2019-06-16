@@ -4,10 +4,10 @@ import { useTranslation } from 'react-i18next'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import type { StatelessFunctionalComponent } from 'react'
 
-export type Props = {
+export type Props = {|
   text: string,
   title: string,
-}
+|}
 
 const Accordian: StatelessFunctionalComponent<Props> = (props: Props) => {
   const [open, setOpen]: [

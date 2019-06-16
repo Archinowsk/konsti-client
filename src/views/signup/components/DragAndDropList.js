@@ -9,23 +9,16 @@ import { reorder, move } from 'utils/dragAndDrop'
 import sleep from 'utils/sleep'
 import config from 'config'
 import type { StatelessFunctionalComponent } from 'react'
-import type { Game } from 'flow/game.flow'
+import type { Game, UpdatedPositions } from 'flow/game.flow'
 import type { Signup } from 'flow/user.flow'
 
-type Props = {
+type Props = {|
   callback: Function,
   games: $ReadOnlyArray<Game>,
   selectedGames: $ReadOnlyArray<Signup>,
   signedGames: $ReadOnlyArray<Signup>,
   signupTime: string,
-}
-
-type UpdatedPositions = {
-  gameList?: $ReadOnlyArray<Game>,
-  priority1?: $ReadOnlyArray<Game>,
-  priority2?: $ReadOnlyArray<Game>,
-  priority3?: $ReadOnlyArray<Game>,
-}
+|}
 
 const DragAndDropList: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { games, selectedGames, signedGames, signupTime, callback } = props

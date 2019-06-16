@@ -5,9 +5,9 @@ import timeFormatter from 'utils/timeFormatter'
 import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
-export type Props = {
+export type Props = {|
   game: Game,
-}
+|}
 
 const GameInfo: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { game } = props

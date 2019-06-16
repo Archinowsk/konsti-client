@@ -5,9 +5,9 @@ import _ from 'lodash'
 import type { StatelessFunctionalComponent } from 'react'
 import type { Results } from 'flow/result.flow'
 
-type Props = {
+type Props = {|
   results: Results,
-}
+|}
 
 const ResultsByUsername: StatelessFunctionalComponent<Props> = (
   props: Props

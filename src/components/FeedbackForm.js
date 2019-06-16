@@ -5,9 +5,9 @@ import { postFeedback } from 'services/feedbackServices'
 import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
-type Props = {
+type Props = {|
   game: Game,
-}
+|}
 
 const FeedbackForm: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { game } = props

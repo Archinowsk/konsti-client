@@ -11,10 +11,10 @@ import Loading from 'components/Loading'
 import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
-type Props = {
+type Props = {|
   history: Object,
   match: Object,
-}
+|}
 
 const GameDetails: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { history, match } = props

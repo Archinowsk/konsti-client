@@ -7,11 +7,11 @@ import { required } from 'utils/validate'
 import Accordion from 'components/Accordion'
 import type { StatelessFunctionalComponent } from 'react'
 
-type Props = {
+type Props = {|
   handleSubmit: Function,
   submitting: boolean,
   error?: string,
-}
+|}
 
 const RegistrationForm: StatelessFunctionalComponent<Props> = (
   props: Props

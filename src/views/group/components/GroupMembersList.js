@@ -4,9 +4,9 @@ import { useTranslation } from 'react-i18next'
 import type { GroupMember } from 'flow/group.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
-type Props = {
+type Props = {|
   groupMembers: $ReadOnlyArray<GroupMember>,
-}
+|}
 
 const GroupMembersList: StatelessFunctionalComponent<Props> = (
   props: Props

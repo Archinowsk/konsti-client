@@ -6,9 +6,9 @@ import timeFormatter from 'utils/timeFormatter'
 import type { GroupMember } from 'flow/group.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
-type Props = {
+type Props = {|
   groupMembers: $ReadOnlyArray<GroupMember>,
-}
+|}
 
 const SignedMembersList: StatelessFunctionalComponent<Props> = (
   props: Props

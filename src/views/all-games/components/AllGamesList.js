@@ -7,9 +7,9 @@ import timeFormatter from 'utils/timeFormatter'
 import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
-type Props = {
+type Props = {|
   games: $ReadOnlyArray<Game>,
-}
+|}
 
 const AllGamesList: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { games } = props
