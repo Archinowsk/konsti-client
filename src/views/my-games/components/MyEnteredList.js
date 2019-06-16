@@ -22,7 +22,6 @@ const MyEnteredList: StatelessFunctionalComponent<Props> = (props: Props) => {
 
   let timeNow: string = moment().format()
   if (config.loadedSettings !== 'production') {
-    console.log(`set testing time: ${testTime}`)
     timeNow = testTime
   }
 

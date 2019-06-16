@@ -19,7 +19,6 @@ export const getOpenStartTimes = (
   let timeNow = moment()
   if (config.useTestTime) {
     timeNow = moment(testTime)
-    console.log(`set testing time: ${testTime}`)
   }
 
   // console.log(moment(timeNow).format())
