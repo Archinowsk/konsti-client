@@ -3,7 +3,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import _ from 'lodash'
 import { getStartTimes } from 'utils/getStartTimes'
-import GamesByStartTimes from './GamesByStartTimes'
+import SignupsByStartTimes from './SignupsByStartTimes'
 import type { Signup } from 'flow/user.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
@@ -30,7 +30,10 @@ const MySignupsList: StatelessFunctionalComponent<Props> = (props: Props) => {
       <div className='my-signups-games'>
         {signedGames.length === 0 && <span>{t('noSignedGames')}</span>}
         {signedGames.length !== 0 && (
-          <GamesByStartTimes signups={sortedSignups} startTimes={startTimes} />
+          <SignupsByStartTimes
+            signups={sortedSignups}
+            startTimes={startTimes}
+          />
         )}
       </div>
     </div>
