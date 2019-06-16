@@ -3,7 +3,7 @@ import moment from 'moment'
 import config from 'config'
 import type { Game } from 'flow/game.flow'
 
-const getOpenSignupTimes = (games: $ReadOnlyArray<Game>) => {
+export const getStartTimes = (games: $ReadOnlyArray<Game>) => {
   const startTimes = []
 
   for (let game of games) {
@@ -65,5 +65,3 @@ const getOpenSignupTimes = (games: $ReadOnlyArray<Game>) => {
 
   return openSignupTimes
 }
-
-export default getOpenSignupTimes
