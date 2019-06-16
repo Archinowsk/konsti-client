@@ -23,7 +23,7 @@ body {
 #main {
   background-color: #fff;
   border: solid 1px #e3e7eb;
-  margin-top: 20px;
+  margin: 20px 0 0 0;
   padding: 30px;
 }
 
@@ -31,7 +31,7 @@ body {
   #main {
     background-color: #fff;
     border: solid 1px #fff;
-    margin: 0;
+    margin: 0 0 10px 0;
     padding: 0 10px;
   }
 }
