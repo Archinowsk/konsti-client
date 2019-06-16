@@ -8,10 +8,10 @@
     "name": "Arttu Hanska"
   },
   "scripts": {
-    "analyze": "webpack-cli --profile --json > stats.json && webpack-bundle-analyzer stats.json -m assets -r report.html",
     "build-dev": "webpack-cli",
     "build-staging": "webpack-cli",
     "build": "webpack-cli",
+    "bundle-analyze": "webpack-cli --profile --json > stats.json && webpack-bundle-analyzer stats.json build -m server",
     "eslint": "eslint src --fix",
     "flow-coverage-report": "flow-coverage-report -c 10 -i 'src/**/*.js'",
     "flow-typed-install": "rimraf flow-typed && flow-typed install --skip --ignoreDeps peer bundle",

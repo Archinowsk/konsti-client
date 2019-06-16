@@ -294,7 +294,7 @@ const stagingConfig = {
 }
 
 const getConfig = () => {
-  if (TARGET === 'build' || TARGET === 'analyze') {
+  if (TARGET === 'build' || TARGET === 'bundle-analyze') {
     return webpackMerge(commonConfig, prodConfig)
   } else if (TARGET === 'build-staging') {
     return webpackMerge(commonConfig, stagingConfig)
