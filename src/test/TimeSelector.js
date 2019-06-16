@@ -11,11 +11,14 @@ export const TimeSelector: StatelessFunctionalComponent<{}> = () => {
   const dispatch = useDispatch()
 
   const times = [
+    '2018-07-27T12:00:00Z',
     '2018-07-27T13:00:00Z',
     '2018-07-27T14:00:00Z',
     '2018-07-27T15:00:00Z',
     '2018-07-27T16:00:00Z',
   ]
+
+  dispatch(submitSetTestTime(times[0]))
 
   const setTestTime = event => {
     dispatch(submitSetTestTime(event.target.value))
