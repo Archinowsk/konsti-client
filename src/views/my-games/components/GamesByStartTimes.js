@@ -2,28 +2,25 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import timeFormatter from 'utils/timeFormatter'
-import type { Signup } from 'flow/user.flow'
+import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {
-  signups: $ReadOnlyArray<Signup>,
+  games: $ReadOnlyArray<Game>,
   startTimes: $ReadOnlyArray<string>,
 }
 
 const GamesByStartTimes: StatelessFunctionalComponent<Props> = (
   props: Props
 ) => {
-  const { signups, startTimes } = props
+  const { games, startTimes } = props
 
   const getGamesList = (startTime: string) => {
-    return signups.map(signup => {
-      if (signup.gameDetails.startTime === startTime) {
+    return games.map(game => {
+      if (game.startTime === startTime) {
         return (
-          <p key={signup.gameDetails.gameId} className='game-details-list'>
-            <Link to={`/games/${signup.gameDetails.gameId}`}>
-              {signup.gameDetails.title}{' '}
-              {signup.priority !== 0 && <span>({signup.priority})</span>}
-            </Link>
+          <p key={game.gameId} className='game-details-list'>
+            <Link to={`/games/${game.gameId}`}>{game.title} </Link>
           </p>
         )
       }

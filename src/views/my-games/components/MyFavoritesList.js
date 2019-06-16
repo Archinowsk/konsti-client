@@ -15,20 +15,12 @@ const MyFavoritesList: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { favoritedGames } = props
   const { t } = useTranslation()
 
-  const sortedGames = _.sortBy(favoritedGames, [
+  const sortedGames: $ReadOnlyArray<Game> = _.sortBy(favoritedGames, [
     favoritedGame => favoritedGame.startTime,
     favoritedGame => favoritedGame.title.toLowerCase(),
   ])
 
   const startTimes = getStartTimes(favoritedGames)
-
-  const signups = sortedGames.map(sortedGame => {
-    return {
-      gameDetails: sortedGame,
-      priority: 0,
-      time: '',
-    }
-  })
 
   return (
     <div className='my-favorites-list'>
@@ -36,7 +28,7 @@ const MyFavoritesList: StatelessFunctionalComponent<Props> = (props: Props) => {
       <div className='my-favorites-games'>
         {favoritedGames.length === 0 && <span>{t('noFavoritedGames')}</span>}
         {favoritedGames.length !== 0 && (
-          <GamesByStartTimes signups={signups} startTimes={startTimes} />
+          <GamesByStartTimes games={sortedGames} startTimes={startTimes} />
         )}
       </div>
     </div>
