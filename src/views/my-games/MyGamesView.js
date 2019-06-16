@@ -10,12 +10,6 @@ import type { StatelessFunctionalComponent } from 'react'
 import type { Game } from 'flow/game.flow'
 import type { Signup } from 'flow/user.flow'
 
-/*
-type State = {
-  loading: boolean,
-}
-*/
-
 const MyGamesView: StatelessFunctionalComponent<{}> = () => {
   const signedGames: $ReadOnlyArray<Signup> = useSelector(
     state => state.myGames.signedGames
@@ -28,7 +22,10 @@ const MyGamesView: StatelessFunctionalComponent<{}> = () => {
   )
   const store = useStore()
 
-  const [loading, setLoading] = React.useState(true)
+  const [loading, setLoading]: [
+    boolean,
+    ((boolean => boolean) | boolean) => void
+  ] = React.useState(true)
 
   React.useEffect(() => {
     const fetchData = async () => {

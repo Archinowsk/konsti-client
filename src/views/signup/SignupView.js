@@ -7,17 +7,16 @@ import getOpenSignupTimes from 'utils/getOpenSignupTimes'
 import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
-/*
-type State = {
-  loading: boolean,
-  signupTimes: $ReadOnlyArray<string>,
-}
-*/
-
 const SignupView: StatelessFunctionalComponent<{}> = () => {
   const games: $ReadOnlyArray<Game> = useSelector(state => state.allGames.games)
 
-  const [signupTimes, setSignupTimes] = React.useState([])
+  const [signupTimes, setSignupTimes]: [
+    $ReadOnlyArray<string>,
+    (
+      | (($ReadOnlyArray<string>) => $ReadOnlyArray<string>)
+      | $ReadOnlyArray<string>
+    ) => void
+  ] = React.useState([])
 
   React.useEffect(() => {
     setSignupTimes(getOpenSignupTimes(games))

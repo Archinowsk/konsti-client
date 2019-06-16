@@ -9,18 +9,16 @@ import timeFormatter from 'utils/timeFormatter'
 import type { Results } from 'flow/result.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
-/*
-type State = {
-  loading: boolean,
-}
-*/
-
 const ResultsView: StatelessFunctionalComponent<{}> = () => {
   const results: Results = useSelector(state => state.results.results)
   const signupTime: string = useSelector(state => state.admin.signupTime)
   const store = useStore()
   const { t } = useTranslation()
-  const [loading, setLoading] = React.useState(true)
+
+  const [loading, setLoading]: [
+    boolean,
+    ((boolean => boolean) | boolean) => void
+  ] = React.useState(true)
 
   React.useEffect(() => {
     const fetchData = async () => {

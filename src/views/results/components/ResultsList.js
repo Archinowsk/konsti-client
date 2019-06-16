@@ -10,16 +10,14 @@ type Props = {
   results: Results,
 }
 
-/*
-type State = {
-  sortedBy: string,
-}
-*/
-
 const ResultsList: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { results } = props
   const { t } = useTranslation()
-  const [sortedBy, setSortedBy] = React.useState('')
+
+  const [sortedBy, setSortedBy]: [
+    string,
+    ((string => string) | string) => void
+  ] = React.useState('')
 
   React.useEffect(() => {
     setSortedBy('username')

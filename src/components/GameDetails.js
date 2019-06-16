@@ -16,15 +16,6 @@ type Props = {
   match: Object,
 }
 
-/*
-type State = {
-  hidden: boolean,
-  favorited: boolean,
-  loading: boolean,
-  submitting: boolean,
-}
-*/
-
 const GameDetails: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { history, match } = props
 
@@ -44,10 +35,22 @@ const GameDetails: StatelessFunctionalComponent<Props> = (props: Props) => {
 
   const game = games.find(game => game.gameId === match.params.id)
 
-  const [hidden, setHidden] = React.useState(false)
-  const [favorited, setFavorited] = React.useState(false)
-  const [submitting, setSubmitting] = React.useState(false)
-  const [loading, setLoading] = React.useState(true)
+  const [hidden, setHidden]: [
+    boolean,
+    ((boolean => boolean) | boolean) => void
+  ] = React.useState(false)
+  const [favorited, setFavorited]: [
+    boolean,
+    ((boolean => boolean) | boolean) => void
+  ] = React.useState(false)
+  const [submitting, setSubmitting]: [
+    boolean,
+    ((boolean => boolean) | boolean) => void
+  ] = React.useState(false)
+  const [loading, setLoading]: [
+    boolean,
+    ((boolean => boolean) | boolean) => void
+  ] = React.useState(true)
 
   React.useEffect(() => {
     setLoading(true)

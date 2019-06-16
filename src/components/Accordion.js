@@ -9,14 +9,12 @@ export type Props = {
   title: string,
 }
 
-/*
-type State = {
-  open: boolean,
-}
-*/
-
 const Accordian: StatelessFunctionalComponent<Props> = (props: Props) => {
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen]: [
+    boolean,
+    ((boolean => boolean) | boolean) => void
+  ] = React.useState(false)
+
   const { t } = useTranslation()
 
   const onClick = () => {

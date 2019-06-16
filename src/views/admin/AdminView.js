@@ -15,16 +15,6 @@ import timeFormatter from 'utils/timeFormatter'
 import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
-/*
-type State = {
-  submitting: boolean,
-  loading: boolean,
-  message: string,
-  messageStyle: string,
-  selectedSignupTime: string,
-}
-*/
-
 const AdminView: StatelessFunctionalComponent<{}> = () => {
   const games: $ReadOnlyArray<Game> = useSelector(state => state.allGames.games)
   const signupTime: string = useSelector(state => state.admin.signupTime)
@@ -38,11 +28,26 @@ const AdminView: StatelessFunctionalComponent<{}> = () => {
   const store = useStore()
   const { t } = useTranslation()
 
-  const [submitting, setSubmitting] = React.useState(false)
-  const [loading, setLoading] = React.useState(true)
-  const [message, setMessage] = React.useState('')
-  const [messageStyle, setMessageStyle] = React.useState('')
-  const [selectedSignupTime, setSelectedSignupTime] = React.useState('')
+  const [submitting, setSubmitting]: [
+    boolean,
+    ((boolean => boolean) | boolean) => void
+  ] = React.useState(false)
+  const [loading, setLoading]: [
+    boolean,
+    ((boolean => boolean) | boolean) => void
+  ] = React.useState(true)
+  const [message, setMessage]: [
+    string,
+    ((string => string) | string) => void
+  ] = React.useState('')
+  const [messageStyle, setMessageStyle]: [
+    string,
+    ((string => string) | string) => void
+  ] = React.useState('')
+  const [selectedSignupTime, setSelectedSignupTime]: [
+    string,
+    ((string => string) | string) => void
+  ] = React.useState('')
 
   React.useEffect(() => {
     const fetchData = async () => {

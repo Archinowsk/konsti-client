@@ -18,17 +18,6 @@ import { submitSignup } from 'views/signup/signupActions'
 import type { GroupMember } from 'flow/group.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
-/*
-type State = {
-  loading: boolean,
-  showCreateGroup: boolean,
-  showJoinGroup: boolean,
-  joinGroupValue: string,
-  message: string,
-  messageStyle: string,
-}
-*/
-
 const GroupView: StatelessFunctionalComponent<{}> = () => {
   const username: string = useSelector(state => state.login.username)
   const serial: string = useSelector(state => state.login.serial)
@@ -40,12 +29,30 @@ const GroupView: StatelessFunctionalComponent<{}> = () => {
   const store = useStore()
   const { t } = useTranslation()
 
-  const [loading, setLoading] = React.useState(true)
-  const [showCreateGroup, setShowCreateGroup] = React.useState(false)
-  const [showJoinGroup, setShowJoinGroup] = React.useState(false)
-  const [joinGroupValue, setJoinGroupValue] = React.useState('')
-  const [message, setMessage] = React.useState('')
-  const [messageStyle, setMessageStyle] = React.useState('')
+  const [loading, setLoading]: [
+    boolean,
+    ((boolean => boolean) | boolean) => void
+  ] = React.useState(true)
+  const [showCreateGroup, setShowCreateGroup]: [
+    boolean,
+    ((boolean => boolean) | boolean) => void
+  ] = React.useState(false)
+  const [showJoinGroup, setShowJoinGroup]: [
+    boolean,
+    ((boolean => boolean) | boolean) => void
+  ] = React.useState(false)
+  const [joinGroupValue, setJoinGroupValue]: [
+    string,
+    ((string => string) | string) => void
+  ] = React.useState('')
+  const [message, setMessage]: [
+    string,
+    ((string => string) | string) => void
+  ] = React.useState('')
+  const [messageStyle, setMessageStyle]: [
+    string,
+    ((string => string) | string) => void
+  ] = React.useState('')
 
   React.useEffect(() => {
     const fetchData = async () => {

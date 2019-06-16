@@ -20,16 +20,6 @@ type Props = {
   signupTime: string,
 }
 
-/*
-type State = {
-  gameList: $ReadOnlyArray<Game>,
-  priority1: $ReadOnlyArray<Game>,
-  priority2: $ReadOnlyArray<Game>,
-  priority3: $ReadOnlyArray<Game>,
-  warningVisible: boolean,
-}
-*/
-
 type UpdatedPositions = {
   gameList?: $ReadOnlyArray<Game>,
   priority1?: $ReadOnlyArray<Game>,
@@ -41,11 +31,34 @@ const DragAndDropList: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { games, selectedGames, signedGames, signupTime, callback } = props
   const { t } = useTranslation()
 
-  const [gameList, setGameList] = React.useState([])
-  const [priority1, setPriority1] = React.useState([])
-  const [priority2, setPriority2] = React.useState([])
-  const [priority3, setPriority3] = React.useState([])
-  const [warningVisible, setWarningVisible] = React.useState(false)
+  const [gameList, setGameList]: [
+    $ReadOnlyArray<Game>,
+    (
+      (($ReadOnlyArray<Game>) => $ReadOnlyArray<Game>) | $ReadOnlyArray<Game>
+    ) => void
+  ] = React.useState([])
+  const [priority1, setPriority1]: [
+    $ReadOnlyArray<Game>,
+    (
+      (($ReadOnlyArray<Game>) => $ReadOnlyArray<Game>) | $ReadOnlyArray<Game>
+    ) => void
+  ] = React.useState([])
+  const [priority2, setPriority2]: [
+    $ReadOnlyArray<Game>,
+    (
+      (($ReadOnlyArray<Game>) => $ReadOnlyArray<Game>) | $ReadOnlyArray<Game>
+    ) => void
+  ] = React.useState([])
+  const [priority3, setPriority3]: [
+    $ReadOnlyArray<Game>,
+    (
+      (($ReadOnlyArray<Game>) => $ReadOnlyArray<Game>) | $ReadOnlyArray<Game>
+    ) => void
+  ] = React.useState([])
+  const [warningVisible, setWarningVisible]: [
+    boolean,
+    ((boolean => boolean) | boolean) => void
+  ] = React.useState(false)
 
   React.useEffect(() => {
     loadState()

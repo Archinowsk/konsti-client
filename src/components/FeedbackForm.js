@@ -9,20 +9,22 @@ type Props = {
   game: Game,
 }
 
-/*
-type State = {
-  submitting: boolean,
-  feedbackValue: string,
-  feedbackSent: boolean,
-}
-*/
-
 const FeedbackForm: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { game } = props
 
-  const [submitting, setSubmitting] = React.useState(false)
-  const [feedbackValue, setFeedbackValue] = React.useState('')
-  const [feedbackSent, setFeedbackSent] = React.useState(false)
+  const [submitting, setSubmitting]: [
+    boolean,
+    ((boolean => boolean) | boolean) => void
+  ] = React.useState(false)
+  const [feedbackValue, setFeedbackValue]: [
+    string,
+    ((string => string) | string) => void
+  ] = React.useState('')
+  const [feedbackSent, setFeedbackSent]: [
+    boolean,
+    ((boolean => boolean) | boolean) => void
+  ] = React.useState(false)
+
   const { t } = useTranslation()
 
   // Hide / unhide clicked
