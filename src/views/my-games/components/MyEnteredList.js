@@ -1,9 +1,9 @@
 /* @flow */
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
 import _ from 'lodash'
-import timeFormatter from 'utils/timeFormatter'
+import { getStartTimes } from 'utils/getStartTimes'
+import GamesByStartTimes from './GamesByStartTimes'
 import type { Signup } from 'flow/user.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
@@ -15,32 +15,24 @@ const MyEnteredList: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { enteredGames } = props
   const { t } = useTranslation()
 
-  const sortedGames = _.sortBy(enteredGames, [
+  const sortedEntered = _.sortBy(enteredGames, [
     enteredGame => enteredGame.gameDetails.startTime,
     enteredGame => enteredGame.gameDetails.title.toLowerCase(),
   ])
 
-  const GamesList = sortedGames.map(game => {
-    const formattedDate = timeFormatter.weekdayAndTime(
-      game.gameDetails.startTime
-    )
-    return (
-      <li key={game.gameDetails.gameId}>
-        <Link to={`/games/${game.gameDetails.gameId}`}>
-          {formattedDate}: {game.gameDetails.title}
-        </Link>
-      </li>
-    )
-  })
+  const startTimes = getStartTimes(
+    enteredGames.map(enteredGame => enteredGame.gameDetails)
+  )
 
   return (
-    <div className='my-entered-games'>
-      <p>{t('enteredGames')}</p>
-      <ul>
+    <div className='my-entered-list'>
+      <h3>{t('enteredGames')}</h3>
+      <div className='my-signups-games'>
         {enteredGames.length === 0 && <span>{t('noEnteredGames')}</span>}
-        {GamesList}
-        <p>{t('noSignupResultHint')}</p>
-      </ul>
+        {enteredGames.length !== 0 && (
+          <GamesByStartTimes signups={sortedEntered} startTimes={startTimes} />
+        )}
+      </div>
     </div>
   )
 }

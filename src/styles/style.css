@@ -300,7 +300,8 @@ input:focus {
 }
 
 .my-signups-games,
-.my-favorites-games {
+.my-favorites-games,
+.my-entered-games {
   padding-left: 30px;
 }
 
