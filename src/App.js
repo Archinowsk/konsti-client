@@ -3,11 +3,12 @@ import React from 'react'
 import { hot } from 'react-hot-loader/root'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faAngleUp, faAngleDown } from '@fortawesome/free-solid-svg-icons'
 import Routes from 'Routes'
 import LanguageSelector from 'components/LanguageSelector'
 import config from 'config'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faAngleUp, faAngleDown } from '@fortawesome/free-solid-svg-icons'
+import { TimeSelector } from 'test/TimeSelector'
 import type { StatelessFunctionalComponent } from 'react'
 
 const App: StatelessFunctionalComponent<{}> = () => {
@@ -23,6 +24,8 @@ const App: StatelessFunctionalComponent<{}> = () => {
   return (
     <React.Fragment>
       <header>
+        {config.loadedSettings !== 'production' && <TimeSelector />}
+
         <h1>
           <a href='/' className='logo'>
             Konsti

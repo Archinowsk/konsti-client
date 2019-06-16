@@ -9,7 +9,7 @@ export type Config = {|
   +CONVENTION_START_TIME: string,
   +DAY_START_TIME: number,
   +apiServerURL: string,
-  +setTimeForTesting: boolean,
-  +testTime: string,
+  +useTestTime: boolean,
   +reduxTrace: boolean,
+  +loadedSettings: string,
 |}

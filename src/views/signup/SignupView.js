@@ -9,6 +9,7 @@ import type { StatelessFunctionalComponent } from 'react'
 
 const SignupView: StatelessFunctionalComponent<{}> = () => {
   const games: $ReadOnlyArray<Game> = useSelector(state => state.allGames.games)
+  const testTime: string = useSelector(state => state.admin.testTime)
 
   const [signupTimes, setSignupTimes]: [
     $ReadOnlyArray<string>,
@@ -19,7 +20,7 @@ const SignupView: StatelessFunctionalComponent<{}> = () => {
   ] = React.useState([])
 
   React.useEffect(() => {
-    setSignupTimes(getOpenStartTimes(games))
+    setSignupTimes(getOpenStartTimes(games, testTime))
   }, [])
 
   return (

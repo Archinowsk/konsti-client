@@ -10,6 +10,7 @@ export type AdminState = {|
   +hiddenGames: $ReadOnlyArray<Game>,
   +signupTime: string,
   +adminSettingsLoaded: boolean,
+  +testTime: string,
 |}
 
 export type AllGamesState = {|

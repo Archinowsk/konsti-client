@@ -5,6 +5,7 @@ import {
   SUBMIT_UPDATE_HIDDEN,
   SUBMIT_GET_SETTINGS,
   SUBMIT_SELECT_SIGNUP_TIME,
+  SUBMIT_SET_TEST_TIME,
 } from 'views/admin/adminActions'
 import type { AdminState } from 'flow/redux.flow'
 
@@ -14,6 +15,7 @@ const initialState = {
   hiddenGames: [],
   signupTime: '',
   adminSettingsLoaded: false,
+  testTime: '',
 }
 
 const adminReducer = (state: AdminState = initialState, action: Function) => {
@@ -33,6 +35,8 @@ const adminReducer = (state: AdminState = initialState, action: Function) => {
       }
     case SUBMIT_SELECT_SIGNUP_TIME:
       return { ...state, signupTime: action.signupTime }
+    case SUBMIT_SET_TEST_TIME:
+      return { ...state, testTime: action.testTime }
     default:
       return state
   }

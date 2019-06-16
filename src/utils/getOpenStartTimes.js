@@ -4,7 +4,10 @@ import config from 'config'
 import { getStartTimes } from './getStartTimes'
 import type { Game } from 'flow/game.flow'
 
-export const getOpenStartTimes = (games: $ReadOnlyArray<Game>) => {
+export const getOpenStartTimes = (
+  games: $ReadOnlyArray<Game>,
+  testTime: string
+) => {
   const startTimes = getStartTimes(games)
 
   // console.log('startTime', startTime)
@@ -14,9 +17,9 @@ export const getOpenStartTimes = (games: $ReadOnlyArray<Game>) => {
   const conventionStartTime = config.CONVENTION_START_TIME
 
   let timeNow = moment()
-  if (config.setTimeForTesting) {
-    timeNow = moment(config.testTime)
-    console.log('set testing time: ', moment(timeNow).format())
+  if (config.useTestTime) {
+    timeNow = moment(testTime)
+    console.log(`set testing time: ${testTime}`)
   }
 
   // console.log(moment(timeNow).format())

@@ -13,6 +13,7 @@ export const SUBMIT_PLAYERS_ASSIGN = 'SUBMIT_PLAYERS_ASSIGN'
 export const SUBMIT_UPDATE_HIDDEN = 'SUBMIT_UPDATE_HIDDEN'
 export const SUBMIT_GET_SETTINGS = 'SUBMIT_GET_SETTINGS'
 export const SUBMIT_SELECT_SIGNUP_TIME = 'SUBMIT_SELECT_SIGNUP_TIME'
+export const SUBMIT_SET_TEST_TIME = 'SUBMIT_SET_TEST_TIME'
 
 export const submitGamesUpdate = () => {
   return async (dispatch: Function) => {
@@ -159,5 +160,12 @@ const submitSignupTimeAsync = (signupTime: string) => {
   return {
     type: SUBMIT_SELECT_SIGNUP_TIME,
     signupTime,
+  }
+}
+
+export const submitSetTestTime = (testTime: string) => {
+  return {
+    type: SUBMIT_SET_TEST_TIME,
+    testTime,
   }
 }

@@ -12,6 +12,10 @@ const commonConfig = {
       : 'http://localhost:3000',
 
   // App settings
+  loadedSettings:
+    typeof process.env.SETTINGS === 'string'
+      ? process.env.SETTINGS
+      : 'development',
   appOpen: true,
   SIGNUP_END_TIME: 30, // minutes
   SIGNUP_OPEN_TIME: 4, // hours
@@ -26,18 +30,15 @@ const commonConfig = {
 }
 
 const prodConfig = {
-  setTimeForTesting: false,
-  testTime: '', // UTC date
+  useTestTime: false,
 }
 
 const stagingConfig = {
-  setTimeForTesting: true,
-  testTime: '2018-07-27T13:40:00Z', // UTC date
+  useTestTime: true,
 }
 
 const devConfig = {
-  setTimeForTesting: true,
-  testTime: '2018-07-27T13:40:00Z', // UTC date
+  useTestTime: true,
 }
 
 const combineConfig = () => {
