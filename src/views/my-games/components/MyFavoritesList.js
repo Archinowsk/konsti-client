@@ -1,9 +1,9 @@
 /* @flow */
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
 import _ from 'lodash'
-import timeFormatter from 'utils/timeFormatter'
+import { getStartTimes } from 'utils/getStartTimes'
+import GamesByStartTimes from './GamesByStartTimes'
 import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
@@ -20,25 +20,25 @@ const MyFavoritesList: StatelessFunctionalComponent<Props> = (props: Props) => {
     favoritedGame => favoritedGame.title.toLowerCase(),
   ])
 
-  const GamesList = sortedGames.map(game => {
-    const formattedDate = timeFormatter.weekdayAndTime(game.startTime)
+  const startTimes = getStartTimes(favoritedGames)
 
-    return (
-      <li key={game.gameId}>
-        <Link to={`/games/${game.gameId}`}>
-          {formattedDate}: {game.title}
-        </Link>
-      </li>
-    )
+  const signups = sortedGames.map(sortedGame => {
+    return {
+      gameDetails: sortedGame,
+      priority: 0,
+      time: '',
+    }
   })
 
   return (
     <div className='my-favorites-list'>
-      <p>{t('favoritedGames')}</p>
-      <ul>
+      <h3>{t('favoritedGames')}</h3>
+      <div className='my-favorites-games'>
         {favoritedGames.length === 0 && <span>{t('noFavoritedGames')}</span>}
-        {GamesList}
-      </ul>
+        {favoritedGames.length !== 0 && (
+          <GamesByStartTimes signups={signups} startTimes={startTimes} />
+        )}
+      </div>
     </div>
   )
 }

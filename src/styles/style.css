@@ -299,10 +299,11 @@ input:focus {
   padding-bottom: 20px;
 }
 
-.my-signups-games {
+.my-signups-games,
+.my-favorites-games {
   padding-left: 30px;
 }
 
-.my-signups-game-details {
+.game-details-list {
   padding-left: 30px;
 }
