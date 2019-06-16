@@ -3,7 +3,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import SignupList from 'views/signup/components/SignupList'
-import { getStartTimes } from 'utils/getStartTimes'
+import { getOpenStartTimes } from 'utils/getOpenStartTimes'
 import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
@@ -19,7 +19,7 @@ const SignupView: StatelessFunctionalComponent<{}> = () => {
   ] = React.useState([])
 
   React.useEffect(() => {
-    setSignupTimes(getStartTimes(games))
+    setSignupTimes(getOpenStartTimes(games))
   }, [])
 
   return (
