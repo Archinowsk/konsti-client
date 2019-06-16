@@ -1,16 +1,13 @@
 /* @flow */
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import type { FieldProps } from 'redux-form'
 import type { StatelessFunctionalComponent } from 'react'
 
 const FormField: StatelessFunctionalComponent<FieldProps> = (
   props: FieldProps
 ) => {
-  const { t } = useTranslation()
-
-  if (!props) return <p />
-
   // $FlowFixMe: Cannot get field.type because property type is missing in FieldProps [1].
   const { type } = props
   const {
@@ -23,11 +20,26 @@ const FormField: StatelessFunctionalComponent<FieldProps> = (
     value,
   } = props.input
   const { touched, error } = props.meta
+  const { t } = useTranslation()
+
+  const [fieldType, setFieldType]: [
+    string,
+    ((string => string) | string) => void
+  ] = React.useState('')
+
+  React.useEffect(() => {
+    setFieldType(type)
+  }, [])
 
   const classNames = ['form-input']
 
   if (type === 'checkbox') {
     classNames.push('checkbox')
+  }
+
+  const togglePasswordVisibility = () => {
+    if (fieldType === 'password') setFieldType('text')
+    else if (fieldType === 'text') setFieldType('password')
   }
 
   return (
@@ -45,10 +57,17 @@ const FormField: StatelessFunctionalComponent<FieldProps> = (
             onDrop={onDrop}
             onFocus={onFocus}
             placeholder={t(name)}
-            type={type}
+            type={fieldType}
             value={value}
           />
           {type === 'checkbox' && <label htmlFor={name}>{t(name)}</label>}
+          {type === 'password' && (
+            <FontAwesomeIcon
+              className='password-hide-icon'
+              icon={fieldType === 'password' ? 'eye' : 'eye-slash'}
+              onClick={togglePasswordVisibility}
+            />
+          )}
         </div>
       </div>
 

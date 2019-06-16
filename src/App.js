@@ -4,7 +4,12 @@ import { hot } from 'react-hot-loader/root'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faAngleUp, faAngleDown } from '@fortawesome/free-solid-svg-icons'
+import {
+  faAngleUp,
+  faAngleDown,
+  faEye,
+  faEyeSlash,
+} from '@fortawesome/free-solid-svg-icons'
 import Routes from 'Routes'
 import LanguageSelector from 'components/LanguageSelector'
 import config from 'config'
@@ -19,7 +24,7 @@ const App: StatelessFunctionalComponent<{}> = () => {
 
   const { t } = useTranslation()
 
-  library.add(faAngleUp, faAngleDown)
+  library.add(faAngleUp, faAngleDown, faEye, faEyeSlash)
 
   return (
     <React.Fragment>

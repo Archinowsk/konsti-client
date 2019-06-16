@@ -308,3 +308,7 @@ input:focus {
 .game-details-list {
   padding-left: 30px;
 }
+
+.password-hide-icon {
+  padding: 0 0 0 6px;
+}
