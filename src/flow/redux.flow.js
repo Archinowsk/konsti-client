@@ -28,8 +28,6 @@ export type LoginState = {|
   +jwtToken: string,
   +userGroup: string,
   +serial: string,
-  +playerGroup: string,
-  +groupMembers: $ReadOnlyArray<GroupMember>,
 |}
 
 export type MyGamesState = {|

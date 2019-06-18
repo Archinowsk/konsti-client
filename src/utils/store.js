@@ -12,7 +12,7 @@ import myGamesReducer from 'views/my-games/myGamesReducer'
 import signupReducer from 'views/signup/signupReducer'
 import adminReducer from 'views/admin/adminReducer'
 import resultsReducer from 'views/results/resultsReducer'
-// import groupReducer from 'views/group/groupReducer'
+import groupReducer from 'views/group/groupReducer'
 import { SUBMIT_LOGOUT } from 'views/logout/logoutActions'
 
 // Set reducers
@@ -24,7 +24,7 @@ const reducer = combineReducers({
   signup: signupReducer,
   admin: adminReducer,
   results: resultsReducer,
-  // group: groupReducer,
+  group: groupReducer,
 })
 
 // Reducer to reset state
