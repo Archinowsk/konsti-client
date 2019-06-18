@@ -1,6 +1,7 @@
 /* @flow */
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import _ from 'lodash'
 import { submitSetTestTime } from 'views/admin/adminActions'
 import timeFormatter from 'utils/timeFormatter'
 import type { StatelessFunctionalComponent } from 'react'
@@ -19,7 +20,7 @@ export const TimeSelector: StatelessFunctionalComponent<{}> = () => {
   ]
 
   React.useEffect(() => {
-    dispatch(submitSetTestTime(times[0]))
+    dispatch(submitSetTestTime(_.first(times)))
   }, [])
 
   const setTestTime = event => {
