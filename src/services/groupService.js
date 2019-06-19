@@ -1,6 +1,6 @@
 /* @flow */
-import api from 'utils/api'
-import getJWT from 'utils/getJWT'
+import { api } from 'utils/api'
+import { getJWT } from 'utils/getJWT'
 import type { GroupData } from 'flow/group.flow'
 
 export const postGroup = async (groupData: GroupData) => {

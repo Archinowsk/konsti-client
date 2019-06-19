@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react'
 import { shallow } from 'enzyme'
-import LanguageSelector from '../LanguageSelector'
+import { LanguageSelector } from '../LanguageSelector'
 
 describe('LanguageSelector', () => {
   it('should render correctly', () => {

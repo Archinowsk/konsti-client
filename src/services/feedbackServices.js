@@ -1,6 +1,6 @@
 /* @flow */
-import api from 'utils/api'
-import getJWT from 'utils/getJWT'
+import { api } from 'utils/api'
+import { getJWT } from 'utils/getJWT'
 import type { Feedback } from 'flow/feedback.flow'
 
 export const postFeedback = async (feedbackData: Feedback) => {

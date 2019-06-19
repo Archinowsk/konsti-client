@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import moment from 'moment'
 import type { StatelessFunctionalComponent } from 'react'
 
-const LanguageSelector: StatelessFunctionalComponent<{}> = () => {
+export const LanguageSelector: StatelessFunctionalComponent<{}> = () => {
   const { t, i18n } = useTranslation()
   const language = i18n.language
 
@@ -24,5 +24,3 @@ const LanguageSelector: StatelessFunctionalComponent<{}> = () => {
     </React.Fragment>
   )
 }
-
-export default LanguageSelector

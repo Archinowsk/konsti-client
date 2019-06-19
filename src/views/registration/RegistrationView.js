@@ -7,7 +7,7 @@ import { submitRegistration } from 'views/registration/registrationActions'
 import RegistrationForm from 'views/registration/components/RegistrationForm'
 import type { StatelessFunctionalComponent } from 'react'
 
-const RegistrationView: StatelessFunctionalComponent<{}> = () => {
+export const RegistrationView: StatelessFunctionalComponent<{}> = () => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
 
@@ -38,5 +38,3 @@ const RegistrationView: StatelessFunctionalComponent<{}> = () => {
     </div>
   )
 }
-
-export default RegistrationView

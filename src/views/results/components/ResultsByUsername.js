@@ -9,7 +9,7 @@ type Props = {|
   results: Results,
 |}
 
-const ResultsByUsername: StatelessFunctionalComponent<Props> = (
+export const ResultsByUsername: StatelessFunctionalComponent<Props> = (
   props: Props
 ) => {
   const { results } = props
@@ -44,5 +44,3 @@ const ResultsByUsername: StatelessFunctionalComponent<Props> = (
 
   return resultsByUsername
 }
-
-export default ResultsByUsername

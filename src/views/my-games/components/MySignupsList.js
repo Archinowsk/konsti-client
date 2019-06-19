@@ -3,7 +3,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import _ from 'lodash'
 import { getStartTimes } from 'utils/getStartTimes'
-import SignupsByStartTimes from './SignupsByStartTimes'
+import { SignupsByStartTimes } from './SignupsByStartTimes'
 import type { Signup } from 'flow/user.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
@@ -11,7 +11,9 @@ type Props = {|
   signedGames: $ReadOnlyArray<Signup>,
 |}
 
-const MySignupsList: StatelessFunctionalComponent<Props> = (props: Props) => {
+export const MySignupsList: StatelessFunctionalComponent<Props> = (
+  props: Props
+) => {
   const { signedGames } = props
   const { t } = useTranslation()
 
@@ -39,5 +41,3 @@ const MySignupsList: StatelessFunctionalComponent<Props> = (props: Props) => {
     </div>
   )
 }
-
-export default MySignupsList

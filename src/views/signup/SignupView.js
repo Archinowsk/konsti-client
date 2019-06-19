@@ -2,12 +2,12 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
-import SignupList from 'views/signup/components/SignupList'
+import { SignupList } from 'views/signup/components/SignupList'
 import { getOpenStartTimes } from 'utils/getOpenStartTimes'
 import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
-const SignupView: StatelessFunctionalComponent<{}> = () => {
+export const SignupView: StatelessFunctionalComponent<{}> = () => {
   const games: $ReadOnlyArray<Game> = useSelector(state => state.allGames.games)
   const testTime: string = useSelector(state => state.admin.testTime)
 
@@ -35,5 +35,3 @@ const SignupView: StatelessFunctionalComponent<{}> = () => {
     </div>
   )
 }
-
-export default SignupView

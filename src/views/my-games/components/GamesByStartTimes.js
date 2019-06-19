@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react'
 import { Link } from 'react-router-dom'
-import timeFormatter from 'utils/timeFormatter'
+import { timeFormatter } from 'utils/timeFormatter'
 import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
@@ -10,7 +10,7 @@ type Props = {|
   startTimes: $ReadOnlyArray<string>,
 |}
 
-const GamesByStartTimes: StatelessFunctionalComponent<Props> = (
+export const GamesByStartTimes: StatelessFunctionalComponent<Props> = (
   props: Props
 ) => {
   const { games, startTimes } = props
@@ -36,5 +36,3 @@ const GamesByStartTimes: StatelessFunctionalComponent<Props> = (
     )
   })
 }
-
-export default GamesByStartTimes

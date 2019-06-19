@@ -2,7 +2,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import timeFormatter from 'utils/timeFormatter'
+import { timeFormatter } from 'utils/timeFormatter'
 import type { Signup, EmptySignup } from 'flow/user.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
@@ -11,7 +11,7 @@ type Props = {|
   startTimes: $ReadOnlyArray<string>,
 |}
 
-const SignupsByStartTimes: StatelessFunctionalComponent<Props> = (
+export const SignupsByStartTimes: StatelessFunctionalComponent<Props> = (
   props: Props
 ) => {
   const { signups, startTimes } = props
@@ -49,5 +49,3 @@ const SignupsByStartTimes: StatelessFunctionalComponent<Props> = (
     )
   })
 }
-
-export default SignupsByStartTimes

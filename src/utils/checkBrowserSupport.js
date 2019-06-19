@@ -2,7 +2,7 @@
 import browserslist from 'browserslist'
 import bowser from 'bowser'
 
-const checkBrowserSupport = () => {
+export const checkBrowserSupport = () => {
   const supportedBrowsers = browserslist()
   console.log(supportedBrowsers)
 
@@ -17,5 +17,3 @@ const checkBrowserSupport = () => {
   }
   */
 }
-
-export default checkBrowserSupport

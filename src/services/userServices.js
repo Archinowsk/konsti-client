@@ -1,6 +1,6 @@
 /* @flow */
-import api from 'utils/api'
-import getJWT from 'utils/getJWT'
+import { api } from 'utils/api'
+import { getJWT } from 'utils/getJWT'
 import type { RegistrationData } from 'flow/user.flow'
 
 export const postRegistration = async (registrationData: RegistrationData) => {

@@ -11,7 +11,10 @@ const initialState = {
   serial: '',
 }
 
-const loginReducer = (state: LoginState = initialState, action: Function) => {
+export const loginReducer = (
+  state: LoginState = initialState,
+  action: Function
+) => {
   switch (action.type) {
     case SUBMIT_LOGIN:
       return {
@@ -27,5 +30,3 @@ const loginReducer = (state: LoginState = initialState, action: Function) => {
       return state
   }
 }
-
-export default loginReducer

@@ -14,7 +14,7 @@ import App from 'App'
 import 'utils/i18n'
 
 // Redux store
-import store from 'utils/store'
+import { store } from 'utils/store'
 
 if (process.env.NODE_ENV === 'development') {
   const whyDidYouRender = require('@welldone-software/why-did-you-render')

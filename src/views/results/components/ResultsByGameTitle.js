@@ -9,7 +9,7 @@ type Props = {|
   results: Results,
 |}
 
-const ResultsByGameTitle: StatelessFunctionalComponent<Props> = (
+export const ResultsByGameTitle: StatelessFunctionalComponent<Props> = (
   props: Props
 ) => {
   const { results } = props
@@ -52,5 +52,3 @@ const ResultsByGameTitle: StatelessFunctionalComponent<Props> = (
 
   return resultsByGameTitle
 }
-
-export default ResultsByGameTitle

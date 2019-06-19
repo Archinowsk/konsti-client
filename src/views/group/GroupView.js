@@ -2,23 +2,23 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector, useStore } from 'react-redux'
-import loadData from 'utils/loadData'
-import Loading from 'components/Loading'
+import { loadData } from 'utils/loadData'
+import { Loading } from 'components/Loading'
 import {
   submitJoinGroup,
   submitCreateGroup,
   submitGetGroup,
   submitLeaveGroup,
 } from 'views/group/groupActions'
-import GroupMembersList from 'views/group/components/GroupMembersList'
-import SignedGamesList from 'views/group/components/SignedGamesList'
-import sleep from 'utils/sleep'
-import config from 'config'
+import { GroupMembersList } from 'views/group/components/GroupMembersList'
+import { SignedMembersList } from 'views/group/components/SignedMembersList'
+import { sleep } from 'utils/sleep'
+import { config } from 'config'
 import { submitSignup } from 'views/signup/signupActions'
 import type { GroupMember } from 'flow/group.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
-const GroupView: StatelessFunctionalComponent<{}> = () => {
+export const GroupView: StatelessFunctionalComponent<{}> = () => {
   const username: string = useSelector(state => state.login.username)
   const serial: string = useSelector(state => state.login.serial)
   const groupCode: string = useSelector(state => state.group.playerGroup)
@@ -257,7 +257,7 @@ const GroupView: StatelessFunctionalComponent<{}> = () => {
           <p>{t('groupMembers')}</p>
           <GroupMembersList groupMembers={groupMembers} />
           <p>{t('signedGames')}</p>
-          <SignedGamesList groupMembers={groupMembers} />
+          <SignedMembersList groupMembers={groupMembers} />
           <button onClick={() => leaveGroup({ leader: true })}>
             {t('button.leaveGroup')}
           </button>
@@ -271,7 +271,7 @@ const GroupView: StatelessFunctionalComponent<{}> = () => {
           <p>{t('groupMembers')}</p>
           <GroupMembersList groupMembers={groupMembers} />
           <p>{t('signedGames')}</p>
-          <SignedGamesList groupMembers={groupMembers} />
+          <SignedMembersList groupMembers={groupMembers} />
           <button onClick={() => leaveGroup({ leader: false })}>
             {t('button.leaveGroup')}
           </button>
@@ -281,5 +281,3 @@ const GroupView: StatelessFunctionalComponent<{}> = () => {
     </div>
   )
 }
-
-export default GroupView

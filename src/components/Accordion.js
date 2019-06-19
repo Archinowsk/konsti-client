@@ -9,7 +9,9 @@ export type Props = {|
   title: string,
 |}
 
-const Accordian: StatelessFunctionalComponent<Props> = (props: Props) => {
+export const Accordion: StatelessFunctionalComponent<Props> = (
+  props: Props
+) => {
   const [open, setOpen]: [
     boolean,
     ((boolean => boolean) | boolean) => void
@@ -48,5 +50,3 @@ const Accordian: StatelessFunctionalComponent<Props> = (props: Props) => {
     </div>
   )
 }
-
-export default Accordian

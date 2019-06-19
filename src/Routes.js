@@ -4,19 +4,17 @@ import { BrowserRouter, Route, Link, Switch, Redirect } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import type { StatelessFunctionalComponent } from 'react'
+import { AllGamesView } from 'views/all-games/AllGamesView'
+import { LoginView } from 'views/login/LoginView'
+import { MyGamesView } from 'views/my-games/MyGamesView'
+import { SignupView } from 'views/signup/SignupView'
+import { RegistrationView } from 'views/registration/RegistrationView'
+import { AdminView } from 'views/admin/AdminView'
+import { ResultsView } from 'views/results/ResultsView'
+import { LogoutView } from 'views/logout/LogoutView'
+import { GroupView } from 'views/group/GroupView'
 
-// Views
-import AllGames from 'views/all-games/AllGamesView'
-import Login from 'views/login/LoginView'
-import MyGames from 'views/my-games/MyGamesView'
-import Signup from 'views/signup/SignupView'
-import Registration from 'views/registration/RegistrationView'
-import Admin from 'views/admin/AdminView'
-import Results from 'views/results/ResultsView'
-import Logout from 'views/logout/LogoutView'
-import Group from 'views/group/GroupView'
-
-const Routes: StatelessFunctionalComponent<{}> = () => {
+export const Routes: StatelessFunctionalComponent<{}> = () => {
   const loggedIn: boolean = useSelector(state => state.login.loggedIn)
   const userGroup: string = useSelector(state => state.login.userGroup)
   const { t } = useTranslation()
@@ -40,10 +38,10 @@ const Routes: StatelessFunctionalComponent<{}> = () => {
           </div>
 
           <Switch>
-            <Route exact path='/' component={AllGames} />
-            <Route path='/login' component={Login} />
-            <Route path='/registration' component={Registration} />
-            <Route path='/games' component={AllGames} />
+            <Route exact path='/' component={AllGamesView} />
+            <Route path='/login' component={LoginView} />
+            <Route path='/registration' component={RegistrationView} />
+            <Route path='/games' component={AllGamesView} />
             <Redirect from='/*' to='/login' />
           </Switch>
         </React.Fragment>
@@ -93,19 +91,17 @@ const Routes: StatelessFunctionalComponent<{}> = () => {
           <hr />
         </div>
         <Switch>
-          <Route exact path='/' component={AllGames} />
-          <Route path='/games' component={AllGames} />
-          <Route path='/mygames' component={MyGames} />
-          <Route path='/signup' component={Signup} />
-          <Route path='/results' component={Results} />
-          <Route path='/group' component={Group} />
-          <Route path='/admin' component={Admin} />
-          <Route path='/logout' component={Logout} />
+          <Route exact path='/' component={AllGamesView} />
+          <Route path='/games' component={AllGamesView} />
+          <Route path='/mygames' component={MyGamesView} />
+          <Route path='/signup' component={SignupView} />
+          <Route path='/results' component={ResultsView} />
+          <Route path='/group' component={GroupView} />
+          <Route path='/admin' component={AdminView} />
+          <Route path='/logout' component={LogoutView} />
           <Redirect from='/*' to='/' />
         </Switch>
       </React.Fragment>
     </BrowserRouter>
   )
 }
-
-export default Routes

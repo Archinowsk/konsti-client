@@ -1,6 +1,6 @@
 /* @flow */
 import moment from 'moment'
-import config from 'config'
+import { config } from 'config'
 
 const {
   SIGNUP_OPEN_TIME,
@@ -84,6 +84,10 @@ const timeOnly = (time: string) => {
   return moment(time).format('HH:mm')
 }
 
-const timeFormatter = { startTime, endTime, weekdayAndTime, fullDate, timeOnly }
-
-export default timeFormatter
+export const timeFormatter = {
+  startTime,
+  endTime,
+  weekdayAndTime,
+  fullDate,
+  timeOnly,
+}

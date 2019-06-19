@@ -10,7 +10,7 @@ type Props = {|
   hiddenGames: $ReadOnlyArray<Game>,
 |}
 
-const Hidden: StatelessFunctionalComponent<Props> = (props: Props) => {
+export const Hidden: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { hiddenGames } = props
   const { t } = useTranslation()
 
@@ -34,5 +34,3 @@ const Hidden: StatelessFunctionalComponent<Props> = (props: Props) => {
     </div>
   )
 }
-
-export default Hidden

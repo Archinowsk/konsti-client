@@ -14,7 +14,7 @@ const initialState = {
   myGamesLoaded: false,
 }
 
-const myGamesReducer = (
+export const myGamesReducer = (
   state: MyGamesState = initialState,
   action: Function
 ) => {
@@ -38,5 +38,3 @@ const myGamesReducer = (
       return state
   }
 }
-
-export default myGamesReducer

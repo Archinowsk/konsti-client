@@ -3,7 +3,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import _ from 'lodash'
 import { submitSetTestTime } from 'views/admin/adminActions'
-import timeFormatter from 'utils/timeFormatter'
+import { timeFormatter } from 'utils/timeFormatter'
 import type { StatelessFunctionalComponent } from 'react'
 
 export const TimeSelector: StatelessFunctionalComponent<{}> = () => {

@@ -3,7 +3,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import _ from 'lodash'
 import { getStartTimes } from 'utils/getStartTimes'
-import GamesByStartTimes from './GamesByStartTimes'
+import { GamesByStartTimes } from './GamesByStartTimes'
 import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
@@ -11,7 +11,9 @@ type Props = {|
   favoritedGames: $ReadOnlyArray<Game>,
 |}
 
-const MyFavoritesList: StatelessFunctionalComponent<Props> = (props: Props) => {
+export const MyFavoritesList: StatelessFunctionalComponent<Props> = (
+  props: Props
+) => {
   const { favoritedGames } = props
   const { t } = useTranslation()
 
@@ -34,5 +36,3 @@ const MyFavoritesList: StatelessFunctionalComponent<Props> = (props: Props) => {
     </div>
   )
 }
-
-export default MyFavoritesList

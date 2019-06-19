@@ -1,13 +1,13 @@
 /* @flow */
 import React from 'react'
 import { shallow } from 'enzyme'
-import Errors from '../Errors'
+import { Error } from '../Error'
 
 describe('Errors', () => {
   const meta = { touched: null, error: null }
 
   it('should render correctly', () => {
-    const component = shallow(<Errors meta={meta} />)
+    const component = shallow(<Error meta={meta} />)
     expect(component).toMatchSnapshot()
   })
 })

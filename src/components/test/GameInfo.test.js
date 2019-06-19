@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react'
 import { shallow } from 'enzyme'
-import GameInfo from '../GameInfo'
+import { GameInfo } from '../GameInfo'
 import type { Props } from '../GameInfo'
 
 const game = {

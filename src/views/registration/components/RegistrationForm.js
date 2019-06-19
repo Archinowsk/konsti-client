@@ -2,9 +2,9 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { useTranslation } from 'react-i18next'
-import FormField from 'components/FormField'
+import { FormField } from 'components/FormField'
 import { required } from 'utils/validate'
-import Accordion from 'components/Accordion'
+import { Accordion } from 'components/Accordion'
 import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {|

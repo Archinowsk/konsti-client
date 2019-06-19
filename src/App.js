@@ -10,9 +10,9 @@ import {
   faEye,
   faEyeSlash,
 } from '@fortawesome/free-solid-svg-icons'
-import Routes from 'Routes'
-import LanguageSelector from 'components/LanguageSelector'
-import config from 'config'
+import { Routes } from 'Routes'
+import { LanguageSelector } from 'components/LanguageSelector'
+import { config } from 'config'
 import { TimeSelector } from 'test/TimeSelector'
 import type { StatelessFunctionalComponent } from 'react'
 

@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react'
 import { shallow } from 'enzyme'
-import TimesDropdown from '../TimesDropdown'
+import { TimesDropdown } from '../TimesDropdown'
 import type { Props } from '../TimesDropdown'
 
 describe('TimesDropdown', () => {

@@ -4,7 +4,7 @@ import { submitGetGames } from 'views/all-games/allGamesActions'
 import { submitGetSettings } from 'views/admin/adminActions'
 import { submitGetUser } from 'views/my-games/myGamesActions'
 
-const loadData = async (store: Object) => {
+export const loadData = async (store: Object) => {
   const state = store.getState()
 
   // const adminSettingsLoaded = state.admin.adminSettingsLoaded
@@ -39,5 +39,3 @@ const loadData = async (store: Object) => {
     }
   }
 }
-
-export default loadData

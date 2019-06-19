@@ -11,7 +11,10 @@ const initialState = {
   groupMembers: [],
 }
 
-const groupReducer = (state: GroupState = initialState, action: Function) => {
+export const groupReducer = (
+  state: GroupState = initialState,
+  action: Function
+) => {
   switch (action.type) {
     case SUBMIT_UPDATE_GROUP:
       return {
@@ -29,5 +32,3 @@ const groupReducer = (state: GroupState = initialState, action: Function) => {
       return state
   }
 }
-
-export default groupReducer

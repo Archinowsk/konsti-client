@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react'
 import { shallow } from 'enzyme'
-import FormField from '../FormField'
+import { FormField } from '../FormField'
 import type { FieldProps } from 'redux-form'
 
 describe('FormField', () => {

@@ -7,7 +7,10 @@ import type { SignupState } from 'flow/redux.flow'
 
 const initialState = { signupTime: '', selectedGames: [] }
 
-const signupReducer = (state: SignupState = initialState, action: Function) => {
+export const signupReducer = (
+  state: SignupState = initialState,
+  action: Function
+) => {
   switch (action.type) {
     case SUBMIT_SIGNUP_TIME:
       return { ...state, signupTime: action.signupTime }
@@ -17,5 +20,3 @@ const signupReducer = (state: SignupState = initialState, action: Function) => {
       return state
   }
 }
-
-export default signupReducer

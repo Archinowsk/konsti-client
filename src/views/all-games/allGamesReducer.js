@@ -4,7 +4,7 @@ import type { AllGamesState } from 'flow/redux.flow'
 
 const initialState = { games: [] }
 
-const allGamesReducer = (
+export const allGamesReducer = (
   state: AllGamesState = initialState,
   action: Function
 ) => {
@@ -15,5 +15,3 @@ const allGamesReducer = (
       return state
   }
 }
-
-export default allGamesReducer

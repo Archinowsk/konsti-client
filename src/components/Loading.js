@@ -3,7 +3,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import type { StatelessFunctionalComponent } from 'react'
 
-const Loading: StatelessFunctionalComponent<{}> = () => {
+export const Loading: StatelessFunctionalComponent<{}> = () => {
   const { t } = useTranslation()
   return (
     <div className='loading'>
@@ -11,5 +11,3 @@ const Loading: StatelessFunctionalComponent<{}> = () => {
     </div>
   )
 }
-
-export default Loading

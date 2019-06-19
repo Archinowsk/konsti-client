@@ -18,7 +18,10 @@ const initialState = {
   testTime: '',
 }
 
-const adminReducer = (state: AdminState = initialState, action: Function) => {
+export const adminReducer = (
+  state: AdminState = initialState,
+  action: Function
+) => {
   switch (action.type) {
     case SUBMIT_GAMES_UPDATE:
       return { ...state, updateResponse: action.payload }
@@ -41,5 +44,3 @@ const adminReducer = (state: AdminState = initialState, action: Function) => {
       return state
   }
 }
-
-export default adminReducer

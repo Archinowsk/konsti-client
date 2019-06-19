@@ -5,8 +5,8 @@ import moment from 'moment'
 import _ from 'lodash'
 import { useSelector } from 'react-redux'
 import { getStartTimes } from 'utils/getStartTimes'
-import SignupsByStartTimes from './SignupsByStartTimes'
-import config from 'config'
+import { SignupsByStartTimes } from './SignupsByStartTimes'
+import { config } from 'config'
 import type { Signup } from 'flow/user.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
@@ -15,7 +15,9 @@ type Props = {|
   signedGames: $ReadOnlyArray<Signup>,
 |}
 
-const MyEnteredList: StatelessFunctionalComponent<Props> = (props: Props) => {
+export const MyEnteredList: StatelessFunctionalComponent<Props> = (
+  props: Props
+) => {
   const { enteredGames, signedGames } = props
   const { t } = useTranslation()
   const testTime: string = useSelector(state => state.admin.testTime)
@@ -91,5 +93,3 @@ const MyEnteredList: StatelessFunctionalComponent<Props> = (props: Props) => {
     </div>
   )
 }
-
-export default MyEnteredList

@@ -2,17 +2,17 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector, useStore } from 'react-redux'
-import timeFormatter from 'utils/timeFormatter'
+import { timeFormatter } from 'utils/timeFormatter'
 import {
   submitSignup,
   submitSelectedGames,
   submitSignupTime,
 } from 'views/signup/signupActions'
-import DragAndDropList from 'views/signup/components/DragAndDropList'
-import sleep from 'utils/sleep'
-import config from 'config'
-import loadData from 'utils/loadData'
-import Loading from 'components/Loading'
+import { DragAndDropList } from 'views/signup/components/DragAndDropList'
+import { sleep } from 'utils/sleep'
+import { config } from 'config'
+import { loadData } from 'utils/loadData'
+import { Loading } from 'components/Loading'
 import type { StatelessFunctionalComponent } from 'react'
 import type { Game } from 'flow/game.flow'
 import type { Signup } from 'flow/user.flow'
@@ -22,7 +22,9 @@ type Props = {|
   signupTimes: $ReadOnlyArray<string>,
 |}
 
-const SignupList: StatelessFunctionalComponent<Props> = (props: Props) => {
+export const SignupList: StatelessFunctionalComponent<Props> = (
+  props: Props
+) => {
   const { games, signupTimes } = props
 
   const signupTime: string = useSelector(state => state.signup.signupTime)
@@ -244,5 +246,3 @@ const SignupList: StatelessFunctionalComponent<Props> = (props: Props) => {
     </div>
   )
 }
-
-export default SignupList

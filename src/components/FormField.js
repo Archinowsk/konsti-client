@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import type { FieldProps } from 'redux-form'
 import type { StatelessFunctionalComponent } from 'react'
 
-const FormField: StatelessFunctionalComponent<FieldProps> = (
+export const FormField: StatelessFunctionalComponent<FieldProps> = (
   props: FieldProps
 ) => {
   // $FlowFixMe: Cannot get field.type because property type is missing in FieldProps [1].
@@ -75,5 +75,3 @@ const FormField: StatelessFunctionalComponent<FieldProps> = (
     </div>
   )
 }
-
-export default FormField

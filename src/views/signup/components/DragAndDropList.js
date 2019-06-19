@@ -4,10 +4,10 @@ import { useTranslation } from 'react-i18next'
 /* $FlowFixMe: Cannot import `DragDropContext` because there is no `DragDropContext` export in `react-beautiful-dnd`. */
 import { DragDropContext } from 'react-beautiful-dnd'
 import _ from 'lodash'
-import DropRow from 'views/signup/components/DropRow'
+import { DropRow } from 'views/signup/components/DropRow'
 import { reorder, move } from 'utils/dragAndDrop'
-import sleep from 'utils/sleep'
-import config from 'config'
+import { sleep } from 'utils/sleep'
+import { config } from 'config'
 import type { StatelessFunctionalComponent } from 'react'
 import type { Game, UpdatedPositions } from 'flow/game.flow'
 import type { Signup } from 'flow/user.flow'
@@ -20,7 +20,9 @@ type Props = {|
   signupTime: string,
 |}
 
-const DragAndDropList: StatelessFunctionalComponent<Props> = (props: Props) => {
+export const DragAndDropList: StatelessFunctionalComponent<Props> = (
+  props: Props
+) => {
   const { games, selectedGames, signedGames, signupTime, callback } = props
   const { t } = useTranslation()
 
@@ -292,5 +294,3 @@ const DragAndDropList: StatelessFunctionalComponent<Props> = (props: Props) => {
     </React.Fragment>
   )
 }
-
-export default DragAndDropList

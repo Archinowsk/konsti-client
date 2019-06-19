@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import timeFormatter from 'utils/timeFormatter'
+import { timeFormatter } from 'utils/timeFormatter'
 import type { StatelessFunctionalComponent } from 'react'
 
 export type Props = {|
@@ -15,7 +15,9 @@ export type Props = {|
 // Show "signup starts xx:xx" on others
 // Toggle to show upcoming gameslots or all gameslots
 
-const TimesDropdown: StatelessFunctionalComponent<Props> = (props: Props) => {
+export const TimesDropdown: StatelessFunctionalComponent<Props> = (
+  props: Props
+) => {
   const { times, onChange, selectedTime } = props
   const { t } = useTranslation()
 
@@ -39,5 +41,3 @@ const TimesDropdown: StatelessFunctionalComponent<Props> = (props: Props) => {
     </div>
   )
 }
-
-export default TimesDropdown

@@ -3,13 +3,13 @@ import React from 'react'
 import { useSelector, useStore } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import GameDetails from 'components/GameDetails'
-import AllGamesList from 'views/all-games/components/AllGamesList'
-import loadData from 'utils/loadData'
-import Loading from 'components/Loading'
+import { AllGamesList } from 'views/all-games/components/AllGamesList'
+import { loadData } from 'utils/loadData'
+import { Loading } from 'components/Loading'
 import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
-const AllGamesView: StatelessFunctionalComponent<{}> = () => {
+export const AllGamesView: StatelessFunctionalComponent<{}> = () => {
   const games: $ReadOnlyArray<Game> = useSelector(state => state.allGames.games)
   const hiddenGames: $ReadOnlyArray<Game> = useSelector(
     state => state.admin.hiddenGames
@@ -71,5 +71,3 @@ const AllGamesView: StatelessFunctionalComponent<{}> = () => {
     </div>
   )
 }
-
-export default AllGamesView

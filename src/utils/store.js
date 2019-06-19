@@ -2,17 +2,18 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import config from 'config'
+import { config } from 'config'
 
 // Reducers
 import { reducer as formReducer } from 'redux-form'
-import allGamesReducer from 'views/all-games/allGamesReducer'
-import loginReducer from 'views/login/loginReducer'
-import myGamesReducer from 'views/my-games/myGamesReducer'
-import signupReducer from 'views/signup/signupReducer'
-import adminReducer from 'views/admin/adminReducer'
-import resultsReducer from 'views/results/resultsReducer'
-import groupReducer from 'views/group/groupReducer'
+import { allGamesReducer } from 'views/all-games/allGamesReducer'
+import { loginReducer } from 'views/login/loginReducer'
+import { myGamesReducer } from 'views/my-games/myGamesReducer'
+import { signupReducer } from 'views/signup/signupReducer'
+import { adminReducer } from 'views/admin/adminReducer'
+import { resultsReducer } from 'views/results/resultsReducer'
+import { groupReducer } from 'views/group/groupReducer'
+
 import { SUBMIT_LOGOUT } from 'views/logout/logoutActions'
 
 // Set reducers
@@ -49,6 +50,4 @@ const enhancer = composeEnhancers(middlewares)
 
 // Create a Redux store object that holds the app state
 /* $FlowFixMe: Redux flow-typed missing generics types */
-const store = createStore(rootReducer, initialState, enhancer)
-
-export default store
+export const store = createStore(rootReducer, initialState, enhancer)

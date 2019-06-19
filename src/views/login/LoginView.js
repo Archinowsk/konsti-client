@@ -7,7 +7,7 @@ import { submitLogin } from 'views/login/loginActions'
 import LoginForm from 'views/login/components/LoginForm'
 import type { StatelessFunctionalComponent } from 'react'
 
-const LoginView: StatelessFunctionalComponent<{}> = () => {
+export const LoginView: StatelessFunctionalComponent<{}> = () => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
 
@@ -32,5 +32,3 @@ const LoginView: StatelessFunctionalComponent<{}> = () => {
     </div>
   )
 }
-
-export default LoginView

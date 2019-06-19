@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react'
 import { shallow } from 'enzyme'
-import Accordion from '../Accordion'
+import { Accordion } from '../Accordion'
 import type { Props } from '../Accordion'
 
 const title = 'test title'

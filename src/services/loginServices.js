@@ -1,5 +1,5 @@
 /* @flow */
-import api from 'utils/api'
+import { api } from 'utils/api'
 import type { Login } from 'flow/user.flow'
 
 export const postLogin = async (loginData: Login) => {

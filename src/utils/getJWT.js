@@ -1,7 +1,7 @@
 /* @flow */
-import store from 'utils/store'
+import { store } from 'utils/store'
 
-const getJWT = () => {
+export const getJWT = () => {
   const state = store.getState()
   if (!state.login) {
     console.log('No login info in state')
@@ -9,5 +9,3 @@ const getJWT = () => {
   }
   return state.login.jwtToken
 }
-
-export default getJWT

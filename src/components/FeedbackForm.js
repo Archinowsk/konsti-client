@@ -9,7 +9,9 @@ type Props = {|
   game: Game,
 |}
 
-const FeedbackForm: StatelessFunctionalComponent<Props> = (props: Props) => {
+export const FeedbackForm: StatelessFunctionalComponent<Props> = (
+  props: Props
+) => {
   const { game } = props
 
   const [submitting, setSubmitting]: [
@@ -70,5 +72,3 @@ const FeedbackForm: StatelessFunctionalComponent<Props> = (props: Props) => {
     </div>
   )
 }
-
-export default FeedbackForm

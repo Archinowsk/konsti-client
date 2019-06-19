@@ -1,6 +1,6 @@
 /* @flow */
 import moment from 'moment'
-import config from 'config'
+import { config } from 'config'
 import { getStartTimes } from './getStartTimes'
 import type { Game } from 'flow/game.flow'
 

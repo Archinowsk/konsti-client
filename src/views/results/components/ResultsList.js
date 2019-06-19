@@ -1,8 +1,8 @@
 /* @flow */
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import ResultsByGameTitle from './ResultsByGameTitle'
-import ResultsByUsername from './ResultsByUsername'
+import { ResultsByGameTitle } from './ResultsByGameTitle'
+import { ResultsByUsername } from './ResultsByUsername'
 import type { Results } from 'flow/result.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
@@ -10,7 +10,9 @@ type Props = {|
   results: Results,
 |}
 
-const ResultsList: StatelessFunctionalComponent<Props> = (props: Props) => {
+export const ResultsList: StatelessFunctionalComponent<Props> = (
+  props: Props
+) => {
   const { results } = props
   const { t } = useTranslation()
 
@@ -48,5 +50,3 @@ const ResultsList: StatelessFunctionalComponent<Props> = (props: Props) => {
     </div>
   )
 }
-
-export default ResultsList

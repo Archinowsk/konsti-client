@@ -2,7 +2,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import _ from 'lodash'
-import timeFormatter from 'utils/timeFormatter'
+import { timeFormatter } from 'utils/timeFormatter'
 import type { GroupMember } from 'flow/group.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
@@ -10,7 +10,7 @@ type Props = {|
   groupMembers: $ReadOnlyArray<GroupMember>,
 |}
 
-const SignedMembersList: StatelessFunctionalComponent<Props> = (
+export const SignedMembersList: StatelessFunctionalComponent<Props> = (
   props: Props
 ) => {
   const { groupMembers } = props
@@ -46,5 +46,3 @@ const SignedMembersList: StatelessFunctionalComponent<Props> = (
   })
   return <div className='signed-games-list'>{signedGamesList}</div>
 }
-
-export default SignedMembersList

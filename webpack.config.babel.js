@@ -11,7 +11,7 @@ import Dotenv from 'dotenv-webpack'
 import path from 'path'
 import webpack from 'webpack'
 import webpackMerge from 'webpack-merge'
-import appConfig from './src/config'
+import { config } from './src/config'
 
 const TARGET = process.env.npm_lifecycle_event
 
@@ -52,7 +52,7 @@ const commonConfig = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       // html-webpack-plugin configs
-      title: appConfig.appName,
+      title: config.appName,
       filename: 'index.html',
       template: TemplateWebpackPlugin,
       inject: false,
@@ -64,7 +64,7 @@ const commonConfig = {
       // html-webpack-template configs
       appMountIds: ['outdated', 'main'],
       meta: {
-        'application-name': appConfig.appName,
+        'application-name': config.appName,
       },
       mobile: true,
     }),
@@ -87,7 +87,7 @@ const commonConfig = {
 const devConfig = {
   mode: 'development',
 
-  devtool: appConfig.reduxTrace ? 'source-map' : 'eval', // Use eval for best hot-loading perf
+  devtool: config.reduxTrace ? 'source-map' : 'eval', // Use eval for best hot-loading perf
 
   // webpack-dev-server config
   devServer: {
@@ -293,7 +293,7 @@ const stagingConfig = {
   },
 }
 
-const getConfig = () => {
+const getWebpackConfig = () => {
   if (TARGET === 'build' || TARGET === 'bundle-analyze') {
     return webpackMerge(commonConfig, prodConfig)
   } else if (TARGET === 'build-staging') {
@@ -307,6 +307,6 @@ const getConfig = () => {
   }
 }
 
-const config = getConfig()
+const webpackConfig = getWebpackConfig()
 
-export default config
+export default webpackConfig

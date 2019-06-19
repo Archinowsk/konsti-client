@@ -13,7 +13,7 @@ type Props = {|
   label: string,
 |}
 
-const DropRow: StatelessFunctionalComponent<Props> = (props: Props) => {
+export const DropRow: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { droppableId, games, label } = props
   const { t } = useTranslation()
 
@@ -60,5 +60,3 @@ const DropRow: StatelessFunctionalComponent<Props> = (props: Props) => {
     </React.Fragment>
   )
 }
-
-export default DropRow

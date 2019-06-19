@@ -22,6 +22,7 @@ exports[`FormField should render correctly 1`] = `
         onDrop={[Function]}
         onFocus={[Function]}
         placeholder="password"
+        type=""
         value=""
       />
     </div>

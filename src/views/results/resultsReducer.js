@@ -4,7 +4,7 @@ import type { ResultsState } from 'flow/redux.flow'
 
 const initialState = { results: [] }
 
-const resultsReducer = (
+export const resultsReducer = (
   state: ResultsState = initialState,
   action: Function
 ) => {
@@ -15,5 +15,3 @@ const resultsReducer = (
       return state
   }
 }
-
-export default resultsReducer

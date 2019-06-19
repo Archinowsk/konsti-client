@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom'
 import { submitLogout } from 'views/logout/logoutActions'
 import type { StatelessFunctionalComponent } from 'react'
 
-const LogoutPage: StatelessFunctionalComponent<{}> = () => {
+export const LogoutView: StatelessFunctionalComponent<{}> = () => {
   const dispatch = useDispatch()
 
   React.useEffect(() => {
@@ -14,5 +14,3 @@ const LogoutPage: StatelessFunctionalComponent<{}> = () => {
 
   return <Redirect to='/' />
 }
-
-export default LogoutPage

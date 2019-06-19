@@ -3,7 +3,7 @@ import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { useTranslation } from 'react-i18next'
 import { required } from 'utils/validate'
-import FormField from 'components/FormField'
+import { FormField } from 'components/FormField'
 import type { StatelessFunctionalComponent } from 'react'
 
 type Props = {|

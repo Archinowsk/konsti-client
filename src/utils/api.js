@@ -1,6 +1,6 @@
 /* @flow */
 import axios from 'axios'
-import config from 'config'
+import { config } from 'config'
 
 export const api = axios.create({
   baseURL: `${config.apiServerURL}/api`,
@@ -9,5 +9,3 @@ export const api = axios.create({
     'Content-Type': 'application/json',
   },
 })
-
-export default api

@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import timeFormatter from 'utils/timeFormatter'
+import { timeFormatter } from 'utils/timeFormatter'
 import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
@@ -9,7 +9,7 @@ export type Props = {|
   game: Game,
 |}
 
-const GameInfo: StatelessFunctionalComponent<Props> = (props: Props) => {
+export const GameInfo: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { game } = props
   const { t } = useTranslation()
 
@@ -155,5 +155,3 @@ const GameInfo: StatelessFunctionalComponent<Props> = (props: Props) => {
     </div>
   )
 }
-
-export default GameInfo

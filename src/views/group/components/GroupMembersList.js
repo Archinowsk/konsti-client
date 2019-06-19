@@ -8,7 +8,7 @@ type Props = {|
   groupMembers: $ReadOnlyArray<GroupMember>,
 |}
 
-const GroupMembersList: StatelessFunctionalComponent<Props> = (
+export const GroupMembersList: StatelessFunctionalComponent<Props> = (
   props: Props
 ) => {
   const { groupMembers } = props
@@ -29,5 +29,3 @@ const GroupMembersList: StatelessFunctionalComponent<Props> = (
 
   return <div className='group-members-list'>{membersList}</div>
 }
-
-export default GroupMembersList

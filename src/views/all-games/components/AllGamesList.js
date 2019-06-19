@@ -3,7 +3,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import _ from 'lodash'
-import timeFormatter from 'utils/timeFormatter'
+import { timeFormatter } from 'utils/timeFormatter'
 import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent } from 'react'
 
@@ -11,7 +11,9 @@ type Props = {|
   games: $ReadOnlyArray<Game>,
 |}
 
-const AllGamesList: StatelessFunctionalComponent<Props> = (props: Props) => {
+export const AllGamesList: StatelessFunctionalComponent<Props> = (
+  props: Props
+) => {
   const { games } = props
   const { t } = useTranslation()
 
@@ -75,5 +77,3 @@ const AllGamesList: StatelessFunctionalComponent<Props> = (props: Props) => {
 
   return <div className='games-list'>{GamesList}</div>
 }
-
-export default AllGamesList
