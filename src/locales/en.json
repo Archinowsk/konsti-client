@@ -21,7 +21,9 @@
     "joinGroup": "Join group",
     "addMember": "Add member",
     "joinGroupConfirmation": "Create",
-    "leaveGroup": "Leave group"
+    "leaveGroup": "Leave group",
+    "closeApp": "Close Konsti",
+    "openApp": "Open Konsti"
   },
   "username": "Username",
   "password": "Password",
@@ -109,6 +111,7 @@
     "invalidSerial": "Invalid code",
     "registrationFailed": "Registration failed",
     "loginFailed": "Username and password don't match",
+    "loginDisabled": "Login is disabled",
     "unkown": "Unknown error"
   },
   "agreeRegisterDescription": "I agree to the register description",

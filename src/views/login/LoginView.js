@@ -24,6 +24,12 @@ export const LoginView: StatelessFunctionalComponent<{}> = () => {
         _error: t('error.loginFailed'),
       })
     }
+
+    if (response && response.code === 22) {
+      throw new SubmissionError({
+        _error: t('error.loginDisabled'),
+      })
+    }
   }
 
   return (

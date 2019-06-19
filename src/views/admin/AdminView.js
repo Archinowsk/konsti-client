@@ -7,6 +7,7 @@ import {
   submitGamesUpdate,
   submitPlayersAssign,
   submitSignupTime,
+  submitToggleAppOpen,
 } from 'views/admin/adminActions'
 import { TimesDropdown } from 'components/TimesDropdown'
 import { loadData } from 'utils/loadData'
@@ -18,6 +19,7 @@ import type { StatelessFunctionalComponent } from 'react'
 export const AdminView: StatelessFunctionalComponent<{}> = () => {
   const games: $ReadOnlyArray<Game> = useSelector(state => state.allGames.games)
   const signupTime: string = useSelector(state => state.admin.signupTime)
+  const appOpen: boolean = useSelector(state => state.admin.appOpen)
   const hiddenGames: $ReadOnlyArray<Game> = useSelector(
     state => state.admin.hiddenGames
   )
@@ -92,7 +94,7 @@ export const AdminView: StatelessFunctionalComponent<{}> = () => {
     try {
       await dispatch(submitGamesUpdate())
     } catch (error) {
-      console.log(`onSubmitGamesUpdate error:`, error)
+      console.log(`submitGamesUpdate error:`, error)
     }
     setSubmitting(false)
   }
@@ -104,7 +106,7 @@ export const AdminView: StatelessFunctionalComponent<{}> = () => {
     try {
       response = await dispatch(submitPlayersAssign(signupTime))
     } catch (error) {
-      console.log(`onSubmitPlayersAssign error:`, error)
+      console.log(`submitPlayersAssign error:`, error)
     }
     setSubmitting(false)
 
@@ -126,7 +128,17 @@ export const AdminView: StatelessFunctionalComponent<{}> = () => {
     try {
       await dispatch(submitSignupTime(selectedSignupTime))
     } catch (error) {
-      console.log(`onSubmitSignupTime error:`, error)
+      console.log(`submitSignupTime error:`, error)
+    }
+    setSubmitting(false)
+  }
+
+  const toggleAppOpen = async () => {
+    setSubmitting(true)
+    try {
+      await dispatch(submitToggleAppOpen(!appOpen))
+    } catch (error) {
+      console.log(`submitToggleAppOpen error:`, error)
     }
     setSubmitting(false)
   }
@@ -152,6 +164,15 @@ export const AdminView: StatelessFunctionalComponent<{}> = () => {
             }}
           >
             {t('button.assignPlayers')}
+          </button>
+
+          <button
+            disabled={submitting}
+            onClick={() => {
+              toggleAppOpen()
+            }}
+          >
+            {appOpen ? t('button.closeApp') : t('button.openApp')}
           </button>
 
           {submitting && <p>{t('loading')}</p>}

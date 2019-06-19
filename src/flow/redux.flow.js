@@ -11,6 +11,7 @@ export type AdminState = {|
   +signupTime: string,
   +adminSettingsLoaded: boolean,
   +testTime: string,
+  +appOpen: boolean,
 |}
 
 export type AllGamesState = {|

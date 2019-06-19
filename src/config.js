@@ -16,7 +16,6 @@ const commonConfig = {
     typeof process.env.SETTINGS === 'string'
       ? process.env.SETTINGS
       : 'development',
-  appOpen: true,
   SIGNUP_END_TIME: 90, // minutes
   SIGNUP_OPEN_TIME: 4, // hours
   MESSAGE_DELAY: 2000, // ms

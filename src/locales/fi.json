@@ -21,7 +21,9 @@
     "joinGroup": "Liity ryhmään",
     "addMember": "Lisää jäsen",
     "joinGroupConfirmation": "Luo",
-    "leaveGroup": "Poistu ryhmästä"
+    "leaveGroup": "Poistu ryhmästä",
+    "closeApp": "Sulje Konsti",
+    "openApp": "Open Konsti"
   },
   "username": "Käyttäjänimi",
   "password": "Salasana",
@@ -110,6 +112,7 @@
     "invalidSerial": "Epäkelpo rekisteröitymiskoodi",
     "registrationFailed": "Rekisteröityminen epäonnistui",
     "loginFailed": "Käyttäjänimi ja salasana eivät täsmää",
+    "loginDisabled": "Kirjautuminen on suljettu",
     "unkown": "Tuntematon virhe"
   },
   "agreeRegisterDescription": "Hyväksyn rekisteriselosteen",

@@ -2,7 +2,7 @@
 import { postGamesUpdate } from 'services/gamesServices'
 import { postPlayersAssign } from 'services/playersServices'
 import { postHidden } from 'services/hiddenServices'
-import { getSettings } from 'services/settingsServices'
+import { getSettings, postToggleAppOpen } from 'services/settingsServices'
 import { postSignupTime } from 'services/signuptimeServices'
 import type { Game, GamesUpdataResponse } from 'flow/game.flow'
 import type { AssignResponse } from 'flow/result.flow'
@@ -14,6 +14,7 @@ export const SUBMIT_UPDATE_HIDDEN = 'SUBMIT_UPDATE_HIDDEN'
 export const SUBMIT_GET_SETTINGS = 'SUBMIT_GET_SETTINGS'
 export const SUBMIT_SELECT_SIGNUP_TIME = 'SUBMIT_SELECT_SIGNUP_TIME'
 export const SUBMIT_SET_TEST_TIME = 'SUBMIT_SET_TEST_TIME'
+export const SUBMIT_TOGGLE_APP_OPEN = 'SUBMIT_TOGGLE_APP_OPEN'
 
 export const submitGamesUpdate = () => {
   return async (dispatch: Function) => {
@@ -109,12 +110,14 @@ export const submitGetSettings = () => {
     if (response && response.error) {
       return Promise.reject(response)
     }
+
     if (response && response.status === 'success') {
       dispatch(
         submitGetSettingsAsync({
           hiddenGames: response.hiddenGames,
           signupTime: response.signupTime,
           adminSettingsLoaded: true,
+          appOpen: response.appOpen,
         })
       )
     }
@@ -127,12 +130,14 @@ const submitGetSettingsAsync = ({
   hiddenGames,
   signupTime,
   adminSettingsLoaded,
+  appOpen,
 }: Settings) => {
   return {
     type: SUBMIT_GET_SETTINGS,
     hiddenGames,
     signupTime,
     adminSettingsLoaded,
+    appOpen,
   }
 }
 
@@ -167,5 +172,31 @@ export const submitSetTestTime = (testTime: string) => {
   return {
     type: SUBMIT_SET_TEST_TIME,
     testTime,
+  }
+}
+
+export const submitToggleAppOpen = (appOpen: boolean) => {
+  return async (dispatch: Function) => {
+    let response = null
+    try {
+      response = await postToggleAppOpen(appOpen)
+    } catch (error) {
+      console.log(`postAppOpen error:`, error)
+    }
+
+    if (response && response.error) {
+      return Promise.reject(response)
+    }
+    if (response && response.status === 'success') {
+      dispatch(submitToggleAppOpenAsync(response.appOpen))
+    }
+
+    return response
+  }
+}
+export const submitToggleAppOpenAsync = (appOpen: boolean) => {
+  return {
+    type: SUBMIT_TOGGLE_APP_OPEN,
+    appOpen,
   }
 }

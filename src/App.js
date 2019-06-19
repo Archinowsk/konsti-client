@@ -2,7 +2,7 @@
 import React from 'react'
 import { hot } from 'react-hot-loader/root'
 import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
+import { useSelector, useStore } from 'react-redux'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faAngleUp,
@@ -14,15 +14,32 @@ import { Routes } from 'Routes'
 import { LanguageSelector } from 'components/LanguageSelector'
 import { config } from 'config'
 import { TimeSelector } from 'test/TimeSelector'
+import { loadData } from 'utils/loadData'
+import { Loading } from 'components/Loading'
 import type { StatelessFunctionalComponent } from 'react'
 
 const App: StatelessFunctionalComponent<{}> = () => {
-  const { appOpen } = config
+  const appOpen: boolean = useSelector(state => state.admin.appOpen)
   const username: string = useSelector(state => state.login.username)
   const loggedIn: boolean = useSelector(state => state.login.loggedIn)
   const serial: string = useSelector(state => state.login.serial)
 
   const { t } = useTranslation()
+  const store = useStore()
+
+  const [loading, setLoading]: [
+    boolean,
+    ((boolean => boolean) | boolean) => void
+  ] = React.useState(true)
+
+  React.useEffect(() => {
+    setLoading(true)
+    const fetchData = async () => {
+      await loadData(store)
+    }
+    fetchData()
+    setLoading(false)
+  }, [])
 
   library.add(faAngleUp, faAngleDown, faEye, faEyeSlash)
 
@@ -47,8 +64,14 @@ const App: StatelessFunctionalComponent<{}> = () => {
       </header>
 
       <div className='body'>
-        {!appOpen && t('closingMessage')}
-        {appOpen && <Routes />}
+        {loading && <Loading />}
+        {!loading && !appOpen && (
+          <div>
+            <h2>{t('closingMessage')}</h2>
+            <Routes onlyAdmin />
+          </div>
+        )}
+        {!loading && appOpen && <Routes onlyAdmin={false} />}
       </div>
     </React.Fragment>
   )

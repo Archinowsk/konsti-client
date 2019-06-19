@@ -2,7 +2,6 @@
 
 export type Config = {|
   +appName: string,
-  +appOpen: boolean,
   +SIGNUP_END_TIME: number,
   +SIGNUP_OPEN_TIME: number,
   +MESSAGE_DELAY: number,

@@ -14,10 +14,61 @@ import { ResultsView } from 'views/results/ResultsView'
 import { LogoutView } from 'views/logout/LogoutView'
 import { GroupView } from 'views/group/GroupView'
 
-export const Routes: StatelessFunctionalComponent<{}> = () => {
+type Props = {
+  onlyAdmin: boolean,
+}
+
+export const Routes: StatelessFunctionalComponent<Props> = (props: Props) => {
+  const { onlyAdmin } = props
   const loggedIn: boolean = useSelector(state => state.login.loggedIn)
   const userGroup: string = useSelector(state => state.login.userGroup)
   const { t } = useTranslation()
+
+  if (onlyAdmin && !loggedIn) {
+    return (
+      <BrowserRouter>
+        <React.Fragment>
+          <div className='routes'>
+            <Link to='/login' className='router-link'>
+              {t('button.login')}
+            </Link>
+            <hr />
+          </div>
+          <Switch>
+            <Route path='/login' component={LoginView} />
+            <Redirect from='/*' to='/' />
+          </Switch>
+        </React.Fragment>
+      </BrowserRouter>
+    )
+  }
+
+  if (onlyAdmin && loggedIn) {
+    return (
+      <BrowserRouter>
+        <React.Fragment>
+          <div className='routes'>
+            {userGroup === 'admin' && (
+              <Link to='/admin' className='router-link'>
+                {t('pages.admin')}
+              </Link>
+            )}
+            {(userGroup === 'user' || userGroup === 'admin') && (
+              <Link to='/logout' className='router-link'>
+                {t('button.logout')}
+              </Link>
+            )}
+            <hr />
+          </div>
+          <Switch>
+            <Route path='/admin' component={AdminView} />
+            <Route path='/logout' component={LogoutView} />
+            <Redirect from='/*' to='/' />
+          </Switch>
+        </React.Fragment>
+      </BrowserRouter>
+    )
+  }
 
   if (!loggedIn) {
     return (
