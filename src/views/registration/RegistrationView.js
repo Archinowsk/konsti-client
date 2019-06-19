@@ -16,7 +16,7 @@ export const RegistrationView: StatelessFunctionalComponent<{}> = () => {
     try {
       response = await dispatch(submitRegistration(form))
     } catch (error) {
-      console.log(`onSubmitRegistration error:`, error)
+      console.log(`submitRegistration error:`, error)
     }
 
     if (response && response.code === 11) {

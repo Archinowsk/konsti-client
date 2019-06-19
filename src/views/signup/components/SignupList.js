@@ -83,7 +83,7 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
     try {
       response = await dispatch(submitSignup(signupData))
     } catch (error) {
-      console.log(`onSubmitSignup error: `, error)
+      console.log(`submitSignup error: `, error)
     }
 
     if (response && response.status === 'success') {
@@ -113,7 +113,7 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
     try {
       response = await dispatch(submitSignup(signupData))
     } catch (error) {
-      console.log(`onSubmitSignup error: `, error)
+      console.log(`submitSignup error: `, error)
     }
 
     if (response && response.status === 'success') {

@@ -113,7 +113,7 @@ const GameDetails: StatelessFunctionalComponent<Props> = (props: Props) => {
     try {
       response = await dispatch(submitUpdateFavorites(favoriteData))
     } catch (error) {
-      console.log(`onSubmitUpdateFavorites error:`, error)
+      console.log(`submitUpdateFavorites error:`, error)
     }
 
     setSubmitting(false)
@@ -149,7 +149,7 @@ const GameDetails: StatelessFunctionalComponent<Props> = (props: Props) => {
     try {
       response = await dispatch(submitUpdateHidden(allHiddenGames))
     } catch (error) {
-      console.log(`onSubmitUpdateHidden error`, error)
+      console.log(`submitUpdateHidden error`, error)
     }
 
     setSubmitting(false)

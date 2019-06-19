@@ -16,7 +16,7 @@ export const LoginView: StatelessFunctionalComponent<{}> = () => {
     try {
       response = await dispatch(submitLogin(form))
     } catch (error) {
-      console.log(`onSubmitLogin error:`, error)
+      console.log(`submitLogin error:`, error)
     }
 
     if (response && response.code === 21) {
