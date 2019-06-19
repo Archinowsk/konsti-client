@@ -30,7 +30,7 @@ const commonConfig = {
 
   // Array of entry files
   entry: {
-    oldbrowser: [path.join(__dirname, 'src', 'utils', 'oldbrowser')],
+    // oldbrowser: [path.join(__dirname, 'src', 'utils', 'oldbrowser')],
     client: [path.join(__dirname, 'src', 'index')],
   },
 
@@ -60,7 +60,7 @@ const commonConfig = {
         preserveLineBreaks: true,
       },
       // html-webpack-template configs
-      appMountIds: ['outdated', 'main'],
+      appMountIds: [/* 'outdated' */ 'main'],
       meta: {
         'application-name': config.appName,
       },

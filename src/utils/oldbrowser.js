@@ -2,6 +2,9 @@
 import outdatedBrowserRework from 'outdated-browser-rework'
 import 'outdated-browser-rework/dist/style.css'
 
+// This is not used at the moment
+// Old browser check can be enabled from webpack config
+
 const browserSupport = {
   Chrome: 40, // Includes Chrome for mobile devices
   Edge: 39,
