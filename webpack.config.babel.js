@@ -13,8 +13,6 @@ import webpack from 'webpack'
 import webpackMerge from 'webpack-merge'
 import { config } from './src/config'
 
-const TARGET = process.env.npm_lifecycle_event
-
 const stats = {
   // assets: false,
   // children: false,
@@ -294,6 +292,8 @@ const stagingConfig = {
 }
 
 const getWebpackConfig = () => {
+  const TARGET = process.env.npm_lifecycle_event
+
   if (TARGET === 'build' || TARGET === 'bundle-analyze') {
     return webpackMerge(commonConfig, prodConfig)
   } else if (TARGET === 'build-staging') {
