@@ -18,21 +18,21 @@ export const SUBMIT_TOGGLE_APP_OPEN = 'SUBMIT_TOGGLE_APP_OPEN'
 
 export const submitGamesUpdate = () => {
   return async (dispatch: Function) => {
-    let response = null
+    let gamesUpdateResponse = null
     try {
-      response = await postGamesUpdate()
+      gamesUpdateResponse = await postGamesUpdate()
     } catch (error) {
       console.log(`postGamesUpdate error:`, error)
     }
 
-    if (response && response.error) {
-      return Promise.reject(response)
+    if (gamesUpdateResponse && gamesUpdateResponse.error) {
+      return Promise.reject(gamesUpdateResponse)
     }
-    if (response && response.status === 'success') {
-      dispatch(submitGamesUpdateAsync(response))
+    if (gamesUpdateResponse && gamesUpdateResponse.status === 'success') {
+      dispatch(submitGamesUpdateAsync(gamesUpdateResponse))
     }
 
-    return response
+    return gamesUpdateResponse
   }
 }
 
@@ -45,22 +45,22 @@ const submitGamesUpdateAsync = (gamesUpdateResponse: GamesUpdataResponse) => {
 
 export const submitPlayersAssign = (signupTime: string) => {
   return async (dispatch: Function) => {
-    let response = null
+    let assignResponse = null
     try {
-      response = await postPlayersAssign(signupTime)
+      assignResponse = await postPlayersAssign(signupTime)
     } catch (error) {
       console.log(`postPlayersAssign error:`, error)
       dispatch(submitPlayersAssignAsync(error))
     }
 
-    if (response && response.error) {
-      return Promise.reject(response)
+    if (assignResponse && assignResponse.error) {
+      return Promise.reject(assignResponse)
     }
-    if (response && response.status === 'success') {
-      dispatch(submitPlayersAssignAsync(response))
+    if (assignResponse && assignResponse.status === 'success') {
+      dispatch(submitPlayersAssignAsync(assignResponse))
     }
 
-    return response
+    return assignResponse
   }
 }
 
@@ -73,21 +73,21 @@ const submitPlayersAssignAsync = (assignResponse: AssignResponse) => {
 
 export const submitUpdateHidden = (hiddenGames: $ReadOnlyArray<Game>) => {
   return async (dispatch: Function) => {
-    let response = null
+    let updateHiddenResponse = null
     try {
-      response = await postHidden(hiddenGames)
+      updateHiddenResponse = await postHidden(hiddenGames)
     } catch (error) {
       console.log(`submitUpdateHidden error:`, error)
     }
 
-    if (response && response.error) {
-      return Promise.reject(response)
+    if (updateHiddenResponse && updateHiddenResponse.error) {
+      return Promise.reject(updateHiddenResponse)
     }
-    if (response && response.status === 'success') {
-      dispatch(submitUpdateHiddenAsync(hiddenGames))
+    if (updateHiddenResponse && updateHiddenResponse.status === 'success') {
+      dispatch(submitUpdateHiddenAsync(updateHiddenResponse.hiddenGames))
     }
 
-    return response
+    return updateHiddenResponse
   }
 }
 
