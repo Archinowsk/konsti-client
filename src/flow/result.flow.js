@@ -10,8 +10,6 @@ export type Result = {|
 export type Results = {|
   +result: $ReadOnlyArray<Result>,
   +startTime: string,
-  +createdAt: string,
-  +updatedAt: string,
 |}
 
 export type NewSignupData = {|
