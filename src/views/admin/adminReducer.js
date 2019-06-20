@@ -1,6 +1,5 @@
 /* @flow */
 import {
-  SUBMIT_GAMES_UPDATE,
   SUBMIT_PLAYERS_ASSIGN,
   SUBMIT_UPDATE_HIDDEN,
   SUBMIT_GET_SETTINGS,
@@ -25,8 +24,6 @@ export const adminReducer = (
   action: Function
 ) => {
   switch (action.type) {
-    case SUBMIT_GAMES_UPDATE:
-      return { ...state, updateResponse: action.payload }
     case SUBMIT_PLAYERS_ASSIGN:
       return { ...state, assignResponse: action.payload }
     case SUBMIT_UPDATE_HIDDEN:

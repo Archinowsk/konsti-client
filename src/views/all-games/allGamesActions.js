@@ -1,26 +1,47 @@
 /* @flow */
-import { getGames } from 'services/gamesServices'
+import { getGames, postGamesUpdate } from 'services/gamesServices'
 import type { Game } from 'flow/game.flow'
 
 export const SUBMIT_GET_GAMES = 'SUBMIT_GET_GAMES'
+export const SUBMIT_GAMES_UPDATE = 'SUBMIT_GAMES_UPDATE'
 
 export const submitGetGames = () => {
   return async (dispatch: Function) => {
-    let response = null
+    let getGamesResponse = null
     try {
-      response = await getGames()
+      getGamesResponse = await getGames()
     } catch (error) {
       console.log(`getGames error:`, error)
     }
 
-    if (response && response.error) {
-      return Promise.reject(response)
+    if (getGamesResponse && getGamesResponse.error) {
+      return Promise.reject(getGamesResponse)
     }
-    if (response && response.status === 'success') {
-      dispatch(submitGetGamesAsync(response.games))
+    if (getGamesResponse && getGamesResponse.status === 'success') {
+      dispatch(submitGetGamesAsync(getGamesResponse.games))
     }
 
-    return response
+    return getGamesResponse
+  }
+}
+
+export const submitGamesUpdate = () => {
+  return async (dispatch: Function) => {
+    let gamesUpdateResponse = null
+    try {
+      gamesUpdateResponse = await postGamesUpdate()
+    } catch (error) {
+      console.log(`postGamesUpdate error:`, error)
+    }
+
+    if (gamesUpdateResponse && gamesUpdateResponse.error) {
+      return Promise.reject(gamesUpdateResponse)
+    }
+    if (gamesUpdateResponse && gamesUpdateResponse.status === 'success') {
+      dispatch(submitGetGamesAsync(gamesUpdateResponse.games))
+    }
+
+    return gamesUpdateResponse
   }
 }
 

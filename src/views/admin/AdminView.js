@@ -4,11 +4,11 @@ import { useDispatch, useSelector, useStore } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { Hidden } from 'views/admin/components/Hidden'
 import {
-  submitGamesUpdate,
   submitPlayersAssign,
   submitSignupTime,
   submitToggleAppOpen,
 } from 'views/admin/adminActions'
+import { submitGamesUpdate } from 'views/all-games/allGamesActions'
 import { TimesDropdown } from 'components/TimesDropdown'
 import { loadData } from 'utils/loadData'
 import { Loading } from 'components/Loading'

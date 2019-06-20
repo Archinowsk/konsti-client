@@ -24,12 +24,6 @@ export type Game = {|
   +intendedForExperiencedParticipants: boolean,
 |}
 
-export type GamesUpdataResponse = {|
-  +data: $ReadOnlyArray<Game>,
-  +message: string,
-  +status: string,
-|}
-
 export type UpdatedPositions = {|
   +gameList?: $ReadOnlyArray<Game>,
   +priority1?: $ReadOnlyArray<Game>,

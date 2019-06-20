@@ -1,47 +1,18 @@
 /* @flow */
-import { postGamesUpdate } from 'services/gamesServices'
 import { postPlayersAssign } from 'services/playersServices'
 import { postHidden } from 'services/hiddenServices'
 import { getSettings, postToggleAppOpen } from 'services/settingsServices'
 import { postSignupTime } from 'services/signuptimeServices'
-import type { Game, GamesUpdataResponse } from 'flow/game.flow'
+import type { Game } from 'flow/game.flow'
 import type { AssignResponse } from 'flow/result.flow'
 import type { Settings } from 'flow/settings.flow'
 
-export const SUBMIT_GAMES_UPDATE = 'SUBMIT_GAMES_UPDATE'
 export const SUBMIT_PLAYERS_ASSIGN = 'SUBMIT_PLAYERS_ASSIGN'
 export const SUBMIT_UPDATE_HIDDEN = 'SUBMIT_UPDATE_HIDDEN'
 export const SUBMIT_GET_SETTINGS = 'SUBMIT_GET_SETTINGS'
 export const SUBMIT_SELECT_SIGNUP_TIME = 'SUBMIT_SELECT_SIGNUP_TIME'
 export const SUBMIT_SET_TEST_TIME = 'SUBMIT_SET_TEST_TIME'
 export const SUBMIT_TOGGLE_APP_OPEN = 'SUBMIT_TOGGLE_APP_OPEN'
-
-export const submitGamesUpdate = () => {
-  return async (dispatch: Function) => {
-    let gamesUpdateResponse = null
-    try {
-      gamesUpdateResponse = await postGamesUpdate()
-    } catch (error) {
-      console.log(`postGamesUpdate error:`, error)
-    }
-
-    if (gamesUpdateResponse && gamesUpdateResponse.error) {
-      return Promise.reject(gamesUpdateResponse)
-    }
-    if (gamesUpdateResponse && gamesUpdateResponse.status === 'success') {
-      dispatch(submitGamesUpdateAsync(gamesUpdateResponse))
-    }
-
-    return gamesUpdateResponse
-  }
-}
-
-const submitGamesUpdateAsync = (gamesUpdateResponse: GamesUpdataResponse) => {
-  return {
-    type: SUBMIT_GAMES_UPDATE,
-    payload: gamesUpdateResponse,
-  }
-}
 
 export const submitPlayersAssign = (signupTime: string) => {
   return async (dispatch: Function) => {
