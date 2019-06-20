@@ -100,29 +100,29 @@ const submitUpdateHiddenAsync = (hiddenGames: $ReadOnlyArray<Game>) => {
 
 export const submitGetSettings = () => {
   return async (dispatch: Function) => {
-    let response = null
+    let settingsResponse = null
     try {
-      response = await getSettings()
+      settingsResponse = await getSettings()
     } catch (error) {
       console.log(`getSettings error:`, error)
     }
 
-    if (response && response.error) {
-      return Promise.reject(response)
+    if (settingsResponse && settingsResponse.error) {
+      return Promise.reject(settingsResponse)
     }
 
-    if (response && response.status === 'success') {
+    if (settingsResponse && settingsResponse.status === 'success') {
       dispatch(
         submitGetSettingsAsync({
-          hiddenGames: response.hiddenGames,
-          signupTime: response.signupTime,
           adminSettingsLoaded: true,
-          appOpen: response.appOpen,
+          hiddenGames: settingsResponse.hiddenGames,
+          signupTime: settingsResponse.signupTime,
+          appOpen: settingsResponse.appOpen,
         })
       )
     }
 
-    return response
+    return settingsResponse
   }
 }
 
@@ -143,21 +143,21 @@ const submitGetSettingsAsync = ({
 
 export const submitSignupTime = (signupTime: string) => {
   return async (dispatch: Function) => {
-    let response = null
+    let signupTimeResponse = null
     try {
-      response = await postSignupTime(signupTime)
+      signupTimeResponse = await postSignupTime(signupTime)
     } catch (error) {
       console.log(`postSignupTime error:`, error)
     }
 
-    if (response && response.error) {
-      return Promise.reject(response)
+    if (signupTimeResponse && signupTimeResponse.error) {
+      return Promise.reject(signupTimeResponse)
     }
-    if (response && response.status === 'success') {
-      dispatch(submitSignupTimeAsync(signupTime))
+    if (signupTimeResponse && signupTimeResponse.status === 'success') {
+      dispatch(submitSignupTimeAsync(signupTimeResponse.signupTime))
     }
 
-    return response
+    return signupTimeResponse
   }
 }
 
@@ -177,21 +177,21 @@ export const submitSetTestTime = (testTime: string) => {
 
 export const submitToggleAppOpen = (appOpen: boolean) => {
   return async (dispatch: Function) => {
-    let response = null
+    let appOpenResponse = null
     try {
-      response = await postToggleAppOpen(appOpen)
+      appOpenResponse = await postToggleAppOpen(appOpen)
     } catch (error) {
       console.log(`postAppOpen error:`, error)
     }
 
-    if (response && response.error) {
-      return Promise.reject(response)
+    if (appOpenResponse && appOpenResponse.error) {
+      return Promise.reject(appOpenResponse)
     }
-    if (response && response.status === 'success') {
-      dispatch(submitToggleAppOpenAsync(response.appOpen))
+    if (appOpenResponse && appOpenResponse.status === 'success') {
+      dispatch(submitToggleAppOpenAsync(appOpenResponse.appOpen))
     }
 
-    return response
+    return appOpenResponse
   }
 }
 export const submitToggleAppOpenAsync = (appOpen: boolean) => {
