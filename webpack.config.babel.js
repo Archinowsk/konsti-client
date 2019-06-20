@@ -1,3 +1,4 @@
+/* @flow */
 import { CleanWebpackPlugin } from 'clean-webpack-plugin'
 import CompressionPlugin from 'compression-webpack-plugin'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
@@ -66,6 +67,7 @@ const commonConfig = {
       },
       mobile: true,
     }),
+    // $FlowFixMe: Property `HashedModuleIdsPlugin` is missing in  statics of function type.
     new webpack.HashedModuleIdsPlugin(), // so that file hashes don't change unexpectedly
   ],
 
@@ -125,6 +127,7 @@ const devConfig = {
   },
 
   plugins: [
+    // $FlowFixMe: Property `HotModuleReplacementPlugin` is missing in  statics of function type.
     new webpack.HotModuleReplacementPlugin(), // Enable HMR globally
   ],
 }
