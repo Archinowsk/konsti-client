@@ -1,10 +1,8 @@
 /* @flow */
-import { postPlayersAssign } from 'services/playersServices'
 import { postHidden } from 'services/hiddenServices'
 import { getSettings, postToggleAppOpen } from 'services/settingsServices'
 import { postSignupTime } from 'services/signuptimeServices'
 import type { Game } from 'flow/game.flow'
-import type { AssignResponse } from 'flow/result.flow'
 import type { Settings } from 'flow/settings.flow'
 
 export const SUBMIT_PLAYERS_ASSIGN = 'SUBMIT_PLAYERS_ASSIGN'
@@ -13,34 +11,6 @@ export const SUBMIT_GET_SETTINGS = 'SUBMIT_GET_SETTINGS'
 export const SUBMIT_SELECT_SIGNUP_TIME = 'SUBMIT_SELECT_SIGNUP_TIME'
 export const SUBMIT_SET_TEST_TIME = 'SUBMIT_SET_TEST_TIME'
 export const SUBMIT_TOGGLE_APP_OPEN = 'SUBMIT_TOGGLE_APP_OPEN'
-
-export const submitPlayersAssign = (signupTime: string) => {
-  return async (dispatch: Function) => {
-    let assignResponse = null
-    try {
-      assignResponse = await postPlayersAssign(signupTime)
-    } catch (error) {
-      console.log(`postPlayersAssign error:`, error)
-      dispatch(submitPlayersAssignAsync(error))
-    }
-
-    if (assignResponse && assignResponse.error) {
-      return Promise.reject(assignResponse)
-    }
-    if (assignResponse && assignResponse.status === 'success') {
-      dispatch(submitPlayersAssignAsync(assignResponse))
-    }
-
-    return assignResponse
-  }
-}
-
-const submitPlayersAssignAsync = (assignResponse: AssignResponse) => {
-  return {
-    type: SUBMIT_PLAYERS_ASSIGN,
-    payload: assignResponse,
-  }
-}
 
 export const submitUpdateHidden = (hiddenGames: $ReadOnlyArray<Game>) => {
   return async (dispatch: Function) => {

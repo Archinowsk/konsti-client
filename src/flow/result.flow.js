@@ -17,12 +17,8 @@ export type NewSignupData = {|
   +signedGames: $ReadOnlyArray<Signup>,
 |}
 
-export type AssignResponse = {|
+export type AssignResult = {|
   +message: string,
-  +status: string,
-  +results: {
-    +message: string,
-    +newSignupData: $ReadOnlyArray<NewSignupData>,
-    +results: $ReadOnlyArray<Result>,
-  },
+  +newSignupData: $ReadOnlyArray<NewSignupData>,
+  +results: $ReadOnlyArray<Result>,
 |}

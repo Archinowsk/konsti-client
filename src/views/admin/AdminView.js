@@ -3,11 +3,8 @@ import React from 'react'
 import { useDispatch, useSelector, useStore } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { Hidden } from 'views/admin/components/Hidden'
-import {
-  submitPlayersAssign,
-  submitSignupTime,
-  submitToggleAppOpen,
-} from 'views/admin/adminActions'
+import { submitSignupTime, submitToggleAppOpen } from 'views/admin/adminActions'
+import { submitPlayersAssign } from 'views/results/resultsActions'
 import { submitGamesUpdate } from 'views/all-games/allGamesActions'
 import { TimesDropdown } from 'components/TimesDropdown'
 import { loadData } from 'utils/loadData'
@@ -23,9 +20,7 @@ export const AdminView: StatelessFunctionalComponent<{}> = () => {
   const hiddenGames: $ReadOnlyArray<Game> = useSelector(
     state => state.admin.hiddenGames
   )
-  const updateResponse: Object = useSelector(
-    state => state.admin.updateResponse
-  )
+
   const dispatch = useDispatch()
   const store = useStore()
   const { t } = useTranslation()
@@ -112,7 +107,7 @@ export const AdminView: StatelessFunctionalComponent<{}> = () => {
 
     if (response && response.status === 'success') {
       showMessage({
-        message: response.results.message,
+        message: response.resultMessage,
         style: response.status,
       })
     } else if (response && response.status === 'error') {
@@ -178,10 +173,6 @@ export const AdminView: StatelessFunctionalComponent<{}> = () => {
           {submitting && <p>{t('loading')}</p>}
 
           <p className={messageStyle}>{message}</p>
-
-          {updateResponse.data.errors && (
-            <p className='error'>{updateResponse.data.message}</p>
-          )}
 
           <p>{t('selectOpenSignup')}</p>
 

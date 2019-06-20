@@ -5,8 +5,6 @@ import type { Signup } from 'flow/user.flow'
 import type { Result } from 'flow/result.flow'
 
 export type AdminState = {|
-  +updateResponse: Object,
-  +assignResponse: Object,
   +hiddenGames: $ReadOnlyArray<Game>,
   +signupTime: string,
   +adminSettingsLoaded: boolean,

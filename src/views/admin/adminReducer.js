@@ -1,6 +1,5 @@
 /* @flow */
 import {
-  SUBMIT_PLAYERS_ASSIGN,
   SUBMIT_UPDATE_HIDDEN,
   SUBMIT_GET_SETTINGS,
   SUBMIT_SELECT_SIGNUP_TIME,
@@ -10,8 +9,6 @@ import {
 import type { AdminState } from 'flow/redux.flow'
 
 const initialState = {
-  updateResponse: { data: { errors: '' } },
-  assignResponse: { data: { errors: '' } },
   hiddenGames: [],
   signupTime: '',
   adminSettingsLoaded: false,
@@ -24,8 +21,6 @@ export const adminReducer = (
   action: Function
 ) => {
   switch (action.type) {
-    case SUBMIT_PLAYERS_ASSIGN:
-      return { ...state, assignResponse: action.payload }
     case SUBMIT_UPDATE_HIDDEN:
       return { ...state, hiddenGames: action.hiddenGames }
     case SUBMIT_GET_SETTINGS:
