@@ -33,12 +33,12 @@ ChromeAndroid >= 64
 # Firefox for Android
 FirefoxAndroid >= 57
 
+# Internet Explorer
+Explorer >= 11
+
 ###################
 ## NOT SUPPORTED ##
 ###################
-
-# Internet Explorer
-# Explorer >= 11
 
 # Blackberry browser
 # BlackBerry >= 10
