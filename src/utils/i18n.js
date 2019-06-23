@@ -14,7 +14,7 @@ const loadLocales = (url: string, options: Object, callback: Function) => {
   }
 }
 
-export const i18n = i18next
+i18next
   .use(Backend)
   .use(LanguageDetector)
   .use(initReactI18next)
