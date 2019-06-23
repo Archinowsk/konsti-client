@@ -15,6 +15,7 @@ module.exports = {
     'prettier/react',
     'prettier/standard',
   ],
+
   plugins: [
     'flowtype',
     'prettier',
@@ -27,26 +28,27 @@ module.exports = {
     'react-hooks',
     'jest',
   ],
+
   parser: 'babel-eslint',
+
   parserOptions: {
     sourceType: 'module',
     impliedStrict: true,
   },
+
   env: {
     es6: true,
     browser: true,
     jest: true,
   },
+
   settings: {
     react: {
       version: '16.8',
     },
+    polyfills: ['Promise'],
   },
-  /*
-  settings: {
-    polyfills: ['fetch', 'promises'],
-  },
-  */
+
   rules: {
     'react-hooks/rules-of-hooks': 'error',
     'prettier/prettier': 'error',
