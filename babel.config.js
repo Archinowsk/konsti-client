@@ -8,11 +8,8 @@ module.exports = api => {
       '@babel/preset-env',
       {
         debug: false,
-        // modules: false,
-        // "useBuiltIns" disabled because auto polyfilling is broken
-        // useBuiltIns: 'entry',
-        // Ignore browserslist for the same reason
-        ignoreBrowserslistConfig: true,
+        useBuiltIns: 'entry',
+        corejs: '3',
       },
     ],
     '@babel/preset-react',
