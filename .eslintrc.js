@@ -46,15 +46,20 @@ module.exports = {
     react: {
       version: '16.8',
     },
-    polyfills: ['Promise'],
+    polyfills: ['Promise', 'Array.from', 'Object.entries'],
   },
 
   rules: {
+    // eslint-plugin-react-hooks
     'react-hooks/rules-of-hooks': 'error',
+
+    // eslint-plugin-prettier
     'prettier/prettier': 'error',
+
+    // "eslint-plugin-compat
     'compat/compat': 'error',
 
-    // Rules from eslint-config-standard-react
+    // eslint-config-standard-react
     'react/jsx-no-bind': [
       'error',
       {
@@ -69,7 +74,7 @@ module.exports = {
     'react/prop-types': 'error',
     'react/react-in-jsx-scope': 'error',
 
-    // Rules from eslint-config-standard-jsx
+    // eslint-config-standard-jsx
     'jsx-quotes': ['error', 'prefer-single'],
     'react/jsx-boolean-value': 'error',
     'react/jsx-curly-spacing': ['error', 'never'],
