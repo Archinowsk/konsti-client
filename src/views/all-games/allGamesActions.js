@@ -3,7 +3,6 @@ import { getGames, postGamesUpdate } from 'services/gamesServices'
 import type { Game } from 'flow/game.flow'
 
 export const SUBMIT_GET_GAMES = 'SUBMIT_GET_GAMES'
-export const SUBMIT_GAMES_UPDATE = 'SUBMIT_GAMES_UPDATE'
 
 export const submitGetGames = () => {
   return async (dispatch: Function) => {

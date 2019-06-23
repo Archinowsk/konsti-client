@@ -5,7 +5,6 @@ import { postSignupTime } from 'services/signuptimeServices'
 import type { Game } from 'flow/game.flow'
 import type { Settings } from 'flow/settings.flow'
 
-export const SUBMIT_PLAYERS_ASSIGN = 'SUBMIT_PLAYERS_ASSIGN'
 export const SUBMIT_UPDATE_HIDDEN = 'SUBMIT_UPDATE_HIDDEN'
 export const SUBMIT_GET_SETTINGS = 'SUBMIT_GET_SETTINGS'
 export const SUBMIT_SELECT_SIGNUP_TIME = 'SUBMIT_SELECT_SIGNUP_TIME'
@@ -135,6 +134,7 @@ export const submitToggleAppOpen = (appOpen: boolean) => {
     return appOpenResponse
   }
 }
+
 export const submitToggleAppOpenAsync = (appOpen: boolean) => {
   return {
     type: SUBMIT_TOGGLE_APP_OPEN,
