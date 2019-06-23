@@ -10,7 +10,7 @@ body {
   background-color: #fafafa;
   margin: 0 auto;
   padding-bottom: 32px;
-  width: 800px;
+  max-width: 800px;
 }
 
 @media (max-width: $breakpoint-phone) {
@@ -180,7 +180,6 @@ input:focus {
   border: 1px solid #4d90fe;
   box-shadow: 0 0 5px 0 #4d90fe;
   box-sizing: border-box;
-  outline-style: none;
 }
 
 .form-input {

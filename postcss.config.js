@@ -5,8 +5,11 @@ const postcssImport = require('postcss-import')
 const precss = require('precss')
 const cssnano = require('cssnano')
 const postcssNormalize = require('postcss-normalize')
+const postcssComments = require('postcss-comment')
 
 module.exports = {
+  parser: postcssComments,
+
   plugins: [
     postcssImport,
     precss,
