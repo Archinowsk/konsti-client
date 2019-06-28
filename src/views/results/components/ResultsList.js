@@ -16,10 +16,8 @@ export const ResultsList: StatelessFunctionalComponent<Props> = (
   const { results } = props
   const { t } = useTranslation()
 
-  const [sortedBy, setSortedBy]: [
-    string,
-    ((string => string) | string) => void
-  ] = React.useState('')
+  const [sortedBy, setSortedBy] = React.useState('')
+  ;(sortedBy: string)
 
   React.useEffect(() => {
     setSortedBy('username')

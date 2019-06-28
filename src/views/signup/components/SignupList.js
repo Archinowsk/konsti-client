@@ -43,22 +43,17 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
   const store = useStore()
   const { t } = useTranslation()
 
-  const [submitting, setSubmitting]: [
-    boolean,
-    ((boolean => boolean) | boolean) => void
-  ] = React.useState(false)
-  const [signupSubmitted, setSignupSubmitted]: [
-    boolean,
-    ((boolean => boolean) | boolean) => void
-  ] = React.useState(false)
-  const [signupError, setSignupError]: [
-    boolean,
-    ((boolean => boolean) | boolean) => void
-  ] = React.useState(false)
-  const [loading, setLoading]: [
-    boolean,
-    ((boolean => boolean) | boolean) => void
-  ] = React.useState(true)
+  const [submitting, setSubmitting] = React.useState(false)
+  ;(submitting: boolean)
+
+  const [signupSubmitted, setSignupSubmitted] = React.useState(false)
+  ;(signupSubmitted: boolean)
+
+  const [signupError, setSignupError] = React.useState(false)
+  ;(signupError: boolean)
+
+  const [loading, setLoading] = React.useState(true)
+  ;(loading: boolean)
 
   React.useEffect(() => {
     setLoading(true)

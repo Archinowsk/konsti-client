@@ -11,13 +11,8 @@ export const SignupView: StatelessFunctionalComponent<{}> = () => {
   const games: $ReadOnlyArray<Game> = useSelector(state => state.allGames.games)
   const testTime: string = useSelector(state => state.admin.testTime)
 
-  const [signupTimes, setSignupTimes]: [
-    $ReadOnlyArray<string>,
-    (
-      | (($ReadOnlyArray<string>) => $ReadOnlyArray<string>)
-      | $ReadOnlyArray<string>
-    ) => void
-  ] = React.useState([])
+  const [signupTimes, setSignupTimes] = React.useState([])
+  ;(signupTimes: $ReadOnlyArray<string>)
 
   React.useEffect(() => {
     setSignupTimes(getOpenStartTimes(games, testTime))

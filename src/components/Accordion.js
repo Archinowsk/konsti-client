@@ -12,10 +12,8 @@ export type Props = {|
 export const Accordion: StatelessFunctionalComponent<Props> = (
   props: Props
 ) => {
-  const [open, setOpen]: [
-    boolean,
-    ((boolean => boolean) | boolean) => void
-  ] = React.useState(false)
+  const [open, setOpen] = React.useState(false)
+  ;(open: boolean)
 
   const { t } = useTranslation()
 

@@ -25,26 +25,20 @@ export const AdminView: StatelessFunctionalComponent<{}> = () => {
   const store = useStore()
   const { t } = useTranslation()
 
-  const [submitting, setSubmitting]: [
-    boolean,
-    ((boolean => boolean) | boolean) => void
-  ] = React.useState(false)
-  const [loading, setLoading]: [
-    boolean,
-    ((boolean => boolean) | boolean) => void
-  ] = React.useState(true)
-  const [message, setMessage]: [
-    string,
-    ((string => string) | string) => void
-  ] = React.useState('')
-  const [messageStyle, setMessageStyle]: [
-    string,
-    ((string => string) | string) => void
-  ] = React.useState('')
-  const [selectedSignupTime, setSelectedSignupTime]: [
-    string,
-    ((string => string) | string) => void
-  ] = React.useState('')
+  const [submitting, setSubmitting] = React.useState(false)
+  ;(submitting: boolean)
+
+  const [loading, setLoading] = React.useState(true)
+  ;(loading: boolean)
+
+  const [message, setMessage] = React.useState('')
+  ;(message: string)
+
+  const [messageStyle, setMessageStyle] = React.useState('')
+  ;(messageStyle: string)
+
+  const [selectedSignupTime, setSelectedSignupTime] = React.useState('')
+  ;(selectedSignupTime: string)
 
   React.useEffect(() => {
     const fetchData = async () => {

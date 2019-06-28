@@ -16,10 +16,8 @@ export const AllGamesView: StatelessFunctionalComponent<{}> = () => {
   )
   const store = useStore()
 
-  const [loading, setLoading]: [
-    boolean,
-    ((boolean => boolean) | boolean) => void
-  ] = React.useState(true)
+  const [loading, setLoading] = React.useState(true)
+  ;(loading: boolean)
 
   React.useEffect(() => {
     const fetchData = async () => {

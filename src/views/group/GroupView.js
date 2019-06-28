@@ -29,30 +29,23 @@ export const GroupView: StatelessFunctionalComponent<{}> = () => {
   const store = useStore()
   const { t } = useTranslation()
 
-  const [loading, setLoading]: [
-    boolean,
-    ((boolean => boolean) | boolean) => void
-  ] = React.useState(true)
-  const [showCreateGroup, setShowCreateGroup]: [
-    boolean,
-    ((boolean => boolean) | boolean) => void
-  ] = React.useState(false)
-  const [showJoinGroup, setShowJoinGroup]: [
-    boolean,
-    ((boolean => boolean) | boolean) => void
-  ] = React.useState(false)
-  const [joinGroupValue, setJoinGroupValue]: [
-    string,
-    ((string => string) | string) => void
-  ] = React.useState('')
-  const [message, setMessage]: [
-    string,
-    ((string => string) | string) => void
-  ] = React.useState('')
-  const [messageStyle, setMessageStyle]: [
-    string,
-    ((string => string) | string) => void
-  ] = React.useState('')
+  const [loading, setLoading] = React.useState(true)
+  ;(loading: boolean)
+
+  const [showCreateGroup, setShowCreateGroup] = React.useState(false)
+  ;(showCreateGroup: boolean)
+
+  const [showJoinGroup, setShowJoinGroup] = React.useState(false)
+  ;(showJoinGroup: boolean)
+
+  const [joinGroupValue, setJoinGroupValue] = React.useState('')
+  ;(joinGroupValue: string)
+
+  const [message, setMessage] = React.useState('')
+  ;(message: string)
+
+  const [messageStyle, setMessageStyle] = React.useState('')
+  ;(messageStyle: string)
 
   React.useEffect(() => {
     const fetchData = async () => {

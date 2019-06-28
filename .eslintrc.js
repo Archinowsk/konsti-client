@@ -53,6 +53,12 @@ module.exports = {
   },
 
   rules: {
+    // eslint
+    'no-unused-expressions': 'off', // False warnings with Flow
+
+    // eslint-plugin-flowtype
+    'flowtype/no-unused-expressions': 'error', // Fixed version of no-unused-expressions
+
     // eslint-plugin-react-hooks
     'react-hooks/rules-of-hooks': 'error',
 
