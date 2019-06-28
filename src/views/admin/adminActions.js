@@ -135,7 +135,7 @@ export const submitToggleAppOpen = (appOpen: boolean) => {
   }
 }
 
-export const submitToggleAppOpenAsync = (appOpen: boolean) => {
+const submitToggleAppOpenAsync = (appOpen: boolean) => {
   return {
     type: SUBMIT_TOGGLE_APP_OPEN,
     appOpen,

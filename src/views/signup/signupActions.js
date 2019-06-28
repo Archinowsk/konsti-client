@@ -25,7 +25,7 @@ export const submitSignup = (signupData: SignupData) => {
   }
 }
 
-export const submitSignupAsync = (signedGames: $ReadOnlyArray<Signup>) => {
+const submitSignupAsync = (signedGames: $ReadOnlyArray<Signup>) => {
   return {
     type: SUBMIT_SIGNED_GAMES,
     signedGames,

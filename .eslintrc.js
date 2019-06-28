@@ -47,6 +47,9 @@ module.exports = {
       version: '16.8',
     },
     polyfills: ['Promise', 'Array.from', 'Object.entries'],
+    'import/resolver': {
+      'babel-module': {},
+    },
   },
 
   rules: {
@@ -87,5 +90,8 @@ module.exports = {
     'react/jsx-uses-react': 'error',
     'react/jsx-uses-vars': 'error',
     'react/self-closing-comp': 'error',
+
+    // eslint-plugin-import
+    'import/no-unused-modules': ['error', { unusedExports: true }],
   },
 }
