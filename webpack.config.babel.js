@@ -65,6 +65,7 @@ const commonConfig = {
       meta: {
         'application-name': config.appName,
       },
+      lang: 'en',
       mobile: true,
     }),
     // $FlowFixMe: Property `HashedModuleIdsPlugin` is missing in  statics of function type.
@@ -312,4 +313,4 @@ const getWebpackConfig = () => {
 
 const webpackConfig = getWebpackConfig()
 
-export default webpackConfig
+export default webpackConfig // eslint-disable-line import/no-unused-modules
