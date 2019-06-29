@@ -38,7 +38,7 @@ export const ResultsByUsername: StatelessFunctionalComponent<Props> = (
         <div className='flex-table-row'>{t('gameTitle')}</div>
         <div className='flex-table-row'>{t('gameInfo.location')}</div>
       </div>
-      <div>{resultsTable}</div>
+      {resultsTable}
     </div>
   )
 

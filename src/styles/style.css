@@ -230,7 +230,6 @@ input:focus {
   border-bottom: solid 1px $disabled-gray;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
   padding: 10px 0;
 }
 
