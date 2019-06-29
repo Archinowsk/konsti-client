@@ -7,6 +7,11 @@ html {
   font-size: $font-size;
 }
 
+select {
+  font-size: $font-size;
+  padding: 4px;
+}
+
 input[type='text'],
 input[type='number'],
 input[type='password'],
