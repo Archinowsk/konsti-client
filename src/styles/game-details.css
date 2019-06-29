@@ -1,0 +1,19 @@
+.game-details-title {
+  font-weight: 600;
+  padding: 0 10px 0 0;
+}
+
+.game-details-row {
+  padding: 0 0 10px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.game-details-list {
+  padding-left: 30px;
+}
+
+.feedback-textarea {
+  margin: 20px 0 0;
+  width: 100%;
+}

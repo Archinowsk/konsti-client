@@ -22,11 +22,11 @@ export const Accordion: StatelessFunctionalComponent<Props> = (
   }
 
   return (
-    <div className='accordian'>
+    <div className='accordion'>
       {open && (
         <React.Fragment>
           <button onClick={() => onClick()}>
-            <FontAwesomeIcon className='accordian-icon' icon='angle-up' />
+            <FontAwesomeIcon className='accordion-icon' icon='angle-up' />
             <span>
               {t('hide')} {t(`${props.title}`)}
             </span>
@@ -38,7 +38,7 @@ export const Accordion: StatelessFunctionalComponent<Props> = (
       {!open && (
         <div>
           <button onClick={() => onClick()}>
-            <FontAwesomeIcon className='accordian-icon' icon='angle-down' />
+            <FontAwesomeIcon className='accordion-icon' icon='angle-down' />
             <span>
               {t('show')} {t(`${props.title}`)}
             </span>

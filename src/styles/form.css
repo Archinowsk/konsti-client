@@ -1,0 +1,61 @@
+.form-row {
+  align-items: center;
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: row;
+  width: 50%;
+  justify-content: flex-start;
+}
+
+@media (max-width: $breakpoint-phone) {
+  .form-row {
+    width: 100%;
+  }
+}
+
+.form-field {
+  align-items: center;
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: row;
+  padding: 8px 0;
+  width: 80%;
+}
+
+.form-field-icon {
+  padding: 0 0 0 8px;
+  font-size: $icon-size;
+}
+
+.form-field-error {
+  display: flex;
+  background-color: $background-gray;
+  color: $error-red;
+  width: 50%;
+}
+
+@media (max-width: $breakpoint-phone) {
+  .form-field-error {
+    width: 100%;
+  }
+}
+
+.form-field-error-message {
+  padding: 4px 0 4px 10px;
+}
+
+.form-input {
+  border: 1px solid $border-gray;
+  color: $font-gray;
+  height: 34px;
+  padding: 0 0 0 10px;
+  width: 100%;
+}
+
+.form-input.checkbox {
+  margin-right: 10px;
+}
+
+.checkbox {
+  width: 16px;
+}

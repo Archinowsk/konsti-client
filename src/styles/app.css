@@ -1,0 +1,28 @@
+#main {
+  background-color: #fff;
+  border: solid 1px #e3e7eb;
+  margin: 20px 0 0 0;
+  padding: 30px;
+}
+
+@media (max-width: $breakpoint-phone) {
+  #main {
+    border: solid 1px #fff;
+    margin: 0 0 10px 0;
+    padding: 0 10px;
+  }
+}
+
+.title {
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: row;
+  font-weight: 700;
+  justify-content: space-between;
+  margin: 0 0 20px;
+  margin: 20px 0;
+}
+
+.username {
+  padding: 0 0 0 10px;
+}

@@ -1,0 +1,8 @@
+.game-result {
+  border-bottom: solid 1px $disabled-gray;
+  padding-bottom: 10px;
+}
+
+.result-player-list {
+  padding-left: 30px;
+}

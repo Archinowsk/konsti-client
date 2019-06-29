@@ -2,7 +2,7 @@
 
 exports[`Loading should render correctly 1`] = `
 <div
-  className="accordian"
+  className="accordion"
 >
   <div>
     <button
@@ -10,7 +10,7 @@ exports[`Loading should render correctly 1`] = `
     >
       <FontAwesomeIcon
         border={false}
-        className="accordian-icon"
+        className="accordion-icon"
         fixedWidth={false}
         flip={null}
         icon="angle-down"

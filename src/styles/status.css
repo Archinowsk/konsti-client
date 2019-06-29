@@ -1,0 +1,16 @@
+.active {
+  background-color: $selected-button;
+  border: 1px solid $border-green;
+}
+
+.error {
+  color: $error-red;
+}
+
+.exception {
+  color: $error-red;
+}
+
+.success {
+  color: $success-green;
+}
