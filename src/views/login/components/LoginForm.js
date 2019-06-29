@@ -18,7 +18,7 @@ const LoginForm: StatelessFunctionalComponent<Props> = (props: Props) => {
 
   return (
     <div className='login-form'>
-      <p className='page-title'>{t('pageTitle.login')}</p>
+      <h2>{t('pageTitle.login')}</h2>
       <form onSubmit={handleSubmit}>
         <Field
           name='username'

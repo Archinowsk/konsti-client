@@ -201,7 +201,7 @@ export const GroupView: StatelessFunctionalComponent<{}> = () => {
 
   return (
     <div className='group-view'>
-      <p className='page-title'>{t('pages.group')}</p>
+      <h2>{t('pages.group')}</h2>
       <p>{t('groupSignupGuide')}</p>
 
       {loading && <Loading />}

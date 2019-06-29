@@ -31,12 +31,12 @@ export const ResultsView: StatelessFunctionalComponent<{}> = () => {
   return (
     <div className='results-view'>
       {loading && <Loading />}
-      {!loading && !results && <p className='page-title'>{t('noResults')}</p>}
+      {!loading && !results && <h2>{t('noResults')}</h2>}
       {!loading && results && (
         <React.Fragment>
-          <p className='page-title'>
+          <h2>
             {t('signupResultsfor')} {formattedDate}
-          </p>
+          </h2>
           <ResultsList results={results} />
         </React.Fragment>
       )}

@@ -198,13 +198,11 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
     <div className='signup-list'>
       {loading && <Loading />}
 
-      {!loading && signupTimes.length === 0 && (
-        <p className='page-title'>{t('noOpenSignups')}</p>
-      )}
+      {!loading && signupTimes.length === 0 && <h2>{t('noOpenSignups')}</h2>}
 
       {!loading && signupTimes.length !== 0 && (
         <React.Fragment>
-          <p className='page-title'>{t('signupOpen')}:</p>
+          <h2>{t('signupOpen')}:</h2>
           <div>{signupTimeButtons}</div>
         </React.Fragment>
       )}
