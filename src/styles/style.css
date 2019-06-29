@@ -137,16 +137,26 @@ button:disabled:focus {
   display: flex;
   flex: 0 1 auto;
   flex-direction: row;
-  justify-content: space-between;
   padding: 8px 0;
+  width: 40%;
 }
 
-.form-input-wrapper {
-  align-items: center;
-  display: flex;
-  flex: 0 1 auto;
-  flex-direction: row;
-  justify-content: space-between;
+@media (max-width: $breakpoint-phone) {
+  .form-field {
+    width: 100%;
+  }
+}
+
+.form-input {
+  border: 1px solid $border-gray;
+  color: $font-gray;
+  height: 30px;
+  padding: 0 0 0 10px;
+  width: 80%;
+}
+
+.form-input.checkbox {
+  margin-right: 10px;
 }
 
 .router-link {
@@ -183,18 +193,6 @@ input:focus {
   border: 1px solid #4d90fe;
   box-shadow: 0 0 5px 0 #4d90fe;
   box-sizing: border-box;
-}
-
-.form-input {
-  border: 1px solid $border-gray;
-  color: $font-gray;
-  height: 30px;
-  padding: 0 0 0 10px;
-  width: 100%;
-}
-
-.form-input.checkbox {
-  margin-right: 10px;
 }
 
 .game-details-title {

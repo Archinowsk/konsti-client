@@ -7,25 +7,20 @@ exports[`FormField should render correctly 1`] = `
   <div
     className="form-field"
   >
-    <div
-      className="form-input-wrapper"
-      id="password-wrapper"
-    >
-      <input
-        className="form-input"
-        id="password"
-        label="password"
-        name="password"
-        onBlur={[Function]}
-        onChange={[Function]}
-        onDragStart={[Function]}
-        onDrop={[Function]}
-        onFocus={[Function]}
-        placeholder="password"
-        type=""
-        value=""
-      />
-    </div>
+    <input
+      className="form-input"
+      id="password"
+      label="password"
+      name="password"
+      onBlur={[Function]}
+      onChange={[Function]}
+      onDragStart={[Function]}
+      onDrop={[Function]}
+      onFocus={[Function]}
+      placeholder="password"
+      type=""
+      value=""
+    />
   </div>
   <div
     className="form-field-error"
