@@ -21,7 +21,7 @@ const RegistrationForm: StatelessFunctionalComponent<Props> = (
 
   return (
     <div className='registration-form'>
-      <p className='page-title'>{t('pageTitle.registration')}</p>
+      <h2>{t('pageTitle.registration')}</h2>
       <form onSubmit={handleSubmit}>
         <Field
           name='username'
@@ -45,7 +45,7 @@ const RegistrationForm: StatelessFunctionalComponent<Props> = (
           validate={required}
         />
 
-        <label htmlFor='serial' className='help'>
+        <label htmlFor='serial' className='small'>
           {t('registrationSerialHelp')}
         </label>
 
