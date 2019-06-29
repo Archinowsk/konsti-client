@@ -237,6 +237,7 @@ input:focus {
 .flex-table-row {
   width: 33%;
   word-break: break-word;
+  padding: 0 20px 0 0;
 }
 
 .flex-table-header {
