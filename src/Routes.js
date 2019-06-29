@@ -1,6 +1,12 @@
 /* @flow */
 import React from 'react'
-import { BrowserRouter, Route, Link, Switch, Redirect } from 'react-router-dom'
+import {
+  BrowserRouter,
+  Route,
+  NavLink,
+  Switch,
+  Redirect,
+} from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import type { StatelessFunctionalComponent } from 'react'
@@ -29,10 +35,9 @@ export const Routes: StatelessFunctionalComponent<Props> = (props: Props) => {
       <BrowserRouter>
         <React.Fragment>
           <div className='routes'>
-            <Link to='/login' className='router-link'>
+            <NavLink to='/login' className='router-link'>
               {t('button.login')}
-            </Link>
-            <hr />
+            </NavLink>
           </div>
           <Switch>
             <Route path='/login' component={LoginView} />
@@ -49,16 +54,15 @@ export const Routes: StatelessFunctionalComponent<Props> = (props: Props) => {
         <React.Fragment>
           <div className='routes'>
             {userGroup === 'admin' && (
-              <Link to='/admin' className='router-link'>
+              <NavLink to='/admin' className='router-link'>
                 {t('pages.admin')}
-              </Link>
+              </NavLink>
             )}
             {(userGroup === 'user' || userGroup === 'admin') && (
-              <Link to='/logout' className='router-link'>
+              <NavLink to='/logout' className='router-link'>
                 {t('button.logout')}
-              </Link>
+              </NavLink>
             )}
-            <hr />
           </div>
           <Switch>
             <Route path='/admin' component={AdminView} />
@@ -75,24 +79,22 @@ export const Routes: StatelessFunctionalComponent<Props> = (props: Props) => {
       <BrowserRouter>
         <React.Fragment>
           <div className='routes'>
-            <Link to='/games' className='router-link'>
+            <NavLink to='/games' className='router-link'>
               {t('pages.allGames')}
-            </Link>
-            <Link to='/login' className='router-link'>
+            </NavLink>
+            <NavLink to='/login' className='router-link'>
               {t('button.login')}
-            </Link>
-            <Link to='/registration' className='router-link'>
+            </NavLink>
+            <NavLink to='/registration' className='router-link'>
               {t('button.register')}
-            </Link>
-
-            <hr />
+            </NavLink>
           </div>
 
           <Switch>
-            <Route exact path='/' component={AllGamesView} />
             <Route path='/login' component={LoginView} />
             <Route path='/registration' component={RegistrationView} />
             <Route path='/games' component={AllGamesView} />
+            <Redirect from='/' to='/games' />
             <Redirect from='/*' to='/login' />
           </Switch>
         </React.Fragment>
@@ -104,45 +106,43 @@ export const Routes: StatelessFunctionalComponent<Props> = (props: Props) => {
     <BrowserRouter>
       <React.Fragment>
         <div className='routes'>
-          <Link to='/games' className='router-link'>
+          <NavLink to='/games' className='router-link'>
             {t('pages.allGames')}
-          </Link>
+          </NavLink>
           {userGroup === 'user' && (
-            <Link to='/mygames' className='router-link'>
+            <NavLink to='/mygames' className='router-link'>
               {t('pages.myGames')}
-            </Link>
+            </NavLink>
           )}
           {userGroup === 'user' && (
-            <Link to='/signup' className='router-link'>
+            <NavLink to='/signup' className='router-link'>
               {t('pages.signUp')}
-            </Link>
+            </NavLink>
           )}
           {(userGroup === 'user' || userGroup === 'admin') && (
-            <Link to='/results' className='router-link'>
+            <NavLink to='/results' className='router-link'>
               {t('pages.results')}
-            </Link>
+            </NavLink>
           )}
 
           {userGroup === 'user' && (
-            <Link to='/group' className='router-link'>
+            <NavLink to='/group' className='router-link'>
               {t('pages.group')}
-            </Link>
+            </NavLink>
           )}
 
           {userGroup === 'admin' && (
-            <Link to='/admin' className='router-link'>
+            <NavLink to='/admin' className='router-link'>
               {t('pages.admin')}
-            </Link>
+            </NavLink>
           )}
           {(userGroup === 'user' || userGroup === 'admin') && (
-            <Link to='/logout' className='router-link'>
+            <NavLink to='/logout' className='router-link'>
               {t('button.logout')}
-            </Link>
+            </NavLink>
           )}
-          <hr />
         </div>
         <Switch>
-          <Route exact path='/' component={AllGamesView} />
           <Route path='/games' component={AllGamesView} />
           <Route path='/mygames' component={MyGamesView} />
           <Route path='/signup' component={SignupView} />
@@ -150,6 +150,7 @@ export const Routes: StatelessFunctionalComponent<Props> = (props: Props) => {
           <Route path='/group' component={GroupView} />
           <Route path='/admin' component={AdminView} />
           <Route path='/logout' component={LogoutView} />
+          <Redirect from='/' to='/games' />
           <Redirect from='/*' to='/' />
         </Switch>
       </React.Fragment>

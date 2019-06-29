@@ -123,10 +123,29 @@ footer p {
   margin-right: 10px;
 }
 
+.routes {
+  background-color: $background-gray;
+  border-bottom: 1px solid $border-gray;
+}
+
 .router-link {
   display: inline-block;
-  padding: 4px;
+  padding: 10px 20px 10px 10px;
   font-size: $link-font-size;
+  text-decoration: none;
+  color: $text-color;
+}
+
+.router-link:hover,
+.router-link:focus {
+  text-decoration: underline;
+  background-color: $background-hover;
+}
+
+.router-link.active {
+  text-decoration: underline;
+  background-color: $background-hover;
+  border: none;
 }
 
 .username {
