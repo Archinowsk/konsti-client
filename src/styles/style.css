@@ -41,7 +41,8 @@ a {
   text-decoration: underline;
 }
 
-a:hover {
+a:hover,
+a:focus {
   cursor: pointer;
 }
 
@@ -81,7 +82,8 @@ button {
   padding: 6px 20px;
 }
 
-button:hover {
+button:hover,
+button:focus {
   background-color: $background-green;
   border: 1px solid $border-green;
   color: $border-green;
@@ -91,7 +93,8 @@ button:disabled {
   background-color: $disabled-gray;
 }
 
-button:disabled:hover {
+button:disabled:hover,
+button:disabled:focus {
   color: $font-gray;
 }
 

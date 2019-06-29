@@ -1,6 +1,12 @@
 module.exports = {
-  extends: ['stylelint-config-standard', 'stylelint-config-prettier'],
   plugins: ['stylelint-no-unsupported-browser-features'],
+
+  extends: [
+    'stylelint-config-standard',
+    'stylelint-config-prettier',
+    'stylelint-a11y/recommended',
+  ],
+
   rules: {
     'plugin/no-unsupported-browser-features': [
       true,
