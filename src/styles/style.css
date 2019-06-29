@@ -38,32 +38,6 @@ footer p {
   margin: 0 0 16px;
 }
 
-button {
-  background-color: #fff;
-  border: 1px solid $border-gray;
-  border-radius: 5px;
-  color: $font-gray;
-  cursor: pointer;
-  margin: 10px 10px 10px 0;
-  padding: 6px 20px;
-}
-
-button:hover,
-button:focus {
-  background-color: $background-green;
-  border: 1px solid $border-green;
-  color: $border-green;
-}
-
-button:disabled {
-  background-color: $disabled-gray;
-}
-
-button:disabled:hover,
-button:disabled:focus {
-  color: $font-gray;
-}
-
 .active {
   background-color: $selected-button;
   border: 1px solid $border-green;
@@ -92,10 +66,18 @@ button:disabled:focus {
 }
 
 .form-row {
+  align-items: center;
   display: flex;
   flex: 0 1 auto;
-  flex-direction: column;
-  justify-content: space-between;
+  flex-direction: row;
+  width: 50%;
+  justify-content: flex-start;
+}
+
+@media (max-width: $breakpoint-phone) {
+  .form-row {
+    width: 100%;
+  }
 }
 
 .form-field {
@@ -104,21 +86,37 @@ button:disabled:focus {
   flex: 0 1 auto;
   flex-direction: row;
   padding: 8px 0;
-  width: 40%;
+  width: 80%;
+}
+
+.form-field-icon {
+  padding: 0 0 0 8px;
+  font-size: $icon-size;
+}
+
+.form-field-error {
+  display: flex;
+  background-color: $background-gray;
+  color: $error-red;
+  width: 50%;
 }
 
 @media (max-width: $breakpoint-phone) {
-  .form-field {
+  .form-field-error {
     width: 100%;
   }
+}
+
+.form-field-error-message {
+  padding: 4px 0 4px 10px;
 }
 
 .form-input {
   border: 1px solid $border-gray;
   color: $font-gray;
-  height: 30px;
+  height: 34px;
   padding: 0 0 0 10px;
-  width: 80%;
+  width: 100%;
 }
 
 .form-input.checkbox {
@@ -128,16 +126,11 @@ button:disabled:focus {
 .router-link {
   display: inline-block;
   padding: 4px;
+  font-size: $link-font-size;
 }
 
 .username {
   padding: 0 0 0 10px;
-}
-
-.form-field-error {
-  background-color: $background-gray;
-  color: $error-red;
-  padding: 4px 10px;
 }
 
 input {
@@ -259,8 +252,4 @@ input:focus {
 
 .game-details-list {
   padding-left: 30px;
-}
-
-.password-hide-icon {
-  padding: 0 0 0 6px;
 }

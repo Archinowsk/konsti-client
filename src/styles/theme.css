@@ -29,7 +29,7 @@ body {
 }
 
 .small {
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .bold {
@@ -48,4 +48,31 @@ label {
 ul {
   margin: 10px 0 0 30px;
   padding: 0;
+}
+
+button {
+  background-color: #fff;
+  border: 1px solid $border-gray;
+  border-radius: 5px;
+  color: $font-gray;
+  cursor: pointer;
+  margin: 10px 10px 10px 0;
+  padding: 6px 20px;
+  font-size: $button-font-size;
+}
+
+button:hover,
+button:focus {
+  background-color: $background-green;
+  border: 1px solid $border-green;
+  color: $border-green;
+}
+
+button:disabled {
+  background-color: $disabled-gray;
+}
+
+button:disabled:hover,
+button:disabled:focus {
+  color: $font-gray;
 }

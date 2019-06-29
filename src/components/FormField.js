@@ -41,33 +41,41 @@ export const FormField: StatelessFunctionalComponent<FieldProps> = (
   }
 
   return (
-    <div className='form-row'>
-      <div className='form-field'>
-        <input
-          className={classNames.join(' ')}
-          id={name}
-          label={t(name)}
-          name={name}
-          onBlur={onBlur}
-          onChange={onChange}
-          onDragStart={onDragStart}
-          onDrop={onDrop}
-          onFocus={onFocus}
-          placeholder={t(name)}
-          type={fieldType}
-          value={value}
-        />
-        {type === 'checkbox' && <label htmlFor={name}>{t(name)}</label>}
-        {type === 'password' && (
-          <FontAwesomeIcon
-            className='password-hide-icon'
-            icon={fieldType === 'password' ? 'eye' : 'eye-slash'}
-            onClick={togglePasswordVisibility}
+    <React.Fragment>
+      <div className='form-row'>
+        <div className='form-field'>
+          <input
+            className={classNames.join(' ')}
+            id={name}
+            label={t(name)}
+            name={name}
+            onBlur={onBlur}
+            onChange={onChange}
+            onDragStart={onDragStart}
+            onDrop={onDrop}
+            onFocus={onFocus}
+            placeholder={t(name)}
+            type={fieldType}
+            value={value}
           />
+          {type === 'checkbox' && <label htmlFor={name}>{t(name)}</label>}
+        </div>
+
+        {type === 'password' && (
+          <span className='form-field-icon'>
+            <FontAwesomeIcon
+              icon={fieldType === 'password' ? 'eye' : 'eye-slash'}
+              onClick={togglePasswordVisibility}
+            />
+          </span>
         )}
       </div>
 
-      {touched && error && <div className='form-field-error'>{t(error)}</div>}
-    </div>
+      {touched && error && (
+        <div className='form-field-error'>
+          <span className='form-field-error-message'>{t(error)}</span>
+        </div>
+      )}
+    </React.Fragment>
   )
 }

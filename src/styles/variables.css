@@ -12,8 +12,11 @@ $dragging-background: #add8e6;
 $draggable-background: #ccc;
 $selected-button: #f2f2f2;
 
-$breakpoint-phone: 420px;
+$breakpoint-phone: 500px;
 $breakpoint-tablet: 768px;
 $breakpoint-desktop: 1024px;
 
 $font-size: 16px;
+$icon-size: 20px;
+$button-font-size: 14px;
+$link-font-size: 18px;
