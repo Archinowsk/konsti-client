@@ -31,7 +31,7 @@ const reducer = combineReducers({
 // Reducer to reset state
 const rootReducer = (state, action) => {
   if (action.type === SUBMIT_LOGOUT) {
-    state = undefined
+    state = undefined // eslint-disable-line no-param-reassign
   }
 
   return reducer(state, action)
