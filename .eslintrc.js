@@ -99,6 +99,7 @@ module.exports = {
     'react/self-closing-comp': 'error',
 
     // eslint-plugin-import
-    'import/no-unused-modules': ['error', { unusedExports: true }],
+    // Useful but disabled because slows down ESLint
+    // 'import/no-unused-modules': ['error', { unusedExports: true }],
   },
 }
