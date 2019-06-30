@@ -20,17 +20,10 @@ export const submitJoinGroup = (groupData: GroupData) => {
     }
     if (response && response.status === 'success') {
       dispatch(submitGetGroup(groupData.groupCode))
-      dispatch(submitJoinGroupAsync(groupData.groupCode))
+      dispatch(submitUpdateGroupAsync(groupData.groupCode))
     }
 
     return response
-  }
-}
-
-const submitJoinGroupAsync = (groupCode: string) => {
-  return {
-    type: SUBMIT_UPDATE_GROUP,
-    playerGroup: groupCode,
   }
 }
 
@@ -48,14 +41,14 @@ export const submitCreateGroup = (groupData: GroupData) => {
     }
     if (response && response.status === 'success') {
       dispatch(submitGetGroup(groupData.groupCode))
-      dispatch(submitCreateGroupAsync(groupData.groupCode))
+      dispatch(submitUpdateGroupAsync(groupData.groupCode))
     }
 
     return response
   }
 }
 
-const submitCreateGroupAsync = (groupCode: string) => {
+const submitUpdateGroupAsync = (groupCode: string) => {
   return {
     type: SUBMIT_UPDATE_GROUP,
     playerGroup: groupCode,
