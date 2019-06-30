@@ -1,5 +1,10 @@
 /* @flow */
 import { SUBMIT_LOGIN } from 'views/login/loginActions'
+import {
+  SUBMIT_UPDATE_GROUP,
+  SUBMIT_LEAVE_GROUP,
+  SUBMIT_UPDATE_GROUP_MEMBERS,
+} from 'views/group/groupActions'
 
 import type { LoginState } from 'flow/redux.flow'
 
@@ -9,6 +14,8 @@ const initialState = {
   jwtToken: '',
   userGroup: '',
   serial: '',
+  playerGroup: '0',
+  groupMembers: [],
 }
 
 export const loginReducer = (
@@ -25,6 +32,18 @@ export const loginReducer = (
         userGroup: action.userGroup,
         serial: action.serial,
         playerGroup: action.playerGroup,
+      }
+    case SUBMIT_UPDATE_GROUP:
+      return {
+        ...state,
+        playerGroup: action.playerGroup,
+      }
+    case SUBMIT_LEAVE_GROUP:
+      return { ...state, playerGroup: '0', groupMembers: [] }
+    case SUBMIT_UPDATE_GROUP_MEMBERS:
+      return {
+        ...state,
+        groupMembers: action.groupMembers,
       }
     default:
       return state

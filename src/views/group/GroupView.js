@@ -7,7 +7,6 @@ import { Loading } from 'components/Loading'
 import {
   submitJoinGroup,
   submitCreateGroup,
-  submitGetGroup,
   submitLeaveGroup,
 } from 'views/group/groupActions'
 import { GroupMembersList } from 'views/group/components/GroupMembersList'
@@ -21,9 +20,9 @@ import type { StatelessFunctionalComponent } from 'react'
 export const GroupView: StatelessFunctionalComponent<{}> = () => {
   const username: string = useSelector(state => state.login.username)
   const serial: string = useSelector(state => state.login.serial)
-  const groupCode: string = useSelector(state => state.group.playerGroup)
+  const groupCode: string = useSelector(state => state.login.playerGroup)
   const groupMembers: $ReadOnlyArray<GroupMember> = useSelector(
-    state => state.group.groupMembers
+    state => state.login.groupMembers
   )
   const dispatch = useDispatch()
   const store = useStore()
@@ -50,11 +49,6 @@ export const GroupView: StatelessFunctionalComponent<{}> = () => {
   React.useEffect(() => {
     const fetchData = async () => {
       await loadData(store)
-
-      // Get group members if user is in a group
-      if (groupCode !== '0') {
-        await dispatch(submitGetGroup(groupCode))
-      }
     }
     fetchData()
     setLoading(false)

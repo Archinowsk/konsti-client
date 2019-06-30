@@ -3,15 +3,16 @@ import { submitGetResults } from 'views/results/resultsActions'
 import { submitGetGames } from 'views/all-games/allGamesActions'
 import { submitGetSettings } from 'views/admin/adminActions'
 import { submitGetUser } from 'views/my-games/myGamesActions'
+import { submitGetGroup } from 'views/group/groupActions'
 
 export const loadData = async (store: Object) => {
   const state = store.getState()
 
+  const { loggedIn, userGroup, playerGroup, username } = state.login
+  const { startTime } = state.admin
+
   // const adminSettingsLoaded = state.admin.adminSettingsLoaded
   // const myGamesLoaded = state.myGames.myGamesLoaded
-  const loggedIn = state.login.loggedIn
-  const startTime = state.admin.signupTime
-  const userGroup = state.login.userGroup
 
   // Get games data
   await store.dispatch(submitGetGames())
@@ -34,8 +35,12 @@ export const loadData = async (store: Object) => {
 
     // Get user data
     if (userGroup === 'user') {
-      const username = state.login.username
       await store.dispatch(submitGetUser(username))
+    }
+
+    // Get group members
+    if (playerGroup !== '0') {
+      await store.dispatch(submitGetGroup(playerGroup))
     }
   }
 }

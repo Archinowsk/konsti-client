@@ -16,17 +16,14 @@ export type AllGamesState = {|
   +games: $ReadOnlyArray<Game>,
 |}
 
-export type GroupState = {|
-  +playerGroup: string,
-  +groupMembers: $ReadOnlyArray<GroupMember>,
-|}
-
 export type LoginState = {|
   +username: string,
   +loggedIn: boolean,
   +jwtToken: string,
   +userGroup: string,
   +serial: string,
+  +playerGroup: string,
+  +groupMembers: $ReadOnlyArray<GroupMember>,
 |}
 
 export type MyGamesState = {|
@@ -43,4 +40,13 @@ export type ResultsState = {|
 export type SignupState = {|
   +signupTime: string,
   +selectedGames: $ReadOnlyArray<Signup>,
+|}
+
+export type State = {|
+  +allGames?: AllGamesState,
+  +login: LoginState,
+  +myGames?: MyGamesState,
+  +signup?: SignupState,
+  +admin?: AdminState,
+  +results?: ResultsState,
 |}
