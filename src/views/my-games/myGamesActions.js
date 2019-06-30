@@ -63,7 +63,9 @@ export const submitUpdateFavorites = (favoriteData: FavoriteData) => {
       return Promise.reject(updateFavoriteResponse)
     }
     if (updateFavoriteResponse && updateFavoriteResponse.status === 'success') {
-      dispatch(submitUpdateFavoritesAsync(favoriteData.favoritedGames))
+      dispatch(
+        submitUpdateFavoritesAsync(updateFavoriteResponse.favoritedGames)
+      )
     }
 
     return updateFavoriteResponse
