@@ -1,7 +1,7 @@
 /* @flow */
 import { SUBMIT_LOGIN } from 'views/login/loginActions'
 import {
-  SUBMIT_UPDATE_GROUP,
+  SUBMIT_UPDATE_GROUP_CODE,
   SUBMIT_LEAVE_GROUP,
   SUBMIT_UPDATE_GROUP_MEMBERS,
 } from 'views/group/groupActions'
@@ -33,7 +33,7 @@ export const loginReducer = (
         serial: action.serial,
         groupCode: action.groupCode,
       }
-    case SUBMIT_UPDATE_GROUP:
+    case SUBMIT_UPDATE_GROUP_CODE:
       return {
         ...state,
         groupCode: action.groupCode,

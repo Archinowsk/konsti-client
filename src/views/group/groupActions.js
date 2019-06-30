@@ -2,7 +2,7 @@
 import { postGroup, getGroup } from 'services/groupService'
 import type { GroupData, GroupMember } from 'flow/group.flow'
 
-export const SUBMIT_UPDATE_GROUP = 'SUBMIT_UPDATE_GROUP'
+export const SUBMIT_UPDATE_GROUP_CODE = 'SUBMIT_UPDATE_GROUP_CODE'
 export const SUBMIT_LEAVE_GROUP = 'SUBMIT_LEAVE_GROUP'
 export const SUBMIT_UPDATE_GROUP_MEMBERS = 'SUBMIT_UPDATE_GROUP_MEMBERS'
 
@@ -19,8 +19,8 @@ export const submitJoinGroup = (groupData: GroupData) => {
       return Promise.reject(joinGroupResponse)
     }
     if (joinGroupResponse && joinGroupResponse.status === 'success') {
-      dispatch(submitGetGroup(groupData.groupCode))
-      dispatch(submitUpdateGroupAsync(groupData.groupCode))
+      dispatch(submitGetGroup(joinGroupResponse.groupCode))
+      dispatch(submitUpdateGroupCodeAsync(joinGroupResponse.groupCode))
     }
 
     return joinGroupResponse
@@ -29,28 +29,28 @@ export const submitJoinGroup = (groupData: GroupData) => {
 
 export const submitCreateGroup = (groupData: GroupData) => {
   return async (dispatch: Function) => {
-    let response = null
+    let createGroupResponse = null
     try {
-      response = await postGroup(groupData)
+      createGroupResponse = await postGroup(groupData)
     } catch (error) {
       console.log(`postGroup error:`, error)
     }
 
-    if (response && response.error) {
-      return Promise.reject(response)
+    if (createGroupResponse && createGroupResponse.error) {
+      return Promise.reject(createGroupResponse)
     }
-    if (response && response.status === 'success') {
-      dispatch(submitGetGroup(groupData.groupCode))
-      dispatch(submitUpdateGroupAsync(groupData.groupCode))
+    if (createGroupResponse && createGroupResponse.status === 'success') {
+      dispatch(submitGetGroup(createGroupResponse.groupCode))
+      dispatch(submitUpdateGroupCodeAsync(createGroupResponse.groupCode))
     }
 
-    return response
+    return createGroupResponse
   }
 }
 
-const submitUpdateGroupAsync = (groupCode: string) => {
+const submitUpdateGroupCodeAsync = (groupCode: string) => {
   return {
-    type: SUBMIT_UPDATE_GROUP,
+    type: SUBMIT_UPDATE_GROUP_CODE,
     groupCode,
   }
 }
