@@ -20,8 +20,8 @@ export const submitLogin = (loginData: Login) => {
     if (response && response.status === 'success') {
       dispatch(
         submitLoginAsync({
-          username: loginData.username,
           loggedIn: true,
+          username: response.username,
           jwtToken: response.jwtToken,
           userGroup: response.userGroup,
           serial: response.serial,
