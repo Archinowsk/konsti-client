@@ -17,7 +17,7 @@ export const GroupMembersList: StatelessFunctionalComponent<Props> = (
   if (!groupMembers) return <div className='group-members-list' />
 
   const membersList = groupMembers.map(member => {
-    const leader = member.serial === member.playerGroup
+    const leader = member.serial === member.groupCode
     return (
       <React.Fragment key={member.username}>
         <li>

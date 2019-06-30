@@ -51,7 +51,7 @@ export const submitCreateGroup = (groupData: GroupData) => {
 const submitUpdateGroupAsync = (groupCode: string) => {
   return {
     type: SUBMIT_UPDATE_GROUP,
-    playerGroup: groupCode,
+    groupCode,
   }
 }
 

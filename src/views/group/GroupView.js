@@ -20,7 +20,7 @@ import type { StatelessFunctionalComponent } from 'react'
 export const GroupView: StatelessFunctionalComponent<{}> = () => {
   const username: string = useSelector(state => state.login.username)
   const serial: string = useSelector(state => state.login.serial)
-  const groupCode: string = useSelector(state => state.login.playerGroup)
+  const groupCode: string = useSelector(state => state.login.groupCode)
   const groupMembers: $ReadOnlyArray<GroupMember> = useSelector(
     state => state.login.groupMembers
   )

@@ -34,7 +34,7 @@ export type LoginData = {|
   jwtToken: string,
   userGroup: string,
   serial: string,
-  playerGroup: string,
+  groupCode: string,
 |}
 
 export type RegistrationData = {

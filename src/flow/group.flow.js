@@ -3,7 +3,7 @@ import type { Signup } from 'flow/user.flow'
 
 export type GroupMember = {|
   +enteredGames: $ReadOnlyArray<Signup>,
-  +playerGroup: string,
+  +groupCode: string,
   +serial: string,
   +signedGames: $ReadOnlyArray<Signup>,
   +username: string,

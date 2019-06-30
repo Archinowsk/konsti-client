@@ -21,7 +21,7 @@ export type LoginState = {|
   +jwtToken: string,
   +userGroup: string,
   +serial: string,
-  +playerGroup: string,
+  +groupCode: string,
   +groupMembers: $ReadOnlyArray<GroupMember>,
 |}
 

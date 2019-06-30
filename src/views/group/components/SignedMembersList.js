@@ -17,9 +17,7 @@ export const SignedMembersList: StatelessFunctionalComponent<Props> = (
 
   if (!groupMembers) return <div className='signed-games-list' />
 
-  const leader = groupMembers.find(
-    member => member.serial === member.playerGroup
-  )
+  const leader = groupMembers.find(member => member.serial === member.groupCode)
 
   if (!leader) return <div className='signed-games-list' />
 

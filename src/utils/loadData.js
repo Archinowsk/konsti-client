@@ -8,7 +8,7 @@ import { submitGetGroup } from 'views/group/groupActions'
 export const loadData = async (store: Object) => {
   const state = store.getState()
 
-  const { loggedIn, userGroup, playerGroup, username } = state.login
+  const { loggedIn, userGroup, groupCode, username } = state.login
   const { startTime } = state.admin
 
   // Get games data
@@ -29,8 +29,8 @@ export const loadData = async (store: Object) => {
     }
 
     // Get group members
-    if (playerGroup !== '0') {
-      await store.dispatch(submitGetGroup(playerGroup))
+    if (groupCode !== '0') {
+      await store.dispatch(submitGetGroup(groupCode))
     }
   }
 }

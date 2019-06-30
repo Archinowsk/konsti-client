@@ -14,7 +14,7 @@ const initialState = {
   jwtToken: '',
   userGroup: '',
   serial: '',
-  playerGroup: '0',
+  groupCode: '0',
   groupMembers: [],
 }
 
@@ -31,15 +31,15 @@ export const loginReducer = (
         jwtToken: action.jwtToken,
         userGroup: action.userGroup,
         serial: action.serial,
-        playerGroup: action.playerGroup,
+        groupCode: action.groupCode,
       }
     case SUBMIT_UPDATE_GROUP:
       return {
         ...state,
-        playerGroup: action.playerGroup,
+        groupCode: action.groupCode,
       }
     case SUBMIT_LEAVE_GROUP:
-      return { ...state, playerGroup: '0', groupMembers: [] }
+      return { ...state, groupCode: '0', groupMembers: [] }
     case SUBMIT_UPDATE_GROUP_MEMBERS:
       return {
         ...state,
