@@ -5,26 +5,26 @@ import type { RegistrationData } from 'flow/user.flow'
 
 export const submitRegistration = (registrationData: RegistrationData) => {
   return async (dispatch: Function) => {
-    let response = null
+    let registrationResponse = null
     try {
-      response = await postRegistration(registrationData)
+      registrationResponse = await postRegistration(registrationData)
     } catch (error) {
       return Promise.reject(error)
     }
 
-    if (response && response.error) {
-      return Promise.reject(response)
+    if (registrationResponse && registrationResponse.error) {
+      return Promise.reject(registrationResponse)
     }
 
-    if (response && response.status === 'success') {
+    if (registrationResponse && registrationResponse.status === 'success') {
       dispatch(
         submitLogin({
-          username: registrationData.username,
-          password: registrationData.password,
+          username: registrationResponse.username,
+          password: registrationResponse.password,
         })
       )
     }
 
-    return response
+    return registrationResponse
   }
 }
