@@ -31,7 +31,7 @@ export type Login = {|
 export type LoginData = {|
   username: string,
   loggedIn: boolean,
-  jwtToken: string,
+  jwt: string,
   userGroup: string,
   serial: string,
   groupCode: string,

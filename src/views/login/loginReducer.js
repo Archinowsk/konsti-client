@@ -11,7 +11,7 @@ import type { LoginState } from 'flow/redux.flow'
 const initialState = {
   username: '',
   loggedIn: false,
-  jwtToken: '',
+  jwt: '',
   userGroup: '',
   serial: '',
   groupCode: '0',
@@ -28,7 +28,7 @@ export const loginReducer = (
         ...state,
         username: action.username,
         loggedIn: action.loggedIn,
-        jwtToken: action.jwtToken,
+        jwt: action.jwt,
         userGroup: action.userGroup,
         serial: action.serial,
         groupCode: action.groupCode,

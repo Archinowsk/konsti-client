@@ -7,5 +7,5 @@ export const getJWT = () => {
     console.log('No login info in state')
     return 'invalid token'
   }
-  return state.login.jwtToken
+  return state.login.jwt
 }

@@ -18,7 +18,7 @@ export type AllGamesState = {|
 export type LoginState = {|
   +username: string,
   +loggedIn: boolean,
-  +jwtToken: string,
+  +jwt: string,
   +userGroup: string,
   +serial: string,
   +groupCode: string,
