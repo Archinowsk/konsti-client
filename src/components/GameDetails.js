@@ -57,8 +57,8 @@ const GameDetails: StatelessFunctionalComponent<Props> = (props: Props) => {
     if (!game || !game.gameId) return
 
     // Check if in favorites
-    favoritedGames.find(favoritedGameg => {
-      if (favoritedGameg.gameId === game.gameId) {
+    favoritedGames.find(favoritedGame => {
+      if (favoritedGame.gameId === game.gameId) {
         setFavorited(true)
       }
     })
