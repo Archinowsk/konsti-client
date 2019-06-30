@@ -8,22 +8,22 @@ export const SUBMIT_UPDATE_GROUP_MEMBERS = 'SUBMIT_UPDATE_GROUP_MEMBERS'
 
 export const submitJoinGroup = (groupData: GroupData) => {
   return async (dispatch: Function) => {
-    let response = null
+    let joinGroupResponse = null
     try {
-      response = await postGroup(groupData)
+      joinGroupResponse = await postGroup(groupData)
     } catch (error) {
       console.log(`postGroup error:`, error)
     }
 
-    if (response && response.error) {
-      return Promise.reject(response)
+    if (joinGroupResponse && joinGroupResponse.error) {
+      return Promise.reject(joinGroupResponse)
     }
-    if (response && response.status === 'success') {
+    if (joinGroupResponse && joinGroupResponse.status === 'success') {
       dispatch(submitGetGroup(groupData.groupCode))
       dispatch(submitUpdateGroupAsync(groupData.groupCode))
     }
 
-    return response
+    return joinGroupResponse
   }
 }
 
