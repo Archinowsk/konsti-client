@@ -9,20 +9,20 @@ export const SUBMIT_UPDATE_FAVORITES = 'SUBMIT_UPDATE_FAVORITES'
 
 export const submitGetUser = (username: string) => {
   return async (dispatch: Function) => {
-    let response = null
+    let getUserResponse = null
     try {
-      response = await getUser(username)
+      getUserResponse = await getUser(username)
     } catch (error) {
       console.log(`getUser error:`, error)
     }
 
-    if (response && response.error) {
-      return Promise.reject(response)
+    if (getUserResponse && getUserResponse.error) {
+      return Promise.reject(getUserResponse)
     }
-    if (response && response.status === 'success') {
-      const enteredGames = response.games.enteredGames
-      const favoritedGames = response.games.favoritedGames
-      const signedGames = response.games.signedGames
+    if (getUserResponse && getUserResponse.status === 'success') {
+      const enteredGames = getUserResponse.games.enteredGames
+      const favoritedGames = getUserResponse.games.favoritedGames
+      const signedGames = getUserResponse.games.signedGames
 
       dispatch(
         submitGetUserAsync({
@@ -33,7 +33,7 @@ export const submitGetUser = (username: string) => {
       )
     }
 
-    return response
+    return getUserResponse
   }
 }
 
@@ -52,21 +52,21 @@ const submitGetUserAsync = ({
 
 export const submitUpdateFavorites = (favoriteData: FavoriteData) => {
   return async (dispatch: Function) => {
-    let response = null
+    let updateFavoriteResponse = null
     try {
-      response = await postFavorite(favoriteData)
+      updateFavoriteResponse = await postFavorite(favoriteData)
     } catch (error) {
       console.log(`postFavorite error:`, error)
     }
 
-    if (response && response.error) {
-      return Promise.reject(response)
+    if (updateFavoriteResponse && updateFavoriteResponse.error) {
+      return Promise.reject(updateFavoriteResponse)
     }
-    if (response && response.status === 'success') {
+    if (updateFavoriteResponse && updateFavoriteResponse.status === 'success') {
       dispatch(submitUpdateFavoritesAsync(favoriteData.favoritedGames))
     }
 
-    return response
+    return updateFavoriteResponse
   }
 }
 

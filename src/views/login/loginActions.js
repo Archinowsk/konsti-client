@@ -6,31 +6,31 @@ export const SUBMIT_LOGIN = 'SUBMIT_LOGIN'
 
 export const submitLogin = (loginData: Login) => {
   return async (dispatch: Function) => {
-    let response = null
+    let loginResponse = null
     try {
-      response = await postLogin(loginData)
+      loginResponse = await postLogin(loginData)
     } catch (error) {
       console.log(`postLogin error:`, error)
       dispatch(submitLoginAsync(error))
     }
 
-    if (response && response.error) {
-      return Promise.reject(response)
+    if (loginResponse && loginResponse.error) {
+      return Promise.reject(loginResponse)
     }
-    if (response && response.status === 'success') {
+    if (loginResponse && loginResponse.status === 'success') {
       dispatch(
         submitLoginAsync({
           loggedIn: true,
-          username: response.username,
-          jwtToken: response.jwtToken,
-          userGroup: response.userGroup,
-          serial: response.serial,
-          groupCode: response.groupCode,
+          username: loginResponse.username,
+          jwtToken: loginResponse.jwtToken,
+          userGroup: loginResponse.userGroup,
+          serial: loginResponse.serial,
+          groupCode: loginResponse.groupCode,
         })
       )
     }
 
-    return response
+    return loginResponse
   }
 }
 

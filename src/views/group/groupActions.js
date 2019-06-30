@@ -57,21 +57,21 @@ const submitUpdateGroupCodeAsync = (groupCode: string) => {
 
 export const submitGetGroup = (groupCode: string) => {
   return async (dispatch: Function) => {
-    let response = null
+    let getGroupResponse = null
     try {
-      response = await getGroup(groupCode)
+      getGroupResponse = await getGroup(groupCode)
     } catch (error) {
       console.log(`postGroup error:`, error)
     }
 
-    if (response && response.error) {
-      return Promise.reject(response)
+    if (getGroupResponse && getGroupResponse.error) {
+      return Promise.reject(getGroupResponse)
     }
-    if (response && response.status === 'success') {
-      dispatch(submitGetGroupAsync(response.results))
+    if (getGroupResponse && getGroupResponse.status === 'success') {
+      dispatch(submitGetGroupAsync(getGroupResponse.results))
     }
 
-    return response
+    return getGroupResponse
   }
 }
 
