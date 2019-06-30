@@ -8,20 +8,20 @@ export const SUBMIT_SIGNED_GAMES = 'SUBMIT_SIGNED_GAMES'
 
 export const submitSignup = (signupData: SignupData) => {
   return async (dispatch: Function) => {
-    let response = null
+    let signupResponse = null
     try {
-      response = await postSignup(signupData)
+      signupResponse = await postSignup(signupData)
     } catch (error) {
       console.log(`postSignup error:`, error)
     }
 
-    if (response && response.error) {
-      return Promise.reject(response)
-    } else if (response && response.status === 'success') {
-      dispatch(submitSignupAsync(response.signedGames))
+    if (signupResponse && signupResponse.error) {
+      return Promise.reject(signupResponse)
+    } else if (signupResponse && signupResponse.status === 'success') {
+      dispatch(submitSignupAsync(signupResponse.signedGames))
     }
 
-    return response
+    return signupResponse
   }
 }
 
