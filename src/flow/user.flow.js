@@ -24,8 +24,9 @@ export type FavoriteData = {|
 |}
 
 export type Login = {|
-  +username: string,
-  +password: string,
+  +username?: string,
+  +password?: string,
+  +jwt?: string,
 |}
 
 export type LoginData = {|

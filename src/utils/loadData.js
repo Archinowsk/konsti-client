@@ -4,6 +4,7 @@ import { submitGetGames } from 'views/all-games/allGamesActions'
 import { submitGetSettings } from 'views/admin/adminActions'
 import { submitGetUser } from 'views/my-games/myGamesActions'
 import { submitGetGroup } from 'views/group/groupActions'
+import { submitLogin } from 'views/login/loginActions'
 
 export const loadData = async (store: Object) => {
   const state = store.getState()
@@ -18,7 +19,7 @@ export const loadData = async (store: Object) => {
   await store.dispatch(submitGetSettings())
 
   if (!loggedIn && jwt) {
-    console.log('restore session')
+    await store.dispatch(submitLogin({ jwt }))
   }
 
   if (loggedIn) {
