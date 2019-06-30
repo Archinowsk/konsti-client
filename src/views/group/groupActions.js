@@ -84,26 +84,27 @@ const submitGetGroupAsync = (groupMembers: $ReadOnlyArray<GroupMember>) => {
 
 export const submitLeaveGroup = (groupData: GroupData) => {
   return async (dispatch: Function) => {
-    let response = null
+    let leaveGroupResponse = null
     try {
-      response = await postGroup(groupData)
+      leaveGroupResponse = await postGroup(groupData)
     } catch (error) {
       console.log(`postGroup error:`, error)
     }
 
-    if (response && response.error) {
-      return Promise.reject(response)
+    if (leaveGroupResponse && leaveGroupResponse.error) {
+      return Promise.reject(leaveGroupResponse)
     }
-    if (response && response.status === 'success') {
-      dispatch(submitLeaveGroupAsync())
+    if (leaveGroupResponse && leaveGroupResponse.status === 'success') {
+      dispatch(submitLeaveGroupAsync(leaveGroupResponse.groupCode))
     }
 
-    return response
+    return leaveGroupResponse
   }
 }
 
-const submitLeaveGroupAsync = () => {
+const submitLeaveGroupAsync = (groupCode: string) => {
   return {
     type: SUBMIT_LEAVE_GROUP,
+    groupCode,
   }
 }

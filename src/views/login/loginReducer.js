@@ -39,7 +39,7 @@ export const loginReducer = (
         groupCode: action.groupCode,
       }
     case SUBMIT_LEAVE_GROUP:
-      return { ...state, groupCode: '0', groupMembers: [] }
+      return { ...state, groupCode: action.groupCode, groupMembers: [] }
     case SUBMIT_UPDATE_GROUP_MEMBERS:
       return {
         ...state,
