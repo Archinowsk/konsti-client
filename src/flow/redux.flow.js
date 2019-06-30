@@ -7,7 +7,6 @@ import type { Result } from 'flow/result.flow'
 export type AdminState = {|
   +hiddenGames: $ReadOnlyArray<Game>,
   +signupTime: string,
-  +adminSettingsLoaded: boolean,
   +testTime: string,
   +appOpen: boolean,
 |}
@@ -30,7 +29,6 @@ export type MyGamesState = {|
   +enteredGames: $ReadOnlyArray<Signup>,
   +favoritedGames: $ReadOnlyArray<Game>,
   +signedGames: $ReadOnlyArray<Signup>,
-  +myGamesLoaded: boolean,
 |}
 
 export type ResultsState = {|

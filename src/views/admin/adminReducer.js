@@ -11,7 +11,6 @@ import type { AdminState } from 'flow/redux.flow'
 const initialState = {
   hiddenGames: [],
   signupTime: '',
-  adminSettingsLoaded: false,
   testTime: '',
   appOpen: true,
 }
@@ -28,7 +27,6 @@ export const adminReducer = (
         ...state,
         hiddenGames: action.hiddenGames,
         signupTime: action.signupTime,
-        adminSettingsLoaded: action.adminSettingsLoaded,
         appOpen: action.appOpen,
       }
     case SUBMIT_SELECT_SIGNUP_TIME:

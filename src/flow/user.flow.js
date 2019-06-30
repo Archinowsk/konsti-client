@@ -48,5 +48,4 @@ export type UserGames = {
   +enteredGames: $ReadOnlyArray<Signup>,
   +favoritedGames: $ReadOnlyArray<Game>,
   +signedGames: $ReadOnlyArray<Signup>,
-  +myGamesLoaded: boolean,
 }

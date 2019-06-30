@@ -54,7 +54,6 @@ export const submitGetSettings = () => {
     if (settingsResponse && settingsResponse.status === 'success') {
       dispatch(
         submitGetSettingsAsync({
-          adminSettingsLoaded: true,
           hiddenGames: settingsResponse.hiddenGames,
           signupTime: settingsResponse.signupTime,
           appOpen: settingsResponse.appOpen,
@@ -69,14 +68,12 @@ export const submitGetSettings = () => {
 const submitGetSettingsAsync = ({
   hiddenGames,
   signupTime,
-  adminSettingsLoaded,
   appOpen,
 }: Settings) => {
   return {
     type: SUBMIT_GET_SETTINGS,
     hiddenGames,
     signupTime,
-    adminSettingsLoaded,
     appOpen,
   }
 }

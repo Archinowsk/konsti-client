@@ -11,7 +11,6 @@ const initialState = {
   enteredGames: [],
   favoritedGames: [],
   signedGames: [],
-  myGamesLoaded: false,
 }
 
 export const myGamesReducer = (
@@ -25,7 +24,6 @@ export const myGamesReducer = (
         enteredGames: action.enteredGames,
         favoritedGames: action.favoritedGames,
         signedGames: action.signedGames,
-        myGamesLoaded: action.myGamesLoaded,
       }
     case SUBMIT_UPDATE_FAVORITES:
       return {

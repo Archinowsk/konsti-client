@@ -29,7 +29,6 @@ export const submitGetUser = (username: string) => {
           enteredGames,
           favoritedGames,
           signedGames,
-          myGamesLoaded: true,
         })
       )
     }
@@ -42,14 +41,12 @@ const submitGetUserAsync = ({
   enteredGames,
   favoritedGames,
   signedGames,
-  myGamesLoaded,
 }: UserGames) => {
   return {
     type: SUBMIT_GET_USER_GAMES,
     enteredGames,
     favoritedGames,
     signedGames,
-    myGamesLoaded,
   }
 }
 

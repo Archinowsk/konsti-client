@@ -11,18 +11,8 @@ export const loadData = async (store: Object) => {
   const { loggedIn, userGroup, playerGroup, username } = state.login
   const { startTime } = state.admin
 
-  // const adminSettingsLoaded = state.admin.adminSettingsLoaded
-  // const myGamesLoaded = state.myGames.myGamesLoaded
-
   // Get games data
   await store.dispatch(submitGetGames())
-
-  /*
-  if (!adminSettingsLoaded) {
-    // Get settings data
-    await store.dispatch(submitGetSettings())
-  }
-  */
 
   // Get settings data
   await store.dispatch(submitGetSettings())
