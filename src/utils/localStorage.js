@@ -1,5 +1,5 @@
 /* @flow */
-import type { State } from 'flow/redux.flow'
+import type { LocalStorageState } from 'flow/redux.flow'
 
 export const loadState = () => {
   try {
@@ -14,7 +14,7 @@ export const loadState = () => {
   }
 }
 
-export const saveState = (state: State) => {
+export const saveState = (state: LocalStorageState) => {
   try {
     const serializedState = JSON.stringify(state)
     localStorage.setItem('state', serializedState)

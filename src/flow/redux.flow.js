@@ -40,11 +40,6 @@ export type SignupState = {|
   +selectedGames: $ReadOnlyArray<Signup>,
 |}
 
-export type State = {|
-  +allGames?: AllGamesState,
-  +login: LoginState,
-  +myGames?: MyGamesState,
-  +signup?: SignupState,
-  +admin?: AdminState,
-  +results?: ResultsState,
+export type LocalStorageState = {|
+  login: { jwt: string },
 |}

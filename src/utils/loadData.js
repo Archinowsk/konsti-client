@@ -8,7 +8,7 @@ import { submitGetGroup } from 'views/group/groupActions'
 export const loadData = async (store: Object) => {
   const state = store.getState()
 
-  const { loggedIn, userGroup, groupCode, username } = state.login
+  const { loggedIn, userGroup, groupCode, username, jwt } = state.login
   const { startTime } = state.admin
 
   // Get games data
@@ -16,6 +16,10 @@ export const loadData = async (store: Object) => {
 
   // Get settings data
   await store.dispatch(submitGetSettings())
+
+  if (!loggedIn && jwt) {
+    console.log('restore session')
+  }
 
   if (loggedIn) {
     // Get results data

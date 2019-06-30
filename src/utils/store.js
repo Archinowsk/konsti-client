@@ -57,7 +57,7 @@ export const store = createStore(rootReducer, persistedState, enhancer)
 store.subscribe(
   _.throttle(() => {
     saveState({
-      login: store.getState().login,
+      login: { jwt: store.getState().login.jwt },
     })
   }, 1000)
 )
