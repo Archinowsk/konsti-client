@@ -1,5 +1,6 @@
 /* @flow */
 import { postLogin } from 'services/loginServices'
+import { saveSession, clearSession } from 'utils/localStorage'
 import type { Login, LoginData } from 'flow/user.flow'
 
 export const SUBMIT_LOGIN = 'SUBMIT_LOGIN'
@@ -11,13 +12,19 @@ export const submitLogin = (loginData: Login) => {
       loginResponse = await postLogin(loginData)
     } catch (error) {
       console.log(`postLogin error:`, error)
-      dispatch(submitLoginAsync(error))
+      clearSession()
+      return Promise.reject(loginResponse)
     }
 
     if (loginResponse && loginResponse.error) {
+      clearSession()
       return Promise.reject(loginResponse)
     }
     if (loginResponse && loginResponse.status === 'success') {
+      saveSession({
+        login: { jwt: loginResponse.jwt },
+      })
+
       dispatch(
         submitLoginAsync({
           loggedIn: true,

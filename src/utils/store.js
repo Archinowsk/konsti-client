@@ -2,9 +2,8 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
-import _ from 'lodash'
 import { config } from 'config'
-import { loadState, saveState } from 'utils/localStorage'
+import { loadSession } from 'utils/localStorage'
 
 // Reducers
 import { reducer as formReducer } from 'redux-form'
@@ -46,18 +45,9 @@ const composeEnhancers = composeWithDevTools({
 
 const enhancer = composeEnhancers(middlewares)
 
-// Persisted state from localStorage
-const persistedState = loadState()
+// Load persisted state from localStorage
+const persistedState = loadSession()
 
 // Create a Redux store object that holds the app state
 /* $FlowFixMe: Redux flow-typed missing generics types */
 export const store = createStore(rootReducer, persistedState, enhancer)
-
-// Write state to localStorage on state change, max once every 1000ms
-store.subscribe(
-  _.throttle(() => {
-    saveState({
-      login: { jwt: store.getState().login.jwt },
-    })
-  }, 1000)
-)
