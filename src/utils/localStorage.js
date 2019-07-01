@@ -29,7 +29,7 @@ export const saveSession = (state: LocalStorageState) => {
 
 export const clearSession = () => {
   try {
-    localStorage.setItem('state', '')
+    localStorage.removeItem('state')
   } catch (error) {
     console.error(error)
   }
