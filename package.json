@@ -24,7 +24,9 @@
     "stylelint": "stylelint src/**/*.css --fix",
     "test:coverage": "jest --coverage --colors",
     "test:watch": "jest --watch",
-    "test": "jest"
+    "test": "jest",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "1.2.19",
@@ -51,7 +53,8 @@
     "redux-thunk": "2.3.0",
     "regenerator-runtime": "0.13.2",
     "request": "2.88.0",
-    "request-promise-native": "1.0.7"
+    "request-promise-native": "1.0.7",
+    "snyk": "^1.189.0"
   },
   "devDependencies": {
     "@babel/core": "7.4.5",
@@ -160,5 +163,6 @@
       "prettier --write",
       "git add"
     ]
-  }
+  },
+  "snyk": true
 }
