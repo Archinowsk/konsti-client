@@ -20,8 +20,8 @@ export const TimeSelector: StatelessFunctionalComponent<{}> = () => {
   ]
 
   React.useEffect(() => {
-    dispatch(submitSetTestTime(_.first(times)))
-  }, [])
+    if (!testTime) dispatch(submitSetTestTime(_.first(times)))
+  })
 
   const setTestTime = event => {
     dispatch(submitSetTestTime(event.target.value))
