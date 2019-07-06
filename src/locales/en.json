@@ -141,12 +141,10 @@
   "exceptionInTime": "Please note the exception in signup end time.",
   "signupView": {
     "signupOpenGames": "Open games",
-    "priority1": "Game Wish 1",
-    "priority2": "Game Wish 2",
-    "priority3": "Game Wish 3"
+    "selectedGames": "Selected games"
   },
   "details": "Details",
-  "onlyOneGameWarning": "Only one game allowed",
+  "gameLimitWarning": "Only three selected games allowed",
   "enterGroupMemberCode": "User's code",
   "enterGroupLeaderCode": "Group leader's code",
   "joinGroup": "Join group",

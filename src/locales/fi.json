@@ -142,12 +142,10 @@
   "exceptionInTime": "Huomaa poikkeava ilmoittautumisen päättymisaika.",
   "signupView": {
     "signupOpenGames": "Avoimet pelit",
-    "priority1": "Pelitoive 1",
-    "priority2": "Pelitoive 2",
-    "priority3": "Pelitoive 3"
+    "selectedGames": "Valitut pelit"
   },
   "details": "Lisätietoja",
-  "onlyOneGameWarning": "Vain yksi peli sallittu",
+  "gameLimitWarning": "Voit valita enintään kolme peliä",
   "enterGroupMemberCode": "Käyttäjän koodi",
   "enterGroupLeaderCode": "Ryhmänjohtajan koodi",
   "joinGroup": "Liity ryhmään",

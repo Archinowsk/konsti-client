@@ -4,12 +4,12 @@
   flex-direction: row;
 }
 
-.games-row {
+.available-games-row {
   margin: 0 10px 0 0;
   width: 50%;
 }
 
-.priority-row {
+.selected-games-row {
   width: 50%;
 }
 
@@ -21,6 +21,11 @@
 
 .drop-row.dragging {
   background-color: $dragging-background;
+}
+
+.drop-row.availableGames,
+.drop-row.selectedGames {
+  min-height: 500px;
 }
 
 .draggable-item {

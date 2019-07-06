@@ -231,7 +231,7 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
             games={filteredGames}
             signupTime={signupTime}
             callback={updateSelectedGames}
-            selectedGames={selectedGames}
+            initialSelectedGames={selectedGames}
             signedGames={signedGames}
           />
         </React.Fragment>

@@ -25,8 +25,6 @@ export type Game = {|
 |}
 
 export type UpdatedPositions = {|
-  +gameList?: $ReadOnlyArray<Game>,
-  +priority1?: $ReadOnlyArray<Game>,
-  +priority2?: $ReadOnlyArray<Game>,
-  +priority3?: $ReadOnlyArray<Game>,
+  +availableGames?: $ReadOnlyArray<Game>,
+  +selectedGames?: $ReadOnlyArray<Game>,
 |}
