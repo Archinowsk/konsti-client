@@ -2,6 +2,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector, useStore } from 'react-redux'
+import _ from 'lodash'
 import { timeFormatter } from 'utils/timeFormatter'
 import {
   submitSignup,
@@ -120,32 +121,23 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
     setSubmitting(false)
   }
 
-  // Get games that have signup open and are not hidden
+  // Get games that have are not hidden, have signup open, and are not signed
   const filterGames = () => {
-    // Remove hidden games
-    const visibleGames = []
-    for (let game of games) {
-      let match = false
-      for (let hiddenGame of hiddenGames) {
-        if (game.gameId === hiddenGame.gameId) {
-          match = true
-          break
-        }
-      }
-      if (!match) {
-        visibleGames.push(game)
-      }
-    }
+    const visibleGames = _.differenceBy(games, hiddenGames, 'gameId')
 
-    // Get games for current signup time
-    const filteredGames = []
-    visibleGames.forEach(game => {
-      if (game.startTime === signupTime) {
-        filteredGames.push(game)
-      }
-    })
+    const signedGameDetails = signedGames.map(
+      signedGame => signedGame.gameDetails
+    )
 
-    return filteredGames
+    const nonSignedGames = _.differenceBy(
+      visibleGames,
+      signedGameDetails,
+      'gameId'
+    )
+
+    return nonSignedGames.filter(
+      nonSignedGame => nonSignedGame.startTime === signupTime
+    )
   }
 
   // Callback from child component

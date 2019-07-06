@@ -3,7 +3,6 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 /* $FlowFixMe: Cannot import `DragDropContext` because there is no `DragDropContext` export in `react-beautiful-dnd`. */
 import { DragDropContext } from 'react-beautiful-dnd'
-import _ from 'lodash'
 import { DropRow } from 'views/signup/components/DropRow'
 import { reorder, move } from 'utils/dragAndDrop'
 import { sleep } from 'utils/sleep'
@@ -54,19 +53,6 @@ export const DragAndDropList: StatelessFunctionalComponent<Props> = (
   }, [availableGames, selectedGames])
 
   const reloadState = () => {
-    const notSelectedGames = games.filter(game => {
-      for (let signedGame of signedGames) {
-        if (game.gameId === signedGame.gameDetails.gameId) {
-          return undefined
-        }
-      }
-      return game
-    })
-
-    const availableGames = _.sortBy(notSelectedGames, [
-      notSelectedGame => notSelectedGame.title.toLowerCase(),
-    ])
-
     const selectedGames = []
 
     for (let signedGame of signedGames) {
@@ -75,24 +61,11 @@ export const DragAndDropList: StatelessFunctionalComponent<Props> = (
       }
     }
 
-    setAvailableGames(availableGames)
+    setAvailableGames(games)
     setSelectedGames(selectedGames)
   }
 
   const loadState = () => {
-    const notSelectedGames = games.filter(game => {
-      for (let selectedGame of initialSelectedGames) {
-        if (game.gameId === selectedGame.gameDetails.gameId) {
-          return undefined
-        }
-      }
-      return game
-    })
-
-    const availableGames = _.sortBy(notSelectedGames, [
-      notSelectedGame => notSelectedGame.title.toLowerCase(),
-    ])
-
     const selectedGames = []
 
     for (let selectedGame of initialSelectedGames) {
@@ -101,7 +74,7 @@ export const DragAndDropList: StatelessFunctionalComponent<Props> = (
       }
     }
 
-    setAvailableGames(availableGames)
+    setAvailableGames(games)
     setSelectedGames(selectedGames)
   }
 
