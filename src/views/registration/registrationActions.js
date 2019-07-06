@@ -19,8 +19,8 @@ export const submitRegistration = (registrationData: RegistrationData) => {
     if (registrationResponse && registrationResponse.status === 'success') {
       dispatch(
         submitLogin({
-          username: registrationResponse.username,
-          password: registrationResponse.password,
+          username: registrationData.username,
+          password: registrationData.password,
         })
       )
     }
