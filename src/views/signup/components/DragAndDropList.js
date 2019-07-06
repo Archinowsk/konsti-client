@@ -9,74 +9,27 @@ import { sleep } from 'utils/sleep'
 import { config } from 'config'
 import type { StatelessFunctionalComponent } from 'react'
 import type { Game, UpdatedPositions } from 'flow/game.flow'
-import type { Signup } from 'flow/user.flow'
 
 type Props = {|
-  callback: Function,
-  games: $ReadOnlyArray<Game>,
-  initialSelectedGames: $ReadOnlyArray<Signup>,
-  signedGames: $ReadOnlyArray<Signup>,
-  signupTime: string,
+  updateSelectedGames: Function,
+  updateAvailableGames: Function,
+  availableGames: $ReadOnlyArray<Game>,
+  selectedGames: $ReadOnlyArray<Game>,
 |}
 
 export const DragAndDropList: StatelessFunctionalComponent<Props> = (
   props: Props
 ) => {
   const {
-    games,
-    initialSelectedGames,
-    signedGames,
-    signupTime,
-    callback,
+    availableGames,
+    selectedGames,
+    updateSelectedGames,
+    updateAvailableGames,
   } = props
   const { t } = useTranslation()
 
-  const [availableGames, setAvailableGames] = React.useState([])
-  ;(availableGames: $ReadOnlyArray<Game>)
-
-  const [selectedGames, setSelectedGames] = React.useState([])
-  ;(selectedGames: $ReadOnlyArray<Game>)
-
   const [warningVisible, setWarningVisible] = React.useState(false)
   ;(warningVisible: boolean)
-
-  React.useEffect(() => {
-    loadState()
-  }, [signupTime])
-
-  React.useEffect(() => {
-    reloadState()
-  }, [signedGames])
-
-  React.useEffect(() => {
-    doCallback()
-  }, [availableGames, selectedGames])
-
-  const reloadState = () => {
-    const selectedGames = []
-
-    for (let signedGame of signedGames) {
-      if (signedGame.time === signupTime) {
-        selectedGames.push(signedGame.gameDetails)
-      }
-    }
-
-    setAvailableGames(games)
-    setSelectedGames(selectedGames)
-  }
-
-  const loadState = () => {
-    const selectedGames = []
-
-    for (let selectedGame of initialSelectedGames) {
-      if (selectedGame.gameDetails.startTime === signupTime) {
-        selectedGames.push(selectedGame.gameDetails)
-      }
-    }
-
-    setAvailableGames(games)
-    setSelectedGames(selectedGames)
-  }
 
   const getList = (id: string) => {
     if (id === 'availableGames') return availableGames
@@ -101,14 +54,19 @@ export const DragAndDropList: StatelessFunctionalComponent<Props> = (
     if (source.droppableId === destination.droppableId) {
       const newOrder = getList(source.droppableId)
       if (!newOrder) return
-      const items = reorder(newOrder, source.index, destination.index)
+      const updatedPositions = reorder(
+        newOrder,
+        source.index,
+        destination.index
+      )
 
       if (source.droppableId === 'availableGames') {
-        setAvailableGames(items)
+        updateAvailableGames(updatedPositions)
       } else if (source.droppableId === 'selectedGames') {
-        setSelectedGames(items)
+        updateSelectedGames(updatedPositions)
       }
     }
+
     // Moved to new list
     else {
       const newItemsSource = getList(source.droppableId)
@@ -132,26 +90,13 @@ export const DragAndDropList: StatelessFunctionalComponent<Props> = (
       }
 
       if (updatedPositions.availableGames) {
-        setAvailableGames(updatedPositions.availableGames)
+        updateAvailableGames(updatedPositions.availableGames)
       }
 
       if (updatedPositions.selectedGames) {
-        setSelectedGames(updatedPositions.selectedGames)
+        updateSelectedGames(updatedPositions.selectedGames)
       }
     }
-  }
-
-  // Send changes to parent
-  const doCallback = () => {
-    callback(
-      selectedGames.map(selectedGame => {
-        return {
-          gameDetails: { ...selectedGame },
-          priority: selectedGames.indexOf(selectedGame) + 1,
-          time: signupTime,
-        }
-      })
-    )
   }
 
   return (

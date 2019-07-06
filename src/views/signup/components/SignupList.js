@@ -9,6 +9,7 @@ import {
   submitSelectedGames,
   submitSignupTime,
 } from 'views/signup/signupActions'
+import { submitGetGamesAsync } from 'views/all-games/allGamesActions'
 import { DragAndDropList } from 'views/signup/components/DragAndDropList'
 import { sleep } from 'utils/sleep'
 import { config } from 'config'
@@ -62,11 +63,12 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
       await loadData(store)
     }
     fetchData()
-    dispatch(submitSelectedGames(signedGames))
+    if (selectedGames.length === 0) {
+      dispatch(submitSelectedGames(signedGames))
+    }
     setLoading(false)
   }, [])
 
-  // Submit signup
   const onSubmitClick = async () => {
     setSubmitting(true)
 
@@ -90,7 +92,6 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
     setSubmitting(false)
   }
 
-  // Cancel signup
   const onCancelClick = async () => {
     setSubmitting(true)
 
@@ -105,16 +106,17 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
       selectedGames: gamesWithDifferentTime,
     }
 
-    let response = null
+    let signupResponse = null
     try {
-      response = await dispatch(submitSignup(signupData))
+      signupResponse = await dispatch(submitSignup(signupData))
     } catch (error) {
       console.log(`submitSignup error: `, error)
     }
 
-    if (response && response.status === 'success') {
+    if (signupResponse && signupResponse.status === 'success') {
       showMessage('signupSubmitted')
-    } else if (response && response.status === 'error') {
+      dispatch(submitSelectedGames(signupResponse.signedGames))
+    } else if (signupResponse && signupResponse.status === 'error') {
       showMessage('signupError')
       setSignupError(true)
     }
@@ -122,32 +124,54 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
   }
 
   // Get games that have are not hidden, have signup open, and are not signed
-  const filterGames = () => {
+  const filterAvailableGames = () => {
     const visibleGames = _.differenceBy(games, hiddenGames, 'gameId')
 
-    const signedGameDetails = signedGames.map(
-      signedGame => signedGame.gameDetails
+    const selectedGameDetails = selectedGames.map(
+      selectedGame => selectedGame.gameDetails
     )
 
-    const nonSignedGames = _.differenceBy(
+    const nonSelectedGames = _.differenceBy(
       visibleGames,
-      signedGameDetails,
+      selectedGameDetails,
       'gameId'
     )
 
-    return nonSignedGames.filter(
-      nonSignedGame => nonSignedGame.startTime === signupTime
+    return nonSelectedGames.filter(
+      nonSelectedGame => nonSelectedGame.startTime === signupTime
     )
   }
 
-  // Callback from child component
-  const updateSelectedGames = newGames => {
-    // Combine new selected games to existing games
+  const filterSelectedGames = () => {
+    const selectedGameDetails = selectedGames.map(
+      selectedGame => selectedGame.gameDetails
+    )
+
+    return selectedGameDetails.filter(
+      selectedGame => selectedGame.startTime === signupTime
+    )
+  }
+
+  const updateSelectedGames = newSelectedGames => {
+    const newSignups = newSelectedGames.map(newSelectedGame => {
+      return {
+        gameDetails: { ...newSelectedGame },
+        priority: newSelectedGames.indexOf(newSelectedGame) + 1,
+        time: signupTime,
+      }
+    })
+
     const existingGames = selectedGames.filter(
       selectedGame => selectedGame.gameDetails.startTime !== signupTime
     )
-    const combined = existingGames.concat(newGames)
+    const combined = existingGames.concat(newSignups)
     dispatch(submitSelectedGames(combined))
+  }
+
+  const updateAvailableGames = newAvailableGames => {
+    const existingGames = games.filter(game => game.startTime !== signupTime)
+    const combined = existingGames.concat(newAvailableGames)
+    dispatch(submitGetGamesAsync(combined))
   }
 
   // Select signup time from buttons and store it
@@ -165,8 +189,6 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
     setSignupSubmitted(false)
     setSignupError(false)
   }
-
-  const filteredGames = filterGames()
 
   const { signupStartTime } = timeFormatter.startTime(signupTime)
   const { signupEndTime } = timeFormatter.endTime(signupTime, '')
@@ -199,7 +221,7 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
         </React.Fragment>
       )}
 
-      {!loading && filteredGames.length !== 0 && (
+      {!loading && signupTime && (
         <React.Fragment>
           <p>
             {t('signupOpenBetweenCapital')} {signupStartTime}-{signupEndTime}.{' '}
@@ -220,11 +242,10 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
             {signupError && <span className='error'>{t('signupFailed')}</span>}
           </div>
           <DragAndDropList
-            games={filteredGames}
-            signupTime={signupTime}
-            callback={updateSelectedGames}
-            initialSelectedGames={selectedGames}
-            signedGames={signedGames}
+            availableGames={filterAvailableGames()}
+            selectedGames={filterSelectedGames()}
+            updateSelectedGames={updateSelectedGames}
+            updateAvailableGames={updateAvailableGames}
           />
         </React.Fragment>
       )}

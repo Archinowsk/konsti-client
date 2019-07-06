@@ -44,7 +44,7 @@ export const submitGamesUpdate = () => {
   }
 }
 
-const submitGetGamesAsync = (games: $ReadOnlyArray<Game>) => {
+export const submitGetGamesAsync = (games: $ReadOnlyArray<Game>) => {
   return {
     type: SUBMIT_GET_GAMES,
     games,
