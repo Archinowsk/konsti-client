@@ -43,5 +43,5 @@ export const TimeSelector: StatelessFunctionalComponent<{}> = () => {
     )
   })
 
-  return <div>{buttons}</div>
+  return <div className='time-selector'>{buttons}</div>
 }

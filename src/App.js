@@ -11,19 +11,13 @@ import {
   faEyeSlash,
 } from '@fortawesome/free-solid-svg-icons'
 import { Routes } from 'Routes'
-import { LanguageSelector } from 'components/LanguageSelector'
-import { config } from 'config'
-import { TimeSelector } from 'test/TimeSelector'
+import { Header } from 'components/Header'
 import { loadData } from 'utils/loadData'
 import { Loading } from 'components/Loading'
 import type { StatelessFunctionalComponent } from 'react'
 
 const App: StatelessFunctionalComponent<{}> = () => {
   const appOpen: boolean = useSelector(state => state.admin.appOpen)
-  const username: string = useSelector(state => state.login.username)
-  const loggedIn: boolean = useSelector(state => state.login.loggedIn)
-  const serial: string = useSelector(state => state.login.serial)
-
   const { t } = useTranslation()
   const store = useStore()
 
@@ -43,24 +37,7 @@ const App: StatelessFunctionalComponent<{}> = () => {
 
   return (
     <React.Fragment>
-      <header>
-        {config.loadedSettings !== 'production' && <TimeSelector />}
-
-        <h1>
-          <a href='/' className='logo'>
-            Konsti
-          </a>
-        </h1>
-        <p>{t('header')}</p>
-        <LanguageSelector />
-
-        {loggedIn && (
-          <span className='username'>
-            {t('user')}: {username} | {t('code')}: {serial}
-          </span>
-        )}
-      </header>
-
+      <Header />
       <div className='body'>
         {loading && <Loading />}
         {!loading && !appOpen && (

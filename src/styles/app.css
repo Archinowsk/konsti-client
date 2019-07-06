@@ -12,17 +12,3 @@
     padding: 0 10px;
   }
 }
-
-.title {
-  display: flex;
-  flex: 0 1 auto;
-  flex-direction: row;
-  font-weight: 700;
-  justify-content: space-between;
-  margin: 0 0 20px;
-  margin: 20px 0;
-}
-
-.username {
-  padding: 0 0 0 10px;
-}

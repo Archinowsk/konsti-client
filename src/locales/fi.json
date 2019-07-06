@@ -1,5 +1,6 @@
 {
-  "header": "Ropecon 2019 pöytäroolipeli-ilmoittautuminen",
+  "appTitle": "Konsti",
+  "appDescription": "Ropecon 2019 pöytäroolipeli-ilmoittautuminen",
   "footer": "Alaviite",
   "button": {
     "logout": "Kirjaudu ulos",

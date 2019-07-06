@@ -1,5 +1,6 @@
 {
-  "header": "Ropecon 2019 Tabletop RPG Signup",
+  "appTitle": "Konsti",
+  "appDescription": "Ropecon 2019 Tabletop RPG Signup",
   "footer": "Footer",
   "button": {
     "logout": "Logout",
