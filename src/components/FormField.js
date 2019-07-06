@@ -10,15 +10,7 @@ export const FormField: StatelessFunctionalComponent<FieldProps> = (
 ) => {
   // $FlowFixMe: Cannot get field.type because property type is missing in FieldProps [1].
   const { type } = props
-  const {
-    name,
-    onChange,
-    onBlur,
-    onDragStart,
-    onDrop,
-    onFocus,
-    value,
-  } = props.input
+  const { name, onChange, onBlur, onDragStart, onDrop, onFocus } = props.input
   const { touched, error } = props.meta
   const { t } = useTranslation()
 
@@ -56,7 +48,6 @@ export const FormField: StatelessFunctionalComponent<FieldProps> = (
             onFocus={onFocus}
             placeholder={t(name)}
             type={fieldType}
-            value={value}
           />
           {type === 'checkbox' && <label htmlFor={name}>{t(name)}</label>}
         </div>
