@@ -41,7 +41,9 @@
   "player": "Pelaaja",
   "language": {
     "english": "Englanti",
-    "finnish": "Suomi"
+    "englishShort": "EN",
+    "finnish": "Suomi",
+    "finnishShort": "FI"
   },
   "validation": {
     "required": "Vaadittu kenttä"

@@ -41,7 +41,9 @@
   "player": "Player",
   "language": {
     "english": "English",
-    "finnish": "Finnish"
+    "englishShort": "EN",
+    "finnish": "Finnish",
+    "finnishShort": "FI"
   },
   "validation": {
     "required": "Required"

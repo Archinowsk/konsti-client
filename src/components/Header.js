@@ -16,29 +16,27 @@ export const Header = () => {
     <header>
       {config.loadedSettings !== 'production' && <TimeSelector />}
 
-      <div className='title-and-description'>
-        <h1>
-          <a href='/' className='logo'>
-            {t('appTitle')}
-          </a>
-        </h1>
-        <p>{t('appDescription')}</p>
-      </div>
+      <h1>
+        <a href='/' className='logo'>
+          {t('appTitle')}
+        </a>
+      </h1>
 
       <div className='header-bar'>
-        {loggedIn && (
-          <div className='logged-user-details'>
-            <span>
-              {t('user')}: {username}
-            </span>
-            <span>
-              {t('code')}: {serial}
-            </span>
-          </div>
-        )}
-
+        {t('appDescription')}
         <LanguageSelector />
       </div>
+
+      {loggedIn && (
+        <div className='logged-user-details'>
+          <span>
+            {t('user')}: {username}
+          </span>
+          <span>
+            {t('code')}: {serial}
+          </span>
+        </div>
+      )}
     </header>
   )
 }

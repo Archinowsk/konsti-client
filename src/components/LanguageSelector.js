@@ -17,9 +17,19 @@ export const LanguageSelector: StatelessFunctionalComponent<{}> = () => {
 
   return (
     <React.Fragment>
-      <select id='language' type='text' value={language} onChange={setLanguage}>
-        <option value='en'>{t('language.english')}</option>
-        <option value='fi'>{t('language.finnish')}</option>
+      <select
+        className='language-selector'
+        id='language'
+        type='text'
+        value={language}
+        onChange={setLanguage}
+      >
+        <option title={t('language.english')} value='en'>
+          {t('language.englishShort')}
+        </option>
+        <option title={t('language.finnish')} value='fi'>
+          {t('language.finnishShort')}
+        </option>
       </select>
     </React.Fragment>
   )
