@@ -86,7 +86,7 @@ export const GameInfo: StatelessFunctionalComponent<Props> = (props: Props) => {
   const formattedEndTime = timeFormatter.timeOnly(game.endTime)
 
   return (
-    <div>
+    <div className='game-details'>
       {game.title && (
         <div className='game-details-row'>
           <span className='game-details-title'>{t('gameInfo.title')}</span>

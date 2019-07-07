@@ -49,7 +49,7 @@ export const AllGamesView: StatelessFunctionalComponent<{}> = () => {
   const visibleGames = getVisibleGames()
 
   return (
-    <div className='all-games-view'>
+    <React.Fragment>
       {loading && <Loading />}
       {!loading && (
         <Switch>
@@ -66,6 +66,6 @@ export const AllGamesView: StatelessFunctionalComponent<{}> = () => {
           <Route path='/games/:id' render={() => <GameDetails />} />
         </Switch>
       )}
-    </div>
+    </React.Fragment>
   )
 }

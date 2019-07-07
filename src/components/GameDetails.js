@@ -83,7 +83,7 @@ const GameDetails: StatelessFunctionalComponent<Props> = (props: Props) => {
   }
 
   // Favorite / unfavorite clicked
-  const addFavoriteEvent = async action => {
+  const updateFavorite = async action => {
     if (!game || !game.gameId) return
 
     setSubmitting(true)
@@ -124,7 +124,7 @@ const GameDetails: StatelessFunctionalComponent<Props> = (props: Props) => {
   }
 
   // Hide / unhide clicked
-  const addHiddenEvent = async action => {
+  const updateHidden = async action => {
     if (!game || !game.gameId) return
 
     setSubmitting(true)
@@ -160,58 +160,55 @@ const GameDetails: StatelessFunctionalComponent<Props> = (props: Props) => {
   }
 
   return (
-    <div className='game-details'>
-      <button
-        onClick={() => {
-          if (history.action === 'PUSH') {
-            history.goBack()
-          } else {
-            history.push('/')
-          }
-        }}
-      >
-        {t('button.back')}
-      </button>
+    <div className='game-details-view'>
+      <div className='button-row'>
+        <button
+          onClick={() => {
+            if (history.action === 'PUSH') {
+              history.goBack()
+            } else {
+              history.push('/')
+            }
+          }}
+        >
+          {t('button.back')}
+        </button>
+
+        {favorited && loggedIn && userGroup === 'user' && game && (
+          <button disabled={submitting} onClick={() => updateFavorite('del')}>
+            {t('button.removeFavorite')}
+          </button>
+        )}
+
+        {!favorited && loggedIn && userGroup === 'user' && game && (
+          <button disabled={submitting} onClick={() => updateFavorite('add')}>
+            {t('button.favorite')}
+          </button>
+        )}
+
+        {hidden && loggedIn && userGroup === 'admin' && game && (
+          <button disabled={submitting} onClick={() => updateHidden('del')}>
+            {t('button.unhide')}
+          </button>
+        )}
+
+        {!hidden && loggedIn && userGroup === 'admin' && game && (
+          <button disabled={submitting} onClick={() => updateHidden('add')}>
+            {t('button.hide')}
+          </button>
+        )}
+      </div>
 
       {loading && <Loading />}
 
       {!loading && !game && (
-        <p>
+        <div className='game-not-found'>
           {t('invalidGameId')} {match.params.id}.
-        </p>
+        </div>
       )}
 
       {!loading && game && (
         <React.Fragment>
-          {favorited && loggedIn && userGroup === 'user' && (
-            <button
-              disabled={submitting}
-              onClick={() => addFavoriteEvent('del')}
-            >
-              {t('button.removeFavorite')}
-            </button>
-          )}
-
-          {!favorited && loggedIn && userGroup === 'user' && (
-            <button
-              disabled={submitting}
-              onClick={() => addFavoriteEvent('add')}
-            >
-              {t('button.favorite')}
-            </button>
-          )}
-
-          {hidden && loggedIn && userGroup === 'admin' && (
-            <button disabled={submitting} onClick={() => addHiddenEvent('del')}>
-              {t('button.unhide')}
-            </button>
-          )}
-
-          {!hidden && loggedIn && userGroup === 'admin' && (
-            <button disabled={submitting} onClick={() => addHiddenEvent('add')}>
-              {t('button.hide')}
-            </button>
-          )}
           <GameInfo game={game} />
           {loggedIn && <FeedbackForm game={game} />}
         </React.Fragment>

@@ -48,7 +48,10 @@ export const FeedbackForm: StatelessFunctionalComponent<Props> = (
   }
 
   return (
-    <div>
+    <div className='feedback-form'>
+      <p className='bold'>{t('feedbackTitle')}</p>
+      <p>{t('feedbackInstruction')}</p>
+
       {!feedbackSent && (
         <React.Fragment>
           <textarea

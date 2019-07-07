@@ -168,5 +168,7 @@
   "leftGroup": "Left group",
   "groupNotEmpty": "Leader cannot leave non-empty group",
   "noSignupResult": "You didn't get into a game for this starting time",
-  "invalidGameId": "Game not found. Invalid game ID"
+  "invalidGameId": "Game not found. Invalid game ID",
+  "feedbackTitle": "Feedback",
+  "feedbackInstruction": "Did you enjoy the game? Send feedback to the game master!"
 }

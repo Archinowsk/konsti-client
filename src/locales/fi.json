@@ -169,5 +169,7 @@
   "leftGroup": "Poistuit ryhmästä",
   "groupNotEmpty": "Johtaja ei voi poistua ryhmästä, jossa on muita jäseniä",
   "noSignupResult": "Et mahtunut peliin tällä alkamisajankohdalla",
-  "invalidGameId": "Peliä ei löydy. Viallinen pelitunniste"
+  "invalidGameId": "Peliä ei löydy. Viallinen pelitunniste",
+  "feedbackTitle": "Palaute",
+  "feedbackInstruction": "Piditkö pelistä? Lähetä palautetta pelinjohtajalle!"
 }
