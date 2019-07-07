@@ -49,27 +49,28 @@ const GameDetails: StatelessFunctionalComponent<Props> = (props: Props) => {
 
   React.useEffect(() => {
     setLoading(true)
+
+    const checkGameState = () => {
+      if (!game || !game.gameId) return
+
+      // Check if in favorites
+      favoritedGames.find(favoritedGame => {
+        if (favoritedGame.gameId === game.gameId) {
+          setFavorited(true)
+        }
+      })
+
+      // Check if hidden
+      hiddenGames.find(hiddenGame => {
+        if (hiddenGame.gameId === game.gameId) {
+          setHidden(true)
+        }
+      })
+    }
+
     checkGameState()
     setLoading(false)
-  })
-
-  const checkGameState = () => {
-    if (!game || !game.gameId) return
-
-    // Check if in favorites
-    favoritedGames.find(favoritedGame => {
-      if (favoritedGame.gameId === game.gameId) {
-        setFavorited(true)
-      }
-    })
-
-    // Check if hidden
-    hiddenGames.find(hiddenGame => {
-      if (hiddenGame.gameId === game.gameId) {
-        setHidden(true)
-      }
-    })
-  }
+  }, [game, favoritedGames, hiddenGames])
 
   // Find selected game index
   const findGame = (gameId, array) => {
