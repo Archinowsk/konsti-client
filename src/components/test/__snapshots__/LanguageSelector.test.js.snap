@@ -3,20 +3,23 @@
 exports[`LanguageSelector should render correctly 1`] = `
 <Fragment>
   <select
+    className="language-selector"
     id="language"
     onChange={[Function]}
     type="text"
     value="en"
   >
     <option
+      title="language.english"
       value="en"
     >
-      language.english
+      language.englishShort
     </option>
     <option
+      title="language.finnish"
       value="fi"
     >
-      language.finnish
+      language.finnishShort
     </option>
   </select>
 </Fragment>
