@@ -49,11 +49,11 @@
     "required": "Vaadittu kenttä"
   },
   "pages": {
-    "myGames": "Omat pelini",
+    "myGames": "Omat pelit",
     "allGames": "Kaikki pelit",
     "signUp": "Ilmoittaudu",
     "admin": "Ylläpito",
-    "results": "Kaikki ilmoittautumistulokset",
+    "results": "Ilmoittautumistulokset",
     "group": "Ryhmä"
   },
   "gameInfo": {
@@ -137,7 +137,7 @@
   "signupGuide": "Voit valita kolme pelitoivetta järjestyksessä. Valitse pelit vetämällä. Muista tallentaa muutokset.",
   "signupSaved": "Ilmoittautuminen tallennettu",
   "signupFailed": "Ilmoittautuminen epäonnistui",
-  "signupResultHint": "Voit katsoa ilmoittautumistulokset 'Omat Pelini' sivulta klo",
+  "signupResultHint": "Voit katsoa ilmoittautumistulokset 'Omat pelit' sivulta klo",
   "closingMessage": "Konsti on suljettu ja avautuu ennen seuraavaa Ropeconia.",
   "exceptionInTime": "Huomaa poikkeava ilmoittautumisen päättymisaika.",
   "signupView": {
