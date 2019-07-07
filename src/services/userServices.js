@@ -4,9 +4,11 @@ import { getJWT } from 'utils/getJWT'
 import type { RegistrationData } from 'flow/user.flow'
 
 export const postRegistration = async (registrationData: RegistrationData) => {
+  const { username, password, serial } = registrationData
+
   let response = null
   try {
-    response = await api.post('/user', { registrationData })
+    response = await api.post('/user', { username, password, serial })
   } catch (error) {
     if (error.message === 'Network Error') {
       console.log('Network error: no connection to server')
