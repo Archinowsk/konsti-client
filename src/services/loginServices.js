@@ -3,9 +3,10 @@ import { api } from 'utils/api'
 import type { Login } from 'flow/user.flow'
 
 export const postLogin = async (loginData: Login) => {
+  const { username, password, jwt } = loginData
   let response = null
   try {
-    response = await api.post('/login', { loginData })
+    response = await api.post('/login', { username, password, jwt })
   } catch (error) {
     if (error.message === 'Network Error') {
       console.log('Network error: no connection to server')
