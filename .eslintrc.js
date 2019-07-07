@@ -60,6 +60,7 @@ module.exports = {
 
     // eslint-plugin-react-hooks
     'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'error',
 
     // eslint-plugin-prettier
     'prettier/prettier': 'error',

@@ -46,7 +46,7 @@ export const AdminView: StatelessFunctionalComponent<{}> = () => {
     }
     fetchData()
     setLoading(false)
-  }, [])
+  }, [store])
 
   const showMessage = async ({ message, style }) => {
     setMessage(message)

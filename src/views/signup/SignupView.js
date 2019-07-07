@@ -16,7 +16,7 @@ export const SignupView: StatelessFunctionalComponent<{}> = () => {
 
   React.useEffect(() => {
     setSignupTimes(getOpenStartTimes(games, testTime))
-  }, [])
+  }, [games, testTime])
 
   return (
     <div className='signup-view'>

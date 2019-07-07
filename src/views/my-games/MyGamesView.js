@@ -31,7 +31,7 @@ export const MyGamesView: StatelessFunctionalComponent<{}> = () => {
     }
     fetchData()
     setLoading(false)
-  }, [])
+  }, [store])
 
   return (
     <div className='my-games-view'>

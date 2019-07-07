@@ -19,7 +19,7 @@ export const FormField: StatelessFunctionalComponent<FieldProps> = (
 
   React.useEffect(() => {
     setFieldType(type)
-  }, [])
+  }, [type])
 
   const classNames = ['form-input']
 

@@ -24,7 +24,7 @@ export const ResultsView: StatelessFunctionalComponent<{}> = () => {
     }
     fetchData()
     setLoading(false)
-  }, [])
+  }, [store])
 
   const formattedDate = timeFormatter.weekdayAndTime(signupTime)
 

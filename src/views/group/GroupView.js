@@ -52,7 +52,7 @@ export const GroupView: StatelessFunctionalComponent<{}> = () => {
     }
     fetchData()
     setLoading(false)
-  }, [])
+  }, [store])
 
   const openGroupForming = () => {
     setShowCreateGroup(true)

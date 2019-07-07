@@ -31,7 +31,7 @@ const App: StatelessFunctionalComponent<{}> = () => {
     }
     fetchData()
     setLoading(false)
-  }, [])
+  }, [store])
 
   library.add(faAngleUp, faAngleDown, faEye, faEyeSlash)
 

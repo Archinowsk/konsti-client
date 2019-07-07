@@ -25,7 +25,7 @@ export const AllGamesView: StatelessFunctionalComponent<{}> = () => {
     }
     fetchData()
     setLoading(false)
-  }, [])
+  }, [store])
 
   // Remove hidden games
   const getVisibleGames = () => {

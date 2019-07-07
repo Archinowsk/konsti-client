@@ -63,11 +63,12 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
       await loadData(store)
     }
     fetchData()
-    if (selectedGames.length === 0) {
-      dispatch(submitSelectedGames(signedGames))
-    }
     setLoading(false)
-  }, [])
+  }, [store])
+
+  React.useEffect(() => {
+    if (selectedGames.length === 0) dispatch(submitSelectedGames(signedGames))
+  }, [dispatch, selectedGames.length, signedGames])
 
   const onSubmitClick = async () => {
     setSubmitting(true)
