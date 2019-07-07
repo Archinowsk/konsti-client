@@ -64,7 +64,7 @@ module.exports = {
     // eslint-plugin-prettier
     'prettier/prettier': 'error',
 
-    // "eslint-plugin-compat
+    // eslint-plugin-compat
     'compat/compat': 'error',
 
     // eslint-config-standard-react
