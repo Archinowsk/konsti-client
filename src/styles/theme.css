@@ -1,5 +1,5 @@
 html {
-  color: $text-color;
+  color: $main-text;
   display: flex;
   font-family: Helvetica, Arial, Verdana, Tahoma, sans-serif;
   font-size: $font-size;
@@ -37,7 +37,7 @@ input {
 }
 
 input::placeholder {
-  color: $placeholder-font-gray;
+  color: $input-placeholder;
 }
 
 input:focus {

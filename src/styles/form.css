@@ -29,8 +29,8 @@
 
 .form-field-error {
   display: flex;
-  background-color: $background-gray;
-  color: $error-red;
+  background-color: $background-hilight;
+  color: $error;
   width: 50%;
 }
 
@@ -45,8 +45,8 @@
 }
 
 .form-input {
-  border: 1px solid $border-gray;
-  color: $font-gray;
+  border: 1px solid $border-inactive;
+  color: $button-text;
   height: 34px;
   padding: 0 0 0 10px;
   width: 100%;

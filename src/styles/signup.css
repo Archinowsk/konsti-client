@@ -14,13 +14,13 @@
 }
 
 .drop-row {
-  background-color: $background-gray;
+  background-color: $background-hilight;
   min-height: 40px;
   padding: 10px;
 }
 
 .drop-row.dragging {
-  background-color: $dragging-background;
+  background-color: $background-dnd-row;
 }
 
 .drop-row.availableGames,
@@ -29,10 +29,15 @@
 }
 
 .draggable-item {
-  background-color: $draggable-background;
-  border: 1px solid $border-gray;
+  background-color: $background-dnd-item;
+  border: 1px solid $border-inactive;
   margin: 8px 0;
   padding: 8px;
+}
+
+.draggable-item:hover,
+.draggable-item:focus {
+  background-color: $background-hover;
 }
 
 .signup-list {

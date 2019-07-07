@@ -1,6 +1,6 @@
 .routes {
-  background-color: $background-gray;
-  border-bottom: 1px solid $border-gray;
+  background-color: $background-hilight;
+  border-bottom: 1px solid $border-inactive;
 }
 
 .router-link {
@@ -9,7 +9,7 @@
   padding: 10px 16px 10px 16px;
   font-size: $link-font-size;
   text-decoration: none;
-  color: $text-color;
+  color: $main-text;
 }
 
 .router-link:hover,
@@ -22,7 +22,7 @@
 }
 
 .router-link.active::after {
-  background-color: $text-color;
+  background-color: $main-text;
   bottom: 0;
   content: '';
   display: block;

@@ -1,5 +1,5 @@
 .game-result {
-  border-bottom: solid 1px $disabled-gray;
+  border-bottom: solid 1px $disabled;
   padding-bottom: 10px;
 }
 

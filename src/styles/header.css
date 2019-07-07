@@ -3,7 +3,7 @@ header {
 }
 
 .logo {
-  color: $text-color;
+  color: $main-text;
   text-decoration: none;
 }
 

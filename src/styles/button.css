@@ -1,8 +1,8 @@
 button {
   background-color: #fff;
-  border: 1px solid $border-gray;
+  border: 1px solid $border-inactive;
   border-radius: 5px;
-  color: $font-gray;
+  color: $button-text;
   cursor: pointer;
   margin: 10px 10px 10px 0;
   padding: 6px 20px;
@@ -11,16 +11,16 @@ button {
 
 button:hover,
 button:focus {
-  background-color: $background-green;
-  border: 1px solid $border-green;
-  color: $border-green;
+  background-color: $background-active;
+  border: 1px solid $border-active;
+  color: $border-active;
 }
 
 button:disabled {
-  background-color: $disabled-gray;
+  background-color: $disabled;
 }
 
 button:disabled:hover,
 button:disabled:focus {
-  color: $font-gray;
+  color: $button-text;
 }

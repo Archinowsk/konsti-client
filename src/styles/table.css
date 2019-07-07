@@ -3,7 +3,7 @@
 }
 
 .flex-table-column {
-  border-bottom: solid 1px $disabled-gray;
+  border-bottom: solid 1px $disabled;
   display: flex;
   flex-direction: row;
   padding: 10px 0;
