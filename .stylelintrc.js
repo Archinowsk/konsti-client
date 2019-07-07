@@ -12,7 +12,7 @@ module.exports = {
       true,
       {
         severity: 'error',
-        ignore: ['flexbox'],
+        ignore: ['flexbox', 'css3-cursors-newer'],
       },
     ],
   },
