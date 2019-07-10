@@ -1,7 +1,7 @@
 // @flow
 import type { Game } from 'flow/game.flow'
 import type { GroupMember } from 'flow/group.flow'
-import type { Signup } from 'flow/user.flow'
+import type { Signup, UserGroup } from 'flow/user.flow'
 import type { Result } from 'flow/result.flow'
 
 export type AdminState = {|
@@ -19,7 +19,7 @@ export type LoginState = {|
   +username: string,
   +loggedIn: boolean,
   +jwt: string,
-  +userGroup: string,
+  +userGroup: UserGroup,
   +serial: string,
   +groupCode: string,
   +groupMembers: $ReadOnlyArray<GroupMember>,

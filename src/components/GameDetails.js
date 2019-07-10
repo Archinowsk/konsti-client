@@ -10,6 +10,7 @@ import { GameInfo } from 'components/GameInfo'
 import { Loading } from 'components/Loading'
 import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent } from 'react'
+import type { UserGroup } from 'flow/user.flow'
 
 type Props = {|
   history: Object,
@@ -23,7 +24,7 @@ const GameDetails: StatelessFunctionalComponent<Props> = (props: Props) => {
 
   const loggedIn: boolean = useSelector(state => state.login.loggedIn)
   const games: $ReadOnlyArray<Game> = useSelector(state => state.allGames.games)
-  const userGroup: string = useSelector(state => state.login.userGroup)
+  const userGroup: UserGroup = useSelector(state => state.login.userGroup)
   const favoritedGames: $ReadOnlyArray<Game> = useSelector(
     state => state.myGames.favoritedGames
   )

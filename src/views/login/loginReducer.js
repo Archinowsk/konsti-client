@@ -12,7 +12,7 @@ const initialState = {
   username: '',
   loggedIn: false,
   jwt: '',
-  userGroup: '',
+  userGroup: 'user',
   serial: '',
   groupCode: '0',
   groupMembers: [],

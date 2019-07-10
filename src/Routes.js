@@ -19,6 +19,7 @@ import { AdminView } from 'views/admin/AdminView'
 import { ResultsView } from 'views/results/ResultsView'
 import { LogoutView } from 'views/logout/LogoutView'
 import { GroupView } from 'views/group/GroupView'
+import type { UserGroup } from 'flow/user.flow'
 
 type Props = {
   onlyAdmin: boolean,
@@ -27,7 +28,7 @@ type Props = {
 export const Routes: StatelessFunctionalComponent<Props> = (props: Props) => {
   const { onlyAdmin } = props
   const loggedIn: boolean = useSelector(state => state.login.loggedIn)
-  const userGroup: string = useSelector(state => state.login.userGroup)
+  const userGroup: UserGroup = useSelector(state => state.login.userGroup)
   const { t } = useTranslation()
 
   if (onlyAdmin && !loggedIn) {

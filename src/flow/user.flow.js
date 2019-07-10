@@ -29,11 +29,13 @@ export type Login = {|
   +jwt?: string,
 |}
 
+export type UserGroup = 'user' | 'admin'
+
 export type LoginData = {|
   username: string,
   loggedIn: boolean,
   jwt: string,
-  userGroup: string,
+  userGroup: UserGroup,
   serial: string,
   groupCode: string,
 |}
