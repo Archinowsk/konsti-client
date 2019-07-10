@@ -37,7 +37,7 @@
     "i18next": "17.0.6",
     "i18next-browser-languagedetector": "3.0.1",
     "i18next-xhr-backend": "3.0.0",
-    "lodash": "4.17.11",
+    "lodash": "4.17.13",
     "moment": "2.24.0",
     "outdated-browser-rework": "2.8.0",
     "react": "16.8.6",
@@ -54,8 +54,8 @@
     "request-promise-native": "1.0.7"
   },
   "devDependencies": {
-    "@babel/core": "7.5.0",
-    "@babel/preset-env": "7.5.3",
+    "@babel/core": "7.5.4",
+    "@babel/preset-env": "7.5.4",
     "@babel/preset-flow": "7.0.0",
     "@babel/preset-react": "7.0.0",
     "@babel/register": "7.4.4",
@@ -118,7 +118,7 @@
     "prepack-webpack-plugin": "1.1.2",
     "prettier": "1.18.2",
     "react-axe": "3.2.0",
-    "react-hot-loader": "4.12.5",
+    "react-hot-loader": "4.12.6",
     "redux-devtools-extension": "2.13.8",
     "rimraf": "2.6.3",
     "style-loader": "0.23.1",
