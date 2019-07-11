@@ -26,7 +26,7 @@ export const ResultsByGameTitle: StatelessFunctionalComponent<Props> = (
 
   const resultsByGameTitle = []
 
-  for (let result in groupedResults) {
+  for (const result in groupedResults) {
     const sortedResults = _.sortBy(groupedResults[result], [
       result => result.username.toLowerCase(),
     ])

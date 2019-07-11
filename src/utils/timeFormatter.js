@@ -11,7 +11,7 @@ const {
 
 const startTime = (startTime: string) => {
   let signupStartTime = null
-  let startTimeException = false
+  const startTimeException = false
 
   // Signup starts before convention
   if (

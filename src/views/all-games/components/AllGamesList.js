@@ -59,7 +59,7 @@ export const AllGamesList: StatelessFunctionalComponent<Props> = (
       }
 
       /* $FlowFixMe: property `@@iterator` is missing in  mixed [1] but exists in  `$Iterable` [2]. */
-      for (let game of games) {
+      for (const game of games) {
         const gameEntry = (
           <p key={game.gameId} className='games-list'>
             <Link to={`/games/${game.gameId}`}>{game.title}</Link>

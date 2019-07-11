@@ -31,9 +31,9 @@ export const AllGamesView: StatelessFunctionalComponent<{}> = () => {
   const getVisibleGames = () => {
     if (!hiddenGames) return games
     const visibleGames = []
-    for (let game of games) {
+    for (const game of games) {
       let match = false
-      for (let hiddenGame of hiddenGames) {
+      for (const hiddenGame of hiddenGames) {
         if (game.gameId === hiddenGame.gameId) {
           match = true
           break

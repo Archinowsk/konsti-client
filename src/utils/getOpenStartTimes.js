@@ -48,7 +48,7 @@ export const getOpenStartTimes = (
   // console.log('lastSignupTime', moment(lastSignupTime).format())
 
   const openSignupTimes = []
-  for (let startTime of startTimes) {
+  for (const startTime of startTimes) {
     if (
       moment(startTime).isBetween(
         earliestSignupTime,
