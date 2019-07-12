@@ -16,12 +16,12 @@ const commonConfig = {
     typeof process.env.SETTINGS === 'string'
       ? process.env.SETTINGS
       : 'development',
-  SIGNUP_END_TIME: 90, // minutes
+  SIGNUP_END_TIME: 30, // minutes
   SIGNUP_OPEN_TIME: 4, // hours
-  MESSAGE_DELAY: 2000, // ms
+  MESSAGE_DELAY: 3000, // ms
 
   // Convention settings
-  CONVENTION_START_TIME: '2018-07-27T12:00:00Z', // UTC date
+  CONVENTION_START_TIME: '2019-07-26T12:00:00Z', // UTC date
   DAY_START_TIME: 8, // 08:00
 
   // Dev
