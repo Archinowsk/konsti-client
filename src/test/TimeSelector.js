@@ -2,8 +2,10 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import _ from 'lodash'
+import moment from 'moment'
 import { submitSetTestTime } from 'views/admin/adminActions'
 import { timeFormatter } from 'utils/timeFormatter'
+import { config } from 'config'
 import type { StatelessFunctionalComponent, Element } from 'react'
 
 type Props = {}
@@ -15,12 +17,18 @@ export const TimeSelector: StatelessFunctionalComponent<Props> = (
 
   const dispatch = useDispatch()
 
+  const { CONVENTION_START_TIME } = config
   const times = [
-    '2018-07-27T12:00:00Z',
-    '2018-07-27T13:00:00Z',
-    '2018-07-27T14:00:00Z',
-    '2018-07-27T15:00:00Z',
-    '2018-07-27T16:00:00Z',
+    moment(CONVENTION_START_TIME).format(),
+    moment(CONVENTION_START_TIME)
+      .add(1, 'hours')
+      .format(),
+    moment(CONVENTION_START_TIME)
+      .add(2, 'hours')
+      .format(),
+    moment(CONVENTION_START_TIME)
+      .add(3, 'hours')
+      .format(),
   ]
 
   React.useEffect(() => {
