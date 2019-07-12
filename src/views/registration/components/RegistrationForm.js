@@ -60,6 +60,7 @@ const RegistrationForm: StatelessFunctionalComponent<Props> = (
         <Accordion
           text='registerDescriptionText'
           title='registerDescriptionTitle'
+          buttonText='registerDescriptionButton'
         />
 
         <button type='submit' disabled={submitting}>

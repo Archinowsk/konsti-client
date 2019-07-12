@@ -2,16 +2,19 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import type { StatelessFunctionalComponent } from 'react'
+import type { StatelessFunctionalComponent, Element } from 'react'
 
 export type Props = {|
   text: string,
   title: string,
+  buttonText: string,
 |}
 
 export const Accordion: StatelessFunctionalComponent<Props> = (
   props: Props
-) => {
+): Element<'div'> => {
+  const { text, title, buttonText } = props
+
   const [open, setOpen] = React.useState(false)
   ;(open: boolean)
 
@@ -25,25 +28,23 @@ export const Accordion: StatelessFunctionalComponent<Props> = (
     <div className='accordion'>
       {open && (
         <React.Fragment>
-          <button onClick={() => onClick()}>
+          <button className='accordion-toggle' onClick={() => onClick()}>
             <FontAwesomeIcon className='accordion-icon' icon='angle-up' />
-            <span>
-              {t('hide')} {t(`${props.title}`)}
-            </span>
+            {t(`${buttonText}`)}
           </button>
-          <h3>{t(`${props.title}`)}</h3>
-          <p>{t(`${props.text}`)}</p>
+          <div className='accordion-content'>
+            <h3>{t(`${title}`)}</h3>
+            <p>{t(`${text}`)}</p>
+          </div>
         </React.Fragment>
       )}
       {!open && (
-        <div>
-          <button onClick={() => onClick()}>
+        <React.Fragment>
+          <button className='accordion-toggle' onClick={() => onClick()}>
             <FontAwesomeIcon className='accordion-icon' icon='angle-down' />
-            <span>
-              {t('show')} {t(`${props.title}`)}
-            </span>
+            <span>{t(`${buttonText}`)}</span>
           </button>
-        </div>
+        </React.Fragment>
       )}
     </div>
   )

@@ -119,6 +119,7 @@
     "unkown": "Tuntematon virhe"
   },
   "agreeRegisterDescription": "Hyväksyn rekisteriselosteen",
+  "registerDescriptionButton": "Näytä rekisteriseloste",
   "registerDescriptionTitle": "Rekisteriseloste",
   "registerDescriptionText": "Konsti-sovelluksen käyttäjärekisteriin kerätään sovellukseen rekisteröityneistä käyttäjänimi ja tietoja peleihin ilmoittautumisesta. Rekisterin tietoja käytetään Ropecon 2019 roolipeli-ilmoittautumisen organisointiin ja tapahtuman jälkeen anonymisoituna tilastojen koostamiseen. Tietoja ei luovuteta Ropecon 2019 -organisaation ulkopuolelle. Henkilötietoja säilytetään Amazon-yhtiön hallinnoimilla palvelimilla, jotka saattavat sijaita EU:n/ETA:n ulkopuolella. Tiedot on suojattu salasanalla. Rekisterinpitäjä on Ropecon ry, edustajana tässä asiassa Arttu Hanska, roolipelit@ropecon.fi.",
   "registrationSerialHelp": "Nouda rekisteröintikoodi larp- ja roolipelitiskiltä",

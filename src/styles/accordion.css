@@ -1,3 +1,15 @@
+.accordion-content {
+  box-shadow: 0 1px 0 rgba(9, 30, 66, 0.25);
+  border: 1px solid $border-inactive;
+  border-radius: 3px;
+  padding: 0 10px;
+}
+
+.accordion-toggle {
+  padding: 6px 10px;
+}
+
 .accordion-icon {
   margin: 0 10px 0 0;
+  font-size: 18px;
 }
