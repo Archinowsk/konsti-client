@@ -1,37 +1,32 @@
 /* @flow */
-import type { Game } from 'flow/game.flow'
+import _ from 'lodash'
+import { moveArrayItem, insertByIndex } from 'utils/array'
+import type { Game, DnDUpdatedPositions, DnDMove } from 'flow/game.flow'
 
-// Help with reordering the result
-const reorder = (
+export const reorder = (
   list: $ReadOnlyArray<Game>,
   startIndex: number,
   endIndex: number
-) => {
-  /* $FlowFixMe: Missing type annotation for `A`. `A` is a type parameter declared in  function type [1] and was implicitly instantiated at  call of method `from` [2]. */
-  const result = Array.from(list)
-  const [removed] = result.splice(startIndex, 1)
-  result.splice(endIndex, 0, removed)
-  return result
+): $ReadOnlyArray<Game> => {
+  return moveArrayItem(list, startIndex, endIndex)
 }
 
-// Move item from one list to another
-const move = (
-  source: $ReadOnlyArray<Game>,
-  destination: $ReadOnlyArray<Game>,
-  droppableSource: Object,
-  droppableDestination: Object
-) => {
-  const sourceClone = Array.from(source)
-  const destClone = Array.from(destination)
-  const [removed] = sourceClone.splice(droppableSource.index, 1)
+export const move = (
+  sourceList: $ReadOnlyArray<Game>,
+  destinationList: $ReadOnlyArray<Game>,
+  sourceMove: DnDMove,
+  destinationMove: DnDMove
+): DnDUpdatedPositions => {
+  return {
+    [sourceMove.droppableId]: _.without(
+      sourceList,
+      sourceList[sourceMove.index]
+    ),
 
-  destClone.splice(droppableDestination.index, 0, removed)
-
-  const result = {}
-  result[droppableSource.droppableId] = sourceClone
-  result[droppableDestination.droppableId] = destClone
-
-  return result
+    [destinationMove.droppableId]: insertByIndex(
+      destinationList,
+      sourceList[sourceMove.index],
+      destinationMove.index
+    ),
+  }
 }
-
-export { reorder, move }

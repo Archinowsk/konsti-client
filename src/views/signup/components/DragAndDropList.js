@@ -8,7 +8,7 @@ import { reorder, move } from 'utils/dragAndDrop'
 import { sleep } from 'utils/sleep'
 import { config } from 'config'
 import type { StatelessFunctionalComponent } from 'react'
-import type { Game, UpdatedPositions } from 'flow/game.flow'
+import type { Game, DnDUpdatedPositions } from 'flow/game.flow'
 
 type Props = {|
   updateSelectedGames: Function,
@@ -74,7 +74,7 @@ export const DragAndDropList: StatelessFunctionalComponent<Props> = (
 
       if (!newItemsSource || !newItemsDestination) return
 
-      const updatedPositions: UpdatedPositions = move(
+      const updatedPositions: DnDUpdatedPositions = move(
         newItemsSource,
         newItemsDestination,
         source,

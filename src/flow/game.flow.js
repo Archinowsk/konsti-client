@@ -24,7 +24,12 @@ export type Game = {|
   +intendedForExperiencedParticipants: boolean,
 |}
 
-export type UpdatedPositions = {|
+export type DnDUpdatedPositions = {|
   +availableGames?: $ReadOnlyArray<Game>,
   +selectedGames?: $ReadOnlyArray<Game>,
+|}
+
+export type DnDMove = {|
+  +index: number,
+  +droppableId: string,
 |}
