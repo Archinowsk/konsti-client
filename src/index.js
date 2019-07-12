@@ -5,6 +5,7 @@ import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import loaderImage from '../assets/loading.gif'
+import { config } from 'config'
 
 // Styles
 import 'styles/index.css'
@@ -18,19 +19,17 @@ import 'utils/i18n'
 // Redux store
 import { store } from 'utils/store'
 
-/*
-if (process.env.NODE_ENV === 'development') {
+const { enableAxe, enableWhyDidYouRender } = config
+
+if (enableWhyDidYouRender && process.env.NODE_ENV === 'development') {
   const whyDidYouRender = require('@welldone-software/why-did-you-render')
   whyDidYouRender(React, { include: [/(.*?)/] })
 }
-*/
 
-/*
-if (process.env.NODE_ENV === 'development') {
+if (enableAxe && process.env.NODE_ENV === 'development') {
   const axe = require('react-axe')
   axe(React, ReactDOM, 1000)
 }
-*/
 
 const rootElement = document.getElementById('main')
 

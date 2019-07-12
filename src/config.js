@@ -26,6 +26,8 @@ const commonConfig = {
 
   // Dev
   reduxTrace: true,
+  enableAxe: false,
+  enableWhyDidYouRender: false,
 }
 
 const prodConfig = {

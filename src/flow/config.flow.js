@@ -11,4 +11,6 @@ export type Config = {|
   +useTestTime: boolean,
   +reduxTrace: boolean,
   +loadedSettings: string,
+  +enableAxe: boolean,
+  +enableWhyDidYouRender: boolean,
 |}
