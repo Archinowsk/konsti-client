@@ -12,11 +12,11 @@ export const loadData = async (store: Object) => {
   const { loggedIn, userGroup, groupCode, username, jwt } = state.login
   const { startTime } = state.admin
 
-  // Get games data
-  await store.dispatch(submitGetGames())
-
   // Get settings data
   await store.dispatch(submitGetSettings())
+
+  // Get games data
+  await store.dispatch(submitGetGames())
 
   if (!loggedIn && jwt) {
     await store.dispatch(submitLogin({ jwt }))
