@@ -1,7 +1,7 @@
 /* @flow */
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
-import React, { Suspense } from 'react'
+import React, { Suspense, lazy } from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import loaderImage from '../assets/loading.gif'
@@ -10,14 +10,14 @@ import { config } from 'config'
 // Styles
 import 'styles/index.css'
 
-// Root component
-import App from 'App'
-
 // Initialized i18next instance
 import 'utils/i18n'
 
 // Redux store
 import { store } from 'utils/store'
+
+// Root component
+const App = lazy(() => import('App'))
 
 const { enableAxe, enableWhyDidYouRender } = config
 
