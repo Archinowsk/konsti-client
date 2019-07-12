@@ -81,6 +81,18 @@ const commonConfig = {
         include: [path.resolve(__dirname, 'src')],
         loader: 'babel-loader',
       },
+      {
+        test: /\.(png|jpe?g|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'images',
+            },
+          },
+        ],
+      },
     ],
   },
 }
@@ -313,4 +325,4 @@ const getWebpackConfig = () => {
 
 const webpackConfig = getWebpackConfig()
 
-export default webpackConfig // eslint-disable-line import/no-unused-modules
+export default webpackConfig

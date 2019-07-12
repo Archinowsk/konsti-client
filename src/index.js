@@ -1,9 +1,10 @@
 /* @flow */
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
-import React from 'react'
+import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
+import loaderImage from '../assets/loading.gif'
 
 // Styles
 import 'styles/index.css'
@@ -17,10 +18,12 @@ import 'utils/i18n'
 // Redux store
 import { store } from 'utils/store'
 
+/*
 if (process.env.NODE_ENV === 'development') {
   const whyDidYouRender = require('@welldone-software/why-did-you-render')
-  whyDidYouRender(React /*, { include: [/(.*?)/] } */)
+  whyDidYouRender(React, { include: [/(.*?)/] })
 }
+*/
 
 /*
 if (process.env.NODE_ENV === 'development') {
@@ -32,7 +35,11 @@ if (process.env.NODE_ENV === 'development') {
 const rootElement = document.getElementById('main')
 
 // Suspend fallback element
-const loader = <div>Loading...</div>
+const loader = (
+  <div className='loader-image'>
+    <img alt='Loading...' src={loaderImage} />
+  </div>
+)
 
 const render = () => {
   if (!rootElement) return
@@ -40,9 +47,9 @@ const render = () => {
   ReactDOM.render(
     // <React.StrictMode>
     <Provider store={store}>
-      <React.Suspense fallback={loader}>
+      <Suspense fallback={loader}>
         <App />
-      </React.Suspense>
+      </Suspense>
     </Provider>,
     // </React.StrictMode>,
     rootElement
