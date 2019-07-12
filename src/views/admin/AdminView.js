@@ -1,5 +1,5 @@
 /* @flow */
-import React from 'react'
+import React, { Fragment } from 'react'
 import { useDispatch, useSelector, useStore } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { Hidden } from 'views/admin/components/Hidden'
@@ -11,9 +11,13 @@ import { loadData } from 'utils/loadData'
 import { Loading } from 'components/Loading'
 import { timeFormatter } from 'utils/timeFormatter'
 import type { Game } from 'flow/game.flow'
-import type { StatelessFunctionalComponent } from 'react'
+import type { StatelessFunctionalComponent, Element } from 'react'
 
-export const AdminView: StatelessFunctionalComponent<{}> = () => {
+type Props = {}
+
+export const AdminView: StatelessFunctionalComponent<Props> = (
+  props: Props
+): Element<'div'> => {
   const games: $ReadOnlyArray<Game> = useSelector(state => state.allGames.games)
   const signupTime: string = useSelector(state => state.admin.signupTime)
   const appOpen: boolean = useSelector(state => state.admin.appOpen)
@@ -136,7 +140,7 @@ export const AdminView: StatelessFunctionalComponent<{}> = () => {
     <div className='admin-view'>
       {loading && <Loading />}
       {!loading && (
-        <React.Fragment>
+        <Fragment>
           <button
             disabled={submitting}
             onClick={() => {
@@ -190,7 +194,7 @@ export const AdminView: StatelessFunctionalComponent<{}> = () => {
           />
 
           <Hidden hiddenGames={hiddenGames} />
-        </React.Fragment>
+        </Fragment>
       )}
     </div>
   )

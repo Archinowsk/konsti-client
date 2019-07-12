@@ -5,9 +5,13 @@ import { Route, Switch } from 'react-router-dom'
 import { SignupList } from 'views/signup/components/SignupList'
 import { getOpenStartTimes } from 'utils/getOpenStartTimes'
 import type { Game } from 'flow/game.flow'
-import type { StatelessFunctionalComponent } from 'react'
+import type { StatelessFunctionalComponent, Element } from 'react'
 
-export const SignupView: StatelessFunctionalComponent<{}> = () => {
+type Props = {}
+
+export const SignupView: StatelessFunctionalComponent<Props> = (
+  props: Props
+): Element<'div'> => {
   const games: $ReadOnlyArray<Game> = useSelector(state => state.allGames.games)
   const testTime: string = useSelector(state => state.admin.testTime)
 

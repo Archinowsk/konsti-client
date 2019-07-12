@@ -1,5 +1,5 @@
 /* @flow */
-import React from 'react'
+import React, { Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector, useStore } from 'react-redux'
 import { loadData } from 'utils/loadData'
@@ -15,9 +15,13 @@ import { sleep } from 'utils/sleep'
 import { config } from 'config'
 import { submitSignup } from 'views/signup/signupActions'
 import type { GroupMember } from 'flow/group.flow'
-import type { StatelessFunctionalComponent } from 'react'
+import type { StatelessFunctionalComponent, Element } from 'react'
 
-export const GroupView: StatelessFunctionalComponent<{}> = () => {
+type Props = {}
+
+export const GroupView: StatelessFunctionalComponent<Props> = (
+  props: Props
+): Element<'div'> => {
   const username: string = useSelector(state => state.login.username)
   const serial: string = useSelector(state => state.login.serial)
   const groupCode: string = useSelector(state => state.login.groupCode)
@@ -200,7 +204,7 @@ export const GroupView: StatelessFunctionalComponent<{}> = () => {
 
       {loading && <Loading />}
       {!loading && !groupLeader && !inGroup && (
-        <React.Fragment>
+        <Fragment>
           <button
             className={showCreateGroup ? 'active' : ''}
             onClick={() => openGroupForming()}
@@ -234,10 +238,10 @@ export const GroupView: StatelessFunctionalComponent<{}> = () => {
               </button>
             </div>
           )}
-        </React.Fragment>
+        </Fragment>
       )}
       {!loading && groupLeader && inGroup && (
-        <React.Fragment>
+        <Fragment>
           <p>
             {t('youAreGroupLeader')}. {t('groupLeaderInfo')}.
           </p>
@@ -248,10 +252,10 @@ export const GroupView: StatelessFunctionalComponent<{}> = () => {
           <button onClick={() => leaveGroup({ leader: true })}>
             {t('button.leaveGroup')}
           </button>
-        </React.Fragment>
+        </Fragment>
       )}
       {!loading && !groupLeader && inGroup && (
-        <React.Fragment>
+        <Fragment>
           <p>
             {t('youAreInGroup')}. {t('groupMemberInfo')}.
           </p>
@@ -262,7 +266,7 @@ export const GroupView: StatelessFunctionalComponent<{}> = () => {
           <button onClick={() => leaveGroup({ leader: false })}>
             {t('button.leaveGroup')}
           </button>
-        </React.Fragment>
+        </Fragment>
       )}
       <p className={messageStyle}>{message}</p>
     </div>

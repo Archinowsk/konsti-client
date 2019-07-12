@@ -1,10 +1,14 @@
 /* @flow */
-import React from 'react'
+import React, { Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
 import moment from 'moment'
-import type { StatelessFunctionalComponent } from 'react'
+import type { StatelessFunctionalComponent, Element } from 'react'
 
-export const LanguageSelector: StatelessFunctionalComponent<{}> = () => {
+type Props = {}
+
+export const LanguageSelector: StatelessFunctionalComponent<Props> = (
+  props: Props
+): Element<typeof Fragment> => {
   const { t, i18n } = useTranslation()
   const language = i18n.language
 
@@ -16,7 +20,7 @@ export const LanguageSelector: StatelessFunctionalComponent<{}> = () => {
   }
 
   return (
-    <React.Fragment>
+    <Fragment>
       <select
         className='language-selector'
         id='language'
@@ -31,6 +35,6 @@ export const LanguageSelector: StatelessFunctionalComponent<{}> = () => {
           {t('language.finnishShort')}
         </option>
       </select>
-    </React.Fragment>
+    </Fragment>
   )
 }

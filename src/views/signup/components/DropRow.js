@@ -1,11 +1,11 @@
 /* @flow */
-import React from 'react'
+import React, { Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
 /* $FlowFixMe: Cannot import `Droppable` because there is no `Droppable` export in `react-beautiful-dnd`. */
 import { Droppable, Draggable } from 'react-beautiful-dnd'
 import { Link } from 'react-router-dom'
 import type { Game } from 'flow/game.flow'
-import type { StatelessFunctionalComponent } from 'react'
+import type { StatelessFunctionalComponent, Element } from 'react'
 
 type Props = {|
   droppableId: string,
@@ -13,7 +13,9 @@ type Props = {|
   label: string,
 |}
 
-export const DropRow: StatelessFunctionalComponent<Props> = (props: Props) => {
+export const DropRow: StatelessFunctionalComponent<Props> = (
+  props: Props
+): Element<typeof Fragment> => {
   const { droppableId, games, label } = props
   const { t } = useTranslation()
 
@@ -23,7 +25,7 @@ export const DropRow: StatelessFunctionalComponent<Props> = (props: Props) => {
   }
 
   return (
-    <React.Fragment>
+    <Fragment>
       <p>{label}</p>
 
       <Droppable droppableId={droppableId}>
@@ -57,6 +59,6 @@ export const DropRow: StatelessFunctionalComponent<Props> = (props: Props) => {
           </div>
         )}
       </Droppable>
-    </React.Fragment>
+    </Fragment>
   )
 }

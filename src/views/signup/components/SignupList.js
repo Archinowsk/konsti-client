@@ -1,5 +1,5 @@
 /* @flow */
-import React from 'react'
+import React, { Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector, useStore } from 'react-redux'
 import _ from 'lodash'
@@ -15,7 +15,7 @@ import { sleep } from 'utils/sleep'
 import { config } from 'config'
 import { loadData } from 'utils/loadData'
 import { Loading } from 'components/Loading'
-import type { StatelessFunctionalComponent } from 'react'
+import type { StatelessFunctionalComponent, Element } from 'react'
 import type { Game } from 'flow/game.flow'
 import type { Signup } from 'flow/user.flow'
 
@@ -26,7 +26,7 @@ type Props = {|
 
 export const SignupList: StatelessFunctionalComponent<Props> = (
   props: Props
-) => {
+): Element<'div'> => {
   const { games, signupTimes } = props
 
   const signupTime: string = useSelector(state => state.signup.signupTime)
@@ -216,14 +216,14 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
       {!loading && signupTimes.length === 0 && <h2>{t('noOpenSignups')}</h2>}
 
       {!loading && signupTimes.length !== 0 && (
-        <React.Fragment>
+        <Fragment>
           <h2>{t('signupOpen')}:</h2>
           <div>{signupTimeButtons}</div>
-        </React.Fragment>
+        </Fragment>
       )}
 
       {!loading && signupTime && (
-        <React.Fragment>
+        <Fragment>
           <p>
             {t('signupOpenBetweenCapital')} {signupStartTime}-{signupEndTime}.{' '}
             {t('signupResultHint')} {signupEndTime}
@@ -248,7 +248,7 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
             updateSelectedGames={updateSelectedGames}
             updateAvailableGames={updateAvailableGames}
           />
-        </React.Fragment>
+        </Fragment>
       )}
     </div>
   )

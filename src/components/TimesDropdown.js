@@ -2,7 +2,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { timeFormatter } from 'utils/timeFormatter'
-import type { StatelessFunctionalComponent } from 'react'
+import type { StatelessFunctionalComponent, Element } from 'react'
 
 export type Props = {|
   onChange: Function,
@@ -17,7 +17,7 @@ export type Props = {|
 
 export const TimesDropdown: StatelessFunctionalComponent<Props> = (
   props: Props
-) => {
+): Element<'div'> => {
   const { times, onChange, selectedTime } = props
   const { t } = useTranslation()
 

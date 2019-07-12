@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import _ from 'lodash'
 import { timeFormatter } from 'utils/timeFormatter'
 import type { Game } from 'flow/game.flow'
-import type { StatelessFunctionalComponent } from 'react'
+import type { StatelessFunctionalComponent, Element } from 'react'
 
 type Props = {|
   games: $ReadOnlyArray<Game>,
@@ -13,7 +13,7 @@ type Props = {|
 
 export const AllGamesList: StatelessFunctionalComponent<Props> = (
   props: Props
-) => {
+): Element<'div'> => {
   const { games } = props
   const { t } = useTranslation()
 

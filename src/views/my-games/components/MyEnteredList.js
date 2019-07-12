@@ -8,7 +8,7 @@ import { getStartTimes } from 'utils/getStartTimes'
 import { SignupsByStartTimes } from './SignupsByStartTimes'
 import { config } from 'config'
 import type { Signup } from 'flow/user.flow'
-import type { StatelessFunctionalComponent } from 'react'
+import type { StatelessFunctionalComponent, Element } from 'react'
 
 type Props = {|
   enteredGames: $ReadOnlyArray<Signup>,
@@ -17,7 +17,7 @@ type Props = {|
 
 export const MyEnteredList: StatelessFunctionalComponent<Props> = (
   props: Props
-) => {
+): Element<'div'> => {
   const { enteredGames, signedGames } = props
   const { t } = useTranslation()
   const testTime: string = useSelector(state => state.admin.testTime)

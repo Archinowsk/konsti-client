@@ -5,9 +5,13 @@ import { useTranslation } from 'react-i18next'
 import { SubmissionError } from 'redux-form'
 import { submitLogin } from 'views/login/loginActions'
 import LoginForm from 'views/login/components/LoginForm'
-import type { StatelessFunctionalComponent } from 'react'
+import type { StatelessFunctionalComponent, Element } from 'react'
 
-export const LoginView: StatelessFunctionalComponent<{}> = () => {
+type Props = {}
+
+export const LoginView: StatelessFunctionalComponent<Props> = (
+  props: Props
+): Element<'div'> => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
 

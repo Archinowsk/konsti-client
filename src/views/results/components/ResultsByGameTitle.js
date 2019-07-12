@@ -2,7 +2,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import _ from 'lodash'
-import type { StatelessFunctionalComponent } from 'react'
+import type { StatelessFunctionalComponent, Element } from 'react'
 import type { Results } from 'flow/result.flow'
 
 type Props = {|
@@ -11,7 +11,7 @@ type Props = {|
 
 export const ResultsByGameTitle: StatelessFunctionalComponent<Props> = (
   props: Props
-) => {
+): Element<'div'> => {
   const { results } = props
   const { t } = useTranslation()
 
@@ -50,5 +50,5 @@ export const ResultsByGameTitle: StatelessFunctionalComponent<Props> = (
     )
   }
 
-  return resultsByGameTitle
+  return <div className='results-by-gametime'>{resultsByGameTitle}</div>
 }

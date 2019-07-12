@@ -5,7 +5,7 @@ import _ from 'lodash'
 import { getStartTimes } from 'utils/getStartTimes'
 import { SignupsByStartTimes } from './SignupsByStartTimes'
 import type { Signup } from 'flow/user.flow'
-import type { StatelessFunctionalComponent } from 'react'
+import type { StatelessFunctionalComponent, Element } from 'react'
 
 type Props = {|
   signedGames: $ReadOnlyArray<Signup>,
@@ -13,7 +13,7 @@ type Props = {|
 
 export const MySignupsList: StatelessFunctionalComponent<Props> = (
   props: Props
-) => {
+): Element<'div'> => {
   const { signedGames } = props
   const { t } = useTranslation()
 

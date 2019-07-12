@@ -2,7 +2,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import type { GroupMember } from 'flow/group.flow'
-import type { StatelessFunctionalComponent } from 'react'
+import type { StatelessFunctionalComponent, Element } from 'react'
 
 type Props = {|
   groupMembers: $ReadOnlyArray<GroupMember>,
@@ -10,7 +10,7 @@ type Props = {|
 
 export const GroupMembersList: StatelessFunctionalComponent<Props> = (
   props: Props
-) => {
+): Element<'div'> => {
   const { groupMembers } = props
   const { t } = useTranslation()
 
@@ -19,11 +19,9 @@ export const GroupMembersList: StatelessFunctionalComponent<Props> = (
   const membersList = groupMembers.map(member => {
     const leader = member.serial === member.groupCode
     return (
-      <React.Fragment key={member.username}>
-        <li>
-          {member.username} {leader && <span>({t('groupLeader')})</span>}
-        </li>
-      </React.Fragment>
+      <li key={member.username}>
+        {member.username} {leader && <span>({t('groupLeader')})</span>}
+      </li>
     )
   })
 

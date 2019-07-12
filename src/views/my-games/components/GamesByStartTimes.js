@@ -3,7 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { timeFormatter } from 'utils/timeFormatter'
 import type { Game } from 'flow/game.flow'
-import type { StatelessFunctionalComponent } from 'react'
+import type { StatelessFunctionalComponent, Element } from 'react'
 
 type Props = {|
   games: $ReadOnlyArray<Game>,
@@ -12,7 +12,7 @@ type Props = {|
 
 export const GamesByStartTimes: StatelessFunctionalComponent<Props> = (
   props: Props
-) => {
+): Element<'div'> => {
   const { games, startTimes } = props
 
   const getGamesList = (startTime: string) => {
@@ -27,7 +27,7 @@ export const GamesByStartTimes: StatelessFunctionalComponent<Props> = (
     })
   }
 
-  return startTimes.map(startTime => {
+  const startTimesList = startTimes.map(startTime => {
     return (
       <div key={startTime}>
         <p className='bold'>{timeFormatter.weekdayAndTime(startTime)}</p>
@@ -35,4 +35,6 @@ export const GamesByStartTimes: StatelessFunctionalComponent<Props> = (
       </div>
     )
   })
+
+  return <div className='start-times-list'>{startTimesList}</div>
 }

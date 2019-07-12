@@ -1,5 +1,5 @@
 /* @flow */
-import React from 'react'
+import React, { Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { withRouter } from 'react-router-dom'
@@ -9,7 +9,7 @@ import { FeedbackForm } from 'components/FeedbackForm'
 import { GameInfo } from 'components/GameInfo'
 import { Loading } from 'components/Loading'
 import type { Game } from 'flow/game.flow'
-import type { StatelessFunctionalComponent } from 'react'
+import type { StatelessFunctionalComponent, Element } from 'react'
 import type { UserGroup } from 'flow/user.flow'
 
 type Props = {|
@@ -17,7 +17,9 @@ type Props = {|
   match: Object,
 |}
 
-const GameDetails: StatelessFunctionalComponent<Props> = (props: Props) => {
+const GameDetails: StatelessFunctionalComponent<Props> = (
+  props: Props
+): Element<'div'> => {
   const { history, match } = props
 
   const username: string = useSelector(state => state.login.username)
@@ -209,10 +211,10 @@ const GameDetails: StatelessFunctionalComponent<Props> = (props: Props) => {
       )}
 
       {!loading && game && (
-        <React.Fragment>
+        <Fragment>
           <GameInfo game={game} />
           {loggedIn && <FeedbackForm game={game} />}
-        </React.Fragment>
+        </Fragment>
       )}
     </div>
   )

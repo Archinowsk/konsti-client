@@ -1,5 +1,5 @@
 /* @flow */
-import React from 'react'
+import React, { Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
 /* $FlowFixMe: Cannot import `DragDropContext` because there is no `DragDropContext` export in `react-beautiful-dnd`. */
 import { DragDropContext } from 'react-beautiful-dnd'
@@ -7,7 +7,7 @@ import { DropRow } from 'views/signup/components/DropRow'
 import { reorder, move } from 'utils/dragAndDrop'
 import { sleep } from 'utils/sleep'
 import { config } from 'config'
-import type { StatelessFunctionalComponent } from 'react'
+import type { StatelessFunctionalComponent, Element } from 'react'
 import type { Game, DnDUpdatedPositions } from 'flow/game.flow'
 
 type Props = {|
@@ -19,7 +19,7 @@ type Props = {|
 
 export const DragAndDropList: StatelessFunctionalComponent<Props> = (
   props: Props
-) => {
+): Element<typeof Fragment> => {
   const {
     availableGames,
     selectedGames,
@@ -100,7 +100,7 @@ export const DragAndDropList: StatelessFunctionalComponent<Props> = (
   }
 
   return (
-    <React.Fragment>
+    <Fragment>
       {warningVisible && <p className='error'>{t('gameLimitWarning')}</p>}
       <div className='drop-rows'>
         <DragDropContext onDragEnd={onDragEnd}>
@@ -120,6 +120,6 @@ export const DragAndDropList: StatelessFunctionalComponent<Props> = (
           </div>
         </DragDropContext>
       </div>
-    </React.Fragment>
+    </Fragment>
   )
 }

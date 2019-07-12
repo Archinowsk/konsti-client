@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { ResultsByGameTitle } from './ResultsByGameTitle'
 import { ResultsByUsername } from './ResultsByUsername'
 import type { Results } from 'flow/result.flow'
-import type { StatelessFunctionalComponent } from 'react'
+import type { StatelessFunctionalComponent, Element } from 'react'
 
 type Props = {|
   results: Results,
@@ -12,7 +12,7 @@ type Props = {|
 
 export const ResultsList: StatelessFunctionalComponent<Props> = (
   props: Props
-) => {
+): Element<'div'> => {
   const { results } = props
   const { t } = useTranslation()
 

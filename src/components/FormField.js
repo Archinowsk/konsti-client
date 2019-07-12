@@ -1,13 +1,13 @@
 /* @flow */
-import React from 'react'
+import React, { Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import type { FieldProps } from 'redux-form'
-import type { StatelessFunctionalComponent } from 'react'
+import type { StatelessFunctionalComponent, Element } from 'react'
 
 export const FormField: StatelessFunctionalComponent<FieldProps> = (
   props: FieldProps
-) => {
+): Element<typeof Fragment> => {
   // $FlowFixMe: Cannot get field.type because property type is missing in FieldProps [1].
   const { type } = props
   const { name, onChange, onBlur, onDragStart, onDrop, onFocus } = props.input
@@ -33,7 +33,7 @@ export const FormField: StatelessFunctionalComponent<FieldProps> = (
   }
 
   return (
-    <React.Fragment>
+    <Fragment>
       <div className='form-row'>
         <div className='form-field'>
           <input
@@ -67,6 +67,6 @@ export const FormField: StatelessFunctionalComponent<FieldProps> = (
           <span className='form-field-error-message'>{t(error)}</span>
         </div>
       )}
-    </React.Fragment>
+    </Fragment>
   )
 }

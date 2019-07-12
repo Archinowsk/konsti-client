@@ -5,9 +5,13 @@ import { SubmissionError } from 'redux-form'
 import { useTranslation } from 'react-i18next'
 import { submitRegistration } from 'views/registration/registrationActions'
 import RegistrationForm from 'views/registration/components/RegistrationForm'
-import type { StatelessFunctionalComponent } from 'react'
+import type { StatelessFunctionalComponent, Element } from 'react'
 
-export const RegistrationView: StatelessFunctionalComponent<{}> = () => {
+type Props = {}
+
+export const RegistrationView: StatelessFunctionalComponent<Props> = (
+  props: Props
+): Element<'div'> => {
   const dispatch = useDispatch()
   const { t } = useTranslation()
 

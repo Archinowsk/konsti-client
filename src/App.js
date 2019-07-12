@@ -1,5 +1,5 @@
 /* @flow */
-import React from 'react'
+import React, { Fragment } from 'react'
 import { hot } from 'react-hot-loader/root'
 import { useTranslation } from 'react-i18next'
 import { useSelector, useStore } from 'react-redux'
@@ -14,9 +14,12 @@ import { Routes } from 'Routes'
 import { Header } from 'components/Header'
 import { loadData } from 'utils/loadData'
 import { Loading } from 'components/Loading'
-import type { StatelessFunctionalComponent } from 'react'
+import type { StatelessFunctionalComponent, Element } from 'react'
 
-const App: StatelessFunctionalComponent<{}> = () => {
+type Props = {}
+const App: StatelessFunctionalComponent<Props> = (
+  props: Props
+): Element<typeof Fragment> => {
   const appOpen: boolean = useSelector(state => state.admin.appOpen)
   const { t } = useTranslation()
   const store = useStore()
@@ -36,7 +39,7 @@ const App: StatelessFunctionalComponent<{}> = () => {
   library.add(faAngleUp, faAngleDown, faEye, faEyeSlash)
 
   return (
-    <React.Fragment>
+    <Fragment>
       <Header />
       <div className='body'>
         {loading && <Loading />}
@@ -48,7 +51,7 @@ const App: StatelessFunctionalComponent<{}> = () => {
         )}
         {!loading && appOpen && <Routes onlyAdmin={false} />}
       </div>
-    </React.Fragment>
+    </Fragment>
   )
 }
 

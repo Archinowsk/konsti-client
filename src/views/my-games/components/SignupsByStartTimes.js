@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { timeFormatter } from 'utils/timeFormatter'
 import type { Signup, EmptySignup } from 'flow/user.flow'
-import type { StatelessFunctionalComponent } from 'react'
+import type { StatelessFunctionalComponent, Element } from 'react'
 
 type Props = {|
   signups: $ReadOnlyArray<Signup | EmptySignup>,
@@ -13,7 +13,7 @@ type Props = {|
 
 export const SignupsByStartTimes: StatelessFunctionalComponent<Props> = (
   props: Props
-) => {
+): Element<'div'> => {
   const { signups, startTimes } = props
   const { t } = useTranslation()
 
@@ -40,7 +40,7 @@ export const SignupsByStartTimes: StatelessFunctionalComponent<Props> = (
     })
   }
 
-  return startTimes.map(startTime => {
+  const startTimesList = startTimes.map(startTime => {
     return (
       <div key={startTime}>
         <p className='bold'>{timeFormatter.weekdayAndTime(startTime)}</p>
@@ -48,4 +48,6 @@ export const SignupsByStartTimes: StatelessFunctionalComponent<Props> = (
       </div>
     )
   })
+
+  return <div className='start-times-list'>{startTimesList}</div>
 }

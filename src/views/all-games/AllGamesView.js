@@ -1,5 +1,5 @@
 /* @flow */
-import React from 'react'
+import React, { Fragment } from 'react'
 import { useSelector, useStore } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import GameDetails from 'components/GameDetails'
@@ -7,9 +7,12 @@ import { AllGamesList } from 'views/all-games/components/AllGamesList'
 import { loadData } from 'utils/loadData'
 import { Loading } from 'components/Loading'
 import type { Game } from 'flow/game.flow'
-import type { StatelessFunctionalComponent } from 'react'
+import type { StatelessFunctionalComponent, Element } from 'react'
 
-export const AllGamesView: StatelessFunctionalComponent<{}> = () => {
+type Props = {}
+export const AllGamesView: StatelessFunctionalComponent<Props> = (
+  props: Props
+): Element<typeof Fragment> => {
   const games: $ReadOnlyArray<Game> = useSelector(state => state.allGames.games)
   const hiddenGames: $ReadOnlyArray<Game> = useSelector(
     state => state.admin.hiddenGames
@@ -49,7 +52,7 @@ export const AllGamesView: StatelessFunctionalComponent<{}> = () => {
   const visibleGames = getVisibleGames()
 
   return (
-    <React.Fragment>
+    <Fragment>
       {loading && <Loading />}
       {!loading && (
         <Switch>
@@ -66,6 +69,6 @@ export const AllGamesView: StatelessFunctionalComponent<{}> = () => {
           <Route path='/games/:id' render={() => <GameDetails />} />
         </Switch>
       )}
-    </React.Fragment>
+    </Fragment>
   )
 }

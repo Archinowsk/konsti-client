@@ -1,16 +1,20 @@
 /* @flow */
-import React from 'react'
+import React, { Fragment } from 'react'
 import { useSelector, useStore } from 'react-redux'
 import { MySignupsList } from 'views/my-games/components/MySignupsList'
 import { MyFavoritesList } from 'views/my-games/components/MyFavoritesList'
 import { MyEnteredList } from 'views/my-games/components/MyEnteredList'
 import { loadData } from 'utils/loadData'
 import { Loading } from 'components/Loading'
-import type { StatelessFunctionalComponent } from 'react'
+import type { StatelessFunctionalComponent, Element } from 'react'
 import type { Game } from 'flow/game.flow'
 import type { Signup } from 'flow/user.flow'
 
-export const MyGamesView: StatelessFunctionalComponent<{}> = () => {
+type Props = {}
+
+export const MyGamesView: StatelessFunctionalComponent<Props> = (
+  props: Props
+): Element<'div'> => {
   const signedGames: $ReadOnlyArray<Signup> = useSelector(
     state => state.myGames.signedGames
   )
@@ -37,14 +41,14 @@ export const MyGamesView: StatelessFunctionalComponent<{}> = () => {
     <div className='my-games-view'>
       {loading && <Loading />}
       {!loading && (
-        <React.Fragment>
+        <Fragment>
           <MyFavoritesList favoritedGames={favoritedGames} />
           <MySignupsList signedGames={signedGames} />
           <MyEnteredList
             enteredGames={enteredGames}
             signedGames={signedGames}
           />
-        </React.Fragment>
+        </Fragment>
       )}
     </div>
   )

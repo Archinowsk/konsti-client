@@ -1,5 +1,5 @@
 /* @flow */
-import React from 'react'
+import React, { Fragment } from 'react'
 import { useSelector, useStore } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { ResultsList } from 'views/results/components/ResultsList'
@@ -7,9 +7,13 @@ import { loadData } from 'utils/loadData'
 import { Loading } from 'components/Loading'
 import { timeFormatter } from 'utils/timeFormatter'
 import type { Results } from 'flow/result.flow'
-import type { StatelessFunctionalComponent } from 'react'
+import type { StatelessFunctionalComponent, Element } from 'react'
 
-export const ResultsView: StatelessFunctionalComponent<{}> = () => {
+type Props = {}
+
+export const ResultsView: StatelessFunctionalComponent<Props> = (
+  props: Props
+): Element<'div'> => {
   const results: Results = useSelector(state => state.results.results)
   const signupTime: string = useSelector(state => state.admin.signupTime)
   const store = useStore()
@@ -33,12 +37,12 @@ export const ResultsView: StatelessFunctionalComponent<{}> = () => {
       {loading && <Loading />}
       {!loading && !results && <h2>{t('noResults')}</h2>}
       {!loading && results && (
-        <React.Fragment>
+        <Fragment>
           <h2>
             {t('signupResultsfor')} {formattedDate}
           </h2>
           <ResultsList results={results} />
-        </React.Fragment>
+        </Fragment>
       )}
     </div>
   )

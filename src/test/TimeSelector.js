@@ -4,9 +4,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import _ from 'lodash'
 import { submitSetTestTime } from 'views/admin/adminActions'
 import { timeFormatter } from 'utils/timeFormatter'
-import type { StatelessFunctionalComponent } from 'react'
+import type { StatelessFunctionalComponent, Element } from 'react'
 
-export const TimeSelector: StatelessFunctionalComponent<{}> = () => {
+type Props = {}
+
+export const TimeSelector: StatelessFunctionalComponent<Props> = (
+  props: Props
+): Element<'div'> => {
   const testTime: string = useSelector(state => state.admin.testTime)
 
   const dispatch = useDispatch()

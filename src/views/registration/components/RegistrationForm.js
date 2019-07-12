@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next'
 import { FormField } from 'components/FormField'
 import { required } from 'utils/validate'
 import { Accordion } from 'components/Accordion'
-import type { StatelessFunctionalComponent } from 'react'
+import type { StatelessFunctionalComponent, Element } from 'react'
 
 type Props = {|
   handleSubmit: Function,
@@ -15,7 +15,7 @@ type Props = {|
 
 const RegistrationForm: StatelessFunctionalComponent<Props> = (
   props: Props
-) => {
+): Element<'div'> => {
   const { handleSubmit, submitting, error } = props
   const { t } = useTranslation()
 

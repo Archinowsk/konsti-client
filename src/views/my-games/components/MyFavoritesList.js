@@ -5,7 +5,7 @@ import _ from 'lodash'
 import { getStartTimes } from 'utils/getStartTimes'
 import { GamesByStartTimes } from './GamesByStartTimes'
 import type { Game } from 'flow/game.flow'
-import type { StatelessFunctionalComponent } from 'react'
+import type { StatelessFunctionalComponent, Element } from 'react'
 
 type Props = {|
   favoritedGames: $ReadOnlyArray<Game>,
@@ -13,7 +13,7 @@ type Props = {|
 
 export const MyFavoritesList: StatelessFunctionalComponent<Props> = (
   props: Props
-) => {
+): Element<'div'> => {
   const { favoritedGames } = props
   const { t } = useTranslation()
 

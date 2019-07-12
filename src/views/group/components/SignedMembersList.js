@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import _ from 'lodash'
 import { timeFormatter } from 'utils/timeFormatter'
 import type { GroupMember } from 'flow/group.flow'
-import type { StatelessFunctionalComponent } from 'react'
+import type { StatelessFunctionalComponent, Element } from 'react'
 
 type Props = {|
   groupMembers: $ReadOnlyArray<GroupMember>,
@@ -12,7 +12,7 @@ type Props = {|
 
 export const SignedMembersList: StatelessFunctionalComponent<Props> = (
   props: Props
-) => {
+): Element<'div'> => {
   const { groupMembers } = props
 
   if (!groupMembers) return <div className='signed-games-list' />
@@ -32,14 +32,12 @@ export const SignedMembersList: StatelessFunctionalComponent<Props> = (
     )
 
     return (
-      <React.Fragment key={signedGame.gameDetails.gameId}>
-        <li>
-          <Link to={`/games/${signedGame.gameDetails.gameId}`}>
-            {formattedDate}: {signedGame.gameDetails.title} (
-            {signedGame.priority})
-          </Link>
-        </li>
-      </React.Fragment>
+      <li key={signedGame.gameDetails.gameId}>
+        <Link to={`/games/${signedGame.gameDetails.gameId}`}>
+          {formattedDate}: {signedGame.gameDetails.title} ({signedGame.priority}
+          )
+        </Link>
+      </li>
     )
   })
   return <div className='signed-games-list'>{signedGamesList}</div>

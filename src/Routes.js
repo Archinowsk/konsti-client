@@ -1,5 +1,5 @@
 /* @flow */
-import React from 'react'
+import React, { Fragment } from 'react'
 import {
   BrowserRouter,
   Route,
@@ -9,7 +9,6 @@ import {
 } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-import type { StatelessFunctionalComponent } from 'react'
 import { AllGamesView } from 'views/all-games/AllGamesView'
 import { LoginView } from 'views/login/LoginView'
 import { MyGamesView } from 'views/my-games/MyGamesView'
@@ -19,13 +18,16 @@ import { AdminView } from 'views/admin/AdminView'
 import { ResultsView } from 'views/results/ResultsView'
 import { LogoutView } from 'views/logout/LogoutView'
 import { GroupView } from 'views/group/GroupView'
+import type { StatelessFunctionalComponent, Element } from 'react'
 import type { UserGroup } from 'flow/user.flow'
 
 type Props = {
   onlyAdmin: boolean,
 }
 
-export const Routes: StatelessFunctionalComponent<Props> = (props: Props) => {
+export const Routes: StatelessFunctionalComponent<Props> = (
+  props: Props
+): Element<typeof BrowserRouter> => {
   const { onlyAdmin } = props
   const loggedIn: boolean = useSelector(state => state.login.loggedIn)
   const userGroup: UserGroup = useSelector(state => state.login.userGroup)
@@ -34,7 +36,7 @@ export const Routes: StatelessFunctionalComponent<Props> = (props: Props) => {
   if (onlyAdmin && !loggedIn) {
     return (
       <BrowserRouter>
-        <React.Fragment>
+        <Fragment>
           <div className='routes'>
             <NavLink to='/login' className='router-link'>
               {t('button.login')}
@@ -44,7 +46,7 @@ export const Routes: StatelessFunctionalComponent<Props> = (props: Props) => {
             <Route path='/login' component={LoginView} />
             <Redirect from='/*' to='/' />
           </Switch>
-        </React.Fragment>
+        </Fragment>
       </BrowserRouter>
     )
   }
@@ -52,7 +54,7 @@ export const Routes: StatelessFunctionalComponent<Props> = (props: Props) => {
   if (onlyAdmin && loggedIn) {
     return (
       <BrowserRouter>
-        <React.Fragment>
+        <Fragment>
           <div className='routes'>
             {userGroup === 'admin' && (
               <NavLink to='/admin' className='router-link'>
@@ -70,7 +72,7 @@ export const Routes: StatelessFunctionalComponent<Props> = (props: Props) => {
             <Route path='/logout' component={LogoutView} />
             <Redirect from='/*' to='/' />
           </Switch>
-        </React.Fragment>
+        </Fragment>
       </BrowserRouter>
     )
   }
@@ -78,7 +80,7 @@ export const Routes: StatelessFunctionalComponent<Props> = (props: Props) => {
   if (!loggedIn) {
     return (
       <BrowserRouter>
-        <React.Fragment>
+        <Fragment>
           <div className='routes'>
             <NavLink to='/games' className='router-link'>
               {t('pages.allGames')}
@@ -98,14 +100,14 @@ export const Routes: StatelessFunctionalComponent<Props> = (props: Props) => {
             <Redirect from='/' to='/games' />
             <Redirect from='/*' to='/login' />
           </Switch>
-        </React.Fragment>
+        </Fragment>
       </BrowserRouter>
     )
   }
 
   return (
     <BrowserRouter>
-      <React.Fragment>
+      <Fragment>
         <div className='routes'>
           <NavLink to='/games' className='router-link'>
             {t('pages.allGames')}
@@ -154,7 +156,7 @@ export const Routes: StatelessFunctionalComponent<Props> = (props: Props) => {
           <Redirect from='/' to='/games' />
           <Redirect from='/*' to='/' />
         </Switch>
-      </React.Fragment>
+      </Fragment>
     </BrowserRouter>
   )
 }

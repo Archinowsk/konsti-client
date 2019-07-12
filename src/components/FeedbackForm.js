@@ -1,9 +1,9 @@
 /* @flow */
-import React from 'react'
+import React, { Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
 import { postFeedback } from 'services/feedbackServices'
 import type { Game } from 'flow/game.flow'
-import type { StatelessFunctionalComponent } from 'react'
+import type { StatelessFunctionalComponent, Element } from 'react'
 
 type Props = {|
   game: Game,
@@ -11,7 +11,7 @@ type Props = {|
 
 export const FeedbackForm: StatelessFunctionalComponent<Props> = (
   props: Props
-) => {
+): Element<'div'> => {
   const { game } = props
 
   const [submitting, setSubmitting] = React.useState(false)
@@ -53,7 +53,7 @@ export const FeedbackForm: StatelessFunctionalComponent<Props> = (
       <p>{t('feedbackInstruction')}</p>
 
       {!feedbackSent && (
-        <React.Fragment>
+        <Fragment>
           <textarea
             value={feedbackValue}
             onChange={handleFeedbackChange}
@@ -64,7 +64,7 @@ export const FeedbackForm: StatelessFunctionalComponent<Props> = (
           <button disabled={submitting} onClick={() => sendFeedbackEvent()}>
             {t('button.sendFeedback')}
           </button>
-        </React.Fragment>
+        </Fragment>
       )}
 
       {feedbackSent && <p className='success'>{t('button.feedbackSent')}</p>}

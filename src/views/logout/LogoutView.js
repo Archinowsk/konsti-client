@@ -3,9 +3,13 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import { submitLogout } from 'views/logout/logoutActions'
-import type { StatelessFunctionalComponent } from 'react'
+import type { StatelessFunctionalComponent, Element } from 'react'
 
-export const LogoutView: StatelessFunctionalComponent<{}> = () => {
+type Props = {}
+
+export const LogoutView: StatelessFunctionalComponent<Props> = (
+  props: Props
+): Element<typeof Redirect> => {
   const dispatch = useDispatch()
 
   React.useEffect(() => {

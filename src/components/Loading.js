@@ -1,9 +1,13 @@
 /* @flow */
 import React from 'react'
 import { useTranslation } from 'react-i18next'
-import type { StatelessFunctionalComponent } from 'react'
+import type { StatelessFunctionalComponent, Element } from 'react'
 
-export const Loading: StatelessFunctionalComponent<{}> = () => {
+type Props = {}
+
+export const Loading: StatelessFunctionalComponent<Props> = (
+  props: Props
+): Element<'div'> => {
   const { t } = useTranslation()
   return (
     <div className='loading'>

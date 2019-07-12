@@ -1,5 +1,5 @@
 /* @flow */
-import React from 'react'
+import React, { Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import type { StatelessFunctionalComponent, Element } from 'react'
@@ -27,7 +27,7 @@ export const Accordion: StatelessFunctionalComponent<Props> = (
   return (
     <div className='accordion'>
       {open && (
-        <React.Fragment>
+        <Fragment>
           <button className='accordion-toggle' onClick={() => onClick()}>
             <FontAwesomeIcon className='accordion-icon' icon='angle-up' />
             {t(`${buttonText}`)}
@@ -36,15 +36,15 @@ export const Accordion: StatelessFunctionalComponent<Props> = (
             <h3>{t(`${title}`)}</h3>
             <p>{t(`${text}`)}</p>
           </div>
-        </React.Fragment>
+        </Fragment>
       )}
       {!open && (
-        <React.Fragment>
+        <Fragment>
           <button className='accordion-toggle' onClick={() => onClick()}>
             <FontAwesomeIcon className='accordion-icon' icon='angle-down' />
             <span>{t(`${buttonText}`)}</span>
           </button>
-        </React.Fragment>
+        </Fragment>
       )}
     </div>
   )

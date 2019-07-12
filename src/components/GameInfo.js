@@ -3,17 +3,19 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { timeFormatter } from 'utils/timeFormatter'
 import type { Game } from 'flow/game.flow'
-import type { StatelessFunctionalComponent } from 'react'
+import type { StatelessFunctionalComponent, Element } from 'react'
 
 export type Props = {|
   game: Game,
 |}
 
-export const GameInfo: StatelessFunctionalComponent<Props> = (props: Props) => {
+export const GameInfo: StatelessFunctionalComponent<Props> = (
+  props: Props
+): Element<'div'> => {
   const { game } = props
   const { t } = useTranslation()
 
-  if (!game) return <p />
+  if (!game) return <div className='game-details' />
 
   const getTags = () => {
     const tagsList = []
