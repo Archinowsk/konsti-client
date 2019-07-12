@@ -191,8 +191,8 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
     setSignupError(false)
   }
 
-  const { signupStartTime } = timeFormatter.startTime(signupTime)
-  const { signupEndTime } = timeFormatter.endTime(signupTime, '')
+  const signupStartTime = timeFormatter.startTime(signupTime)
+  const signupEndTime = timeFormatter.endTime(signupTime)
 
   const isActive = isActive => (isActive ? 'active' : '')
 

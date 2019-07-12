@@ -83,7 +83,7 @@ export const GameInfo: StatelessFunctionalComponent<Props> = (props: Props) => {
   const genresList = getGenres()
   const stylesList = getStyles()
   const formattedStartTime = timeFormatter.weekdayAndTime(game.startTime)
-  const formattedEndTime = timeFormatter.timeOnly(game.endTime)
+  const formattedEndTime = timeFormatter.time(game.endTime)
 
   return (
     <div className='game-details'>

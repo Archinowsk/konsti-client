@@ -38,7 +38,7 @@ export const TimeSelector: StatelessFunctionalComponent<{}> = () => {
         className={`button-${time} ${isActive(time === testTime)}`}
         disabled={time === testTime}
       >
-        {timeFormatter.fullDate(time)}
+        {timeFormatter.dateAndTime(time)}
       </button>
     )
   })

@@ -7,10 +7,6 @@
   color: $error;
 }
 
-.exception {
-  color: $error;
-}
-
 .success {
   color: $success;
 }

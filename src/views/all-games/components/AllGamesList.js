@@ -29,13 +29,8 @@ export const AllGamesList: StatelessFunctionalComponent<Props> = (
 
     for (const [startTime, games] of Object.entries(groupedGames)) {
       const formattedStartTime = timeFormatter.weekdayAndTime(startTime)
-      const { signupStartTime, startTimeException } = timeFormatter.startTime(
-        startTime
-      )
-      const { signupEndTime, endTimeException } = timeFormatter.endTime(
-        startTime,
-        ''
-      )
+      const signupStartTime = timeFormatter.startTime(startTime)
+      const signupEndTime = timeFormatter.endTime(startTime)
 
       const title = (
         <p key={startTime} className='title'>
@@ -45,18 +40,6 @@ export const AllGamesList: StatelessFunctionalComponent<Props> = (
       )
 
       GamesList.push(title)
-
-      // Show exception warning if there are changes in time
-      if (startTimeException || endTimeException) {
-        const exception = (
-          <p key={`${startTime}-exception`} className='exception'>
-            {' '}
-            {t('exceptionInTime')}
-          </p>
-        )
-
-        GamesList.push(exception)
-      }
 
       /* $FlowFixMe: property `@@iterator` is missing in  mixed [1] but exists in  `$Iterable` [2]. */
       for (const game of games) {

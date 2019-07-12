@@ -9,9 +9,8 @@ const {
   DAY_START_TIME,
 } = config
 
-const startTime = (startTime: string) => {
-  let signupStartTime = null
-  const startTimeException = false
+const startTime = (startTime: string): string => {
+  const timeFormat = 'HH:mm'
 
   // Signup starts before convention
   if (
@@ -19,75 +18,52 @@ const startTime = (startTime: string) => {
       .subtract(SIGNUP_OPEN_TIME, 'hours')
       .isBefore(moment(CONVENTION_START_TIME))
   ) {
-    signupStartTime = moment(CONVENTION_START_TIME)
+    return moment(CONVENTION_START_TIME).format(timeFormat)
   }
-  // Set earliest signup hour for a day
+  // Signup starts before earliest signup time for a day
   else if (
     moment(startTime)
       .subtract(SIGNUP_OPEN_TIME, 'hours')
       .isBefore(moment(startTime).hours(DAY_START_TIME))
   ) {
-    signupStartTime = moment(startTime).hours(DAY_START_TIME)
+    return moment(startTime)
+      .hours(DAY_START_TIME)
+      .format(timeFormat)
   }
-  // Don't modifty signup start time
+  // Valid signup start time
   else {
-    signupStartTime = moment(startTime).subtract(SIGNUP_OPEN_TIME, 'hours')
+    return moment(startTime)
+      .subtract(SIGNUP_OPEN_TIME, 'hours')
+      .format(timeFormat)
   }
-
-  const formattedTime = {
-    signupStartTime: moment(signupStartTime).format('HH:mm'),
-    startTimeException,
-  }
-
-  return formattedTime
 }
 
-const endTime = (startTime: string, customTime: string) => {
-  let signupEndTime
-  let endTimeException = false
-
-  // Use custom signup end time
-  if (customTime) {
-    signupEndTime = moment(startTime).subtract(customTime, 'minutes')
-  }
-  // First signup will be open longer
-  else if (
-    moment(startTime)
-      .subtract(1, 'hours')
-      .isSame(moment(CONVENTION_START_TIME))
-  ) {
-    signupEndTime = moment(startTime).subtract(15, 'minutes')
-    endTimeException = true
-  }
-  // Use default signup end time
-  else {
-    signupEndTime = moment(startTime).subtract(SIGNUP_END_TIME, 'minutes')
-  }
-
-  const formattedTime = {
-    signupEndTime: moment(signupEndTime).format('HH:mm'),
-    endTimeException,
-  }
-
-  return formattedTime
+const endTime = (startTime: string): string => {
+  const timeFormat = 'HH:mm'
+  return moment(startTime)
+    .subtract(SIGNUP_END_TIME, 'minutes')
+    .format(timeFormat)
 }
 
-const weekdayAndTime = (time: string) => {
-  return moment(time).format('dddd HH:mm')
+const weekdayAndTime = (time: string): string => {
+  const timeFormat = 'dddd HH:mm'
+  return moment(time).format(timeFormat)
 }
 
-const fullDate = (time: string) => {
-  return moment(time).format('DD.M.YYYY HH:mm')
+const dateAndTime = (time: string): string => {
+  const timeFormat = 'DD.M.YYYY HH:mm'
+  return moment(time).format(timeFormat)
 }
 
-const timeOnly = (time: string) => {
-  return moment(time).format('HH:mm')
+const time = (time: string): string => {
+  const timeFormat = 'HH:mm'
+  return moment(time).format(timeFormat)
 }
 
 export const timeFormatter = {
   startTime,
   endTime,
   weekdayAndTime,
-  fullDate,
-  timeOnly,
+  dateAndTime,
+  time,
 }
