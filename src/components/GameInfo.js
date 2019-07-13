@@ -125,7 +125,7 @@ export const GameInfo: StatelessFunctionalComponent<Props> = (
           <span className='game-details-title'>
             {t('gameInfo.description')}
           </span>
-          {game.description}
+          <p className='game-description'>{game.description}</p>
         </div>
       )}
       {game.gameSystem && (
