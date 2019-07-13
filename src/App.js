@@ -27,18 +27,10 @@ const App: StatelessFunctionalComponent<Props> = (
     setLoading(true)
     const fetchPublicData = async (): Promise<any> => {
       await loadPublicData(store)
-      setLoading(false)
-    }
-    fetchPublicData()
-  }, [store])
-
-  React.useEffect(() => {
-    setLoading(true)
-    const fetchLoggedInData = async (): Promise<any> => {
       if (loggedIn) await loadLoggedInData(store)
       setLoading(false)
     }
-    fetchLoggedInData()
+    fetchPublicData()
   }, [store, loggedIn])
 
   getIconLibrary()
