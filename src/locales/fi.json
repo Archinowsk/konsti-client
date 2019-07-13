@@ -172,5 +172,6 @@
   "invalidGameId": "Peliä ei löydy. Viallinen pelitunniste",
   "feedbackTitle": "Palaute",
   "feedbackInstruction": "Piditkö pelistä? Lähetä palautetta pelinjohtajalle!",
-  "programNotReleased": "Roolipeliohjelmaa ei ole vielä julkaistu"
+  "programNotReleased": "Roolipeliohjelmaa ei ole vielä julkaistu",
+  "noGamesInDatabase": "Ei pelejä tietokannassa"
 }

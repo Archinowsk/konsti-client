@@ -164,7 +164,7 @@ const GameDetails: StatelessFunctionalComponent<Props> = (
 
   return (
     <div className='game-details-view'>
-      <div className='button-row'>
+      <div className='details-button-row'>
         <button
           onClick={() => {
             if (history.action === 'PUSH') {

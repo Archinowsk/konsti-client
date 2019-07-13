@@ -125,59 +125,67 @@ export const AdminView: StatelessFunctionalComponent<Props> = (
   return (
     <div className='admin-view'>
       <Fragment>
-        <button
-          disabled={submitting}
-          onClick={() => {
-            submitUpdate()
-          }}
-        >
-          {t('button.updateDb')}
-        </button>
+        <div className='admin-button-row'>
+          <button
+            disabled={submitting}
+            onClick={() => {
+              submitUpdate()
+            }}
+          >
+            {t('button.updateDb')}
+          </button>
 
-        <button
-          disabled={submitting}
-          onClick={() => {
-            submitAssign()
-          }}
-        >
-          {t('button.assignPlayers')}
-        </button>
+          <button
+            disabled={submitting}
+            onClick={() => {
+              submitAssign()
+            }}
+          >
+            {t('button.assignPlayers')}
+          </button>
 
-        <button
-          disabled={submitting}
-          onClick={() => {
-            toggleAppOpen()
-          }}
-        >
-          {appOpen ? t('button.closeApp') : t('button.openApp')}
-        </button>
+          <button
+            disabled={submitting}
+            onClick={() => {
+              toggleAppOpen()
+            }}
+          >
+            {appOpen ? t('button.closeApp') : t('button.openApp')}
+          </button>
+        </div>
 
         {submitting && <p>{t('loading')}</p>}
 
-        <p className={messageStyle}>{message}</p>
+        {games.length === 0 && <p>{t('noGamesInDatabase')}</p>}
 
-        <p>{t('selectOpenSignup')}</p>
+        {games.length !== 0 && (
+          <Fragment>
+            <p className={messageStyle}>{message}</p>
 
-        <p>
-          {t('signupOpen')} {timeFormatter.weekdayAndTime(signupTime)}
-        </p>
+            <p>{t('selectOpenSignup')}</p>
 
-        <button
-          disabled={submitting}
-          onClick={() => {
-            submitTime()
-          }}
-        >
-          {t('button.saveTime')}
-        </button>
+            <p>
+              {t('signupOpen')} {timeFormatter.weekdayAndTime(signupTime)}
+            </p>
 
-        <TimesDropdown
-          times={getStartingTimes()}
-          selectedTime={selectedSignupTime}
-          onChange={event => setSelectedSignupTime(event.target.value)}
-        />
+            <button
+              disabled={submitting}
+              onClick={() => {
+                submitTime()
+              }}
+            >
+              {t('button.saveTime')}
+            </button>
 
-        <Hidden hiddenGames={hiddenGames} />
+            <TimesDropdown
+              times={getStartingTimes()}
+              selectedTime={selectedSignupTime}
+              onChange={event => setSelectedSignupTime(event.target.value)}
+            />
+
+            <Hidden hiddenGames={hiddenGames} />
+          </Fragment>
+        )}
       </Fragment>
     </div>
   )

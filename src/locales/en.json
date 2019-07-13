@@ -171,5 +171,6 @@
   "invalidGameId": "Game not found. Invalid game ID",
   "feedbackTitle": "Feedback",
   "feedbackInstruction": "Did you enjoy the game? Send feedback to the game master!",
-  "programNotReleased": "Roleplaying games program is not released yet"
+  "programNotReleased": "Roleplaying games program is not released yet",
+  "noGamesInDatabase": "No games in database"
 }
