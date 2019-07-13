@@ -141,7 +141,7 @@
   "signupSaved": "Signup saved",
   "signupFailed": "Signup failed",
   "signupResultHint": "Sign up results are visible on 'My Games' page at",
-  "closingMessage": "Konsti is closed and will open before the next Ropecon.",
+  "closingMessage": "Konsti is closed and will open closer to Ropecon",
   "signupView": {
     "signupOpenGames": "Open games",
     "selectedGames": "Selected games"

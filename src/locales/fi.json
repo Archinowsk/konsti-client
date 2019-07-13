@@ -142,7 +142,7 @@
   "signupSaved": "Ilmoittautuminen tallennettu",
   "signupFailed": "Ilmoittautuminen epäonnistui",
   "signupResultHint": "Voit katsoa ilmoittautumistulokset 'Omat pelit' sivulta klo",
-  "closingMessage": "Konsti on suljettu ja avautuu ennen seuraavaa Ropeconia.",
+  "closingMessage": "Konsti on suljettu ja avautuu lähempänä Ropeconia",
   "signupView": {
     "signupOpenGames": "Avoimet pelit",
     "selectedGames": "Valitut pelit"
