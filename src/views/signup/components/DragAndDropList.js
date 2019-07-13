@@ -36,7 +36,7 @@ export const DragAndDropList: StatelessFunctionalComponent<Props> = (
     else if (id === 'selectedGames') return selectedGames
   }
 
-  const showWarning = async () => {
+  const showWarning = async (): Promise<any> => {
     setWarningVisible(true)
     await sleep(config.MESSAGE_DELAY)
     setWarningVisible(false)

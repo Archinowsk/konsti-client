@@ -7,7 +7,7 @@ export const SUBMIT_LEAVE_GROUP = 'SUBMIT_LEAVE_GROUP'
 export const SUBMIT_UPDATE_GROUP_MEMBERS = 'SUBMIT_UPDATE_GROUP_MEMBERS'
 
 export const submitJoinGroup = (groupData: GroupData) => {
-  return async (dispatch: Function) => {
+  return async (dispatch: Function): Promise<any> => {
     let joinGroupResponse = null
     try {
       joinGroupResponse = await postGroup(groupData)
@@ -28,7 +28,7 @@ export const submitJoinGroup = (groupData: GroupData) => {
 }
 
 export const submitCreateGroup = (groupData: GroupData) => {
-  return async (dispatch: Function) => {
+  return async (dispatch: Function): Promise<any> => {
     let createGroupResponse = null
     try {
       createGroupResponse = await postGroup(groupData)
@@ -56,7 +56,7 @@ const submitUpdateGroupCodeAsync = (groupCode: string) => {
 }
 
 export const submitGetGroup = (groupCode: string) => {
-  return async (dispatch: Function) => {
+  return async (dispatch: Function): Promise<any> => {
     let getGroupResponse = null
     try {
       getGroupResponse = await getGroup(groupCode)
@@ -83,7 +83,7 @@ const submitGetGroupAsync = (groupMembers: $ReadOnlyArray<GroupMember>) => {
 }
 
 export const submitLeaveGroup = (groupData: GroupData) => {
-  return async (dispatch: Function) => {
+  return async (dispatch: Function): Promise<any> => {
     let leaveGroupResponse = null
     try {
       leaveGroupResponse = await postGroup(groupData)

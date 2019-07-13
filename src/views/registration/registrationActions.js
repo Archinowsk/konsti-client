@@ -4,7 +4,7 @@ import { submitLogin } from 'views/login/loginActions'
 import type { RegistrationData } from 'flow/user.flow'
 
 export const submitRegistration = (registrationData: RegistrationData) => {
-  return async (dispatch: Function) => {
+  return async (dispatch: Function): Promise<any> => {
     let registrationResponse = null
     try {
       registrationResponse = await postRegistration(registrationData)

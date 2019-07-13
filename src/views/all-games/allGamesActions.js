@@ -5,7 +5,7 @@ import type { Game } from 'flow/game.flow'
 export const SUBMIT_GET_GAMES = 'SUBMIT_GET_GAMES'
 
 export const submitGetGames = () => {
-  return async (dispatch: Function) => {
+  return async (dispatch: Function): Promise<any> => {
     let getGamesResponse = null
     try {
       getGamesResponse = await getGames()
@@ -25,7 +25,7 @@ export const submitGetGames = () => {
 }
 
 export const submitGamesUpdate = () => {
-  return async (dispatch: Function) => {
+  return async (dispatch: Function): Promise<any> => {
     let gamesUpdateResponse = null
     try {
       gamesUpdateResponse = await postGamesUpdate()

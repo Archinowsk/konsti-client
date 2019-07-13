@@ -23,7 +23,7 @@ export const AllGamesView: StatelessFunctionalComponent<Props> = (
   ;(loading: boolean)
 
   React.useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async (): Promise<any> => {
       await loadData(store)
     }
     fetchData()

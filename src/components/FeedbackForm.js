@@ -26,7 +26,7 @@ export const FeedbackForm: StatelessFunctionalComponent<Props> = (
   const { t } = useTranslation()
 
   // Hide / unhide clicked
-  const sendFeedbackEvent = async () => {
+  const sendFeedbackEvent = async (): Promise<any> => {
     setSubmitting(true)
 
     const feedbackData = {

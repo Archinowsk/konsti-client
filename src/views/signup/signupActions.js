@@ -7,7 +7,7 @@ export const SUBMIT_SELECTED_GAMES = 'SUBMIT_SELECTED_GAMES'
 export const SUBMIT_SIGNED_GAMES = 'SUBMIT_SIGNED_GAMES'
 
 export const submitSignup = (signupData: SignupData) => {
-  return async (dispatch: Function) => {
+  return async (dispatch: Function): Promise<any> => {
     let signupResponse = null
     try {
       signupResponse = await postSignup(signupData)

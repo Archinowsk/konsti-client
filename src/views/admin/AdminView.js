@@ -45,14 +45,14 @@ export const AdminView: StatelessFunctionalComponent<Props> = (
   ;(selectedSignupTime: string)
 
   React.useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async (): Promise<any> => {
       await loadData(store)
     }
     fetchData()
     setLoading(false)
   }, [store])
 
-  const showMessage = async ({ message, style }) => {
+  const showMessage = async ({ message, style }): Promise<any> => {
     setMessage(message)
     setMessageStyle(style)
   }
@@ -82,7 +82,7 @@ export const AdminView: StatelessFunctionalComponent<Props> = (
     return [...new Set(startTimes)].sort()
   }
 
-  const submitUpdate = async () => {
+  const submitUpdate = async (): Promise<any> => {
     setSubmitting(true)
     try {
       await dispatch(submitGamesUpdate())
@@ -92,7 +92,7 @@ export const AdminView: StatelessFunctionalComponent<Props> = (
     setSubmitting(false)
   }
 
-  const submitAssign = async () => {
+  const submitAssign = async (): Promise<any> => {
     setSubmitting(true)
 
     let response = null
@@ -116,7 +116,7 @@ export const AdminView: StatelessFunctionalComponent<Props> = (
     }
   }
 
-  const submitTime = async () => {
+  const submitTime = async (): Promise<any> => {
     setSubmitting(true)
     try {
       await dispatch(submitSignupTime(selectedSignupTime))
@@ -126,7 +126,7 @@ export const AdminView: StatelessFunctionalComponent<Props> = (
     setSubmitting(false)
   }
 
-  const toggleAppOpen = async () => {
+  const toggleAppOpen = async (): Promise<any> => {
     setSubmitting(true)
     try {
       await dispatch(submitToggleAppOpen(!appOpen))

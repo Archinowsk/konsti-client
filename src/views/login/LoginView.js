@@ -15,7 +15,7 @@ export const LoginView: StatelessFunctionalComponent<Props> = (
   const dispatch = useDispatch()
   const { t } = useTranslation()
 
-  const submit = async form => {
+  const submit = async (form): Promise<any> => {
     let response = null
     try {
       response = await dispatch(submitLogin(form))

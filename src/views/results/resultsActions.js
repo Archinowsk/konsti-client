@@ -6,7 +6,7 @@ import type { Results } from 'flow/result.flow'
 export const SUBMIT_GET_RESULTS = 'SUBMIT_GET_RESULTS'
 
 export const submitGetResults = (startTime: string) => {
-  return async (dispatch: Function) => {
+  return async (dispatch: Function): Promise<any> => {
     let getResultsResponse = null
     try {
       getResultsResponse = await getResults(startTime)
@@ -26,7 +26,7 @@ export const submitGetResults = (startTime: string) => {
 }
 
 export const submitPlayersAssign = (signupTime: string) => {
-  return async (dispatch: Function) => {
+  return async (dispatch: Function): Promise<any> => {
     let assignResponse = null
     try {
       assignResponse = await postPlayersAssign(signupTime)

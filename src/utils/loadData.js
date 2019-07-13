@@ -6,7 +6,7 @@ import { submitGetUser } from 'views/my-games/myGamesActions'
 import { submitGetGroup } from 'views/group/groupActions'
 import { submitLogin } from 'views/login/loginActions'
 
-export const loadData = async (store: Object) => {
+export const loadData = async (store: Object): Promise<any> => {
   const state = store.getState()
 
   const { loggedIn, userGroup, groupCode, username, jwt } = state.login
