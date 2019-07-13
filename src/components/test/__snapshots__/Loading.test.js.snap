@@ -7,5 +7,10 @@ exports[`Loading should render correctly 1`] = `
   <p>
     loading
   </p>
+  <img
+    alt="loading"
+    src=""
+    width="40"
+  />
 </div>
 `;
