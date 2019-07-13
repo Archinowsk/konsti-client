@@ -43,11 +43,6 @@ export const AllGamesView: StatelessFunctionalComponent<Props> = (
       <Switch>
         <Route
           exact
-          path='/'
-          render={() => <AllGamesList games={visibleGames} />}
-        />
-        <Route
-          exact
           path='/games'
           render={() => <AllGamesList games={visibleGames} />}
         />
