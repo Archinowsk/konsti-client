@@ -6,36 +6,69 @@ import { submitGetUser } from 'views/my-games/myGamesActions'
 import { submitGetGroup } from 'views/group/groupActions'
 import { submitLogin } from 'views/login/loginActions'
 
-export const loadData = async (store: Object): Promise<any> => {
-  const state = store.getState()
-
-  const { loggedIn, userGroup, groupCode, username, jwt } = state.login
-  const { startTime } = state.admin
-
-  // Get settings data
+const loadSettings = async (store): Promise<void> => {
   await store.dispatch(submitGetSettings())
+}
 
-  // Get games data
+const loadGames = async (store): Promise<void> => {
   await store.dispatch(submitGetGames())
+}
+
+const recoverSession = async (store): Promise<void> => {
+  const state = store.getState()
+  const { loggedIn, jwt } = state.login
 
   if (!loggedIn && jwt) {
     await store.dispatch(submitLogin({ jwt }))
   }
+}
 
-  if (loggedIn) {
-    // Get results data
-    if (startTime) {
-      await store.dispatch(submitGetResults(startTime))
-    }
+const loadResults = async (store): Promise<void> => {
+  const state = store.getState()
+  const { loggedIn } = state.login
+  const { startTime } = state.admin
 
-    // Get user data
-    if (userGroup === 'user') {
-      await store.dispatch(submitGetUser(username))
-    }
-
-    // Get group members
-    if (groupCode !== '0') {
-      await store.dispatch(submitGetGroup(groupCode))
-    }
+  if (loggedIn && startTime) {
+    await store.dispatch(submitGetResults(startTime))
   }
+}
+
+const loadUser = async (store): Promise<void> => {
+  const state = store.getState()
+  const { loggedIn, userGroup, username } = state.login
+
+  if (loggedIn && userGroup === 'user') {
+    await store.dispatch(submitGetUser(username))
+  }
+}
+
+const loadGroupMembers = async (store): Promise<void> => {
+  const state = store.getState()
+  const { loggedIn, groupCode } = state.login
+
+  if (loggedIn && groupCode !== '0') {
+    await store.dispatch(submitGetGroup(groupCode))
+  }
+}
+
+export const loadPublicData = async (store: Object): Promise<void> => {
+  // Get app settings
+  await loadSettings(store)
+
+  // Get games data
+  await loadGames(store)
+
+  // Check if existing user session
+  await recoverSession(store)
+}
+
+export const loadLoggedInData = async (store: Object): Promise<void> => {
+  // Get assignment results
+  await loadResults(store)
+
+  // Get user data
+  await loadUser(store)
+
+  // Get group members
+  await loadGroupMembers(store)
 }

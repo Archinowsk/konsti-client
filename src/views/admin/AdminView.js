@@ -1,14 +1,12 @@
 /* @flow */
 import React, { Fragment } from 'react'
-import { useDispatch, useSelector, useStore } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { Hidden } from 'views/admin/components/Hidden'
 import { submitSignupTime, submitToggleAppOpen } from 'views/admin/adminActions'
 import { submitPlayersAssign } from 'views/results/resultsActions'
 import { submitGamesUpdate } from 'views/all-games/allGamesActions'
 import { TimesDropdown } from 'components/TimesDropdown'
-import { loadData } from 'utils/loadData'
-import { Loading } from 'components/Loading'
 import { timeFormatter } from 'utils/timeFormatter'
 import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent, Element } from 'react'
@@ -26,14 +24,10 @@ export const AdminView: StatelessFunctionalComponent<Props> = (
   )
 
   const dispatch = useDispatch()
-  const store = useStore()
   const { t } = useTranslation()
 
   const [submitting, setSubmitting] = React.useState(false)
   ;(submitting: boolean)
-
-  const [loading, setLoading] = React.useState(true)
-  ;(loading: boolean)
 
   const [message, setMessage] = React.useState('')
   ;(message: string)
@@ -44,15 +38,7 @@ export const AdminView: StatelessFunctionalComponent<Props> = (
   const [selectedSignupTime, setSelectedSignupTime] = React.useState('')
   ;(selectedSignupTime: string)
 
-  React.useEffect(() => {
-    const fetchData = async (): Promise<any> => {
-      await loadData(store)
-    }
-    fetchData()
-    setLoading(false)
-  }, [store])
-
-  const showMessage = async ({ message, style }): Promise<any> => {
+  const showMessage = async ({ message, style }) => {
     setMessage(message)
     setMessageStyle(style)
   }
@@ -138,64 +124,61 @@ export const AdminView: StatelessFunctionalComponent<Props> = (
 
   return (
     <div className='admin-view'>
-      {loading && <Loading />}
-      {!loading && (
-        <Fragment>
-          <button
-            disabled={submitting}
-            onClick={() => {
-              submitUpdate()
-            }}
-          >
-            {t('button.updateDb')}
-          </button>
+      <Fragment>
+        <button
+          disabled={submitting}
+          onClick={() => {
+            submitUpdate()
+          }}
+        >
+          {t('button.updateDb')}
+        </button>
 
-          <button
-            disabled={submitting}
-            onClick={() => {
-              submitAssign()
-            }}
-          >
-            {t('button.assignPlayers')}
-          </button>
+        <button
+          disabled={submitting}
+          onClick={() => {
+            submitAssign()
+          }}
+        >
+          {t('button.assignPlayers')}
+        </button>
 
-          <button
-            disabled={submitting}
-            onClick={() => {
-              toggleAppOpen()
-            }}
-          >
-            {appOpen ? t('button.closeApp') : t('button.openApp')}
-          </button>
+        <button
+          disabled={submitting}
+          onClick={() => {
+            toggleAppOpen()
+          }}
+        >
+          {appOpen ? t('button.closeApp') : t('button.openApp')}
+        </button>
 
-          {submitting && <p>{t('loading')}</p>}
+        {submitting && <p>{t('loading')}</p>}
 
-          <p className={messageStyle}>{message}</p>
+        <p className={messageStyle}>{message}</p>
 
-          <p>{t('selectOpenSignup')}</p>
+        <p>{t('selectOpenSignup')}</p>
 
-          <p>
-            {t('signupOpen')} {timeFormatter.weekdayAndTime(signupTime)}
-          </p>
+        <p>
+          {t('signupOpen')} {timeFormatter.weekdayAndTime(signupTime)}
+        </p>
 
-          <button
-            disabled={submitting}
-            onClick={() => {
-              submitTime()
-            }}
-          >
-            {t('button.saveTime')}
-          </button>
+        <button
+          disabled={submitting}
+          onClick={() => {
+            submitTime()
+          }}
+        >
+          {t('button.saveTime')}
+        </button>
 
-          <TimesDropdown
-            times={getStartingTimes()}
-            selectedTime={selectedSignupTime}
-            onChange={event => setSelectedSignupTime(event.target.value)}
-          />
+        <TimesDropdown
+          times={getStartingTimes()}
+          selectedTime={selectedSignupTime}
+          onChange={event => setSelectedSignupTime(event.target.value)}
+        />
 
-          <Hidden hiddenGames={hiddenGames} />
-        </Fragment>
-      )}
+        <Hidden hiddenGames={hiddenGames} />
+      </Fragment>
     </div>
   )
 }

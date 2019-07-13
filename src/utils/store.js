@@ -28,9 +28,10 @@ const reducer = combineReducers({
 })
 
 // Reducer to reset state
-const rootReducer = (state, action) => {
+const rootReducer = (state: Object, action: Object): Object => {
   if (action.type === SUBMIT_LOGOUT) {
-    state = undefined // eslint-disable-line no-param-reassign
+    const { admin, allGames } = state // Don't reset these states
+    state = { admin, allGames } // eslint-disable-line no-param-reassign
   }
 
   return reducer(state, action)

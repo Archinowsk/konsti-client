@@ -3,24 +3,20 @@ import React, { Fragment } from 'react'
 import { hot } from 'react-hot-loader/root'
 import { useTranslation } from 'react-i18next'
 import { useSelector, useStore } from 'react-redux'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import {
-  faAngleUp,
-  faAngleDown,
-  faEye,
-  faEyeSlash,
-} from '@fortawesome/free-solid-svg-icons'
 import { Routes } from 'Routes'
 import { Header } from 'components/Header'
-import { loadData } from 'utils/loadData'
+import { loadPublicData, loadLoggedInData } from 'utils/loadData'
 import { Loading } from 'components/Loading'
+import { getIconLibrary } from 'utils/icons'
 import type { StatelessFunctionalComponent, Element } from 'react'
 
 type Props = {}
+
 const App: StatelessFunctionalComponent<Props> = (
   props: Props
 ): Element<typeof Fragment> => {
   const appOpen: boolean = useSelector(state => state.admin.appOpen)
+  const loggedIn: boolean = useSelector(state => state.login.loggedIn)
   const { t } = useTranslation()
   const store = useStore()
 
@@ -29,28 +25,42 @@ const App: StatelessFunctionalComponent<Props> = (
 
   React.useEffect(() => {
     setLoading(true)
-    const fetchData = async (): Promise<any> => {
-      await loadData(store)
+    const fetchPublicData = async (): Promise<any> => {
+      await loadPublicData(store)
+      setLoading(false)
     }
-    fetchData()
-    setLoading(false)
+    fetchPublicData()
   }, [store])
 
-  library.add(faAngleUp, faAngleDown, faEye, faEyeSlash)
+  React.useEffect(() => {
+    setLoading(true)
+    const fetchLoggedInData = async (): Promise<any> => {
+      if (loggedIn) await loadLoggedInData(store)
+      setLoading(false)
+    }
+    fetchLoggedInData()
+  }, [store, loggedIn])
+
+  getIconLibrary()
 
   return (
     <Fragment>
       <Header />
-      <div className='body'>
-        {loading && <Loading />}
-        {!loading && !appOpen && (
-          <div>
-            <h2>{t('closingMessage')}</h2>
-            <Routes onlyAdmin />
-          </div>
-        )}
-        {!loading && appOpen && <Routes onlyAdmin={false} />}
-      </div>
+
+      {loading && <Loading />}
+
+      {!loading && !appOpen && (
+        <Fragment>
+          <h2>{t('closingMessage')}</h2>
+          <Routes onlyAdmin />
+        </Fragment>
+      )}
+
+      {!loading && appOpen && (
+        <Fragment>
+          <Routes onlyAdmin={false} />
+        </Fragment>
+      )}
     </Fragment>
   )
 }

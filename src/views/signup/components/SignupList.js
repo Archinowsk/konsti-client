@@ -1,7 +1,7 @@
 /* @flow */
 import React, { Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useDispatch, useSelector, useStore } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import _ from 'lodash'
 import { timeFormatter } from 'utils/timeFormatter'
 import {
@@ -13,8 +13,6 @@ import { submitGetGamesAsync } from 'views/all-games/allGamesActions'
 import { DragAndDropList } from 'views/signup/components/DragAndDropList'
 import { sleep } from 'utils/sleep'
 import { config } from 'config'
-import { loadData } from 'utils/loadData'
-import { Loading } from 'components/Loading'
 import type { StatelessFunctionalComponent, Element } from 'react'
 import type { Game } from 'flow/game.flow'
 import type { Signup } from 'flow/user.flow'
@@ -42,7 +40,6 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
   )
 
   const dispatch = useDispatch()
-  const store = useStore()
   const { t } = useTranslation()
 
   const [submitting, setSubmitting] = React.useState(false)
@@ -53,18 +50,6 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
 
   const [signupError, setSignupError] = React.useState(false)
   ;(signupError: boolean)
-
-  const [loading, setLoading] = React.useState(true)
-  ;(loading: boolean)
-
-  React.useEffect(() => {
-    setLoading(true)
-    const fetchData = async (): Promise<any> => {
-      await loadData(store)
-    }
-    fetchData()
-    setLoading(false)
-  }, [store])
 
   React.useEffect(() => {
     if (selectedGames.length === 0) dispatch(submitSelectedGames(signedGames))
@@ -211,18 +196,16 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
 
   return (
     <div className='signup-list'>
-      {loading && <Loading />}
+      {signupTimes.length === 0 && <h2>{t('noOpenSignups')}</h2>}
 
-      {!loading && signupTimes.length === 0 && <h2>{t('noOpenSignups')}</h2>}
-
-      {!loading && signupTimes.length !== 0 && (
+      {signupTimes.length !== 0 && (
         <Fragment>
           <h2>{t('signupOpen')}:</h2>
           <div>{signupTimeButtons}</div>
         </Fragment>
       )}
 
-      {!loading && signupTime && (
+      {signupTime && (
         <Fragment>
           <p>
             {t('signupOpenBetweenCapital')} {signupStartTime}-{signupEndTime}.{' '}

@@ -1,9 +1,7 @@
 /* @flow */
 import React, { Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useDispatch, useSelector, useStore } from 'react-redux'
-import { loadData } from 'utils/loadData'
-import { Loading } from 'components/Loading'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   submitJoinGroup,
   submitCreateGroup,
@@ -29,11 +27,7 @@ export const GroupView: StatelessFunctionalComponent<Props> = (
     state => state.login.groupMembers
   )
   const dispatch = useDispatch()
-  const store = useStore()
   const { t } = useTranslation()
-
-  const [loading, setLoading] = React.useState(true)
-  ;(loading: boolean)
 
   const [showCreateGroup, setShowCreateGroup] = React.useState(false)
   ;(showCreateGroup: boolean)
@@ -49,14 +43,6 @@ export const GroupView: StatelessFunctionalComponent<Props> = (
 
   const [messageStyle, setMessageStyle] = React.useState('')
   ;(messageStyle: string)
-
-  React.useEffect(() => {
-    const fetchData = async (): Promise<any> => {
-      await loadData(store)
-    }
-    fetchData()
-    setLoading(false)
-  }, [store])
 
   const openGroupForming = () => {
     setShowCreateGroup(true)
@@ -202,8 +188,7 @@ export const GroupView: StatelessFunctionalComponent<Props> = (
       <h2>{t('pages.group')}</h2>
       <p>{t('groupSignupGuide')}</p>
 
-      {loading && <Loading />}
-      {!loading && !groupLeader && !inGroup && (
+      {!groupLeader && !inGroup && (
         <Fragment>
           <button
             className={showCreateGroup ? 'active' : ''}
@@ -240,7 +225,7 @@ export const GroupView: StatelessFunctionalComponent<Props> = (
           )}
         </Fragment>
       )}
-      {!loading && groupLeader && inGroup && (
+      {groupLeader && inGroup && (
         <Fragment>
           <p>
             {t('youAreGroupLeader')}. {t('groupLeaderInfo')}.
@@ -254,7 +239,7 @@ export const GroupView: StatelessFunctionalComponent<Props> = (
           </button>
         </Fragment>
       )}
-      {!loading && !groupLeader && inGroup && (
+      {!groupLeader && inGroup && (
         <Fragment>
           <p>
             {t('youAreInGroup')}. {t('groupMemberInfo')}.
