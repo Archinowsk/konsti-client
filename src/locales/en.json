@@ -170,5 +170,6 @@
   "noSignupResult": "You didn't get into a game for this starting time",
   "invalidGameId": "Game not found. Invalid game ID",
   "feedbackTitle": "Feedback",
-  "feedbackInstruction": "Did you enjoy the game? Send feedback to the game master!"
+  "feedbackInstruction": "Did you enjoy the game? Send feedback to the game master!",
+  "programNotReleased": "Roleplaying games program is not released yet"
 }

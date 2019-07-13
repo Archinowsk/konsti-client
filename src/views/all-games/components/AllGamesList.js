@@ -41,7 +41,7 @@ export const AllGamesList: StatelessFunctionalComponent<Props> = (
 
       GamesList.push(title)
 
-      /* $FlowFixMe: property `@@iterator` is missing in  mixed [1] but exists in  `$Iterable` [2]. */
+      /* $FlowFixMe: property `@@iterator` is missing in mixed [1] but exists in `$Iterable` [2]. */
       for (const game of games) {
         const gameEntry = (
           <p key={game.gameId} className='games-list'>
@@ -58,5 +58,11 @@ export const AllGamesList: StatelessFunctionalComponent<Props> = (
 
   const GamesList = buildGamesList(games)
 
-  return <div className='games-list'>{GamesList}</div>
+  return (
+    <div className='games-list'>
+      {games.length === 0 && <h3>{t('programNotReleased')}</h3>}
+      {/* $FlowFixMe: property `@@iterator` is missing in mixed [1] but exists in `$Iterable` [2]. */}
+      {games.length !== 0 && <div>{GamesList}</div>}
+    </div>
+  )
 }
