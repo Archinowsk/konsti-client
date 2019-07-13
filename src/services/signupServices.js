@@ -3,7 +3,7 @@ import { api } from 'utils/api'
 import { getJWT } from 'utils/getJWT'
 import type { SignupData } from 'flow/user.flow'
 
-export const postSignup = async (signupData: SignupData) => {
+export const postSignup = async (signupData: SignupData): Promise<any> => {
   api.defaults.headers.common['Authorization'] = `Bearer ${getJWT()}`
 
   let response = null

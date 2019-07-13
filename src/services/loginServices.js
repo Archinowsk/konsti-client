@@ -2,7 +2,7 @@
 import { api } from 'utils/api'
 import type { Login } from 'flow/user.flow'
 
-export const postLogin = async (loginData: Login) => {
+export const postLogin = async (loginData: Login): Promise<any> => {
   const { username, password, jwt } = loginData
   let response = null
   try {

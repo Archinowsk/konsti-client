@@ -3,7 +3,9 @@ import { api } from 'utils/api'
 import { getJWT } from 'utils/getJWT'
 import type { RegistrationData } from 'flow/user.flow'
 
-export const postRegistration = async (registrationData: RegistrationData) => {
+export const postRegistration = async (
+  registrationData: RegistrationData
+): Promise<any> => {
   const { username, password, serial } = registrationData
 
   let response = null
@@ -27,7 +29,7 @@ export const postRegistration = async (registrationData: RegistrationData) => {
   }
 }
 
-export const getUser = async (username: string) => {
+export const getUser = async (username: string): Promise<any> => {
   api.defaults.headers.common['Authorization'] = `Bearer ${getJWT()}`
 
   let response = null
