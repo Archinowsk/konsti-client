@@ -156,9 +156,9 @@ export const AdminView: StatelessFunctionalComponent<Props> = (
 
         {submitting && <p>{t('loading')}</p>}
 
-        {games.length === 0 && <p>{t('noGamesInDatabase')}</p>}
+        {(!games || games.length === 0) && <p>{t('noGamesInDatabase')}</p>}
 
-        {games.length !== 0 && (
+        {games && games.length !== 0 && (
           <Fragment>
             <p className={messageStyle}>{message}</p>
 
