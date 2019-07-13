@@ -5,7 +5,7 @@ import type { Results } from 'flow/result.flow'
 
 export const SUBMIT_GET_RESULTS = 'SUBMIT_GET_RESULTS'
 
-export const submitGetResults = (startTime: string) => {
+export const submitGetResults = (startTime: string): Object => {
   return async (dispatch: Function): Promise<any> => {
     let getResultsResponse = null
     try {
@@ -25,7 +25,7 @@ export const submitGetResults = (startTime: string) => {
   }
 }
 
-export const submitPlayersAssign = (signupTime: string) => {
+export const submitPlayersAssign = (signupTime: string): Object => {
   return async (dispatch: Function): Promise<any> => {
     let assignResponse = null
     try {
@@ -50,7 +50,7 @@ export const submitPlayersAssign = (signupTime: string) => {
   }
 }
 
-const submitGetResultsAsync = (results: Results) => {
+const submitGetResultsAsync = (results: Results): Object => {
   return {
     type: SUBMIT_GET_RESULTS,
     results,

@@ -11,7 +11,9 @@ export const SUBMIT_SELECT_SIGNUP_TIME = 'SUBMIT_SELECT_SIGNUP_TIME'
 export const SUBMIT_SET_TEST_TIME = 'SUBMIT_SET_TEST_TIME'
 export const SUBMIT_TOGGLE_APP_OPEN = 'SUBMIT_TOGGLE_APP_OPEN'
 
-export const submitUpdateHidden = (hiddenGames: $ReadOnlyArray<Game>) => {
+export const submitUpdateHidden = (
+  hiddenGames: $ReadOnlyArray<Game>
+): Object => {
   return async (dispatch: Function): Promise<any> => {
     let updateHiddenResponse = null
     try {
@@ -31,14 +33,14 @@ export const submitUpdateHidden = (hiddenGames: $ReadOnlyArray<Game>) => {
   }
 }
 
-const submitUpdateHiddenAsync = (hiddenGames: $ReadOnlyArray<Game>) => {
+const submitUpdateHiddenAsync = (hiddenGames: $ReadOnlyArray<Game>): Object => {
   return {
     type: SUBMIT_UPDATE_HIDDEN,
     hiddenGames,
   }
 }
 
-export const submitGetSettings = () => {
+export const submitGetSettings = (): Object => {
   return async (dispatch: Function): Promise<any> => {
     let settingsResponse = null
     try {
@@ -78,7 +80,7 @@ const submitGetSettingsAsync = ({
   }
 }
 
-export const submitSignupTime = (signupTime: string) => {
+export const submitSignupTime = (signupTime: string): Object => {
   return async (dispatch: Function): Promise<any> => {
     let signupTimeResponse = null
     try {
@@ -98,21 +100,21 @@ export const submitSignupTime = (signupTime: string) => {
   }
 }
 
-const submitSignupTimeAsync = (signupTime: string) => {
+const submitSignupTimeAsync = (signupTime: string): Object => {
   return {
     type: SUBMIT_SELECT_SIGNUP_TIME,
     signupTime,
   }
 }
 
-export const submitSetTestTime = (testTime: string) => {
+export const submitSetTestTime = (testTime: string): Object => {
   return {
     type: SUBMIT_SET_TEST_TIME,
     testTime,
   }
 }
 
-export const submitToggleAppOpen = (appOpen: boolean) => {
+export const submitToggleAppOpen = (appOpen: boolean): Object => {
   return async (dispatch: Function): Promise<any> => {
     let appOpenResponse = null
     try {
@@ -132,7 +134,7 @@ export const submitToggleAppOpen = (appOpen: boolean) => {
   }
 }
 
-const submitToggleAppOpenAsync = (appOpen: boolean) => {
+const submitToggleAppOpenAsync = (appOpen: boolean): Object => {
   return {
     type: SUBMIT_TOGGLE_APP_OPEN,
     appOpen,

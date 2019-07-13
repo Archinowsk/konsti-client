@@ -7,7 +7,7 @@ import type { Game } from 'flow/game.flow'
 export const SUBMIT_GET_USER_GAMES = 'SUBMIT_GET_USER_GAMES'
 export const SUBMIT_UPDATE_FAVORITES = 'SUBMIT_UPDATE_FAVORITES'
 
-export const submitGetUser = (username: string) => {
+export const submitGetUser = (username: string): Object => {
   return async (dispatch: Function): Promise<any> => {
     let getUserResponse = null
     try {
@@ -50,7 +50,7 @@ const submitGetUserAsync = ({
   }
 }
 
-export const submitUpdateFavorites = (favoriteData: FavoriteData) => {
+export const submitUpdateFavorites = (favoriteData: FavoriteData): Object => {
   return async (dispatch: Function): Promise<any> => {
     let updateFavoriteResponse = null
     try {
@@ -72,7 +72,9 @@ export const submitUpdateFavorites = (favoriteData: FavoriteData) => {
   }
 }
 
-const submitUpdateFavoritesAsync = (favoritedGames: $ReadOnlyArray<Game>) => {
+const submitUpdateFavoritesAsync = (
+  favoritedGames: $ReadOnlyArray<Game>
+): Object => {
   return {
     type: SUBMIT_UPDATE_FAVORITES,
     favoritedGames,

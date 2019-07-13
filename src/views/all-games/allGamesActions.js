@@ -4,7 +4,7 @@ import type { Game } from 'flow/game.flow'
 
 export const SUBMIT_GET_GAMES = 'SUBMIT_GET_GAMES'
 
-export const submitGetGames = () => {
+export const submitGetGames = (): Object => {
   return async (dispatch: Function): Promise<any> => {
     let getGamesResponse = null
     try {
@@ -24,7 +24,7 @@ export const submitGetGames = () => {
   }
 }
 
-export const submitGamesUpdate = () => {
+export const submitGamesUpdate = (): Object => {
   return async (dispatch: Function): Promise<any> => {
     let gamesUpdateResponse = null
     try {
@@ -44,7 +44,7 @@ export const submitGamesUpdate = () => {
   }
 }
 
-export const submitGetGamesAsync = (games: $ReadOnlyArray<Game>) => {
+export const submitGetGamesAsync = (games: $ReadOnlyArray<Game>): Object => {
   return {
     type: SUBMIT_GET_GAMES,
     games,

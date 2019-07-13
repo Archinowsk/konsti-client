@@ -6,7 +6,7 @@ export const SUBMIT_SIGNUP_TIME = 'SUBMIT_SELECT_SIGNUPTIME'
 export const SUBMIT_SELECTED_GAMES = 'SUBMIT_SELECTED_GAMES'
 export const SUBMIT_SIGNED_GAMES = 'SUBMIT_SIGNED_GAMES'
 
-export const submitSignup = (signupData: SignupData) => {
+export const submitSignup = (signupData: SignupData): Object => {
   return async (dispatch: Function): Promise<any> => {
     let signupResponse = null
     try {
@@ -25,21 +25,23 @@ export const submitSignup = (signupData: SignupData) => {
   }
 }
 
-const submitSignupAsync = (signedGames: $ReadOnlyArray<Signup>) => {
+const submitSignupAsync = (signedGames: $ReadOnlyArray<Signup>): Object => {
   return {
     type: SUBMIT_SIGNED_GAMES,
     signedGames,
   }
 }
 
-export const submitSignupTime = (signupTime: string) => {
+export const submitSignupTime = (signupTime: string): Object => {
   return {
     type: SUBMIT_SIGNUP_TIME,
     signupTime,
   }
 }
 
-export const submitSelectedGames = (selectedGames: $ReadOnlyArray<Signup>) => {
+export const submitSelectedGames = (
+  selectedGames: $ReadOnlyArray<Signup>
+): Object => {
   return {
     type: SUBMIT_SELECTED_GAMES,
     selectedGames,

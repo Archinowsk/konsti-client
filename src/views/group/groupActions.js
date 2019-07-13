@@ -6,7 +6,7 @@ export const SUBMIT_UPDATE_GROUP_CODE = 'SUBMIT_UPDATE_GROUP_CODE'
 export const SUBMIT_LEAVE_GROUP = 'SUBMIT_LEAVE_GROUP'
 export const SUBMIT_UPDATE_GROUP_MEMBERS = 'SUBMIT_UPDATE_GROUP_MEMBERS'
 
-export const submitJoinGroup = (groupData: GroupData) => {
+export const submitJoinGroup = (groupData: GroupData): Object => {
   return async (dispatch: Function): Promise<any> => {
     let joinGroupResponse = null
     try {
@@ -27,7 +27,7 @@ export const submitJoinGroup = (groupData: GroupData) => {
   }
 }
 
-export const submitCreateGroup = (groupData: GroupData) => {
+export const submitCreateGroup = (groupData: GroupData): Object => {
   return async (dispatch: Function): Promise<any> => {
     let createGroupResponse = null
     try {
@@ -48,14 +48,14 @@ export const submitCreateGroup = (groupData: GroupData) => {
   }
 }
 
-const submitUpdateGroupCodeAsync = (groupCode: string) => {
+const submitUpdateGroupCodeAsync = (groupCode: string): Object => {
   return {
     type: SUBMIT_UPDATE_GROUP_CODE,
     groupCode,
   }
 }
 
-export const submitGetGroup = (groupCode: string) => {
+export const submitGetGroup = (groupCode: string): Object => {
   return async (dispatch: Function): Promise<any> => {
     let getGroupResponse = null
     try {
@@ -75,14 +75,16 @@ export const submitGetGroup = (groupCode: string) => {
   }
 }
 
-const submitGetGroupAsync = (groupMembers: $ReadOnlyArray<GroupMember>) => {
+const submitGetGroupAsync = (
+  groupMembers: $ReadOnlyArray<GroupMember>
+): Object => {
   return {
     type: SUBMIT_UPDATE_GROUP_MEMBERS,
     groupMembers,
   }
 }
 
-export const submitLeaveGroup = (groupData: GroupData) => {
+export const submitLeaveGroup = (groupData: GroupData): Object => {
   return async (dispatch: Function): Promise<any> => {
     let leaveGroupResponse = null
     try {
@@ -102,7 +104,7 @@ export const submitLeaveGroup = (groupData: GroupData) => {
   }
 }
 
-const submitLeaveGroupAsync = (groupCode: string) => {
+const submitLeaveGroupAsync = (groupCode: string): Object => {
   return {
     type: SUBMIT_LEAVE_GROUP,
     groupCode,
