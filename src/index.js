@@ -35,7 +35,7 @@ const rootElement = document.getElementById('main')
 
 // Suspend fallback element
 const loader = (
-  <div className='loader-image'>
+  <div className='loading'>
     <img alt='Loading...' src={loaderImage} />
   </div>
 )
