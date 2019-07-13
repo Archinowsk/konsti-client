@@ -68,7 +68,10 @@
     "tags": "Tags",
     "time": "Starting time",
     "gamesystem": "Game system",
-    "genres": "Genres"
+    "genres": "Genres",
+    "shortDescription": "Short description",
+    "revolvingDoor": "Revolving door",
+    "revolvingDoorDescription": "You can join this game at any time"
   },
   "gameStyle": {
     "serious": "Serious game style",

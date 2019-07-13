@@ -95,6 +95,14 @@ export const GameInfo: StatelessFunctionalComponent<Props> = (
           {game.title}
         </div>
       )}
+      {game.shortDescription && (
+        <div className='game-details-row'>
+          <span className='game-details-title'>
+            {t('gameInfo.shortDescription')}
+          </span>
+          {game.shortDescription}
+        </div>
+      )}
       {game.people && (
         <div className='game-details-row'>
           <span className='game-details-title'>{t('gameInfo.gamemaster')}</span>
@@ -118,6 +126,14 @@ export const GameInfo: StatelessFunctionalComponent<Props> = (
           <span className='game-details-title'>{t('gameInfo.runTime')}</span>
           {formattedStartTime} - {formattedEndTime} ({game.mins / 60}{' '}
           {t('hours')})
+        </div>
+      )}
+      {game.revolvingDoor && (
+        <div className='game-details-row'>
+          <span className='game-details-title'>
+            {t('gameInfo.revolvingDoor')}
+          </span>
+          {t('gameInfo.revolvingDoorDescription')}
         </div>
       )}
       {game.description && (

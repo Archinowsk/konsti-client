@@ -68,7 +68,10 @@
     "tags": "Tagit",
     "time": "Aloitusaika",
     "gamesystem": "Pelijärjestelmä",
-    "genres": "Genret"
+    "genres": "Genret",
+    "shortDescription": "Lyhyt kuvaus",
+    "revolvingDoor": "Pyöröovi",
+    "revolvingDoorDescription": "Voit liittyä peliin koska tahansa"
   },
   "gameStyle": {
     "serious": "Vakava pelityyli",
