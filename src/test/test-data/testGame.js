@@ -1,10 +1,4 @@
-/* @flow */
-import React from 'react'
-import { shallow } from 'enzyme'
-import { GameInfo } from '../GameInfo'
-import type { Props } from '../GameInfo'
-
-const game = {
+export const testGame = {
   gameId: 'p2106',
   title: 'Test game',
   description: 'Test game description',
@@ -34,11 +28,3 @@ const game = {
   shortDescription: 'Short description',
   revolvingDoor: true,
 }
-
-describe('GameInfo', () => {
-  it('should render correctly', () => {
-    const props: Props = { game }
-    const component = shallow(<GameInfo {...props} />)
-    expect(component).toMatchSnapshot()
-  })
-})

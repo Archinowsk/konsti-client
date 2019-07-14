@@ -2,7 +2,7 @@
 import React, { Fragment } from 'react'
 import { useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
-import GameDetails from 'components/GameDetails'
+import GameDetails from 'views/all-games/components/GameDetails'
 import { AllGamesList } from 'views/all-games/components/AllGamesList'
 import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent, Element } from 'react'

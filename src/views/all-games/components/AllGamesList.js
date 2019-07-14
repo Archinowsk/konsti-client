@@ -7,7 +7,7 @@ import { timeFormatter } from 'utils/timeFormatter'
 import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent, Element } from 'react'
 
-type Props = {|
+export type Props = {|
   games: $ReadOnlyArray<Game>,
 |}
 
@@ -64,7 +64,6 @@ export const AllGamesList: StatelessFunctionalComponent<Props> = (
   return (
     <div className='games-list'>
       {games.length === 0 && <h3>{t('programNotReleased')}</h3>}
-      {/* $FlowFixMe: property `@@iterator` is missing in mixed [1] but exists in `$Iterable` [2]. */}
       {games.length !== 0 && <div>{GamesList}</div>}
     </div>
   )

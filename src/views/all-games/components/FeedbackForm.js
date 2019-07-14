@@ -5,7 +5,7 @@ import { postFeedback } from 'services/feedbackServices'
 import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent, Element } from 'react'
 
-type Props = {|
+export type Props = {|
   game: Game,
 |}
 
