@@ -31,6 +31,8 @@ const game = {
   ageRestricted: false,
   beginnerFriendly: false,
   intendedForExperiencedParticipants: false,
+  shortDescription: 'Short description',
+  revolvingDoor: true,
 }
 
 describe('GameInfo', () => {

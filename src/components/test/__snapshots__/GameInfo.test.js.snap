@@ -20,6 +20,16 @@ exports[`GameInfo should render correctly 1`] = `
     <span
       className="game-details-title"
     >
+      gameInfo.shortDescription
+    </span>
+    Short description
+  </div>
+  <div
+    className="game-details-row"
+  >
+    <span
+      className="game-details-title"
+    >
       gameInfo.gamemaster
     </span>
     Test GM
@@ -83,9 +93,23 @@ exports[`GameInfo should render correctly 1`] = `
     <span
       className="game-details-title"
     >
+      gameInfo.revolvingDoor
+    </span>
+    gameInfo.revolvingDoorDescription
+  </div>
+  <div
+    className="game-details-row"
+  >
+    <span
+      className="game-details-title"
+    >
       gameInfo.description
     </span>
-    Test game description
+    <p
+      className="game-description"
+    >
+      Test game description
+    </p>
   </div>
   <div
     className="game-details-row"

@@ -22,6 +22,8 @@ export type Game = {|
   +ageRestricted: boolean,
   +beginnerFriendly: boolean,
   +intendedForExperiencedParticipants: boolean,
+  +shortDescription: string,
+  +revolvingDoor: boolean,
 |}
 
 export type DnDUpdatedPositions = {|
