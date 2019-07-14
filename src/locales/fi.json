@@ -71,7 +71,7 @@
     "genres": "Genret",
     "shortDescription": "Lyhyt kuvaus",
     "revolvingDoor": "Pyöröovi",
-    "revolvingDoorDescription": "Voit liittyä peliin koska tahansa"
+    "revolvingDoorDescription": "Voit liittyä peliin koska tahansa, jos pelipöydässä on tilaa"
   },
   "gameStyle": {
     "serious": "Vakava pelityyli",

@@ -71,7 +71,7 @@
     "genres": "Genres",
     "shortDescription": "Short description",
     "revolvingDoor": "Revolving door",
-    "revolvingDoorDescription": "You can join this game at any time"
+    "revolvingDoorDescription": "You can join this game at any time if there are free seats"
   },
   "gameStyle": {
     "serious": "Serious game style",
