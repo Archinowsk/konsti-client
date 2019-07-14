@@ -9,6 +9,7 @@
 }
 
 .game-list-short-description {
+  font-size: $font-size-small;
   font-style: italic;
-  margin: 4px 0 8px 0;
+  margin: 4px 0 8px 14px;
 }

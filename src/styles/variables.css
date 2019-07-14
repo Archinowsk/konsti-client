@@ -17,7 +17,10 @@ $breakpoint-phone: 500px;
 $breakpoint-tablet: 768px;
 $breakpoint-desktop: 1024px;
 
-$font-size: 16px;
+$font-size-big: 20px;
+$font-size-normal: 16px;
+$font-size-small: 14px;
+
 $icon-size: 20px;
 $button-font-size: 14px;
 $link-font-size: 18px;

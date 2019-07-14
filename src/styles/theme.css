@@ -2,7 +2,7 @@ html {
   color: $main-text;
   display: flex;
   font-family: Helvetica, Arial, Verdana, Tahoma, sans-serif;
-  font-size: $font-size;
+  font-size: $font-size-normal;
 }
 
 body {
@@ -20,7 +20,7 @@ body {
 }
 
 select {
-  font-size: $font-size;
+  font-size: $font-size-normal;
   padding: 4px;
 }
 
@@ -28,7 +28,7 @@ input[type='text'],
 input[type='number'],
 input[type='password'],
 textarea {
-  font-size: $font-size;
+  font-size: $font-size-normal;
 }
 
 input {
