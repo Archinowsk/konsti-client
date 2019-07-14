@@ -7,12 +7,25 @@ exports[`GameInfo should render correctly 1`] = `
   <div
     className="game-details-row"
   >
-    <span
+    <h3
       className="game-details-title"
     >
-      gameInfo.title
+      Test game
+    </h3>
+    <p
+      className="game-details-subtext italic"
+    >
+      Short description
+    </p>
+  </div>
+  <div
+    className="game-details-row"
+  >
+    <span
+      className="game-details-text"
+    >
+      Test GM
     </span>
-    Test game
   </div>
   <div
     className="game-details-row"
@@ -20,55 +33,13 @@ exports[`GameInfo should render correctly 1`] = `
     <span
       className="game-details-title"
     >
-      gameInfo.shortDescription
+      gameInfo.revolvingDoor
     </span>
-    Short description
-  </div>
-  <div
-    className="game-details-row"
-  >
-    <span
-      className="game-details-title"
+    <p
+      className="game-details-subtext"
     >
-      gameInfo.gamemaster
-    </span>
-    Test GM
-  </div>
-  <div
-    className="game-details-row"
-  >
-    <span
-      className="game-details-title"
-    >
-      gameInfo.genres
-    </span>
-    <ul>
-      <li
-        key="fantasy"
-      >
-        genre.fantasy
-      </li>
-      <li
-        key="war"
-      >
-        genre.war
-      </li>
-      <li
-        key="exploration"
-      >
-        genre.exploration
-      </li>
-      <li
-        key="mystery"
-      >
-        genre.mystery
-      </li>
-      <li
-        key="drama"
-      >
-        genre.drama
-      </li>
-    </ul>
+      gameInfo.revolvingDoorDescription
+    </p>
   </div>
   <div
     className="game-details-row"
@@ -93,9 +64,9 @@ exports[`GameInfo should render correctly 1`] = `
     <span
       className="game-details-title"
     >
-      gameInfo.revolvingDoor
+      gameInfo.genres
     </span>
-    gameInfo.revolvingDoorDescription
+    genre.fantasy, genre.war, genre.exploration, genre.mystery, genre.drama
   </div>
   <div
     className="game-details-row"
@@ -129,23 +100,7 @@ exports[`GameInfo should render correctly 1`] = `
     >
       gameInfo.gameStyle
     </span>
-    <ul>
-      <li
-        key="serious"
-      >
-        gameStyle.serious
-      </li>
-      <li
-        key="story_driven"
-      >
-        gameStyle.story_driven
-      </li>
-      <li
-        key="character_driven"
-      >
-        gameStyle.character_driven
-      </li>
-    </ul>
+    gameStyle.serious, gameStyle.story_driven, gameStyle.character_driven
   </div>
   <div
     className="game-details-row"

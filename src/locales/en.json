@@ -61,7 +61,7 @@
     "gameStyle": "Game style",
     "runTime": "Time",
     "description": "Description",
-    "location": "Location",
+    "location": "Game room",
     "numberOfPlayers": "Number of players",
     "duration": "length",
     "gamemaster": "Game master(s)",
@@ -70,7 +70,7 @@
     "gamesystem": "Game system",
     "genres": "Genres",
     "shortDescription": "Short description",
-    "revolvingDoor": "Revolving door",
+    "revolvingDoor": "This is a revolving door game",
     "revolvingDoorDescription": "You can join this game at any time if there are free seats"
   },
   "gameStyle": {
@@ -99,6 +99,7 @@
     "englishOk": "Played in English",
     "childrenFriendly": "Children friendly",
     "ageRestricted": "Age limit 18+",
+    "ageRestrictedTitle": "This game's age limit is 18+",
     "ageRestrictedLong": "Players may be asked to verify their age",
     "beginnerFriendly": "Beginner friendly",
     "intendedForExperiencedParticipants": "Experienced participants preferred"

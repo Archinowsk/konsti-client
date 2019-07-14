@@ -36,9 +36,7 @@ export const GameInfo: StatelessFunctionalComponent<Props> = (
 
     if (game.ageRestricted) {
       tagsList.push(
-        <li key={'ageRestricted'}>
-          {t(`gameTags.ageRestricted`)} ({t(`gameTags.ageRestrictedLong`)})
-        </li>
+        <li key={'ageRestricted'}>{t(`gameTags.ageRestricted`)}</li>
       )
     }
 
@@ -59,31 +57,15 @@ export const GameInfo: StatelessFunctionalComponent<Props> = (
     return tagsList
   }
 
-  const getGenres = () => {
-    let genresList = []
-    if (game.genres) {
-      genresList = game.genres.map(genre => (
-        <li key={genre}>{t(`genre.${genre}`)}</li>
-      ))
-    }
-
-    return genresList
+  const getGenres = (genresList: $ReadOnlyArray<string>) => {
+    return genresList.map(genre => t(`genre.${genre}`)).join(', ')
   }
 
-  const getStyles = () => {
-    let stylesList = []
-    if (game.styles) {
-      stylesList = game.styles.map(style => (
-        <li key={style}>{t(`gameStyle.${style}`)}</li>
-      ))
-    }
-
-    return stylesList
+  const getStyles = (styles: $ReadOnlyArray<string>) => {
+    return styles.map(style => t(`gameStyle.${style}`)).join(', ')
   }
 
   const tagsList = getTags()
-  const genresList = getGenres()
-  const stylesList = getStyles()
   const formattedStartTime = timeFormatter.weekdayAndTime(game.startTime)
   const formattedEndTime = timeFormatter.time(game.endTime)
 
@@ -91,36 +73,43 @@ export const GameInfo: StatelessFunctionalComponent<Props> = (
     <div className='game-details'>
       {game.title && (
         <div className='game-details-row'>
-          <span className='game-details-title'>{t('gameInfo.title')}</span>
-          {game.title}
+          <h3 className='game-details-title'>{game.title}</h3>
+          {game.shortDescription && (
+            <p className='game-details-subtext italic'>
+              {game.shortDescription}
+            </p>
+          )}
         </div>
       )}
-      {game.shortDescription && (
-        <div className='game-details-row'>
-          <span className='game-details-title'>
-            {t('gameInfo.shortDescription')}
-          </span>
-          {game.shortDescription}
-        </div>
-      )}
+
       {game.people && (
         <div className='game-details-row'>
-          <span className='game-details-title'>{t('gameInfo.gamemaster')}</span>
-          {game.people}
+          <span className='game-details-text'>{game.people}</span>
         </div>
       )}
-      {genresList.length > 0 && (
+
+      {game.revolvingDoor && (
         <div className='game-details-row'>
-          <span className='game-details-title'>{t('gameInfo.genres')}</span>
-          <ul>{genresList}</ul>
+          <span className='game-details-title'>
+            {t('gameInfo.revolvingDoor')}
+          </span>
+          <p className={'game-details-subtext'}>
+            {t('gameInfo.revolvingDoorDescription')}
+          </p>
         </div>
       )}
-      {tagsList.length > 0 && (
+
+      {game.ageRestricted && (
         <div className='game-details-row'>
-          <span className='game-details-title'>{t('gameInfo.tags')}</span>
-          <ul>{tagsList}</ul>
+          <span className='game-details-title'>
+            {t('gameTags.ageRestrictedTitle')}
+          </span>
+          <p className={'game-details-subtext'}>
+            {t('gameTags.ageRestrictedLong')}
+          </p>
         </div>
       )}
+
       {!!game.mins && (
         <div className='game-details-row'>
           <span className='game-details-title'>{t('gameInfo.runTime')}</span>
@@ -128,14 +117,21 @@ export const GameInfo: StatelessFunctionalComponent<Props> = (
           {t('hours')})
         </div>
       )}
-      {game.revolvingDoor && (
+
+      {game.genres.length > 0 && (
         <div className='game-details-row'>
-          <span className='game-details-title'>
-            {t('gameInfo.revolvingDoor')}
-          </span>
-          {t('gameInfo.revolvingDoorDescription')}
+          <span className='game-details-title'>{t('gameInfo.genres')}</span>
+          {getGenres(game.genres)}
         </div>
       )}
+
+      {tagsList.length > 0 && (
+        <div className='game-details-row'>
+          <span className='game-details-title'>{t('gameInfo.tags')}</span>
+          <ul>{getTags()}</ul>
+        </div>
+      )}
+
       {game.description && (
         <div className='game-details-row'>
           <span className='game-details-title'>
@@ -144,24 +140,28 @@ export const GameInfo: StatelessFunctionalComponent<Props> = (
           <p className='game-description'>{game.description}</p>
         </div>
       )}
+
       {game.gameSystem && (
         <div className='game-details-row'>
           <span className='game-details-title'>{t('gameInfo.gamesystem')}</span>
           {game.gameSystem}
         </div>
       )}
-      {stylesList.length > 0 && (
+
+      {game.styles.length > 0 && (
         <div className='game-details-row'>
           <span className='game-details-title'>{t('gameInfo.gameStyle')}</span>
-          <ul>{stylesList}</ul>
+          {getStyles(game.styles)}
         </div>
       )}
+
       {game.location && (
         <div className='game-details-row'>
           <span className='game-details-title'>{t('gameInfo.location')}</span>
           {game.location}
         </div>
       )}
+
       {!!game.minAttendance && !!game.maxAttendance && (
         <div className='game-details-row'>
           <span className='game-details-title'>

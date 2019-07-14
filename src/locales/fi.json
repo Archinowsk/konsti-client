@@ -70,7 +70,7 @@
     "gamesystem": "Pelijärjestelmä",
     "genres": "Genret",
     "shortDescription": "Lyhyt kuvaus",
-    "revolvingDoor": "Pyöröovi",
+    "revolvingDoor": "Tämä on pyöröovipeli",
     "revolvingDoorDescription": "Voit liittyä peliin koska tahansa, jos pelipöydässä on tilaa"
   },
   "gameStyle": {
@@ -99,6 +99,7 @@
     "englishOk": "Pelataan englanniksi",
     "childrenFriendly": "Lapsiystävällinen",
     "ageRestricted": "Ikäraja 18+",
+    "ageRestrictedTitle": "Tämän pelin ikäraja on 18+",
     "ageRestrictedLong": "Pelaajia voidaan pyytää todistamaan ikänsä",
     "beginnerFriendly": "Aloittelijaystävällinen",
     "intendedForExperiencedParticipants": "Peli suosii kokeneita pelaajia"
