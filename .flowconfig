@@ -4,6 +4,7 @@
 <PROJECT_ROOT>/node_modules/stylelint
 <PROJECT_ROOT>/node_modules/flow-coverage-report
 <PROJECT_ROOT>/build
+<PROJECT_ROOT>/.git
 
 [include]
 
