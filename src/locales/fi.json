@@ -174,7 +174,7 @@
   "noSignupResult": "Et mahtunut peliin tällä alkamisajankohdalla",
   "invalidGameId": "Peliä ei löydy. Viallinen pelitunniste",
   "feedbackTitle": "Palaute",
-  "feedbackInstruction": "Piditkö pelistä? Lähetä palautetta pelinjohtajalle!",
+  "feedbackInstruction": "Piditkö pelistä? Lähetä palautetta pelinjohtajalle! Palautteet toimitetaan Ropeconin jälkeen.",
   "programNotReleased": "Roolipeliohjelmaa ei ole vielä julkaistu",
   "noGamesInDatabase": "Ei pelejä tietokannassa"
 }
