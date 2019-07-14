@@ -11,12 +11,13 @@ type Props = {|
   droppableId: string,
   games: $ReadOnlyArray<Game>,
   label: string,
+  showCount: boolean,
 |}
 
 export const DropRow: StatelessFunctionalComponent<Props> = (
   props: Props
 ): Element<typeof Fragment> => {
-  const { droppableId, games, label } = props
+  const { droppableId, games, label, showCount } = props
   const { t } = useTranslation()
 
   const getListStyle = dragging => {
@@ -26,7 +27,9 @@ export const DropRow: StatelessFunctionalComponent<Props> = (
 
   return (
     <Fragment>
-      <p>{label}</p>
+      <p>
+        {label} {showCount && <span>({games.length}/3)</span>}
+      </p>
 
       <Droppable droppableId={droppableId}>
         {(provided, snapshot) => (

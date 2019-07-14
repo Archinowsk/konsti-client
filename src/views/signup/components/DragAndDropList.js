@@ -109,6 +109,7 @@ export const DragAndDropList: StatelessFunctionalComponent<Props> = (
               droppableId='availableGames'
               games={availableGames}
               label={t('signupView.signupOpenGames')}
+              showCount={false}
             />
           </div>
           <div className='selected-games-row'>
@@ -116,6 +117,7 @@ export const DragAndDropList: StatelessFunctionalComponent<Props> = (
               droppableId='selectedGames'
               games={selectedGames}
               label={t('signupView.selectedGames')}
+              showCount
             />
           </div>
         </DragDropContext>
