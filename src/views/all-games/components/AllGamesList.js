@@ -1,5 +1,5 @@
 /* @flow */
-import React from 'react'
+import React, { Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import _ from 'lodash'
@@ -44,12 +44,12 @@ export const AllGamesList: StatelessFunctionalComponent<Props> = (
       /* $FlowFixMe: property `@@iterator` is missing in mixed [1] but exists in `$Iterable` [2]. */
       for (const game of games) {
         const gameEntry = (
-          <p key={game.gameId} className='games-list'>
+          <div key={game.gameId} className='games-list'>
             <Link to={`/games/${game.gameId}`}>{game.title}</Link>{' '}
             <p className='game-list-short-description'>
               {game.shortDescription}
             </p>
-          </p>
+          </div>
         )
 
         GamesList.push(gameEntry)
@@ -64,7 +64,7 @@ export const AllGamesList: StatelessFunctionalComponent<Props> = (
   return (
     <div className='games-list'>
       {games.length === 0 && <h3>{t('programNotReleased')}</h3>}
-      {games.length !== 0 && <div>{GamesList}</div>}
+      {games.length !== 0 && <Fragment>{GamesList}</Fragment>}
     </div>
   )
 }
