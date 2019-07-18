@@ -164,9 +164,14 @@ export const AdminView: StatelessFunctionalComponent<Props> = (
 
             <p>{t('selectOpenSignup')}</p>
 
-            <p>
-              {t('signupOpen')} {timeFormatter.weekdayAndTime(signupTime)}
-            </p>
+            <div className={'signup-open'}>
+              {signupTime && (
+                <p>
+                  {t('signupOpen')} {timeFormatter.weekdayAndTime(signupTime)}
+                </p>
+              )}
+              {!signupTime && <p>{t('signupClosed')}</p>}
+            </div>
 
             <button
               disabled={submitting}
