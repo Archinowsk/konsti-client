@@ -44,13 +44,13 @@ const App: StatelessFunctionalComponent<Props> = (
       {!loading && !appOpen && (
         <Fragment>
           <h2>{t('closingMessage')}</h2>
-          <Routes onlyAdmin />
+          <Routes onlyAdminLoginAllowed />
         </Fragment>
       )}
 
       {!loading && appOpen && (
         <Fragment>
-          <Routes onlyAdmin={false} />
+          <Routes onlyAdminLoginAllowed={false} />
         </Fragment>
       )}
     </Fragment>
