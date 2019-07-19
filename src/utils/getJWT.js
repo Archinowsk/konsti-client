@@ -1,7 +1,7 @@
 /* @flow */
 import { store } from 'utils/store'
 
-export const getJWT = () => {
+export const getJWT = (): string => {
   const state = store.getState()
   if (!state.login) {
     console.log('No login info in state')
