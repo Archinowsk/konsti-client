@@ -4,35 +4,33 @@ exports[`AllGamesList should render correctly 1`] = `
 <div
   className="games-list"
 >
-  <div>
-    <p
-      className="title"
-      key="2018-07-28T16:00:00.000Z"
+  <p
+    className="title"
+    key="2018-07-28T16:00:00.000Z"
+  >
+    Saturday 19:00
+     (
+    signupOpenBetween
+     
+    15:00
+    -
+    18:30
+    )
+  </p>
+  <div
+    className="games-list"
+    key="p2106"
+  >
+    <Link
+      to="/games/p2106"
     >
-      Saturday 19:00
-       (
-      signupOpenBetween
-       
-      15:00
-      -
-      18:30
-      )
-    </p>
+      Test game
+    </Link>
+     
     <p
-      className="games-list"
-      key="p2106"
+      className="game-list-short-description"
     >
-      <Link
-        to="/games/p2106"
-      >
-        Test game
-      </Link>
-       
-      <p
-        className="game-list-short-description"
-      >
-        Short description
-      </p>
+      Short description
     </p>
   </div>
 </div>
