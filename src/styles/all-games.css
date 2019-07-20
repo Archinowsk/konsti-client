@@ -13,3 +13,7 @@
   font-style: italic;
   margin: 4px 0 8px 14px;
 }
+
+.empty-value {
+  height: 28px;
+}
