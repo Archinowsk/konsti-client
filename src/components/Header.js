@@ -29,10 +29,10 @@ export const Header = () => {
 
       {loggedIn && (
         <div className='logged-user-details'>
-          <span>
+          <span className='user-info-username'>
             {t('user')}: {username}
           </span>
-          <span>
+          <span className='user-info-serial'>
             {t('code')}: {serial}
           </span>
         </div>
