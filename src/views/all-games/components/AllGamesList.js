@@ -46,13 +46,9 @@ export const AllGamesList: StatelessFunctionalComponent<Props> = (
         const gameEntry = (
           <div key={game.gameId} className='games-list'>
             <Link to={`/games/${game.gameId}`}>{game.title}</Link>{' '}
-            {game.shortDescription ? (
-              <p className='game-list-short-description'>
-                {game.shortDescription}
-              </p>
-            ) : (
-              <div className='empty-value' />
-            )}
+            <p className='game-list-short-description'>
+              {game.shortDescription ? game.shortDescription : game.gameSystem}
+            </p>
           </div>
         )
 
