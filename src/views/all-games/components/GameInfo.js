@@ -52,15 +52,36 @@ export const GameInfo: StatelessFunctionalComponent<Props> = (
       tagsList.push(`intendedForExperiencedParticipants`)
     }
 
-    return tagsList.map(tag => t(`gameTags.${tag}`)).join(', ')
+    return tagsList.map((tag, i) => {
+      return (
+        <span key={tag}>
+          <span className='no-wrap'>{t(`gameTags.${tag}`)}</span>
+          <span>{i !== tagsList.length - 1 ? ', ' : ''}</span>
+        </span>
+      )
+    })
   }
 
   const getGenres = (genresList: $ReadOnlyArray<string>) => {
-    return genresList.map(genre => t(`genre.${genre}`)).join(', ')
+    return genresList.map((genre, i) => {
+      return (
+        <span key={genre}>
+          <span className='no-wrap'>{t(`genre.${genre}`)}</span>
+          <span>{i !== genresList.length - 1 ? ', ' : ''}</span>
+        </span>
+      )
+    })
   }
 
   const getStyles = (styles: $ReadOnlyArray<string>) => {
-    return styles.map(style => t(`gameStyle.${style}`)).join(', ')
+    return styles.map((style, i) => {
+      return (
+        <span key={style}>
+          <span className='no-wrap'>{t(`gameStyle.${style}`)}</span>
+          <span>{i !== styles.length - 1 ? ', ' : ''}</span>
+        </span>
+      )
+    })
   }
 
   const tagsList = getTags()
@@ -151,7 +172,7 @@ export const GameInfo: StatelessFunctionalComponent<Props> = (
           <span className='game-details-title game-details-two-columns'>
             {t('gameInfo.tags')}
           </span>
-          <span className='game-details-value'>{t(tagsList)}</span>
+          <span className='game-details-value'>{tagsList}</span>
         </div>
       )}
 
