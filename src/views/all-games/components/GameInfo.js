@@ -127,8 +127,12 @@ export const GameInfo: StatelessFunctionalComponent<Props> = (
             {t('gameInfo.runTime')}
           </span>
           <span className='game-details-value'>
-            {formattedStartTime} - {formattedEndTime} ({game.mins / 60}{' '}
-            {t('hours')})
+            <span>
+              {formattedStartTime} - {formattedEndTime}{' '}
+            </span>
+            <span className='no-wrap'>
+              ({game.mins / 60} {t('hours')})
+            </span>
           </span>
         </div>
       )}

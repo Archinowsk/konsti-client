@@ -5,68 +5,91 @@ exports[`GameInfo should render correctly 1`] = `
   className="game-details"
 >
   <div
-    className="game-details-row"
+    className="game-details-row game-details-row-with-subtext"
   >
     <h3
       className="game-details-title"
     >
       Test game
     </h3>
-    <p
-      className="game-details-subtext italic"
-    >
-      Short description
-    </p>
   </div>
   <div
-    className="game-details-row"
+    className="game-details-row game-details-subtext"
   >
     <span
-      className="game-details-text"
+      className="game-details-text-indent italic"
+    >
+      Short description
+    </span>
+  </div>
+  <div
+    className="game-details-row game-details-row-with-gap"
+  >
+    <span
+      className="game-details-text-indent"
     >
       Test GM
     </span>
   </div>
   <div
-    className="game-details-row"
+    className="game-details-row game-details-row-with-subtext"
   >
     <span
       className="game-details-title"
     >
       gameInfo.revolvingDoor
     </span>
-    <p
-      className="game-details-subtext"
+  </div>
+  <div
+    className="game-details-row game-details-subtext game-details-row-with-gap"
+  >
+    <span
+      className="game-details-text-indent"
     >
       gameInfo.revolvingDoorDescription
-    </p>
+    </span>
   </div>
   <div
     className="game-details-row"
   >
     <span
-      className="game-details-title"
+      className="game-details-title game-details-two-columns"
     >
       gameInfo.runTime
     </span>
-    Saturday 19:00
-     - 
-    23:00
-     (
-    4
-     
-    hours
-    )
+    <span
+      className="game-details-value"
+    >
+      <span>
+        Saturday 19:00
+         - 
+        23:00
+         
+      </span>
+      <span
+        className="no-wrap"
+      >
+        (
+        4
+         
+        hours
+        )
+      </span>
+    </span>
   </div>
   <div
     className="game-details-row"
   >
     <span
-      className="game-details-title"
+      className="game-details-title game-details-two-columns"
     >
       gameInfo.genres
     </span>
-    genre.fantasy, genre.war, genre.exploration, genre.mystery, genre.drama
+    <span
+      className="game-details-value"
+    >
+      genre.fantasy, genre.war, genre.exploration, genre.mystery, genre.drama
+    </span>
   </div>
   <div
     className="game-details-row"
@@ -76,53 +99,71 @@ exports[`GameInfo should render correctly 1`] = `
     >
       gameInfo.description
     </span>
-    <p
-      className="game-description"
-    >
+  </div>
+  <div
+    className="game-details-row game-details-row-with-gap"
+  >
+    <span>
       Test game description
-    </p>
+    </span>
   </div>
   <div
     className="game-details-row"
   >
     <span
-      className="game-details-title"
+      className="game-details-title game-details-two-columns"
     >
       gameInfo.gamesystem
     </span>
-    Test gamesystem
+    <span
+      className="game-details-value"
+    >
+      Test gamesystem
+    </span>
   </div>
   <div
     className="game-details-row"
   >
     <span
-      className="game-details-title"
+      className="game-details-title game-details-two-columns"
     >
       gameInfo.gameStyle
     </span>
-    gameStyle.serious, gameStyle.story_driven, gameStyle.character_driven
+    <span
+      className="game-details-value"
+    >
+      gameStyle.serious, gameStyle.story_driven, gameStyle.character_driven
+    </span>
   </div>
   <div
     className="game-details-row"
   >
     <span
-      className="game-details-title"
+      className="game-details-title game-details-two-columns"
     >
       gameInfo.location
     </span>
-    Test location
+    <span
+      className="game-details-value"
+    >
+      Test location
+    </span>
   </div>
   <div
     className="game-details-row"
   >
     <span
-      className="game-details-title"
+      className="game-details-title game-details-two-columns"
     >
       gameInfo.numberOfPlayers
     </span>
-    2
-     - 
-    4
+    <span
+      className="game-details-value"
+    >
+      2
+       - 
+      4
+    </span>
   </div>
 </div>
 `;

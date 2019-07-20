@@ -31,11 +31,11 @@
 
 @media (max-width: $breakpoint-phone) {
   .game-details-two-columns {
-    width: 30%;
+    width: 40%;
   }
 
   .game-details-value {
-    width: 70%;
+    width: 60%;
   }
 }
 
