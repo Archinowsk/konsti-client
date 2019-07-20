@@ -19,7 +19,6 @@ export const testGame = {
   minAttendance: 2,
   maxAttendance: 4,
   gameSystem: 'Test gamesystem',
-  noLanguage: false,
   englishOk: false,
   childrenFriendly: false,
   ageRestricted: false,

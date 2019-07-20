@@ -20,10 +20,6 @@ export const GameInfo: StatelessFunctionalComponent<Props> = (
   const getTags = () => {
     const tagsList = []
 
-    if (game.noLanguage) {
-      tagsList.push(`noLanguage`)
-    }
-
     if (game.tags.includes('in-english')) {
       tagsList.push(`inEnglish`)
     }
