@@ -24,20 +24,28 @@ export const GameInfo: StatelessFunctionalComponent<Props> = (
       tagsList.push(`noLanguage`)
     }
 
-    if (game.englishOk || game.tags.includes('in-english')) {
-      tagsList.push(`englishOk`)
+    if (game.tags.includes('in-english')) {
+      tagsList.push(`inEnglish`)
     }
 
-    if (game.childrenFriendly) {
+    if (game.tags.includes('sopii-lapsille')) {
       tagsList.push(`childrenFriendly`)
     }
 
-    if (game.ageRestricted) {
+    if (game.tags.includes('vain-taysi-ikaisille')) {
       tagsList.push(`ageRestricted`)
     }
 
-    if (game.beginnerFriendly) {
+    if (game.tags.includes('aloittelijaystavallinen')) {
       tagsList.push(`beginnerFriendly`)
+    }
+
+    if (game.tags.includes('kunniavieras')) {
+      tagsList.push(`guestOfHonor`)
+    }
+
+    if (game.tags.includes('perheohjelma')) {
+      tagsList.push(`family`)
     }
 
     if (game.intendedForExperiencedParticipants) {

@@ -96,13 +96,15 @@
   },
   "gameTags": {
     "noLanguage": "No language requirement",
-    "englishOk": "Played in English",
+    "inEnglish": "Played in English",
     "childrenFriendly": "Children friendly",
     "ageRestricted": "Age limit 18+",
     "ageRestrictedTitle": "This game's age limit is 18+",
     "ageRestrictedLong": "Players may be asked to verify their age",
     "beginnerFriendly": "Beginner friendly",
-    "intendedForExperiencedParticipants": "Experienced participants preferred"
+    "intendedForExperiencedParticipants": "Experienced participants preferred",
+    "guestOfHonor": "Guest of Honor game",
+    "family": "Suitable for families"
   },
   "pageTitle": {
     "login": "Please login",
