@@ -81,6 +81,11 @@ export const AdminView: StatelessFunctionalComponent<Props> = (
   const submitAssign = async (): Promise<any> => {
     setSubmitting(true)
 
+    showMessage({
+      message: '',
+      style: 'success',
+    })
+
     let response = null
     try {
       response = await dispatch(submitPlayersAssign(signupTime))
@@ -96,7 +101,7 @@ export const AdminView: StatelessFunctionalComponent<Props> = (
       })
     } else if (response && response.status === 'error') {
       showMessage({
-        message: 'Error assigning players',
+        message: response.message,
         style: response.status,
       })
     }
