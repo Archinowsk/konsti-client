@@ -23,7 +23,7 @@ module.exports = api => {
         root: ['./src'],
       },
     ],
-    'lodash',
+    'babel-plugin-lodash',
   ]
 
   if (target === 'start') {
