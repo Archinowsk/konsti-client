@@ -50,3 +50,13 @@
 .drop-row.dragging .draggable-item {
   cursor: grabbing;
 }
+
+.signup-game-title {
+  margin: 0 0 4px 0;
+}
+
+.signup-short-description {
+  margin: 0 0 0 14px;
+  font-size: $font-size-small;
+  font-style: italic;
+}

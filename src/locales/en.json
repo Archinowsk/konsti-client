@@ -150,7 +150,7 @@
     "signupOpenGames": "Open games",
     "selectedGames": "Selected games"
   },
-  "details": "Details",
+  "details": "details",
   "gameLimitWarning": "Only three selected games allowed",
   "enterGroupMemberCode": "User's code",
   "enterGroupLeaderCode": "Group leader's code",

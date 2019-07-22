@@ -52,8 +52,14 @@ export const DropRow: StatelessFunctionalComponent<Props> = (
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                   >
-                    {game.title}{' '}
-                    <Link to={`/games/${game.gameId}`}>({t('details')})</Link>
+                    <p className='signup-game-title'>{game.title}</p>
+                    <p className='signup-short-description'>
+                      {game.shortDescription
+                        ? game.shortDescription
+                        : game.gameSystem}
+                      {' - '}
+                      <Link to={`/games/${game.gameId}`}>{t('details')}</Link>
+                    </p>
                   </div>
                 )}
               </Draggable>
