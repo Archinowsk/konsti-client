@@ -23,6 +23,7 @@ export type Game = {|
   +intendedForExperiencedParticipants: boolean,
   +shortDescription: string,
   +revolvingDoor: boolean,
+  +popularity: number,
 |}
 
 export type DnDUpdatedPositions = {|

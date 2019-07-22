@@ -26,4 +26,5 @@ export const testGame = {
   intendedForExperiencedParticipants: false,
   shortDescription: 'Short description',
   revolvingDoor: true,
+  popularity: 0,
 }
