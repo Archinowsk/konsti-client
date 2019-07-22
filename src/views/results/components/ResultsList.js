@@ -27,13 +27,13 @@ export const ResultsList: StatelessFunctionalComponent<Props> = (
 
   return (
     <div className='results-list'>
-      <div className='results-buttons'>
+      <div className='results-button-row'>
         <span>{t('sortBy')} </span>
 
         {buttons.map(name => {
           return (
             <button
-              className={sortedBy === name ? 'active' : ''}
+              disabled={sortedBy === name}
               value={name}
               onClick={() => setSortedBy(name)}
               key={name}
