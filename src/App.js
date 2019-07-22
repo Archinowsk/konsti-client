@@ -3,6 +3,7 @@ import React, { Fragment } from 'react'
 import { hot } from 'react-hot-loader/root'
 import { useTranslation } from 'react-i18next'
 import { useSelector, useStore } from 'react-redux'
+import { BrowserRouter } from 'react-router-dom'
 import { Routes } from 'Routes'
 import { Header } from 'components/Header'
 import { loadPublicData, loadLoggedInData } from 'utils/loadData'
@@ -41,16 +42,12 @@ const App: StatelessFunctionalComponent<Props> = (
 
       {loading && <Loading />}
 
-      {!loading && !appOpen && (
+      {!loading && (
         <Fragment>
-          <h2>{t('closingMessage')}</h2>
-          <Routes onlyAdminLoginAllowed />
-        </Fragment>
-      )}
-
-      {!loading && appOpen && (
-        <Fragment>
-          <Routes onlyAdminLoginAllowed={false} />
+          {!appOpen && <h2>{t('closingMessage')}</h2>}
+          <BrowserRouter>
+            <Routes onlyAdminLoginAllowed={!appOpen} />
+          </BrowserRouter>
         </Fragment>
       )}
     </Fragment>
