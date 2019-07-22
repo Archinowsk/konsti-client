@@ -2,6 +2,7 @@
 import React, { Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
 import { timeFormatter } from 'utils/timeFormatter'
+import { getGameTags } from 'utils/getGameTags'
 import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent, Element } from 'react'
 
@@ -16,47 +17,6 @@ export const GameInfo: StatelessFunctionalComponent<Props> = (
   const { t } = useTranslation()
 
   if (!game) return <div className='game-details' />
-
-  const getTags = () => {
-    const tagsList = []
-
-    if (game.tags.includes('in-english')) {
-      tagsList.push(`inEnglish`)
-    }
-
-    if (game.tags.includes('sopii-lapsille')) {
-      tagsList.push(`childrenFriendly`)
-    }
-
-    if (game.tags.includes('vain-taysi-ikaisille')) {
-      tagsList.push(`ageRestricted`)
-    }
-
-    if (game.tags.includes('aloittelijaystavallinen')) {
-      tagsList.push(`beginnerFriendly`)
-    }
-
-    if (game.tags.includes('kunniavieras')) {
-      tagsList.push(`guestOfHonor`)
-    }
-
-    if (game.tags.includes('perheohjelma')) {
-      tagsList.push(`family`)
-    }
-
-    if (game.intendedForExperiencedParticipants) {
-      tagsList.push(`intendedForExperiencedParticipants`)
-    }
-
-    return tagsList.map((tag, i) => {
-      return (
-        <span key={tag}>
-          <span className='no-wrap'>{t(`gameTags.${tag}`)}</span>
-          <span>{i !== tagsList.length - 1 ? ', ' : ''}</span>
-        </span>
-      )
-    })
-  }
 
   const getGenres = (genresList: $ReadOnlyArray<string>) => {
     return genresList.map((genre, i) => {
@@ -80,7 +40,17 @@ export const GameInfo: StatelessFunctionalComponent<Props> = (
     })
   }
 
-  const tagsList = getTags()
+  const tags = getGameTags(game)
+
+  const tagsList = tags.map((tag, i) => {
+    return (
+      <span key={tag}>
+        <span className='no-wrap'>{t(`gameTags.${tag}`)}</span>
+        <span>{i !== tags.length - 1 ? ', ' : ''}</span>
+      </span>
+    )
+  })
+
   const formattedStartTime = timeFormatter.weekdayAndTime({
     time: game.startTime,
     capitalize: true,
