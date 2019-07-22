@@ -16,7 +16,10 @@ export const ResultsView: StatelessFunctionalComponent<Props> = (
   const signupTime: string = useSelector(state => state.admin.signupTime)
   const { t } = useTranslation()
 
-  const formattedDate = timeFormatter.weekdayAndTime(signupTime)
+  const formattedDate = timeFormatter.weekdayAndTime({
+    time: signupTime,
+    capitalize: true,
+  })
 
   return (
     <div className='results-view'>

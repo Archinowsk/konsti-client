@@ -30,7 +30,9 @@ export const GamesByStartTimes: StatelessFunctionalComponent<Props> = (
   const startTimesList = startTimes.map(startTime => {
     return (
       <div key={startTime}>
-        <p className='bold'>{timeFormatter.weekdayAndTime(startTime)}</p>
+        <p className='bold'>
+          {timeFormatter.weekdayAndTime({ time: startTime, capitalize: true })}
+        </p>
         {getGamesList(startTime)}
       </div>
     )

@@ -133,7 +133,7 @@
   "noEnteredGames": "Ei vahvistuneita ilmoittautumisia",
   "noHiddenGames": "Ei piilotettuja pelejä",
   "noOpenSignups": "Ei avoimia ilmoittautumisia",
-  "signupOpen": "Ilmoittautuminen auki",
+  "signupOpen": "Ilmoittautuminen auki seuraaville alkamisajoille",
   "signupClosed": "Ilmoittautuminen suljettu",
   "selectOpenSignup": "Valitse avoin ilmoittautumisajankohta",
   "signupOpenBetween": "ilmoittautuminen auki ",

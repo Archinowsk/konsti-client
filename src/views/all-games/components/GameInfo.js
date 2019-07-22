@@ -81,7 +81,10 @@ export const GameInfo: StatelessFunctionalComponent<Props> = (
   }
 
   const tagsList = getTags()
-  const formattedStartTime = timeFormatter.weekdayAndTime(game.startTime)
+  const formattedStartTime = timeFormatter.weekdayAndTime({
+    time: game.startTime,
+    capitalize: true,
+  })
   const formattedEndTime = timeFormatter.time(game.endTime)
 
   return (

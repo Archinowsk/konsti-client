@@ -88,7 +88,64 @@ exports[`GameInfo should render correctly 1`] = `
     <span
       className="game-details-value"
     >
-      genre.fantasy, genre.war, genre.exploration, genre.mystery, genre.drama
+      <span
+        key="fantasy"
+      >
+        <span
+          className="no-wrap"
+        >
+          genre.fantasy
+        </span>
+        <span>
+          , 
+        </span>
+      </span>
+      <span
+        key="war"
+      >
+        <span
+          className="no-wrap"
+        >
+          genre.war
+        </span>
+        <span>
+          , 
+        </span>
+      </span>
+      <span
+        key="exploration"
+      >
+        <span
+          className="no-wrap"
+        >
+          genre.exploration
+        </span>
+        <span>
+          , 
+        </span>
+      </span>
+      <span
+        key="mystery"
+      >
+        <span
+          className="no-wrap"
+        >
+          genre.mystery
+        </span>
+        <span>
+          , 
+        </span>
+      </span>
+      <span
+        key="drama"
+      >
+        <span
+          className="no-wrap"
+        >
+          genre.drama
+        </span>
+        <span />
+      </span>
     </span>
   </div>
   <div
@@ -132,7 +189,40 @@ exports[`GameInfo should render correctly 1`] = `
     <span
       className="game-details-value"
     >
-      gameStyle.serious, gameStyle.story_driven, gameStyle.character_driven
+      <span
+        key="serious"
+      >
+        <span
+          className="no-wrap"
+        >
+          gameStyle.serious
+        </span>
+        <span>
+          , 
+        </span>
+      </span>
+      <span
+        key="story_driven"
+      >
+        <span
+          className="no-wrap"
+        >
+          gameStyle.story_driven
+        </span>
+        <span>
+          , 
+        </span>
+      </span>
+      <span
+        key="character_driven"
+      >
+        <span
+          className="no-wrap"
+        >
+          gameStyle.character_driven
+        </span>
+        <span />
+      </span>
     </span>
   </div>
   <div

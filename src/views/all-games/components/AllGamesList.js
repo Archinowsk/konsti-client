@@ -28,7 +28,10 @@ export const AllGamesList: StatelessFunctionalComponent<Props> = (
     const GamesList = []
 
     for (const [startTime, games] of Object.entries(groupedGames)) {
-      const formattedStartTime = timeFormatter.weekdayAndTime(startTime)
+      const formattedStartTime = timeFormatter.weekdayAndTime({
+        time: startTime,
+        capitalize: true,
+      })
       const signupStartTime = timeFormatter.startTime(startTime)
       const signupEndTime = timeFormatter.endTime(startTime)
 

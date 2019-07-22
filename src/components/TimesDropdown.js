@@ -22,7 +22,10 @@ export const TimesDropdown: StatelessFunctionalComponent<Props> = (
   const { t } = useTranslation()
 
   const sortedTimes = times.map(sortedTime => {
-    const formattedDate = timeFormatter.weekdayAndTime(sortedTime)
+    const formattedDate = timeFormatter.weekdayAndTime({
+      time: sortedTime,
+      capitalize: true,
+    })
     return (
       <option value={sortedTime} key={sortedTime}>
         {formattedDate}

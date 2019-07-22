@@ -27,9 +27,10 @@ export const SignedMembersList: StatelessFunctionalComponent<Props> = (
   ])
 
   const signedGamesList = sortedGames.map(signedGame => {
-    const formattedDate = timeFormatter.weekdayAndTime(
-      signedGame.gameDetails.startTime
-    )
+    const formattedDate = timeFormatter.weekdayAndTime({
+      time: signedGame.gameDetails.startTime,
+      capitalize: true,
+    })
 
     return (
       <li key={signedGame.gameDetails.gameId}>

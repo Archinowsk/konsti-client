@@ -212,7 +212,7 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
         className={`button-${time} ${isActive(time === signupTime)}`}
         disabled={time === signupTime}
       >
-        {timeFormatter.weekdayAndTime(time)}
+        {timeFormatter.weekdayAndTime({ time: time, capitalize: true })}
       </button>
     )
   })
@@ -223,7 +223,7 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
 
       {signupTimes.length !== 0 && (
         <Fragment>
-          <h2>{t('signupOpen')}:</h2>
+          <h2>{t('signupOpen')}</h2>
           <div className='signup-time-buttons-row'>{signupTimeButtons}</div>
         </Fragment>
       )}

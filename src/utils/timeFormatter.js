@@ -1,6 +1,7 @@
 /* @flow */
 import moment from 'moment'
 import { config } from 'config'
+import type { WeekdayAndTime } from 'flow/utils.flow'
 
 const {
   SIGNUP_OPEN_TIME,
@@ -45,9 +46,11 @@ const endTime = (startTime: string): string => {
     .format(timeFormat)
 }
 
-const weekdayAndTime = (time: string): string => {
+const weekdayAndTime = ({ time, capitalize }: WeekdayAndTime): string => {
   const timeFormat = 'dddd HH:mm'
-  return moment(time).format(timeFormat)
+  const formattedTime = moment(time).format(timeFormat)
+  if (capitalize) return capitalizeFirstLetter(formattedTime)
+  else return formattedTime
 }
 
 const dateAndTime = (time: string): string => {
@@ -58,6 +61,10 @@ const dateAndTime = (time: string): string => {
 const time = (time: string): string => {
   const timeFormat = 'HH:mm'
   return moment(time).format(timeFormat)
+}
+
+const capitalizeFirstLetter = (string: string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1)
 }
 
 export const timeFormatter = {
