@@ -182,5 +182,6 @@
   "noGamesInDatabase": "No games in database",
   "upcomingGames": "Upcoming games",
   "allGames": "All games",
-  "lastStartedAndUpcomingGames": "Last started and upcoming games"
+  "lastStartedAndUpcomingGames": "Last started and upcoming games",
+  "chooseTag": "Choose tag"
 }

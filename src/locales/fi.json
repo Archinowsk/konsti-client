@@ -183,5 +183,6 @@
   "noGamesInDatabase": "Ei pelejä tietokannassa",
   "upcomingGames": "Tulevat pelit",
   "allGames": "Kaikki pelit",
-  "lastStartedAndUpcomingGames": "Viimeksi alkaneet ja tulevat pelit"
+  "lastStartedAndUpcomingGames": "Viimeksi alkaneet ja tulevat pelit",
+  "chooseTag": "Valitse tagi"
 }

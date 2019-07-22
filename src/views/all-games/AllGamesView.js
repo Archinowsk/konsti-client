@@ -2,10 +2,10 @@
 import React, { Fragment } from 'react'
 import { useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import GameDetails from 'views/all-games/components/GameDetails'
 import { AllGamesList } from 'views/all-games/components/AllGamesList'
 import { getUpcomingGames } from 'utils/getUpcomingGames'
-import { useTranslation } from 'react-i18next'
 import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent, Element } from 'react'
 
@@ -25,8 +25,15 @@ export const AllGamesView: StatelessFunctionalComponent<Props> = (
   const [showAllGames, setShowAllGames] = React.useState(false)
   ;(showAllGames: boolean)
 
-  const getVisibleGames = (): $ReadOnlyArray<Game> => {
-    const visibleGames = games.filter(game => {
+  const [selectedTag, setSelectedTag] = React.useState('')
+  ;(selectedTag: string)
+
+  const getVisibleGames = (
+    games: $ReadOnlyArray<Game>
+  ): $ReadOnlyArray<Game> => {
+    const filteredGames = getTagFilteredGames(games)
+
+    const visibleGames = filteredGames.filter(game => {
       const hidden = hiddenGames.find(
         hiddenGame => game.gameId === hiddenGame.gameId
       )
@@ -38,6 +45,27 @@ export const AllGamesView: StatelessFunctionalComponent<Props> = (
     return getUpcomingGames(visibleGames, testTime)
   }
 
+  const getTagFilteredGames = (
+    games: $ReadOnlyArray<Game>
+  ): $ReadOnlyArray<Game> => {
+    if (!selectedTag) return games
+    return games.filter(game => game.tags.includes(selectedTag))
+  }
+
+  const tags = ['in-english', 'aloittelijaystavallinen', 'sopii-lapsille']
+
+  const tagsList = () => {
+    return tags.map(tag => {
+      return (
+        <option key={tag} value={tag}>
+          {tag === 'in-english' && t(`gameTags.inEnglish`)}
+          {tag === 'aloittelijaystavallinen' && t(`gameTags.beginnerFriendly`)}
+          {tag === 'sopii-lapsille' && t(`gameTags.childrenFriendly`)}
+        </option>
+      )
+    })
+  }
+
   return (
     <Fragment>
       <Switch>
@@ -46,21 +74,35 @@ export const AllGamesView: StatelessFunctionalComponent<Props> = (
           path='/games'
           render={() => (
             <Fragment>
-              <div className='all-games-toggle-visibility'>
-                <button
-                  onClick={() => setShowAllGames(false)}
-                  disabled={!showAllGames}
-                >
-                  {t('upcomingGames')}
-                </button>
-                <button
-                  onClick={() => setShowAllGames(true)}
-                  disabled={showAllGames}
-                >
-                  {t('allGames')}
-                </button>
+              <div className='all-games-visibility-bar'>
+                <div className='all-games-toggle-visibility'>
+                  <button
+                    onClick={() => setShowAllGames(false)}
+                    disabled={!showAllGames}
+                  >
+                    {t('upcomingGames')}
+                  </button>
+
+                  <button
+                    onClick={() => setShowAllGames(true)}
+                    disabled={showAllGames}
+                  >
+                    {t('allGames')}
+                  </button>
+                </div>
+
+                <div className='tags-dropdown'>
+                  <span>{t('chooseTag')} </span>
+                  <select
+                    onChange={event => setSelectedTag(event.target.value)}
+                    value={selectedTag}
+                  >
+                    <option value=''>{t('allGames')}</option>
+                    {tagsList()}
+                  </select>
+                </div>
               </div>
-              <AllGamesList games={getVisibleGames()} />
+              <AllGamesList games={getVisibleGames(games)} />
             </Fragment>
           )}
         />

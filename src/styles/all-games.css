@@ -17,3 +17,16 @@
 .empty-value {
   height: 28px;
 }
+
+.all-games-visibility-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@media (max-width: $breakpoint-phone) {
+  .all-games-visibility-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
