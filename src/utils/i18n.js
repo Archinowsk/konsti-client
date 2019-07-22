@@ -1,7 +1,7 @@
 /* @flow */
 import i18next from 'i18next'
-import Backend from 'i18next-xhr-backend'
-import LanguageDetector from 'i18next-browser-languagedetector'
+import backend from 'i18next-xhr-backend'
+import languageDetector from 'i18next-browser-languagedetector'
 import { initReactI18next } from 'react-i18next'
 import en from 'locales/en.json'
 import fi from 'locales/fi.json'
@@ -15,8 +15,8 @@ const loadLocales = (url: string, options: Object, callback: Function) => {
 }
 
 i18next
-  .use(Backend)
-  .use(LanguageDetector)
+  .use(backend)
+  .use(languageDetector)
   .use(initReactI18next)
   .init({
     backend: {
@@ -24,10 +24,12 @@ i18next
       parse: data => data,
       ajax: loadLocales,
     },
-    lng: 'en',
     fallbackLng: 'en',
     debug: false,
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
+    },
+    detection: {
+      order: ['localStorage'],
     },
   })
