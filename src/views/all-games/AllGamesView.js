@@ -2,10 +2,10 @@
 import React, { Fragment } from 'react'
 import { useSelector } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
-import moment from 'moment'
 import GameDetails from 'views/all-games/components/GameDetails'
 import { AllGamesList } from 'views/all-games/components/AllGamesList'
-import { config } from 'config'
+import { getUpcomingGames } from 'utils/getUpcomingGames'
+import { useTranslation } from 'react-i18next'
 import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent, Element } from 'react'
 
@@ -14,7 +14,7 @@ type Props = {}
 export const AllGamesView: StatelessFunctionalComponent<Props> = (
   props: Props
 ): Element<typeof Fragment> => {
-  const { useTestTime } = config
+  const { t } = useTranslation()
 
   const games: $ReadOnlyArray<Game> = useSelector(state => state.allGames.games)
   const testTime: string = useSelector(state => state.admin.testTime)
@@ -26,11 +26,6 @@ export const AllGamesView: StatelessFunctionalComponent<Props> = (
   ;(showAllGames: boolean)
 
   const getVisibleGames = (): $ReadOnlyArray<Game> => {
-    let timeNow = moment()
-    if (useTestTime) {
-      timeNow = moment(testTime)
-    }
-
     const visibleGames = games.filter(game => {
       const hidden = hiddenGames.find(
         hiddenGame => game.gameId === hiddenGame.gameId
@@ -40,11 +35,7 @@ export const AllGamesView: StatelessFunctionalComponent<Props> = (
 
     if (showAllGames) return visibleGames
 
-    const upcomingGames = visibleGames.filter(visibleGame =>
-      moment(visibleGame.startTime).isAfter(timeNow)
-    )
-
-    return upcomingGames
+    return getUpcomingGames(visibleGames, testTime)
   }
 
   return (
@@ -55,18 +46,18 @@ export const AllGamesView: StatelessFunctionalComponent<Props> = (
           path='/games'
           render={() => (
             <Fragment>
-              <div className='all-games-toggle-visibiliy'>
+              <div className='all-games-toggle-visibility'>
                 <button
                   onClick={() => setShowAllGames(false)}
                   disabled={!showAllGames}
                 >
-                  Upcoming games
+                  {t('upcomingGames')}
                 </button>
                 <button
                   onClick={() => setShowAllGames(true)}
                   disabled={showAllGames}
                 >
-                  All games
+                  {t('allGames')}
                 </button>
               </div>
               <AllGamesList games={getVisibleGames()} />

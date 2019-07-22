@@ -179,5 +179,8 @@
   "feedbackTitle": "Feedback",
   "feedbackInstruction": "Did you enjoy the game? Send feedback to the game master! They will receive it after Ropecon.",
   "programNotReleased": "Roleplaying games program is not released yet",
-  "noGamesInDatabase": "No games in database"
+  "noGamesInDatabase": "No games in database",
+  "upcomingGames": "Upcoming games",
+  "allGames": "All games",
+  "lastStartedAndUpcomingGames": "Last started and upcoming games"
 }
