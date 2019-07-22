@@ -19,7 +19,6 @@ export const TimeSelector: StatelessFunctionalComponent<Props> = (
 
   const { CONVENTION_START_TIME } = config
   const times = [
-    moment(CONVENTION_START_TIME).format(),
     moment(CONVENTION_START_TIME)
       .add(1, 'hours')
       .format(),
@@ -28,6 +27,9 @@ export const TimeSelector: StatelessFunctionalComponent<Props> = (
       .format(),
     moment(CONVENTION_START_TIME)
       .add(3, 'hours')
+      .format(),
+    moment(CONVENTION_START_TIME)
+      .add(4, 'hours')
       .format(),
   ]
 
