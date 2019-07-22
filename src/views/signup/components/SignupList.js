@@ -181,6 +181,29 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
 
   const isActive = isActive => (isActive ? 'active' : '')
 
+  const checkForSignupChanges = (signedGames, selectedGames) => {
+    const filteredSignedGames = signedGames.filter(signedGame =>
+      selectedGames.find(
+        selectedGame =>
+          signedGame.gameDetails.gameId === selectedGame.gameDetails.gameId
+      )
+    )
+
+    const filteredSelectedGames = selectedGames.filter(selectedGame =>
+      signedGames.find(
+        signedGame =>
+          selectedGame.gameDetails.gameId === signedGame.gameDetails.gameId
+      )
+    )
+
+    if (
+      filteredSignedGames.length !== signedGames.length ||
+      filteredSelectedGames.length !== selectedGames.length
+    )
+      return true
+    else return false
+  }
+
   const signupTimeButtons = signupTimes.map(time => {
     return (
       <button
@@ -201,30 +224,40 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
       {signupTimes.length !== 0 && (
         <Fragment>
           <h2>{t('signupOpen')}:</h2>
-          <div>{signupTimeButtons}</div>
+          <div className='signup-time-buttons-row'>{signupTimeButtons}</div>
         </Fragment>
       )}
 
       {signupTime && (
         <Fragment>
-          <p>
-            {t('signupOpenBetweenCapital')} {signupStartTime}-{signupEndTime}.{' '}
-            {t('signupResultHint')} {signupEndTime}
-          </p>
-          <p>{t('signupGuide')}</p>
+          <div className='signup-info'>
+            <p>
+              {t('signupOpenBetweenCapital')} {signupStartTime}-{signupEndTime}.{' '}
+              {t('signupResultHint')} {signupEndTime}
+            </p>
+            <p>{t('signupGuide')}</p>
+          </div>
 
-          <div>
+          <div className='signup-action-buttons-row'>
             <button disabled={submitting} onClick={onSubmitClick}>
               {t('button.signup')}
             </button>
+
             <button disabled={submitting} onClick={onCancelClick}>
               {t('button.cancelSignup')}
             </button>
+
             {signupSubmitted && (
               <span className='success'>{t('signupSaved')}</span>
             )}
+
+            {checkForSignupChanges(signedGames, selectedGames) && (
+              <span className='informative'>{t('signupUnsavedChanges')}</span>
+            )}
+
             {signupError && <span className='error'>{t('signupFailed')}</span>}
           </div>
+
           <DragAndDropList
             availableGames={filterAvailableGames()}
             selectedGames={filterSelectedGames()}

@@ -7,11 +7,13 @@ $border-active: #77933c;
 $border-inactive: #969696;
 $button-selected: #f2f2f2;
 $button-text: #7f7f7f;
+$input-placeholder: #b3b3b3;
+$main-text: #030303;
+
+$success: #3c763d;
 $disabled: #dad8d8;
 $error: #c00000;
-$input-placeholder: #b3b3b3;
-$success: #3c763d;
-$main-text: #030303;
+$informative: $main-text;
 
 $breakpoint-phone: 500px;
 $breakpoint-tablet: 768px;

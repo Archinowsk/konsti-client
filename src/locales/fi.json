@@ -144,6 +144,7 @@
   "signupGuide": "Voit valita kolme pelitoivetta järjestyksessä. Valitse pelit vetämällä. Muista tallentaa muutokset.",
   "signupSaved": "Ilmoittautuminen tallennettu",
   "signupFailed": "Ilmoittautuminen epäonnistui",
+  "signupUnsavedChanges": "Tallentamattomia muutoksia",
   "signupResultHint": "Voit katsoa ilmoittautumistulokset 'Omat pelit' sivulta klo",
   "closingMessage": "Konsti on suljettu ja avautuu lähempänä Ropeconia",
   "signupView": {
