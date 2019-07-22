@@ -41,7 +41,7 @@
     "moment": "2.24.0",
     "outdated-browser-rework": "2.9.0",
     "react": "16.8.6",
-    "react-beautiful-dnd": "11.0.4",
+    "react-beautiful-dnd": "11.0.5",
     "react-dom": "16.8.6",
     "react-i18next": "10.11.4",
     "react-redux": "7.1.0",
