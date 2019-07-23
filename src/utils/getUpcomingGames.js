@@ -25,10 +25,7 @@ export const getUpcomingSignedGames = (
   const { useTestTime } = config
   const timeNow = useTestTime ? moment(testTime) : moment()
 
-  // console.log('timeNow', timeNow.subtract(1, 'hours').format())
   const upcomingGames = signedGames.filter(signedGame => {
-    // console.log('starttime', moment(signedGame.gameDetails.startTime).format())
-    console.log('timenow', timeNow.format())
     return moment(signedGame.gameDetails.startTime)
       .add(1, 'hours')
       .isAfter(timeNow)
