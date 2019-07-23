@@ -25,6 +25,16 @@ export const DropRow: StatelessFunctionalComponent<Props> = (
     else return ''
   }
 
+  const getPopularity = (game: Game): string => {
+    if (game.popularity >= game.maxAttendance) return 'high-popularity'
+    else if (
+      game.popularity >= game.maxAttendance / 2 &&
+      game.popularity >= game.minAttendance
+    )
+      return 'medium-popularity'
+    else return ''
+  }
+
   return (
     <Fragment>
       <p>
@@ -47,18 +57,26 @@ export const DropRow: StatelessFunctionalComponent<Props> = (
               >
                 {(provided, snapshot) => (
                   <div
-                    className='draggable-item'
+                    className={`draggable-item ${getPopularity(game)}`}
                     ref={provided.innerRef}
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                   >
                     <p className='signup-game-title'>{game.title}</p>
+                    <p className='signup-popularity'>
+                      {t(getPopularity(game))}
+                    </p>
                     <p className='signup-short-description'>
                       {game.shortDescription
                         ? game.shortDescription
                         : game.gameSystem}
+
                       {' - '}
                       <Link to={`/games/${game.gameId}`}>{t('details')}</Link>
+                    </p>
+                    <p>
+                      {game.popularity} / {game.maxAttendance} (min:{' '}
+                      {game.minAttendance})
                     </p>
                   </div>
                 )}

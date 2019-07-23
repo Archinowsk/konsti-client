@@ -60,3 +60,16 @@
   font-size: $font-size-small;
   font-style: italic;
 }
+
+.signup-popularity {
+  font-size: $font-size-small;
+  margin-top: 0;
+}
+
+.high-popularity {
+  background-color: red;
+}
+
+.medium-popularity {
+  background-color: orange;
+}

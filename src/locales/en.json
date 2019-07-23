@@ -184,5 +184,7 @@
   "upcomingGames": "Upcoming games",
   "allGames": "All games",
   "lastStartedAndUpcomingGames": "Last started and upcoming games",
-  "chooseTag": "Choose tag"
+  "chooseTag": "Choose tag",
+  "high-popularity": "This game is very popular",
+  "medium-popularity": "This game is popular"
 }

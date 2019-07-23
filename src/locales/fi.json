@@ -185,5 +185,8 @@
   "upcomingGames": "Tulevat pelit",
   "allGames": "Kaikki pelit",
   "lastStartedAndUpcomingGames": "Viimeksi alkaneet ja tulevat pelit",
-  "chooseTag": "Valitse tagi"
+  "chooseTag": "Valitse tagi",
+  "high-popularity": "Tämä peli on todella suosittu",
+  "medium-popularity": "Tämä peli on suosittu",
+  "low-popularity": ""
 }
