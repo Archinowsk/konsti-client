@@ -92,7 +92,8 @@
     "exploration": "Exploration",
     "mystery": "Mystery",
     "drama": "Drama",
-    "humor": "Humor"
+    "humor": "Humor",
+    "adventure": "Adventure"
   },
   "gameTags": {
     "inEnglish": "Played in English",

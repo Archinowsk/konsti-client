@@ -92,7 +92,8 @@
     "exploration": "Seikkailu",
     "mystery": "Mysteeri",
     "drama": "Draama",
-    "humor": "Huumori"
+    "humor": "Huumori",
+    "adventure": "Seikkailu"
   },
   "gameTags": {
     "inEnglish": "Pelataan englanniksi",
