@@ -61,15 +61,25 @@
   font-style: italic;
 }
 
+@media (max-width: $breakpoint-phone) {
+  .signup-short-description {
+    margin: 0;
+  }
+}
+
 .signup-popularity {
   font-size: $font-size-small;
-  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .high-popularity {
-  background-color: red;
+  background-color: #ffe8e8;
 }
 
 .medium-popularity {
-  background-color: orange;
+  background-color: #fff;
+}
+
+.low-popularity {
+  background-color: #f0ffff;
 }

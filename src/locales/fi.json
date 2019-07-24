@@ -186,7 +186,8 @@
   "allGames": "Kaikki pelit",
   "lastStartedAndUpcomingGames": "Viimeksi alkaneet ja tulevat pelit",
   "chooseTag": "Valitse tagi",
-  "high-popularity": "Tämä peli on todella suosittu",
-  "medium-popularity": "Tämä peli on suosittu",
-  "low-popularity": ""
+  "high-popularity": "Enemmän kiinnostuneita kuin paikkoja",
+  "medium-popularity": "Toteutumassa",
+  "low-popularity": "Tarvitaan lisää pelaajia",
+  "playerStatus": "Pelaajatilanne"
 }

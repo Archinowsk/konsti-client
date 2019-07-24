@@ -185,6 +185,8 @@
   "allGames": "All games",
   "lastStartedAndUpcomingGames": "Last started and upcoming games",
   "chooseTag": "Choose tag",
-  "high-popularity": "This game is very popular",
-  "medium-popularity": "This game is popular"
+  "high-popularity": "More interested players than seats",
+  "medium-popularity": "Enough players to run",
+  "low-popularity": "More players needed",
+  "playerStatus": "Player status"
 }
