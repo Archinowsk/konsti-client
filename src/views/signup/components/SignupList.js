@@ -181,20 +181,21 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
 
   const isActive = isActive => (isActive ? 'active' : '')
 
-  const checkForSignupChanges = (signedGames, selectedGames) => {
-    const filteredSignedGames = signedGames.filter(signedGame =>
-      selectedGames.find(
-        selectedGame =>
-          signedGame.gameDetails.gameId === selectedGame.gameDetails.gameId
-      )
-    )
+  const checkForSignupChanges = (
+    signedGames: $ReadOnlyArray<Signup>,
+    selectedGames: $ReadOnlyArray<Signup>
+  ): boolean => {
+    const filteredSignedGames = signedGames.filter(signedGame => {
+      return selectedGames.find(selectedGame => {
+        return signedGame.gameDetails.gameId === selectedGame.gameDetails.gameId
+      })
+    })
 
-    const filteredSelectedGames = selectedGames.filter(selectedGame =>
-      signedGames.find(
-        signedGame =>
-          selectedGame.gameDetails.gameId === signedGame.gameDetails.gameId
-      )
-    )
+    const filteredSelectedGames = selectedGames.filter(selectedGame => {
+      return signedGames.find(signedGame => {
+        return selectedGame.gameDetails.gameId === signedGame.gameDetails.gameId
+      })
+    })
 
     if (
       filteredSignedGames.length !== signedGames.length ||
