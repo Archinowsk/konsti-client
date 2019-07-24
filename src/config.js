@@ -32,17 +32,17 @@ const commonConfig = {
 
 const prodConfig = {
   useTestTime: false,
-  dataUpdateInterval: 30, // seconds
+  dataUpdateInterval: 60, // seconds
 }
 
 const stagingConfig = {
   useTestTime: true,
-  dataUpdateInterval: 30, // seconds
+  dataUpdateInterval: 60, // seconds
 }
 
 const devConfig = {
   useTestTime: true,
-  dataUpdateInterval: 30, // seconds
+  dataUpdateInterval: 60, // seconds
 }
 
 const combineConfig = () => {

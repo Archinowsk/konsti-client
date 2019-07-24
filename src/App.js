@@ -28,7 +28,6 @@ const App: StatelessFunctionalComponent<Props> = (
   React.useEffect(() => {
     setLoading(true)
     const fetchData = async (): Promise<any> => {
-      console.log('Fetch new data from server')
       await loadData(store)
       setLoading(false)
     }
