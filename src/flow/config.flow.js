@@ -13,4 +13,5 @@ export type Config = {|
   +loadedSettings: string,
   +enableAxe: boolean,
   +enableWhyDidYouRender: boolean,
+  +dataUpdateInterval: number,
 |}

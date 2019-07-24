@@ -6,6 +6,26 @@ import { submitGetUser } from 'views/my-games/myGamesActions'
 import { submitGetGroup } from 'views/group/groupActions'
 import { submitLogin } from 'views/login/loginActions'
 
+export const loadData = async (store: Object): Promise<void> => {
+  // Get app settings
+  await loadSettings(store)
+
+  // Get games data
+  await loadGames(store)
+
+  // Check if existing user session
+  await recoverSession(store)
+
+  // Get assignment results
+  await loadResults(store)
+
+  // Get user data
+  await loadUser(store)
+
+  // Get group members
+  await loadGroupMembers(store)
+}
+
 const loadSettings = async (store): Promise<void> => {
   await store.dispatch(submitGetSettings())
 }
@@ -49,26 +69,4 @@ const loadGroupMembers = async (store): Promise<void> => {
   if (loggedIn && groupCode !== '0') {
     await store.dispatch(submitGetGroup(groupCode))
   }
-}
-
-export const loadPublicData = async (store: Object): Promise<void> => {
-  // Get app settings
-  await loadSettings(store)
-
-  // Get games data
-  await loadGames(store)
-
-  // Check if existing user session
-  await recoverSession(store)
-}
-
-export const loadLoggedInData = async (store: Object): Promise<void> => {
-  // Get assignment results
-  await loadResults(store)
-
-  // Get user data
-  await loadUser(store)
-
-  // Get group members
-  await loadGroupMembers(store)
 }

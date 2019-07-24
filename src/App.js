@@ -6,9 +6,10 @@ import { useSelector, useStore } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import { Routes } from 'Routes'
 import { Header } from 'components/Header'
-import { loadPublicData, loadLoggedInData } from 'utils/loadData'
+import { loadData } from 'utils/loadData'
 import { Loading } from 'components/Loading'
 import { getIconLibrary } from 'utils/icons'
+import { config } from 'config'
 import type { StatelessFunctionalComponent, Element } from 'react'
 
 type Props = {}
@@ -16,8 +17,8 @@ type Props = {}
 const App: StatelessFunctionalComponent<Props> = (
   props: Props
 ): Element<typeof Fragment> => {
+  const { dataUpdateInterval } = config
   const appOpen: boolean = useSelector(state => state.admin.appOpen)
-  const loggedIn: boolean = useSelector(state => state.login.loggedIn)
   const { t } = useTranslation()
   const store = useStore()
 
@@ -26,13 +27,18 @@ const App: StatelessFunctionalComponent<Props> = (
 
   React.useEffect(() => {
     setLoading(true)
-    const fetchPublicData = async (): Promise<any> => {
-      await loadPublicData(store)
-      if (loggedIn) await loadLoggedInData(store)
+    const fetchData = async (): Promise<any> => {
+      console.log('Fetch new data from server')
+      await loadData(store)
       setLoading(false)
     }
-    fetchPublicData()
-  }, [store, loggedIn])
+    fetchData()
+
+    const startUpdateTimer = () => {
+      setInterval(() => fetchData(), dataUpdateInterval * 1000)
+    }
+    startUpdateTimer()
+  }, [store, dataUpdateInterval])
 
   getIconLibrary()
 
