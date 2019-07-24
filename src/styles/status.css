@@ -13,4 +13,5 @@
 
 .informative {
   color: $informative;
+  font-weight: 600;
 }
