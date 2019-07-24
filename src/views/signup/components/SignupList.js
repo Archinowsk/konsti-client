@@ -117,15 +117,19 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
       selectedGame => selectedGame.gameDetails
     )
 
-    const nonSelectedGames = _.differenceBy(
+    const availableGames = _.differenceBy(
       visibleGames,
       selectedGameDetails,
       'gameId'
     )
 
-    return nonSelectedGames.filter(
+    const availableGamesForStartTime = availableGames.filter(
       nonSelectedGame => nonSelectedGame.startTime === signupTime
     )
+
+    return _.sortBy(availableGamesForStartTime, [
+      game => game.title.toLowerCase(),
+    ])
   }
 
   const filterSelectedGames = () => {
