@@ -51,11 +51,21 @@ export const GameInfo: StatelessFunctionalComponent<Props> = (
     )
   })
 
-  const formattedStartTime = timeFormatter.weekdayAndTime({
-    time: game.startTime,
-    capitalize: true,
-  })
-  const formattedEndTime = timeFormatter.time(game.endTime)
+  const getFormattedStartTime = game =>
+    timeFormatter.weekdayAndTime({
+      time: game.startTime,
+      capitalize: true,
+    })
+
+  const getFormattedEndTime = game => timeFormatter.time(game.endTime)
+
+  const getFormattedDuration = game => {
+    var hours = Math.floor(game.mins / 60)
+    var minutes = Math.round((game.mins / 60 - hours) * 60)
+
+    if (!minutes) return `${hours} ${t('hours')}`
+    else return `${hours} ${t('hours')} ${minutes} ${t('minutes')}`
+  }
 
   return (
     <div className='game-details'>
@@ -118,11 +128,9 @@ export const GameInfo: StatelessFunctionalComponent<Props> = (
           </span>
           <span className='game-details-value'>
             <span>
-              {formattedStartTime} - {formattedEndTime}{' '}
+              {getFormattedStartTime(game)} - {getFormattedEndTime(game)}{' '}
             </span>
-            <span className='no-wrap'>
-              ({game.mins / 60} {t('hours')})
-            </span>
+            <span className='no-wrap'>({getFormattedDuration(game)})</span>
           </span>
         </div>
       )}
