@@ -167,19 +167,19 @@ export const AdminView: StatelessFunctionalComponent<Props> = (
           <Fragment>
             <p className={messageStyle}>{message}</p>
 
-            <p>{t('selectOpenSignup')}</p>
+            <p>{t('activeTimeDescription')}</p>
 
             <div className={'signup-open'}>
               {signupTime && (
                 <p>
-                  {t('signupOpen')}{' '}
+                  {t('activeTime')}:{' '}
                   {timeFormatter.weekdayAndTime({
                     time: signupTime,
                     capitalize: true,
                   })}
                 </p>
               )}
-              {!signupTime && <p>{t('signupClosed')}</p>}
+              {!signupTime && <p>{t('noActiveTime')}</p>}
             </div>
 
             <button

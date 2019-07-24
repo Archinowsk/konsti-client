@@ -18,7 +18,7 @@ export const ResultsView: StatelessFunctionalComponent<Props> = (
 
   const formattedDate = timeFormatter.weekdayAndTime({
     time: signupTime,
-    capitalize: true,
+    capitalize: false,
   })
 
   return (

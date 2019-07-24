@@ -28,7 +28,7 @@ export const Hidden: StatelessFunctionalComponent<Props> = (
 
   return (
     <div className='hidden'>
-      <p>{t('hiddenGames')}</p>
+      <h3>{t('hiddenGames')}</h3>
       <ul>
         {!hiddenGames && <span>{t('noHiddenGames')}</span>}
         {GamesList}

@@ -36,7 +36,7 @@ export const TimesDropdown: StatelessFunctionalComponent<Props> = (
   return (
     <div className='times-dropdown'>
       <select onChange={onChange} value={selectedTime}>
-        <option value=''>{t('noSignupSelected')}</option>
+        <option value=''>{t('noActiveTimeSelected')}</option>
         {sortedTimes}
       </select>
     </div>
