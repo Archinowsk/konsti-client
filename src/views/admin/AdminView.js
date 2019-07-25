@@ -8,6 +8,7 @@ import { submitPlayersAssign } from 'views/results/resultsActions'
 import { submitGamesUpdate } from 'views/all-games/allGamesActions'
 import { TimesDropdown } from 'components/TimesDropdown'
 import { timeFormatter } from 'utils/timeFormatter'
+import { ResultsList } from 'views/admin/components/ResultsList'
 import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent, Element } from 'react'
 
@@ -200,6 +201,8 @@ export const AdminView: StatelessFunctionalComponent<Props> = (
             <Hidden hiddenGames={hiddenGames} />
           </Fragment>
         )}
+
+        <ResultsList />
       </Fragment>
     </div>
   )

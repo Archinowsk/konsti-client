@@ -203,5 +203,6 @@
   "signupForWholeGroup": "Olet ryhmän johtaja. Voit ilmoittautua peleihin koko ryhmän puolesta.",
   "inGroupSignups": "Olet ryhmän jäsen. Seuraavat 'Valitut pelit' ovat ryhmänjohtajan valitsemia.",
   "closeGroupConfirmation": "Oletko varma, että haluat sulkea ryhmän ja poistaa kaikki sen jäsenet?",
-  "generalLeaveGroupError": "Virhe ryhmästä poistuessa"
+  "generalLeaveGroupError": "Virhe ryhmästä poistuessa",
+  "signupResults": "Ilmoittautumisen tulokset"
 }

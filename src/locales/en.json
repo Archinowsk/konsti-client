@@ -202,5 +202,6 @@
   "signupForWholeGroup": "You are group leader. You can sign up to games for the whole group.",
   "inGroupSignups": "You are in a group. Following 'Selected games' are chosen by the group leader.",
   "closeGroupConfirmation": "Are you sure you want to close group and remove all its members?",
-  "generalLeaveGroupError": "Error leaving group"
+  "generalLeaveGroupError": "Error leaving group",
+  "signupResults": "Signup results"
 }
