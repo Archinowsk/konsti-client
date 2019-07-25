@@ -46,10 +46,10 @@ const recoverSession = async (store): Promise<void> => {
 const loadResults = async (store): Promise<void> => {
   const state = store.getState()
   const { loggedIn } = state.login
-  const { startTime } = state.admin
+  const { signupTime } = state.admin
 
-  if (loggedIn && startTime) {
-    await store.dispatch(submitGetResults(startTime))
+  if (loggedIn && signupTime) {
+    await store.dispatch(submitGetResults(signupTime))
   }
 }
 
