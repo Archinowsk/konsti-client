@@ -104,8 +104,7 @@
     "beginnerFriendly": "Aloittelijaystävällinen",
     "intendedForExperiencedParticipants": "Peli suosii kokeneita pelaajia",
     "guestOfHonor": "Kunniavieraspeli",
-    "family": "Sopii perheille",
-    "revolvingDoor": "Pyöröovipelit"
+    "family": "Sopii perheille"
   },
 
   "pageTitle": {
@@ -140,7 +139,7 @@
   "noActiveTime": "Aktiivista aikaa ei valittuna",
   "activeTimeDescription": "Peleihin sijoittaminen suoritetaan ja tulokset näytetään aktiiviselle ajankohdalle",
   "noActiveTimeSelected": "Ei aktiivista aikaa",
-  "signupOpenBetween": "ilmoittautuminen auki ",
+  "signupOpenBetween": "ilmoittautuminen",
   "signupOpenBetweenCapital": "Ilmoittautuminen auki ",
   "signupResultsfor": "Ilmoittautumisen tulokset peleille jotka alkavat",
   "noResults": "Ei ilmoittautumistietoja saatavilla",
@@ -191,5 +190,7 @@
   "high-popularity": "Enemmän kiinnostuneita kuin paikkoja",
   "medium-popularity": "Toteutumassa",
   "low-popularity": "Tarvitaan lisää pelaajia",
-  "playerStatus": "Pelaajatilanne"
+  "playerStatus": "Pelaajatilanne",
+  "revolvingDoor": "Pyöröovipelit",
+  "revolvingDoorInstruction": "Pyöröovipeleihin voi liittyä koska tahansa, jos pelipöydässä on tilaa"
 }

@@ -29,4 +29,20 @@
     flex-direction: column;
     align-items: flex-start;
   }
+
+  .choose-tag-instruction {
+    display: none;
+  }
+}
+
+.revolving-door-instruction {
+  margin: 10px 0 0 14px;
+}
+
+.all-games-toggle-visibility button {
+  margin: 10px 10px 0 0;
+}
+
+.tags-dropdown {
+  margin: 10px 0 0 0;
 }

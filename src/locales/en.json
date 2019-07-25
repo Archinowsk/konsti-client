@@ -104,8 +104,7 @@
     "beginnerFriendly": "Beginner friendly",
     "intendedForExperiencedParticipants": "Experienced participants preferred",
     "guestOfHonor": "Guest of Honor game",
-    "family": "Suitable for families",
-    "revolvingDoor": "Revolving door games"
+    "family": "Suitable for families"
   },
   "pageTitle": {
     "login": "Please login",
@@ -139,7 +138,7 @@
   "noActiveTime": "Active time not selected",
   "activeTimeDescription": "Game assignment will be done and results shown for the active time",
   "noActiveTimeSelected": "No active time",
-  "signupOpenBetween": "signup open ",
+  "signupOpenBetween": "signup open",
   "signupOpenBetweenCapital": "Signup open ",
   "signupResultsfor": "Signup results for games starting at",
   "noResults": "No signup results available",
@@ -190,5 +189,7 @@
   "high-popularity": "More interested players than seats",
   "medium-popularity": "Enough players to run",
   "low-popularity": "More players needed",
-  "playerStatus": "Player status"
+  "playerStatus": "Player status",
+  "revolvingDoor": "Revolving door games",
+  "revolvingDoorInstruction": "You can join revolving door games at any time if there are free seats in the table"
 }
