@@ -16,12 +16,13 @@ export const GroupMembersList: StatelessFunctionalComponent<Props> = (
 
   if (!groupMembers) return <div className='group-members-list' />
 
-  const membersList = groupMembers.map(member => {
+  const membersList = groupMembers.map((member, index) => {
     const leader = member.serial === member.groupCode
     return (
-      <li key={member.username}>
-        {member.username} {leader && <span>({t('groupLeader')})</span>}
-      </li>
+      <p key={member.username}>
+        {index + 1}) {member.username}{' '}
+        {leader && <span>({t('groupLeader')})</span>}
+      </p>
     )
   })
 

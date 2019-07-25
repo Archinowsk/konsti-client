@@ -1,8 +1,11 @@
 /* @flow */
 import React from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import _ from 'lodash'
-import { timeFormatter } from 'utils/timeFormatter'
+import { useTranslation } from 'react-i18next'
+// import { timeFormatter } from 'utils/timeFormatter'
+import { SignupsByStartTimes } from 'views/my-games/components/SignupsByStartTimes'
+import { getStartTimes } from 'utils/getStartTimes'
 import type { GroupMember } from 'flow/group.flow'
 import type { StatelessFunctionalComponent, Element } from 'react'
 
@@ -10,10 +13,11 @@ type Props = {|
   groupMembers: $ReadOnlyArray<GroupMember>,
 |}
 
-export const SignedMembersList: StatelessFunctionalComponent<Props> = (
+export const GroupSignedGamesList: StatelessFunctionalComponent<Props> = (
   props: Props
 ): Element<'div'> => {
   const { groupMembers } = props
+  const { t } = useTranslation()
 
   if (!groupMembers) return <div className='signed-games-list' />
 
@@ -26,6 +30,11 @@ export const SignedMembersList: StatelessFunctionalComponent<Props> = (
     signedGame => signedGame.priority,
   ])
 
+  const startTimes = getStartTimes(
+    leader.signedGames.map(signedGame => signedGame.gameDetails)
+  )
+
+  /*
   const signedGamesList = sortedGames.map(signedGame => {
     const formattedDate = timeFormatter.weekdayAndTime({
       time: signedGame.gameDetails.startTime,
@@ -41,5 +50,14 @@ export const SignedMembersList: StatelessFunctionalComponent<Props> = (
       </li>
     )
   })
-  return <div className='signed-games-list'>{signedGamesList}</div>
+  */
+  // return <div className='signed-games-list'>{signedGamesList}</div>
+  return (
+    <div className='my-signups-games'>
+      {leader.signedGames.length === 0 && <span>{t('noSignedGames')}</span>}
+      {leader.signedGames.length !== 0 && (
+        <SignupsByStartTimes signups={sortedGames} startTimes={startTimes} />
+      )}
+    </div>
+  )
 }

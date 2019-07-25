@@ -8,7 +8,7 @@ import {
   submitLeaveGroup,
 } from 'views/group/groupActions'
 import { GroupMembersList } from 'views/group/components/GroupMembersList'
-import { SignedMembersList } from 'views/group/components/SignedMembersList'
+import { GroupSignedGamesList } from 'views/group/components/GroupSignedGamesList'
 import { sleep } from 'utils/sleep'
 import { config } from 'config'
 import { submitSignup } from 'views/signup/signupActions'
@@ -196,7 +196,10 @@ export const GroupView: StatelessFunctionalComponent<Props> = (
   return (
     <div className='group-view'>
       <h2>{t('pages.group')}</h2>
-      <p>{t('groupSignupGuide')}</p>
+
+      <div className='group-instructions'>
+        <p>{t('groupSignupGuide')}</p>
+      </div>
 
       {!groupLeader && !inGroup && (
         <Fragment>
@@ -216,7 +219,7 @@ export const GroupView: StatelessFunctionalComponent<Props> = (
           {showCreateGroup && (
             <div>
               <p>{t('createGroupConfirmationMessage')}</p>
-              <p>{t('groupLeaderWargnin')}</p>
+              <p>{t('groupLeaderWarning')}</p>
               <button onClick={() => createGroup()}>
                 {t('button.joinGroupConfirmation')}
               </button>
@@ -225,7 +228,7 @@ export const GroupView: StatelessFunctionalComponent<Props> = (
 
           {showJoinGroup && (
             <div>
-              <p>{t('joiningGroupWillCancelGames')}</p>
+              <p className='bold'>{t('joiningGroupWillCancelGames')}</p>
 
               {joinGroupInput}
               <button onClick={() => joinGroup()}>
@@ -236,34 +239,42 @@ export const GroupView: StatelessFunctionalComponent<Props> = (
         </Fragment>
       )}
       {groupLeader && inGroup && (
-        <Fragment>
-          <p>
-            {t('youAreGroupLeader')}. {t('groupLeaderInfo')}.
+        <div className='group-info'>
+          <p className='group-leader-info'>
+            <span className='bold'>{t('youAreGroupLeader')}</span>.{' '}
+            {t('groupLeaderInfo')}
           </p>
-          <p>{t('groupMembers')}</p>
-          <GroupMembersList groupMembers={groupMembers} />
-          <p>{t('signedGames')}</p>
-          <SignedMembersList groupMembers={groupMembers} />
-          <button onClick={() => leaveGroup({ leader: true })}>
-            {t('button.leaveGroup')}
-          </button>
-        </Fragment>
+        </div>
       )}
+
       {!groupLeader && inGroup && (
-        <Fragment>
+        <div className='group-info'>
           <p>
-            {t('youAreInGroup')}. {t('groupMemberInfo')}.
+            <span className='bold'>{t('youAreInGroup')}</span>.{' '}
+            {t('groupMemberInfo')}.
           </p>
-          <p>{t('groupMembers')}</p>
+        </div>
+      )}
+
+      {inGroup && (
+        <Fragment>
+          <div className='group-controls'>
+            <button onClick={() => leaveGroup({ leader: groupLeader })}>
+              {t('button.leaveGroup')}
+            </button>
+
+            <span className={`group-status-message ${messageStyle}`}>
+              {message}
+            </span>
+          </div>
+
+          <h3>{t('groupMembers')}</h3>
           <GroupMembersList groupMembers={groupMembers} />
-          <p>{t('signedGames')}</p>
-          <SignedMembersList groupMembers={groupMembers} />
-          <button onClick={() => leaveGroup({ leader: false })}>
-            {t('button.leaveGroup')}
-          </button>
+
+          <h3>{t('signedGames')}</h3>
+          <GroupSignedGamesList groupMembers={groupMembers} />
         </Fragment>
       )}
-      <p className={messageStyle}>{message}</p>
     </div>
   )
 }
