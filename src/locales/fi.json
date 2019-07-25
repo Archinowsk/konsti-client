@@ -27,7 +27,9 @@
     "closeApp": "Sulje Konsti",
     "openApp": "Open Konsti",
     "cancel": "Peruuta",
-    "helper": "Apuja"
+    "helper": "Apuja",
+    "find": "Etsi",
+    "save": "Tallenna"
   },
   "username": "Käyttäjänimi",
   "password": "Salasana",
@@ -205,5 +207,13 @@
   "inGroupSignups": "Olet ryhmän jäsen. Seuraavat 'Valitut pelit' ovat ryhmänjohtajan valitsemia.",
   "closeGroupConfirmation": "Oletko varma, että haluat sulkea ryhmän ja poistaa kaikki sen jäsenet?",
   "generalLeaveGroupError": "Virhe ryhmästä poistuessa",
-  "signupResults": "Ilmoittautumisen tulokset"
+  "signupResults": "Ilmoittautumisen tulokset",
+  "helperResults": "Tulokset",
+  "helperPasswordManagement": "Salasanojenhallinta",
+  "userCode": "Käyttäjän koodi",
+  "newPassword": "Uusi salasana",
+  "userNotFound": "Käyttäjää ei löytynyt",
+  "foundUser": "Löytyi käyttäjä",
+  "changingPasswordError": "Virhe salasanaa vaihtaessa",
+  "changingPasswordSuccess": "Salasana vaihdettu onnistuneesti"
 }

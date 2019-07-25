@@ -27,7 +27,9 @@
     "closeApp": "Close Konsti",
     "openApp": "Open Konsti",
     "cancel": "Cancel",
-    "helper": "Helper"
+    "helper": "Helper",
+    "find": "Find",
+    "save": "Save"
   },
   "username": "Username",
   "password": "Password",
@@ -204,5 +206,13 @@
   "inGroupSignups": "You are in a group. Following 'Selected games' are chosen by the group leader.",
   "closeGroupConfirmation": "Are you sure you want to close group and remove all its members?",
   "generalLeaveGroupError": "Error leaving group",
-  "signupResults": "Signup results"
+  "signupResults": "Signup results",
+  "helperResults": "Results",
+  "helperPasswordManagement": "Password management",
+  "userCode": "User code",
+  "newPassword": "New password",
+  "userNotFound": "User not found",
+  "foundUser": "Found user",
+  "changingPasswordError": "Error changing password",
+  "changingPasswordSuccess": "Password changed succesfully"
 }
