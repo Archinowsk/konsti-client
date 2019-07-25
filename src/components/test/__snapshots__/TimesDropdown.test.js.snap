@@ -11,7 +11,7 @@ exports[`TimesDropdown should render correctly 1`] = `
     <option
       value=""
     >
-      noSignupSelected
+      noActiveTimeSelected
     </option>
   </select>
 </div>
