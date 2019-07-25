@@ -192,5 +192,7 @@
   "low-popularity": "Tarvitaan lisää pelaajia",
   "playerStatus": "Pelaajatilanne",
   "revolvingDoor": "Pyöröovipelit",
-  "revolvingDoorInstruction": "Pyöröovipeleihin voi liittyä koska tahansa, jos pelipöydässä on tilaa"
+  "revolvingDoorInstruction": "Pyöröovipeleihin voi liittyä koska tahansa, jos pelipöydässä on tilaa",
+  "currentlyRunningRevolvingDoor": "Käynnissä olevat pelit",
+  "noCurrentlyRunningGames": "Ei käynnissä olevia pyöröovipelejä"
 }

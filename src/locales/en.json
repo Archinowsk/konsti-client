@@ -191,5 +191,7 @@
   "low-popularity": "More players needed",
   "playerStatus": "Player status",
   "revolvingDoor": "Revolving door games",
-  "revolvingDoorInstruction": "You can join revolving door games at any time if there are free seats in the table"
+  "revolvingDoorInstruction": "You can join revolving door games at any time if there are free seats in the table",
+  "currentlyRunningRevolvingDoor": "Currently running games",
+  "noCurrentlyRunningGames": "No running revolving door games"
 }

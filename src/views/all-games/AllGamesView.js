@@ -1,12 +1,14 @@
 /* @flow */
 import React, { Fragment } from 'react'
 import { useSelector, useStore } from 'react-redux'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import moment from 'moment'
 import GameDetails from 'views/all-games/components/GameDetails'
 import { AllGamesList } from 'views/all-games/components/AllGamesList'
 import { getUpcomingGames } from 'utils/getUpcomingGames'
 import { loadGames } from 'utils/loadData'
+import { config } from 'config'
 import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent, Element } from 'react'
 
@@ -58,7 +60,9 @@ export const AllGamesView: StatelessFunctionalComponent<Props> = (
     if (selectedView === 'upcoming') {
       return getUpcomingGames(visibleGames, testTime)
     } else if (selectedView === 'revolving-door') {
-      return visibleGames.filter(game => game.revolvingDoor)
+      return getUpcomingGames(visibleGames, testTime).filter(
+        game => game.revolvingDoor
+      )
     }
 
     return visibleGames
@@ -81,6 +85,32 @@ export const AllGamesView: StatelessFunctionalComponent<Props> = (
           {tag === 'aloittelijaystavallinen' && t(`gameTags.beginnerFriendly`)}
           {tag === 'sopii-lapsille' && t(`gameTags.childrenFriendly`)}
         </option>
+      )
+    })
+  }
+
+  const getRunningRevolvingDoorGames = (games: $ReadOnlyArray<Game>) => {
+    const { useTestTime } = config
+    const timeNow = useTestTime ? moment(testTime) : moment()
+    const runningGames = games.filter(game => {
+      return (
+        game.revolvingDoor &&
+        moment(game.startTime).isBefore(timeNow) &&
+        moment(game.endTime).isAfter(timeNow)
+      )
+    })
+
+    if (!runningGames || runningGames.length === 0) {
+      return <p>{t('noCurrentlyRunningGames')}</p>
+    }
+    return runningGames.map(game => {
+      return (
+        <div key={game.gameId} className='games-list'>
+          <Link to={`/games/${game.gameId}`}>{game.title}</Link>{' '}
+          <p className='game-list-short-description'>
+            {game.shortDescription ? game.shortDescription : game.gameSystem}
+          </p>
+        </div>
       )
     })
   }
@@ -132,9 +162,15 @@ export const AllGamesView: StatelessFunctionalComponent<Props> = (
               </div>
 
               {selectedView === 'revolving-door' && (
-                <div className='revolving-door-instruction'>
-                  {t('revolvingDoorInstruction')}
-                </div>
+                <Fragment>
+                  <div className='revolving-door-instruction'>
+                    {t('revolvingDoorInstruction')}
+                  </div>
+                  <div className='running-revolving-door-games'>
+                    <h3>{t('currentlyRunningRevolvingDoor')}</h3>
+                    {getRunningRevolvingDoorGames(games)}
+                  </div>
+                </Fragment>
               )}
 
               <AllGamesList games={getVisibleGames(games)} />
