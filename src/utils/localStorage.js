@@ -31,3 +31,18 @@ export const clearSession = (): void => {
     console.error(error)
   }
 }
+
+export const getLanguage = (): string => {
+  let language = null
+  try {
+    language = localStorage.getItem('i18nextLng')
+  } catch (error) {
+    console.error(error)
+  }
+
+  if (typeof language !== 'undefined' && typeof language === 'string') {
+    return language
+  }
+
+  return 'eng'
+}

@@ -4,8 +4,10 @@ import 'regenerator-runtime/runtime'
 import React, { Suspense, lazy } from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
+import moment from 'moment'
 import loaderImage from '../assets/loading.gif'
 import { config } from 'config'
+import { getLanguage } from 'utils/localStorage'
 
 // Styles
 import 'styles/index.css'
@@ -15,6 +17,8 @@ import 'utils/i18n'
 
 // Redux store
 import { store } from 'utils/store'
+
+moment.locale(getLanguage())
 
 // Root component
 const App = lazy(() => import('App'))

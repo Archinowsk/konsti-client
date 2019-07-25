@@ -14,6 +14,7 @@ export const LanguageSelector: StatelessFunctionalComponent<Props> = (
 
   // Language toggle
   const toggle = lng => i18n.changeLanguage(lng)
+
   const setLanguage = event => {
     toggle(event.target.value)
     moment.locale(event.target.value)
