@@ -154,6 +154,7 @@
   },
   "details": "details",
   "gameLimitWarning": "Only three selected games allowed",
+  "groupTooBigWarning": "Group is bigger than the maximum number of players",
   "enterGroupMemberCode": "User's code",
   "enterGroupLeaderCode": "Group leader's code",
   "joinGroup": "Join group",

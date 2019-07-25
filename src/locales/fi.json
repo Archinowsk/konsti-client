@@ -155,6 +155,7 @@
   },
   "details": "lisätietoja",
   "gameLimitWarning": "Voit valita enintään kolme peliä",
+  "groupTooBigWarning": "Ryhmä on suurempi kuin suurin sallittu pelaajamäärä",
   "enterGroupMemberCode": "Käyttäjän koodi",
   "enterGroupLeaderCode": "Ryhmänjohtajan koodi",
   "joinGroup": "Liity ryhmään",

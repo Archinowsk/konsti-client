@@ -1,12 +1,14 @@
 /* @flow */
 import React, { Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 /* $FlowFixMe: Cannot import `DragDropContext` because there is no `DragDropContext` export in `react-beautiful-dnd`. */
 import { DragDropContext } from 'react-beautiful-dnd'
 import { DropRow } from 'views/signup/components/DropRow'
 import { reorder, move } from 'utils/dragAndDrop'
 import { sleep } from 'utils/sleep'
 import { config } from 'config'
+import type { GroupMember } from 'flow/group.flow'
 import type { StatelessFunctionalComponent, Element } from 'react'
 import type { Game, DnDUpdatedPositions } from 'flow/game.flow'
 
@@ -28,18 +30,27 @@ export const DragAndDropList: StatelessFunctionalComponent<Props> = (
   } = props
   const { t } = useTranslation()
 
+  const groupMembers: $ReadOnlyArray<GroupMember> = useSelector(
+    state => state.login.groupMembers
+  )
+
   const [warningVisible, setWarningVisible] = React.useState(false)
   ;(warningVisible: boolean)
+
+  const [warning, setWarning] = React.useState('')
+  ;(warning: string)
 
   const getList = (id: string) => {
     if (id === 'availableGames') return availableGames
     else if (id === 'selectedGames') return selectedGames
   }
 
-  const showWarning = async (): Promise<any> => {
+  const showWarning = async (message: string): Promise<any> => {
+    setWarning(message)
     setWarningVisible(true)
     await sleep(config.MESSAGE_DELAY)
     setWarningVisible(false)
+    setWarning('')
   }
 
   const onDragEnd = (result: Object) => {
@@ -85,7 +96,17 @@ export const DragAndDropList: StatelessFunctionalComponent<Props> = (
         destination.droppableId === 'selectedGames' &&
         selectedGames.length >= 3
       ) {
-        showWarning()
+        showWarning('gameLimitWarning')
+        return
+      }
+
+      if (
+        updatedPositions.selectedGames &&
+        destination.droppableId === 'selectedGames' &&
+        updatedPositions.selectedGames[destination.index].maxAttendance <
+          groupMembers.length
+      ) {
+        showWarning('groupTooBigWarning')
         return
       }
 
@@ -101,7 +122,7 @@ export const DragAndDropList: StatelessFunctionalComponent<Props> = (
 
   return (
     <Fragment>
-      {warningVisible && <p className='error'>{t('gameLimitWarning')}</p>}
+      {warningVisible && <p className='error'>{t(warning)}</p>}
       <div className='drop-rows'>
         <DragDropContext onDragEnd={onDragEnd}>
           <div className='available-games-row'>
