@@ -104,7 +104,8 @@
     "beginnerFriendly": "Beginner friendly",
     "intendedForExperiencedParticipants": "Experienced participants preferred",
     "guestOfHonor": "Guest of Honor game",
-    "family": "Suitable for families"
+    "family": "Suitable for families",
+    "revolvingDoor": "Revolving door games"
   },
   "pageTitle": {
     "login": "Please login",
@@ -179,7 +180,7 @@
   "invalidGameId": "Game not found. Invalid game ID",
   "feedbackTitle": "Feedback",
   "feedbackInstruction": "Did you enjoy the game? Send feedback to the game master! They will receive it after Ropecon.",
-  "programNotReleased": "Roleplaying games program is not released yet",
+  "noProgramItemsAvailable": "No games found",
   "noGamesInDatabase": "No games in database",
   "upcomingGames": "Upcoming games",
   "allGames": "All games",

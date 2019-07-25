@@ -49,10 +49,18 @@ export const AllGamesView: StatelessFunctionalComponent<Props> = (
     games: $ReadOnlyArray<Game>
   ): $ReadOnlyArray<Game> => {
     if (!selectedTag) return games
+    if (selectedTag === 'revolving-door') {
+      return games.filter(game => game.revolvingDoor)
+    }
     return games.filter(game => game.tags.includes(selectedTag))
   }
 
-  const tags = ['in-english', 'aloittelijaystavallinen', 'sopii-lapsille']
+  const tags = [
+    'in-english',
+    'aloittelijaystavallinen',
+    'sopii-lapsille',
+    'revolving-door',
+  ]
 
   const tagsList = () => {
     return tags.map(tag => {
@@ -61,6 +69,7 @@ export const AllGamesView: StatelessFunctionalComponent<Props> = (
           {tag === 'in-english' && t(`gameTags.inEnglish`)}
           {tag === 'aloittelijaystavallinen' && t(`gameTags.beginnerFriendly`)}
           {tag === 'sopii-lapsille' && t(`gameTags.childrenFriendly`)}
+          {tag === 'revolving-door' && t(`gameTags.revolvingDoor`)}
         </option>
       )
     })

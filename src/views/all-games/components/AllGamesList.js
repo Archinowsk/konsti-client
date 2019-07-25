@@ -66,7 +66,7 @@ export const AllGamesList: StatelessFunctionalComponent<Props> = (
 
   return (
     <div className='games-list'>
-      {games.length === 0 && <h3>{t('programNotReleased')}</h3>}
+      {games.length === 0 && <h3>{t('noProgramItemsAvailable')}</h3>}
       {games.length !== 0 && <Fragment>{GamesList}</Fragment>}
     </div>
   )
