@@ -23,6 +23,20 @@ const commonConfig = {
   // Convention settings
   CONVENTION_START_TIME: '2019-07-26T12:00:00Z', // UTC date
   DAY_START_TIME: 8, // 08:00
+  noSignupGames: [
+    // Friday 26.7.
+    'p3501', // 2019-07-26T13:00:00Z Charlie ei surffaa
+    'p3402', // 2019-07-26T21:00:00Z Jumalat
+
+    // Saturday 27.7.
+    'p3549', // 2019-07-27T07:00:00Z Charlie ei surffaa
+    'p3654', // 2019-07-27T09:00:00Z Pathfinder Society Scenario #10-00: The Hao Jin Cataclysm
+    'p3872', // 2019-07-27T16:00:00Z Contra el Culto del Dios de la Noche (Against the Cult of the Night God)
+    'p3548', // 2019-07-27T21:00:00Z Jumalat
+
+    // Synday 28.7.
+    'p3550', // 2019-07-28T07:00:00Z Charlie ei surffaa
+  ],
 
   // Dev
   reduxTrace: true,

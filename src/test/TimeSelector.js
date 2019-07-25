@@ -19,6 +19,7 @@ export const TimeSelector: StatelessFunctionalComponent<Props> = (
 
   const { CONVENTION_START_TIME } = config
   const times = [
+    moment(CONVENTION_START_TIME).format(),
     moment(CONVENTION_START_TIME)
       .add(45, 'minutes')
       .format(),

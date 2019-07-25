@@ -113,12 +113,19 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
   const filterAvailableGames = () => {
     const visibleGames = _.differenceBy(games, hiddenGames, 'gameId')
 
+    const noSignupGames = config.noSignupGames
+
+    const signupOpenGames = visibleGames.filter(game => {
+      if (noSignupGames.includes(game.gameId)) return false
+      else return true
+    })
+
     const selectedGameDetails = selectedGames.map(
       selectedGame => selectedGame.gameDetails
     )
 
     const availableGames = _.differenceBy(
-      visibleGames,
+      signupOpenGames,
       selectedGameDetails,
       'gameId'
     )

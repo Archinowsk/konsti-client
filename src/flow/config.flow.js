@@ -14,4 +14,5 @@ export type Config = {|
   +enableAxe: boolean,
   +enableWhyDidYouRender: boolean,
   +dataUpdateInterval: number,
+  +noSignupGames: Array<string>,
 |}
