@@ -23,8 +23,10 @@
     "addMember": "Add member",
     "joinGroupConfirmation": "Create",
     "leaveGroup": "Leave group",
+    "closeGroup": "Close group",
     "closeApp": "Close Konsti",
-    "openApp": "Open Konsti"
+    "openApp": "Open Konsti",
+    "cancel": "Cancel"
   },
   "username": "Username",
   "password": "Password",
@@ -165,7 +167,7 @@
   "groupMembers": "Group members",
   "groupLeader": "group leader",
   "groupMemberInfo": "Group leader will sign up to the games for the whole group. See selected games and signup results from 'My Games' page.",
-  "groupLeaderInfo": "You can sign up to games for the whole group. You can sign to games from 'Sign Up' page. Please make sure that the group is not too big for the selected games. If you leave the group, random member will become the group leader.",
+  "groupLeaderInfo": "You can sign up to games for the whole group. You can sign to games from 'Sign Up' page. Please make sure that the group is not too big for the selected games. Group leader cannot leave the group, but can close it. This will remove all members from the group.",
   "groupLeaderWarning": "Group leader cannot leave the group if there are other members",
   "joiningGroupWillCancelGames": "Joining a group will cancel all signups you may have done before",
   "groupSignupGuide": "Joining a group is done with the group starter's registration code. Your own code can be found from the top of the page.",
@@ -176,6 +178,7 @@
   "groupJoined": "Joined a group",
   "generalJoinGroupError": "Error joining group",
   "leftGroup": "Left group",
+  "closedGroup": "Group closed",
   "groupNotEmpty": "Leader cannot leave non-empty group",
   "noSignupResult": "You didn't get into a game for this starting time",
   "invalidGameId": "Game not found. Invalid game ID",
@@ -197,5 +200,7 @@
   "noCurrentlyRunningGames": "No running revolving door games",
   "signupDisabledNotLeader": "You are in a group. Signup only available to the group leader.",
   "signupForWholeGroup": "You are group leader. You can sign up to games for the whole group.",
-  "inGroupSignups": "You are in a group. Following 'Selected games' are chosen by the group leader."
+  "inGroupSignups": "You are in a group. Following 'Selected games' are chosen by the group leader.",
+  "closeGroupConfirmation": "Are you sure you want to close group and remove all its members?",
+  "generalLeaveGroupError": "Error leaving group"
 }

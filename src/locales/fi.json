@@ -23,8 +23,10 @@
     "addMember": "Lisää jäsen",
     "joinGroupConfirmation": "Luo",
     "leaveGroup": "Poistu ryhmästä",
+    "closeGroup": "Sulje ryhmä",
     "closeApp": "Sulje Konsti",
-    "openApp": "Open Konsti"
+    "openApp": "Open Konsti",
+    "cancel": "Peruuta"
   },
   "username": "Käyttäjänimi",
   "password": "Salasana",
@@ -166,7 +168,7 @@
   "groupMembers": "Ryhmän jäsenet",
   "groupLeader": "ryhmänjohtaja",
   "groupMemberInfo": "Ryhmänjohtaja ilmoittautuu peleihin ryhmän muiden jäsenten puolesta. Näet valitut pelit ja ilmoittautumisen tulokset 'Omat pelit' sivulta",
-  "groupLeaderInfo": "Voit ilmoittautua peleihin koko ryhmän puolesta. Voit ilmoittautua peleihin 'Ilmoittaudu' sivulla. Varmistathan, että ryhmä ei ole liian iso valitsemiisi peleihin liittymistä varten. Jos poistut ryhmästä, satunnaisesta jäsenestä tehdään uusi johtaja jäsen.",
+  "groupLeaderInfo": "Voit ilmoittautua peleihin koko ryhmän puolesta. Voit ilmoittautua peleihin 'Ilmoittaudu' sivulla. Varmistathan, että ryhmä ei ole liian iso valitsemiisi peleihin liittymistä varten. Ryhmänjohtaja ei voi poistua ryhmästä, mutta voi sulkea ryhmän. Tällöin kaikki ryhmän jäsenet poistetaan ryhmästä.",
   "groupLeaderWarning": "Ryhmänjohtaja ei voi poistua ryhmästä, jos ryhmässä on muita jäseniä",
   "joiningGroupWillCancelGames": "Ryhmään liittyminen peruu kaikki aikaisemmat ilmoittautumisesi",
   "groupSignupGuide": "Ryhmiin liitytään ryhmän perustajan rekisteröintikoodilla. Näet oman koodisi sivun ylälaidasta.",
@@ -177,6 +179,7 @@
   "groupJoined": "Ryhmään liitytty",
   "generalJoinGroupError": "Virhe ryhmään liittyessä",
   "leftGroup": "Poistuit ryhmästä",
+  "closedGroup": "Ryhmä suljettu",
   "groupNotEmpty": "Johtaja ei voi poistua ryhmästä, jossa on muita jäseniä",
   "noSignupResult": "Et mahtunut peliin tällä alkamisajankohdalla",
   "invalidGameId": "Peliä ei löydy. Viallinen pelitunniste",
@@ -198,5 +201,7 @@
   "noCurrentlyRunningGames": "Ei käynnissä olevia pyöröovipelejä",
   "signupDisabledNotLeader": "Olet ryhmässä. Ilmoittautuminen sallittu vain ryhmän johtajalle.",
   "signupForWholeGroup": "Olet ryhmän johtaja. Voit ilmoittautua peleihin koko ryhmän puolesta.",
-  "inGroupSignups": "Olet ryhmän jäsen. Seuraavat 'Valitut pelit' ovat ryhmänjohtajan valitsemia."
+  "inGroupSignups": "Olet ryhmän jäsen. Seuraavat 'Valitut pelit' ovat ryhmänjohtajan valitsemia.",
+  "closeGroupConfirmation": "Oletko varma, että haluat sulkea ryhmän ja poistaa kaikki sen jäsenet?",
+  "generalLeaveGroupError": "Virhe ryhmästä poistuessa"
 }

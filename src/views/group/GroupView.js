@@ -29,6 +29,9 @@ export const GroupView: StatelessFunctionalComponent<Props> = (
   const dispatch = useDispatch()
   const { t } = useTranslation()
 
+  const [loading, setLoading] = React.useState(false)
+  ;(loading: boolean)
+
   const [showCreateGroup, setShowCreateGroup] = React.useState(false)
   ;(showCreateGroup: boolean)
 
@@ -43,6 +46,11 @@ export const GroupView: StatelessFunctionalComponent<Props> = (
 
   const [messageStyle, setMessageStyle] = React.useState('')
   ;(messageStyle: string)
+
+  const [closeGroupConfirmation, setCloseGroupConfirmation] = React.useState(
+    false
+  )
+  ;(closeGroupConfirmation: boolean)
 
   const store = useStore()
 
@@ -125,6 +133,8 @@ export const GroupView: StatelessFunctionalComponent<Props> = (
   }
 
   const leaveGroup = async ({ leader }): Promise<any> => {
+    setLoading(true)
+
     const groupData = {
       username: username,
       groupCode: groupCode,
@@ -149,6 +159,36 @@ export const GroupView: StatelessFunctionalComponent<Props> = (
         })
       }
     }
+
+    setLoading(true)
+  }
+
+  const toggleCloseGroupConfirmation = (value: boolean): void => {
+    setCloseGroupConfirmation(value)
+  }
+
+  const closeGroup = async ({ leader }) => {
+    setLoading(true)
+    const groupData = {
+      username: username,
+      groupCode: groupCode,
+      leader,
+      ownSerial: serial,
+      leaveGroup: true,
+      closeGroup: true,
+    }
+    const response = await dispatch(submitLeaveGroup(groupData))
+
+    if (response.status === 'success') {
+      showMessage({ message: t('closedGroup'), style: response.status })
+    } else if (response.status === 'error') {
+      showMessage({
+        message: t('generalLeaveGroupError'),
+        style: response.status,
+      })
+    }
+
+    setLoading(false)
   }
 
   const handleJoinGroupChange = event => {
@@ -196,12 +236,15 @@ export const GroupView: StatelessFunctionalComponent<Props> = (
       {groupCode === '0' && !inGroup && (
         <Fragment>
           <button
+            disabled={loading}
             className={showCreateGroup ? 'active' : ''}
             onClick={() => openGroupForming()}
           >
             {t('button.createGroup')}
           </button>
+
           <button
+            disabled={loading}
             className={showJoinGroup ? 'active' : ''}
             onClick={() => openJoinGroup()}
           >
@@ -216,7 +259,7 @@ export const GroupView: StatelessFunctionalComponent<Props> = (
             <div>
               <p>{t('createGroupConfirmationMessage')}</p>
               <p>{t('groupLeaderWarning')}</p>
-              <button onClick={() => createGroup()}>
+              <button disabled={loading} onClick={() => createGroup()}>
                 {t('button.joinGroupConfirmation')}
               </button>
             </div>
@@ -227,7 +270,7 @@ export const GroupView: StatelessFunctionalComponent<Props> = (
               <p className='bold'>{t('joiningGroupWillCancelGames')}</p>
 
               {joinGroupInput}
-              <button onClick={() => joinGroup()}>
+              <button disabled={loading} onClick={() => joinGroup()}>
                 {t('button.joinGroup')}
               </button>
             </div>
@@ -256,9 +299,46 @@ export const GroupView: StatelessFunctionalComponent<Props> = (
       {inGroup && (
         <Fragment>
           <div className='group-controls'>
-            <button onClick={() => leaveGroup({ leader: groupLeader })}>
-              {t('button.leaveGroup')}
-            </button>
+            {!groupLeader && (
+              <button
+                disabled={loading}
+                onClick={() => leaveGroup({ leader: groupLeader })}
+              >
+                {t('button.leaveGroup')}
+              </button>
+            )}
+
+            {groupLeader && (
+              <Fragment>
+                <div>
+                  <button
+                    disabled={loading}
+                    onClick={() => toggleCloseGroupConfirmation(true)}
+                  >
+                    {t('button.closeGroup')}
+                  </button>
+                </div>
+                {closeGroupConfirmation && (
+                  <div>
+                    <p>{t('closeGroupConfirmation')}</p>
+                    <button
+                      disabled={loading}
+                      onClick={() => toggleCloseGroupConfirmation(false)}
+                    >
+                      {t('button.cancel')}
+                    </button>
+
+                    <button
+                      disabled={loading}
+                      className={'warning-button'}
+                      onClick={() => closeGroup({ leader: groupLeader })}
+                    >
+                      {t('button.closeGroup')}
+                    </button>
+                  </div>
+                )}
+              </Fragment>
+            )}
 
             <span className={`group-status-message ${messageStyle}`}>
               {message}

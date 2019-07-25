@@ -24,3 +24,7 @@ button:disabled:hover,
 button:disabled:focus {
   color: $button-text;
 }
+
+.warning-button {
+  background-color: $warning;
+}
