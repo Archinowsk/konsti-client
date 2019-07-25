@@ -3,6 +3,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import _ from 'lodash'
+import { timeFormatter } from 'utils/timeFormatter'
 import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent, Element } from 'react'
 
@@ -23,6 +24,11 @@ export const Hidden: StatelessFunctionalComponent<Props> = (
   const GamesList = sortedGames.map(game => (
     <li key={game.gameId}>
       <Link to={`/games/${game.gameId}`}>{game.title}</Link>
+      {' - '}
+      {timeFormatter.weekdayAndTime({
+        time: game.startTime,
+        capitalize: false,
+      })}
     </li>
   ))
 
