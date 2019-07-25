@@ -71,13 +71,13 @@ export const MyGamesView: StatelessFunctionalComponent<Props> = (
     signedGames: $ReadOnlyArray<Signup>
   ): $ReadOnlyArray<Signup> => {
     if (leader) {
-      if (showAllGames) return getUpcomingSignedGames(signedGames, testTime)
+      if (!showAllGames) return getUpcomingSignedGames(signedGames, testTime)
       else return signedGames
     }
 
     if (!leader) {
       const groupLeader = getGroupLeader(groupMembers)
-      if (showAllGames) {
+      if (!showAllGames) {
         return getUpcomingSignedGames(groupLeader.signedGames, testTime)
       } else return groupLeader.signedGames
     }
