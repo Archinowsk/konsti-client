@@ -55,10 +55,11 @@ export const AllGamesView: StatelessFunctionalComponent<Props> = (
       if (!hidden) return game
     })
 
-    if (selectedView === 'upcoming')
+    if (selectedView === 'upcoming') {
       return getUpcomingGames(visibleGames, testTime)
-    else if (selectedView === 'revolving-door')
-      visibleGames.filter(game => game.revolvingDoor)
+    } else if (selectedView === 'revolving-door') {
+      return visibleGames.filter(game => game.revolvingDoor)
+    }
 
     return visibleGames
   }
