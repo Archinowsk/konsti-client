@@ -135,6 +135,7 @@
   "noEnteredGames": "Ei vahvistuneita ilmoittautumisia",
   "noHiddenGames": "Ei piilotettuja pelejä",
   "noOpenSignups": "Ei avoimia ilmoittautumisia",
+  "signupOpen": "Ilmoittautuminen auki seuraaville alkamisajoille",
   "activeTime": "Aktiinen aika",
   "noActiveTime": "Aktiivista aikaa ei valittuna",
   "activeTimeDescription": "Peleihin sijoittaminen suoritetaan ja tulokset näytetään aktiiviselle ajankohdalle",
