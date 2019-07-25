@@ -12,6 +12,7 @@ import { AdminView } from 'views/admin/AdminView'
 import { ResultsView } from 'views/results/ResultsView'
 import { LogoutView } from 'views/logout/LogoutView'
 import { GroupView } from 'views/group/GroupView'
+import { HelperView } from 'views/helper/HelperView'
 import type { StatelessFunctionalComponent, Element } from 'react'
 import type { UserGroup } from 'flow/user.flow'
 
@@ -52,6 +53,7 @@ export const Routes: StatelessFunctionalComponent<Props> = (
               {t('pages.admin')}
             </NavLink>
           )}
+
           {(userGroup === 'user' || userGroup === 'admin') && (
             <NavLink to='/logout' className='router-link'>
               {t('button.logout')}
@@ -74,17 +76,22 @@ export const Routes: StatelessFunctionalComponent<Props> = (
           <NavLink to='/games' className='router-link'>
             {t('pages.allGames')}
           </NavLink>
+
           {userGroup === 'user' && (
             <NavLink to='/mygames' className='router-link'>
               {t('pages.myGames')}
             </NavLink>
           )}
+
           {userGroup === 'user' && (
             <NavLink to='/signup' className='router-link'>
               {t('pages.signUp')}
             </NavLink>
           )}
-          {(userGroup === 'user' || userGroup === 'admin') && (
+
+          {(userGroup === 'user' ||
+            userGroup === 'admin' ||
+            userGroup === 'help') && (
             <NavLink to='/results' className='router-link'>
               {t('pages.results')}
             </NavLink>
@@ -96,12 +103,21 @@ export const Routes: StatelessFunctionalComponent<Props> = (
             </NavLink>
           )}
 
+          {(userGroup === 'help' || userGroup === 'admin') && (
+            <NavLink to='/help' className='router-link'>
+              {t('button.helper')}
+            </NavLink>
+          )}
+
           {userGroup === 'admin' && (
             <NavLink to='/admin' className='router-link'>
               {t('pages.admin')}
             </NavLink>
           )}
-          {(userGroup === 'user' || userGroup === 'admin') && (
+
+          {(userGroup === 'user' ||
+            userGroup === 'admin' ||
+            userGroup === 'help') && (
             <NavLink to='/logout' className='router-link'>
               {t('button.logout')}
             </NavLink>
@@ -115,6 +131,7 @@ export const Routes: StatelessFunctionalComponent<Props> = (
           <Route path='/group' component={GroupView} />
           <Route path='/admin' component={AdminView} />
           <Route path='/logout' component={LogoutView} />
+          <Route path='/help' component={HelperView} />
           <Redirect from='/' to='/games' />
           <Redirect from='/*' to='/' />
         </Switch>
@@ -128,9 +145,11 @@ export const Routes: StatelessFunctionalComponent<Props> = (
         <NavLink to='/games' className='router-link'>
           {t('pages.allGames')}
         </NavLink>
+
         <NavLink to='/login' className='router-link'>
           {t('button.login')}
         </NavLink>
+
         <NavLink to='/registration' className='router-link'>
           {t('button.register')}
         </NavLink>

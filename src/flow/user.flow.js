@@ -29,7 +29,7 @@ export type Login = {|
   +jwt?: string,
 |}
 
-export type UserGroup = 'user' | 'admin'
+export type UserGroup = 'user' | 'admin' | 'help'
 
 export type LoginData = {|
   username: string,

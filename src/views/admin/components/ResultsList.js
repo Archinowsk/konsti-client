@@ -3,6 +3,7 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import _ from 'lodash'
+import { timeFormatter } from 'utils/timeFormatter'
 import type { StatelessFunctionalComponent, Element } from 'react'
 import type { Result } from 'flow/result.flow'
 
@@ -14,6 +15,7 @@ export const ResultsList: StatelessFunctionalComponent<Props> = (
   const results: $ReadOnlyArray<Result> = useSelector(
     state => state.results.result
   )
+  const startTime: string = useSelector(state => state.results.startTime)
   const { t } = useTranslation()
 
   const sortedResults = _.sortBy(results, [
@@ -56,7 +58,10 @@ export const ResultsList: StatelessFunctionalComponent<Props> = (
 
   return (
     <div className='results-with-free-seats'>
-      <h3>{t('signupResults')}</h3>
+      <h3>
+        {t('signupResults')}:{' '}
+        {timeFormatter.weekdayAndTime({ time: startTime, capitalize: false })}
+      </h3>
       {resultsByGameTitle}
     </div>
   )

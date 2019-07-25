@@ -26,7 +26,8 @@
     "closeGroup": "Close group",
     "closeApp": "Close Konsti",
     "openApp": "Open Konsti",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "helper": "Helper"
   },
   "username": "Username",
   "password": "Password",
