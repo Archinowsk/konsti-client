@@ -1,7 +1,7 @@
 /* @flow */
 import { postPlayersAssign } from 'services/playersServices'
 import { getResults } from 'services/resultsServices'
-import type { Results } from 'flow/result.flow'
+import type { ResultsState } from 'flow/redux.flow'
 
 export const SUBMIT_GET_RESULTS = 'SUBMIT_GET_RESULTS'
 
@@ -18,7 +18,12 @@ export const submitGetResults = (startTime: string): Object => {
       return Promise.reject(getResultsResponse)
     }
     if (getResultsResponse && getResultsResponse.status === 'success') {
-      dispatch(submitGetResultsAsync(getResultsResponse.results))
+      dispatch(
+        submitGetResultsAsync({
+          result: getResultsResponse.results.result,
+          startTime: getResultsResponse.results.startTime,
+        })
+      )
     }
 
     return getResultsResponse
@@ -50,9 +55,10 @@ export const submitPlayersAssign = (signupTime: string): Object => {
   }
 }
 
-const submitGetResultsAsync = (results: Results): Object => {
+const submitGetResultsAsync = (results: ResultsState): Object => {
   return {
     type: SUBMIT_GET_RESULTS,
-    results,
+    result: results.result,
+    startTime: results.startTime,
   }
 }

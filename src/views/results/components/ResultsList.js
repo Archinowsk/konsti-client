@@ -3,11 +3,11 @@ import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { ResultsByGameTitle } from './ResultsByGameTitle'
 import { ResultsByUsername } from './ResultsByUsername'
-import type { Results } from 'flow/result.flow'
+import type { Result } from 'flow/result.flow'
 import type { StatelessFunctionalComponent, Element } from 'react'
 
 type Props = {|
-  results: Results,
+  results: $ReadOnlyArray<Result>,
 |}
 
 export const ResultsList: StatelessFunctionalComponent<Props> = (

@@ -5,8 +5,3 @@ export type Result = {|
   +username: string,
   +enteredGame: Signup,
 |}
-
-export type Results = {|
-  +result: $ReadOnlyArray<Result>,
-  +startTime: string,
-|}

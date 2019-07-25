@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { ResultsList } from 'views/results/components/ResultsList'
 import { timeFormatter } from 'utils/timeFormatter'
-import type { Results } from 'flow/result.flow'
+import type { Result } from 'flow/result.flow'
 import type { StatelessFunctionalComponent, Element } from 'react'
 
 type Props = {}
@@ -12,7 +12,9 @@ type Props = {}
 export const ResultsView: StatelessFunctionalComponent<Props> = (
   props: Props
 ): Element<'div'> => {
-  const results: Results = useSelector(state => state.results.results)
+  const result: $ReadOnlyArray<Result> = useSelector(
+    state => state.results.result
+  )
   const signupTime: string = useSelector(state => state.admin.signupTime)
   const { t } = useTranslation()
 
@@ -23,13 +25,13 @@ export const ResultsView: StatelessFunctionalComponent<Props> = (
 
   return (
     <div className='results-view'>
-      {!results && <h2>{t('noResults')}</h2>}
-      {results && (
+      {!signupTime && <h2>{t('noResults')}</h2>}
+      {signupTime && (
         <Fragment>
           <h2>
             {t('signupResultsfor')} {formattedDate}
           </h2>
-          <ResultsList results={results} />
+          <ResultsList results={result} />
         </Fragment>
       )}
     </div>

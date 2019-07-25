@@ -32,7 +32,8 @@ export type MyGamesState = {|
 |}
 
 export type ResultsState = {|
-  +results: $ReadOnlyArray<Result>,
+  +result: $ReadOnlyArray<Result>,
+  +startTime: string,
 |}
 
 export type SignupState = {|
