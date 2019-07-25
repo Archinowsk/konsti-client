@@ -35,7 +35,7 @@ export const AdminView: StatelessFunctionalComponent<Props> = (
   const [messageStyle, setMessageStyle] = React.useState('')
   ;(messageStyle: string)
 
-  const [selectedSignupTime, setSelectedSignupTime] = React.useState('')
+  const [selectedSignupTime, setSelectedSignupTime] = React.useState(signupTime)
   ;(selectedSignupTime: string)
 
   const showMessage = async ({ message, style }) => {
