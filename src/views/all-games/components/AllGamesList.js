@@ -35,11 +35,19 @@ export const AllGamesList: StatelessFunctionalComponent<Props> = (
       const signupStartTime = timeFormatter.startTime(startTime)
       const signupEndTime = timeFormatter.endTime(startTime)
 
+      // $FlowFixMe: Cannot call `games.every` because property `every` is missing in mixed [1].
+      const allGamesRevolvingDoor = games.every(game => game.revolvingDoor)
+
       const title = (
-        <p key={startTime} className='title'>
-          {formattedStartTime} ({t('signupOpenBetween')} {signupStartTime}-
-          {signupEndTime})
-        </p>
+        <h3 key={startTime} className='game-list-title'>
+          <span className='game-startup-time'>{formattedStartTime}</span>
+          {!allGamesRevolvingDoor && (
+            <span className='game-signup-time'>
+              {' '}
+              ({t('signupOpenBetween')} {signupStartTime}-{signupEndTime})
+            </span>
+          )}
+        </h3>
       )
 
       GamesList.push(title)
