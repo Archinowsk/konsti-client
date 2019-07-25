@@ -194,5 +194,8 @@
   "revolvingDoor": "Pyöröovipelit",
   "revolvingDoorInstruction": "Pyöröovipeleihin voi liittyä koska tahansa, jos pelipöydässä on tilaa",
   "currentlyRunningRevolvingDoor": "Käynnissä olevat pelit",
-  "noCurrentlyRunningGames": "Ei käynnissä olevia pyöröovipelejä"
+  "noCurrentlyRunningGames": "Ei käynnissä olevia pyöröovipelejä",
+  "signupDisabledNotLeader": "Olet ryhmässä. Ilmoittautuminen sallittu vain ryhmän johtajalle.",
+  "signupForWholeGroup": "Olet ryhmän johtaja. Voit ilmoittautua peleihin koko ryhmän puolesta.",
+  "inGroupSignups": "Olet ryhmän jäsen. Seuraavat 'Valitut pelit' ovat ryhmänjohtajan valitsemia."
 }

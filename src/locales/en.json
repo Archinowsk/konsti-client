@@ -193,5 +193,8 @@
   "revolvingDoor": "Revolving door games",
   "revolvingDoorInstruction": "You can join revolving door games at any time if there are free seats in the table",
   "currentlyRunningRevolvingDoor": "Currently running games",
-  "noCurrentlyRunningGames": "No running revolving door games"
+  "noCurrentlyRunningGames": "No running revolving door games",
+  "signupDisabledNotLeader": "You are in a group. Signup only available to the group leader.",
+  "signupForWholeGroup": "You are group leader. You can sign up to games for the whole group.",
+  "inGroupSignups": "You are in a group. Following 'Selected games' are chosen by the group leader."
 }

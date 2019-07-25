@@ -20,15 +20,17 @@ import type { Signup } from 'flow/user.flow'
 type Props = {|
   games: $ReadOnlyArray<Game>,
   signupTimes: $ReadOnlyArray<string>,
+  leader: boolean,
 |}
 
 export const SignupList: StatelessFunctionalComponent<Props> = (
   props: Props
 ): Element<'div'> => {
-  const { games, signupTimes } = props
+  const { games, signupTimes, leader } = props
 
   const signupTime: string = useSelector(state => state.signup.signupTime)
   const username: string = useSelector(state => state.login.username)
+  const groupCode: string = useSelector(state => state.login.groupCode)
   const hiddenGames: $ReadOnlyArray<Game> = useSelector(
     state => state.admin.hiddenGames
   )
@@ -251,16 +253,16 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
           </div>
 
           <div className='signup-action-buttons-row'>
-            <button disabled={submitting} onClick={onSubmitClick}>
+            <button disabled={submitting || !leader} onClick={onSubmitClick}>
               {t('button.signup')}
             </button>
 
-            <button disabled={submitting} onClick={onCancelClick}>
+            <button disabled={submitting || !leader} onClick={onCancelClick}>
               {t('button.cancelSignup')}
             </button>
 
             {signupSubmitted && (
-              <span className='success'>{t('signupSaved')}</span>
+              <span className='success bold'>{t('signupSaved')}</span>
             )}
 
             {checkForSignupChanges(signedGames, selectedGames) && (
@@ -268,6 +270,11 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
             )}
 
             {signupError && <span className='error'>{t('signupFailed')}</span>}
+
+            {!leader && <p className='bold'>{t('signupDisabledNotLeader')}</p>}
+            {leader && groupCode !== '0' && (
+              <p className='bold'>{t('signupForWholeGroup')}</p>
+            )}
           </div>
 
           <DragAndDropList

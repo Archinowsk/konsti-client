@@ -8,7 +8,6 @@ import {
   submitLeaveGroup,
 } from 'views/group/groupActions'
 import { GroupMembersList } from 'views/group/components/GroupMembersList'
-import { GroupSignedGamesList } from 'views/group/components/GroupSignedGamesList'
 import { sleep } from 'utils/sleep'
 import { config } from 'config'
 import { submitSignup } from 'views/signup/signupActions'
@@ -156,13 +155,6 @@ export const GroupView: StatelessFunctionalComponent<Props> = (
     setJoinGroupValue(event.target.value)
   }
 
-  const isGroupLeader = () => {
-    if (groupCode === serial) {
-      return true
-    }
-    return false
-  }
-
   const isInGroup = () => {
     if (groupCode && groupCode !== '0') {
       return true
@@ -178,7 +170,7 @@ export const GroupView: StatelessFunctionalComponent<Props> = (
     setMessageStyle('')
   }
 
-  const groupLeader = isGroupLeader()
+  const groupLeader = isGroupLeader(groupCode, serial)
   const inGroup = isInGroup()
 
   const joinGroupInput = (
@@ -201,7 +193,7 @@ export const GroupView: StatelessFunctionalComponent<Props> = (
         <p>{t('groupSignupGuide')}</p>
       </div>
 
-      {!groupLeader && !inGroup && (
+      {groupCode === '0' && !inGroup && (
         <Fragment>
           <button
             className={showCreateGroup ? 'active' : ''}
@@ -215,6 +207,10 @@ export const GroupView: StatelessFunctionalComponent<Props> = (
           >
             {t('button.joinGroup')}
           </button>
+
+          <span className={`group-status-message ${messageStyle}`}>
+            {message}
+          </span>
 
           {showCreateGroup && (
             <div>
@@ -238,6 +234,7 @@ export const GroupView: StatelessFunctionalComponent<Props> = (
           )}
         </Fragment>
       )}
+
       {groupLeader && inGroup && (
         <div className='group-info'>
           <p className='group-leader-info'>
@@ -251,7 +248,7 @@ export const GroupView: StatelessFunctionalComponent<Props> = (
         <div className='group-info'>
           <p>
             <span className='bold'>{t('youAreInGroup')}</span>.{' '}
-            {t('groupMemberInfo')}.
+            {t('groupMemberInfo')}
           </p>
         </div>
       )}
@@ -270,11 +267,18 @@ export const GroupView: StatelessFunctionalComponent<Props> = (
 
           <h3>{t('groupMembers')}</h3>
           <GroupMembersList groupMembers={groupMembers} />
-
-          <h3>{t('signedGames')}</h3>
-          <GroupSignedGamesList groupMembers={groupMembers} />
         </Fragment>
       )}
     </div>
   )
+}
+
+export const isGroupLeader = (groupCode: string, serial: string): boolean => {
+  if (groupCode === serial) {
+    return true
+  }
+  if (groupCode === '0') {
+    return true
+  }
+  return false
 }
