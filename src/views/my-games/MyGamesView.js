@@ -1,6 +1,6 @@
 /* @flow */
 import React, { Fragment } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useStore } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { MySignupsList } from 'views/my-games/components/MySignupsList'
 import { MyFavoritesList } from 'views/my-games/components/MyFavoritesList'
@@ -10,6 +10,7 @@ import {
   getUpcomingEnteredGames,
   getUpcomingFavorites,
 } from 'utils/getUpcomingGames'
+import { loadUser, loadGames } from 'utils/loadData'
 import type { StatelessFunctionalComponent, Element } from 'react'
 import type { Game } from 'flow/game.flow'
 import type { Signup } from 'flow/user.flow'
@@ -35,6 +36,16 @@ export const MyGamesView: StatelessFunctionalComponent<Props> = (
 
   const [showAllGames, setShowAllGames] = React.useState(false)
   ;(showAllGames: boolean)
+
+  const store = useStore()
+
+  React.useEffect(() => {
+    const fetchData = async (): Promise<any> => {
+      await loadGames(store)
+      await loadUser(store)
+    }
+    fetchData()
+  }, [store])
 
   return (
     <div className='my-games-view'>

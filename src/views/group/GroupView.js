@@ -1,7 +1,7 @@
 /* @flow */
 import React, { Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector, useStore } from 'react-redux'
 import {
   submitJoinGroup,
   submitCreateGroup,
@@ -12,6 +12,7 @@ import { SignedMembersList } from 'views/group/components/SignedMembersList'
 import { sleep } from 'utils/sleep'
 import { config } from 'config'
 import { submitSignup } from 'views/signup/signupActions'
+import { loadGroupMembers } from 'utils/loadData'
 import type { GroupMember } from 'flow/group.flow'
 import type { StatelessFunctionalComponent, Element } from 'react'
 
@@ -43,6 +44,15 @@ export const GroupView: StatelessFunctionalComponent<Props> = (
 
   const [messageStyle, setMessageStyle] = React.useState('')
   ;(messageStyle: string)
+
+  const store = useStore()
+
+  React.useEffect(() => {
+    const fetchData = async (): Promise<any> => {
+      await loadGroupMembers(store)
+    }
+    fetchData()
+  }, [store])
 
   const openGroupForming = () => {
     setShowCreateGroup(true)

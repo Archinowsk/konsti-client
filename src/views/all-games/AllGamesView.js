@@ -1,11 +1,12 @@
 /* @flow */
 import React, { Fragment } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useStore } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import GameDetails from 'views/all-games/components/GameDetails'
 import { AllGamesList } from 'views/all-games/components/AllGamesList'
 import { getUpcomingGames } from 'utils/getUpcomingGames'
+import { loadGames } from 'utils/loadData'
 import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent, Element } from 'react'
 
@@ -27,6 +28,20 @@ export const AllGamesView: StatelessFunctionalComponent<Props> = (
 
   const [selectedTag, setSelectedTag] = React.useState('')
   ;(selectedTag: string)
+
+  const [loading, setLoading] = React.useState(false)
+  ;(loading: boolean)
+
+  const store = useStore()
+
+  React.useEffect(() => {
+    setLoading(true)
+    const fetchData = async (): Promise<any> => {
+      await loadGames(store)
+      setLoading(false)
+    }
+    fetchData()
+  }, [store])
 
   const getVisibleGames = (
     games: $ReadOnlyArray<Game>

@@ -26,15 +26,15 @@ export const loadData = async (store: Object): Promise<void> => {
   await loadGroupMembers(store)
 }
 
-const loadSettings = async (store): Promise<void> => {
+export const loadSettings = async (store: Object): Promise<void> => {
   await store.dispatch(submitGetSettings())
 }
 
-const loadGames = async (store): Promise<void> => {
+export const loadGames = async (store: Object): Promise<void> => {
   await store.dispatch(submitGetGames())
 }
 
-const recoverSession = async (store): Promise<void> => {
+export const recoverSession = async (store: Object): Promise<void> => {
   const state = store.getState()
   const { loggedIn, jwt } = state.login
 
@@ -43,7 +43,7 @@ const recoverSession = async (store): Promise<void> => {
   }
 }
 
-const loadResults = async (store): Promise<void> => {
+export const loadResults = async (store: Object): Promise<void> => {
   const state = store.getState()
   const { loggedIn } = state.login
   const { signupTime } = state.admin
@@ -53,7 +53,7 @@ const loadResults = async (store): Promise<void> => {
   }
 }
 
-const loadUser = async (store): Promise<void> => {
+export const loadUser = async (store: Object): Promise<void> => {
   const state = store.getState()
   const { loggedIn, userGroup, username } = state.login
 
@@ -62,7 +62,7 @@ const loadUser = async (store): Promise<void> => {
   }
 }
 
-const loadGroupMembers = async (store): Promise<void> => {
+export const loadGroupMembers = async (store: Object): Promise<void> => {
   const state = store.getState()
   const { loggedIn, groupCode } = state.login
 

@@ -1,9 +1,10 @@
 /* @flow */
 import React, { Fragment } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useStore } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { ResultsList } from 'views/results/components/ResultsList'
 import { timeFormatter } from 'utils/timeFormatter'
+import { loadResults } from 'utils/loadData'
 import type { Result } from 'flow/result.flow'
 import type { StatelessFunctionalComponent, Element } from 'react'
 
@@ -18,10 +19,14 @@ export const ResultsView: StatelessFunctionalComponent<Props> = (
   const signupTime: string = useSelector(state => state.admin.signupTime)
   const { t } = useTranslation()
 
-  const formattedDate = timeFormatter.weekdayAndTime({
-    time: signupTime,
-    capitalize: false,
-  })
+  const store = useStore()
+
+  React.useEffect(() => {
+    const fetchData = async (): Promise<any> => {
+      await loadResults(store)
+    }
+    fetchData()
+  }, [store])
 
   return (
     <div className='results-view'>
@@ -29,7 +34,11 @@ export const ResultsView: StatelessFunctionalComponent<Props> = (
       {signupTime && (
         <Fragment>
           <h2>
-            {t('signupResultsfor')} {formattedDate}
+            {t('signupResultsfor')}{' '}
+            {timeFormatter.weekdayAndTime({
+              time: signupTime,
+              capitalize: false,
+            })}
           </h2>
           <ResultsList results={result} />
         </Fragment>
