@@ -55,31 +55,33 @@ export const MyGamesView: StatelessFunctionalComponent<Props> = (
     fetchData()
   }, [store])
 
-  const leader = isGroupLeader(groupCode, serial)
-
   const getGroupLeader = (
     groupMembers: $ReadOnlyArray<GroupMember>
-  ): GroupMember => {
+  ): GroupMember | null => {
     const groupLeader = groupMembers.find(
       member => member.serial === member.groupCode
     )
-    if (!groupLeader) throw new Error('Cannot find group leader')
+    if (!groupLeader) return null
     return groupLeader
   }
 
   const getSignedGames = (
     signedGames: $ReadOnlyArray<Signup>
   ): $ReadOnlyArray<Signup> => {
-    if (leader) {
+    if (isGroupLeader(groupCode, serial)) {
       if (!showAllGames) return getUpcomingSignedGames(signedGames, testTime)
       else return signedGames
     }
 
-    if (!leader) {
+    if (!isGroupLeader(groupCode, serial)) {
       const groupLeader = getGroupLeader(groupMembers)
+
       if (!showAllGames) {
-        return getUpcomingSignedGames(groupLeader.signedGames, testTime)
-      } else return groupLeader.signedGames
+        return getUpcomingSignedGames(
+          groupLeader ? groupLeader.signedGames : signedGames,
+          testTime
+        )
+      } else return groupLeader ? groupLeader.signedGames : signedGames
     }
 
     return signedGames
@@ -108,7 +110,7 @@ export const MyGamesView: StatelessFunctionalComponent<Props> = (
           }
         />
 
-        {!leader && (
+        {!isGroupLeader(groupCode, serial) && (
           <div className='my-games-group-notification'>
             <p className='bold'>{t('inGroupSignups')}</p>
           </div>
@@ -122,11 +124,7 @@ export const MyGamesView: StatelessFunctionalComponent<Props> = (
               ? enteredGames
               : getUpcomingEnteredGames(enteredGames, testTime)
           }
-          signedGames={
-            showAllGames
-              ? signedGames
-              : getUpcomingSignedGames(signedGames, testTime)
-          }
+          signedGames={getSignedGames(signedGames)}
         />
       </Fragment>
     </div>
