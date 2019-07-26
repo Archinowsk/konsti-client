@@ -160,7 +160,8 @@ export const GroupView: StatelessFunctionalComponent<Props> = (
       }
     }
 
-    setLoading(true)
+    setShowJoinGroup(false)
+    setLoading(false)
   }
 
   const toggleCloseGroupConfirmation = (value: boolean): void => {
