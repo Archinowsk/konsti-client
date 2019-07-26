@@ -60,7 +60,16 @@ export const ResultsList: StatelessFunctionalComponent<Props> = (
     <div className='results-with-free-seats'>
       <h3>
         {t('signupResults')}:{' '}
-        {timeFormatter.weekdayAndTime({ time: startTime, capitalize: false })}
+        {startTime ? (
+          <span>
+            {timeFormatter.weekdayAndTime({
+              time: startTime,
+              capitalize: false,
+            })}
+          </span>
+        ) : (
+          <span>{t('noResults')}</span>
+        )}
       </h3>
       {resultsByGameTitle}
     </div>
