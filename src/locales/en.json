@@ -214,5 +214,6 @@
   "userNotFound": "User not found",
   "foundUser": "Found user",
   "changingPasswordError": "Error changing password",
-  "changingPasswordSuccess": "Password changed succesfully"
+  "changingPasswordSuccess": "Password changed succesfully",
+  "errorMessage": "We have recognised an issue that 'Signup results' under 'My Games' may be shown incorrectly and are now hidden. Please see 'All Signup Results' page for correct information."
 }
