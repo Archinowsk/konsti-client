@@ -5,7 +5,8 @@ import {
 } from 'views/signup/signupActions'
 import type { SignupState } from 'flow/redux.flow'
 
-const initialState = { signupTime: '', selectedGames: [] }
+// Initial null value is required for syncing signedGames and selectedGames only once
+const initialState = { signupTime: '', selectedGames: null }
 
 export const signupReducer = (
   state: SignupState = initialState,

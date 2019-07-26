@@ -54,8 +54,8 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
   ;(signupError: boolean)
 
   React.useEffect(() => {
-    if (selectedGames.length === 0) dispatch(submitSelectedGames(signedGames))
-  }, [dispatch, selectedGames.length, signedGames])
+    if (!selectedGames) dispatch(submitSelectedGames(signedGames))
+  }, [dispatch, selectedGames, signedGames])
 
   const onSubmitClick = async (): Promise<any> => {
     setSubmitting(true)
@@ -152,6 +152,10 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
   }
 
   const updateSelectedGames = newSelectedGames => {
+    if (newSelectedGames.length === 0) {
+      dispatch(submitSelectedGames(newSelectedGames))
+    }
+
     const newSignups = newSelectedGames.map(newSelectedGame => {
       return {
         gameDetails: { ...newSelectedGame },
