@@ -147,7 +147,7 @@
   "signupOpenBetween": "ilmoittautuminen",
   "signupOpenBetweenCapital": "Ilmoittautuminen auki ",
   "signupResultsfor": "Ilmoittautumisen tulokset peleille jotka alkavat",
-  "noResults": "Ei ilmoittautumistietoja saatavilla",
+  "noResults": "Ei ilmoittautumistuloksia saatavilla vielä",
   "signupGuide": "Voit valita kolme pelitoivetta järjestyksessä. Valitse pelit vetämällä. Muista tallentaa muutokset.",
   "signupSaved": "Ilmoittautuminen tallennettu",
   "signupFailed": "Ilmoittautuminen epäonnistui",
