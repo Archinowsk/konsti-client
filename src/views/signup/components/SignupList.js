@@ -246,7 +246,7 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
         </Fragment>
       )}
 
-      {signupTime && (
+      {signupTimes.length !== 0 && signupTime && (
         <Fragment>
           <div className='signup-info'>
             <p>
