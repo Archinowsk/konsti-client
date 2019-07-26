@@ -188,6 +188,7 @@ export const GroupView: StatelessFunctionalComponent<Props> = (
       })
     }
 
+    toggleCloseGroupConfirmation(false)
     setLoading(false)
   }
 
@@ -317,6 +318,10 @@ export const GroupView: StatelessFunctionalComponent<Props> = (
                   >
                     {t('button.closeGroup')}
                   </button>
+
+                  <span className={`group-status-message ${messageStyle}`}>
+                    {message}
+                  </span>
                 </div>
                 {closeGroupConfirmation && (
                   <div>
@@ -339,10 +344,6 @@ export const GroupView: StatelessFunctionalComponent<Props> = (
                 )}
               </Fragment>
             )}
-
-            <span className={`group-status-message ${messageStyle}`}>
-              {message}
-            </span>
           </div>
 
           <h3>{t('groupMembers')}</h3>
