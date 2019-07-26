@@ -10,27 +10,41 @@ export const getOpenStartTimes = (
 ) => {
   const startTimes = getStartTimes(games)
 
-  const signupOpenDuration = config.SIGNUP_OPEN_TIME
-  const signupEndMinutes = config.SIGNUP_END_TIME
-  const conventionStartTime = config.CONVENTION_START_TIME
+  const {
+    // DAY_START_TIME,
+    SIGNUP_OPEN_TIME,
+    SIGNUP_END_TIME,
+    // CONVENTION_START_TIME,
+    useTestTime,
+  } = config
 
   let timeNow = moment()
-  if (config.useTestTime) {
+  if (useTestTime) {
     timeNow = moment(testTime)
   }
 
-  let earliestSignupTime = moment(timeNow)
-    .add(signupEndMinutes, 'minutes')
+  const earliestSignupTime = moment(timeNow)
+    .add(SIGNUP_END_TIME, 'minutes')
     .endOf('hour')
 
-  if (moment(earliestSignupTime).isBefore(moment(conventionStartTime))) {
-    earliestSignupTime = moment(conventionStartTime)
+  /*
+  if (moment(earliestSignupTime).isBefore(moment(CONVENTION_START_TIME))) {
+    earliestSignupTime = moment(CONVENTION_START_TIME)
+  } else if (
+    moment(earliestSignupTime).isBefore(
+      moment(earliestSignupTime).hours(DAY_START_TIME)
+    )
+  ) {
+    earliestSignupTime = moment(earliestSignupTime)
+      .hours(DAY_START_TIME)
+      .format('HH:mm')
   }
+  */
 
   const minutes = moment(timeNow).format('m')
 
   const lastSignupTime = moment(timeNow)
-    .add(signupOpenDuration, 'hours')
+    .add(SIGNUP_OPEN_TIME, 'hours')
     .subtract(minutes, 'minutes')
     .startOf('hour')
 
