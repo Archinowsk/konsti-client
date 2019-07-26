@@ -4,7 +4,7 @@ import { useSelector, useStore } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import { SignupList } from 'views/signup/components/SignupList'
 import { getOpenStartTimes } from 'utils/getOpenStartTimes'
-import { loadGroupMembers } from 'utils/loadData'
+import { loadGroupMembers, loadUser } from 'utils/loadData'
 import { isGroupLeader } from 'views/group/GroupView'
 import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent, Element } from 'react'
@@ -26,6 +26,7 @@ export const SignupView: StatelessFunctionalComponent<Props> = (
 
   React.useEffect(() => {
     const fetchData = async (): Promise<any> => {
+      await loadUser(store)
       await loadGroupMembers(store)
     }
     fetchData()
