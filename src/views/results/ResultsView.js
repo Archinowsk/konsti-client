@@ -4,7 +4,7 @@ import { useSelector, useStore } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { ResultsList } from 'views/results/components/ResultsList'
 import { timeFormatter } from 'utils/timeFormatter'
-import { loadResults } from 'utils/loadData'
+import { loadResults, loadSettings } from 'utils/loadData'
 import type { Result } from 'flow/result.flow'
 import type { StatelessFunctionalComponent, Element } from 'react'
 
@@ -23,6 +23,7 @@ export const ResultsView: StatelessFunctionalComponent<Props> = (
 
   React.useEffect(() => {
     const fetchData = async (): Promise<any> => {
+      await loadSettings(store)
       await loadResults(store)
     }
     fetchData()
