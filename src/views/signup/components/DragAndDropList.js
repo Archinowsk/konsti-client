@@ -30,6 +30,7 @@ export const DragAndDropList: StatelessFunctionalComponent<Props> = (
   } = props
   const { t } = useTranslation()
 
+  const groupCode: string = useSelector(state => state.login.groupCode)
   const groupMembers: $ReadOnlyArray<GroupMember> = useSelector(
     state => state.login.groupMembers
   )
@@ -101,6 +102,7 @@ export const DragAndDropList: StatelessFunctionalComponent<Props> = (
       }
 
       if (
+        groupCode !== '0' &&
         updatedPositions.selectedGames &&
         destination.droppableId === 'selectedGames' &&
         updatedPositions.selectedGames[destination.index].maxAttendance <
