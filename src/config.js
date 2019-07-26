@@ -33,6 +33,7 @@ const commonConfig = {
     'p3654', // 2019-07-27T09:00:00Z Pathfinder Society Scenario #10-00: The Hao Jin Cataclysm
     'p3872', // 2019-07-27T16:00:00Z Contra el Culto del Dios de la Noche (Against the Cult of the Night God)
     'p3548', // 2019-07-27T21:00:00Z Jumalat
+    'p3935', // 2019-07-27T00:30:00Z Color out of Space
 
     // Synday 28.7.
     'p3550', // 2019-07-28T07:00:00Z Charlie ei surffaa
