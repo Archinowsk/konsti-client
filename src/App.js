@@ -44,7 +44,7 @@ const App: StatelessFunctionalComponent<Props> = (
   return (
     <Fragment>
       <Header />
-      <h3>{t('errorMessage')}</h3>
+      {/* <h3>{t('errorMessage')}</h3> */}
 
       {loading && <Loading />}
 
