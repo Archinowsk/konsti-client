@@ -30,8 +30,7 @@ export const SignupsByStartTimes: StatelessFunctionalComponent<Props> = (
           return (
             <p key={signup.gameDetails.gameId} className='game-details-list'>
               <Link to={`/games/${signup.gameDetails.gameId}`}>
-                {signup.gameDetails.title}{' '}
-                {signup.priority !== 0 && <span>({signup.priority})</span>}
+                {signup.gameDetails.title}
               </Link>
             </p>
           )
