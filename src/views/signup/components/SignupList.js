@@ -277,11 +277,11 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
               <span className='success bold'>{t('signupSaved')}</span>
             )}
 
+            {signupError && <span className='error'>{t(signupError)} </span>}
+
             {checkForSignupChanges(signedGames, selectedGames) && (
               <span className='informative'>{t('signupUnsavedChanges')}</span>
             )}
-
-            {signupError && <span className='error'> {t(signupError)}</span>}
 
             {!leader && <p className='bold'>{t('signupDisabledNotLeader')}</p>}
             {leader && groupCode !== '0' && (
