@@ -50,8 +50,8 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
   const [signupSubmitted, setSignupSubmitted] = React.useState(false)
   ;(signupSubmitted: boolean)
 
-  const [signupError, setSignupError] = React.useState(false)
-  ;(signupError: boolean)
+  const [signupError, setSignupError] = React.useState('')
+  ;(signupError: string)
 
   React.useEffect(() => {
     if (!selectedGames) dispatch(submitSelectedGames(signedGames))
@@ -63,6 +63,7 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
     const signupData = {
       username,
       selectedGames,
+      signupTime,
     }
 
     let response = null
@@ -75,7 +76,11 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
     if (response && response.status === 'success') {
       showMessage('signupSubmitted')
     } else if (response && response.status === 'error') {
-      showMessage('signupError')
+      if (response.code === 41) {
+        showMessage('signupEnded')
+      } else {
+        showMessage('signupError')
+      }
     }
     setSubmitting(false)
   }
@@ -92,6 +97,7 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
     const signupData = {
       username,
       selectedGames: gamesWithDifferentTime,
+      signupTime: 'all',
     }
 
     let signupResponse = null
@@ -106,7 +112,7 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
       dispatch(submitSelectedGames(signupResponse.signedGames))
     } else if (signupResponse && signupResponse.status === 'error') {
       showMessage('signupError')
-      setSignupError(true)
+      setSignupError('signupError')
     }
     setSubmitting(false)
   }
@@ -186,11 +192,13 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
     if (message === 'signupSubmitted') {
       setSignupSubmitted(true)
     } else if (message === 'signupError') {
-      setSignupError(true)
+      setSignupError('signupError')
+    } else if (message === 'signupEnded') {
+      setSignupError('signupEnded')
     }
     await sleep(config.MESSAGE_DELAY)
     setSignupSubmitted(false)
-    setSignupError(false)
+    setSignupError('')
   }
 
   const signupStartTime = timeFormatter.startTime(signupTime)
@@ -273,7 +281,7 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
               <span className='informative'>{t('signupUnsavedChanges')}</span>
             )}
 
-            {signupError && <span className='error'>{t('signupFailed')}</span>}
+            {signupError && <span className='error'> {t(signupError)}</span>}
 
             {!leader && <p className='bold'>{t('signupDisabledNotLeader')}</p>}
             {leader && groupCode !== '0' && (

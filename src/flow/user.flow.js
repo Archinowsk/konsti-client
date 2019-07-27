@@ -16,6 +16,7 @@ export type EmptySignup = {|
 export type SignupData = {|
   +username: string,
   +selectedGames: $ReadOnlyArray<Signup>,
+  +signupTime: string,
 |}
 
 export type FavoriteData = {|

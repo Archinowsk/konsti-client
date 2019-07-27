@@ -94,6 +94,7 @@ export const GroupView: StatelessFunctionalComponent<Props> = (
     const signupData = {
       username,
       selectedGames: [],
+      signupTime: 'all',
     }
 
     await dispatch(submitSignup(signupData))

@@ -15,9 +15,7 @@ export const submitSignup = (signupData: SignupData): Object => {
       console.log(`postSignup error:`, error)
     }
 
-    if (signupResponse && signupResponse.error) {
-      return Promise.reject(signupResponse)
-    } else if (signupResponse && signupResponse.status === 'success') {
+    if (signupResponse && signupResponse.status === 'success') {
       dispatch(submitSignupAsync(signupResponse.signedGames))
     }
 

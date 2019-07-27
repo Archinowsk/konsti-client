@@ -50,6 +50,22 @@ export const TimeSelector: StatelessFunctionalComponent<Props> = (
       .add(16, 'hours')
       .add(45, 'minutes')
       .format(),
+    moment(CONVENTION_START_TIME)
+      .add(24, 'hours')
+      .add(45, 'minutes')
+      .format(),
+    moment(CONVENTION_START_TIME)
+      .add(28, 'hours')
+      .add(45, 'minutes')
+      .format(),
+    moment(CONVENTION_START_TIME)
+      .add(36, 'hours')
+      .add(45, 'minutes')
+      .format(),
+    moment(CONVENTION_START_TIME)
+      .add(40, 'hours')
+      .add(45, 'minutes')
+      .format(),
   ]
 
   React.useEffect(() => {
