@@ -2,6 +2,7 @@
 import React, { Fragment } from 'react'
 import { useSelector, useStore } from 'react-redux'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 import { MySignupsList } from 'views/my-games/components/MySignupsList'
 import { MyFavoritesList } from 'views/my-games/components/MyFavoritesList'
 // import { MyEnteredList } from 'views/my-games/components/MyEnteredList'
@@ -119,6 +120,13 @@ export const MyGamesView: StatelessFunctionalComponent<Props> = (
         )}
 
         <MySignupsList signedGames={getSignedGames(signedGames)} />
+
+        <div className='my-entered-list'>
+          <h3>{t('enteredGames')}</h3>
+          <div className='my-signups-games'>
+            <Link to={`/results`}>{t('seeResultsFrom')}</Link>
+          </div>
+        </div>
 
         {/*
         <MyEnteredList
