@@ -75,7 +75,7 @@ export const MyEnteredList: StatelessFunctionalComponent<Props> = (
     return sortedEnteredGame.time
   })
 
-  const uniqueStartTimes = [...new Set(startTimes)]
+  const uniqueStartTimes = [...Array.from(new Set(startTimes))]
   const sortedStartTimes = uniqueStartTimes.sort()
 
   return (

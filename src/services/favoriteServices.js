@@ -6,7 +6,7 @@ import type { FavoriteData } from 'flow/user.flow'
 export const postFavorite = async (
   favoriteData: FavoriteData
 ): Promise<any> => {
-  api.defaults.headers.common['Authorization'] = `Bearer ${getJWT()}`
+  api.defaults.headers.common.Authorization = `Bearer ${getJWT()}`
 
   let response = null
   try {

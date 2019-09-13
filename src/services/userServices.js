@@ -30,7 +30,7 @@ export const postRegistration = async (
 }
 
 export const getUser = async (username: string): Promise<any> => {
-  api.defaults.headers.common['Authorization'] = `Bearer ${getJWT()}`
+  api.defaults.headers.common.Authorization = `Bearer ${getJWT()}`
 
   let response = null
   try {
@@ -58,7 +58,7 @@ export const getUser = async (username: string): Promise<any> => {
 }
 
 export const getUserBySerial = async (serial: string): Promise<any> => {
-  api.defaults.headers.common['Authorization'] = `Bearer ${getJWT()}`
+  api.defaults.headers.common.Authorization = `Bearer ${getJWT()}`
 
   let response = null
   try {

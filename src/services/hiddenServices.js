@@ -6,7 +6,7 @@ import type { Game } from 'flow/game.flow'
 export const postHidden = async (
   hiddenData: $ReadOnlyArray<Game>
 ): Promise<any> => {
-  api.defaults.headers.common['Authorization'] = `Bearer ${getJWT()}`
+  api.defaults.headers.common.Authorization = `Bearer ${getJWT()}`
 
   let response = null
   try {

@@ -4,7 +4,7 @@ import { getJWT } from 'utils/getJWT'
 import type { GroupData } from 'flow/group.flow'
 
 export const postGroup = async (groupData: GroupData): Promise<any> => {
-  api.defaults.headers.common['Authorization'] = `Bearer ${getJWT()}`
+  api.defaults.headers.common.Authorization = `Bearer ${getJWT()}`
 
   let response = null
   try {
@@ -28,7 +28,7 @@ export const postGroup = async (groupData: GroupData): Promise<any> => {
 }
 
 export const getGroup = async (groupCode: string): Promise<any> => {
-  api.defaults.headers.common['Authorization'] = `Bearer ${getJWT()}`
+  api.defaults.headers.common.Authorization = `Bearer ${getJWT()}`
 
   let response = null
   try {

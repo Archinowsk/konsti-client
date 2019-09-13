@@ -3,7 +3,7 @@ import { api } from 'utils/api'
 import { getJWT } from 'utils/getJWT'
 
 export const postGamesUpdate = async (): Promise<any> => {
-  api.defaults.headers.common['Authorization'] = `Bearer ${getJWT()}`
+  api.defaults.headers.common.Authorization = `Bearer ${getJWT()}`
 
   let response = null
   try {

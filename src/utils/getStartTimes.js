@@ -8,7 +8,7 @@ export const getStartTimes = (
     return game.startTime
   })
 
-  const uniqueTimes = [...new Set(startTimes)]
+  const uniqueTimes = [...Array.from(new Set(startTimes))]
   const sortedTimes = uniqueTimes.sort()
 
   return sortedTimes

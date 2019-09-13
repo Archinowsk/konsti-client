@@ -65,7 +65,7 @@ export const AdminView: StatelessFunctionalComponent<Props> = (
   const getStartingTimes = () => {
     const visibleGames = getVisibleGames()
     const startTimes = visibleGames.map(game => game.startTime)
-    return [...new Set(startTimes)].sort()
+    return [...Array.from(new Set(startTimes))].sort()
   }
 
   const submitUpdate = async (): Promise<any> => {
