@@ -10,6 +10,7 @@ module.exports = {
     'plugin:eslint-plugin-jest/recommended',
     'plugin:eslint-plugin-promise/recommended',
     'plugin:eslint-plugin-react/recommended',
+    'plugin:eslint-plugin-import/errors',
     // 'plugin:eslint-plugin-jsx-a11y/recommended',
     // 'plugin:eslint-plugin-security/recommended',
     // 'plugin:eslint-plugin-unicorn/recommended',
@@ -22,6 +23,7 @@ module.exports = {
     'eslint-plugin-prettier',
     'eslint-plugin-promise',
     'eslint-plugin-react-hooks',
+    'eslint-plugin-import',
     // 'eslint-plugin-jsx-a11y',
     // 'eslint-plugin-security',
     // 'eslint-plugin-unicorn',
@@ -54,6 +56,7 @@ module.exports = {
     // eslint
     'no-unused-expressions': 'off', // False warnings with Flow
     'no-param-reassign': 'error',
+    'jsx-quotes': ['error', 'prefer-single'],
 
     // eslint-plugin-flowtype
     'flowtype/no-unused-expressions': 'error', // Fixed version of no-unused-expressions
@@ -84,7 +87,6 @@ module.exports = {
     'react/react-in-jsx-scope': 'error',
 
     // eslint-config-standard-jsx
-    'jsx-quotes': ['error', 'prefer-single'],
     'react/jsx-boolean-value': 'error',
     'react/jsx-curly-spacing': ['error', 'never'],
     'react/jsx-equals-spacing': ['error', 'never'],
@@ -98,8 +100,7 @@ module.exports = {
     'react/self-closing-comp': 'error',
 
     // eslint-plugin-import
-    // Useful but disabled because slows down ESLint
-    // 'import/no-unused-modules': ['error', { unusedExports: true }],
+    'import/no-unused-modules': ['off', { unusedExports: true }], // Slows down ESLint
 
     // eslint-plugin-eslint-comments
     'eslint-comments/no-unused-disable': 'error',
