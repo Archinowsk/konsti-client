@@ -4,7 +4,7 @@ import { hot } from 'react-hot-loader/root'
 import { useTranslation } from 'react-i18next'
 import { useSelector, useStore } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
-import { Routes } from 'Routes'
+import { Routes } from 'app/Routes'
 import { Header } from 'components/Header'
 import { loadData } from 'utils/loadData'
 import { Loading } from 'components/Loading'
@@ -14,7 +14,7 @@ import type { StatelessFunctionalComponent, Element } from 'react'
 
 type Props = {}
 
-const App: StatelessFunctionalComponent<Props> = (
+export const App: StatelessFunctionalComponent<Props> = (
   props: Props
 ): Element<typeof Fragment> => {
   const { dataUpdateInterval } = config
