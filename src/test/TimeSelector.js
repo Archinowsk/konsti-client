@@ -1,10 +1,11 @@
 // @flow
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 import _ from 'lodash'
 import moment from 'moment'
 import { submitSetTestTime } from 'views/admin/adminActions'
-import { timeFormatter } from 'utils/timeFormatter'
+import { TimesDropdown } from 'components/TimesDropdown'
 import { config } from 'config'
 import type { StatelessFunctionalComponent, Element } from 'react'
 
@@ -16,6 +17,7 @@ export const TimeSelector: StatelessFunctionalComponent<Props> = (
   const testTime: string = useSelector(state => state.admin.testTime)
 
   const dispatch = useDispatch()
+  const { t } = useTranslation()
 
   const { CONVENTION_START_TIME } = config
   const times = [
@@ -76,21 +78,14 @@ export const TimeSelector: StatelessFunctionalComponent<Props> = (
     dispatch(submitSetTestTime(event.target.value))
   }
 
-  const isActive = isActive => (isActive ? 'active' : '')
-
-  const buttons = times.map(time => {
-    return (
-      <button
-        key={time}
-        value={time}
-        onClick={setTestTime}
-        className={`button-${time} ${isActive(time === testTime)}`}
-        disabled={time === testTime}
-      >
-        {timeFormatter.dateAndTime(time)}
-      </button>
-    )
-  })
-
-  return <div className='time-selector'>{buttons}</div>
+  return (
+    <div className='time-selector'>
+      <span>{t('testTime')}</span>
+      <TimesDropdown
+        times={times}
+        selectedTime={testTime}
+        onChange={event => setTestTime(event)}
+      />
+    </div>
+  )
 }
