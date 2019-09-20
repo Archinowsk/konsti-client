@@ -2,13 +2,12 @@
 import React, { Fragment } from 'react'
 import { useSelector, useStore } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
 import { MySignupsList } from 'views/my-games/components/MySignupsList'
 import { MyFavoritesList } from 'views/my-games/components/MyFavoritesList'
-// import { MyEnteredList } from 'views/my-games/components/MyEnteredList'
+import { MyEnteredList } from 'views/my-games/components/MyEnteredList'
 import {
   getUpcomingSignedGames,
-  // getUpcomingEnteredGames,
+  getUpcomingEnteredGames,
   getUpcomingFavorites,
 } from 'utils/getUpcomingGames'
 import { loadUser, loadGames, loadGroupMembers } from 'utils/loadData'
@@ -33,11 +32,9 @@ export const MyGamesView: StatelessFunctionalComponent<Props> = (
   const favoritedGames: $ReadOnlyArray<Game> = useSelector(
     state => state.myGames.favoritedGames
   )
-  /*
   const enteredGames: $ReadOnlyArray<Signup> = useSelector(
     state => state.myGames.enteredGames
   )
-  */
   const groupMembers: $ReadOnlyArray<GroupMember> = useSelector(
     state => state.login.groupMembers
   )
@@ -121,14 +118,6 @@ export const MyGamesView: StatelessFunctionalComponent<Props> = (
 
         <MySignupsList signedGames={getSignedGames(signedGames)} />
 
-        <div className='my-entered-list'>
-          <h3>{t('enteredGames')}</h3>
-          <div className='my-signups-games'>
-            <Link to={`/results`}>{t('seeResultsFrom')}</Link>
-          </div>
-        </div>
-
-        {/*
         <MyEnteredList
           enteredGames={
             showAllGames
@@ -137,7 +126,6 @@ export const MyGamesView: StatelessFunctionalComponent<Props> = (
           }
           signedGames={getSignedGames(signedGames)}
         />
-        */}
       </Fragment>
     </div>
   )
