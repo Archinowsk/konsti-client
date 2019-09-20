@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MySignupsList should render correctly 1`] = `
+<div
+  className="my-signups-list"
+>
+  <h3>
+    signedGames
+  </h3>
+  <div
+    className="my-signups-games"
+  >
+    <span>
+      noSignedGames
+    </span>
+  </div>
+</div>
+`;

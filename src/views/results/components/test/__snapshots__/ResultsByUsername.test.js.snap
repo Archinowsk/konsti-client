@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ResultsByUsername should render correctly 1`] = `
+<div
+  className="flex-table-container"
+>
+  <div
+    className="flex-table-column flex-table-header"
+  >
+    <div
+      className="flex-table-row"
+    >
+      player
+    </div>
+    <div
+      className="flex-table-row"
+    >
+      gameTitle
+    </div>
+    <div
+      className="flex-table-row"
+    >
+      gameInfo.location
+    </div>
+  </div>
+</div>
+`;

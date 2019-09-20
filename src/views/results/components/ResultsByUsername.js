@@ -5,7 +5,7 @@ import _ from 'lodash'
 import type { StatelessFunctionalComponent, Element } from 'react'
 import type { Result } from 'flow/result.flow'
 
-type Props = {|
+export type Props = {|
   results: $ReadOnlyArray<Result>,
 |}
 

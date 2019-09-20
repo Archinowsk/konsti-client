@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent, Element } from 'react'
 
-type Props = {|
+export type Props = {|
   droppableId: string,
   games: $ReadOnlyArray<Game>,
   label: string,
