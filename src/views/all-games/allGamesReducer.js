@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import { SUBMIT_GET_GAMES } from 'views/all-games/allGamesActions'
 import type { AllGamesState } from 'flow/redux.flow'
 

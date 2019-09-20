@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import React from 'react'
 import { useSelector, useStore } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'

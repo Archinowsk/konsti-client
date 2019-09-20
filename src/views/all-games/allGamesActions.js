@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import { getGames, postGamesUpdate } from 'services/gamesServices'
 import type { Game } from 'flow/game.flow'
 

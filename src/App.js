@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import React, { Fragment } from 'react'
 import { hot } from 'react-hot-loader/root'
 import { useTranslation } from 'react-i18next'

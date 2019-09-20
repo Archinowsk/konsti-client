@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { SubmissionError } from 'redux-form'

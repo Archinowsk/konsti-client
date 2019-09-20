@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import { SUBMIT_LOGIN } from 'views/login/loginActions'
 import {
   SUBMIT_UPDATE_GROUP_CODE,

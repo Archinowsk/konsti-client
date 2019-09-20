@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import _ from 'lodash'
 import { moveArrayItem, insertByIndex } from 'utils/array'
 import type { Game, DnDUpdatedPositions, DnDMove } from 'flow/game.flow'

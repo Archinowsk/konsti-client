@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import React from 'react'
 import type { StatelessFunctionalComponent, Element } from 'react'
 

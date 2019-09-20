@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import { postLogin } from 'services/loginServices'
 import { saveSession, clearSession } from 'utils/localStorage'
 import type { Login, LoginData } from 'flow/user.flow'

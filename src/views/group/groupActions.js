@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import { postGroup, getGroup } from 'services/groupService'
 import type { GroupData, GroupMember } from 'flow/group.flow'
 

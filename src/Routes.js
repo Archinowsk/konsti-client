@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import React, { Fragment } from 'react'
 import { Route, NavLink, Switch, Redirect } from 'react-router-dom'
 import { useSelector } from 'react-redux'

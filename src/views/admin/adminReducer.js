@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import {
   SUBMIT_UPDATE_HIDDEN,
   SUBMIT_GET_SETTINGS,

@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import { api } from 'utils/api'
 import { getJWT } from 'utils/getJWT'
 import type { Game } from 'flow/game.flow'

@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import { getUser } from 'services/userServices'
 import { postFavorite } from 'services/favoriteServices'
 import type { FavoriteData, UserGames } from 'flow/user.flow'

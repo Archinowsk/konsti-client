@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import type { LocalStorageState } from 'flow/redux.flow'
 
 export const loadSession = (): Object | void => {

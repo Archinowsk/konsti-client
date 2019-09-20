@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 import React, { Suspense, lazy } from 'react'

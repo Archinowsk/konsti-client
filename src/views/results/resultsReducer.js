@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import { SUBMIT_GET_RESULTS } from 'views/results/resultsActions'
 import type { ResultsState } from 'flow/redux.flow'
 

@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import moment from 'moment'
 import { config } from 'config'
 import type { Game } from 'flow/game.flow'

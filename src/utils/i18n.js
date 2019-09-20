@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import i18next from 'i18next'
 import backend from 'i18next-xhr-backend'
 import languageDetector from 'i18next-browser-languagedetector'

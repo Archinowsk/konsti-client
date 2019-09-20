@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import { submitGetResults } from 'views/results/resultsActions'
 import { submitGetGames } from 'views/all-games/allGamesActions'
 import { submitGetSettings } from 'views/admin/adminActions'

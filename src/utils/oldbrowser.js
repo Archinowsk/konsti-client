@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import outdatedBrowserRework from 'outdated-browser-rework'
 import 'outdated-browser-rework/dist/style.css'
 

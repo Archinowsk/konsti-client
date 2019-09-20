@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import {
   SUBMIT_SIGNUP_TIME,
   SUBMIT_SELECTED_GAMES,

@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import { postPlayersAssign } from 'services/playersServices'
 import { getResults } from 'services/resultsServices'
 import type { ResultsState } from 'flow/redux.flow'

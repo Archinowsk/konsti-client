@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import React, { Fragment } from 'react'
 import { useSelector, useStore } from 'react-redux'
 import { useTranslation } from 'react-i18next'

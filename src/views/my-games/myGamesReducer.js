@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import {
   SUBMIT_GET_USER_GAMES,
   SUBMIT_UPDATE_FAVORITES,

@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import React, { Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
 import { timeFormatter } from 'utils/timeFormatter'

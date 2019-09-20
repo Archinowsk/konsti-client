@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import type { GroupMember } from 'flow/group.flow'

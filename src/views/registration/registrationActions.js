@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import { postRegistration } from 'services/userServices'
 import { submitLogin } from 'views/login/loginActions'
 import type { RegistrationData } from 'flow/user.flow'

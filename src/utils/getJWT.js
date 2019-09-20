@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import { store } from 'utils/store'
 
 export const getJWT = (): string => {

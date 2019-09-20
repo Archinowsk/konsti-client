@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import { clearSession } from 'utils/localStorage'
 
 export const SUBMIT_LOGOUT = 'SUBMIT_LOGOUT'

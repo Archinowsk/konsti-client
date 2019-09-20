@@ -1,4 +1,4 @@
-/* @flow */
+// @flow
 import { postSignup } from 'services/signupServices'
 import type { Signup, SignupData } from 'flow/user.flow'
 
