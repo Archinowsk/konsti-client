@@ -1,5 +1,5 @@
 // @flow
-import { postGroup, getGroup } from 'services/groupService'
+import { postGroup, getGroup } from 'services/groupServices'
 import type { GroupData, GroupMember } from 'flow/group.flow'
 
 export const SUBMIT_UPDATE_GROUP_CODE = 'SUBMIT_UPDATE_GROUP_CODE'
