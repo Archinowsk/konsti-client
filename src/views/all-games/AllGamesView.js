@@ -1,10 +1,9 @@
 // @flow
 import React, { Fragment } from 'react'
 import { useSelector, useStore } from 'react-redux'
-import { Route, Switch, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import moment from 'moment'
-import GameDetails from 'views/all-games/components/GameDetails'
 import { AllGamesList } from 'views/all-games/components/AllGamesList'
 import { getUpcomingGames } from 'utils/getUpcomingGames'
 import { loadGames } from 'utils/loadData'
@@ -117,68 +116,55 @@ export const AllGamesView: StatelessFunctionalComponent<Props> = (
 
   return (
     <Fragment>
-      <Switch>
-        <Route
-          exact
-          path='/games'
-          render={() => (
-            <Fragment>
-              <div className='all-games-visibility-bar'>
-                <div className='all-games-toggle-visibility'>
-                  <button
-                    onClick={() => setSelectedView('upcoming')}
-                    disabled={selectedView === 'upcoming'}
-                  >
-                    {t('upcomingGames')}
-                  </button>
+      <div className='all-games-visibility-bar'>
+        <div className='all-games-toggle-visibility'>
+          <button
+            onClick={() => setSelectedView('upcoming')}
+            disabled={selectedView === 'upcoming'}
+          >
+            {t('upcomingGames')}
+          </button>
 
-                  <button
-                    onClick={() => setSelectedView('all')}
-                    disabled={selectedView === 'all'}
-                  >
-                    {t('allGames')}
-                  </button>
+          <button
+            onClick={() => setSelectedView('all')}
+            disabled={selectedView === 'all'}
+          >
+            {t('allGames')}
+          </button>
 
-                  <button
-                    onClick={() => setSelectedView('revolving-door')}
-                    disabled={selectedView === 'revolving-door'}
-                  >
-                    {t('revolvingDoor')}
-                  </button>
-                </div>
+          <button
+            onClick={() => setSelectedView('revolving-door')}
+            disabled={selectedView === 'revolving-door'}
+          >
+            {t('revolvingDoor')}
+          </button>
+        </div>
 
-                <div className='tags-dropdown'>
-                  <span className={'choose-tag-instruction'}>
-                    {t('chooseTag')}{' '}
-                  </span>
-                  <select
-                    onChange={event => setSelectedTag(event.target.value)}
-                    value={selectedTag}
-                  >
-                    <option value=''>{t('allGames')}</option>
-                    {tagsList()}
-                  </select>
-                </div>
-              </div>
+        <div className='tags-dropdown'>
+          <span className={'choose-tag-instruction'}>{t('chooseTag')} </span>
+          <select
+            onChange={event => setSelectedTag(event.target.value)}
+            value={selectedTag}
+          >
+            <option value=''>{t('allGames')}</option>
+            {tagsList()}
+          </select>
+        </div>
+      </div>
 
-              {selectedView === 'revolving-door' && (
-                <Fragment>
-                  <div className='revolving-door-instruction'>
-                    {t('revolvingDoorInstruction')}
-                  </div>
-                  <div className='running-revolving-door-games'>
-                    <h3>{t('currentlyRunningRevolvingDoor')}</h3>
-                    {getRunningRevolvingDoorGames(games)}
-                  </div>
-                </Fragment>
-              )}
+      {selectedView === 'revolving-door' && (
+        <Fragment>
+          <div className='revolving-door-instruction'>
+            {t('revolvingDoorInstruction')}
+          </div>
+          <div className='running-revolving-door-games'>
+            <h3>{t('currentlyRunningRevolvingDoor')}</h3>
+            {getRunningRevolvingDoorGames(games)}
+          </div>
+        </Fragment>
+      )}
 
-              <AllGamesList games={getVisibleGames(games)} />
-            </Fragment>
-          )}
-        />
-        <Route path='/games/:id' render={() => <GameDetails />} />
-      </Switch>
+      <AllGamesList games={getVisibleGames(games)} />
     </Fragment>
   )
 }

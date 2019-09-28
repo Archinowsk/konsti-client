@@ -2,7 +2,7 @@
 import React, { Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import { submitUpdateHidden } from 'views/admin/adminActions'
 import { submitUpdateFavorites } from 'views/my-games/myGamesActions'
 import { FeedbackForm } from 'views/all-games/components/FeedbackForm'
@@ -12,18 +12,15 @@ import type { Game } from 'flow/game.flow'
 import type { StatelessFunctionalComponent, Element } from 'react'
 import type { UserGroup } from 'flow/user.flow'
 
-type Props = {|
-  history: Object,
-  match: Object,
-|}
+type Props = {||}
 
-const GameDetails: StatelessFunctionalComponent<Props> = (
+export const GameDetails: StatelessFunctionalComponent<Props> = (
   props: Props
 ): Element<'div'> => {
-  const { history, match } = props
+  const history = useHistory()
+  const { gameId } = useParams()
 
   const username: string = useSelector(state => state.login.username)
-
   const loggedIn: boolean = useSelector(state => state.login.loggedIn)
   const games: $ReadOnlyArray<Game> = useSelector(state => state.allGames.games)
   const userGroup: UserGroup = useSelector(state => state.login.userGroup)
@@ -36,7 +33,7 @@ const GameDetails: StatelessFunctionalComponent<Props> = (
   const dispatch = useDispatch()
   const { t } = useTranslation()
 
-  const game = games.find(game => game.gameId === match.params.id)
+  const game = games.find(game => game.gameId === gameId)
 
   const [hidden, setHidden] = React.useState(false)
   ;(hidden: boolean)
@@ -206,7 +203,7 @@ const GameDetails: StatelessFunctionalComponent<Props> = (
 
       {!loading && !game && (
         <div className='game-not-found'>
-          {t('invalidGameId')} {match.params.id}.
+          {t('invalidGameId')} {gameId}.
         </div>
       )}
 
@@ -219,5 +216,3 @@ const GameDetails: StatelessFunctionalComponent<Props> = (
     </div>
   )
 }
-
-export default withRouter(GameDetails)

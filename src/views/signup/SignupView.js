@@ -1,7 +1,6 @@
 // @flow
 import React from 'react'
 import { useSelector, useStore } from 'react-redux'
-import { Route, Switch } from 'react-router-dom'
 import { SignupList } from 'views/signup/components/SignupList'
 import { getOpenStartTimes } from 'utils/getOpenStartTimes'
 import { loadGroupMembers, loadUser } from 'utils/loadData'
@@ -40,19 +39,7 @@ export const SignupView: StatelessFunctionalComponent<Props> = (
 
   return (
     <div className='signup-view'>
-      <Switch>
-        <Route
-          exact
-          path='/signup'
-          render={() => (
-            <SignupList
-              games={games}
-              signupTimes={signupTimes}
-              leader={leader}
-            />
-          )}
-        />
-      </Switch>
+      <SignupList games={games} signupTimes={signupTimes} leader={leader} />
     </div>
   )
 }

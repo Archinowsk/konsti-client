@@ -4,6 +4,7 @@ import { Route, NavLink, Switch, Redirect } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { AllGamesView } from 'views/all-games/AllGamesView'
+import { GameDetails } from 'views/all-games/components/GameDetails'
 import { LoginView } from 'views/login/LoginView'
 import { MyGamesView } from 'views/my-games/MyGamesView'
 import { SignupView } from 'views/signup/SignupView'
@@ -38,7 +39,9 @@ export const Routes: StatelessFunctionalComponent<Props> = (
             </NavLink>
           </div>
           <Switch>
-            <Route path='/login' component={LoginView} />
+            <Route path='/login'>
+              <LoginView />
+            </Route>
             <Redirect from='/*' to='/' />
           </Switch>
         </Fragment>
@@ -61,8 +64,12 @@ export const Routes: StatelessFunctionalComponent<Props> = (
           )}
         </div>
         <Switch>
-          <Route path='/admin' component={AdminView} />
-          <Route path='/logout' component={LogoutView} />
+          <Route path='/admin'>
+            <AdminView />
+          </Route>
+          <Route path='/logout'>
+            <LogoutView />
+          </Route>
           <Redirect from='/*' to='/' />
         </Switch>
       </Fragment>
@@ -124,14 +131,33 @@ export const Routes: StatelessFunctionalComponent<Props> = (
           )}
         </div>
         <Switch>
-          <Route path='/games' component={AllGamesView} />
-          <Route path='/mygames' component={MyGamesView} />
-          <Route path='/signup' component={SignupView} />
-          <Route path='/results' component={ResultsView} />
-          <Route path='/group' component={GroupView} />
-          <Route path='/admin' component={AdminView} />
-          <Route path='/logout' component={LogoutView} />
-          <Route path='/help' component={HelperView} />
+          <Route path='/games/:gameId'>
+            <GameDetails />
+          </Route>
+          <Route path='/games'>
+            <AllGamesView />
+          </Route>
+          <Route path='/mygames'>
+            <MyGamesView />
+          </Route>
+          <Route path='/signup'>
+            <SignupView />
+          </Route>
+          <Route path='/results'>
+            <ResultsView />
+          </Route>
+          <Route path='/group'>
+            <GroupView />
+          </Route>
+          <Route path='/admin'>
+            <AdminView />
+          </Route>
+          <Route path='/logout'>
+            <LogoutView />
+          </Route>
+          <Route path='/help'>
+            <HelperView />
+          </Route>
           <Redirect from='/' to='/games' />
           <Redirect from='/*' to='/' />
         </Switch>
@@ -156,9 +182,18 @@ export const Routes: StatelessFunctionalComponent<Props> = (
       </div>
 
       <Switch>
-        <Route path='/login' component={LoginView} />
-        <Route path='/registration' component={RegistrationView} />
-        <Route path='/games' component={AllGamesView} />
+        <Route path='/login'>
+          <LoginView />
+        </Route>
+        <Route path='/registration'>
+          <RegistrationView />
+        </Route>
+        <Route path='/games/:gameId'>
+          <GameDetails />
+        </Route>
+        <Route path='/games'>
+          <AllGamesView />
+        </Route>
         <Redirect from='/' to='/games' />
         <Redirect from='/*' to='/login' />
       </Switch>
