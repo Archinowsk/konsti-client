@@ -1,5 +1,5 @@
-// flow-typed signature: dff45c0c6564176925e5494494a01586
-// flow-typed version: c6154227d1/redux-devtools-extension_v2.x.x/flow_>=v0.104.x
+// flow-typed signature: 062e3288725caa9dd4a4dfab63c1e292
+// flow-typed version: 9931c6ffb0/redux-devtools-extension_v2.x.x/flow_>=v0.104.x
 
 import type { ActionCreator, StoreEnhancer } from 'redux';
 import typeof { compose } from 'redux';
@@ -20,11 +20,11 @@ declare type $npm$ReduxDevtoolsExtension$DevToolsOptions = {
     function?: boolean | Function,
     ...
   },
-  actionSanitizer?: <A: { type: $Subtype<string>, ... }>(action: A, id: number) => A,
+  actionSanitizer?: <A: { type: string, ... }>(action: A, id: number) => A,
   stateSanitizer?: <S>(state: S, index: number) => S,
   actionsBlacklist?: string | string[],
   actionsWhitelist?: string | string[],
-  predicate?: <S, A: { type: $Subtype<string>, ... }>(state: S, action: A) => boolean,
+  predicate?: <S, A: { type: string, ... }>(state: S, action: A) => boolean,
   shouldRecordChanges?: boolean,
   pauseActionType?: string,
   autoPause?: boolean,
