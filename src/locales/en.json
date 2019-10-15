@@ -1,6 +1,6 @@
 {
   "appTitle": "Konsti",
-  "appDescription": "Ropecon 2019 Tabletop RPG Signup",
+  "appDescription": "{{CONVENTION_NAME}} {{CONVENTION_YEAR}} Tabletop RPG Signup",
   "footer": "Footer",
   "button": {
     "logout": "Logout",
@@ -153,7 +153,7 @@
   "signupEnded": "Signup ended for this time",
   "signupUnsavedChanges": "Unsaved changes",
   "signupResultHint": "Sign up results are visible on 'My Games' page at",
-  "closingMessage": "Konsti is closed and will open closer to Ropecon",
+  "closingMessage": "Konsti is closed and will open closer to the next event",
   "signupView": {
     "signupOpenGames": "Open games",
     "selectedGames": "Selected games"

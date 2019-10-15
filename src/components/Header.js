@@ -11,10 +11,11 @@ export const Header = () => {
   const loggedIn: boolean = useSelector(state => state.login.loggedIn)
   const serial: string = useSelector(state => state.login.serial)
   const { t } = useTranslation()
+  const { loadedSettings, CONVENTION_NAME, CONVENTION_YEAR } = config
 
   return (
     <header>
-      {config.loadedSettings !== 'production' && <TimeSelector />}
+      {loadedSettings !== 'production' && <TimeSelector />}
 
       <h1>
         <a href='/' className='logo'>
@@ -23,7 +24,7 @@ export const Header = () => {
       </h1>
 
       <div className='header-bar'>
-        {t('appDescription')}
+        {t('appDescription', { CONVENTION_NAME, CONVENTION_YEAR })}
         <LanguageSelector />
       </div>
 

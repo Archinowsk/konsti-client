@@ -1,6 +1,6 @@
 {
   "appTitle": "Konsti",
-  "appDescription": "Ropecon 2019 pöytäroolipeli-ilmoittautuminen",
+  "appDescription": "{{CONVENTION_NAME}} {{CONVENTION_YEAR}} pöytäroolipeli-ilmoittautuminen",
   "footer": "Alaviite",
   "button": {
     "logout": "Kirjaudu ulos",
@@ -154,7 +154,7 @@
   "signupEnded": "Ilmoittautuminen päättynyt tälle ajankohdalle",
   "signupUnsavedChanges": "Tallentamattomia muutoksia",
   "signupResultHint": "Voit katsoa ilmoittautumistulokset 'Omat pelit' sivulta klo",
-  "closingMessage": "Konsti on suljettu ja avautuu lähempänä Ropeconia",
+  "closingMessage": "Konsti on suljettu ja avautuu lähempänä seuraavaa tapahtumaa",
   "signupView": {
     "signupOpenGames": "Avoimet pelit",
     "selectedGames": "Valitut pelit"
