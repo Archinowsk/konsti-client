@@ -140,7 +140,6 @@ const devConfig = {
   },
 
   plugins: [
-    // $FlowFixMe: Property `HotModuleReplacementPlugin` is missing in  statics of function type.
     new webpack.HotModuleReplacementPlugin(), // Enable HMR globally
   ],
 }
