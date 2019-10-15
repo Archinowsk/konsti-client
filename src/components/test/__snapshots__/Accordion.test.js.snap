@@ -22,6 +22,7 @@ exports[`Loading should render correctly 1`] = `
       rotation={null}
       size={null}
       spin={false}
+      swapOpacity={false}
       symbol={false}
       title=""
       transform={null}
