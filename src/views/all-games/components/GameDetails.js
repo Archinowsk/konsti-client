@@ -2,7 +2,6 @@
 import React, { Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-// $FlowFixMe: Cannot import useHistory/useParams because there is no useHistory/useParams export in react-router-dom.
 import { useHistory, useParams } from 'react-router-dom'
 import { submitUpdateHidden } from 'views/admin/adminActions'
 import { submitUpdateFavorites } from 'views/my-games/myGamesActions'
