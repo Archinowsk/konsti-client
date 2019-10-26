@@ -1,33 +1,33 @@
 export const getGameTags = game => {
-  const tagsList = []
+  const tagsList = [];
 
   if (game.tags.includes('in-english')) {
-    tagsList.push(`inEnglish`)
+    tagsList.push(`inEnglish`);
   }
 
   if (game.tags.includes('sopii-lapsille')) {
-    tagsList.push(`childrenFriendly`)
+    tagsList.push(`childrenFriendly`);
   }
 
   if (game.tags.includes('vain-taysi-ikaisille')) {
-    tagsList.push(`ageRestricted`)
+    tagsList.push(`ageRestricted`);
   }
 
   if (game.tags.includes('aloittelijaystavallinen')) {
-    tagsList.push(`beginnerFriendly`)
+    tagsList.push(`beginnerFriendly`);
   }
 
   if (game.tags.includes('kunniavieras')) {
-    tagsList.push(`guestOfHonor`)
+    tagsList.push(`guestOfHonor`);
   }
 
   if (game.tags.includes('perheohjelma')) {
-    tagsList.push(`family`)
+    tagsList.push(`family`);
   }
 
   if (game.intendedForExperiencedParticipants) {
-    tagsList.push(`intendedForExperiencedParticipants`)
+    tagsList.push(`intendedForExperiencedParticipants`);
   }
 
-  return tagsList
-}
+  return tagsList;
+};

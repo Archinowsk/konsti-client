@@ -1,56 +1,56 @@
 // @flow
-import { postHidden } from 'services/hiddenServices'
-import { getSettings, postToggleAppOpen } from 'services/settingsServices'
-import { postSignupTime } from 'services/signuptimeServices'
-import type { Game } from 'flow/game.flow'
-import type { Settings } from 'flow/settings.flow'
+import { postHidden } from 'services/hiddenServices';
+import { getSettings, postToggleAppOpen } from 'services/settingsServices';
+import { postSignupTime } from 'services/signuptimeServices';
+import type { Game } from 'flow/game.flow';
+import type { Settings } from 'flow/settings.flow';
 
-export const SUBMIT_UPDATE_HIDDEN = 'SUBMIT_UPDATE_HIDDEN'
-export const SUBMIT_GET_SETTINGS = 'SUBMIT_GET_SETTINGS'
-export const SUBMIT_SELECT_SIGNUP_TIME = 'SUBMIT_SELECT_SIGNUP_TIME'
-export const SUBMIT_SET_TEST_TIME = 'SUBMIT_SET_TEST_TIME'
-export const SUBMIT_TOGGLE_APP_OPEN = 'SUBMIT_TOGGLE_APP_OPEN'
+export const SUBMIT_UPDATE_HIDDEN = 'SUBMIT_UPDATE_HIDDEN';
+export const SUBMIT_GET_SETTINGS = 'SUBMIT_GET_SETTINGS';
+export const SUBMIT_SELECT_SIGNUP_TIME = 'SUBMIT_SELECT_SIGNUP_TIME';
+export const SUBMIT_SET_TEST_TIME = 'SUBMIT_SET_TEST_TIME';
+export const SUBMIT_TOGGLE_APP_OPEN = 'SUBMIT_TOGGLE_APP_OPEN';
 
 export const submitUpdateHidden = (
   hiddenGames: $ReadOnlyArray<Game>
 ): Object => {
   return async (dispatch: Function): Promise<any> => {
-    let updateHiddenResponse = null
+    let updateHiddenResponse = null;
     try {
-      updateHiddenResponse = await postHidden(hiddenGames)
+      updateHiddenResponse = await postHidden(hiddenGames);
     } catch (error) {
-      console.log(`submitUpdateHidden error:`, error)
+      console.log(`submitUpdateHidden error:`, error);
     }
 
     if (updateHiddenResponse && updateHiddenResponse.error) {
-      return Promise.reject(updateHiddenResponse)
+      return Promise.reject(updateHiddenResponse);
     }
     if (updateHiddenResponse && updateHiddenResponse.status === 'success') {
-      dispatch(submitUpdateHiddenAsync(updateHiddenResponse.hiddenGames))
+      dispatch(submitUpdateHiddenAsync(updateHiddenResponse.hiddenGames));
     }
 
-    return updateHiddenResponse
-  }
-}
+    return updateHiddenResponse;
+  };
+};
 
 const submitUpdateHiddenAsync = (hiddenGames: $ReadOnlyArray<Game>): Object => {
   return {
     type: SUBMIT_UPDATE_HIDDEN,
     hiddenGames,
-  }
-}
+  };
+};
 
 export const submitGetSettings = (): Object => {
   return async (dispatch: Function): Promise<any> => {
-    let settingsResponse = null
+    let settingsResponse = null;
     try {
-      settingsResponse = await getSettings()
+      settingsResponse = await getSettings();
     } catch (error) {
-      console.log(`getSettings error:`, error)
+      console.log(`getSettings error:`, error);
     }
 
     if (settingsResponse && settingsResponse.error) {
-      return Promise.reject(settingsResponse)
+      return Promise.reject(settingsResponse);
     }
 
     if (settingsResponse && settingsResponse.status === 'success') {
@@ -60,12 +60,12 @@ export const submitGetSettings = (): Object => {
           signupTime: settingsResponse.signupTime,
           appOpen: settingsResponse.appOpen,
         })
-      )
+      );
     }
 
-    return settingsResponse
-  }
-}
+    return settingsResponse;
+  };
+};
 
 const submitGetSettingsAsync = ({
   hiddenGames,
@@ -77,66 +77,66 @@ const submitGetSettingsAsync = ({
     hiddenGames,
     signupTime,
     appOpen,
-  }
-}
+  };
+};
 
 export const submitSignupTime = (signupTime: string): Object => {
   return async (dispatch: Function): Promise<any> => {
-    let signupTimeResponse = null
+    let signupTimeResponse = null;
     try {
-      signupTimeResponse = await postSignupTime(signupTime)
+      signupTimeResponse = await postSignupTime(signupTime);
     } catch (error) {
-      console.log(`postSignupTime error:`, error)
+      console.log(`postSignupTime error:`, error);
     }
 
     if (signupTimeResponse && signupTimeResponse.error) {
-      return Promise.reject(signupTimeResponse)
+      return Promise.reject(signupTimeResponse);
     }
     if (signupTimeResponse && signupTimeResponse.status === 'success') {
-      dispatch(submitSignupTimeAsync(signupTimeResponse.signupTime))
+      dispatch(submitSignupTimeAsync(signupTimeResponse.signupTime));
     }
 
-    return signupTimeResponse
-  }
-}
+    return signupTimeResponse;
+  };
+};
 
 const submitSignupTimeAsync = (signupTime: string): Object => {
   return {
     type: SUBMIT_SELECT_SIGNUP_TIME,
     signupTime,
-  }
-}
+  };
+};
 
 export const submitSetTestTime = (testTime: string): Object => {
   return {
     type: SUBMIT_SET_TEST_TIME,
     testTime,
-  }
-}
+  };
+};
 
 export const submitToggleAppOpen = (appOpen: boolean): Object => {
   return async (dispatch: Function): Promise<any> => {
-    let appOpenResponse = null
+    let appOpenResponse = null;
     try {
-      appOpenResponse = await postToggleAppOpen(appOpen)
+      appOpenResponse = await postToggleAppOpen(appOpen);
     } catch (error) {
-      console.log(`postAppOpen error:`, error)
+      console.log(`postAppOpen error:`, error);
     }
 
     if (appOpenResponse && appOpenResponse.error) {
-      return Promise.reject(appOpenResponse)
+      return Promise.reject(appOpenResponse);
     }
     if (appOpenResponse && appOpenResponse.status === 'success') {
-      dispatch(submitToggleAppOpenAsync(appOpenResponse.appOpen))
+      dispatch(submitToggleAppOpenAsync(appOpenResponse.appOpen));
     }
 
-    return appOpenResponse
-  }
-}
+    return appOpenResponse;
+  };
+};
 
 const submitToggleAppOpenAsync = (appOpen: boolean): Object => {
   return {
     type: SUBMIT_TOGGLE_APP_OPEN,
     appOpen,
-  }
-}
+  };
+};

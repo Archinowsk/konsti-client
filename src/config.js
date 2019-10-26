@@ -1,5 +1,5 @@
 // @flow
-import type { Config } from 'flow/config.flow'
+import type { Config } from 'flow/config.flow';
 
 const commonConfig = {
   // App info
@@ -45,30 +45,30 @@ const commonConfig = {
   reduxTrace: true,
   enableAxe: false,
   enableWhyDidYouRender: false,
-}
+};
 
 const prodConfig = {
   useTestTime: false,
   dataUpdateInterval: 60, // seconds
-}
+};
 
 const stagingConfig = {
   useTestTime: true,
   dataUpdateInterval: 60, // seconds
-}
+};
 
 const devConfig = {
   useTestTime: true,
   dataUpdateInterval: 60, // seconds
-}
+};
 
 const combineConfig = () => {
   if (process.env.SETTINGS === 'production') {
-    return { ...commonConfig, ...prodConfig }
+    return { ...commonConfig, ...prodConfig };
   } else if (process.env.SETTINGS === 'staging') {
-    return { ...commonConfig, ...stagingConfig }
+    return { ...commonConfig, ...stagingConfig };
   }
-  return { ...commonConfig, ...devConfig }
-}
+  return { ...commonConfig, ...devConfig };
+};
 
-export const config: Config = combineConfig()
+export const config: Config = combineConfig();

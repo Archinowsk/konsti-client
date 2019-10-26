@@ -1,4 +1,4 @@
 // @flow
 export const required = (value: string) => {
-  if (!value) return 'validation.required'
-}
+  if (!value) return 'validation.required';
+};

@@ -1,28 +1,28 @@
 // @flow
-import React, { Fragment } from 'react'
-import { useTranslation } from 'react-i18next'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import type { StatelessFunctionalComponent, Element } from 'react'
+import React, { Fragment } from 'react';
+import { useTranslation } from 'react-i18next';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import type { StatelessFunctionalComponent, Element } from 'react';
 
 export type Props = {|
   text: string,
   title: string,
   buttonText: string,
-|}
+|};
 
 export const Accordion: StatelessFunctionalComponent<Props> = (
   props: Props
 ): Element<'div'> => {
-  const { text, title, buttonText } = props
+  const { text, title, buttonText } = props;
 
-  const [open, setOpen] = React.useState(false)
-  ;(open: boolean)
+  const [open, setOpen] = React.useState(false);
+  (open: boolean);
 
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   const onClick = () => {
-    setOpen(!open)
-  }
+    setOpen(!open);
+  };
 
   return (
     <div className='accordion'>
@@ -47,5 +47,5 @@ export const Accordion: StatelessFunctionalComponent<Props> = (
         </Fragment>
       )}
     </div>
-  )
-}
+  );
+};

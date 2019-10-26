@@ -1,13 +1,13 @@
 // @flow
-import React from 'react'
-import { shallow } from 'enzyme'
-import { DropRow } from '../DropRow'
-import type { Props } from '../DropRow'
+import React from 'react';
+import { shallow } from 'enzyme';
+import { DropRow } from '../DropRow';
+import type { Props } from '../DropRow';
 
-const droppableId = 'testId'
-const games = []
-const label = 'test label'
-const showCount = true
+const droppableId = 'testId';
+const games = [];
+const label = 'test label';
+const showCount = true;
 
 describe('DropRow', () => {
   it('should render correctly', () => {
@@ -16,8 +16,8 @@ describe('DropRow', () => {
       games,
       label,
       showCount,
-    }
-    const component = shallow(<DropRow {...props} />)
-    expect(component).toMatchSnapshot()
-  })
-})
+    };
+    const component = shallow(<DropRow {...props} />);
+    expect(component).toMatchSnapshot();
+  });
+});

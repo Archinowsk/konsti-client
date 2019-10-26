@@ -1,42 +1,42 @@
 // @flow
-import React from 'react'
-import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
-import _ from 'lodash'
-import { timeFormatter } from 'utils/timeFormatter'
-import type { StatelessFunctionalComponent, Element } from 'react'
-import type { Result } from 'flow/result.flow'
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import _ from 'lodash';
+import { timeFormatter } from 'utils/timeFormatter';
+import type { StatelessFunctionalComponent, Element } from 'react';
+import type { Result } from 'flow/result.flow';
 
-type Props = {||}
+type Props = {||};
 
 export const ResultsList: StatelessFunctionalComponent<Props> = (
   props: Props
 ): Element<'div'> => {
   const results: $ReadOnlyArray<Result> = useSelector(
     state => state.results.result
-  )
-  const startTime: string = useSelector(state => state.results.startTime)
-  const { t } = useTranslation()
+  );
+  const startTime: string = useSelector(state => state.results.startTime);
+  const { t } = useTranslation();
 
   const sortedResults = _.sortBy(results, [
     result => result.enteredGame.gameDetails.title.toLowerCase(),
-  ])
+  ]);
 
   const groupedResults = _.groupBy(
     sortedResults,
     'enteredGame.gameDetails.title'
-  )
+  );
 
-  const resultsByGameTitle = []
+  const resultsByGameTitle = [];
 
   for (const result in groupedResults) {
     const sortedResults = _.sortBy(groupedResults[result], [
       result => result.username.toLowerCase(),
-    ])
+    ]);
 
     const playerList = sortedResults.map(result => (
       <p key={result.username}>{result.username}</p>
-    ))
+    ));
 
     resultsByGameTitle.push(
       <div className='game-result' key={result}>
@@ -53,7 +53,7 @@ export const ResultsList: StatelessFunctionalComponent<Props> = (
           {_.head(groupedResults[result]).enteredGame.gameDetails.maxAttendance}
         </p>
       </div>
-    )
+    );
   }
 
   return (
@@ -73,5 +73,5 @@ export const ResultsList: StatelessFunctionalComponent<Props> = (
       </h3>
       {resultsByGameTitle}
     </div>
-  )
-}
+  );
+};

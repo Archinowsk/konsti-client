@@ -1,12 +1,12 @@
 // @flow
-import { SUBMIT_LOGIN } from 'views/login/loginActions'
+import { SUBMIT_LOGIN } from 'views/login/loginActions';
 import {
   SUBMIT_UPDATE_GROUP_CODE,
   SUBMIT_LEAVE_GROUP,
   SUBMIT_UPDATE_GROUP_MEMBERS,
-} from 'views/group/groupActions'
+} from 'views/group/groupActions';
 
-import type { LoginState } from 'flow/redux.flow'
+import type { LoginState } from 'flow/redux.flow';
 
 const initialState = {
   username: '',
@@ -16,7 +16,7 @@ const initialState = {
   serial: '',
   groupCode: '0',
   groupMembers: [],
-}
+};
 
 export const loginReducer = (
   state: LoginState = initialState,
@@ -32,20 +32,20 @@ export const loginReducer = (
         userGroup: action.userGroup,
         serial: action.serial,
         groupCode: action.groupCode,
-      }
+      };
     case SUBMIT_UPDATE_GROUP_CODE:
       return {
         ...state,
         groupCode: action.groupCode,
-      }
+      };
     case SUBMIT_LEAVE_GROUP:
-      return { ...state, groupCode: action.groupCode, groupMembers: [] }
+      return { ...state, groupCode: action.groupCode, groupMembers: [] };
     case SUBMIT_UPDATE_GROUP_MEMBERS:
       return {
         ...state,
         groupMembers: action.groupMembers,
-      }
+      };
     default:
-      return state
+      return state;
   }
-}
+};

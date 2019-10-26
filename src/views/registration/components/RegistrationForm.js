@@ -1,23 +1,23 @@
 // @flow
-import React from 'react'
-import { Field, reduxForm } from 'redux-form'
-import { useTranslation } from 'react-i18next'
-import { FormField } from 'components/FormField'
-import { required } from 'utils/validate'
-import { Accordion } from 'components/Accordion'
-import type { StatelessFunctionalComponent, Element } from 'react'
+import React from 'react';
+import { Field, reduxForm } from 'redux-form';
+import { useTranslation } from 'react-i18next';
+import { FormField } from 'components/FormField';
+import { required } from 'utils/validate';
+import { Accordion } from 'components/Accordion';
+import type { StatelessFunctionalComponent, Element } from 'react';
 
 type Props = {|
   handleSubmit: Function,
   submitting: boolean,
   error?: string,
-|}
+|};
 
 const RegistrationForm: StatelessFunctionalComponent<Props> = (
   props: Props
 ): Element<'div'> => {
-  const { handleSubmit, submitting, error } = props
-  const { t } = useTranslation()
+  const { handleSubmit, submitting, error } = props;
+  const { t } = useTranslation();
 
   return (
     <div className='registration-form'>
@@ -72,9 +72,9 @@ const RegistrationForm: StatelessFunctionalComponent<Props> = (
         <strong className='error'>{error}</strong>
       )}
     </div>
-  )
-}
+  );
+};
 
 export default reduxForm({
   form: 'registration',
-})(RegistrationForm)
+})(RegistrationForm);

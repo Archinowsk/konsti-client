@@ -1,8 +1,8 @@
 // @flow
-import { SUBMIT_GET_GAMES } from 'views/all-games/allGamesActions'
-import type { AllGamesState } from 'flow/redux.flow'
+import { SUBMIT_GET_GAMES } from 'views/all-games/allGamesActions';
+import type { AllGamesState } from 'flow/redux.flow';
 
-const initialState = { games: [] }
+const initialState = { games: [] };
 
 export const allGamesReducer = (
   state: AllGamesState = initialState,
@@ -10,8 +10,8 @@ export const allGamesReducer = (
 ) => {
   switch (action.type) {
     case SUBMIT_GET_GAMES:
-      return { ...state, games: action.games }
+      return { ...state, games: action.games };
     default:
-      return state
+      return state;
   }
-}
+};

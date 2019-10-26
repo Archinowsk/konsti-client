@@ -1,15 +1,15 @@
 // @flow
-import React from 'react'
-import type { StatelessFunctionalComponent, Element } from 'react'
+import React from 'react';
+import type { StatelessFunctionalComponent, Element } from 'react';
 
-type Props = {| meta: Object |}
+type Props = {| meta: Object |};
 
 export const Error: StatelessFunctionalComponent<Props> = (
   props: Props
 ): Element<'span'> => {
   const {
     meta: { touched, error },
-  } = props
+  } = props;
 
-  return touched && error ? <span>{error}</span> : <span />
-}
+  return touched && error ? <span>{error}</span> : <span />;
+};

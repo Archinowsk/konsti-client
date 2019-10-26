@@ -1,9 +1,9 @@
 // @flow
-import React from 'react'
-import { Provider } from 'react-redux'
-import { store } from 'utils/store'
-import { shallow } from 'enzyme'
-import { GroupView } from '../GroupView'
+import React from 'react';
+import { Provider } from 'react-redux';
+import { store } from 'utils/store';
+import { shallow } from 'enzyme';
+import { GroupView } from '../GroupView';
 
 describe('GroupView', () => {
   it('should render correctly', () => {
@@ -11,7 +11,7 @@ describe('GroupView', () => {
       <Provider store={store}>
         <GroupView />
       </Provider>
-    )
-    expect(component).toMatchSnapshot()
-  })
-})
+    );
+    expect(component).toMatchSnapshot();
+  });
+});

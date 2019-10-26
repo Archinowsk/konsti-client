@@ -1,23 +1,23 @@
 // @flow
-import React, { Fragment } from 'react'
-import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
+import React, { Fragment } from 'react';
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 /* $FlowFixMe: Cannot import `DragDropContext` because there is no `DragDropContext` export in `react-beautiful-dnd`. */
-import { DragDropContext } from 'react-beautiful-dnd'
-import { DropRow } from 'views/signup/components/DropRow'
-import { reorder, move } from 'utils/dragAndDrop'
-import { sleep } from 'utils/sleep'
-import { config } from 'config'
-import type { GroupMember } from 'flow/group.flow'
-import type { StatelessFunctionalComponent, Element } from 'react'
-import type { Game, DnDUpdatedPositions } from 'flow/game.flow'
+import { DragDropContext } from 'react-beautiful-dnd';
+import { DropRow } from 'views/signup/components/DropRow';
+import { reorder, move } from 'utils/dragAndDrop';
+import { sleep } from 'utils/sleep';
+import { config } from 'config';
+import type { GroupMember } from 'flow/group.flow';
+import type { StatelessFunctionalComponent, Element } from 'react';
+import type { Game, DnDUpdatedPositions } from 'flow/game.flow';
 
 export type Props = {|
   updateSelectedGames: Function,
   updateAvailableGames: Function,
   availableGames: $ReadOnlyArray<Game>,
   selectedGames: $ReadOnlyArray<Game>,
-|}
+|};
 
 export const DragAndDropList: StatelessFunctionalComponent<Props> = (
   props: Props
@@ -27,78 +27,78 @@ export const DragAndDropList: StatelessFunctionalComponent<Props> = (
     selectedGames,
     updateSelectedGames,
     updateAvailableGames,
-  } = props
-  const { t } = useTranslation()
+  } = props;
+  const { t } = useTranslation();
 
-  const groupCode: string = useSelector(state => state.login.groupCode)
+  const groupCode: string = useSelector(state => state.login.groupCode);
   const groupMembers: $ReadOnlyArray<GroupMember> = useSelector(
     state => state.login.groupMembers
-  )
+  );
 
-  const [warningVisible, setWarningVisible] = React.useState(false)
-  ;(warningVisible: boolean)
+  const [warningVisible, setWarningVisible] = React.useState(false);
+  (warningVisible: boolean);
 
-  const [warning, setWarning] = React.useState('')
-  ;(warning: string)
+  const [warning, setWarning] = React.useState('');
+  (warning: string);
 
   const getList = (id: string) => {
-    if (id === 'availableGames') return availableGames
-    else if (id === 'selectedGames') return selectedGames
-  }
+    if (id === 'availableGames') return availableGames;
+    else if (id === 'selectedGames') return selectedGames;
+  };
 
   const showWarning = async (message: string): Promise<any> => {
-    setWarning(message)
-    setWarningVisible(true)
-    await sleep(config.MESSAGE_DELAY)
-    setWarningVisible(false)
-    setWarning('')
-  }
+    setWarning(message);
+    setWarningVisible(true);
+    await sleep(config.MESSAGE_DELAY);
+    setWarningVisible(false);
+    setWarning('');
+  };
 
   const onDragEnd = (result: Object) => {
-    const { source, destination } = result
+    const { source, destination } = result;
 
     // Dropped outside the list
     if (!destination) {
-      return
+      return;
     }
 
     // Dropped to same list
     if (source.droppableId === destination.droppableId) {
-      const newOrder = getList(source.droppableId)
-      if (!newOrder) return
+      const newOrder = getList(source.droppableId);
+      if (!newOrder) return;
       const updatedPositions = reorder(
         newOrder,
         source.index,
         destination.index
-      )
+      );
 
       if (source.droppableId === 'availableGames') {
-        updateAvailableGames(updatedPositions)
+        updateAvailableGames(updatedPositions);
       } else if (source.droppableId === 'selectedGames') {
-        updateSelectedGames(updatedPositions)
+        updateSelectedGames(updatedPositions);
       }
     }
 
     // Moved to new list
     else {
-      const newItemsSource = getList(source.droppableId)
-      const newItemsDestination = getList(destination.droppableId)
+      const newItemsSource = getList(source.droppableId);
+      const newItemsDestination = getList(destination.droppableId);
 
-      if (!newItemsSource || !newItemsDestination) return
+      if (!newItemsSource || !newItemsDestination) return;
 
       const updatedPositions: DnDUpdatedPositions = move(
         newItemsSource,
         newItemsDestination,
         source,
         destination
-      )
+      );
 
       if (
         destination.droppableId === 'selectedGames' &&
         selectedGames.length >= 3
       ) {
-        showWarning('gameLimitWarning')
-        return
+        showWarning('gameLimitWarning');
+        return;
       }
 
       if (
@@ -108,19 +108,19 @@ export const DragAndDropList: StatelessFunctionalComponent<Props> = (
         updatedPositions.selectedGames[destination.index].maxAttendance <
           groupMembers.length
       ) {
-        showWarning('groupTooBigWarning')
-        return
+        showWarning('groupTooBigWarning');
+        return;
       }
 
       if (updatedPositions.availableGames) {
-        updateAvailableGames(updatedPositions.availableGames)
+        updateAvailableGames(updatedPositions.availableGames);
       }
 
       if (updatedPositions.selectedGames) {
-        updateSelectedGames(updatedPositions.selectedGames)
+        updateSelectedGames(updatedPositions.selectedGames);
       }
     }
-  }
+  };
 
   return (
     <Fragment>
@@ -146,5 +146,5 @@ export const DragAndDropList: StatelessFunctionalComponent<Props> = (
         </DragDropContext>
       </div>
     </Fragment>
-  )
-}
+  );
+};

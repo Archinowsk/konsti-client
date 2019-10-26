@@ -1,14 +1,14 @@
 // @flow
-import moment from 'moment'
-import { config } from 'config'
-import { getStartTimes } from './getStartTimes'
-import type { Game } from 'flow/game.flow'
+import moment from 'moment';
+import { config } from 'config';
+import { getStartTimes } from './getStartTimes';
+import type { Game } from 'flow/game.flow';
 
 export const getOpenStartTimes = (
   games: $ReadOnlyArray<Game>,
   testTime: string
 ) => {
-  const startTimes = getStartTimes(games)
+  const startTimes = getStartTimes(games);
 
   const {
     // DAY_START_TIME,
@@ -16,16 +16,16 @@ export const getOpenStartTimes = (
     SIGNUP_END_TIME,
     // CONVENTION_START_TIME,
     useTestTime,
-  } = config
+  } = config;
 
-  let timeNow = moment()
+  let timeNow = moment();
   if (useTestTime) {
-    timeNow = moment(testTime)
+    timeNow = moment(testTime);
   }
 
   const earliestSignupTime = moment(timeNow)
     .add(SIGNUP_END_TIME, 'minutes')
-    .endOf('hour')
+    .endOf('hour');
 
   /*
   if (moment(earliestSignupTime).isBefore(moment(CONVENTION_START_TIME))) {
@@ -41,14 +41,14 @@ export const getOpenStartTimes = (
   }
   */
 
-  const minutes = moment(timeNow).format('m')
+  const minutes = moment(timeNow).format('m');
 
   const lastSignupTime = moment(timeNow)
     .add(SIGNUP_OPEN_TIME, 'hours')
     .subtract(minutes, 'minutes')
-    .startOf('hour')
+    .startOf('hour');
 
-  const openSignupTimes = []
+  const openSignupTimes = [];
   for (const startTime of startTimes) {
     if (
       moment(startTime).isBetween(
@@ -56,9 +56,9 @@ export const getOpenStartTimes = (
         lastSignupTime.add(1, 'minutes')
       )
     ) {
-      openSignupTimes.push(startTime)
+      openSignupTimes.push(startTime);
     }
   }
 
-  return openSignupTimes
-}
+  return openSignupTimes;
+};

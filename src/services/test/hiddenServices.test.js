@@ -1,6 +1,6 @@
 // @flow
-import mockAxios from 'axios'
-import { postHidden } from '../hiddenServices'
+import mockAxios from 'axios';
+import { postHidden } from '../hiddenServices';
 
 describe('hiddenServices', () => {
   it('POST hidden games to server', async () => {
@@ -8,15 +8,15 @@ describe('hiddenServices', () => {
       return Promise.resolve({
         status: 200,
         data: 'test response',
-      })
-    })
+      });
+    });
 
-    const hiddenData = []
+    const hiddenData = [];
 
-    const response = await postHidden(hiddenData)
+    const response = await postHidden(hiddenData);
 
-    expect(response).toEqual('test response')
-    expect(mockAxios.post).toHaveBeenCalledTimes(1)
-    expect(mockAxios.post).toHaveBeenCalledWith(`/hidden`, { hiddenData })
-  })
-})
+    expect(response).toEqual('test response');
+    expect(mockAxios.post).toHaveBeenCalledTimes(1);
+    expect(mockAxios.post).toHaveBeenCalledWith(`/hidden`, { hiddenData });
+  });
+});

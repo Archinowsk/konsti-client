@@ -1,15 +1,15 @@
 // @flow
-import type { Game } from 'flow/game.flow'
+import type { Game } from 'flow/game.flow';
 
 export const getStartTimes = (
   games: $ReadOnlyArray<Game>
 ): $ReadOnlyArray<string> => {
   const startTimes = games.map(game => {
-    return game.startTime
-  })
+    return game.startTime;
+  });
 
-  const uniqueTimes = [...Array.from(new Set(startTimes))]
-  const sortedTimes = uniqueTimes.sort()
+  const uniqueTimes = [...Array.from(new Set(startTimes))];
+  const sortedTimes = uniqueTimes.sort();
 
-  return sortedTimes
-}
+  return sortedTimes;
+};

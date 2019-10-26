@@ -1,5 +1,5 @@
 // @flow
-import type { Signup } from 'flow/user.flow'
+import type { Signup } from 'flow/user.flow';
 
 export type GroupMember = {|
   +enteredGames: $ReadOnlyArray<Signup>,
@@ -7,7 +7,7 @@ export type GroupMember = {|
   +serial: string,
   +signedGames: $ReadOnlyArray<Signup>,
   +username: string,
-|}
+|};
 
 export type GroupData = {|
   +groupCode: string,
@@ -16,4 +16,4 @@ export type GroupData = {|
   +username: string,
   +leaveGroup?: boolean,
   +closeGroup?: boolean,
-|}
+|};

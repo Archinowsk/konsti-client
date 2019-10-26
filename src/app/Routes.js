@@ -1,33 +1,33 @@
 // @flow
-import React, { Fragment } from 'react'
-import { Route, NavLink, Switch, Redirect } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { useTranslation } from 'react-i18next'
-import { AllGamesView } from 'views/all-games/AllGamesView'
-import { GameDetails } from 'views/all-games/components/GameDetails'
-import { LoginView } from 'views/login/LoginView'
-import { MyGamesView } from 'views/my-games/MyGamesView'
-import { SignupView } from 'views/signup/SignupView'
-import { RegistrationView } from 'views/registration/RegistrationView'
-import { AdminView } from 'views/admin/AdminView'
-import { ResultsView } from 'views/results/ResultsView'
-import { LogoutView } from 'views/logout/LogoutView'
-import { GroupView } from 'views/group/GroupView'
-import { HelperView } from 'views/helper/HelperView'
-import type { StatelessFunctionalComponent, Element } from 'react'
-import type { UserGroup } from 'flow/user.flow'
+import React, { Fragment } from 'react';
+import { Route, NavLink, Switch, Redirect } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { AllGamesView } from 'views/all-games/AllGamesView';
+import { GameDetails } from 'views/all-games/components/GameDetails';
+import { LoginView } from 'views/login/LoginView';
+import { MyGamesView } from 'views/my-games/MyGamesView';
+import { SignupView } from 'views/signup/SignupView';
+import { RegistrationView } from 'views/registration/RegistrationView';
+import { AdminView } from 'views/admin/AdminView';
+import { ResultsView } from 'views/results/ResultsView';
+import { LogoutView } from 'views/logout/LogoutView';
+import { GroupView } from 'views/group/GroupView';
+import { HelperView } from 'views/helper/HelperView';
+import type { StatelessFunctionalComponent, Element } from 'react';
+import type { UserGroup } from 'flow/user.flow';
 
 export type Props = {
   onlyAdminLoginAllowed: boolean,
-}
+};
 
 export const Routes: StatelessFunctionalComponent<Props> = (
   props: Props
 ): Element<typeof Fragment> => {
-  const { onlyAdminLoginAllowed } = props
-  const loggedIn: boolean = useSelector(state => state.login.loggedIn)
-  const userGroup: UserGroup = useSelector(state => state.login.userGroup)
-  const { t } = useTranslation()
+  const { onlyAdminLoginAllowed } = props;
+  const loggedIn: boolean = useSelector(state => state.login.loggedIn);
+  const userGroup: UserGroup = useSelector(state => state.login.userGroup);
+  const { t } = useTranslation();
 
   if (onlyAdminLoginAllowed) {
     if (!loggedIn) {
@@ -45,7 +45,7 @@ export const Routes: StatelessFunctionalComponent<Props> = (
             <Redirect from='/*' to='/' />
           </Switch>
         </Fragment>
-      )
+      );
     }
 
     return (
@@ -73,7 +73,7 @@ export const Routes: StatelessFunctionalComponent<Props> = (
           <Redirect from='/*' to='/' />
         </Switch>
       </Fragment>
-    )
+    );
   }
 
   if (loggedIn) {
@@ -162,7 +162,7 @@ export const Routes: StatelessFunctionalComponent<Props> = (
           <Redirect from='/*' to='/' />
         </Switch>
       </Fragment>
-    )
+    );
   }
 
   return (
@@ -198,5 +198,5 @@ export const Routes: StatelessFunctionalComponent<Props> = (
         <Redirect from='/*' to='/login' />
       </Switch>
     </Fragment>
-  )
-}
+  );
+};

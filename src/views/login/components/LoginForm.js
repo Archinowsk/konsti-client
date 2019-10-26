@@ -1,22 +1,22 @@
 // @flow
-import React from 'react'
-import { Field, reduxForm } from 'redux-form'
-import { useTranslation } from 'react-i18next'
-import { required } from 'utils/validate'
-import { FormField } from 'components/FormField'
-import type { StatelessFunctionalComponent, Element } from 'react'
+import React from 'react';
+import { Field, reduxForm } from 'redux-form';
+import { useTranslation } from 'react-i18next';
+import { required } from 'utils/validate';
+import { FormField } from 'components/FormField';
+import type { StatelessFunctionalComponent, Element } from 'react';
 
 type Props = {|
   handleSubmit: Function,
   submitting: boolean,
   error?: string,
-|}
+|};
 
 const LoginForm: StatelessFunctionalComponent<Props> = (
   props: Props
 ): Element<'div'> => {
-  const { handleSubmit, submitting, error } = props
-  const { t } = useTranslation()
+  const { handleSubmit, submitting, error } = props;
+  const { t } = useTranslation();
 
   return (
     <div className='login-form'>
@@ -45,9 +45,9 @@ const LoginForm: StatelessFunctionalComponent<Props> = (
         <strong className='error'>{error}</strong>
       )}
     </div>
-  )
-}
+  );
+};
 
 export default reduxForm({
   form: 'login',
-})(LoginForm)
+})(LoginForm);

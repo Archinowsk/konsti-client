@@ -1,24 +1,24 @@
 // @flow
-import React, { Fragment } from 'react'
-import { useTranslation } from 'react-i18next'
-import moment from 'moment'
-import type { StatelessFunctionalComponent, Element } from 'react'
+import React, { Fragment } from 'react';
+import { useTranslation } from 'react-i18next';
+import moment from 'moment';
+import type { StatelessFunctionalComponent, Element } from 'react';
 
-type Props = {}
+type Props = {};
 
 export const LanguageSelector: StatelessFunctionalComponent<Props> = (
   props: Props
 ): Element<typeof Fragment> => {
-  const { t, i18n } = useTranslation()
-  const language = i18n.language
+  const { t, i18n } = useTranslation();
+  const language = i18n.language;
 
   // Language toggle
-  const toggle = lng => i18n.changeLanguage(lng)
+  const toggle = lng => i18n.changeLanguage(lng);
 
   const setLanguage = event => {
-    toggle(event.target.value)
-    moment.locale(event.target.value)
-  }
+    toggle(event.target.value);
+    moment.locale(event.target.value);
+  };
 
   return (
     <Fragment>
@@ -37,5 +37,5 @@ export const LanguageSelector: StatelessFunctionalComponent<Props> = (
         </option>
       </select>
     </Fragment>
-  )
-}
+  );
+};

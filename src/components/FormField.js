@@ -1,36 +1,36 @@
 // @flow
-import React, { Fragment } from 'react'
-import { useTranslation } from 'react-i18next'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import type { FieldProps } from 'redux-form'
-import type { StatelessFunctionalComponent, Element } from 'react'
+import React, { Fragment } from 'react';
+import { useTranslation } from 'react-i18next';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import type { FieldProps } from 'redux-form';
+import type { StatelessFunctionalComponent, Element } from 'react';
 
 export const FormField: StatelessFunctionalComponent<FieldProps> = (
   props: FieldProps
 ): Element<typeof Fragment> => {
   // $FlowFixMe: Cannot get field.type because property type is missing in FieldProps [1].
-  const { type } = props
-  const { name, onChange, onBlur, onDragStart, onDrop, onFocus } = props.input
-  const { touched, error } = props.meta
-  const { t } = useTranslation()
+  const { type } = props;
+  const { name, onChange, onBlur, onDragStart, onDrop, onFocus } = props.input;
+  const { touched, error } = props.meta;
+  const { t } = useTranslation();
 
-  const [fieldType, setFieldType] = React.useState('')
-  ;(fieldType: string)
+  const [fieldType, setFieldType] = React.useState('');
+  (fieldType: string);
 
   React.useEffect(() => {
-    setFieldType(type)
-  }, [type])
+    setFieldType(type);
+  }, [type]);
 
-  const classNames = ['form-input']
+  const classNames = ['form-input'];
 
   if (type === 'checkbox') {
-    classNames.push('checkbox')
+    classNames.push('checkbox');
   }
 
   const togglePasswordVisibility = () => {
-    if (fieldType === 'password') setFieldType('text')
-    else if (fieldType === 'text') setFieldType('password')
-  }
+    if (fieldType === 'password') setFieldType('text');
+    else if (fieldType === 'text') setFieldType('password');
+  };
 
   return (
     <Fragment>
@@ -68,5 +68,5 @@ export const FormField: StatelessFunctionalComponent<FieldProps> = (
         </div>
       )}
     </Fragment>
-  )
-}
+  );
+};

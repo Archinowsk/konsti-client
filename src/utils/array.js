@@ -7,23 +7,23 @@ export const moveArrayItem = <T>(
 ): $ReadOnlyArray<T> => {
   return arr.reduce((prev, current, index, self) => {
     if (from === to) {
-      prev.push(current)
+      prev.push(current);
     }
     if (index === from) {
-      return prev
+      return prev;
     }
     if (from < to) {
-      prev.push(current)
+      prev.push(current);
     }
     if (index === to) {
-      prev.push(self[from])
+      prev.push(self[from]);
     }
     if (from > to) {
-      prev.push(current)
+      prev.push(current);
     }
-    return prev
-  }, [])
-}
+    return prev;
+  }, []);
+};
 
 export const insertByIndex = <T>(
   arr: $ReadOnlyArray<T>,
@@ -33,4 +33,4 @@ export const insertByIndex = <T>(
   ...arr.slice(0, insertAt),
   newItem,
   ...arr.slice(insertAt),
-]
+];

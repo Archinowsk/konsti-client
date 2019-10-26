@@ -1,11 +1,11 @@
 // @flow
-import { clearSession } from 'utils/localStorage'
+import { clearSession } from 'utils/localStorage';
 
-export const SUBMIT_LOGOUT = 'SUBMIT_LOGOUT'
+export const SUBMIT_LOGOUT = 'SUBMIT_LOGOUT';
 
 export const submitLogout = (): Object => {
-  clearSession()
+  clearSession();
   return {
     type: SUBMIT_LOGOUT,
-  }
-}
+  };
+};

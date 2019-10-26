@@ -1,82 +1,82 @@
 // @flow
-import React from 'react'
-import { useTranslation } from 'react-i18next'
-import moment from 'moment'
-import _ from 'lodash'
-import { useSelector } from 'react-redux'
-import { getStartTimes } from 'utils/getStartTimes'
-import { SignupsByStartTimes } from './SignupsByStartTimes'
-import { config } from 'config'
-import type { Signup } from 'flow/user.flow'
-import type { StatelessFunctionalComponent, Element } from 'react'
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import moment from 'moment';
+import _ from 'lodash';
+import { useSelector } from 'react-redux';
+import { getStartTimes } from 'utils/getStartTimes';
+import { SignupsByStartTimes } from './SignupsByStartTimes';
+import { config } from 'config';
+import type { Signup } from 'flow/user.flow';
+import type { StatelessFunctionalComponent, Element } from 'react';
 
 export type Props = {|
   enteredGames: $ReadOnlyArray<Signup>,
   signedGames: $ReadOnlyArray<Signup>,
-|}
+|};
 
 export const MyEnteredList: StatelessFunctionalComponent<Props> = (
   props: Props
 ): Element<'div'> => {
-  const { enteredGames, signedGames } = props
-  const { t } = useTranslation()
-  const testTime: string = useSelector(state => state.admin.testTime)
+  const { enteredGames, signedGames } = props;
+  const { t } = useTranslation();
+  const testTime: string = useSelector(state => state.admin.testTime);
 
-  let timeNow: string = moment().format()
+  let timeNow: string = moment().format();
   if (config.loadedSettings !== 'production') {
-    timeNow = testTime
+    timeNow = testTime;
   }
 
   const signedGamesStartTimes = getStartTimes(
     signedGames.map(signedGame => signedGame.gameDetails)
-  )
+  );
 
   // Get signup times for past signed games
   const pastSignupTimes = signedGamesStartTimes.filter(signedGamesStartTime => {
     const signupEndTime = moment(signedGamesStartTime).subtract(
       config.SIGNUP_END_TIME,
       'minutes'
-    )
+    );
 
     if (signupEndTime.isBefore(moment(timeNow))) {
-      return signedGamesStartTime
+      return signedGamesStartTime;
     }
-  })
+  });
 
   // Check if there are past signed games without entered game => missed signup
   const missedSignupTimes = pastSignupTimes.filter(pastSignupTime => {
-    let found = false
+    let found = false;
     if (enteredGames.length === 0) {
-      return pastSignupTime
+      return pastSignupTime;
     }
 
     enteredGames.find(enteredGame => {
       if (enteredGame.time === pastSignupTime) {
-        found = true
+        found = true;
       }
-    })
+    });
 
     if (!found) {
-      return pastSignupTime
+      return pastSignupTime;
     }
-  })
+  });
 
   const missedSignups = missedSignupTimes.map(missedSignupTime => {
-    return { gameDetails: null, time: missedSignupTime, priority: 0 }
-  })
+    return { gameDetails: null, time: missedSignupTime, priority: 0 };
+  });
 
-  const enteredGamesAndMissed = enteredGames.concat(missedSignups)
+  const enteredGamesAndMissed = enteredGames.concat(missedSignups);
 
   const sortedEnteredGames = _.sortBy(enteredGamesAndMissed, [
     enteredGame => enteredGame.time,
-  ])
+  ]);
 
   const startTimes = sortedEnteredGames.map(sortedEnteredGame => {
-    return sortedEnteredGame.time
-  })
+    return sortedEnteredGame.time;
+  });
 
-  const uniqueStartTimes = [...Array.from(new Set(startTimes))]
-  const sortedStartTimes = uniqueStartTimes.sort()
+  const uniqueStartTimes = [...Array.from(new Set(startTimes))];
+  const sortedStartTimes = uniqueStartTimes.sort();
 
   return (
     <div className='my-entered-list'>
@@ -91,5 +91,5 @@ export const MyEnteredList: StatelessFunctionalComponent<Props> = (
         )}
       </div>
     </div>
-  )
-}
+  );
+};

@@ -1,80 +1,82 @@
 // @flow
-import React, { Fragment } from 'react'
-import { useSelector, useStore } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
-import moment from 'moment'
-import { AllGamesList } from 'views/all-games/components/AllGamesList'
-import { getUpcomingGames } from 'utils/getUpcomingGames'
-import { loadGames } from 'utils/loadData'
-import { config } from 'config'
-import type { Game } from 'flow/game.flow'
-import type { StatelessFunctionalComponent, Element } from 'react'
+import React, { Fragment } from 'react';
+import { useSelector, useStore } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import moment from 'moment';
+import { AllGamesList } from 'views/all-games/components/AllGamesList';
+import { getUpcomingGames } from 'utils/getUpcomingGames';
+import { loadGames } from 'utils/loadData';
+import { config } from 'config';
+import type { Game } from 'flow/game.flow';
+import type { StatelessFunctionalComponent, Element } from 'react';
 
-type Props = {}
+type Props = {};
 
 export const AllGamesView: StatelessFunctionalComponent<Props> = (
   props: Props
 ): Element<typeof Fragment> => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
-  const games: $ReadOnlyArray<Game> = useSelector(state => state.allGames.games)
-  const testTime: string = useSelector(state => state.admin.testTime)
+  const games: $ReadOnlyArray<Game> = useSelector(
+    state => state.allGames.games
+  );
+  const testTime: string = useSelector(state => state.admin.testTime);
   const hiddenGames: $ReadOnlyArray<Game> = useSelector(
     state => state.admin.hiddenGames
-  )
+  );
 
-  const [selectedView, setSelectedView] = React.useState('upcoming')
-  ;(selectedView: string)
+  const [selectedView, setSelectedView] = React.useState('upcoming');
+  (selectedView: string);
 
-  const [selectedTag, setSelectedTag] = React.useState('')
-  ;(selectedTag: string)
+  const [selectedTag, setSelectedTag] = React.useState('');
+  (selectedTag: string);
 
-  const [loading, setLoading] = React.useState(false)
-  ;(loading: boolean)
+  const [loading, setLoading] = React.useState(false);
+  (loading: boolean);
 
-  const store = useStore()
+  const store = useStore();
 
   React.useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     const fetchData = async (): Promise<any> => {
-      await loadGames(store)
-      setLoading(false)
-    }
-    fetchData()
-  }, [store])
+      await loadGames(store);
+      setLoading(false);
+    };
+    fetchData();
+  }, [store]);
 
   const getVisibleGames = (
     games: $ReadOnlyArray<Game>
   ): $ReadOnlyArray<Game> => {
-    const filteredGames = getTagFilteredGames(games)
+    const filteredGames = getTagFilteredGames(games);
 
     const visibleGames = filteredGames.filter(game => {
       const hidden = hiddenGames.find(
         hiddenGame => game.gameId === hiddenGame.gameId
-      )
-      if (!hidden) return game
-    })
+      );
+      if (!hidden) return game;
+    });
 
     if (selectedView === 'upcoming') {
-      return getUpcomingGames(visibleGames, testTime)
+      return getUpcomingGames(visibleGames, testTime);
     } else if (selectedView === 'revolving-door') {
       return getUpcomingGames(visibleGames, testTime).filter(
         game => game.revolvingDoor
-      )
+      );
     }
 
-    return visibleGames
-  }
+    return visibleGames;
+  };
 
   const getTagFilteredGames = (
     games: $ReadOnlyArray<Game>
   ): $ReadOnlyArray<Game> => {
-    if (!selectedTag) return games
-    return games.filter(game => game.tags.includes(selectedTag))
-  }
+    if (!selectedTag) return games;
+    return games.filter(game => game.tags.includes(selectedTag));
+  };
 
-  const tags = ['in-english', 'aloittelijaystavallinen', 'sopii-lapsille']
+  const tags = ['in-english', 'aloittelijaystavallinen', 'sopii-lapsille'];
 
   const tagsList = () => {
     return tags.map(tag => {
@@ -84,23 +86,23 @@ export const AllGamesView: StatelessFunctionalComponent<Props> = (
           {tag === 'aloittelijaystavallinen' && t(`gameTags.beginnerFriendly`)}
           {tag === 'sopii-lapsille' && t(`gameTags.childrenFriendly`)}
         </option>
-      )
-    })
-  }
+      );
+    });
+  };
 
   const getRunningRevolvingDoorGames = (games: $ReadOnlyArray<Game>) => {
-    const { useTestTime } = config
-    const timeNow = useTestTime ? moment(testTime) : moment()
+    const { useTestTime } = config;
+    const timeNow = useTestTime ? moment(testTime) : moment();
     const runningGames = games.filter(game => {
       return (
         game.revolvingDoor &&
         moment(game.startTime).isBefore(timeNow) &&
         moment(game.endTime).isAfter(timeNow)
-      )
-    })
+      );
+    });
 
     if (!runningGames || runningGames.length === 0) {
-      return <p>{t('noCurrentlyRunningGames')}</p>
+      return <p>{t('noCurrentlyRunningGames')}</p>;
     }
     return runningGames.map(game => {
       return (
@@ -110,9 +112,9 @@ export const AllGamesView: StatelessFunctionalComponent<Props> = (
             {game.shortDescription ? game.shortDescription : game.gameSystem}
           </p>
         </div>
-      )
-    })
-  }
+      );
+    });
+  };
 
   return (
     <Fragment>
@@ -166,5 +168,5 @@ export const AllGamesView: StatelessFunctionalComponent<Props> = (
 
       <AllGamesList games={getVisibleGames(games)} />
     </Fragment>
-  )
-}
+  );
+};

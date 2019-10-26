@@ -1,48 +1,48 @@
 // @flow
-import type { LocalStorageState } from 'flow/redux.flow'
+import type { LocalStorageState } from 'flow/redux.flow';
 
 export const loadSession = (): Object | void => {
   try {
-    const serializedState = localStorage.getItem('state')
+    const serializedState = localStorage.getItem('state');
     if (
       (serializedState !== null || serializedState !== '') &&
       typeof serializedState === 'string'
     ) {
-      return JSON.parse(serializedState)
+      return JSON.parse(serializedState);
     }
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
-}
+};
 
 export const saveSession = (state: LocalStorageState): void => {
   try {
-    const serializedState = JSON.stringify(state)
-    localStorage.setItem('state', serializedState)
+    const serializedState = JSON.stringify(state);
+    localStorage.setItem('state', serializedState);
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
-}
+};
 
 export const clearSession = (): void => {
   try {
-    localStorage.removeItem('state')
+    localStorage.removeItem('state');
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
-}
+};
 
 export const getLanguage = (): string => {
-  let language = null
+  let language = null;
   try {
-    language = localStorage.getItem('i18nextLng')
+    language = localStorage.getItem('i18nextLng');
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
 
   if (typeof language !== 'undefined' && typeof language === 'string') {
-    return language
+    return language;
   }
 
-  return 'eng'
-}
+  return 'eng';
+};

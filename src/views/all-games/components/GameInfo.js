@@ -1,22 +1,22 @@
 // @flow
-import React, { Fragment } from 'react'
-import { useTranslation } from 'react-i18next'
-import { timeFormatter } from 'utils/timeFormatter'
-import { getGameTags } from 'utils/getGameTags'
-import type { Game } from 'flow/game.flow'
-import type { StatelessFunctionalComponent, Element } from 'react'
+import React, { Fragment } from 'react';
+import { useTranslation } from 'react-i18next';
+import { timeFormatter } from 'utils/timeFormatter';
+import { getGameTags } from 'utils/getGameTags';
+import type { Game } from 'flow/game.flow';
+import type { StatelessFunctionalComponent, Element } from 'react';
 
 export type Props = {|
   game: Game,
-|}
+|};
 
 export const GameInfo: StatelessFunctionalComponent<Props> = (
   props: Props
 ): Element<'div'> => {
-  const { game } = props
-  const { t } = useTranslation()
+  const { game } = props;
+  const { t } = useTranslation();
 
-  if (!game) return <div className='game-details' />
+  if (!game) return <div className='game-details' />;
 
   const getGenres = (genresList: $ReadOnlyArray<string>) => {
     return genresList.map((genre, i) => {
@@ -25,9 +25,9 @@ export const GameInfo: StatelessFunctionalComponent<Props> = (
           <span className='no-wrap'>{t(`genre.${genre}`)}</span>
           <span>{i !== genresList.length - 1 ? ', ' : ''}</span>
         </span>
-      )
-    })
-  }
+      );
+    });
+  };
 
   const getStyles = (styles: $ReadOnlyArray<string>) => {
     return styles.map((style, i) => {
@@ -36,11 +36,11 @@ export const GameInfo: StatelessFunctionalComponent<Props> = (
           <span className='no-wrap'>{t(`gameStyle.${style}`)}</span>
           <span>{i !== styles.length - 1 ? ', ' : ''}</span>
         </span>
-      )
-    })
-  }
+      );
+    });
+  };
 
-  const tags = getGameTags(game)
+  const tags = getGameTags(game);
 
   const tagsList = tags.map((tag, i) => {
     return (
@@ -48,24 +48,24 @@ export const GameInfo: StatelessFunctionalComponent<Props> = (
         <span className='no-wrap'>{t(`gameTags.${tag}`)}</span>
         <span>{i !== tags.length - 1 ? ', ' : ''}</span>
       </span>
-    )
-  })
+    );
+  });
 
   const getFormattedStartTime = game =>
     timeFormatter.weekdayAndTime({
       time: game.startTime,
       capitalize: true,
-    })
+    });
 
-  const getFormattedEndTime = game => timeFormatter.time(game.endTime)
+  const getFormattedEndTime = game => timeFormatter.time(game.endTime);
 
   const getFormattedDuration = game => {
-    var hours = Math.floor(game.mins / 60)
-    var minutes = Math.round((game.mins / 60 - hours) * 60)
+    var hours = Math.floor(game.mins / 60);
+    var minutes = Math.round((game.mins / 60 - hours) * 60);
 
-    if (!minutes) return `${hours} ${t('hours')}`
-    else return `${hours} ${t('hours')} ${minutes} ${t('minutes')}`
-  }
+    if (!minutes) return `${hours} ${t('hours')}`;
+    else return `${hours} ${t('hours')} ${minutes} ${t('minutes')}`;
+  };
 
   return (
     <div className='game-details'>
@@ -204,5 +204,5 @@ export const GameInfo: StatelessFunctionalComponent<Props> = (
         </div>
       )}
     </div>
-  )
-}
+  );
+};

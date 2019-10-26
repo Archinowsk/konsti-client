@@ -24,14 +24,14 @@ export type Game = {|
   +shortDescription: string,
   +revolvingDoor: boolean,
   +popularity: number,
-|}
+|};
 
 export type DnDUpdatedPositions = {|
   +availableGames?: $ReadOnlyArray<Game>,
   +selectedGames?: $ReadOnlyArray<Game>,
-|}
+|};
 
 export type DnDMove = {|
   +index: number,
   +droppableId: string,
-|}
+|};

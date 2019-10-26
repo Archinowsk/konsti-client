@@ -1,33 +1,33 @@
 // @flow
-import React, { Fragment } from 'react'
-import { useSelector, useStore } from 'react-redux'
-import { useTranslation } from 'react-i18next'
-import { ResultsList } from 'views/results/components/ResultsList'
-import { timeFormatter } from 'utils/timeFormatter'
-import { loadResults, loadSettings } from 'utils/loadData'
-import type { Result } from 'flow/result.flow'
-import type { StatelessFunctionalComponent, Element } from 'react'
+import React, { Fragment } from 'react';
+import { useSelector, useStore } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { ResultsList } from 'views/results/components/ResultsList';
+import { timeFormatter } from 'utils/timeFormatter';
+import { loadResults, loadSettings } from 'utils/loadData';
+import type { Result } from 'flow/result.flow';
+import type { StatelessFunctionalComponent, Element } from 'react';
 
-type Props = {}
+type Props = {};
 
 export const ResultsView: StatelessFunctionalComponent<Props> = (
   props: Props
 ): Element<'div'> => {
   const result: $ReadOnlyArray<Result> = useSelector(
     state => state.results.result
-  )
-  const signupTime: string = useSelector(state => state.admin.signupTime)
-  const { t } = useTranslation()
+  );
+  const signupTime: string = useSelector(state => state.admin.signupTime);
+  const { t } = useTranslation();
 
-  const store = useStore()
+  const store = useStore();
 
   React.useEffect(() => {
     const fetchData = async (): Promise<any> => {
-      await loadSettings(store)
-      await loadResults(store)
-    }
-    fetchData()
-  }, [store])
+      await loadSettings(store);
+      await loadResults(store);
+    };
+    fetchData();
+  }, [store]);
 
   return (
     <div className='results-view'>
@@ -45,5 +45,5 @@ export const ResultsView: StatelessFunctionalComponent<Props> = (
         </Fragment>
       )}
     </div>
-  )
-}
+  );
+};

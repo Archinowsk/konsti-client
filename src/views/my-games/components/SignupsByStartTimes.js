@@ -1,21 +1,21 @@
 // @flow
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
-import { timeFormatter } from 'utils/timeFormatter'
-import type { Signup, EmptySignup } from 'flow/user.flow'
-import type { StatelessFunctionalComponent, Element } from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { timeFormatter } from 'utils/timeFormatter';
+import type { Signup, EmptySignup } from 'flow/user.flow';
+import type { StatelessFunctionalComponent, Element } from 'react';
 
 export type Props = {|
   signups: $ReadOnlyArray<Signup | EmptySignup>,
   startTimes: $ReadOnlyArray<string>,
-|}
+|};
 
 export const SignupsByStartTimes: StatelessFunctionalComponent<Props> = (
   props: Props
 ): Element<'div'> => {
-  const { signups, startTimes } = props
-  const { t } = useTranslation()
+  const { signups, startTimes } = props;
+  const { t } = useTranslation();
 
   const getGamesList = (startTime: string) => {
     return signups.map(signup => {
@@ -25,7 +25,7 @@ export const SignupsByStartTimes: StatelessFunctionalComponent<Props> = (
             <p key={signup.time} className='game-details-list'>
               {t('noSignupResult')}
             </p>
-          )
+          );
         } else {
           return (
             <p key={signup.gameDetails.gameId} className='game-details-list'>
@@ -33,11 +33,11 @@ export const SignupsByStartTimes: StatelessFunctionalComponent<Props> = (
                 {signup.gameDetails.title}
               </Link>
             </p>
-          )
+          );
         }
       }
-    })
-  }
+    });
+  };
 
   const startTimesList = startTimes.map(startTime => {
     return (
@@ -47,8 +47,8 @@ export const SignupsByStartTimes: StatelessFunctionalComponent<Props> = (
         </p>
         {getGamesList(startTime)}
       </div>
-    )
-  })
+    );
+  });
 
-  return <div className='start-times-list'>{startTimesList}</div>
-}
+  return <div className='start-times-list'>{startTimesList}</div>;
+};

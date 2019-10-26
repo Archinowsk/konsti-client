@@ -1,51 +1,51 @@
 // @flow
-import React, { Fragment } from 'react'
-import { useTranslation } from 'react-i18next'
-import { postFeedback } from 'services/feedbackServices'
-import type { Game } from 'flow/game.flow'
-import type { StatelessFunctionalComponent, Element } from 'react'
+import React, { Fragment } from 'react';
+import { useTranslation } from 'react-i18next';
+import { postFeedback } from 'services/feedbackServices';
+import type { Game } from 'flow/game.flow';
+import type { StatelessFunctionalComponent, Element } from 'react';
 
 export type Props = {|
   game: Game,
-|}
+|};
 
 export const FeedbackForm: StatelessFunctionalComponent<Props> = (
   props: Props
 ): Element<'div'> => {
-  const { game } = props
+  const { game } = props;
 
-  const [submitting, setSubmitting] = React.useState(false)
-  ;(submitting: boolean)
+  const [submitting, setSubmitting] = React.useState(false);
+  (submitting: boolean);
 
-  const [feedbackValue, setFeedbackValue] = React.useState('')
-  ;(feedbackValue: string)
+  const [feedbackValue, setFeedbackValue] = React.useState('');
+  (feedbackValue: string);
 
-  const [feedbackSent, setFeedbackSent] = React.useState(false)
-  ;(feedbackSent: boolean)
+  const [feedbackSent, setFeedbackSent] = React.useState(false);
+  (feedbackSent: boolean);
 
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   // Hide / unhide clicked
   const sendFeedbackEvent = async (): Promise<any> => {
-    setSubmitting(true)
+    setSubmitting(true);
 
     const feedbackData = {
       gameId: game.gameId,
       feedback: feedbackValue,
-    }
+    };
 
     try {
-      await postFeedback(feedbackData)
+      await postFeedback(feedbackData);
     } catch (error) {
-      console.log(`postFeedback error:`, error)
+      console.log(`postFeedback error:`, error);
     }
-    setFeedbackSent(true)
-    setSubmitting(false)
-  }
+    setFeedbackSent(true);
+    setSubmitting(false);
+  };
 
   const handleFeedbackChange = event => {
-    setFeedbackValue(event.target.value)
-  }
+    setFeedbackValue(event.target.value);
+  };
 
   return (
     <div className='feedback-form'>
@@ -69,5 +69,5 @@ export const FeedbackForm: StatelessFunctionalComponent<Props> = (
 
       {feedbackSent && <p className='success'>{t('button.feedbackSent')}</p>}
     </div>
-  )
-}
+  );
+};

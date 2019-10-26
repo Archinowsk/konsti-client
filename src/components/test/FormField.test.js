@@ -1,8 +1,8 @@
 // @flow
-import React from 'react'
-import { shallow } from 'enzyme'
-import { FormField } from '../FormField'
-import type { FieldProps } from 'redux-form'
+import React from 'react';
+import { shallow } from 'enzyme';
+import { FormField } from '../FormField';
+import type { FieldProps } from 'redux-form';
 
 describe('FormField', () => {
   it('should render correctly', () => {
@@ -35,8 +35,8 @@ describe('FormField', () => {
         onFocus: () => {},
       },
       custom: {},
-    }
-    const component = shallow(<FormField {...props} />)
-    expect(component).toMatchSnapshot()
-  })
-})
+    };
+    const component = shallow(<FormField {...props} />);
+    expect(component).toMatchSnapshot();
+  });
+});

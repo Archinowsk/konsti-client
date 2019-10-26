@@ -1,29 +1,29 @@
 // @flow
-import { postLogin } from 'services/loginServices'
-import { saveSession, clearSession } from 'utils/localStorage'
-import type { Login, LoginData } from 'flow/user.flow'
+import { postLogin } from 'services/loginServices';
+import { saveSession, clearSession } from 'utils/localStorage';
+import type { Login, LoginData } from 'flow/user.flow';
 
-export const SUBMIT_LOGIN = 'SUBMIT_LOGIN'
+export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
 
 export const submitLogin = (loginData: Login): Object => {
   return async (dispatch: Function): Promise<any> => {
-    let loginResponse = null
+    let loginResponse = null;
     try {
-      loginResponse = await postLogin(loginData)
+      loginResponse = await postLogin(loginData);
     } catch (error) {
-      console.log(`postLogin error:`, error)
-      clearSession()
-      return Promise.reject(loginResponse)
+      console.log(`postLogin error:`, error);
+      clearSession();
+      return Promise.reject(loginResponse);
     }
 
     if (loginResponse && loginResponse.error) {
-      clearSession()
-      return Promise.reject(loginResponse)
+      clearSession();
+      return Promise.reject(loginResponse);
     }
     if (loginResponse && loginResponse.status === 'success') {
       saveSession({
         login: { jwt: loginResponse.jwt },
-      })
+      });
 
       dispatch(
         submitLoginAsync({
@@ -34,12 +34,12 @@ export const submitLogin = (loginData: Login): Object => {
           serial: loginResponse.serial,
           groupCode: loginResponse.groupCode,
         })
-      )
+      );
     }
 
-    return loginResponse
-  }
-}
+    return loginResponse;
+  };
+};
 
 const submitLoginAsync = ({
   username,
@@ -57,5 +57,5 @@ const submitLoginAsync = ({
     userGroup,
     serial,
     groupCode,
-  }
-}
+  };
+};

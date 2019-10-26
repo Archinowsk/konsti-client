@@ -1,9 +1,9 @@
 // @flow
-import React from 'react'
-import { Provider } from 'react-redux'
-import { store } from 'utils/store'
-import { shallow } from 'enzyme'
-import { ResultsList } from '../ResultsList'
+import React from 'react';
+import { Provider } from 'react-redux';
+import { store } from 'utils/store';
+import { shallow } from 'enzyme';
+import { ResultsList } from '../ResultsList';
 
 describe('ResultsList', () => {
   it('should render correctly', () => {
@@ -11,7 +11,7 @@ describe('ResultsList', () => {
       <Provider store={store}>
         <ResultsList />
       </Provider>
-    )
-    expect(component).toMatchSnapshot()
-  })
-})
+    );
+    expect(component).toMatchSnapshot();
+  });
+});

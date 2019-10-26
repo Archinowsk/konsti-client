@@ -27,4 +27,4 @@ export const testGame = {
   shortDescription: 'Short description',
   revolvingDoor: true,
   popularity: 0,
-}
+};

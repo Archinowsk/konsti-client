@@ -1,30 +1,30 @@
 // @flow
-import React from 'react'
-import { useTranslation } from 'react-i18next'
-import _ from 'lodash'
-import { getStartTimes } from 'utils/getStartTimes'
-import { SignupsByStartTimes } from './SignupsByStartTimes'
-import type { Signup } from 'flow/user.flow'
-import type { StatelessFunctionalComponent, Element } from 'react'
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import _ from 'lodash';
+import { getStartTimes } from 'utils/getStartTimes';
+import { SignupsByStartTimes } from './SignupsByStartTimes';
+import type { Signup } from 'flow/user.flow';
+import type { StatelessFunctionalComponent, Element } from 'react';
 
 export type Props = {|
   signedGames: $ReadOnlyArray<Signup>,
-|}
+|};
 
 export const MySignupsList: StatelessFunctionalComponent<Props> = (
   props: Props
 ): Element<'div'> => {
-  const { signedGames } = props
-  const { t } = useTranslation()
+  const { signedGames } = props;
+  const { t } = useTranslation();
 
   const sortedSignups = _.sortBy(signedGames, [
     signedGame => signedGame.gameDetails.startTime,
     signedGame => signedGame.priority,
-  ])
+  ]);
 
   const startTimes = getStartTimes(
     signedGames.map(signedGame => signedGame.gameDetails)
-  )
+  );
 
   return (
     <div className='my-signups-list'>
@@ -39,5 +39,5 @@ export const MySignupsList: StatelessFunctionalComponent<Props> = (
         )}
       </div>
     </div>
-  )
-}
+  );
+};

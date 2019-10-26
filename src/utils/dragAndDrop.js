@@ -1,15 +1,15 @@
 // @flow
-import _ from 'lodash'
-import { moveArrayItem, insertByIndex } from 'utils/array'
-import type { Game, DnDUpdatedPositions, DnDMove } from 'flow/game.flow'
+import _ from 'lodash';
+import { moveArrayItem, insertByIndex } from 'utils/array';
+import type { Game, DnDUpdatedPositions, DnDMove } from 'flow/game.flow';
 
 export const reorder = (
   list: $ReadOnlyArray<Game>,
   startIndex: number,
   endIndex: number
 ): $ReadOnlyArray<Game> => {
-  return moveArrayItem(list, startIndex, endIndex)
-}
+  return moveArrayItem(list, startIndex, endIndex);
+};
 
 export const move = (
   sourceList: $ReadOnlyArray<Game>,
@@ -28,5 +28,5 @@ export const move = (
       sourceList[sourceMove.index],
       destinationMove.index
     ),
-  }
-}
+  };
+};

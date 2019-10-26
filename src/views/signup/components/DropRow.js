@@ -1,39 +1,39 @@
 // @flow
-import React, { Fragment } from 'react'
-import { useTranslation } from 'react-i18next'
+import React, { Fragment } from 'react';
+import { useTranslation } from 'react-i18next';
 /* $FlowFixMe: Cannot import `Droppable` because there is no `Droppable` export in `react-beautiful-dnd`. */
-import { Droppable, Draggable } from 'react-beautiful-dnd'
-import { Link } from 'react-router-dom'
-import type { Game } from 'flow/game.flow'
-import type { StatelessFunctionalComponent, Element } from 'react'
+import { Droppable, Draggable } from 'react-beautiful-dnd';
+import { Link } from 'react-router-dom';
+import type { Game } from 'flow/game.flow';
+import type { StatelessFunctionalComponent, Element } from 'react';
 
 export type Props = {|
   droppableId: string,
   games: $ReadOnlyArray<Game>,
   label: string,
   showCount: boolean,
-|}
+|};
 
 export const DropRow: StatelessFunctionalComponent<Props> = (
   props: Props
 ): Element<typeof Fragment> => {
-  const { droppableId, games, label, showCount } = props
-  const { t } = useTranslation()
+  const { droppableId, games, label, showCount } = props;
+  const { t } = useTranslation();
 
   const getListStyle = dragging => {
-    if (dragging) return 'dragging'
-    else return ''
-  }
+    if (dragging) return 'dragging';
+    else return '';
+  };
 
   const getPopularity = (game: Game): string => {
-    if (game.popularity >= game.maxAttendance) return 'high-popularity'
+    if (game.popularity >= game.maxAttendance) return 'high-popularity';
     else if (
       game.popularity >= game.maxAttendance / 2 &&
       game.popularity >= game.minAttendance
     )
-      return 'medium-popularity'
-    else return 'low-popularity'
-  }
+      return 'medium-popularity';
+    else return 'low-popularity';
+  };
 
   return (
     <Fragment>
@@ -83,5 +83,5 @@ export const DropRow: StatelessFunctionalComponent<Props> = (
         )}
       </Droppable>
     </Fragment>
-  )
-}
+  );
+};

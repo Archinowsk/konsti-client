@@ -1,9 +1,9 @@
 // @flow
-import React from 'react'
-import { Provider } from 'react-redux'
-import { store } from 'utils/store'
-import { shallow } from 'enzyme'
-import { HelperView } from '../HelperView'
+import React from 'react';
+import { Provider } from 'react-redux';
+import { store } from 'utils/store';
+import { shallow } from 'enzyme';
+import { HelperView } from '../HelperView';
 
 describe('HelperView', () => {
   it('should render correctly', () => {
@@ -11,7 +11,7 @@ describe('HelperView', () => {
       <Provider store={store}>
         <HelperView />
       </Provider>
-    )
-    expect(component).toMatchSnapshot()
-  })
-})
+    );
+    expect(component).toMatchSnapshot();
+  });
+});

@@ -1,25 +1,25 @@
 // @flow
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useTranslation } from 'react-i18next'
-import _ from 'lodash'
-import moment from 'moment'
-import { submitSetTestTime } from 'views/admin/adminActions'
-import { TimesDropdown } from 'components/TimesDropdown'
-import { config } from 'config'
-import type { StatelessFunctionalComponent, Element } from 'react'
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import _ from 'lodash';
+import moment from 'moment';
+import { submitSetTestTime } from 'views/admin/adminActions';
+import { TimesDropdown } from 'components/TimesDropdown';
+import { config } from 'config';
+import type { StatelessFunctionalComponent, Element } from 'react';
 
-type Props = {}
+type Props = {};
 
 export const TimeSelector: StatelessFunctionalComponent<Props> = (
   props: Props
 ): Element<'div'> => {
-  const testTime: string = useSelector(state => state.admin.testTime)
+  const testTime: string = useSelector(state => state.admin.testTime);
 
-  const dispatch = useDispatch()
-  const { t } = useTranslation()
+  const dispatch = useDispatch();
+  const { t } = useTranslation();
 
-  const { CONVENTION_START_TIME } = config
+  const { CONVENTION_START_TIME } = config;
   const times = [
     moment(CONVENTION_START_TIME)
       .subtract(2, 'hours')
@@ -68,15 +68,15 @@ export const TimeSelector: StatelessFunctionalComponent<Props> = (
       .add(40, 'hours')
       .add(45, 'minutes')
       .format(),
-  ]
+  ];
 
   React.useEffect(() => {
-    if (!testTime) dispatch(submitSetTestTime(_.first(times)))
-  })
+    if (!testTime) dispatch(submitSetTestTime(_.first(times)));
+  });
 
   const setTestTime = event => {
-    dispatch(submitSetTestTime(event.target.value))
-  }
+    dispatch(submitSetTestTime(event.target.value));
+  };
 
   return (
     <div className='time-selector'>
@@ -87,5 +87,5 @@ export const TimeSelector: StatelessFunctionalComponent<Props> = (
         onChange={event => setTestTime(event)}
       />
     </div>
-  )
-}
+  );
+};

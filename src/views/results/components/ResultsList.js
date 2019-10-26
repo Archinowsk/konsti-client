@@ -1,29 +1,29 @@
 // @flow
-import React from 'react'
-import { useTranslation } from 'react-i18next'
-import { ResultsByGameTitle } from './ResultsByGameTitle'
-import { ResultsByUsername } from './ResultsByUsername'
-import type { Result } from 'flow/result.flow'
-import type { StatelessFunctionalComponent, Element } from 'react'
+import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { ResultsByGameTitle } from './ResultsByGameTitle';
+import { ResultsByUsername } from './ResultsByUsername';
+import type { Result } from 'flow/result.flow';
+import type { StatelessFunctionalComponent, Element } from 'react';
 
 export type Props = {|
   results: $ReadOnlyArray<Result>,
-|}
+|};
 
 export const ResultsList: StatelessFunctionalComponent<Props> = (
   props: Props
 ): Element<'div'> => {
-  const { results } = props
-  const { t } = useTranslation()
+  const { results } = props;
+  const { t } = useTranslation();
 
-  const [sortedBy, setSortedBy] = React.useState('')
-  ;(sortedBy: string)
+  const [sortedBy, setSortedBy] = React.useState('');
+  (sortedBy: string);
 
   React.useEffect(() => {
-    setSortedBy('username')
-  }, [])
+    setSortedBy('username');
+  }, []);
 
-  const buttons = ['username', 'gameTitle']
+  const buttons = ['username', 'gameTitle'];
 
   return (
     <div className='results-list'>
@@ -40,11 +40,11 @@ export const ResultsList: StatelessFunctionalComponent<Props> = (
             >
               {t(name)}
             </button>
-          )
+          );
         })}
       </div>
       {sortedBy === 'username' && <ResultsByUsername results={results} />}
       {sortedBy === 'gameTitle' && <ResultsByGameTitle results={results} />}
     </div>
-  )
-}
+  );
+};

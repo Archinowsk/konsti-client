@@ -1,18 +1,18 @@
 // @flow
-import i18next from 'i18next'
-import backend from 'i18next-xhr-backend'
-import languageDetector from 'i18next-browser-languagedetector'
-import { initReactI18next } from 'react-i18next'
-import en from 'locales/en.json'
-import fi from 'locales/fi.json'
+import i18next from 'i18next';
+import backend from 'i18next-xhr-backend';
+import languageDetector from 'i18next-browser-languagedetector';
+import { initReactI18next } from 'react-i18next';
+import en from 'locales/en.json';
+import fi from 'locales/fi.json';
 
 const loadLocales = (url: string, options: Object, callback: Function) => {
   if (url === 'en') {
-    callback(en, { status: '200' })
+    callback(en, { status: '200' });
   } else if (url === 'fi') {
-    callback(fi, { status: '200' })
+    callback(fi, { status: '200' });
   }
-}
+};
 
 i18next
   .use(backend)
@@ -32,4 +32,4 @@ i18next
     detection: {
       order: ['localStorage'],
     },
-  })
+  });
