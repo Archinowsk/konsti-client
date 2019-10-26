@@ -2,12 +2,14 @@
 import { api } from 'utils/api'
 import { getJWT } from 'utils/getJWT'
 
-export const postPlayersAssign = async (signupTime: string): Promise<any> => {
+export const postPlayerAssignment = async (
+  signupTime: string
+): Promise<any> => {
   api.defaults.headers.common.Authorization = `Bearer ${getJWT()}`
 
   let response = null
   try {
-    response = await api.post('/players', { startingTime: signupTime })
+    response = await api.post('/assignment', { startingTime: signupTime })
   } catch (error) {
     if (error.message === 'Network Error') {
       console.log('Network error: no connection to server')

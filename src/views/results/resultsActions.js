@@ -1,5 +1,5 @@
 // @flow
-import { postPlayersAssign } from 'services/playersServices'
+import { postPlayerAssignment } from 'services/assignmentServices'
 import { getResults } from 'services/resultsServices'
 import type { ResultsState } from 'flow/redux.flow'
 
@@ -34,7 +34,7 @@ export const submitPlayersAssign = (signupTime: string): Object => {
   return async (dispatch: Function): Promise<any> => {
     let assignResponse = null
     try {
-      assignResponse = await postPlayersAssign(signupTime)
+      assignResponse = await postPlayerAssignment(signupTime)
     } catch (error) {
       console.log(`postPlayersAssign error:`, error)
     }
