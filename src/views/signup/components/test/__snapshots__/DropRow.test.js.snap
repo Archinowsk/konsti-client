@@ -14,9 +14,12 @@ exports[`DropRow should render correctly 1`] = `
   <Connect(Droppable)
     direction="vertical"
     droppableId="testId"
+    getContainerForClone={[Function]}
     ignoreContainerClipping={false}
     isCombineEnabled={false}
     isDropDisabled={false}
+    mode="standard"
+    renderClone={null}
     type="DEFAULT"
   >
     <Component />
