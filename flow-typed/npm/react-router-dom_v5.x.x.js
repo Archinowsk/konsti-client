@@ -1,5 +1,5 @@
-// flow-typed signature: 89c18de161cf5e6dbd37c74f6267e4bc
-// flow-typed version: a027b02c08/react-router-dom_v5.x.x/flow_>=v0.104.x
+// flow-typed signature: 61442766b80be7b4f6daba9b595c48ca
+// flow-typed version: 822e55b7ba/react-router-dom_v5.x.x/flow_>=v0.104.x
 
 declare module "react-router-dom" {
   declare export var BrowserRouter: React$ComponentType<{|
@@ -181,7 +181,7 @@ declare module "react-router-dom" {
   declare export function useHistory(): $PropertyType<ContextRouter, 'history'>;
   declare export function useLocation(): $PropertyType<ContextRouter, 'location'>;
   declare export function useParams(): $PropertyType<$PropertyType<ContextRouter, 'match'>, 'params'>;
-  declare export function useRouteMatch(path?: string): $PropertyType<ContextRouter, 'match'>;
+  declare export function useRouteMatch(path?: MatchPathOptions | string | string[]): $PropertyType<ContextRouter, 'match'>;
 
   declare export function generatePath(pattern?: string, params?: { +[string]: mixed, ... }): string;
 }
