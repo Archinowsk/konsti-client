@@ -3,7 +3,7 @@ import { api } from 'utils/api';
 import { getJWT } from 'utils/getJWT';
 import type { Feedback } from 'flow/feedback.flow';
 
-export const postFeedback = async (feedbackData: Feedback): Promise<any> => {
+export const postFeedback = async (feedbackData: Feedback): Promise<void> => {
   api.defaults.headers.common.Authorization = `Bearer ${getJWT()}`;
 
   let response = null;

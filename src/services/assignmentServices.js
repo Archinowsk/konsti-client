@@ -4,7 +4,7 @@ import { getJWT } from 'utils/getJWT';
 
 export const postPlayerAssignment = async (
   signupTime: string
-): Promise<any> => {
+): Promise<void> => {
   api.defaults.headers.common.Authorization = `Bearer ${getJWT()}`;
 
   let response = null;

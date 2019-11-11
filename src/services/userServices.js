@@ -5,7 +5,7 @@ import type { RegistrationData } from 'flow/user.flow';
 
 export const postRegistration = async (
   registrationData: RegistrationData
-): Promise<any> => {
+): Promise<void> => {
   const { username, password, serial } = registrationData;
 
   let response = null;
@@ -29,7 +29,7 @@ export const postRegistration = async (
   }
 };
 
-export const getUser = async (username: string): Promise<any> => {
+export const getUser = async (username: string): Promise<void> => {
   api.defaults.headers.common.Authorization = `Bearer ${getJWT()}`;
 
   let response = null;
@@ -57,7 +57,7 @@ export const getUser = async (username: string): Promise<any> => {
   }
 };
 
-export const getUserBySerial = async (serial: string): Promise<any> => {
+export const getUserBySerial = async (serial: string): Promise<void> => {
   api.defaults.headers.common.Authorization = `Bearer ${getJWT()}`;
 
   let response = null;
@@ -90,7 +90,7 @@ export const updateUserPassword = async (
   serial: string,
   password: string,
   changePassword: boolean
-): Promise<any> => {
+): Promise<void> => {
   let response = null;
   try {
     response = await api.post('/user', {

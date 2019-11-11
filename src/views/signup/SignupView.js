@@ -26,7 +26,7 @@ export const SignupView: StatelessFunctionalComponent<Props> = (
   const store = useStore();
 
   React.useEffect(() => {
-    const fetchData = async (): Promise<any> => {
+    const fetchData = async (): Promise<void> => {
       await loadUser(store);
       await loadGroupMembers(store);
     };

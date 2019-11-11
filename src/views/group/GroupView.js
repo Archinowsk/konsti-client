@@ -55,7 +55,7 @@ export const GroupView: StatelessFunctionalComponent<Props> = (
   const store = useStore();
 
   React.useEffect(() => {
-    const fetchData = async (): Promise<any> => {
+    const fetchData = async (): Promise<void> => {
       await loadGroupMembers(store);
     };
     fetchData();
@@ -71,7 +71,7 @@ export const GroupView: StatelessFunctionalComponent<Props> = (
     setShowCreateGroup(false);
   };
 
-  const createGroup = async (): Promise<any> => {
+  const createGroup = async (): Promise<void> => {
     const groupData = {
       username: username,
       groupCode: serial,
@@ -90,7 +90,7 @@ export const GroupView: StatelessFunctionalComponent<Props> = (
   };
 
   // Remove all signups
-  const removeSignups = async (): Promise<any> => {
+  const removeSignups = async (): Promise<void> => {
     const signupData = {
       username,
       selectedGames: [],
@@ -100,7 +100,7 @@ export const GroupView: StatelessFunctionalComponent<Props> = (
     await dispatch(submitSignup(signupData));
   };
 
-  const joinGroup = async (): Promise<any> => {
+  const joinGroup = async (): Promise<void> => {
     const groupData = {
       username: username,
       groupCode: joinGroupValue,
@@ -133,7 +133,7 @@ export const GroupView: StatelessFunctionalComponent<Props> = (
     }
   };
 
-  const leaveGroup = async ({ leader }): Promise<any> => {
+  const leaveGroup = async ({ leader }): Promise<void> => {
     setLoading(true);
 
     const groupData = {
@@ -205,7 +205,7 @@ export const GroupView: StatelessFunctionalComponent<Props> = (
     return false;
   };
 
-  const showMessage = async ({ message, style }): Promise<any> => {
+  const showMessage = async ({ message, style }): Promise<void> => {
     setMessage(message);
     setMessageStyle(style);
     await sleep(config.MESSAGE_DELAY);

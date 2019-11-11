@@ -57,7 +57,7 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
     if (!selectedGames) dispatch(submitSelectedGames(signedGames));
   }, [dispatch, selectedGames, signedGames]);
 
-  const onSubmitClick = async (): Promise<any> => {
+  const onSubmitClick = async (): Promise<void> => {
     setSubmitting(true);
 
     const signupData = {
@@ -85,7 +85,7 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
     setSubmitting(false);
   };
 
-  const onCancelClick = async (): Promise<any> => {
+  const onCancelClick = async (): Promise<void> => {
     setSubmitting(true);
 
     const gamesWithDifferentTime = selectedGames.filter(selectedGame => {
@@ -188,7 +188,7 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
     dispatch(submitSignupTime(signupTime));
   };
 
-  const showMessage = async (message): Promise<any> => {
+  const showMessage = async (message): Promise<void> => {
     if (message === 'signupSubmitted') {
       setSignupSubmitted(true);
     } else if (message === 'signupError') {

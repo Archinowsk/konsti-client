@@ -27,7 +27,7 @@ export const App: StatelessFunctionalComponent<Props> = (
 
   React.useEffect(() => {
     setLoading(true);
-    const fetchData = async (): Promise<any> => {
+    const fetchData = async (): Promise<void> => {
       await loadData(store);
       setLoading(false);
     };

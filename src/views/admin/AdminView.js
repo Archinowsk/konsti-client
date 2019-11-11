@@ -75,7 +75,7 @@ export const AdminView: StatelessFunctionalComponent<Props> = (
     return [...Array.from(new Set(startTimes))].sort();
   };
 
-  const submitUpdate = async (): Promise<any> => {
+  const submitUpdate = async (): Promise<void> => {
     setSubmitting(true);
     try {
       await dispatch(submitGamesUpdate());
@@ -85,7 +85,7 @@ export const AdminView: StatelessFunctionalComponent<Props> = (
     setSubmitting(false);
   };
 
-  const submitAssign = async (): Promise<any> => {
+  const submitAssign = async (): Promise<void> => {
     setSubmitting(true);
 
     showMessage({
@@ -114,7 +114,7 @@ export const AdminView: StatelessFunctionalComponent<Props> = (
     }
   };
 
-  const submitTime = async (): Promise<any> => {
+  const submitTime = async (): Promise<void> => {
     setSubmitting(true);
     try {
       await dispatch(submitSignupTime(selectedSignupTime));
@@ -124,7 +124,7 @@ export const AdminView: StatelessFunctionalComponent<Props> = (
     setSubmitting(false);
   };
 
-  const toggleAppOpen = async (): Promise<any> => {
+  const toggleAppOpen = async (): Promise<void> => {
     setSubmitting(true);
     try {
       await dispatch(submitToggleAppOpen(!appOpen));

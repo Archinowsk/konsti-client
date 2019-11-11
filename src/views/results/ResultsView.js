@@ -22,7 +22,7 @@ export const ResultsView: StatelessFunctionalComponent<Props> = (
   const store = useStore();
 
   React.useEffect(() => {
-    const fetchData = async (): Promise<any> => {
+    const fetchData = async (): Promise<void> => {
       await loadSettings(store);
       await loadResults(store);
     };

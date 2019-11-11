@@ -6,7 +6,7 @@ import type { RegistrationData } from 'flow/user.flow';
 export const submitRegistration = (
   registrationData: RegistrationData
 ): Object => {
-  return async (dispatch: Function): Promise<any> => {
+  return async (dispatch: Function): Promise<void> => {
     let registrationResponse = null;
     try {
       registrationResponse = await postRegistration(registrationData);

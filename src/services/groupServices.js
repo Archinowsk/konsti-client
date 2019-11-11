@@ -3,7 +3,7 @@ import { api } from 'utils/api';
 import { getJWT } from 'utils/getJWT';
 import type { GroupData } from 'flow/group.flow';
 
-export const postGroup = async (groupData: GroupData): Promise<any> => {
+export const postGroup = async (groupData: GroupData): Promise<void> => {
   api.defaults.headers.common.Authorization = `Bearer ${getJWT()}`;
 
   let response = null;
@@ -27,7 +27,7 @@ export const postGroup = async (groupData: GroupData): Promise<any> => {
   }
 };
 
-export const getGroup = async (groupCode: string): Promise<any> => {
+export const getGroup = async (groupCode: string): Promise<void> => {
   api.defaults.headers.common.Authorization = `Bearer ${getJWT()}`;
 
   let response = null;

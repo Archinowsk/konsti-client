@@ -6,7 +6,7 @@ import type { Login, LoginData } from 'flow/user.flow';
 export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
 
 export const submitLogin = (loginData: Login): Object => {
-  return async (dispatch: Function): Promise<any> => {
+  return async (dispatch: Function): Promise<void> => {
     let loginResponse = null;
     try {
       loginResponse = await postLogin(loginData);

@@ -85,7 +85,7 @@ export const GameDetails: StatelessFunctionalComponent<Props> = (
   };
 
   // Favorite / unfavorite clicked
-  const updateFavorite = async (action): Promise<any> => {
+  const updateFavorite = async (action): Promise<void> => {
     if (!game || !game.gameId) return;
 
     setSubmitting(true);
@@ -126,7 +126,7 @@ export const GameDetails: StatelessFunctionalComponent<Props> = (
   };
 
   // Hide / unhide clicked
-  const updateHidden = async (action): Promise<any> => {
+  const updateHidden = async (action): Promise<void> => {
     if (!game || !game.gameId) return;
 
     setSubmitting(true);
