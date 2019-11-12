@@ -84,7 +84,7 @@ export const GameDetails: StatelessFunctionalComponent<Props> = (
     return -1;
   };
 
-  // Favorite / unfavorite clicked
+  // Favorite / remove favorite clicked
   const updateFavorite = async (action): Promise<void> => {
     if (!game || !game.gameId) return;
 
@@ -125,7 +125,7 @@ export const GameDetails: StatelessFunctionalComponent<Props> = (
     }
   };
 
-  // Hide / unhide clicked
+  // Hide / show clicked
   const updateHidden = async (action): Promise<void> => {
     if (!game || !game.gameId) return;
 
@@ -190,7 +190,7 @@ export const GameDetails: StatelessFunctionalComponent<Props> = (
 
         {hidden && loggedIn && userGroup === 'admin' && game && (
           <button disabled={submitting} onClick={() => updateHidden('del')}>
-            {t('button.unhide')}
+            {t('button.show')}
           </button>
         )}
 

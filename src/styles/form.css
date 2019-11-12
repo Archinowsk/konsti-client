@@ -29,7 +29,7 @@
 
 .form-field-error {
   display: flex;
-  background-color: $background-hilight;
+  background-color: $background-highlight;
   color: $error;
   width: 50%;
 }
