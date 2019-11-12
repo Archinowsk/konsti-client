@@ -1,18 +1,18 @@
 // @flow
-import { CleanWebpackPlugin } from 'clean-webpack-plugin'
-import CompressionPlugin from 'compression-webpack-plugin'
-import CopyWebpackPlugin from 'copy-webpack-plugin'
-import ExtractTextWebpackPlugin from 'extract-text-webpack-plugin'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
-import TemplateWebpackPlugin from 'html-webpack-template'
-import MomentLocalesPlugin from 'moment-locales-webpack-plugin'
-import TerserPlugin from 'terser-webpack-plugin'
-import BrotliPlugin from 'brotli-webpack-plugin'
-import Dotenv from 'dotenv-webpack'
-import path from 'path'
-import webpack from 'webpack'
-import webpackMerge from 'webpack-merge'
-import { config } from './src/config'
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import CompressionPlugin from 'compression-webpack-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
+import ExtractTextWebpackPlugin from 'extract-text-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import TemplateWebpackPlugin from 'html-webpack-template';
+import MomentLocalesPlugin from 'moment-locales-webpack-plugin';
+import TerserPlugin from 'terser-webpack-plugin';
+import BrotliPlugin from 'brotli-webpack-plugin';
+import Dotenv from 'dotenv-webpack';
+import path from 'path';
+import webpack from 'webpack';
+import webpackMerge from 'webpack-merge';
+import { config } from './src/config';
 
 const stats = {
   // assets: false,
@@ -24,7 +24,7 @@ const stats = {
   // timings: false,
   // version: false,
   // warnings: true,
-}
+};
 
 const commonConfig = {
   target: 'web',
@@ -95,7 +95,7 @@ const commonConfig = {
       },
     ],
   },
-}
+};
 
 const devConfig = {
   mode: 'development',
@@ -142,7 +142,7 @@ const devConfig = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(), // Enable HMR globally
   ],
-}
+};
 
 const prodConfig = {
   mode: 'production',
@@ -216,15 +216,15 @@ const prodConfig = {
           name(module) {
             const packageName = module.context.match(
               /[\\/]node_modules[\\/](.*?)([\\/]|$)/
-            )[1]
+            )[1];
 
-            return `npm.${packageName.replace('@', '')}`
+            return `npm.${packageName.replace('@', '')}`;
           },
         },
       },
     },
   },
-}
+};
 
 const stagingConfig = {
   mode: 'production',
@@ -296,32 +296,32 @@ const stagingConfig = {
           name(module) {
             const packageName = module.context.match(
               /[\\/]node_modules[\\/](.*?)([\\/]|$)/
-            )[1]
+            )[1];
 
-            return `npm.${packageName.replace('@', '')}`
+            return `npm.${packageName.replace('@', '')}`;
           },
         },
       },
     },
   },
-}
+};
 
 const getWebpackConfig = () => {
-  const TARGET = process.env.npm_lifecycle_event
+  const TARGET = process.env.npm_lifecycle_event;
 
   if (TARGET === 'build' || TARGET === 'bundle-analyze') {
-    return webpackMerge(commonConfig, prodConfig)
+    return webpackMerge(commonConfig, prodConfig);
   } else if (TARGET === 'build-staging') {
-    return webpackMerge(commonConfig, stagingConfig)
+    return webpackMerge(commonConfig, stagingConfig);
   } else if (
     TARGET === 'start' ||
     TARGET === 'watch' ||
     TARGET === 'build-dev'
   ) {
-    return webpackMerge(commonConfig, devConfig)
+    return webpackMerge(commonConfig, devConfig);
   }
-}
+};
 
-const webpackConfig = getWebpackConfig()
+const webpackConfig = getWebpackConfig();
 
-export default webpackConfig
+export default webpackConfig;
