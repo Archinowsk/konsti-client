@@ -20,8 +20,8 @@ export const submitGetResults = (startTime: string): Object => {
     if (getResultsResponse && getResultsResponse.status === 'success') {
       dispatch(
         submitGetResultsAsync({
-          result: getResultsResponse.results.result,
-          startTime: getResultsResponse.results.startTime,
+          result: getResultsResponse.results,
+          startTime: getResultsResponse.startTime,
         })
       );
     }
