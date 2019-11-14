@@ -188,7 +188,7 @@
   "noSignupResult": "Et mahtunut peliin tällä alkamisajankohdalla",
   "invalidGameId": "Peliä ei löydy. Viallinen pelitunniste",
   "feedbackTitle": "Palaute",
-  "feedbackInstruction": "Piditkö pelistä? Lähetä palautetta pelinjohtajalle! Palautteet toimitetaan Ropeconin jälkeen.",
+  "feedbackInstruction": "Piditkö pelistä? Lähetä palautetta pelinjohtajalle! Palautteet toimitetaan tapahtuman jälkeen.",
   "noProgramItemsAvailable": "Ei näytettäviä pelejä",
   "noGamesInDatabase": "Ei pelejä tietokannassa",
   "upcomingGames": "Tulevat pelit",

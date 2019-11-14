@@ -187,7 +187,7 @@
   "noSignupResult": "You didn't get into a game for this starting time",
   "invalidGameId": "Game not found. Invalid game ID",
   "feedbackTitle": "Feedback",
-  "feedbackInstruction": "Did you enjoy the game? Send feedback to the game master! They will receive it after Ropecon.",
+  "feedbackInstruction": "Did you enjoy the game? Send feedback to the game master! They will receive it after the event.",
   "noProgramItemsAvailable": "No games found",
   "noGamesInDatabase": "No games in database",
   "upcomingGames": "Upcoming games",
