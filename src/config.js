@@ -26,6 +26,7 @@ const commonConfig = {
   CONVENTION_START_TIME: '2019-07-26T12:00:00Z', // UTC date
   DAY_START_TIME: 8, // 08:00
   noSignupGames: [],
+  revolvingDoorEnabled: false,
 
   // Dev
   reduxTrace: true,

@@ -134,12 +134,14 @@ export const AllGamesView: StatelessFunctionalComponent<Props> = (
             {t('allGames')}
           </button>
 
-          <button
-            onClick={() => setSelectedView('revolving-door')}
-            disabled={selectedView === 'revolving-door'}
-          >
-            {t('revolvingDoor')}
-          </button>
+          {config.revolvingDoorEnabled && (
+            <button
+              onClick={() => setSelectedView('revolving-door')}
+              disabled={selectedView === 'revolving-door'}
+            >
+              {t('revolvingDoor')}
+            </button>
+          )}
         </div>
 
         <div className='tags-dropdown'>

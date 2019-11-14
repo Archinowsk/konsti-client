@@ -17,4 +17,5 @@ export type Config = {|
   +enableWhyDidYouRender: boolean,
   +dataUpdateInterval: number,
   +noSignupGames: Array<string>,
+  +revolvingDoorEnabled: boolean,
 |};
