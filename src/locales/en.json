@@ -1,6 +1,6 @@
 {
   "appTitle": "Konsti",
-  "appDescription": "{{CONVENTION_NAME}} {{CONVENTION_YEAR}} Tabletop RPG Signup",
+  "appDescription": "{{CONVENTION_NAME}} {{CONVENTION_YEAR}} RPG Signup",
   "footer": "Footer",
   "button": {
     "logout": "Logout",
