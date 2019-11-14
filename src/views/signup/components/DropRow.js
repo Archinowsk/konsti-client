@@ -56,25 +56,26 @@ export const DropRow: StatelessFunctionalComponent<Props> = (
                 index={index}
               >
                 {(provided, snapshot) => (
-                  <div
-                    className={`draggable-item ${getPopularity(game)}`}
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                  >
-                    <p className='signup-game-title break-long'>{game.title}</p>
-                    <p className='signup-short-description break-long'>
-                      {game.shortDescription
-                        ? game.shortDescription
-                        : game.gameSystem}
-
-                      {' - '}
-                      <Link to={`/games/${game.gameId}`}>{t('details')}</Link>
-                    </p>
-                    <p className='signup-popularity'>
-                      {t('playerStatus')}: {t(getPopularity(game))}
-                    </p>
-                  </div>
+                  <Link to={`/games/${game.gameId}`}>
+                    <div
+                      className={`draggable-item ${getPopularity(game)}`}
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                    >
+                      <p className='signup-game-title break-long'>
+                        {game.title}
+                      </p>
+                      <p className='signup-short-description break-long'>
+                        {game.shortDescription
+                          ? game.shortDescription
+                          : game.gameSystem}
+                      </p>
+                      <p className='signup-popularity'>
+                        {t('playerStatus')}: {t(getPopularity(game))}
+                      </p>
+                    </div>
+                  </Link>
                 )}
               </Draggable>
             ))}
