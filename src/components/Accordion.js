@@ -24,6 +24,11 @@ export const Accordion: StatelessFunctionalComponent<Props> = (
     setOpen(!open);
   };
 
+  const splitTextRows = (text: string) => {
+    const rows = t(text).split('\n');
+    return rows.map(row => <p key={row}>{row}</p>);
+  };
+
   return (
     <div className='accordion'>
       {open && (
@@ -34,7 +39,7 @@ export const Accordion: StatelessFunctionalComponent<Props> = (
           </button>
           <div className='accordion-content'>
             <h3>{t(`${title}`)}</h3>
-            <p>{t(`${text}`)}</p>
+            <div>{splitTextRows(text)}</div>
           </div>
         </Fragment>
       )}
