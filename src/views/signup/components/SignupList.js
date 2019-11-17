@@ -103,7 +103,7 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
     const signupData = {
       username,
       selectedGames: gamesWithDifferentTime,
-      signupTime: 'all',
+      signupTime: signupTime,
     };
 
     let signupResponse = null;
@@ -117,9 +117,13 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
       showMessage('signupSubmitted');
       dispatch(submitSelectedGames(signupResponse.signedGames));
     } else if (signupResponse && signupResponse.status === 'error') {
-      showMessage('signupError');
-      setSignupError('signupError');
+      if (signupResponse.code === 41) {
+        showMessage('signupEnded');
+      } else {
+        showMessage('signupError');
+      }
     }
+
     setSubmitting(false);
   };
 
