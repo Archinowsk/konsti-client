@@ -45,7 +45,8 @@
 
 .draggable-item:hover,
 .draggable-item:focus {
-  background-color: $background-hover;
+  /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
+  filter: brightness(90%);
 }
 
 .signup-list {
