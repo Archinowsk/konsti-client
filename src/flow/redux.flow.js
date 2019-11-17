@@ -38,7 +38,8 @@ export type ResultsState = {|
 
 export type SignupState = {|
   +signupTime: string,
-  +selectedGames: $ReadOnlyArray<Signup> | null,
+  +selectedGames: $ReadOnlyArray<Signup>,
+  +unsavedChanges: boolean,
 |};
 
 export type LocalStorageState = {|

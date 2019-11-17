@@ -3,12 +3,12 @@ import React, { Fragment } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import _ from 'lodash';
-import { usePrevious } from 'react-use';
 import { timeFormatter } from 'utils/timeFormatter';
 import {
   submitSignup,
   submitSelectedGames,
   submitSignupTime,
+  updateUnsavedChangesStatus,
 } from 'views/signup/signupActions';
 // import { submitGetGamesAsync } from 'views/all-games/allGamesActions';
 import { DragAndDropList } from 'views/signup/components/DragAndDropList';
@@ -41,6 +41,9 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
   const selectedGames: $ReadOnlyArray<Signup> = useSelector(
     state => state.signup.selectedGames
   );
+  const unsavedChanges: boolean = useSelector(
+    state => state.signup.unsavedChanges
+  );
 
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -54,14 +57,11 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
   const [signupError, setSignupError] = React.useState('');
   (signupError: string);
 
-  const prevSignedGames = usePrevious(signedGames);
-
   React.useEffect(() => {
-    if (!prevSignedGames) return;
-    if (prevSignedGames.length !== signedGames.length) {
+    if (!unsavedChanges) {
       dispatch(submitSelectedGames(signedGames));
     }
-  }, [dispatch, prevSignedGames, signedGames]);
+  }, [unsavedChanges, dispatch, signedGames]);
 
   const onSubmitClick = async (): Promise<void> => {
     setSubmitting(true);
@@ -241,9 +241,13 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
     if (
       filteredSignedGames.length !== signedGames.length ||
       filteredSelectedGames.length !== selectedGames.length
-    )
+    ) {
+      dispatch(updateUnsavedChangesStatus(true));
       return true;
-    else return false;
+    } else {
+      dispatch(updateUnsavedChangesStatus(false));
+      return false;
+    }
   };
 
   const signupTimeButtons = signupTimes.map(time => {

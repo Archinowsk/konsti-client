@@ -5,6 +5,7 @@ import type { Signup, SignupData } from 'flow/user.flow';
 export const SUBMIT_SIGNUP_TIME = 'SUBMIT_SELECT_SIGNUPTIME';
 export const SUBMIT_SELECTED_GAMES = 'SUBMIT_SELECTED_GAMES';
 export const SUBMIT_SIGNED_GAMES = 'SUBMIT_SIGNED_GAMES';
+export const UPDATE_UNSAVED_CHANGES_STATUS = 'UPDATE_UNSAVED_CHANGES_STATUS';
 
 export const submitSignup = (signupData: SignupData): Object => {
   return async (dispatch: Function): Promise<any> => {
@@ -43,5 +44,12 @@ export const submitSelectedGames = (
   return {
     type: SUBMIT_SELECTED_GAMES,
     selectedGames,
+  };
+};
+
+export const updateUnsavedChangesStatus = (status: boolean): Object => {
+  return {
+    type: UPDATE_UNSAVED_CHANGES_STATUS,
+    unsavedChanges: status,
   };
 };
