@@ -3,6 +3,7 @@ import React, { Fragment } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import _ from 'lodash';
+import { usePrevious } from 'react-use';
 import { timeFormatter } from 'utils/timeFormatter';
 import {
   submitSignup,
@@ -53,9 +54,14 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
   const [signupError, setSignupError] = React.useState('');
   (signupError: string);
 
+  const prevSignedGames = usePrevious(signedGames);
+
   React.useEffect(() => {
-    if (!selectedGames) dispatch(submitSelectedGames(signedGames));
-  }, [dispatch, selectedGames, signedGames]);
+    if (!prevSignedGames) return;
+    if (prevSignedGames.length !== signedGames.length) {
+      dispatch(submitSelectedGames(signedGames));
+    }
+  }, [dispatch, prevSignedGames, signedGames]);
 
   const onSubmitClick = async (): Promise<void> => {
     setSubmitting(true);
