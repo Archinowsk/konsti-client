@@ -33,7 +33,6 @@ exports[`DragAndDropList should render correctly 1`] = `
   <DragAndDropList
     availableGames={Array []}
     selectedGames={Array []}
-    updateAvailableGames={[Function]}
     updateSelectedGames={[Function]}
   />
 </ContextProvider>

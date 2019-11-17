@@ -7,7 +7,7 @@ import { DragAndDropList } from '../DragAndDropList';
 import type { Props } from '../DragAndDropList';
 
 const updateSelectedGames = () => {};
-const updateAvailableGames = () => {};
+// const updateAvailableGames = () => {};
 const availableGames = [];
 const selectedGames = [];
 
@@ -15,7 +15,7 @@ describe('DragAndDropList', () => {
   it('should render correctly', () => {
     const props: Props = {
       updateSelectedGames,
-      updateAvailableGames,
+      // updateAvailableGames,
       availableGames,
       selectedGames,
     };

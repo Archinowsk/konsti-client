@@ -9,7 +9,7 @@ import {
   submitSelectedGames,
   submitSignupTime,
 } from 'views/signup/signupActions';
-import { submitGetGamesAsync } from 'views/all-games/allGamesActions';
+// import { submitGetGamesAsync } from 'views/all-games/allGamesActions';
 import { DragAndDropList } from 'views/signup/components/DragAndDropList';
 import { sleep } from 'utils/sleep';
 import { config } from 'config';
@@ -177,11 +177,13 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
     dispatch(submitSelectedGames(combined));
   };
 
+  /*
   const updateAvailableGames = newAvailableGames => {
     const existingGames = games.filter(game => game.startTime !== signupTime);
     const combined = existingGames.concat(newAvailableGames);
     dispatch(submitGetGamesAsync(combined));
   };
+  */
 
   // Select signup time from buttons and store it
   const selectSignupTime = signupTime => {
@@ -297,7 +299,7 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
             availableGames={filterAvailableGames()}
             selectedGames={filterSelectedGames()}
             updateSelectedGames={updateSelectedGames}
-            updateAvailableGames={updateAvailableGames}
+            // updateAvailableGames={updateAvailableGames}
           />
         </Fragment>
       )}

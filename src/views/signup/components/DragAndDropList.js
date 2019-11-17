@@ -14,7 +14,7 @@ import type { Game, DnDUpdatedPositions } from 'flow/game.flow';
 
 export type Props = {|
   updateSelectedGames: Function,
-  updateAvailableGames: Function,
+  // updateAvailableGames: Function,
   availableGames: $ReadOnlyArray<Game>,
   selectedGames: $ReadOnlyArray<Game>,
 |};
@@ -26,7 +26,7 @@ export const DragAndDropList: StatelessFunctionalComponent<Props> = (
     availableGames,
     selectedGames,
     updateSelectedGames,
-    updateAvailableGames,
+    // updateAvailableGames,
   } = props;
   const { t } = useTranslation();
 
@@ -73,7 +73,7 @@ export const DragAndDropList: StatelessFunctionalComponent<Props> = (
       );
 
       if (source.droppableId === 'availableGames') {
-        updateAvailableGames(updatedPositions);
+        // updateAvailableGames(updatedPositions);
       } else if (source.droppableId === 'selectedGames') {
         updateSelectedGames(updatedPositions);
       }
@@ -113,7 +113,7 @@ export const DragAndDropList: StatelessFunctionalComponent<Props> = (
       }
 
       if (updatedPositions.availableGames) {
-        updateAvailableGames(updatedPositions.availableGames);
+        // updateAvailableGames(updatedPositions.availableGames);
       }
 
       if (updatedPositions.selectedGames) {
