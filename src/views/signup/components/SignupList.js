@@ -289,8 +289,6 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
               <span className='success bold'>{t('signupSaved')}</span>
             )}
 
-            {signupError && <span className='error'>{t(signupError)} </span>}
-
             {checkForSignupChanges(signedGames, selectedGames) && (
               <span className='informative'>{t('signupUnsavedChanges')}</span>
             )}
@@ -299,6 +297,10 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
             {leader && groupCode !== '0' && (
               <p className='bold'>{t('signupForWholeGroup')}</p>
             )}
+
+            <p>
+              {signupError && <span className='error'>{t(signupError)} </span>}
+            </p>
           </div>
 
           <DragAndDropList
