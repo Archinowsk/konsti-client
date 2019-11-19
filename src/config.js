@@ -27,7 +27,7 @@ const commonConfig = {
   DAY_START_TIME: 8, // 08:00
   noSignupGames: [],
   revolvingDoorEnabled: false,
-  tagFilteringEnabled: false,
+  tagFilteringEnabled: true,
   simpleDetails: true,
 
   // Dev

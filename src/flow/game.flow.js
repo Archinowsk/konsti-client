@@ -24,6 +24,7 @@ export type Game = {|
   +shortDescription: string,
   +revolvingDoor: boolean,
   +popularity: number,
+  +programType: string,
 |};
 
 export type DnDUpdatedPositions = {|

@@ -76,7 +76,12 @@
     "genres": "Genres",
     "shortDescription": "Short description",
     "revolvingDoor": "This is a revolving door game",
-    "revolvingDoorDescription": "You can join this game at any time if there are free seats"
+    "revolvingDoorDescription": "You can join this game at any time if there are free seats",
+    "programType": "Program type"
+  },
+  "programType": {
+    "tabletopRPG": "Tabletop RPG",
+    "freeformRPG": "Freeform RPG"
   },
   "gameStyle": {
     "serious": "Serious game style",

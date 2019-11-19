@@ -76,7 +76,12 @@
     "genres": "Genret",
     "shortDescription": "Lyhyt kuvaus",
     "revolvingDoor": "Tämä on pyöröovipeli",
-    "revolvingDoorDescription": "Voit liittyä peliin koska tahansa, jos pelipöydässä on tilaa"
+    "revolvingDoorDescription": "Voit liittyä peliin koska tahansa, jos pelipöydässä on tilaa",
+    "programType": "Ohjelmatyyppi"
+  },
+  "programType": {
+    "tabletopRPG": "Pöytäroolipeli",
+    "freeformRPG": "Freeform-roolipeli"
   },
   "gameStyle": {
     "serious": "Vakava pelityyli",

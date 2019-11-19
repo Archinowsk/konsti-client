@@ -137,6 +137,17 @@ export const GameInfo: StatelessFunctionalComponent<Props> = (
         </div>
       )}
 
+      {game.programType && (
+        <div className='game-details-row'>
+          <span className='game-details-title game-details-two-columns'>
+            {t('gameInfo.programType')}
+          </span>
+          <span className='game-details-value'>
+            {t(`programType.${game.programType}`)}
+          </span>
+        </div>
+      )}
+
       {game.genres && game.genres.length > 0 && (
         <div className='game-details-row'>
           <span className='game-details-title game-details-two-columns'>
