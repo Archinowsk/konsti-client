@@ -135,7 +135,7 @@ export const GameInfo: StatelessFunctionalComponent<Props> = (
         </div>
       )}
 
-      {game.genres.length > 0 && (
+      {game.genres && game.genres.length > 0 && (
         <div className='game-details-row'>
           <span className='game-details-title game-details-two-columns'>
             {t('gameInfo.genres')}
@@ -175,7 +175,7 @@ export const GameInfo: StatelessFunctionalComponent<Props> = (
         </div>
       )}
 
-      {game.styles.length > 0 && (
+      {game.styles && game.styles.length > 0 && (
         <div className='game-details-row'>
           <span className='game-details-title game-details-two-columns'>
             {t('gameInfo.gameStyle')}
@@ -199,7 +199,9 @@ export const GameInfo: StatelessFunctionalComponent<Props> = (
             {t('gameInfo.numberOfPlayers')}
           </span>
           <span className='game-details-value'>
-            {game.minAttendance} - {game.maxAttendance}
+            {game.minAttendance === game.maxAttendance
+              ? game.minAttendance
+              : `${game.minAttendance} - ${game.maxAttendance}`}
           </span>
         </div>
       )}
