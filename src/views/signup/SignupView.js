@@ -16,6 +16,9 @@ export const SignupView: StatelessFunctionalComponent<Props> = (
   const games: $ReadOnlyArray<Game> = useSelector(
     state => state.allGames.games
   );
+  const hiddenGames: $ReadOnlyArray<Game> = useSelector(
+    state => state.admin.hiddenGames
+  );
   const testTime: string = useSelector(state => state.admin.testTime);
   const serial: string = useSelector(state => state.login.serial);
   const groupCode: string = useSelector(state => state.login.groupCode);
@@ -34,8 +37,15 @@ export const SignupView: StatelessFunctionalComponent<Props> = (
   }, [store]);
 
   React.useEffect(() => {
-    setSignupTimes(getOpenStartTimes(games, testTime));
-  }, [games, testTime]);
+    const visibleGames = games.filter(game => {
+      const hidden = hiddenGames.find(
+        hiddenGame => game.gameId === hiddenGame.gameId
+      );
+      if (!hidden) return game;
+    });
+
+    setSignupTimes(getOpenStartTimes(visibleGames, testTime));
+  }, [hiddenGames, games, testTime]);
 
   const leader = isGroupLeader(groupCode, serial);
 
