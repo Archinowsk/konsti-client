@@ -23,7 +23,7 @@ const commonConfig = {
   // Convention settings
   CONVENTION_NAME: 'Tracon Hitpoint',
   CONVENTION_YEAR: '2019',
-  CONVENTION_START_TIME: '2019-11-23T07:00:00Z', // UTC date
+  CONVENTION_START_TIME: '2019-11-23T08:00:00Z', // UTC date
   DAY_START_TIME: 8, // 08:00
   noSignupGames: [],
   revolvingDoorEnabled: false,
