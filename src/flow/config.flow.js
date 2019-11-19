@@ -19,4 +19,5 @@ export type Config = {|
   +noSignupGames: Array<string>,
   +revolvingDoorEnabled: boolean,
   +tagFilteringEnabled: boolean,
+  +simpleDetails: boolean,
 |};

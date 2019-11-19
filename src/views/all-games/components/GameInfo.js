@@ -3,6 +3,7 @@ import React, { Fragment } from 'react';
 import { useTranslation } from 'react-i18next';
 import { timeFormatter } from 'utils/timeFormatter';
 import { getGameTags } from 'utils/getGameTags';
+import { config } from 'config';
 import type { Game } from 'flow/game.flow';
 import type { StatelessFunctionalComponent, Element } from 'react';
 
@@ -15,6 +16,7 @@ export const GameInfo: StatelessFunctionalComponent<Props> = (
 ): Element<'div'> => {
   const { game } = props;
   const { t } = useTranslation();
+  const { simpleDetails } = config;
 
   if (!game) return <div className='game-details' />;
 
@@ -75,7 +77,7 @@ export const GameInfo: StatelessFunctionalComponent<Props> = (
         </div>
       )}
 
-      {game.shortDescription && (
+      {!simpleDetails && game.shortDescription && (
         <div className='game-details-row game-details-subtext'>
           <span className='game-details-text-indent italic'>
             {game.shortDescription}
@@ -166,7 +168,7 @@ export const GameInfo: StatelessFunctionalComponent<Props> = (
         </Fragment>
       )}
 
-      {game.gameSystem && (
+      {!simpleDetails && game.gameSystem && (
         <div className='game-details-row'>
           <span className='game-details-title game-details-two-columns'>
             {t('gameInfo.gamesystem')}

@@ -28,6 +28,7 @@ const commonConfig = {
   noSignupGames: [],
   revolvingDoorEnabled: false,
   tagFilteringEnabled: false,
+  simpleDetails: true,
 
   // Dev
   reduxTrace: true,
