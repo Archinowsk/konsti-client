@@ -18,4 +18,5 @@ export type Config = {|
   +dataUpdateInterval: number,
   +noSignupGames: Array<string>,
   +revolvingDoorEnabled: boolean,
+  +tagFilteringEnabled: boolean,
 |};

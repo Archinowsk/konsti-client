@@ -144,16 +144,18 @@ export const AllGamesView: StatelessFunctionalComponent<Props> = (
           )}
         </div>
 
-        <div className='tags-dropdown'>
-          <span className={'choose-tag-instruction'}>{t('chooseTag')} </span>
-          <select
-            onChange={event => setSelectedTag(event.target.value)}
-            value={selectedTag}
-          >
-            <option value=''>{t('allGames')}</option>
-            {tagsList()}
-          </select>
-        </div>
+        {config.tagFilteringEnabled && (
+          <div className='tags-dropdown'>
+            <span className={'choose-tag-instruction'}>{t('chooseTag')} </span>
+            <select
+              onChange={event => setSelectedTag(event.target.value)}
+              value={selectedTag}
+            >
+              <option value=''>{t('allGames')}</option>
+              {tagsList()}
+            </select>
+          </div>
+        )}
       </div>
 
       {selectedView === 'revolving-door' && (
