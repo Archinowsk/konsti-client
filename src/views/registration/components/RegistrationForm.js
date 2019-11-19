@@ -50,17 +50,17 @@ const RegistrationForm: StatelessFunctionalComponent<Props> = (
         </label>
 
         <Field
-          name='agreeRegisterDescription'
-          id='agreeRegisterDescription'
+          name='agreePrivacyPolicy'
+          id='agreePrivacyPolicy'
           type='checkbox'
           component={FormField}
           validate={required}
         />
 
         <Accordion
-          text='registerDescriptionText'
-          title='registerDescriptionTitle'
-          buttonText='registerDescriptionButton'
+          text='privacyPolicyText'
+          title='privacyPolicyTitle'
+          buttonText='privacyPolicyButton'
         />
 
         <button type='submit' disabled={submitting}>
