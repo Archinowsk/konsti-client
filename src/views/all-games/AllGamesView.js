@@ -73,7 +73,7 @@ export const AllGamesView: StatelessFunctionalComponent<Props> = (
     games: $ReadOnlyArray<Game>
   ): $ReadOnlyArray<Game> => {
     if (!selectedTag) return games;
-    return games.filter(game => game.tags.includes(selectedTag));
+    return games.filter(game => game.tags && game.tags.includes(selectedTag));
   };
 
   const tags = ['in-english', 'aloittelijaystavallinen', 'sopii-lapsille'];

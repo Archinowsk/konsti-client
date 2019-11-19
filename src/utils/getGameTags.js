@@ -1,4 +1,6 @@
 export const getGameTags = game => {
+  if (!game.tags) return [];
+
   const tagsList = [];
 
   if (game.tags.includes('in-english')) {
