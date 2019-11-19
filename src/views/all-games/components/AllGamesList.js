@@ -58,6 +58,7 @@ export const AllGamesList: StatelessFunctionalComponent<Props> = (
           <div key={game.gameId} className='games-list'>
             <Link to={`/games/${game.gameId}`}>{game.title}</Link>{' '}
             <p className='game-list-short-description'>
+              {t(`programType.${game.programType}`)}:{' '}
               {game.shortDescription ? game.shortDescription : game.gameSystem}
             </p>
           </div>

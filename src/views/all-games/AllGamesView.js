@@ -73,12 +73,19 @@ export const AllGamesView: StatelessFunctionalComponent<Props> = (
     games: $ReadOnlyArray<Game>
   ): $ReadOnlyArray<Game> => {
     if (!selectedTag) return games;
+    if (selectedTag === 'aloittelijaystavallinen') {
+      return games.filter(game => game.beginnerFriendly);
+    } else if (selectedTag === 'tabletopRPG') {
+      return games.filter(game => game.programType === 'tabletopRPG');
+    } else if (selectedTag === 'freeformRPG') {
+      return games.filter(game => game.programType === 'freeformRPG');
+    }
+    return games;
     // return games.filter(game => game.tags && game.tags.includes(selectedTag));
-    return games.filter(game => game.beginnerFriendly);
   };
 
   // const tags = ['in-english', 'aloittelijaystavallinen', 'sopii-lapsille'];
-  const tags = ['aloittelijaystavallinen'];
+  const tags = ['aloittelijaystavallinen', 'tabletopRPG', 'freeformRPG'];
 
   const tagsList = () => {
     return tags.map(tag => {
@@ -87,6 +94,8 @@ export const AllGamesView: StatelessFunctionalComponent<Props> = (
           {tag === 'in-english' && t(`gameTags.inEnglish`)}
           {tag === 'aloittelijaystavallinen' && t(`gameTags.beginnerFriendly`)}
           {tag === 'sopii-lapsille' && t(`gameTags.childrenFriendly`)}
+          {tag === 'tabletopRPG' && t(`programType.tabletopRPG`)}
+          {tag === 'freeformRPG' && t(`programType.freeformRPG`)}
         </option>
       );
     });
