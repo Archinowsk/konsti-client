@@ -14,15 +14,6 @@ exports[`GameInfo should render correctly 1`] = `
     </h3>
   </div>
   <div
-    className="game-details-row game-details-subtext"
-  >
-    <span
-      className="game-details-text-indent italic"
-    >
-      Short description
-    </span>
-  </div>
-  <div
     className="game-details-row game-details-row-with-gap"
   >
     <span
@@ -73,6 +64,20 @@ exports[`GameInfo should render correctly 1`] = `
         4 hours
         )
       </span>
+    </span>
+  </div>
+  <div
+    className="game-details-row"
+  >
+    <span
+      className="game-details-title game-details-two-columns"
+    >
+      gameInfo.programType
+    </span>
+    <span
+      className="game-details-value"
+    >
+      programType.tabletopRPG
     </span>
   </div>
   <div
@@ -168,20 +173,6 @@ exports[`GameInfo should render correctly 1`] = `
     <span
       className="game-details-title game-details-two-columns"
     >
-      gameInfo.gamesystem
-    </span>
-    <span
-      className="game-details-value"
-    >
-      Test gamesystem
-    </span>
-  </div>
-  <div
-    className="game-details-row"
-  >
-    <span
-      className="game-details-title game-details-two-columns"
-    >
       gameInfo.gameStyle
     </span>
     <span
@@ -248,9 +239,7 @@ exports[`GameInfo should render correctly 1`] = `
     <span
       className="game-details-value"
     >
-      2
-       - 
-      4
+      2 - 4
     </span>
   </div>
 </div>

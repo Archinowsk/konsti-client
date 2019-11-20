@@ -27,6 +27,9 @@ exports[`AllGamesList should render correctly 1`] = `
     <p
       className="game-list-short-description"
     >
+      programType.tabletopRPG
+      :
+       
       Short description
     </p>
   </div>

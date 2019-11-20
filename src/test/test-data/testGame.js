@@ -1,4 +1,7 @@
-export const testGame = {
+// @flow
+import type { Game } from 'flow/game.flow';
+
+export const testGame: Game = {
   gameId: 'p2106',
   title: 'Test game',
   description: 'Test game description',
@@ -27,4 +30,5 @@ export const testGame = {
   shortDescription: 'Short description',
   revolvingDoor: true,
   popularity: 0,
+  programType: 'tabletopRPG',
 };
