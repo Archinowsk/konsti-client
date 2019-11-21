@@ -27,4 +27,5 @@ button:disabled:focus {
 
 .warning-button {
   background-color: $warning;
+  color: $warning-button-text;
 }

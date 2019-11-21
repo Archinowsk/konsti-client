@@ -9,12 +9,13 @@ $button-selected: #f2f2f2;
 $button-text: #7f7f7f;
 $input-placeholder: #b3b3b3;
 $main-text: #030303;
+$warning-button-text: #000;
 
 $success: #3c763d;
 $disabled: #dad8d8;
 $error: #c00000;
 $informative: $main-text;
-$warning: #f00;
+$warning: #fc3d60;
 
 $breakpoint-phone: 500px;
 $breakpoint-tablet: 768px;
