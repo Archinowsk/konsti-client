@@ -67,6 +67,7 @@ export const DropRow: StatelessFunctionalComponent<Props> = (
                         {game.title}
                       </p>
                       <p className='signup-short-description break-long'>
+                        {t(`programType.${game.programType}`)}:{' '}
                         {game.shortDescription
                           ? game.shortDescription
                           : game.gameSystem}
