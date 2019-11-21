@@ -29,6 +29,8 @@ export const ResultsView: StatelessFunctionalComponent<Props> = (
     fetchData();
   }, [store]);
 
+  const validResults = result.filter(result => result.enteredGame.gameDetails);
+
   return (
     <div className='results-view'>
       {!signupTime && <h2>{t('noResults')}</h2>}
@@ -41,7 +43,7 @@ export const ResultsView: StatelessFunctionalComponent<Props> = (
               capitalize: false,
             })}
           </h2>
-          <ResultsList results={result} />
+          <ResultsList results={validResults} />
         </Fragment>
       )}
     </div>

@@ -18,7 +18,9 @@ export const ResultsList: StatelessFunctionalComponent<Props> = (
   const startTime: string = useSelector(state => state.results.startTime);
   const { t } = useTranslation();
 
-  const sortedResults = _.sortBy(results, [
+  const validResults = results.filter(result => result.enteredGame.gameDetails);
+
+  const sortedResults = _.sortBy(validResults, [
     result => result.enteredGame.gameDetails.title.toLowerCase(),
   ]);
 
