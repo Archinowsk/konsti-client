@@ -14,6 +14,7 @@ import {
 import { DragAndDropList } from 'views/signup/components/DragAndDropList';
 import { sleep } from 'utils/sleep';
 import { config } from 'config';
+import { Accordion } from 'components/Accordion';
 import type { StatelessFunctionalComponent, Element } from 'react';
 import type { Game } from 'flow/game.flow';
 import type { Signup } from 'flow/user.flow';
@@ -279,9 +280,13 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
           <div className='signup-info'>
             <p>
               {t('signupOpenBetweenCapital')} {signupStartTime}-{signupEndTime}.{' '}
-              {t('signupResultHint')} {signupEndTime}
+              {t('signupResultHint')} {signupEndTime}.
             </p>
-            <p>{t('signupGuide')}</p>
+            <Accordion
+              text='signupGuide'
+              title='signupGuideTitle'
+              buttonText='signupGuideButton'
+            />
           </div>
 
           <div className='signup-action-buttons-row'>
