@@ -1,6 +1,5 @@
 // @flow
 import { api } from 'utils/api';
-import { getJWT } from 'utils/getJWT';
 import type { RegistrationData } from 'flow/user.flow';
 
 export const postRegistration = async (
@@ -30,8 +29,6 @@ export const postRegistration = async (
 };
 
 export const getUser = async (username: string): Promise<void> => {
-  api.defaults.headers.common.Authorization = `Bearer ${getJWT()}`;
-
   let response = null;
   try {
     response = await api.get('/user', {
@@ -58,8 +55,6 @@ export const getUser = async (username: string): Promise<void> => {
 };
 
 export const getUserBySerial = async (serial: string): Promise<void> => {
-  api.defaults.headers.common.Authorization = `Bearer ${getJWT()}`;
-
   let response = null;
   try {
     response = await api.get('/user', {

@@ -1,10 +1,7 @@
 // @flow
 import { api } from 'utils/api';
-import { getJWT } from 'utils/getJWT';
 
 export const getResults = async (startTime: string): Promise<void> => {
-  api.defaults.headers.common.Authorization = `Bearer ${getJWT()}`;
-
   let response = null;
   try {
     response = await api.get('/results', {

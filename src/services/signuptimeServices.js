@@ -1,10 +1,7 @@
 // @flow
 import { api } from 'utils/api';
-import { getJWT } from 'utils/getJWT';
 
 export const postSignupTime = async (signupTime: string): Promise<void> => {
-  api.defaults.headers.common.Authorization = `Bearer ${getJWT()}`;
-
   let response = null;
   try {
     response = await api.post('/signuptime', { signupTime });
