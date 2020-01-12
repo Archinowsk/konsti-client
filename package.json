@@ -25,7 +25,7 @@
     "test:coverage": "jest --coverage --colors",
     "test:watch": "jest --watch",
     "test": "jest",
-    "lint": "eslint . && stylelint ./**/*.css"
+    "lint": "eslint . && prettier --check ./**/*.{js,json,css,md}"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "1.2.26",
