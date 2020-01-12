@@ -16,4 +16,6 @@ module.exports = {
       },
     ],
   },
+
+  ignoreFiles: ['build/**/*', 'coverage/**/*'],
 };
