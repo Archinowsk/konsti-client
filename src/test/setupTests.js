@@ -7,4 +7,4 @@ import 'test/i18nTest';
 
 configure({ adapter: new Adapter() });
 
-moment.tz.setDefault('Europe/Helsinki');
+moment.tz.setDefault('UTC');

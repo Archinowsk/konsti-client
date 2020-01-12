@@ -11,7 +11,7 @@ exports[`AllGamesList should render correctly 1`] = `
     <span
       className="game-startup-time"
     >
-      Saturday 19:00
+      Saturday 16:00
     </span>
   </h3>
   <div
