@@ -24,7 +24,8 @@
     "stylelint": "stylelint ./**/*.css --fix",
     "test:coverage": "jest --coverage --colors",
     "test:watch": "jest --watch",
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint . && stylelint ./**/*.css && prettier --check ./**/*.{js,json,css,md}"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "1.2.26",
