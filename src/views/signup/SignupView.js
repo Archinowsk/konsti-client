@@ -23,8 +23,9 @@ export const SignupView: StatelessFunctionalComponent<Props> = (
   const serial: string = useSelector(state => state.login.serial);
   const groupCode: string = useSelector(state => state.login.groupCode);
 
-  const [signupTimes, setSignupTimes] = React.useState([]);
-  (signupTimes: $ReadOnlyArray<string>);
+  const [signupTimes, setSignupTimes] = React.useState<$ReadOnlyArray<string>>(
+    []
+  );
 
   const store = useStore();
 

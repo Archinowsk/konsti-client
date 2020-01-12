@@ -29,28 +29,16 @@ export const GroupView: StatelessFunctionalComponent<Props> = (
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const [loading, setLoading] = React.useState(false);
-  (loading: boolean);
-
-  const [showCreateGroup, setShowCreateGroup] = React.useState(false);
-  (showCreateGroup: boolean);
-
-  const [showJoinGroup, setShowJoinGroup] = React.useState(false);
-  (showJoinGroup: boolean);
-
-  const [joinGroupValue, setJoinGroupValue] = React.useState('');
-  (joinGroupValue: string);
-
-  const [message, setMessage] = React.useState('');
-  (message: string);
-
-  const [messageStyle, setMessageStyle] = React.useState('');
-  (messageStyle: string);
-
-  const [closeGroupConfirmation, setCloseGroupConfirmation] = React.useState(
-    false
-  );
-  (closeGroupConfirmation: boolean);
+  const [loading, setLoading] = React.useState<boolean>(false);
+  const [showCreateGroup, setShowCreateGroup] = React.useState<boolean>(false);
+  const [showJoinGroup, setShowJoinGroup] = React.useState<boolean>(false);
+  const [joinGroupValue, setJoinGroupValue] = React.useState<string>('');
+  const [message, setMessage] = React.useState<string>('');
+  const [messageStyle, setMessageStyle] = React.useState<string>('');
+  const [
+    closeGroupConfirmation,
+    setCloseGroupConfirmation,
+  ] = React.useState<boolean>(false);
 
   const store = useStore();
 

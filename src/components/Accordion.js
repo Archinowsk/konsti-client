@@ -15,8 +15,7 @@ export const Accordion: StatelessFunctionalComponent<Props> = (
 ): Element<'div'> => {
   const { text, title, buttonText } = props;
 
-  const [open, setOpen] = React.useState(false);
-  (open: boolean);
+  const [open, setOpen] = React.useState<boolean>(false);
 
   const { t } = useTranslation();
 

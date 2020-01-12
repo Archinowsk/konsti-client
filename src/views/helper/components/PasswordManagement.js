@@ -12,32 +12,24 @@ export const PasswordManagement: StatelessFunctionalComponent<Props> = (
 ): Element<'div'> => {
   const { t } = useTranslation();
 
-  const [serial, setSerial] = React.useState('');
-  (serial: string);
-
-  const [username, setUsername] = React.useState('');
-  (username: string);
-
-  const [passwordFieldType, setPasswordFieldType] = React.useState('password');
-  (passwordFieldType: string);
-
-  const [userSerialInput, setUserSerialInput] = React.useState('');
-  (userSerialInput: string);
-
-  const [changePasswordInput, setChangePasswordInput] = React.useState('');
-  (changePasswordInput: string);
-
+  const [serial, setSerial] = React.useState<string>('');
+  const [username, setUsername] = React.useState<string>('');
+  const [passwordFieldType, setPasswordFieldType] = React.useState<string>(
+    'password'
+  );
+  const [userSerialInput, setUserSerialInput] = React.useState<string>('');
+  const [changePasswordInput, setChangePasswordInput] = React.useState<string>(
+    ''
+  );
   const [
     changePasswordInputVisible,
     setChangePasswordInputVisible,
-  ] = React.useState(false);
-  (changePasswordInputVisible: boolean);
-
-  const [userFoundMessage, setUserFoundMessage] = React.useState('');
-  (changePasswordInput: string);
-
-  const [passwordChangeMessage, setPasswordChangeMessage] = React.useState('');
-  (passwordChangeMessage: string);
+  ] = React.useState<boolean>(false);
+  const [userFoundMessage, setUserFoundMessage] = React.useState<string>('');
+  const [
+    passwordChangeMessage,
+    setPasswordChangeMessage,
+  ] = React.useState<string>('');
 
   const submitGetUser = async () => {
     let response = null;

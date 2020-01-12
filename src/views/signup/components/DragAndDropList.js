@@ -35,11 +35,8 @@ export const DragAndDropList: StatelessFunctionalComponent<Props> = (
     state => state.login.groupMembers
   );
 
-  const [warningVisible, setWarningVisible] = React.useState(false);
-  (warningVisible: boolean);
-
-  const [warning, setWarning] = React.useState('');
-  (warning: string);
+  const [warningVisible, setWarningVisible] = React.useState<boolean>(false);
+  const [warning, setWarning] = React.useState<string>('');
 
   const getList = (id: string) => {
     if (id === 'availableGames') return availableGames;

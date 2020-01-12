@@ -31,19 +31,12 @@ export const AdminView: StatelessFunctionalComponent<Props> = (
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const [submitting, setSubmitting] = React.useState(false);
-  (submitting: boolean);
-
-  const [message, setMessage] = React.useState('');
-  (message: string);
-
-  const [messageStyle, setMessageStyle] = React.useState('');
-  (messageStyle: string);
-
-  const [selectedSignupTime, setSelectedSignupTime] = React.useState(
+  const [submitting, setSubmitting] = React.useState<boolean>(false);
+  const [message, setMessage] = React.useState<string>('');
+  const [messageStyle, setMessageStyle] = React.useState<string>('');
+  const [selectedSignupTime, setSelectedSignupTime] = React.useState<string>(
     signupTime
   );
-  (selectedSignupTime: string);
 
   const showMessage = async ({ message, style }) => {
     setMessage(message);

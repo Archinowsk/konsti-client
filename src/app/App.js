@@ -22,8 +22,7 @@ export const App: StatelessFunctionalComponent<Props> = (
   const { t } = useTranslation();
   const store = useStore();
 
-  const [loading, setLoading] = React.useState(true);
-  (loading: boolean);
+  const [loading, setLoading] = React.useState<boolean>(true);
 
   React.useEffect(() => {
     setLoading(true);

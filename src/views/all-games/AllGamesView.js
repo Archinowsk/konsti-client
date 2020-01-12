@@ -8,6 +8,7 @@ import { AllGamesList } from 'views/all-games/components/AllGamesList';
 import { getUpcomingGames } from 'utils/getUpcomingGames';
 import { loadGames } from 'utils/loadData';
 import { config } from 'config';
+import { Loading } from 'components/Loading';
 import type { Game } from 'flow/game.flow';
 import type { StatelessFunctionalComponent, Element } from 'react';
 
@@ -26,14 +27,9 @@ export const AllGamesView: StatelessFunctionalComponent<Props> = (
     state => state.admin.hiddenGames
   );
 
-  const [selectedView, setSelectedView] = React.useState('upcoming');
-  (selectedView: string);
-
-  const [selectedTag, setSelectedTag] = React.useState('');
-  (selectedTag: string);
-
-  const [loading, setLoading] = React.useState(false);
-  (loading: boolean);
+  const [selectedView, setSelectedView] = React.useState<string>('upcoming');
+  const [selectedTag, setSelectedTag] = React.useState<string>('');
+  const [loading, setLoading] = React.useState<boolean>(false);
 
   const store = useStore();
 
@@ -181,7 +177,7 @@ export const AllGamesView: StatelessFunctionalComponent<Props> = (
         </Fragment>
       )}
 
-      <AllGamesList games={getVisibleGames(games)} />
+      {loading ? <Loading /> : <AllGamesList games={getVisibleGames(games)} />}
     </Fragment>
   );
 };

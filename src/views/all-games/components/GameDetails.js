@@ -37,17 +37,10 @@ export const GameDetails: StatelessFunctionalComponent<Props> = (
 
   const game = games.find(game => game.gameId === gameId);
 
-  const [hidden, setHidden] = React.useState(false);
-  (hidden: boolean);
-
-  const [favorited, setFavorited] = React.useState(false);
-  (favorited: boolean);
-
-  const [submitting, setSubmitting] = React.useState(false);
-  (submitting: boolean);
-
-  const [loading, setLoading] = React.useState(true);
-  (loading: boolean);
+  const [hidden, setHidden] = React.useState<boolean>(false);
+  const [favorited, setFavorited] = React.useState<boolean>(false);
+  const [submitting, setSubmitting] = React.useState<boolean>(false);
+  const [loading, setLoading] = React.useState<boolean>(true);
 
   React.useEffect(() => {
     setLoading(true);

@@ -14,14 +14,9 @@ export const FeedbackForm: StatelessFunctionalComponent<Props> = (
 ): Element<'div'> => {
   const { game } = props;
 
-  const [submitting, setSubmitting] = React.useState(false);
-  (submitting: boolean);
-
-  const [feedbackValue, setFeedbackValue] = React.useState('');
-  (feedbackValue: string);
-
-  const [feedbackSent, setFeedbackSent] = React.useState(false);
-  (feedbackSent: boolean);
+  const [submitting, setSubmitting] = React.useState<boolean>(false);
+  const [feedbackValue, setFeedbackValue] = React.useState<string>('');
+  const [feedbackSent, setFeedbackSent] = React.useState<boolean>(false);
 
   const { t } = useTranslation();
 

@@ -14,8 +14,7 @@ export const HelperView: StatelessFunctionalComponent<Props> = (
 ): Element<'div'> => {
   const { t } = useTranslation();
 
-  const [selectedTool, setSelectedTool] = React.useState('results');
-  (selectedTool: string);
+  const [selectedTool, setSelectedTool] = React.useState<string>('results');
 
   const store = useStore();
 

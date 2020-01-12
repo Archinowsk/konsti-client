@@ -41,8 +41,7 @@ export const MyGamesView: StatelessFunctionalComponent<Props> = (
 
   const testTime: string = useSelector(state => state.admin.testTime);
 
-  const [showAllGames, setShowAllGames] = React.useState(false);
-  (showAllGames: boolean);
+  const [showAllGames, setShowAllGames] = React.useState<boolean>(false);
 
   const store = useStore();
 

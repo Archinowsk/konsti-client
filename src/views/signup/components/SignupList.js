@@ -49,14 +49,9 @@ export const SignupList: StatelessFunctionalComponent<Props> = (
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const [submitting, setSubmitting] = React.useState(false);
-  (submitting: boolean);
-
-  const [signupSubmitted, setSignupSubmitted] = React.useState(false);
-  (signupSubmitted: boolean);
-
-  const [signupError, setSignupError] = React.useState('');
-  (signupError: string);
+  const [submitting, setSubmitting] = React.useState<boolean>(false);
+  const [signupSubmitted, setSignupSubmitted] = React.useState<boolean>(false);
+  const [signupError, setSignupError] = React.useState<string>('');
 
   React.useEffect(() => {
     if (!unsavedChanges) {

@@ -14,8 +14,7 @@ export const FormField: StatelessFunctionalComponent<FieldProps> = (
   const { touched, error } = props.meta;
   const { t } = useTranslation();
 
-  const [fieldType, setFieldType] = React.useState('');
-  (fieldType: string);
+  const [fieldType, setFieldType] = React.useState<string>('');
 
   React.useEffect(() => {
     setFieldType(type);
