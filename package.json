@@ -109,6 +109,7 @@
     "jest": "24.9.0",
     "lint-staged": "9.5.0",
     "moment-locales-webpack-plugin": "1.1.2",
+    "moment-timezone": "0.5.27",
     "postcss": "7.0.26",
     "postcss-comment": "2.0.0",
     "postcss-flexbugs-fixes": "4.1.0",
