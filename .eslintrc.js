@@ -102,7 +102,7 @@ module.exports = {
     'react/self-closing-comp': 'error',
 
     // eslint-plugin-import
-    'import/no-unused-modules': ['off', { unusedExports: true }], // Does not work with importing types
+    'import/no-unused-modules': ['off', { unusedExports: true }], // Does not work with importing flow types
 
     // eslint-plugin-eslint-comments
     'eslint-comments/no-unused-disable': 'error',
