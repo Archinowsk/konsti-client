@@ -7,6 +7,8 @@ module.exports = {
     'stylelint-a11y/recommended',
   ],
 
+  ignoreFiles: ['build/**/*', 'coverage/**/*'],
+
   rules: {
     'plugin/no-unsupported-browser-features': [
       true,
@@ -16,6 +18,4 @@ module.exports = {
       },
     ],
   },
-
-  ignoreFiles: ['build/**/*', 'coverage/**/*'],
 };
