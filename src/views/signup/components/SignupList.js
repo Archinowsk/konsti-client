@@ -19,7 +19,7 @@ import type { StatelessFunctionalComponent, Element } from 'react';
 import type { Game } from 'flow/game.flow';
 import type { Signup } from 'flow/user.flow';
 
-export type Props = {|
+type Props = {|
   games: $ReadOnlyArray<Game>,
   signupTimes: $ReadOnlyArray<string>,
   leader: boolean,

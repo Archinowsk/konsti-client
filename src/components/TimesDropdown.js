@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { timeFormatter } from 'utils/timeFormatter';
 import type { StatelessFunctionalComponent, Element } from 'react';
 
-export type Props = {|
+type Props = {|
   onChange: Function,
   selectedTime: string,
   times: $ReadOnlyArray<string>,

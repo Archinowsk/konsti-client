@@ -10,7 +10,7 @@ import { config } from 'config';
 import type { Signup } from 'flow/user.flow';
 import type { StatelessFunctionalComponent, Element } from 'react';
 
-export type Props = {|
+type Props = {|
   enteredGames: $ReadOnlyArray<Signup>,
   signedGames: $ReadOnlyArray<Signup>,
 |};

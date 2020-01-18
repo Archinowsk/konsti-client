@@ -34,7 +34,7 @@ export const loadGames = async (store: Object): Promise<void> => {
   await store.dispatch(submitGetGames());
 };
 
-export const recoverSession = async (store: Object): Promise<void> => {
+const recoverSession = async (store: Object): Promise<void> => {
   const state = store.getState();
   const { loggedIn, jwt } = state.login;
 

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import type { GroupMember } from 'flow/group.flow';
 import type { StatelessFunctionalComponent, Element } from 'react';
 
-export type Props = {|
+type Props = {|
   groupMembers: $ReadOnlyArray<GroupMember>,
 |};
 

@@ -17,7 +17,7 @@ import { HelperView } from 'views/helper/HelperView';
 import type { StatelessFunctionalComponent, Element } from 'react';
 import type { UserGroup } from 'flow/user.flow';
 
-export type Props = {
+type Props = {
   onlyAdminLoginAllowed: boolean,
 };
 

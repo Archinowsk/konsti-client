@@ -44,7 +44,7 @@ export const submitGamesUpdate = (): Object => {
   };
 };
 
-export const submitGetGamesAsync = (games: $ReadOnlyArray<Game>): Object => {
+const submitGetGamesAsync = (games: $ReadOnlyArray<Game>): Object => {
   return {
     type: SUBMIT_GET_GAMES,
     games,
