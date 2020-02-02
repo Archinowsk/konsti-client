@@ -7,7 +7,7 @@ import { timeFormatter } from 'utils/timeFormatter';
 import type { Game } from 'flow/game.flow';
 import type { StatelessFunctionalComponent, Element } from 'react';
 
-type Props = {|
+export type Props = {|
   games: $ReadOnlyArray<Game>,
 |};
 

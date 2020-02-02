@@ -6,7 +6,7 @@ import { timeFormatter } from 'utils/timeFormatter';
 import type { Signup, EmptySignup } from 'flow/user.flow';
 import type { StatelessFunctionalComponent, Element } from 'react';
 
-type Props = {|
+export type Props = {|
   signups: $ReadOnlyArray<Signup | EmptySignup>,
   startTimes: $ReadOnlyArray<string>,
 |};

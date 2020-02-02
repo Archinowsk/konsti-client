@@ -7,7 +7,7 @@ import { GamesByStartTimes } from './GamesByStartTimes';
 import type { Game } from 'flow/game.flow';
 import type { StatelessFunctionalComponent, Element } from 'react';
 
-type Props = {|
+export type Props = {|
   favoritedGames: $ReadOnlyArray<Game>,
 |};
 

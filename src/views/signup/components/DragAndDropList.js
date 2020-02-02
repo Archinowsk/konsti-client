@@ -12,7 +12,7 @@ import type { GroupMember } from 'flow/group.flow';
 import type { StatelessFunctionalComponent, Element } from 'react';
 import type { Game, DnDUpdatedPositions } from 'flow/game.flow';
 
-type Props = {|
+export type Props = {|
   updateSelectedGames: Function,
   // updateAvailableGames: Function,
   availableGames: $ReadOnlyArray<Game>,

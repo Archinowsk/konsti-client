@@ -6,7 +6,7 @@ import { ResultsByUsername } from './ResultsByUsername';
 import type { Result } from 'flow/result.flow';
 import type { StatelessFunctionalComponent, Element } from 'react';
 
-type Props = {|
+export type Props = {|
   results: $ReadOnlyArray<Result>,
 |};
 
