@@ -1,12 +1,15 @@
 module.exports = {
+  root: true,
+
+  parser: '@typescript-eslint/parser', // or 'babel-eslint'
+
   extends: [
-    'eslint-config-standard',
+    'eslint-config-standard-with-typescript',
     'eslint-config-prettier',
-    'eslint-config-prettier/flowtype',
     'eslint-config-prettier/react',
     'eslint-config-prettier/standard',
+    'eslint-config-prettier/@typescript-eslint',
     'plugin:eslint-plugin-eslint-comments/recommended',
-    'plugin:eslint-plugin-flowtype/recommended',
     'plugin:eslint-plugin-jest/recommended',
     'plugin:eslint-plugin-promise/recommended',
     'plugin:eslint-plugin-react/recommended',
@@ -18,24 +21,23 @@ module.exports = {
 
   plugins: [
     'eslint-plugin-compat',
-    'eslint-plugin-flowtype',
     'eslint-plugin-jest',
     'eslint-plugin-prettier',
     'eslint-plugin-promise',
     'eslint-plugin-react-hooks',
     'eslint-plugin-import',
+    '@typescript-eslint',
     // 'eslint-plugin-jsx-a11y',
     // 'eslint-plugin-security',
     // 'eslint-plugin-unicorn',
   ],
 
-  ignorePatterns: ['build', 'flow-typed', 'coverage'],
-
-  parser: 'babel-eslint',
+  ignorePatterns: ['build', 'coverage'],
 
   parserOptions: {
     sourceType: 'module',
     impliedStrict: true,
+    project: './tsconfig.json',
   },
 
   env: {
@@ -56,12 +58,10 @@ module.exports = {
 
   rules: {
     // eslint
-    'no-unused-expressions': 'off', // False warnings with Flow
     'no-param-reassign': 'error',
-    'jsx-quotes': ['error', 'prefer-single'],
 
-    // eslint-plugin-flowtype
-    'flowtype/no-unused-expressions': 'error', // Fixed version of no-unused-expressions
+    // eslint-plugin-react
+    'react/no-unescaped-entities': 'off',
 
     // eslint-plugin-react-hooks
     'react-hooks/rules-of-hooks': 'error',
@@ -73,38 +73,25 @@ module.exports = {
     // eslint-plugin-compat
     'compat/compat': 'error',
 
-    // eslint-config-standard-react
-    'react/jsx-no-bind': [
-      'error',
-      {
-        allowArrowFunctions: true,
-        allowBind: false,
-        ignoreRefs: true,
-      },
-    ],
-    'react/no-did-update-set-state': 'error',
-    'react/no-unknown-property': 'error',
-    'react/no-unused-prop-types': 'error',
-    'react/prop-types': 'error',
-    'react/react-in-jsx-scope': 'error',
-
-    // eslint-config-standard-jsx
-    'react/jsx-boolean-value': 'error',
-    'react/jsx-curly-spacing': ['error', 'never'],
-    'react/jsx-equals-spacing': ['error', 'never'],
-    'react/jsx-indent': ['error', 2],
-    'react/jsx-indent-props': ['error', 2],
-    'react/jsx-no-duplicate-props': 'error',
-    'react/jsx-no-undef': 'error',
-    'react/jsx-tag-spacing': ['error', { beforeSelfClosing: 'always' }],
-    'react/jsx-uses-react': 'error',
-    'react/jsx-uses-vars': 'error',
-    'react/self-closing-comp': 'error',
-
     // eslint-plugin-import
-    'import/no-unused-modules': ['off', { unusedExports: true }], // Does not work with importing flow types
+    'import/no-unused-modules': ['error', { unusedExports: true }],
 
     // eslint-plugin-eslint-comments
     'eslint-comments/no-unused-disable': 'error',
+
+    // @typescript-eslint
+    // TODO: Enable these
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-use-before-define': 'off',
+    '@typescript-eslint/ban-ts-ignore': 'off',
+    '@typescript-eslint/strict-boolean-expressions': 'off',
+    '@typescript-eslint/no-floating-promises': 'off',
+    '@typescript-eslint/no-empty-function': 'off',
+    '@typescript-eslint/promise-function-async': 'off',
+    '@typescript-eslint/restrict-template-expressions': 'off',
+    '@typescript-eslint/require-array-sort-compare': 'off',
+    '@typescript-eslint/no-misused-promises': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
   },
 };
