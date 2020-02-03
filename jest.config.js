@@ -77,7 +77,7 @@ module.exports = {
 
   // A map from regular expressions to module names that allow to stub out resources with a single module
   moduleNameMapper: {
-    '\\.(jpg|png|gif|)$': '<rootDir>/src/test/__mocks__/binaryMock.js',
+    '\\.(jpg|png|gif|)$': '<rootDir>/src/test/__mocks__/binaryMock.ts',
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
@@ -90,7 +90,7 @@ module.exports = {
   // notifyMode: "failure-change",
 
   // A preset that is used as a base for Jest's configuration
-  // preset: null,
+  // preset: 'ts-jest',
 
   // Run tests from one or more projects
   // projects: null,
@@ -122,7 +122,7 @@ module.exports = {
   // runner: "jest-runner",
 
   // The paths to modules that run some code to configure or set up the testing environment before each test
-  setupFiles: ['./src/test/setupTests.js'],
+  setupFiles: ['./src/test/setupTests.ts'],
 
   // A list of paths to modules that run some code to configure or set up the testing framework before each test
   // setupFilesAfterEnv: [],

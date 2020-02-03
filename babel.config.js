@@ -13,7 +13,7 @@ module.exports = api => {
       },
     ],
     '@babel/preset-react',
-    '@babel/preset-flow',
+    '@babel/typescript',
   ];
 
   const plugins = [
@@ -21,6 +21,7 @@ module.exports = api => {
       'babel-plugin-module-resolver',
       {
         root: ['./src'],
+        extensions: ['.js', '.ts', '.tsx'],
       },
     ],
     'babel-plugin-lodash',

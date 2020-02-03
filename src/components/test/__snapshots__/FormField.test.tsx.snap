@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormField should render correctly 1`] = `
+<Fragment>
+  <div
+    className="form-row"
+  >
+    <div
+      className="form-field"
+    >
+      <input
+        className="form-input"
+        id="password"
+        name="password"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onDragStart={[Function]}
+        onDrop={[Function]}
+        onFocus={[Function]}
+        placeholder="password"
+        type=""
+      />
+    </div>
+  </div>
+  <div
+    className="form-field-error"
+  >
+    <span
+      className="form-field-error-message"
+    >
+      validation.required
+    </span>
+  </div>
+</Fragment>
+`;
