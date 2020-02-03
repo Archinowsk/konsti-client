@@ -21,14 +21,14 @@ Registered users by year:
   - Express
   - AWS
   - MongoDB
-  - Flow
+  - TypeScript
   - Jest
   - Prettier & ESLint
 - Front-end
   - React
   - Redux
   - Webpack
-  - Flow
+  - TypeScript
   - Jest
   - Prettier & ESLint & stylelint
 
