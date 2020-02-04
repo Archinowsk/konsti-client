@@ -19,7 +19,7 @@
     "eslint-rules-table": "eslint-index .eslintrc.js --format table",
     "eslint-rules": "eslint-index .eslintrc.js",
     "eslint": "eslint . --ext .js,.ts,.tsx --fix",
-    "prettier": "prettier --write ./**/*.{js,json,css,md,ts,tsx}",
+    "prettier": "prettier --write ./**/*.{js,json,css,md,ts,tsx,yml}",
     "snapshot-update": "jest -u",
     "start": "webpack-dev-server",
     "stylelint": "stylelint ./**/*.css --fix",
@@ -146,7 +146,7 @@
     }
   },
   "lint-staged": {
-    "*.js": [
+    "*.{js,ts,tsx}": [
       "eslint --fix",
       "prettier --write"
     ],
