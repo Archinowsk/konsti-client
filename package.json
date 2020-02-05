@@ -2,7 +2,7 @@
   "name": "konsti-client",
   "version": "0.0.1",
   "private": true,
-  "main": "server.js",
+  "main": "index.tsx",
   "description": "Konsti signup tool client",
   "author": {
     "name": "Arttu Hanska"
