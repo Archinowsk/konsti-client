@@ -11,11 +11,12 @@
     "node": ">=12.x.x"
   },
   "scripts": {
-    "build-dev": "npm run build-types && webpack-cli",
-    "build-staging": "npm run build-types && webpack-cli",
-    "build": "npm run build-types && webpack-cli",
+    "build-dev": "webpack-cli",
+    "build-staging": "webpack-cli",
+    "build": "webpack-cli",
     "build-types": "tsc --emitDeclarationOnly",
     "bundle-analyze": "webpack-cli --profile --json > stats.json && webpack-bundle-analyzer stats.json build -m server",
+    "clean": "rimraf build",
     "eslint-rules-table": "eslint-index .eslintrc.js --format table",
     "eslint-rules": "eslint-index .eslintrc.js",
     "eslint": "eslint . --ext .js,.ts,.tsx --fix",
