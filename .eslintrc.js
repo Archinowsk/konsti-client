@@ -48,7 +48,7 @@ module.exports = {
 
   settings: {
     react: {
-      version: '16.8',
+      version: 'detect',
     },
     polyfills: ['Promise', 'Array.from', 'Object.entries'],
     'import/resolver': {
