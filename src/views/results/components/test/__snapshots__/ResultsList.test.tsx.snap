@@ -27,6 +27,16 @@ exports[`ResultsList should render correctly 1`] = `
     >
       gameTitle
     </button>
+    <br />
+    <span>
+      find
+       
+    </span>
+    <input
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
   </div>
 </div>
 `;
