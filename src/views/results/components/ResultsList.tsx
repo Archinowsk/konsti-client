@@ -15,7 +15,7 @@ export const ResultsList: FunctionComponent<Props> = (
   const { t } = useTranslation();
   const [sortedBy, setSortedBy] = React.useState<string>('');
   const [searchTerm, setSearchTerm] = React.useState<string>('');
-  const [searchResults, setSearchResults] = React.useState<any>([]);
+  const [searchResults, setSearchResults] = React.useState<any>(null);
 
   React.useEffect(() => {
     setSortedBy('username');
@@ -65,18 +65,10 @@ export const ResultsList: FunctionComponent<Props> = (
         />
       </div>
       {sortedBy === 'username' && (
-        <ResultsByUsername
-          results={
-            Object.entries(searchResults).length === 0 ? results : searchResults
-          }
-        />
+        <ResultsByUsername results={searchResults || results} />
       )}
       {sortedBy === 'gameTitle' && (
-        <ResultsByGameTitle
-          results={
-            Object.entries(searchResults).length === 0 ? results : searchResults
-          }
-        />
+        <ResultsByGameTitle results={searchResults || results} />
       )}
     </div>
   );
