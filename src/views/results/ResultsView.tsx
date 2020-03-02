@@ -1,4 +1,4 @@
-import React, { Fragment, FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { useSelector, useStore } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { ResultsList } from 'views/results/components/ResultsList';
@@ -8,7 +8,7 @@ import { Result } from 'typings/result.typings';
 
 import { RootState } from 'typings/redux.typings';
 
-export const ResultsView: FunctionComponent<{}> = (): ReactElement<'div'> => {
+export const ResultsView: FC<{}> = (): ReactElement => {
   const result: readonly Result[] = useSelector(
     (state: RootState) => state.results.result
   );
@@ -33,7 +33,7 @@ export const ResultsView: FunctionComponent<{}> = (): ReactElement<'div'> => {
     <div className='results-view'>
       {!signupTime && <h2>{t('noResults')}</h2>}
       {signupTime && (
-        <Fragment>
+        <>
           <h2>
             {t('signupResultsfor')}{' '}
             {timeFormatter.weekdayAndTime({
@@ -42,7 +42,7 @@ export const ResultsView: FunctionComponent<{}> = (): ReactElement<'div'> => {
             })}
           </h2>
           <ResultsList results={validResults} />
-        </Fragment>
+        </>
       )}
     </div>
   );

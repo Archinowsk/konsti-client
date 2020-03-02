@@ -1,9 +1,9 @@
-import React, { Fragment, FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getUserBySerial, updateUserPassword } from 'services/userServices';
 
-export const PasswordManagement: FunctionComponent<{}> = (): ReactElement<'div'> => {
+export const PasswordManagement: FC<{}> = (): ReactElement => {
   const { t } = useTranslation();
 
   const [serial, setSerial] = React.useState<string>('');
@@ -87,7 +87,7 @@ export const PasswordManagement: FunctionComponent<{}> = (): ReactElement<'div'>
 
       <div>
         {changePasswordInputVisible && (
-          <Fragment>
+          <>
             <p>{t('newPassword')}</p>
             <input
               type={passwordFieldType}
@@ -109,7 +109,7 @@ export const PasswordManagement: FunctionComponent<{}> = (): ReactElement<'div'>
             <p>
               {passwordChangeMessage && <span>{passwordChangeMessage}</span>}
             </p>
-          </Fragment>
+          </>
         )}
       </div>
     </div>

@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { useSelector, useStore } from 'react-redux';
 import { SignupList } from 'views/signup/components/SignupList';
 import { getOpenStartTimes } from 'utils/getOpenStartTimes';
@@ -8,7 +8,7 @@ import { Game } from 'typings/game.typings';
 
 import { RootState } from 'typings/redux.typings';
 
-export const SignupView: FunctionComponent<{}> = (): ReactElement<'div'> => {
+export const SignupView: FC<{}> = (): ReactElement => {
   const games: readonly Game[] = useSelector(
     (state: RootState) => state.allGames.games
   );

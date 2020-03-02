@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import { timeFormatter } from 'utils/timeFormatter';
 
@@ -13,9 +13,7 @@ export interface Props {
 // Show "signup starts xx:xx" on others
 // Toggle to show upcoming gameslots or all gameslots
 
-export const TimesDropdown: FunctionComponent<Props> = (
-  props: Props
-): ReactElement<'div'> => {
+export const TimesDropdown: FC<Props> = (props: Props): ReactElement => {
   const { times, onChange, selectedTime } = props;
   const { t } = useTranslation();
 

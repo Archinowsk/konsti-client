@@ -1,4 +1,4 @@
-import React, { Fragment, FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { Route, NavLink, Switch, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -21,9 +21,7 @@ export interface Props {
   onlyAdminLoginAllowed: boolean;
 }
 
-export const Routes: FunctionComponent<Props> = (
-  props: Props
-): ReactElement<typeof Fragment> => {
+export const Routes: FC<Props> = (props: Props): ReactElement => {
   const { onlyAdminLoginAllowed } = props;
   const loggedIn: boolean = useSelector(
     (state: RootState) => state.login.loggedIn
@@ -36,7 +34,7 @@ export const Routes: FunctionComponent<Props> = (
   if (onlyAdminLoginAllowed) {
     if (!loggedIn) {
       return (
-        <Fragment>
+        <>
           <div className='routes'>
             <NavLink to='/login' className='router-link'>
               {t('button.login')}
@@ -48,12 +46,12 @@ export const Routes: FunctionComponent<Props> = (
             </Route>
             <Redirect from='/*' to='/' />
           </Switch>
-        </Fragment>
+        </>
       );
     }
 
     return (
-      <Fragment>
+      <>
         <div className='routes'>
           {userGroup === 'admin' && (
             <NavLink to='/admin' className='router-link'>
@@ -76,13 +74,13 @@ export const Routes: FunctionComponent<Props> = (
           </Route>
           <Redirect from='/*' to='/' />
         </Switch>
-      </Fragment>
+      </>
     );
   }
 
   if (loggedIn) {
     return (
-      <Fragment>
+      <>
         <div className='routes'>
           <NavLink to='/games' className='router-link'>
             {t('pages.allGames')}
@@ -165,12 +163,12 @@ export const Routes: FunctionComponent<Props> = (
           <Redirect from='/' to='/games' />
           <Redirect from='/*' to='/' />
         </Switch>
-      </Fragment>
+      </>
     );
   }
 
   return (
-    <Fragment>
+    <>
       <div className='routes'>
         <NavLink to='/games' className='router-link'>
           {t('pages.allGames')}
@@ -201,6 +199,6 @@ export const Routes: FunctionComponent<Props> = (
         <Redirect from='/' to='/games' />
         <Redirect from='/*' to='/login' />
       </Switch>
-    </Fragment>
+    </>
   );
 };

@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { useTranslation } from 'react-i18next';
 import { required } from 'utils/validate';
@@ -10,9 +10,7 @@ interface Props {
   error?: string;
 }
 
-const LoginForm: FunctionComponent<Props> = (
-  props: Props
-): ReactElement<'div'> => {
+const LoginForm: FC<Props> = (props: Props): ReactElement => {
   const { handleSubmit, submitting, error } = props;
   const { t } = useTranslation();
 

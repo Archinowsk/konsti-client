@@ -1,4 +1,4 @@
-import React, { Fragment, FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -8,9 +8,7 @@ export interface Props {
   buttonText: string;
 }
 
-export const Accordion: FunctionComponent<Props> = (
-  props: Props
-): ReactElement<'div'> => {
+export const Accordion: FC<Props> = (props: Props): ReactElement => {
   const { text, title, buttonText } = props;
 
   const [open, setOpen] = React.useState<boolean>(false);
@@ -29,7 +27,7 @@ export const Accordion: FunctionComponent<Props> = (
   return (
     <div className='accordion'>
       {open && (
-        <Fragment>
+        <>
           <button className='accordion-toggle' onClick={() => onClick()}>
             <FontAwesomeIcon className='accordion-icon' icon='angle-up' />
             {t(`${buttonText}`)}
@@ -38,15 +36,15 @@ export const Accordion: FunctionComponent<Props> = (
             <h3>{t(`${title}`)}</h3>
             <div>{splitTextRows(text)}</div>
           </div>
-        </Fragment>
+        </>
       )}
       {!open && (
-        <Fragment>
+        <>
           <button className='accordion-toggle' onClick={() => onClick()}>
             <FontAwesomeIcon className='accordion-icon' icon='angle-down' />
             <span>{t(`${buttonText}`)}</span>
           </button>
-        </Fragment>
+        </>
       )}
     </div>
   );

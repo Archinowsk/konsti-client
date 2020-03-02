@@ -1,4 +1,4 @@
-import React, { Fragment, FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
@@ -12,7 +12,7 @@ import { Game } from 'typings/game.typings';
 import { UserGroup } from 'typings/user.typings';
 import { RootState } from 'typings/redux.typings';
 
-export const GameDetails: FunctionComponent<{}> = (): ReactElement<'div'> => {
+export const GameDetails: FC<{}> = (): ReactElement => {
   const history = useHistory();
   const { gameId } = useParams();
 
@@ -205,10 +205,10 @@ export const GameDetails: FunctionComponent<{}> = (): ReactElement<'div'> => {
       )}
 
       {!loading && game && (
-        <Fragment>
+        <>
           <GameInfo game={game} />
           {loggedIn && <FeedbackForm game={game} />}
-        </Fragment>
+        </>
       )}
     </div>
   );

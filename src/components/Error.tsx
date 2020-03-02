@@ -1,12 +1,10 @@
-import React, { FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 
 interface Props {
   meta: any;
 }
 
-export const Error: FunctionComponent<Props> = (
-  props: Props
-): ReactElement<'span'> => {
+export const Error: FC<Props> = (props: Props): ReactElement => {
   const {
     meta: { touched, error },
   } = props;

@@ -1,8 +1,8 @@
-import React, { Fragment, FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import moment from 'moment';
 
-export const LanguageSelector: FunctionComponent<{}> = (): ReactElement<typeof Fragment> => {
+export const LanguageSelector: FC<{}> = (): ReactElement => {
   const { t, i18n } = useTranslation();
   const language = i18n.language;
 
@@ -15,7 +15,7 @@ export const LanguageSelector: FunctionComponent<{}> = (): ReactElement<typeof F
   };
 
   return (
-    <Fragment>
+    <>
       <select
         className='language-selector'
         id='language'
@@ -29,6 +29,6 @@ export const LanguageSelector: FunctionComponent<{}> = (): ReactElement<typeof F
           {t('language.finnishShort')}
         </option>
       </select>
-    </Fragment>
+    </>
   );
 };

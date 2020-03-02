@@ -1,8 +1,8 @@
-import React, { FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import loaderImage from '../../assets/loading.gif';
 
-export const Loading: FunctionComponent<{}> = (): ReactElement<'div'> => {
+export const Loading: FC<{}> = (): ReactElement => {
   const { t } = useTranslation();
   return (
     <div className='loading'>

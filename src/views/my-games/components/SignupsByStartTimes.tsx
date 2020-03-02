@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { timeFormatter } from 'utils/timeFormatter';
@@ -9,9 +9,7 @@ export interface Props {
   startTimes: readonly string[];
 }
 
-export const SignupsByStartTimes: FunctionComponent<Props> = (
-  props: Props
-): ReactElement<'div'> => {
+export const SignupsByStartTimes: FC<Props> = (props: Props): ReactElement => {
   const { signups, startTimes } = props;
   const { t } = useTranslation();
 

@@ -1,4 +1,4 @@
-import React, { Fragment, FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { Link } from 'react-router-dom';
@@ -11,9 +11,7 @@ export interface Props {
   showCount: boolean;
 }
 
-export const DropRow: FunctionComponent<Props> = (
-  props: Props
-): ReactElement<typeof Fragment> => {
+export const DropRow: FC<Props> = (props: Props): ReactElement => {
   const { droppableId, games, label, showCount } = props;
   const { t } = useTranslation();
 
@@ -33,7 +31,7 @@ export const DropRow: FunctionComponent<Props> = (
   };
 
   return (
-    <Fragment>
+    <>
       <p>
         {label} {showCount && <span>({games.length}/3)</span>}
       </p>
@@ -81,6 +79,6 @@ export const DropRow: FunctionComponent<Props> = (
           </div>
         )}
       </Droppable>
-    </Fragment>
+    </>
   );
 };

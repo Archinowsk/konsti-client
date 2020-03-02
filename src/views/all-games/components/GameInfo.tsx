@@ -1,4 +1,4 @@
-import React, { Fragment, FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import { timeFormatter } from 'utils/timeFormatter';
 import { getGameTags } from 'utils/getGameTags';
@@ -9,9 +9,7 @@ export interface Props {
   game: Game;
 }
 
-export const GameInfo: FunctionComponent<Props> = (
-  props: Props
-): ReactElement<'div'> => {
+export const GameInfo: FC<Props> = (props: Props): ReactElement => {
   const { game } = props;
   const { t } = useTranslation();
   const { simpleDetails } = config;
@@ -90,7 +88,7 @@ export const GameInfo: FunctionComponent<Props> = (
       )}
 
       {game.revolvingDoor && (
-        <Fragment>
+        <>
           <div className='game-details-row game-details-row-with-subtext'>
             <span className='game-details-title'>
               {t('gameInfo.revolvingDoor')}
@@ -102,11 +100,11 @@ export const GameInfo: FunctionComponent<Props> = (
               {t('gameInfo.revolvingDoorDescription')}
             </span>
           </div>
-        </Fragment>
+        </>
       )}
 
       {game.ageRestricted && (
-        <Fragment>
+        <>
           <div className='game-details-row game-details-row-with-subtext'>
             <span className='game-details-title'>
               {t('gameTags.ageRestrictedTitle')}
@@ -118,7 +116,7 @@ export const GameInfo: FunctionComponent<Props> = (
               {t('gameTags.ageRestrictedLong')}
             </span>
           </div>
-        </Fragment>
+        </>
       )}
 
       {!!game.mins && (
@@ -165,7 +163,7 @@ export const GameInfo: FunctionComponent<Props> = (
       )}
 
       {game.description && (
-        <Fragment>
+        <>
           <div className='game-details-row'>
             <span className='game-details-title'>
               {t('gameInfo.description')}
@@ -174,7 +172,7 @@ export const GameInfo: FunctionComponent<Props> = (
           <div className='game-details-row game-details-row-with-gap'>
             <span>{game.description}</span>
           </div>
-        </Fragment>
+        </>
       )}
 
       {!simpleDetails && game.gameSystem && (

@@ -1,11 +1,11 @@
-import React, { FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { SubmissionError } from 'redux-form';
 import { submitLogin } from 'views/login/loginActions';
 import LoginForm from 'views/login/components/LoginForm';
 
-export const LoginView: FunctionComponent<{}> = (): ReactElement<'div'> => {
+export const LoginView: FC<{}> = (): ReactElement => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
