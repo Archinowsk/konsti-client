@@ -1,4 +1,4 @@
-import React, { Fragment, FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { useSelector, useStore } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { MySignupsList } from 'views/my-games/components/MySignupsList';
@@ -17,7 +17,7 @@ import { Signup } from 'typings/user.typings';
 import { GroupMember } from 'typings/group.typings';
 import { RootState } from 'typings/redux.typings';
 
-export const MyGamesView: FunctionComponent<{}> = (): ReactElement<'div'> => {
+export const MyGamesView: FC<{}> = (): ReactElement => {
   const { t } = useTranslation();
 
   const serial: string = useSelector((state: RootState) => state.login.serial);
@@ -88,7 +88,7 @@ export const MyGamesView: FunctionComponent<{}> = (): ReactElement<'div'> => {
 
   return (
     <div className='my-games-view'>
-      <Fragment>
+      <>
         <div className='my-games-toggle-visibility'>
           <button
             onClick={() => setShowAllGames(false)}
@@ -125,7 +125,7 @@ export const MyGamesView: FunctionComponent<{}> = (): ReactElement<'div'> => {
           }
           signedGames={getSignedGames(signedGames)}
         />
-      </Fragment>
+      </>
     </div>
   );
 };

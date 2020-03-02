@@ -1,11 +1,11 @@
-import React, { FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { useDispatch } from 'react-redux';
 import { SubmissionError } from 'redux-form';
 import { useTranslation } from 'react-i18next';
 import { submitRegistration } from 'views/registration/registrationActions';
 import RegistrationForm from 'views/registration/components/RegistrationForm';
 
-export const RegistrationView: FunctionComponent<{}> = (): ReactElement<'div'> => {
+export const RegistrationView: FC<{}> = (): ReactElement => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 

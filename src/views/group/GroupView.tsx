@@ -1,4 +1,4 @@
-import React, { Fragment, FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector, useStore } from 'react-redux';
 import {
@@ -15,7 +15,7 @@ import { GroupMember } from 'typings/group.typings';
 
 import { RootState } from 'typings/redux.typings';
 
-export const GroupView: FunctionComponent<{}> = (): ReactElement<'div'> => {
+export const GroupView: FC<{}> = (): ReactElement => {
   const username: string = useSelector(
     (state: RootState) => state.login.username
   );
@@ -224,7 +224,7 @@ export const GroupView: FunctionComponent<{}> = (): ReactElement<'div'> => {
       </div>
 
       {groupCode === '0' && !inGroup && (
-        <Fragment>
+        <>
           <button
             disabled={loading}
             className={showCreateGroup ? 'active' : ''}
@@ -265,7 +265,7 @@ export const GroupView: FunctionComponent<{}> = (): ReactElement<'div'> => {
               </button>
             </div>
           )}
-        </Fragment>
+        </>
       )}
 
       {groupLeader && inGroup && (
@@ -287,7 +287,7 @@ export const GroupView: FunctionComponent<{}> = (): ReactElement<'div'> => {
       )}
 
       {inGroup && (
-        <Fragment>
+        <>
           <div className='group-controls'>
             {!groupLeader && (
               <button
@@ -299,7 +299,7 @@ export const GroupView: FunctionComponent<{}> = (): ReactElement<'div'> => {
             )}
 
             {groupLeader && (
-              <Fragment>
+              <>
                 <div>
                   <button
                     disabled={loading}
@@ -331,13 +331,13 @@ export const GroupView: FunctionComponent<{}> = (): ReactElement<'div'> => {
                     </button>
                   </div>
                 )}
-              </Fragment>
+              </>
             )}
           </div>
 
           <h3>{t('groupMembers')}</h3>
           <GroupMembersList groupMembers={groupMembers} />
-        </Fragment>
+        </>
       )}
     </div>
   );

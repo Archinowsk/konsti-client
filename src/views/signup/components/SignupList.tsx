@@ -1,4 +1,4 @@
-import React, { Fragment, FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import _ from 'lodash';
@@ -25,9 +25,7 @@ export interface Props {
   leader: boolean;
 }
 
-export const SignupList: FunctionComponent<Props> = (
-  props: Props
-): ReactElement<'div'> => {
+export const SignupList: FC<Props> = (props: Props): ReactElement => {
   const { games, signupTimes, leader } = props;
 
   const signupTime: string = useSelector(
@@ -270,14 +268,14 @@ export const SignupList: FunctionComponent<Props> = (
       {signupTimes.length === 0 && <h2>{t('noOpenSignups')}</h2>}
 
       {signupTimes.length !== 0 && (
-        <Fragment>
+        <>
           <h2>{t('signupOpen')}</h2>
           <div className='signup-time-buttons-row'>{signupTimeButtons}</div>
-        </Fragment>
+        </>
       )}
 
       {signupTimes.length !== 0 && signupTime && (
-        <Fragment>
+        <>
           <div className='signup-info'>
             <p>
               {t('signupOpenBetweenCapital')} {signupStartTime}-{signupEndTime}.{' '}
@@ -323,7 +321,7 @@ export const SignupList: FunctionComponent<Props> = (
             updateSelectedGames={updateSelectedGames}
             // updateAvailableGames={updateAvailableGames}
           />
-        </Fragment>
+        </>
       )}
     </div>
   );

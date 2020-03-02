@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import { GroupMember } from 'typings/group.typings';
 
@@ -6,9 +6,7 @@ export interface Props {
   groupMembers: readonly GroupMember[];
 }
 
-export const GroupMembersList: FunctionComponent<Props> = (
-  props: Props
-): ReactElement<'div'> => {
+export const GroupMembersList: FC<Props> = (props: Props): ReactElement => {
   const { groupMembers } = props;
   const { t } = useTranslation();
 

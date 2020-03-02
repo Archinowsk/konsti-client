@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import moment from 'moment';
 import _ from 'lodash';
@@ -15,9 +15,7 @@ export interface Props {
   signedGames: readonly Signup[];
 }
 
-export const MyEnteredList: FunctionComponent<Props> = (
-  props: Props
-): ReactElement<'div'> => {
+export const MyEnteredList: FC<Props> = (props: Props): ReactElement => {
   const { enteredGames, signedGames } = props;
   const { t } = useTranslation();
   const testTime: string = useSelector(

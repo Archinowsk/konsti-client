@@ -1,4 +1,4 @@
-import React, { Fragment, FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { useSelector, useStore } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -12,7 +12,7 @@ import { Game } from 'typings/game.typings';
 
 import { RootState } from 'typings/redux.typings';
 
-export const AllGamesView: FunctionComponent<{}> = (): ReactElement<typeof Fragment> => {
+export const AllGamesView: FC<{}> = (): ReactElement => {
   const { t } = useTranslation();
 
   const games: readonly Game[] = useSelector(
@@ -118,7 +118,7 @@ export const AllGamesView: FunctionComponent<{}> = (): ReactElement<typeof Fragm
   };
 
   return (
-    <Fragment>
+    <>
       <div className='all-games-visibility-bar'>
         <div className='all-games-toggle-visibility'>
           <button
@@ -160,7 +160,7 @@ export const AllGamesView: FunctionComponent<{}> = (): ReactElement<typeof Fragm
       </div>
 
       {selectedView === 'revolving-door' && (
-        <Fragment>
+        <>
           <div className='revolving-door-instruction'>
             {t('revolvingDoorInstruction')}
           </div>
@@ -168,10 +168,10 @@ export const AllGamesView: FunctionComponent<{}> = (): ReactElement<typeof Fragm
             <h3>{t('currentlyRunningRevolvingDoor')}</h3>
             {getRunningRevolvingDoorGames(games)}
           </div>
-        </Fragment>
+        </>
       )}
 
       {loading ? <Loading /> : <AllGamesList games={getVisibleGames(games)} />}
-    </Fragment>
+    </>
   );
 };

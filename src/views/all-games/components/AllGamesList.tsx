@@ -1,4 +1,4 @@
-import React, { Fragment, FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
@@ -9,9 +9,7 @@ export interface Props {
   games: readonly Game[];
 }
 
-export const AllGamesList: FunctionComponent<Props> = (
-  props: Props
-): ReactElement<'div'> => {
+export const AllGamesList: FC<Props> = (props: Props): ReactElement => {
   const { games } = props;
   const { t } = useTranslation();
 
@@ -76,7 +74,7 @@ export const AllGamesList: FunctionComponent<Props> = (
   return (
     <div className='games-list'>
       {games.length === 0 && <h3>{t('noProgramItemsAvailable')}</h3>}
-      {games.length !== 0 && <Fragment>{GamesList}</Fragment>}
+      {games.length !== 0 && <>{GamesList}</>}
     </div>
   );
 };

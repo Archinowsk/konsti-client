@@ -1,11 +1,9 @@
-import React, { Fragment, FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FieldProps } from 'redux-form';
 
-export const FormField: FunctionComponent<FieldProps> = (
-  props: FieldProps
-): ReactElement<typeof Fragment> => {
+export const FormField: FC<FieldProps> = (props: FieldProps): ReactElement => {
   const { type } = props;
   const { name, onChange, onBlur, onDragStart, onDrop, onFocus } = props.input;
   const { touched, error } = props.meta;
@@ -29,7 +27,7 @@ export const FormField: FunctionComponent<FieldProps> = (
   };
 
   return (
-    <Fragment>
+    <>
       <div className='form-row'>
         <div className='form-field'>
           <input
@@ -62,6 +60,6 @@ export const FormField: FunctionComponent<FieldProps> = (
           <span className='form-field-error-message'>{t(error)}</span>
         </div>
       )}
-    </Fragment>
+    </>
   );
 };

@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { useTranslation } from 'react-i18next';
 import { FormField } from 'components/FormField';
@@ -11,9 +11,7 @@ interface Props {
   error?: string;
 }
 
-const RegistrationForm: FunctionComponent<Props> = (
-  props: Props
-): ReactElement<'div'> => {
+const RegistrationForm: FC<Props> = (props: Props): ReactElement => {
   const { handleSubmit, submitting, error } = props;
   const { t } = useTranslation();
 

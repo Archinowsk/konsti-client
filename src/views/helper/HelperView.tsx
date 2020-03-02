@@ -1,11 +1,11 @@
-import React, { Fragment, FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useStore } from 'react-redux';
 import { ResultsList } from 'views/helper/components/ResultsList';
 import { PasswordManagement } from 'views/helper/components/PasswordManagement';
 import { loadResults, loadSettings } from 'utils/loadData';
 
-export const HelperView: FunctionComponent<{}> = (): ReactElement<'div'> => {
+export const HelperView: FC<{}> = (): ReactElement => {
   const { t } = useTranslation();
 
   const [selectedTool, setSelectedTool] = React.useState<string>('results');
@@ -35,10 +35,10 @@ export const HelperView: FunctionComponent<{}> = (): ReactElement<'div'> => {
         {t('helperPasswordManagement')}
       </button>
 
-      <Fragment>
+      <>
         {selectedTool === 'results' && <ResultsList />}
         {selectedTool === 'password-management' && <PasswordManagement />}
-      </Fragment>
+      </>
     </div>
   );
 };

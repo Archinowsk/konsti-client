@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import _ from 'lodash';
 import { getStartTimes } from 'utils/getStartTimes';
@@ -9,9 +9,7 @@ export interface Props {
   favoritedGames: readonly Game[];
 }
 
-export const MyFavoritesList: FunctionComponent<Props> = (
-  props: Props
-): ReactElement<'div'> => {
+export const MyFavoritesList: FC<Props> = (props: Props): ReactElement => {
   const { favoritedGames } = props;
   const { t } = useTranslation();
 

@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import _ from 'lodash';
 import { getStartTimes } from 'utils/getStartTimes';
@@ -9,9 +9,7 @@ export interface Props {
   signedGames: readonly Signup[];
 }
 
-export const MySignupsList: FunctionComponent<Props> = (
-  props: Props
-): ReactElement<'div'> => {
+export const MySignupsList: FC<Props> = (props: Props): ReactElement => {
   const { signedGames } = props;
   const { t } = useTranslation();
 

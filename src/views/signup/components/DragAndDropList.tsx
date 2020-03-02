@@ -1,4 +1,4 @@
-import React, { Fragment, FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { DragDropContext } from 'react-beautiful-dnd';
@@ -18,9 +18,7 @@ export interface Props {
   selectedGames: readonly Game[];
 }
 
-export const DragAndDropList: FunctionComponent<Props> = (
-  props: Props
-): ReactElement<typeof Fragment> => {
+export const DragAndDropList: FC<Props> = (props: Props): ReactElement => {
   const {
     availableGames,
     selectedGames,
@@ -121,7 +119,7 @@ export const DragAndDropList: FunctionComponent<Props> = (
   };
 
   return (
-    <Fragment>
+    <>
       {warningVisible && <p className='error'>{t(warning)}</p>}
       <div className='drop-rows'>
         <DragDropContext onDragEnd={onDragEnd}>
@@ -143,6 +141,6 @@ export const DragAndDropList: FunctionComponent<Props> = (
           </div>
         </DragDropContext>
       </div>
-    </Fragment>
+    </>
   );
 };

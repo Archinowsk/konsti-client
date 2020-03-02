@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import { timeFormatter } from 'utils/timeFormatter';
 import { Game } from 'typings/game.typings';
@@ -8,9 +8,7 @@ export interface Props {
   startTimes: readonly string[];
 }
 
-export const GamesByStartTimes: FunctionComponent<Props> = (
-  props: Props
-): ReactElement<'div'> => {
+export const GamesByStartTimes: FC<Props> = (props: Props): ReactElement => {
   const { games, startTimes } = props;
 
   const getGamesList = (startTime: string) => {
