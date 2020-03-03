@@ -3,6 +3,7 @@ import { useSelector, useStore } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import moment from 'moment';
+import styled from 'styled-components';
 import { AllGamesList } from 'views/all-games/components/AllGamesList';
 import { getUpcomingGames } from 'utils/getUpcomingGames';
 import { loadGames } from 'utils/loadData';
@@ -109,9 +110,9 @@ export const AllGamesView: FC<{}> = (): ReactElement => {
       return (
         <div key={game.gameId} className='games-list'>
           <Link to={`/games/${game.gameId}`}>{game.title}</Link>{' '}
-          <p className='game-list-short-description'>
+          <GameListShortDescription>
             {game.shortDescription ? game.shortDescription : game.gameSystem}
-          </p>
+          </GameListShortDescription>
         </div>
       );
     });
@@ -119,8 +120,8 @@ export const AllGamesView: FC<{}> = (): ReactElement => {
 
   return (
     <>
-      <div className='all-games-visibility-bar'>
-        <div className='all-games-toggle-visibility'>
+      <AllGamesVisibilityBar>
+        <AllGamesToggleVisibility>
           <button
             onClick={() => setSelectedView('upcoming')}
             disabled={selectedView === 'upcoming'}
@@ -143,10 +144,10 @@ export const AllGamesView: FC<{}> = (): ReactElement => {
               {t('revolvingDoor')}
             </button>
           )}
-        </div>
+        </AllGamesToggleVisibility>
 
         {config.tagFilteringEnabled && (
-          <div className='tags-dropdown'>
+          <TagsDropdown>
             <span className={'choose-tag-instruction'}>{t('chooseTag')} </span>
             <select
               onChange={event => setSelectedTag(event.target.value)}
@@ -155,15 +156,15 @@ export const AllGamesView: FC<{}> = (): ReactElement => {
               <option value=''>{t('allGames')}</option>
               {tagsList()}
             </select>
-          </div>
+          </TagsDropdown>
         )}
-      </div>
+      </AllGamesVisibilityBar>
 
       {selectedView === 'revolving-door' && (
         <>
-          <div className='revolving-door-instruction'>
+          <RevolvingDoorInstruction>
             {t('revolvingDoorInstruction')}
-          </div>
+          </RevolvingDoorInstruction>
           <div className='running-revolving-door-games'>
             <h3>{t('currentlyRunningRevolvingDoor')}</h3>
             {getRunningRevolvingDoorGames(games)}
@@ -175,3 +176,38 @@ export const AllGamesView: FC<{}> = (): ReactElement => {
     </>
   );
 };
+
+const GameListShortDescription = styled.p`
+  font-size: ${props => props.theme.fontSizeSmall} $font-size-small;
+  font-style: italic;
+  margin: 4px 0 8px 14px;
+`;
+
+const AllGamesVisibilityBar = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @media (max-width: ${props => props.theme.breakpointPhone}) {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .choose-tag-instruction {
+      display: none;
+    }
+  }
+`;
+
+const RevolvingDoorInstruction = styled.div`
+  margin: 10px 0 0 14px;
+`;
+
+const AllGamesToggleVisibility = styled.div`
+  button {
+    margin: 10px 10px 0 0;
+  }
+`;
+
+const TagsDropdown = styled.div`
+  margin: 10px 0 0 0;
+`;

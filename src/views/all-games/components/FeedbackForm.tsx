@@ -1,5 +1,6 @@
 import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
+import styled from 'styled-components';
 import { postFeedback } from 'services/feedbackServices';
 import { Game } from 'typings/game.typings';
 
@@ -45,10 +46,9 @@ export const FeedbackForm: FC<Props> = (props: Props): ReactElement => {
 
       {!feedbackSent && (
         <>
-          <textarea
+          <FeedbackTextarea
             value={feedbackValue}
             onChange={handleFeedbackChange}
-            className='feedback-textarea'
             rows={4}
           />
 
@@ -58,7 +58,20 @@ export const FeedbackForm: FC<Props> = (props: Props): ReactElement => {
         </>
       )}
 
-      {feedbackSent && <p className='success'>{t('button.feedbackSent')}</p>}
+      {feedbackSent && (
+        <SuccessMessage>{t('button.feedbackSent')}</SuccessMessage>
+      )}
     </div>
   );
 };
+
+const FeedbackTextarea = styled.textarea`
+  width: 95%;
+  border: 1px solid black;
+  resize: none;
+  overflow: auto;
+`;
+
+const SuccessMessage = styled.p`
+  color: ${props => props.theme.success};
+`;

@@ -9,7 +9,6 @@ import { loadData } from 'utils/loadData';
 import { Loading } from 'components/Loading';
 import { getIconLibrary } from 'utils/icons';
 import { config } from 'config';
-
 import { RootState } from 'typings/redux.typings';
 
 export const App: FC<{}> = (): ReactElement => {

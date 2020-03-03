@@ -2,6 +2,7 @@ import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import _ from 'lodash';
+import styled from 'styled-components';
 import { timeFormatter } from 'utils/timeFormatter';
 import {
   submitSignup,
@@ -14,7 +15,6 @@ import { DragAndDropList } from 'views/signup/components/DragAndDropList';
 import { sleep } from 'utils/sleep';
 import { config } from 'config';
 import { Accordion } from 'components/Accordion';
-
 import { Game } from 'typings/game.typings';
 import { Signup } from 'typings/user.typings';
 import { RootState } from 'typings/redux.typings';
@@ -252,19 +252,19 @@ export const SignupList: FC<Props> = (props: Props): ReactElement => {
 
   const signupTimeButtons = signupTimes.map(time => {
     return (
-      <button
+      <StyledButton
         key={time}
         onClick={() => selectSignupTime(time)}
         className={`button-${time} ${isActive(time === signupTime)}`}
         disabled={time === signupTime}
       >
         {timeFormatter.weekdayAndTime({ time: time, capitalize: true })}
-      </button>
+      </StyledButton>
     );
   });
 
   return (
-    <div className='signup-list'>
+    <SignupListContainer>
       {signupTimes.length === 0 && <h2>{t('noOpenSignups')}</h2>}
 
       {signupTimes.length !== 0 && (
@@ -276,7 +276,7 @@ export const SignupList: FC<Props> = (props: Props): ReactElement => {
 
       {signupTimes.length !== 0 && signupTime && (
         <>
-          <div className='signup-info'>
+          <SignupInfo>
             <p>
               {t('signupOpenBetweenCapital')} {signupStartTime}-{signupEndTime}.{' '}
               {t('signupResultHint')} {signupEndTime}.
@@ -286,7 +286,7 @@ export const SignupList: FC<Props> = (props: Props): ReactElement => {
               title='signupGuideTitle'
               buttonText='signupGuideButton'
             />
-          </div>
+          </SignupInfo>
 
           <div className='signup-action-buttons-row'>
             <button disabled={submitting || !leader} onClick={onSubmitClick}>
@@ -298,11 +298,11 @@ export const SignupList: FC<Props> = (props: Props): ReactElement => {
             </button>
 
             {signupSubmitted && (
-              <span className='success bold'>{t('signupSaved')}</span>
+              <SuccessMessage>{t('signupSaved')}</SuccessMessage>
             )}
 
             {checkForSignupChanges(signedGames, selectedGames) && (
-              <span className='informative'>{t('signupUnsavedChanges')}</span>
+              <InfoMessage>{t('signupUnsavedChanges')}</InfoMessage>
             )}
 
             {!leader && <p className='bold'>{t('signupDisabledNotLeader')}</p>}
@@ -311,7 +311,7 @@ export const SignupList: FC<Props> = (props: Props): ReactElement => {
             )}
 
             <p>
-              {signupError && <span className='error'>{t(signupError)} </span>}
+              {signupError && <ErrorMessage>{t(signupError)} </ErrorMessage>}
             </p>
           </div>
 
@@ -323,6 +323,35 @@ export const SignupList: FC<Props> = (props: Props): ReactElement => {
           />
         </>
       )}
-    </div>
+    </SignupListContainer>
   );
 };
+
+const StyledButton = styled.button`
+  .active {
+    background-color: ${props => props.theme.buttonSelected};
+    border: 1px solid ${props => props.theme.borderActive};
+  }
+`;
+
+const ErrorMessage = styled.span`
+  color: ${props => props.theme.error};
+`;
+
+const InfoMessage = styled.span`
+  color: ${props => props.theme.informative};
+  font-weight: 600;
+`;
+
+const SuccessMessage = styled.span`
+  color: ${props => props.theme.success};
+  font-weight: 600;
+`;
+
+const SignupListContainer = styled.div`
+  margin: 0;
+`;
+
+const SignupInfo = styled.div`
+  margin: 0 0 20px 0;
+`;

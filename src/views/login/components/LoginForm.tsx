@@ -1,6 +1,7 @@
 import React, { FC, ReactElement } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { useTranslation } from 'react-i18next';
+import styled from 'styled-components';
 import { required } from 'utils/validate';
 import { FormField } from 'components/FormField';
 
@@ -38,7 +39,7 @@ const LoginForm: FC<Props> = (props: Props): ReactElement => {
       </form>
 
       {typeof error === 'string' && error && (
-        <strong className='error'>{error}</strong>
+        <ErrorMessage>{error}</ErrorMessage>
       )}
     </div>
   );
@@ -47,3 +48,8 @@ const LoginForm: FC<Props> = (props: Props): ReactElement => {
 export default reduxForm({
   form: 'login',
 })(LoginForm);
+
+const ErrorMessage = styled.span`
+  font-weight: bold;
+  color: ${props => props.theme.error};
+`;

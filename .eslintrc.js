@@ -74,6 +74,7 @@ module.exports = {
 
     // eslint-plugin-import
     'import/no-unused-modules': ['error', { unusedExports: true }],
+    'import/no-unresolved': 'off',
 
     // eslint-plugin-eslint-comments
     'eslint-comments/no-unused-disable': 'error',

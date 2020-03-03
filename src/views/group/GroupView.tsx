@@ -1,6 +1,7 @@
 import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector, useStore } from 'react-redux';
+import styled from 'styled-components';
 import {
   submitJoinGroup,
   submitCreateGroup,
@@ -205,9 +206,8 @@ export const GroupView: FC<{}> = (): ReactElement => {
 
   const joinGroupInput = (
     <div>
-      <input
+      <FormInput
         key='joinGroup'
-        className='form-input'
         placeholder={t('enterGroupLeaderCode')}
         value={joinGroupValue}
         onChange={handleJoinGroupChange}
@@ -225,25 +225,25 @@ export const GroupView: FC<{}> = (): ReactElement => {
 
       {groupCode === '0' && !inGroup && (
         <>
-          <button
+          <StyledButton
             disabled={loading}
             className={showCreateGroup ? 'active' : ''}
             onClick={() => openGroupForming()}
           >
             {t('button.createGroup')}
-          </button>
+          </StyledButton>
 
-          <button
+          <StyledButton
             disabled={loading}
             className={showJoinGroup ? 'active' : ''}
             onClick={() => openJoinGroup()}
           >
             {t('button.joinGroup')}
-          </button>
+          </StyledButton>
 
-          <span className={`group-status-message ${messageStyle}`}>
+          <GroupStatusMessage className={messageStyle}>
             {message}
-          </span>
+          </GroupStatusMessage>
 
           {showCreateGroup && (
             <div>
@@ -308,9 +308,9 @@ export const GroupView: FC<{}> = (): ReactElement => {
                     {t('button.closeGroup')}
                   </button>
 
-                  <span className={`group-status-message ${messageStyle}`}>
+                  <GroupStatusMessage className={messageStyle}>
                     {message}
-                  </span>
+                  </GroupStatusMessage>
                 </div>
                 {closeGroupConfirmation && (
                   <div>
@@ -322,13 +322,12 @@ export const GroupView: FC<{}> = (): ReactElement => {
                       {t('button.cancel')}
                     </button>
 
-                    <button
+                    <WarningButton
                       disabled={loading}
-                      className={'warning-button'}
                       onClick={() => closeGroup({ leader: groupLeader })}
                     >
                       {t('button.closeGroup')}
-                    </button>
+                    </WarningButton>
                   </div>
                 )}
               </>
@@ -352,3 +351,27 @@ export const isGroupLeader = (groupCode: string, serial: string): boolean => {
   }
   return false;
 };
+
+const GroupStatusMessage = styled.span`
+  font-weight: 600;
+`;
+
+const StyledButton = styled.button`
+  .active {
+    background-color: ${props => props.theme.buttonSelected};
+    border: 1px solid ${props => props.theme.borderActive};
+  }
+`;
+
+const WarningButton = styled.button`
+  background-color: ${props => props.theme.warning};
+  color: ${props => props.theme.warningButtonText};
+`;
+
+const FormInput = styled.input`
+  border: 1px solid ${props => props.theme.borderInactive};
+  color: ${props => props.theme.buttonText};
+  height: 34px;
+  padding: 0 0 0 10px;
+  width: 100%;
+`;

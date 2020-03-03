@@ -2,6 +2,7 @@ import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import moment from 'moment';
 import _ from 'lodash';
+import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { getStartTimes } from 'utils/getStartTimes';
 import { SignupsByStartTimes } from './SignupsByStartTimes';
@@ -82,7 +83,7 @@ export const MyEnteredList: FC<Props> = (props: Props): ReactElement => {
   return (
     <div className='my-entered-list'>
       <h3>{t('enteredGames')}</h3>
-      <div className='my-signups-games'>
+      <MyEnteredGames>
         {sortedEnteredGames.length === 0 && <span>{t('noEnteredGames')}</span>}
         {sortedEnteredGames.length !== 0 && (
           <SignupsByStartTimes
@@ -91,7 +92,11 @@ export const MyEnteredList: FC<Props> = (props: Props): ReactElement => {
             startTimes={sortedStartTimes}
           />
         )}
-      </div>
+      </MyEnteredGames>
     </div>
   );
 };
+
+const MyEnteredGames = styled.div`
+  padding-left: 30px;
+`;

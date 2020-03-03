@@ -1,6 +1,7 @@
 import React, { FC, ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import styled from 'styled-components';
 import { Hidden } from 'views/admin/components/Hidden';
 import {
   submitSignupTime,
@@ -165,7 +166,7 @@ export const AdminView: FC<{}> = (): ReactElement => {
 
         {games && games.length !== 0 && (
           <>
-            <p className={messageStyle}>{message}</p>
+            <StatusMessage className={messageStyle}>{message}</StatusMessage>
 
             <p>{t('activeTimeDescription')}</p>
 
@@ -204,3 +205,13 @@ export const AdminView: FC<{}> = (): ReactElement => {
     </div>
   );
 };
+
+const StatusMessage = styled.p`
+  .error {
+    color: ${props => props.theme.error};
+  }
+
+  .success {
+    color: ${props => props.theme.success};
+  }
+`;

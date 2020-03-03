@@ -1,6 +1,7 @@
 import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import _ from 'lodash';
+import styled from 'styled-components';
 import { getStartTimes } from 'utils/getStartTimes';
 import { GamesByStartTimes } from './GamesByStartTimes';
 import { Game } from 'typings/game.typings';
@@ -23,12 +24,16 @@ export const MyFavoritesList: FC<Props> = (props: Props): ReactElement => {
   return (
     <div className='my-favorites-list'>
       <h3>{t('favoritedGames')}</h3>
-      <div className='my-favorites-games'>
+      <MyFavoritesGames>
         {favoritedGames.length === 0 && <span>{t('noFavoritedGames')}</span>}
         {favoritedGames.length !== 0 && (
           <GamesByStartTimes games={sortedGames} startTimes={startTimes} />
         )}
-      </div>
+      </MyFavoritesGames>
     </div>
   );
 };
+
+const MyFavoritesGames = styled.div`
+  padding-left: 30px;
+`;

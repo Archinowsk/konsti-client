@@ -1,5 +1,6 @@
 import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
+import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { FieldProps } from 'redux-form';
 
@@ -28,9 +29,9 @@ export const FormField: FC<FieldProps> = (props: FieldProps): ReactElement => {
 
   return (
     <>
-      <div className='form-row'>
-        <div className='form-field'>
-          <input
+      <FormRow>
+        <StyledFormField>
+          <StyledInput
             className={classNames.join(' ')}
             id={name}
             name={name}
@@ -43,23 +44,80 @@ export const FormField: FC<FieldProps> = (props: FieldProps): ReactElement => {
             type={fieldType}
           />
           {type === 'checkbox' && <label htmlFor={name}>{t(name)}</label>}
-        </div>
+        </StyledFormField>
 
         {type === 'password' && (
-          <span className='form-field-icon'>
+          <FormFieldIcon>
             <FontAwesomeIcon
               icon={fieldType === 'password' ? 'eye' : 'eye-slash'}
               onClick={togglePasswordVisibility}
             />
-          </span>
+          </FormFieldIcon>
         )}
-      </div>
+      </FormRow>
 
       {touched && error && (
-        <div className='form-field-error'>
-          <span className='form-field-error-message'>{t(error)}</span>
-        </div>
+        <FormFieldError>
+          <FormFieldErrorMessage>{t(error)}</FormFieldErrorMessage>
+        </FormFieldError>
       )}
     </>
   );
 };
+
+const FormRow = styled.div`
+  align-items: center;
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: row;
+  width: 50%;
+  justify-content: flex-start;
+
+  @media (max-width: ${props => props.theme.breakpointPhone}) {
+    width: 100%;
+  }
+`;
+
+const StyledFormField = styled.div`
+  align-items: center;
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: row;
+  padding: 8px 0;
+  width: 80%;
+`;
+
+const FormFieldIcon = styled.span`
+  padding: 0 0 0 8px;
+  font-size: ${props => props.theme.iconSize};
+`;
+
+const FormFieldError = styled.div`
+  display: flex;
+  background-color: ${props => props.theme.backgroundHighlight};
+  color: ${props => props.theme.error};
+  width: 50%;
+
+  @media (max-width: ${props => props.theme.breakpointPhone}) {
+    width: 100%;
+  }
+`;
+
+const FormFieldErrorMessage = styled.span`
+  padding: 4px 0 4px 10px;
+`;
+
+const StyledInput = styled.input`
+  .form-input {
+    border: 1px solid ${props => props.theme.borderInactive};
+    color: ${props => props.theme.buttonText};
+    height: 34px;
+    padding: 0 0 0 10px;
+    width: 100%;
+  }
+
+  .checkbox {
+    margin-right: 10px;
+    width: 16px;
+  }
+`;

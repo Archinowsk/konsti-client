@@ -1,6 +1,7 @@
 import React, { FC, ReactElement } from 'react';
 import { useSelector, useStore } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import styled from 'styled-components';
 import { MySignupsList } from 'views/my-games/components/MySignupsList';
 import { MyFavoritesList } from 'views/my-games/components/MyFavoritesList';
 import { MyEnteredList } from 'views/my-games/components/MyEnteredList';
@@ -110,9 +111,9 @@ export const MyGamesView: FC<{}> = (): ReactElement => {
         />
 
         {!isGroupLeader(groupCode, serial) && (
-          <div className='my-games-group-notification'>
+          <MyGamesGroupNotification>
             <p className='bold'>{t('inGroupSignups')}</p>
-          </div>
+          </MyGamesGroupNotification>
         )}
 
         <MySignupsList signedGames={getSignedGames(signedGames)} />
@@ -129,3 +130,7 @@ export const MyGamesView: FC<{}> = (): ReactElement => {
     </div>
   );
 };
+
+const MyGamesGroupNotification = styled.div`
+  margin: 30px 0 0 0;
+`;
