@@ -4,8 +4,7 @@ exports[`AllGamesList should render correctly 1`] = `
 <div
   className="games-list"
 >
-  <h3
-    className="game-list-title"
+  <AllGamesList__GameListTitle
     key="2018-07-28T16:00:00.000Z"
   >
     <span
@@ -13,7 +12,7 @@ exports[`AllGamesList should render correctly 1`] = `
     >
       Saturday 16:00
     </span>
-  </h3>
+  </AllGamesList__GameListTitle>
   <div
     className="games-list"
     key="p2106"
@@ -24,14 +23,12 @@ exports[`AllGamesList should render correctly 1`] = `
       Test game
     </Link>
      
-    <p
-      className="game-list-short-description"
-    >
+    <AllGamesList__GameListShortDescription>
       programType.tabletopRPG
       :
        
       Short description
-    </p>
+    </AllGamesList__GameListShortDescription>
   </div>
 </div>
 `;
