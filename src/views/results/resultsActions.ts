@@ -5,7 +5,7 @@ import { ResultsState } from 'typings/redux.typings';
 export const SUBMIT_GET_RESULTS = 'SUBMIT_GET_RESULTS';
 
 export const submitGetResults = (startTime: string): any => {
-  return async (dispatch: Function): Promise<any> => {
+  return async (dispatch: Function): Promise<unknown> => {
     let getResultsResponse;
     try {
       getResultsResponse = await getResults(startTime);
@@ -30,7 +30,7 @@ export const submitGetResults = (startTime: string): any => {
 };
 
 export const submitPlayersAssign = (signupTime: string): any => {
-  return async (dispatch: Function): Promise<any> => {
+  return async (dispatch: Function): Promise<unknown> => {
     let assignResponse;
     try {
       assignResponse = await postPlayerAssignment(signupTime);

@@ -1,5 +1,5 @@
 import { api } from 'utils/api';
-import { RegistrationData } from 'typings/user.typings';
+import { RegistrationData, UpdateUserResponse } from 'typings/user.typings';
 
 export const postRegistration = async (
   registrationData: RegistrationData
@@ -84,7 +84,7 @@ export const updateUserPassword = async (
   serial: string,
   password: string,
   changePassword: boolean
-): Promise<any> => {
+): Promise<UpdateUserResponse | undefined> => {
   let response;
   try {
     response = await api.post('/user', {

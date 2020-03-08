@@ -56,3 +56,7 @@ export interface UserGames {
   favoritedGames: readonly Game[];
   signedGames: readonly Signup[];
 }
+
+export interface UpdateUserResponse {
+  status: string;
+}

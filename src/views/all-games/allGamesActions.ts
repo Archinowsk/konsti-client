@@ -4,7 +4,7 @@ import { Game } from 'typings/game.typings';
 export const SUBMIT_GET_GAMES = 'SUBMIT_GET_GAMES';
 
 export const submitGetGames = (): any => {
-  return async (dispatch: Function): Promise<any> => {
+  return async (dispatch: Function): Promise<unknown> => {
     let getGamesResponse;
     try {
       getGamesResponse = await getGames();
@@ -24,7 +24,7 @@ export const submitGetGames = (): any => {
 };
 
 export const submitGamesUpdate = (): any => {
-  return async (dispatch: Function): Promise<any> => {
+  return async (dispatch: Function): Promise<unknown> => {
     let gamesUpdateResponse;
     try {
       gamesUpdateResponse = await postGamesUpdate();

@@ -11,7 +11,7 @@ export const SUBMIT_SET_TEST_TIME = 'SUBMIT_SET_TEST_TIME';
 export const SUBMIT_TOGGLE_APP_OPEN = 'SUBMIT_TOGGLE_APP_OPEN';
 
 export const submitUpdateHidden = (hiddenGames: readonly Game[]): any => {
-  return async (dispatch: Function): Promise<any> => {
+  return async (dispatch: Function): Promise<unknown> => {
     let updateHiddenResponse;
     try {
       updateHiddenResponse = await postHidden(hiddenGames);
@@ -38,7 +38,7 @@ const submitUpdateHiddenAsync = (hiddenGames: readonly Game[]): any => {
 };
 
 export const submitGetSettings = (): any => {
-  return async (dispatch: Function): Promise<any> => {
+  return async (dispatch: Function): Promise<unknown> => {
     let settingsResponse;
     try {
       settingsResponse = await getSettings();
@@ -78,7 +78,7 @@ const submitGetSettingsAsync = ({
 };
 
 export const submitSignupTime = (signupTime: string): any => {
-  return async (dispatch: Function): Promise<any> => {
+  return async (dispatch: Function): Promise<unknown> => {
     let signupTimeResponse;
     try {
       signupTimeResponse = await postSignupTime(signupTime);
@@ -112,7 +112,7 @@ export const submitSetTestTime = (testTime: string): any => {
 };
 
 export const submitToggleAppOpen = (appOpen: boolean): any => {
-  return async (dispatch: Function): Promise<any> => {
+  return async (dispatch: Function): Promise<unknown> => {
     let appOpenResponse;
     try {
       appOpenResponse = await postToggleAppOpen(appOpen);
