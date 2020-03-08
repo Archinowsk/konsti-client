@@ -241,14 +241,17 @@ const getWebpackConfig = () => {
   const TARGET = process.env.npm_lifecycle_event;
 
   if (TARGET === 'build' || TARGET === 'bundle-analyze') {
+    // @ts-ignore
     return webpackMerge(commonConfig, prodConfig);
   } else if (TARGET === 'build-staging') {
+    // @ts-ignore
     return webpackMerge(commonConfig, stagingConfig);
   } else if (
     TARGET === 'start' ||
     TARGET === 'watch' ||
     TARGET === 'build-dev'
   ) {
+    // @ts-ignore
     return webpackMerge(commonConfig, devConfig);
   }
 };

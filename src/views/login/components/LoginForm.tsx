@@ -47,6 +47,7 @@ const LoginForm: FC<Props> = (props: Props): ReactElement => {
 
 export default reduxForm({
   form: 'login',
+  // @ts-ignore
 })(LoginForm);
 
 const ErrorMessage = styled.span`

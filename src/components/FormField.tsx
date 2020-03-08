@@ -2,9 +2,12 @@ import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FieldProps } from 'redux-form';
+import { WrappedFieldProps } from 'redux-form';
 
-export const FormField: FC<FieldProps> = (props: FieldProps): ReactElement => {
+export const FormField: FC<WrappedFieldProps> = (
+  props: WrappedFieldProps
+): ReactElement => {
+  // @ts-ignore
   const { type } = props;
   const { name, onChange, onBlur, onDragStart, onDrop, onFocus } = props.input;
   const { touched, error } = props.meta;

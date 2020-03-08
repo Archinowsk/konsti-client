@@ -16,6 +16,7 @@ const RegistrationForm: FC<Props> = (props: Props): ReactElement => {
   const { handleSubmit, submitting, error } = props;
   const { t } = useTranslation();
 
+  console.log(error);
   return (
     <div className='registration-form'>
       <h2>{t('pageTitle.registration')}</h2>
@@ -74,6 +75,7 @@ const RegistrationForm: FC<Props> = (props: Props): ReactElement => {
 
 export default reduxForm({
   form: 'registration',
+  // @ts-ignore
 })(RegistrationForm);
 
 const ErrorMessage = styled.span`
