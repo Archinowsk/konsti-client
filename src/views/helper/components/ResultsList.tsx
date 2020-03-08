@@ -45,12 +45,15 @@ export const ResultsList: FC<{}> = (): ReactElement => {
         </p>
         <p>
           <span className='bold'>{t('gameInfo.location')}:</span>{' '}
-          {_.head(groupedResults[result]).enteredGame.gameDetails.location}
+          {_.head(groupedResults[result])?.enteredGame.gameDetails.location}
         </p>
         <p>
           <span className='bold'>{t('players')}: </span>
           {playerList.length}/
-          {_.head(groupedResults[result]).enteredGame.gameDetails.maxAttendance}
+          {
+            _.head(groupedResults[result])?.enteredGame.gameDetails
+              .maxAttendance
+          }
         </p>
       </GameResult>
     );

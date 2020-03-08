@@ -69,7 +69,8 @@ export const TimeSelector: FC<{}> = (): ReactElement => {
   ];
 
   React.useEffect(() => {
-    if (!testTime) dispatch(submitSetTestTime(_.first(times)));
+    const defaultTestTime = _.first(times);
+    if (!testTime) dispatch(submitSetTestTime(defaultTestTime ?? ''));
   });
 
   const setTestTime = event => {

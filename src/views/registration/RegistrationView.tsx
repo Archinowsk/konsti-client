@@ -19,11 +19,13 @@ export const RegistrationView: FC<{}> = (): ReactElement => {
 
     if (response && response.code === 11) {
       throw new SubmissionError({
+        // @ts-ignore
         username: t('error.usernameTaken'),
         _error: t('error.registrationFailed'),
       });
     } else if (response && response.code === 12) {
       throw new SubmissionError({
+        // @ts-ignore
         serial: t('error.invalidSerial'),
         _error: t('error.registrationFailed'),
       });

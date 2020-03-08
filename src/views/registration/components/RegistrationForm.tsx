@@ -74,6 +74,7 @@ const RegistrationForm: FC<Props> = (props: Props): ReactElement => {
 
 export default reduxForm({
   form: 'registration',
+  // @ts-ignore
 })(RegistrationForm);
 
 const ErrorMessage = styled.span`
