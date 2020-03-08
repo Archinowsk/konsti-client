@@ -2,13 +2,9 @@
 
 exports[`FormField should render correctly 1`] = `
 <Fragment>
-  <div
-    className="form-row"
-  >
-    <div
-      className="form-field"
-    >
-      <input
+  <FormField__FormRow>
+    <FormField__StyledFormField>
+      <FormField__StyledInput
         className="form-input"
         id="password"
         name="password"
@@ -20,16 +16,12 @@ exports[`FormField should render correctly 1`] = `
         placeholder="password"
         type=""
       />
-    </div>
-  </div>
-  <div
-    className="form-field-error"
-  >
-    <span
-      className="form-field-error-message"
-    >
+    </FormField__StyledFormField>
+  </FormField__FormRow>
+  <FormField__FormFieldError>
+    <FormField__FormFieldErrorMessage>
       validation.required
-    </span>
-  </div>
+    </FormField__FormFieldErrorMessage>
+  </FormField__FormFieldError>
 </Fragment>
 `;

@@ -1,6 +1,7 @@
 import React, { FC, ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import styled from 'styled-components';
 import { timeFormatter } from 'utils/timeFormatter';
 import { Signup, EmptySignup } from 'typings/user.typings';
 
@@ -18,17 +19,17 @@ export const SignupsByStartTimes: FC<Props> = (props: Props): ReactElement => {
       if (signup.time === startTime) {
         if (!signup.gameDetails) {
           return (
-            <p key={signup.time} className='game-details-list'>
+            <GameDetailsList key={signup.time}>
               {t('noSignupResult')}
-            </p>
+            </GameDetailsList>
           );
         } else {
           return (
-            <p key={signup.gameDetails.gameId} className='game-details-list'>
+            <GameDetailsList key={signup.gameDetails.gameId}>
               <Link to={`/games/${signup.gameDetails.gameId}`}>
                 {signup.gameDetails.title}
               </Link>
-            </p>
+            </GameDetailsList>
           );
         }
       }
@@ -48,3 +49,7 @@ export const SignupsByStartTimes: FC<Props> = (props: Props): ReactElement => {
 
   return <div className='start-times-list'>{startTimesList}</div>;
 };
+
+const GameDetailsList = styled.p`
+  padding-left: 30px;
+`;

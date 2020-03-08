@@ -1,6 +1,7 @@
 import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import moment from 'moment';
+import styled from 'styled-components';
 
 export const LanguageSelector: FC<{}> = (): ReactElement => {
   const { t, i18n } = useTranslation();
@@ -16,8 +17,7 @@ export const LanguageSelector: FC<{}> = (): ReactElement => {
 
   return (
     <>
-      <select
-        className='language-selector'
+      <LanguageSelectorContainer
         id='language'
         value={language}
         onChange={setLanguage}
@@ -28,7 +28,12 @@ export const LanguageSelector: FC<{}> = (): ReactElement => {
         <option title={t('language.finnish')} value='fi'>
           {t('language.finnishShort')}
         </option>
-      </select>
+      </LanguageSelectorContainer>
     </>
   );
 };
+
+const LanguageSelectorContainer = styled.select`
+  height: 30px;
+  width: 60px;
+`;

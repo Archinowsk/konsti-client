@@ -1,6 +1,7 @@
 import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import _ from 'lodash';
+import styled from 'styled-components';
 import { getStartTimes } from 'utils/getStartTimes';
 import { SignupsByStartTimes } from './SignupsByStartTimes';
 import { Signup } from 'typings/user.typings';
@@ -25,7 +26,7 @@ export const MySignupsList: FC<Props> = (props: Props): ReactElement => {
   return (
     <div className='my-signups-list'>
       <h3>{t('signedGames')}</h3>
-      <div className='my-signups-games'>
+      <MySignupsGames>
         {signedGames.length === 0 && <span>{t('noSignedGames')}</span>}
         {signedGames.length !== 0 && (
           <SignupsByStartTimes
@@ -33,7 +34,11 @@ export const MySignupsList: FC<Props> = (props: Props): ReactElement => {
             startTimes={startTimes}
           />
         )}
-      </div>
+      </MySignupsGames>
     </div>
   );
 };
+
+const MySignupsGames = styled.div`
+  padding-left: 30px;
+`;

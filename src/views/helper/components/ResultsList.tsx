@@ -2,6 +2,7 @@ import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import _ from 'lodash';
+import styled from 'styled-components';
 import { timeFormatter } from 'utils/timeFormatter';
 import { Result } from 'typings/result.typings';
 import { RootState } from 'typings/redux.typings';
@@ -38,7 +39,7 @@ export const ResultsList: FC<{}> = (): ReactElement => {
     ));
 
     resultsByGameTitle.push(
-      <div className='game-result' key={result}>
+      <GameResult key={result}>
         <p>
           <span className='bold'>{t('gameTitle')}:</span> {result}
         </p>
@@ -51,7 +52,7 @@ export const ResultsList: FC<{}> = (): ReactElement => {
           {playerList.length}/
           {_.head(groupedResults[result]).enteredGame.gameDetails.maxAttendance}
         </p>
-      </div>
+      </GameResult>
     );
   }
 
@@ -74,3 +75,8 @@ export const ResultsList: FC<{}> = (): ReactElement => {
     </div>
   );
 };
+
+const GameResult = styled.div`
+  border-bottom: solid 1px ${props => props.theme.disabled};
+  padding-bottom: 10px;
+`;

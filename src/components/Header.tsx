@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { LanguageSelector } from 'components/LanguageSelector';
+import styled from 'styled-components';
 import { config } from 'config';
 import { TimeSelector } from 'test/test-components/TimeSelector';
 import { RootState } from 'typings/redux.typings';
@@ -18,30 +19,54 @@ export const Header = () => {
   const { loadedSettings, CONVENTION_NAME, CONVENTION_YEAR } = config;
 
   return (
-    <header>
+    <HeaderContainer>
       {loadedSettings !== 'production' && <TimeSelector />}
 
       <h1>
-        <a href='/' className='logo'>
-          {t('appTitle')}
-        </a>
+        <Logo href='/'>{t('appTitle')}</Logo>
       </h1>
 
-      <div className='header-bar'>
+      <HeaderBar>
         {t('appDescription', { CONVENTION_NAME, CONVENTION_YEAR })}
         <LanguageSelector />
-      </div>
+      </HeaderBar>
 
       {loggedIn && (
-        <div className='logged-user-details'>
-          <span className='user-info-username'>
+        <LoggedUserDetails>
+          <UserInfo>
             {t('user')}: {username}
-          </span>
-          <span className='user-info-serial'>
+          </UserInfo>
+          <UserInfo>
             {t('code')}: {serial}
-          </span>
-        </div>
+          </UserInfo>
+        </LoggedUserDetails>
       )}
-    </header>
+    </HeaderContainer>
   );
 };
+
+const HeaderContainer = styled.header`
+  padding: 0 0 20px;
+`;
+
+const Logo = styled.a`
+  color: ${props => props.theme.mainText};
+  text-decoration: none;
+`;
+
+const HeaderBar = styled.div`
+  display: flex;
+  flex: 0 1 auto;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const LoggedUserDetails = styled.div`
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: column;
+`;
+
+const UserInfo = styled.span`
+  padding: 6px 0 0 0;
+`;

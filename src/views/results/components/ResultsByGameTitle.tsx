@@ -1,6 +1,7 @@
 import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import _ from 'lodash';
+import styled from 'styled-components';
 
 import { Result } from 'typings/result.typings';
 
@@ -33,7 +34,7 @@ export const ResultsByGameTitle: FC<Props> = (props: Props): ReactElement => {
     ));
 
     resultsByGameTitle.push(
-      <div className='game-result' key={result}>
+      <GameResult key={result}>
         <p>
           <span className='bold'>{t('gameTitle')}:</span> {result}
         </p>
@@ -42,10 +43,19 @@ export const ResultsByGameTitle: FC<Props> = (props: Props): ReactElement => {
           {_.head(groupedResults[result]).enteredGame.gameDetails.location}
         </p>
         <p className='bold'>{t('players')}:</p>
-        <div className='result-player-list'>{playerList}</div>
-      </div>
+        <ResultPlayerList>{playerList}</ResultPlayerList>
+      </GameResult>
     );
   }
 
   return <div className='results-by-gametime'>{resultsByGameTitle}</div>;
 };
+
+const GameResult = styled.div`
+  border-bottom: solid 1px ${props => props.theme.disabled};
+  padding-bottom: 10px;
+`;
+
+const ResultPlayerList = styled.div`
+  padding-left: 30px;
+`;

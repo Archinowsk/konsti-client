@@ -2,6 +2,7 @@ import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
+import styled from 'styled-components';
 import { timeFormatter } from 'utils/timeFormatter';
 import { Game } from 'typings/game.typings';
 
@@ -35,7 +36,7 @@ export const AllGamesList: FC<Props> = (props: Props): ReactElement => {
       const allGamesRevolvingDoor = games.every(game => game.revolvingDoor);
 
       const title = (
-        <h3 key={startTime} className='game-list-title'>
+        <GameListTitle key={startTime}>
           <span className='game-startup-time'>{formattedStartTime}</span>
           {!allGamesRevolvingDoor && (
             <span className='game-signup-time'>
@@ -43,7 +44,7 @@ export const AllGamesList: FC<Props> = (props: Props): ReactElement => {
               ({t('signupOpenBetween')} {signupStartTime}-{signupEndTime})
             </span>
           )}
-        </h3>
+        </GameListTitle>
       );
 
       // @ts-ignore
@@ -54,10 +55,10 @@ export const AllGamesList: FC<Props> = (props: Props): ReactElement => {
         const gameEntry = (
           <div key={game.gameId} className='games-list'>
             <Link to={`/games/${game.gameId}`}>{game.title}</Link>{' '}
-            <p className='game-list-short-description'>
+            <GameListShortDescription>
               {t(`programType.${game.programType}`)}:{' '}
               {game.shortDescription ? game.shortDescription : game.gameSystem}
-            </p>
+            </GameListShortDescription>
           </div>
         );
 
@@ -78,3 +79,13 @@ export const AllGamesList: FC<Props> = (props: Props): ReactElement => {
     </div>
   );
 };
+
+const GameListTitle = styled.h3`
+  margin: 20px 0;
+`;
+
+const GameListShortDescription = styled.p`
+  font-size: ${props => props.theme.fontSizeSmall};
+  font-style: italic;
+  margin: 4px 0 8px 14px;
+`;
