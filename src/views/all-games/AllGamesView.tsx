@@ -178,7 +178,7 @@ export const AllGamesView: FC<{}> = (): ReactElement => {
 };
 
 const GameListShortDescription = styled.p`
-  font-size: ${props => props.theme.fontSizeSmall} $font-size-small;
+  font-size: ${props => props.theme.fontSizeSmall};
   font-style: italic;
   margin: 4px 0 8px 14px;
 `;
@@ -192,14 +192,14 @@ const AllGamesVisibilityBar = styled.div`
     flex-direction: column;
     align-items: flex-start;
 
-    .choose-tag-instruction {
+    &.choose-tag-instruction {
       display: none;
     }
   }
 `;
 
 const RevolvingDoorInstruction = styled.div`
-  margin: 10px 0 0 14px;
+  margin: 100px 0 0 14px;
 `;
 
 const AllGamesToggleVisibility = styled.div`

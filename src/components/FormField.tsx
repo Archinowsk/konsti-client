@@ -108,7 +108,7 @@ const FormFieldErrorMessage = styled.span`
 `;
 
 const StyledInput = styled.input`
-  .form-input {
+  &.form-input {
     border: 1px solid ${props => props.theme.borderInactive};
     color: ${props => props.theme.buttonText};
     height: 34px;
@@ -116,7 +116,7 @@ const StyledInput = styled.input`
     width: 100%;
   }
 
-  .checkbox {
+  &.checkbox {
     margin-right: 10px;
     width: 16px;
   }

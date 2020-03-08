@@ -357,7 +357,7 @@ const GroupStatusMessage = styled.span`
 `;
 
 const StyledButton = styled.button`
-  .active {
+  &.active {
     background-color: ${props => props.theme.buttonSelected};
     border: 1px solid ${props => props.theme.borderActive};
   }

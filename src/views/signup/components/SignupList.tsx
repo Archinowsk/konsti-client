@@ -328,7 +328,7 @@ export const SignupList: FC<Props> = (props: Props): ReactElement => {
 };
 
 const StyledButton = styled.button`
-  .active {
+  &.active {
     background-color: ${props => props.theme.buttonSelected};
     border: 1px solid ${props => props.theme.borderActive};
   }

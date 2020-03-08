@@ -223,15 +223,15 @@ const GameDetailsRow = styled.div`
   white-space: pre-wrap;
   word-wrap: break-word;
 
-  .game-details-row-with-subtext {
+  &.game-details-row-with-subtext {
     padding: 0 0 4px;
   }
 
-  .game-details-subtext {
-    font-size: $font-size-small;
+  &.game-details-subtext {
+    font-size: ${props => props.theme.fontSizeSmall};
   }
 
-  .game-details-row-with-gap {
+  &.game-details-row-with-gap {
     padding: 0 0 20px;
   }
 `;
@@ -247,12 +247,12 @@ const GameDetailsTitle = styled.span`
   padding: 0 10px 0 0;
   margin: 0;
 
-  .game-details-two-columns {
+  &.game-details-two-columns {
     width: 25%;
   }
 
   @media (max-width: ${props => props.theme.breakpointPhone}) {
-    .game-details-two-columns {
+    &.game-details-two-columns {
       width: 40%;
     }
   }

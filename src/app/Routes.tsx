@@ -193,11 +193,11 @@ const RouterLink = styled(NavLink)`
     background-color: ${props => props.theme.backgroundHover};
   }
 
-  .active {
+  &.active {
     border: none;
   }
 
-  .active::after {
+  &.active::after {
     background-color: ${props => props.theme.mainText};
     bottom: 0;
     content: '';

@@ -85,7 +85,7 @@ const GameListTitle = styled.h3`
 `;
 
 const GameListShortDescription = styled.p`
-  font-size: ${props => props.theme.fontSizeSmall} $font-size-small;
+  font-size: ${props => props.theme.fontSizeSmall};
   font-style: italic;
   margin: 4px 0 8px 14px;
 `;

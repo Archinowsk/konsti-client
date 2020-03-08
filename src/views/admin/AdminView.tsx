@@ -207,11 +207,11 @@ export const AdminView: FC<{}> = (): ReactElement => {
 };
 
 const StatusMessage = styled.p`
-  .error {
+  &.error {
     color: ${props => props.theme.error};
   }
 
-  .success {
+  &.success {
     color: ${props => props.theme.success};
   }
 `;

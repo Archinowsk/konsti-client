@@ -89,17 +89,17 @@ const DropRowContainer = styled.div`
   min-height: 40px;
   padding: 10px;
 
-  .dragging {
+  &.dragging {
     background-color: ${props => props.theme.backgroundDndRow};
   }
 
-  .availableGames,
-  .selectedGames {
+  &.availableGames,
+  &.selectedGames {
     min-height: 500px;
   }
 
   a {
-    color: $main-text;
+    color: ${props => props.theme.mainText};
     text-decoration: none;
     cursor: grabbing;
   }
@@ -119,15 +119,15 @@ const DraggableItem = styled.div`
     filter: brightness(90%);
   }
 
-  .high-popularity {
+  &.high-popularity {
     background-color: #ffe8e8;
   }
 
-  .medium-popularity {
+  &.medium-popularity {
     background-color: #fff;
   }
 
-  .low-popularity {
+  &.low-popularity {
     background-color: #f0ffff;
   }
 `;

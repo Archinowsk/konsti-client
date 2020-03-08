@@ -48,7 +48,7 @@ const FlexTableColumn = styled.div`
   flex-direction: row;
   padding: 10px 0;
 
-  .flex-table-header {
+  &.flex-table-header {
     font-weight: 700;
     padding-bottom: 20px;
   }
