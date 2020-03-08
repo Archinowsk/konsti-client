@@ -93,5 +93,6 @@ module.exports = {
     '@typescript-eslint/require-array-sort-compare': 'off',
     '@typescript-eslint/no-misused-promises': 'off',
     '@typescript-eslint/no-var-requires': 'off',
+    '@typescript-eslint/default-param-last': 'off',
   },
 };
