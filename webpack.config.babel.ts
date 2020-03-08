@@ -29,7 +29,6 @@ const commonConfig = {
 
   // Array of entry files
   entry: {
-    // oldbrowser: [path.join(__dirname, 'src', 'utils', 'oldbrowser')],
     client: [path.join(__dirname, 'src', 'index')],
   },
 
