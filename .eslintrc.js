@@ -14,6 +14,7 @@ module.exports = {
     'plugin:eslint-plugin-promise/recommended',
     'plugin:eslint-plugin-react/recommended',
     'plugin:eslint-plugin-import/errors',
+    'plugin:eslint-plugin-import/typescript',
     // 'plugin:eslint-plugin-jsx-a11y/recommended',
     // 'plugin:eslint-plugin-security/recommended',
     // 'plugin:eslint-plugin-unicorn/recommended',

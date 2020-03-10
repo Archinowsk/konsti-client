@@ -56,4 +56,5 @@ export const App: FC<{}> = (): ReactElement => {
   );
 };
 
+/* eslint-disable-next-line import/no-unused-modules */
 export default hot(App);
