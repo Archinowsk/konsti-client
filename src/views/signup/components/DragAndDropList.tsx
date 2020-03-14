@@ -1,13 +1,13 @@
-import React, { Fragment, FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
+import styled from 'styled-components';
 import { DragDropContext } from 'react-beautiful-dnd';
 import { DropRow } from 'views/signup/components/DropRow';
 import { reorder, move } from 'utils/dragAndDrop';
 import { sleep } from 'utils/sleep';
 import { config } from 'config';
 import { GroupMember } from 'typings/group.typings';
-
 import { Game, DnDUpdatedPositions } from 'typings/game.typings';
 import { RootState } from 'typings/redux.typings';
 
@@ -18,9 +18,7 @@ export interface Props {
   selectedGames: readonly Game[];
 }
 
-export const DragAndDropList: FunctionComponent<Props> = (
-  props: Props
-): ReactElement<typeof Fragment> => {
+export const DragAndDropList: FC<Props> = (props: Props): ReactElement => {
   const {
     availableGames,
     selectedGames,
@@ -121,28 +119,47 @@ export const DragAndDropList: FunctionComponent<Props> = (
   };
 
   return (
-    <Fragment>
-      {warningVisible && <p className='error'>{t(warning)}</p>}
-      <div className='drop-rows'>
+    <>
+      {warningVisible && <ErrorMessage>{t(warning)}</ErrorMessage>}
+      <DropRows>
         <DragDropContext onDragEnd={onDragEnd}>
-          <div className='available-games-row'>
+          <AvailableGamesRow>
             <DropRow
               droppableId='availableGames'
               games={availableGames}
               label={t('signupView.signupOpenGames')}
               showCount={false}
             />
-          </div>
-          <div className='selected-games-row'>
+          </AvailableGamesRow>
+          <SelectedGamesRow>
             <DropRow
               droppableId='selectedGames'
               games={selectedGames}
               label={t('signupView.selectedGames')}
               showCount
             />
-          </div>
+          </SelectedGamesRow>
         </DragDropContext>
-      </div>
-    </Fragment>
+      </DropRows>
+    </>
   );
 };
+
+const ErrorMessage = styled.p`
+  color: ${props => props.theme.error};
+`;
+
+const DropRows = styled.div`
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: row;
+`;
+
+const AvailableGamesRow = styled.div`
+  margin: 0 10px 0 0;
+  width: 50%;
+`;
+
+const SelectedGamesRow = styled.div`
+  width: 50%;
+`;

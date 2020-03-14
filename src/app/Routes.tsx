@@ -1,7 +1,8 @@
-import React, { Fragment, FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { Route, NavLink, Switch, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import styled from 'styled-components';
 import { AllGamesView } from 'views/all-games/AllGamesView';
 import { GameDetails } from 'views/all-games/components/GameDetails';
 import { LoginView } from 'views/login/LoginView';
@@ -13,7 +14,6 @@ import { ResultsView } from 'views/results/ResultsView';
 import { LogoutView } from 'views/logout/LogoutView';
 import { GroupView } from 'views/group/GroupView';
 import { HelperView } from 'views/helper/HelperView';
-
 import { UserGroup } from 'typings/user.typings';
 import { RootState } from 'typings/redux.typings';
 
@@ -21,9 +21,7 @@ export interface Props {
   onlyAdminLoginAllowed: boolean;
 }
 
-export const Routes: FunctionComponent<Props> = (
-  props: Props
-): ReactElement<typeof Fragment> => {
+export const Routes: FC<Props> = (props: Props): ReactElement => {
   const { onlyAdminLoginAllowed } = props;
   const loggedIn: boolean = useSelector(
     (state: RootState) => state.login.loggedIn
@@ -36,37 +34,31 @@ export const Routes: FunctionComponent<Props> = (
   if (onlyAdminLoginAllowed) {
     if (!loggedIn) {
       return (
-        <Fragment>
-          <div className='routes'>
-            <NavLink to='/login' className='router-link'>
-              {t('button.login')}
-            </NavLink>
-          </div>
+        <>
+          <StyledRoutes>
+            <RouterLink to='/login'>{t('button.login')}</RouterLink>
+          </StyledRoutes>
           <Switch>
             <Route path='/login'>
               <LoginView />
             </Route>
             <Redirect from='/*' to='/' />
           </Switch>
-        </Fragment>
+        </>
       );
     }
 
     return (
-      <Fragment>
-        <div className='routes'>
+      <>
+        <StyledRoutes>
           {userGroup === 'admin' && (
-            <NavLink to='/admin' className='router-link'>
-              {t('pages.admin')}
-            </NavLink>
+            <RouterLink to='/admin'>{t('pages.admin')}</RouterLink>
           )}
 
           {(userGroup === 'user' || userGroup === 'admin') && (
-            <NavLink to='/logout' className='router-link'>
-              {t('button.logout')}
-            </NavLink>
+            <RouterLink to='/logout'>{t('button.logout')}</RouterLink>
           )}
-        </div>
+        </StyledRoutes>
         <Switch>
           <Route path='/admin'>
             <AdminView />
@@ -76,64 +68,48 @@ export const Routes: FunctionComponent<Props> = (
           </Route>
           <Redirect from='/*' to='/' />
         </Switch>
-      </Fragment>
+      </>
     );
   }
 
   if (loggedIn) {
     return (
-      <Fragment>
-        <div className='routes'>
-          <NavLink to='/games' className='router-link'>
-            {t('pages.allGames')}
-          </NavLink>
+      <>
+        <StyledRoutes>
+          <RouterLink to='/games'>{t('pages.allGames')}</RouterLink>
 
           {userGroup === 'user' && (
-            <NavLink to='/mygames' className='router-link'>
-              {t('pages.myGames')}
-            </NavLink>
+            <RouterLink to='/mygames'>{t('pages.myGames')}</RouterLink>
           )}
 
           {userGroup === 'user' && (
-            <NavLink to='/signup' className='router-link'>
-              {t('pages.signUp')}
-            </NavLink>
+            <RouterLink to='/signup'>{t('pages.signUp')}</RouterLink>
           )}
 
           {(userGroup === 'user' ||
             userGroup === 'admin' ||
             userGroup === 'help') && (
-            <NavLink to='/results' className='router-link'>
-              {t('pages.results')}
-            </NavLink>
+            <RouterLink to='/results'>{t('pages.results')}</RouterLink>
           )}
 
           {userGroup === 'user' && (
-            <NavLink to='/group' className='router-link'>
-              {t('pages.group')}
-            </NavLink>
+            <RouterLink to='/group'>{t('pages.group')}</RouterLink>
           )}
 
           {(userGroup === 'help' || userGroup === 'admin') && (
-            <NavLink to='/help' className='router-link'>
-              {t('button.helper')}
-            </NavLink>
+            <RouterLink to='/help'>{t('button.helper')}</RouterLink>
           )}
 
           {userGroup === 'admin' && (
-            <NavLink to='/admin' className='router-link'>
-              {t('pages.admin')}
-            </NavLink>
+            <RouterLink to='/admin'>{t('pages.admin')}</RouterLink>
           )}
 
           {(userGroup === 'user' ||
             userGroup === 'admin' ||
             userGroup === 'help') && (
-            <NavLink to='/logout' className='router-link'>
-              {t('button.logout')}
-            </NavLink>
+            <RouterLink to='/logout'>{t('button.logout')}</RouterLink>
           )}
-        </div>
+        </StyledRoutes>
         <Switch>
           <Route path='/games/:gameId'>
             <GameDetails />
@@ -165,25 +141,19 @@ export const Routes: FunctionComponent<Props> = (
           <Redirect from='/' to='/games' />
           <Redirect from='/*' to='/' />
         </Switch>
-      </Fragment>
+      </>
     );
   }
 
   return (
-    <Fragment>
-      <div className='routes'>
-        <NavLink to='/games' className='router-link'>
-          {t('pages.allGames')}
-        </NavLink>
+    <>
+      <StyledRoutes>
+        <RouterLink to='/games'>{t('pages.allGames')}</RouterLink>
 
-        <NavLink to='/login' className='router-link'>
-          {t('button.login')}
-        </NavLink>
+        <RouterLink to='/login'>{t('button.login')}</RouterLink>
 
-        <NavLink to='/registration' className='router-link'>
-          {t('button.register')}
-        </NavLink>
-      </div>
+        <RouterLink to='/registration'>{t('button.register')}</RouterLink>
+      </StyledRoutes>
 
       <Switch>
         <Route path='/login'>
@@ -201,6 +171,41 @@ export const Routes: FunctionComponent<Props> = (
         <Redirect from='/' to='/games' />
         <Redirect from='/*' to='/login' />
       </Switch>
-    </Fragment>
+    </>
   );
 };
+
+const StyledRoutes = styled.div`
+  background-color: ${props => props.theme.backgroundHighlight};
+  border-bottom: 1px solid ${props => props.theme.borderInactive};
+`;
+
+const RouterLink = styled(NavLink)`
+  position: relative;
+  display: inline-block;
+  padding: 10px 12px 10px 12px;
+  font-size: ${props => props.theme.linkFontSize};
+  text-decoration: none;
+  color: ${props => props.theme.mainText};
+
+  :hover,
+  :focus {
+    background-color: ${props => props.theme.backgroundHover};
+  }
+
+  &.active {
+    border: none;
+  }
+
+  &.active::after {
+    background-color: ${props => props.theme.mainText};
+    bottom: 0;
+    content: '';
+    display: block;
+    height: 3px;
+    left: 50%;
+    margin-left: -30px;
+    position: absolute;
+    width: 60px;
+  }
+`;

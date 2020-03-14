@@ -1,5 +1,6 @@
-import React, { FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import { timeFormatter } from 'utils/timeFormatter';
 import { Game } from 'typings/game.typings';
 
@@ -8,18 +9,16 @@ export interface Props {
   startTimes: readonly string[];
 }
 
-export const GamesByStartTimes: FunctionComponent<Props> = (
-  props: Props
-): ReactElement<'div'> => {
+export const GamesByStartTimes: FC<Props> = (props: Props): ReactElement => {
   const { games, startTimes } = props;
 
   const getGamesList = (startTime: string) => {
     return games.map(game => {
       if (game.startTime === startTime) {
         return (
-          <p key={game.gameId} className='game-details-list'>
+          <GameDetailsList key={game.gameId}>
             <Link to={`/games/${game.gameId}`}>{game.title} </Link>
-          </p>
+          </GameDetailsList>
         );
       }
     });
@@ -38,3 +37,7 @@ export const GamesByStartTimes: FunctionComponent<Props> = (
 
   return <div className='start-times-list'>{startTimesList}</div>;
 };
+
+const GameDetailsList = styled.p`
+  padding-left: 30px;
+`;

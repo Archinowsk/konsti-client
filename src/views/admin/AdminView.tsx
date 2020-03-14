@@ -1,6 +1,7 @@
-import React, { Fragment, FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import styled from 'styled-components';
 import { Hidden } from 'views/admin/components/Hidden';
 import {
   submitSignupTime,
@@ -13,7 +14,7 @@ import { timeFormatter } from 'utils/timeFormatter';
 import { Game } from 'typings/game.typings';
 import { RootState } from 'typings/redux.typings';
 
-export const AdminView: FunctionComponent<{}> = (): ReactElement<'div'> => {
+export const AdminView: FC<{}> = (): ReactElement => {
   const games: readonly Game[] = useSelector(
     (state: RootState) => state.allGames.games
   );
@@ -129,7 +130,7 @@ export const AdminView: FunctionComponent<{}> = (): ReactElement<'div'> => {
 
   return (
     <div className='admin-view'>
-      <Fragment>
+      <>
         <div className='admin-button-row'>
           <button
             disabled={submitting}
@@ -164,8 +165,8 @@ export const AdminView: FunctionComponent<{}> = (): ReactElement<'div'> => {
         {(!games || games.length === 0) && <p>{t('noGamesInDatabase')}</p>}
 
         {games && games.length !== 0 && (
-          <Fragment>
-            <p className={messageStyle}>{message}</p>
+          <>
+            <StatusMessage className={messageStyle}>{message}</StatusMessage>
 
             <p>{t('activeTimeDescription')}</p>
 
@@ -198,9 +199,19 @@ export const AdminView: FunctionComponent<{}> = (): ReactElement<'div'> => {
             />
 
             <Hidden hiddenGames={hiddenGames} />
-          </Fragment>
+          </>
         )}
-      </Fragment>
+      </>
     </div>
   );
 };
+
+const StatusMessage = styled.p`
+  &.error {
+    color: ${props => props.theme.error};
+  }
+
+  &.success {
+    color: ${props => props.theme.success};
+  }
+`;

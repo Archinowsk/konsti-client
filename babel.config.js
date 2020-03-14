@@ -25,6 +25,7 @@ module.exports = api => {
       },
     ],
     'babel-plugin-lodash',
+    'babel-plugin-styled-components',
   ];
 
   if (target === 'start') {

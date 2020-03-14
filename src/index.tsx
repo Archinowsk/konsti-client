@@ -4,12 +4,12 @@ import React, { Suspense, lazy } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import moment from 'moment';
+import { ThemeProvider } from 'styled-components';
 import loaderImage from '../assets/loading.gif';
 import { config } from 'config';
 import { getLanguage } from 'utils/localStorage';
-
-// Styles
-import 'styles/index.css';
+import { theme } from 'theme';
+import { GlobalStyle } from 'globalStyle';
 
 // Initialized i18next instance
 import 'utils/i18n';
@@ -47,9 +47,12 @@ const render = () => {
   ReactDOM.render(
     // <React.StrictMode>
     <Provider store={store}>
-      <Suspense fallback={loader}>
-        <App />
-      </Suspense>
+      <ThemeProvider theme={theme}>
+        <Suspense fallback={loader}>
+          <GlobalStyle />
+          <App />
+        </Suspense>
+      </ThemeProvider>
     </Provider>,
     // </React.StrictMode>,
     rootReactElement

@@ -7,7 +7,7 @@ export const SUBMIT_SIGNED_GAMES = 'SUBMIT_SIGNED_GAMES';
 export const UPDATE_UNSAVED_CHANGES_STATUS = 'UPDATE_UNSAVED_CHANGES_STATUS';
 
 export const submitSignup = (signupData: SignupData): any => {
-  return async (dispatch: Function): Promise<any> => {
+  return async (dispatch: Function): Promise<unknown> => {
     let signupResponse;
     try {
       signupResponse = await postSignup(signupData);

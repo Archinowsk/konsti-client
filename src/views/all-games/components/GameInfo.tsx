@@ -1,5 +1,6 @@
-import React, { Fragment, FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
+import styled from 'styled-components';
 import { timeFormatter } from 'utils/timeFormatter';
 import { getGameTags } from 'utils/getGameTags';
 import { config } from 'config';
@@ -9,9 +10,7 @@ export interface Props {
   game: Game;
 }
 
-export const GameInfo: FunctionComponent<Props> = (
-  props: Props
-): ReactElement<'div'> => {
+export const GameInfo: FC<Props> = (props: Props): ReactElement => {
   const { game } = props;
   const { t } = useTranslation();
   const { simpleDetails } = config;
@@ -70,152 +69,203 @@ export const GameInfo: FunctionComponent<Props> = (
   return (
     <div className='game-details'>
       {game.title && (
-        <div className='game-details-row game-details-row-with-subtext'>
-          <h3 className='game-details-title'>{game.title}</h3>
-        </div>
+        <GameDetailsRow className='game-details-row-with-subtext'>
+          <GameDetailsTitleBig>{game.title}</GameDetailsTitleBig>
+        </GameDetailsRow>
       )}
 
       {!simpleDetails && game.shortDescription && (
-        <div className='game-details-row game-details-subtext'>
-          <span className='game-details-text-indent italic'>
+        <GameDetailsRow className='game-details-subtext'>
+          <GameDetailsTextIndent className='italic'>
             {game.shortDescription}
-          </span>
-        </div>
+          </GameDetailsTextIndent>
+        </GameDetailsRow>
       )}
 
       {game.people && (
-        <div className='game-details-row game-details-row-with-gap'>
-          <span className='game-details-text-indent'>{game.people}</span>
-        </div>
+        <GameDetailsRow className='game-details-row-with-gap'>
+          <GameDetailsTextIndent>{game.people}</GameDetailsTextIndent>
+        </GameDetailsRow>
       )}
 
       {game.revolvingDoor && (
-        <Fragment>
-          <div className='game-details-row game-details-row-with-subtext'>
-            <span className='game-details-title'>
-              {t('gameInfo.revolvingDoor')}
-            </span>
-          </div>
+        <>
+          <GameDetailsRow className='game-details-row-with-subtext'>
+            <GameDetailsTitle>{t('gameInfo.revolvingDoor')}</GameDetailsTitle>
+          </GameDetailsRow>
 
-          <div className='game-details-row game-details-subtext game-details-row-with-gap'>
-            <span className='game-details-text-indent'>
+          <GameDetailsRow className='game-details-subtext game-details-row-with-gap'>
+            <GameDetailsTextIndent>
               {t('gameInfo.revolvingDoorDescription')}
-            </span>
-          </div>
-        </Fragment>
+            </GameDetailsTextIndent>
+          </GameDetailsRow>
+        </>
       )}
 
       {game.ageRestricted && (
-        <Fragment>
-          <div className='game-details-row game-details-row-with-subtext'>
-            <span className='game-details-title'>
+        <>
+          <GameDetailsRow className='game-details-row-with-subtext'>
+            <GameDetailsTitle>
               {t('gameTags.ageRestrictedTitle')}
-            </span>
-          </div>
+            </GameDetailsTitle>
+          </GameDetailsRow>
 
-          <div className='game-details-row game-details-subtext game-details-row-with-gap'>
-            <span className='game-details-text-indent'>
+          <GameDetailsRow className='game-details-subtext game-details-row-with-gap'>
+            <GameDetailsTextIndent>
               {t('gameTags.ageRestrictedLong')}
-            </span>
-          </div>
-        </Fragment>
+            </GameDetailsTextIndent>
+          </GameDetailsRow>
+        </>
       )}
 
       {!!game.mins && (
-        <div className='game-details-row'>
-          <span className='game-details-title game-details-two-columns'>
+        <GameDetailsRow>
+          <GameDetailsTitle className='game-details-two-columns'>
             {t('gameInfo.runTime')}
-          </span>
-          <span className='game-details-value'>
+          </GameDetailsTitle>
+          <GameDetailsValue>
             <span>
               {getFormattedStartTime(game)} - {getFormattedEndTime(game)}{' '}
             </span>
             <span className='no-wrap'>({getFormattedDuration(game)})</span>
-          </span>
-        </div>
+          </GameDetailsValue>
+        </GameDetailsRow>
       )}
 
       {game.programType && (
-        <div className='game-details-row'>
-          <span className='game-details-title game-details-two-columns'>
+        <GameDetailsRow>
+          <GameDetailsTitle className='game-details-two-columns'>
             {t('gameInfo.programType')}
-          </span>
-          <span className='game-details-value'>
+          </GameDetailsTitle>
+          <GameDetailsValue>
             {t(`programType.${game.programType}`)}
-          </span>
-        </div>
+          </GameDetailsValue>
+        </GameDetailsRow>
       )}
 
       {game.genres && game.genres.length > 0 && (
-        <div className='game-details-row'>
-          <span className='game-details-title game-details-two-columns'>
+        <GameDetailsRow>
+          <GameDetailsTitle className='game-details-two-columns'>
             {t('gameInfo.genres')}
-          </span>
-          <span className='game-details-value'>{getGenres(game.genres)}</span>
-        </div>
+          </GameDetailsTitle>
+          <GameDetailsValue>{getGenres(game.genres)}</GameDetailsValue>
+        </GameDetailsRow>
       )}
 
       {tagsList.length > 0 && (
-        <div className='game-details-row'>
-          <span className='game-details-title game-details-two-columns'>
+        <GameDetailsRow>
+          <GameDetailsTitle className='game-details-two-columns'>
             {t('gameInfo.tags')}
-          </span>
-          <span className='game-details-value'>{tagsList}</span>
-        </div>
+          </GameDetailsTitle>
+          <GameDetailsValue>{tagsList}</GameDetailsValue>
+        </GameDetailsRow>
       )}
 
       {game.description && (
-        <Fragment>
-          <div className='game-details-row'>
-            <span className='game-details-title'>
-              {t('gameInfo.description')}
-            </span>
-          </div>
-          <div className='game-details-row game-details-row-with-gap'>
+        <>
+          <GameDetailsRow>
+            <GameDetailsTitle>{t('gameInfo.description')}</GameDetailsTitle>
+          </GameDetailsRow>
+          <GameDetailsRow className='game-details-row-with-gap'>
             <span>{game.description}</span>
-          </div>
-        </Fragment>
+          </GameDetailsRow>
+        </>
       )}
 
       {!simpleDetails && game.gameSystem && (
-        <div className='game-details-row'>
-          <span className='game-details-title game-details-two-columns'>
+        <GameDetailsRow>
+          <GameDetailsTitle className='game-details-two-columns'>
             {t('gameInfo.gamesystem')}
-          </span>
-          <span className='game-details-value'>{game.gameSystem}</span>
-        </div>
+          </GameDetailsTitle>
+          <GameDetailsValue>{game.gameSystem}</GameDetailsValue>
+        </GameDetailsRow>
       )}
 
       {game.styles && game.styles.length > 0 && (
-        <div className='game-details-row'>
-          <span className='game-details-title game-details-two-columns'>
+        <GameDetailsRow>
+          <GameDetailsTitle className='game-details-two-columns'>
             {t('gameInfo.gameStyle')}
-          </span>
-          <span className='game-details-value'>{getStyles(game.styles)}</span>
-        </div>
+          </GameDetailsTitle>
+          <GameDetailsValue>{getStyles(game.styles)}</GameDetailsValue>
+        </GameDetailsRow>
       )}
 
       {game.location && (
-        <div className='game-details-row'>
-          <span className='game-details-title game-details-two-columns'>
+        <GameDetailsRow>
+          <GameDetailsTitle className='game-details-two-columns'>
             {t('gameInfo.location')}
-          </span>
-          <span className='game-details-value'>{game.location}</span>
-        </div>
+          </GameDetailsTitle>
+          <GameDetailsValue>{game.location}</GameDetailsValue>
+        </GameDetailsRow>
       )}
 
       {!!game.minAttendance && !!game.maxAttendance && (
-        <div className='game-details-row'>
-          <span className='game-details-title game-details-two-columns'>
+        <GameDetailsRow>
+          <GameDetailsTitle className='game-details-two-columns'>
             {t('gameInfo.numberOfPlayers')}
-          </span>
-          <span className='game-details-value'>
+          </GameDetailsTitle>
+          <GameDetailsValue>
             {game.minAttendance === game.maxAttendance
               ? game.minAttendance
               : `${game.minAttendance} - ${game.maxAttendance}`}
-          </span>
-        </div>
+          </GameDetailsValue>
+        </GameDetailsRow>
       )}
     </div>
   );
 };
+
+const GameDetailsRow = styled.div`
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: row;
+  padding: 0 0 10px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+
+  &.game-details-row-with-subtext {
+    padding: 0 0 4px;
+  }
+
+  &.game-details-subtext {
+    font-size: ${props => props.theme.fontSizeSmall};
+  }
+
+  &.game-details-row-with-gap {
+    padding: 0 0 20px;
+  }
+`;
+
+const GameDetailsTitleBig = styled.h3`
+  font-weight: 600;
+  padding: 0 10px 0 0;
+  margin: 0;
+`;
+
+const GameDetailsTitle = styled.span`
+  font-weight: 600;
+  padding: 0 10px 0 0;
+  margin: 0;
+
+  &.game-details-two-columns {
+    width: 25%;
+  }
+
+  @media (max-width: ${props => props.theme.breakpointPhone}) {
+    &.game-details-two-columns {
+      width: 40%;
+    }
+  }
+`;
+
+const GameDetailsValue = styled.span`
+  width: 75%;
+
+  @media (max-width: ${props => props.theme.breakpointPhone}) {
+    width: 60%;
+  }
+`;
+
+const GameDetailsTextIndent = styled.span`
+  margin: 0 0 0 14px;
+`;

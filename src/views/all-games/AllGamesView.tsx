@@ -1,8 +1,9 @@
-import React, { Fragment, FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { useSelector, useStore } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import moment from 'moment';
+import styled from 'styled-components';
 import { AllGamesList } from 'views/all-games/components/AllGamesList';
 import { getUpcomingGames } from 'utils/getUpcomingGames';
 import { loadGames } from 'utils/loadData';
@@ -12,7 +13,7 @@ import { Game } from 'typings/game.typings';
 
 import { RootState } from 'typings/redux.typings';
 
-export const AllGamesView: FunctionComponent<{}> = (): ReactElement<typeof Fragment> => {
+export const AllGamesView: FC<{}> = (): ReactElement => {
   const { t } = useTranslation();
 
   const games: readonly Game[] = useSelector(
@@ -109,18 +110,18 @@ export const AllGamesView: FunctionComponent<{}> = (): ReactElement<typeof Fragm
       return (
         <div key={game.gameId} className='games-list'>
           <Link to={`/games/${game.gameId}`}>{game.title}</Link>{' '}
-          <p className='game-list-short-description'>
+          <GameListShortDescription>
             {game.shortDescription ? game.shortDescription : game.gameSystem}
-          </p>
+          </GameListShortDescription>
         </div>
       );
     });
   };
 
   return (
-    <Fragment>
-      <div className='all-games-visibility-bar'>
-        <div className='all-games-toggle-visibility'>
+    <>
+      <AllGamesVisibilityBar>
+        <AllGamesToggleVisibility>
           <button
             onClick={() => setSelectedView('upcoming')}
             disabled={selectedView === 'upcoming'}
@@ -143,10 +144,10 @@ export const AllGamesView: FunctionComponent<{}> = (): ReactElement<typeof Fragm
               {t('revolvingDoor')}
             </button>
           )}
-        </div>
+        </AllGamesToggleVisibility>
 
         {config.tagFilteringEnabled && (
-          <div className='tags-dropdown'>
+          <TagsDropdown>
             <span className={'choose-tag-instruction'}>{t('chooseTag')} </span>
             <select
               onChange={event => setSelectedTag(event.target.value)}
@@ -155,23 +156,58 @@ export const AllGamesView: FunctionComponent<{}> = (): ReactElement<typeof Fragm
               <option value=''>{t('allGames')}</option>
               {tagsList()}
             </select>
-          </div>
+          </TagsDropdown>
         )}
-      </div>
+      </AllGamesVisibilityBar>
 
       {selectedView === 'revolving-door' && (
-        <Fragment>
-          <div className='revolving-door-instruction'>
+        <>
+          <RevolvingDoorInstruction>
             {t('revolvingDoorInstruction')}
-          </div>
+          </RevolvingDoorInstruction>
           <div className='running-revolving-door-games'>
             <h3>{t('currentlyRunningRevolvingDoor')}</h3>
             {getRunningRevolvingDoorGames(games)}
           </div>
-        </Fragment>
+        </>
       )}
 
       {loading ? <Loading /> : <AllGamesList games={getVisibleGames(games)} />}
-    </Fragment>
+    </>
   );
 };
+
+const GameListShortDescription = styled.p`
+  font-size: ${props => props.theme.fontSizeSmall};
+  font-style: italic;
+  margin: 4px 0 8px 14px;
+`;
+
+const AllGamesVisibilityBar = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @media (max-width: ${props => props.theme.breakpointPhone}) {
+    flex-direction: column;
+    align-items: flex-start;
+
+    &.choose-tag-instruction {
+      display: none;
+    }
+  }
+`;
+
+const RevolvingDoorInstruction = styled.div`
+  margin: 100px 0 0 14px;
+`;
+
+const AllGamesToggleVisibility = styled.div`
+  button {
+    margin: 10px 10px 0 0;
+  }
+`;
+
+const TagsDropdown = styled.div`
+  margin: 10px 0 0 0;
+`;

@@ -1,5 +1,6 @@
-import React, { Fragment, FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
+import styled from 'styled-components';
 import { postFeedback } from 'services/feedbackServices';
 import { Game } from 'typings/game.typings';
 
@@ -7,9 +8,7 @@ export interface Props {
   game: Game;
 }
 
-export const FeedbackForm: FunctionComponent<Props> = (
-  props: Props
-): ReactElement<'div'> => {
+export const FeedbackForm: FC<Props> = (props: Props): ReactElement => {
   const { game } = props;
 
   const [submitting, setSubmitting] = React.useState<boolean>(false);
@@ -46,21 +45,33 @@ export const FeedbackForm: FunctionComponent<Props> = (
       <p>{t('feedbackInstruction')}</p>
 
       {!feedbackSent && (
-        <Fragment>
-          <textarea
+        <>
+          <FeedbackTextarea
             value={feedbackValue}
             onChange={handleFeedbackChange}
-            className='feedback-textarea'
             rows={4}
           />
 
           <button disabled={submitting} onClick={() => sendFeedbackEvent()}>
             {t('button.sendFeedback')}
           </button>
-        </Fragment>
+        </>
       )}
 
-      {feedbackSent && <p className='success'>{t('button.feedbackSent')}</p>}
+      {feedbackSent && (
+        <SuccessMessage>{t('button.feedbackSent')}</SuccessMessage>
+      )}
     </div>
   );
 };
+
+const FeedbackTextarea = styled.textarea`
+  width: 95%;
+  border: 1px solid black;
+  resize: none;
+  overflow: auto;
+`;
+
+const SuccessMessage = styled.p`
+  color: ${props => props.theme.success};
+`;

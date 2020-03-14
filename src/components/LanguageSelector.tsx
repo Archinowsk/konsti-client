@@ -1,8 +1,9 @@
-import React, { Fragment, FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import moment from 'moment';
+import styled from 'styled-components';
 
-export const LanguageSelector: FunctionComponent<{}> = (): ReactElement<typeof Fragment> => {
+export const LanguageSelector: FC<{}> = (): ReactElement => {
   const { t, i18n } = useTranslation();
   const language = i18n.language;
 
@@ -15,9 +16,8 @@ export const LanguageSelector: FunctionComponent<{}> = (): ReactElement<typeof F
   };
 
   return (
-    <Fragment>
-      <select
-        className='language-selector'
+    <>
+      <LanguageSelectorContainer
         id='language'
         value={language}
         onChange={setLanguage}
@@ -28,7 +28,12 @@ export const LanguageSelector: FunctionComponent<{}> = (): ReactElement<typeof F
         <option title={t('language.finnish')} value='fi'>
           {t('language.finnishShort')}
         </option>
-      </select>
-    </Fragment>
+      </LanguageSelectorContainer>
+    </>
   );
 };
+
+const LanguageSelectorContainer = styled.select`
+  height: 30px;
+  width: 60px;
+`;

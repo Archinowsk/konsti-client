@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import _ from 'lodash';
@@ -9,7 +9,7 @@ import { config } from 'config';
 
 import { RootState } from 'typings/redux.typings';
 
-export const TimeSelector: FunctionComponent<{}> = (): ReactElement<'div'> => {
+export const TimeSelector: FC<{}> = (): ReactElement => {
   const testTime: string = useSelector(
     (state: RootState) => state.admin.testTime
   );
@@ -69,7 +69,8 @@ export const TimeSelector: FunctionComponent<{}> = (): ReactElement<'div'> => {
   ];
 
   React.useEffect(() => {
-    if (!testTime) dispatch(submitSetTestTime(_.first(times)));
+    const defaultTestTime = _.first(times);
+    if (!testTime) dispatch(submitSetTestTime(defaultTestTime ?? ''));
   });
 
   const setTestTime = event => {

@@ -30,7 +30,7 @@ const commonConfig = {
   simpleDetails: true,
 
   // Dev
-  reduxTrace: true,
+  reduxTrace: false,
   enableAxe: false,
   enableWhyDidYouRender: false,
 };

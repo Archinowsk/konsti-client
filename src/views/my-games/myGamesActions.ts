@@ -7,7 +7,7 @@ export const SUBMIT_GET_USER_GAMES = 'SUBMIT_GET_USER_GAMES';
 export const SUBMIT_UPDATE_FAVORITES = 'SUBMIT_UPDATE_FAVORITES';
 
 export const submitGetUser = (username: string): any => {
-  return async (dispatch: Function): Promise<any> => {
+  return async (dispatch: Function): Promise<unknown> => {
     let getUserResponse;
     try {
       getUserResponse = await getUser(username);
@@ -50,7 +50,7 @@ const submitGetUserAsync = ({
 };
 
 export const submitUpdateFavorites = (favoriteData: FavoriteData): any => {
-  return async (dispatch: Function): Promise<any> => {
+  return async (dispatch: Function): Promise<unknown> => {
     let updateFavoriteResponse;
     try {
       updateFavoriteResponse = await postFavorite(favoriteData);

@@ -1,9 +1,10 @@
-import React, { Fragment, FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
+import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getUserBySerial, updateUserPassword } from 'services/userServices';
 
-export const PasswordManagement: FunctionComponent<{}> = (): ReactElement<'div'> => {
+export const PasswordManagement: FC<{}> = (): ReactElement => {
   const { t } = useTranslation();
 
   const [serial, setSerial] = React.useState<string>('');
@@ -74,9 +75,8 @@ export const PasswordManagement: FunctionComponent<{}> = (): ReactElement<'div'>
       <h3>{t('helperPasswordManagement')}</h3>
       <div>
         <p>{t('userCode')}</p>
-        <input
+        <FormInput
           key='user-serial'
-          className='form-input'
           placeholder={t('userCode')}
           value={userSerialInput}
           onChange={handleSerialChange}
@@ -87,31 +87,43 @@ export const PasswordManagement: FunctionComponent<{}> = (): ReactElement<'div'>
 
       <div>
         {changePasswordInputVisible && (
-          <Fragment>
+          <>
             <p>{t('newPassword')}</p>
-            <input
+            <FormInput
               type={passwordFieldType}
               key='new-password'
-              className='form-input'
               placeholder={t('newPassword')}
               value={changePasswordInput}
               onChange={handlePasswordChange}
             />
             <button onClick={submitUpdatePassword}>{t('button.save')}</button>
 
-            <span className='form-field-icon'>
+            <FormFieldIcon>
               <FontAwesomeIcon
                 icon={passwordFieldType === 'password' ? 'eye' : 'eye-slash'}
                 onClick={togglePasswordVisibility}
               />
-            </span>
+            </FormFieldIcon>
 
             <p>
               {passwordChangeMessage && <span>{passwordChangeMessage}</span>}
             </p>
-          </Fragment>
+          </>
         )}
       </div>
     </div>
   );
 };
+
+const FormFieldIcon = styled.span`
+  padding: 0 0 0 8px;
+  font-size: ${props => props.theme.iconSize};
+`;
+
+const FormInput = styled.input`
+  border: 1px solid ${props => props.theme.borderInactive};
+  color: ${props => props.theme.buttonText};
+  height: 34px;
+  padding: 0 0 0 10px;
+  width: 100%;
+`;

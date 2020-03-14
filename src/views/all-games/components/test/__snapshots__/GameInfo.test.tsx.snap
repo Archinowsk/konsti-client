@@ -4,53 +4,41 @@ exports[`GameInfo should render correctly 1`] = `
 <div
   className="game-details"
 >
-  <div
-    className="game-details-row game-details-row-with-subtext"
+  <GameInfo__GameDetailsRow
+    className="game-details-row-with-subtext"
   >
-    <h3
-      className="game-details-title"
-    >
+    <GameInfo__GameDetailsTitleBig>
       Test game
-    </h3>
-  </div>
-  <div
-    className="game-details-row game-details-row-with-gap"
+    </GameInfo__GameDetailsTitleBig>
+  </GameInfo__GameDetailsRow>
+  <GameInfo__GameDetailsRow
+    className="game-details-row-with-gap"
   >
-    <span
-      className="game-details-text-indent"
-    >
+    <GameInfo__GameDetailsTextIndent>
       Test GM
-    </span>
-  </div>
-  <div
-    className="game-details-row game-details-row-with-subtext"
+    </GameInfo__GameDetailsTextIndent>
+  </GameInfo__GameDetailsRow>
+  <GameInfo__GameDetailsRow
+    className="game-details-row-with-subtext"
   >
-    <span
-      className="game-details-title"
-    >
+    <GameInfo__GameDetailsTitle>
       gameInfo.revolvingDoor
-    </span>
-  </div>
-  <div
-    className="game-details-row game-details-subtext game-details-row-with-gap"
+    </GameInfo__GameDetailsTitle>
+  </GameInfo__GameDetailsRow>
+  <GameInfo__GameDetailsRow
+    className="game-details-subtext game-details-row-with-gap"
   >
-    <span
-      className="game-details-text-indent"
-    >
+    <GameInfo__GameDetailsTextIndent>
       gameInfo.revolvingDoorDescription
-    </span>
-  </div>
-  <div
-    className="game-details-row"
-  >
-    <span
-      className="game-details-title game-details-two-columns"
+    </GameInfo__GameDetailsTextIndent>
+  </GameInfo__GameDetailsRow>
+  <GameInfo__GameDetailsRow>
+    <GameInfo__GameDetailsTitle
+      className="game-details-two-columns"
     >
       gameInfo.runTime
-    </span>
-    <span
-      className="game-details-value"
-    >
+    </GameInfo__GameDetailsTitle>
+    <GameInfo__GameDetailsValue>
       <span>
         Saturday 16:00
          - 
@@ -64,33 +52,25 @@ exports[`GameInfo should render correctly 1`] = `
         4 hours
         )
       </span>
-    </span>
-  </div>
-  <div
-    className="game-details-row"
-  >
-    <span
-      className="game-details-title game-details-two-columns"
+    </GameInfo__GameDetailsValue>
+  </GameInfo__GameDetailsRow>
+  <GameInfo__GameDetailsRow>
+    <GameInfo__GameDetailsTitle
+      className="game-details-two-columns"
     >
       gameInfo.programType
-    </span>
-    <span
-      className="game-details-value"
-    >
+    </GameInfo__GameDetailsTitle>
+    <GameInfo__GameDetailsValue>
       programType.tabletopRPG
-    </span>
-  </div>
-  <div
-    className="game-details-row"
-  >
-    <span
-      className="game-details-title game-details-two-columns"
+    </GameInfo__GameDetailsValue>
+  </GameInfo__GameDetailsRow>
+  <GameInfo__GameDetailsRow>
+    <GameInfo__GameDetailsTitle
+      className="game-details-two-columns"
     >
       gameInfo.genres
-    </span>
-    <span
-      className="game-details-value"
-    >
+    </GameInfo__GameDetailsTitle>
+    <GameInfo__GameDetailsValue>
       <span
         key="fantasy"
       >
@@ -149,35 +129,27 @@ exports[`GameInfo should render correctly 1`] = `
         </span>
         <span />
       </span>
-    </span>
-  </div>
-  <div
-    className="game-details-row"
-  >
-    <span
-      className="game-details-title"
-    >
+    </GameInfo__GameDetailsValue>
+  </GameInfo__GameDetailsRow>
+  <GameInfo__GameDetailsRow>
+    <GameInfo__GameDetailsTitle>
       gameInfo.description
-    </span>
-  </div>
-  <div
-    className="game-details-row game-details-row-with-gap"
+    </GameInfo__GameDetailsTitle>
+  </GameInfo__GameDetailsRow>
+  <GameInfo__GameDetailsRow
+    className="game-details-row-with-gap"
   >
     <span>
       Test game description
     </span>
-  </div>
-  <div
-    className="game-details-row"
-  >
-    <span
-      className="game-details-title game-details-two-columns"
+  </GameInfo__GameDetailsRow>
+  <GameInfo__GameDetailsRow>
+    <GameInfo__GameDetailsTitle
+      className="game-details-two-columns"
     >
       gameInfo.gameStyle
-    </span>
-    <span
-      className="game-details-value"
-    >
+    </GameInfo__GameDetailsTitle>
+    <GameInfo__GameDetailsValue>
       <span
         key="serious"
       >
@@ -212,35 +184,27 @@ exports[`GameInfo should render correctly 1`] = `
         </span>
         <span />
       </span>
-    </span>
-  </div>
-  <div
-    className="game-details-row"
-  >
-    <span
-      className="game-details-title game-details-two-columns"
+    </GameInfo__GameDetailsValue>
+  </GameInfo__GameDetailsRow>
+  <GameInfo__GameDetailsRow>
+    <GameInfo__GameDetailsTitle
+      className="game-details-two-columns"
     >
       gameInfo.location
-    </span>
-    <span
-      className="game-details-value"
-    >
+    </GameInfo__GameDetailsTitle>
+    <GameInfo__GameDetailsValue>
       Test location
-    </span>
-  </div>
-  <div
-    className="game-details-row"
-  >
-    <span
-      className="game-details-title game-details-two-columns"
+    </GameInfo__GameDetailsValue>
+  </GameInfo__GameDetailsRow>
+  <GameInfo__GameDetailsRow>
+    <GameInfo__GameDetailsTitle
+      className="game-details-two-columns"
     >
       gameInfo.numberOfPlayers
-    </span>
-    <span
-      className="game-details-value"
-    >
+    </GameInfo__GameDetailsTitle>
+    <GameInfo__GameDetailsValue>
       2 - 4
-    </span>
-  </div>
+    </GameInfo__GameDetailsValue>
+  </GameInfo__GameDetailsRow>
 </div>
 `;

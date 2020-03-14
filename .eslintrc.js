@@ -14,6 +14,7 @@ module.exports = {
     'plugin:eslint-plugin-promise/recommended',
     'plugin:eslint-plugin-react/recommended',
     'plugin:eslint-plugin-import/errors',
+    'plugin:eslint-plugin-import/typescript',
     // 'plugin:eslint-plugin-jsx-a11y/recommended',
     // 'plugin:eslint-plugin-security/recommended',
     // 'plugin:eslint-plugin-unicorn/recommended',
@@ -74,6 +75,7 @@ module.exports = {
 
     // eslint-plugin-import
     'import/no-unused-modules': ['error', { unusedExports: true }],
+    'import/no-unresolved': 'off',
 
     // eslint-plugin-eslint-comments
     'eslint-comments/no-unused-disable': 'error',
@@ -92,5 +94,6 @@ module.exports = {
     '@typescript-eslint/require-array-sort-compare': 'off',
     '@typescript-eslint/no-misused-promises': 'off',
     '@typescript-eslint/no-var-requires': 'off',
+    '@typescript-eslint/default-param-last': 'off',
   },
 };

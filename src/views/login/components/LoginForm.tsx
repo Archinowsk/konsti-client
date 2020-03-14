@@ -1,6 +1,7 @@
-import React, { FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { useTranslation } from 'react-i18next';
+import styled from 'styled-components';
 import { required } from 'utils/validate';
 import { FormField } from 'components/FormField';
 
@@ -10,9 +11,7 @@ interface Props {
   error?: string;
 }
 
-const LoginForm: FunctionComponent<Props> = (
-  props: Props
-): ReactElement<'div'> => {
+const LoginForm: FC<Props> = (props: Props): ReactElement => {
   const { handleSubmit, submitting, error } = props;
   const { t } = useTranslation();
 
@@ -40,7 +39,7 @@ const LoginForm: FunctionComponent<Props> = (
       </form>
 
       {typeof error === 'string' && error && (
-        <strong className='error'>{error}</strong>
+        <ErrorMessage>{error}</ErrorMessage>
       )}
     </div>
   );
@@ -48,4 +47,10 @@ const LoginForm: FunctionComponent<Props> = (
 
 export default reduxForm({
   form: 'login',
+  // @ts-ignore
 })(LoginForm);
+
+const ErrorMessage = styled.span`
+  font-weight: bold;
+  color: ${props => props.theme.error};
+`;

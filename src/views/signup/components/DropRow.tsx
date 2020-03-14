@@ -1,6 +1,7 @@
-import React, { Fragment, FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Game } from 'typings/game.typings';
 
@@ -11,9 +12,7 @@ export interface Props {
   showCount: boolean;
 }
 
-export const DropRow: FunctionComponent<Props> = (
-  props: Props
-): ReactElement<typeof Fragment> => {
+export const DropRow: FC<Props> = (props: Props): ReactElement => {
   const { droppableId, games, label, showCount } = props;
   const { t } = useTranslation();
 
@@ -33,14 +32,14 @@ export const DropRow: FunctionComponent<Props> = (
   };
 
   return (
-    <Fragment>
+    <>
       <p>
         {label} {showCount && <span>({games.length}/3)</span>}
       </p>
 
       <Droppable droppableId={droppableId}>
         {(provided, snapshot) => (
-          <div
+          <DropRowContainer
             className={`drop-row ${droppableId} ${getListStyle(
               snapshot.isDraggingOver
             )}`}
@@ -54,33 +53,100 @@ export const DropRow: FunctionComponent<Props> = (
               >
                 {provided => (
                   <Link to={`/games/${game.gameId}`}>
-                    <div
-                      className={`draggable-item ${getPopularity(game)}`}
+                    <DraggableItem
+                      className={`${getPopularity(game)}`}
                       ref={provided.innerRef}
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
                     >
-                      <p className='signup-game-title break-long'>
+                      <SignupGameTitle className='break-long'>
                         {game.title}
-                      </p>
-                      <p className='signup-short-description break-long'>
+                      </SignupGameTitle>
+                      <SignupShortDescription className='break-long'>
                         {t(`programType.${game.programType}`)}:{' '}
                         {game.shortDescription
                           ? game.shortDescription
                           : game.gameSystem}
-                      </p>
-                      <p className='signup-popularity'>
+                      </SignupShortDescription>
+                      <SignupPopularity>
                         {t('playerStatus')}: {t(getPopularity(game))}
-                      </p>
-                    </div>
+                      </SignupPopularity>
+                    </DraggableItem>
                   </Link>
                 )}
               </Draggable>
             ))}
             {provided.placeholder}
-          </div>
+          </DropRowContainer>
         )}
       </Droppable>
-    </Fragment>
+    </>
   );
 };
+
+const DropRowContainer = styled.div`
+  background-color: ${props => props.theme.backgroundHighlight};
+  min-height: 40px;
+  padding: 10px;
+
+  &.dragging {
+    background-color: ${props => props.theme.backgroundDndRow};
+  }
+
+  &.availableGames,
+  &.selectedGames {
+    min-height: 500px;
+  }
+
+  a {
+    color: ${props => props.theme.mainText};
+    text-decoration: none;
+    cursor: grabbing;
+  }
+`;
+
+const DraggableItem = styled.div`
+  background-color: ${props => props.theme.backgroundDndItem};
+  border: 1px solid ${props => props.theme.borderInactive};
+  margin: 8px 0;
+  padding: 8px;
+  box-shadow: 0 1px 0 rgba(9, 30, 66, 0.25);
+  border-radius: 3px;
+
+  :hover,
+  :focus {
+    /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
+    filter: brightness(90%);
+  }
+
+  &.high-popularity {
+    background-color: #ffe8e8;
+  }
+
+  &.medium-popularity {
+    background-color: #fff;
+  }
+
+  &.low-popularity {
+    background-color: #f0ffff;
+  }
+`;
+
+const SignupGameTitle = styled.p`
+  margin: 0 0 4px 0;
+`;
+
+const SignupShortDescription = styled.p`
+  margin: 0 0 0 14px;
+  font-size: ${props => props.theme.fontSizeSmall};
+  font-style: italic;
+
+  @media (max-width: ${props => props.theme.breakpointPhone}) {
+    margin: 0;
+  }
+`;
+
+const SignupPopularity = styled.p`
+  font-size: ${props => props.theme.fontSizeSmall};
+  margin-bottom: 0;
+`;

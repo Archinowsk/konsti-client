@@ -1,4 +1,4 @@
-import React, { FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ResultsByGameTitle } from './ResultsByGameTitle';
 import { ResultsByUsername } from './ResultsByUsername';
@@ -8,9 +8,7 @@ export interface Props {
   results: readonly Result[];
 }
 
-export const ResultsList: FunctionComponent<Props> = (
-  props: Props
-): ReactElement<'div'> => {
+export const ResultsList: FC<Props> = (props: Props): ReactElement => {
   const { results } = props;
   const { t } = useTranslation();
   const [sortedBy, setSortedBy] = React.useState<string>('');

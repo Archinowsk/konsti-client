@@ -1,16 +1,17 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { FormField } from '../FormField';
-import { FieldProps } from 'redux-form';
+import { WrappedFieldProps } from 'redux-form';
 
 describe('FormField', () => {
   it('should render correctly', () => {
-    const props: FieldProps = {
+    const props: WrappedFieldProps = {
       meta: {
         active: false,
         asyncValidating: false,
         autofilled: false,
         dirty: false,
+        // @ts-ignore
         dispatch: () => {},
         error: 'validation.required',
         form: 'registration',

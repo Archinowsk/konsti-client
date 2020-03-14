@@ -4,32 +4,15 @@ exports[`Loading should render correctly 1`] = `
 <div
   className="accordion"
 >
-  <button
-    className="accordion-toggle"
+  <Accordion__AccordionToggle
     onClick={[Function]}
   >
-    <FontAwesomeIcon
-      border={false}
-      className="accordion-icon"
-      fixedWidth={false}
-      flip={null}
+    <Accordion__AccordionIcon
       icon="angle-down"
-      inverse={false}
-      listItem={false}
-      mask={null}
-      pull={null}
-      pulse={false}
-      rotation={null}
-      size={null}
-      spin={false}
-      swapOpacity={false}
-      symbol={false}
-      title=""
-      transform={null}
     />
     <span>
       test button text
     </span>
-  </button>
+  </Accordion__AccordionToggle>
 </div>
 `;

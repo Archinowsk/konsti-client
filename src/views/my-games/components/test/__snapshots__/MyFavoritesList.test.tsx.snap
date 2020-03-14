@@ -7,12 +7,10 @@ exports[`MyFavoritesList should render correctly 1`] = `
   <h3>
     favoritedGames
   </h3>
-  <div
-    className="my-favorites-games"
-  >
+  <MyFavoritesList__MyFavoritesGames>
     <span>
       noFavoritedGames
     </span>
-  </div>
+  </MyFavoritesList__MyFavoritesGames>
 </div>
 `;

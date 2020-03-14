@@ -1,4 +1,4 @@
-import React, { Fragment, FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { hot } from 'react-hot-loader/root';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useStore } from 'react-redux';
@@ -9,10 +9,9 @@ import { loadData } from 'utils/loadData';
 import { Loading } from 'components/Loading';
 import { getIconLibrary } from 'utils/icons';
 import { config } from 'config';
-
 import { RootState } from 'typings/redux.typings';
 
-export const App: FunctionComponent<{}> = (): ReactElement<typeof Fragment> => {
+export const App: FC<{}> = (): ReactElement => {
   const { dataUpdateInterval } = config;
   const appOpen: boolean = useSelector(
     (state: RootState) => state.admin.appOpen
@@ -39,22 +38,23 @@ export const App: FunctionComponent<{}> = (): ReactElement<typeof Fragment> => {
   getIconLibrary();
 
   return (
-    <Fragment>
+    <>
       <Header />
       {/* <h3>{t('errorMessage')}</h3> */}
 
       {loading && <Loading />}
 
       {!loading && (
-        <Fragment>
+        <>
           {!appOpen && <h2>{t('closingMessage')}</h2>}
           <BrowserRouter>
             <Routes onlyAdminLoginAllowed={!appOpen} />
           </BrowserRouter>
-        </Fragment>
+        </>
       )}
-    </Fragment>
+    </>
   );
 };
 
+/* eslint-disable-next-line import/no-unused-modules */
 export default hot(App);

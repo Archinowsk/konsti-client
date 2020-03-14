@@ -1,7 +1,8 @@
-import React, { FunctionComponent, ReactElement } from 'react';
+import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import moment from 'moment';
 import _ from 'lodash';
+import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { getStartTimes } from 'utils/getStartTimes';
 import { SignupsByStartTimes } from './SignupsByStartTimes';
@@ -15,9 +16,7 @@ export interface Props {
   signedGames: readonly Signup[];
 }
 
-export const MyEnteredList: FunctionComponent<Props> = (
-  props: Props
-): ReactElement<'div'> => {
+export const MyEnteredList: FC<Props> = (props: Props): ReactElement => {
   const { enteredGames, signedGames } = props;
   const { t } = useTranslation();
   const testTime: string = useSelector(
@@ -84,7 +83,7 @@ export const MyEnteredList: FunctionComponent<Props> = (
   return (
     <div className='my-entered-list'>
       <h3>{t('enteredGames')}</h3>
-      <div className='my-signups-games'>
+      <MyEnteredGames>
         {sortedEnteredGames.length === 0 && <span>{t('noEnteredGames')}</span>}
         {sortedEnteredGames.length !== 0 && (
           <SignupsByStartTimes
@@ -93,7 +92,11 @@ export const MyEnteredList: FunctionComponent<Props> = (
             startTimes={sortedStartTimes}
           />
         )}
-      </div>
+      </MyEnteredGames>
     </div>
   );
 };
+
+const MyEnteredGames = styled.div`
+  padding-left: 30px;
+`;
