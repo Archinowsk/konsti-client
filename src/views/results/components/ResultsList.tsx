@@ -85,7 +85,9 @@ export const ResultsList: FC<Props> = (props: Props): ReactElement => {
         />
       )}
       {sortedBy === 'gameTitle' && (
-        <ResultsByGameTitle results={searchResults ?? results} />
+        <ResultsByGameTitle
+          results={searchTerm !== ' ' ? searchResults : results}
+        />
       )}
     </div>
   );
