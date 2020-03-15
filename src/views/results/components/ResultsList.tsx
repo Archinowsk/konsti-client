@@ -3,18 +3,31 @@ import { useTranslation } from 'react-i18next';
 import { ResultsByGameTitle } from './ResultsByGameTitle';
 import { ResultsByUsername } from './ResultsByUsername';
 import { Result } from 'typings/result.typings';
+import styled from 'styled-components';
 
 export interface Props {
   results: readonly Result[];
 }
 
+const FindField = styled.div`
+  min-height: 25px;
+  max-height: 25px;
+  margin: 10px auto;
+`;
+
+const Input = styled.input`
+  &:active,
+  &:focus {
+    min-height: 25px;
+    max-height: 25px;
+  }
+`;
 export const ResultsList: FC<Props> = (props: Props): ReactElement => {
   const { results } = props;
   const { t } = useTranslation();
   const [sortedBy, setSortedBy] = React.useState<string>('');
-  const [searchTerm, setSearchTerm] = React.useState<string>('');
-  const [searchResults, setSearchResults] = React.useState<any>(null);
-
+  const [searchTerm, setSearchTerm] = React.useState<string>(' ');
+  const [searchResults, setSearchResults] = React.useState<Result[]>([]);
   React.useEffect(() => {
     setSortedBy('username');
   }, []);
@@ -54,19 +67,25 @@ export const ResultsList: FC<Props> = (props: Props): ReactElement => {
             </button>
           );
         })}
-        <br />
-        <span>{t('find')} </span>
-        <input
-          type='text'
-          value={searchTerm}
-          onChange={handleSearchFieldChange}
-        />
+        <FindField>
+          <span>{t('find')} </span>
+          <span>
+            <Input
+              type='text'
+              value={searchTerm}
+              onChange={handleSearchFieldChange}
+            />
+          </span>
+        </FindField>
       </div>
+      {console.log(searchTerm)}
       {sortedBy === 'username' && (
-        <ResultsByUsername results={searchResults || results} />
+        <ResultsByUsername
+          results={searchTerm !== ' ' ? searchResults : results}
+        />
       )}
       {sortedBy === 'gameTitle' && (
-        <ResultsByGameTitle results={searchResults || results} />
+        <ResultsByGameTitle results={searchResults ?? results} />
       )}
     </div>
   );
