@@ -16,7 +16,7 @@ export const postPlayerAssignment = async (
 
   if ((response && response.status !== 200) || (response && !response.data)) {
     console.log('Response status !== 200, reject');
-    return Promise.reject(response);
+    return await Promise.reject(response);
   }
 
   if (response) {

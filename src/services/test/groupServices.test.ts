@@ -25,8 +25,8 @@ describe('groupServices', () => {
   });
 
   it('POST group to server', async () => {
-    mockAxios.post.mockImplementation(() => {
-      return Promise.resolve({
+    mockAxios.post.mockImplementation(async () => {
+      return await Promise.resolve({
         status: 200,
         data: 'test response',
       });

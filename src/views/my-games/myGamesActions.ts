@@ -16,7 +16,7 @@ export const submitGetUser = (username: string): any => {
     }
 
     if (getUserResponse?.error) {
-      return Promise.reject(getUserResponse);
+      return await Promise.reject(getUserResponse);
     }
     if (getUserResponse && getUserResponse.status === 'success') {
       const enteredGames = getUserResponse.games.enteredGames;
@@ -59,7 +59,7 @@ export const submitUpdateFavorites = (favoriteData: FavoriteData): any => {
     }
 
     if (updateFavoriteResponse?.error) {
-      return Promise.reject(updateFavoriteResponse);
+      return await Promise.reject(updateFavoriteResponse);
     }
     if (updateFavoriteResponse && updateFavoriteResponse.status === 'success') {
       dispatch(

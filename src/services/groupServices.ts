@@ -15,7 +15,7 @@ export const postGroup = async (groupData: GroupData): Promise<void> => {
 
   if ((response && response.status !== 200) || (response && !response.data)) {
     console.log('Response status !== 200, reject');
-    return Promise.reject(response);
+    return await Promise.reject(response);
   }
 
   if (response) {
@@ -42,7 +42,7 @@ export const getGroup = async (groupCode: string): Promise<void> => {
 
   if ((response && response.status !== 200) || (response && !response.data)) {
     console.log('Response status !== 200, reject');
-    return Promise.reject(response);
+    return await Promise.reject(response);
   }
 
   if (response) {

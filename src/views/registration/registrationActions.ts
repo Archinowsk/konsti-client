@@ -8,11 +8,11 @@ export const submitRegistration = (registrationData: RegistrationData): any => {
     try {
       registrationResponse = await postRegistration(registrationData);
     } catch (error) {
-      return Promise.reject(error);
+      return await Promise.reject(error);
     }
 
     if (registrationResponse?.error) {
-      return Promise.reject(registrationResponse);
+      return await Promise.reject(registrationResponse);
     }
 
     if (registrationResponse && registrationResponse.status === 'success') {

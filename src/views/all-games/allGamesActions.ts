@@ -13,7 +13,7 @@ export const submitGetGames = (): any => {
     }
 
     if (getGamesResponse?.error) {
-      return Promise.reject(getGamesResponse);
+      return await Promise.reject(getGamesResponse);
     }
     if (getGamesResponse && getGamesResponse.status === 'success') {
       dispatch(submitGetGamesAsync(getGamesResponse.games));
@@ -33,7 +33,7 @@ export const submitGamesUpdate = (): any => {
     }
 
     if (gamesUpdateResponse?.error) {
-      return Promise.reject(gamesUpdateResponse);
+      return await Promise.reject(gamesUpdateResponse);
     }
     if (gamesUpdateResponse && gamesUpdateResponse.status === 'success') {
       dispatch(submitGetGamesAsync(gamesUpdateResponse.games));

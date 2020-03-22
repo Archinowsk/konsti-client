@@ -20,7 +20,7 @@ export const submitUpdateHidden = (hiddenGames: readonly Game[]): any => {
     }
 
     if (updateHiddenResponse?.error) {
-      return Promise.reject(updateHiddenResponse);
+      return await Promise.reject(updateHiddenResponse);
     }
     if (updateHiddenResponse && updateHiddenResponse.status === 'success') {
       dispatch(submitUpdateHiddenAsync(updateHiddenResponse.hiddenGames));
@@ -47,7 +47,7 @@ export const submitGetSettings = (): any => {
     }
 
     if (settingsResponse?.error) {
-      return Promise.reject(settingsResponse);
+      return await Promise.reject(settingsResponse);
     }
 
     if (settingsResponse && settingsResponse.status === 'success') {
@@ -87,7 +87,7 @@ export const submitSignupTime = (signupTime: string): any => {
     }
 
     if (signupTimeResponse?.error) {
-      return Promise.reject(signupTimeResponse);
+      return await Promise.reject(signupTimeResponse);
     }
     if (signupTimeResponse && signupTimeResponse.status === 'success') {
       dispatch(submitSignupTimeAsync(signupTimeResponse.signupTime));
@@ -121,7 +121,7 @@ export const submitToggleAppOpen = (appOpen: boolean): any => {
     }
 
     if (appOpenResponse?.error) {
-      return Promise.reject(appOpenResponse);
+      return await Promise.reject(appOpenResponse);
     }
     if (appOpenResponse && appOpenResponse.status === 'success') {
       dispatch(submitToggleAppOpenAsync(appOpenResponse.appOpen));

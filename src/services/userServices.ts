@@ -19,7 +19,7 @@ export const postRegistration = async (
 
   if ((response && response.status !== 200) || (response && !response.data)) {
     console.log('Response status !== 200, reject');
-    return Promise.reject(response);
+    return await Promise.reject(response);
   }
 
   if (response) {
@@ -45,7 +45,7 @@ export const getUser = async (username: string): Promise<void> => {
 
   if ((response && response.status !== 200) || (response && !response.data)) {
     console.log('Response status !== 200, reject');
-    return Promise.reject(response);
+    return await Promise.reject(response);
   }
 
   if (response) {
@@ -71,7 +71,7 @@ export const getUserBySerial = async (serial: string): Promise<void> => {
 
   if ((response && response.status !== 200) || (response && !response.data)) {
     console.log('Response status !== 200, reject');
-    return Promise.reject(response);
+    return await Promise.reject(response);
   }
 
   if (response) {
@@ -103,7 +103,7 @@ export const updateUserPassword = async (
 
   if ((response && response.status !== 200) || (response && !response.data)) {
     console.log('Response status !== 200, reject');
-    return Promise.reject(response);
+    return await Promise.reject(response);
   }
 
   if (response) {

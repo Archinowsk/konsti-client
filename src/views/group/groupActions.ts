@@ -15,7 +15,7 @@ export const submitJoinGroup = (groupData: GroupData): any => {
     }
 
     if (joinGroupResponse?.error) {
-      return Promise.reject(joinGroupResponse);
+      return await Promise.reject(joinGroupResponse);
     }
     if (joinGroupResponse && joinGroupResponse.status === 'success') {
       dispatch(submitGetGroup(joinGroupResponse.groupCode));
@@ -36,7 +36,7 @@ export const submitCreateGroup = (groupData: GroupData): any => {
     }
 
     if (createGroupResponse?.error) {
-      return Promise.reject(createGroupResponse);
+      return await Promise.reject(createGroupResponse);
     }
     if (createGroupResponse && createGroupResponse.status === 'success') {
       dispatch(submitGetGroup(createGroupResponse.groupCode));
@@ -64,7 +64,7 @@ export const submitGetGroup = (groupCode: string): any => {
     }
 
     if (getGroupResponse?.error) {
-      return Promise.reject(getGroupResponse);
+      return await Promise.reject(getGroupResponse);
     }
     if (getGroupResponse && getGroupResponse.status === 'success') {
       dispatch(submitGetGroupAsync(getGroupResponse.results));
@@ -91,7 +91,7 @@ export const submitLeaveGroup = (groupData: GroupData): any => {
     }
 
     if (leaveGroupResponse?.error) {
-      return Promise.reject(leaveGroupResponse);
+      return await Promise.reject(leaveGroupResponse);
     }
     if (leaveGroupResponse && leaveGroupResponse.status === 'success') {
       dispatch(submitLeaveGroupAsync(leaveGroupResponse.groupCode));

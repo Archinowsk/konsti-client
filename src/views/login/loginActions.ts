@@ -12,12 +12,12 @@ export const submitLogin = (loginData: Login): any => {
     } catch (error) {
       console.log(`postLogin error:`, error);
       clearSession();
-      return Promise.reject(loginResponse);
+      return await Promise.reject(loginResponse);
     }
 
     if (loginResponse?.error) {
       clearSession();
-      return Promise.reject(loginResponse);
+      return await Promise.reject(loginResponse);
     }
     if (loginResponse && loginResponse.status === 'success') {
       saveSession({

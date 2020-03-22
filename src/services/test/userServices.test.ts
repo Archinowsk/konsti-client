@@ -49,8 +49,8 @@ describe('userServices', () => {
   });
 
   it('POST registration to server', async () => {
-    mockAxios.post.mockImplementation(() => {
-      return Promise.resolve({
+    mockAxios.post.mockImplementation(async () => {
+      return await Promise.resolve({
         status: 200,
         data: 'test response',
       });
@@ -79,8 +79,8 @@ describe('userServices', () => {
   });
 
   it('POST new user password to server', async () => {
-    mockAxios.post.mockImplementation(() => {
-      return Promise.resolve({
+    mockAxios.post.mockImplementation(async () => {
+      return await Promise.resolve({
         status: 200,
         data: 'test response',
       });

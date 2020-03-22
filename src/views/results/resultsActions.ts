@@ -14,7 +14,7 @@ export const submitGetResults = (startTime: string): any => {
     }
 
     if (getResultsResponse?.error) {
-      return Promise.reject(getResultsResponse);
+      return await Promise.reject(getResultsResponse);
     }
     if (getResultsResponse && getResultsResponse.status === 'success') {
       dispatch(
@@ -39,7 +39,7 @@ export const submitPlayersAssign = (signupTime: string): any => {
     }
 
     if (assignResponse?.error) {
-      return Promise.reject(assignResponse);
+      return await Promise.reject(assignResponse);
     }
     if (assignResponse && assignResponse.status === 'success') {
       dispatch(

@@ -6,8 +6,8 @@ const mockAxios = axios as jest.Mocked<typeof axios>;
 
 describe('playersServices', () => {
   it('POST player assignment to server', async () => {
-    mockAxios.post.mockImplementation(() => {
-      return Promise.resolve({
+    mockAxios.post.mockImplementation(async () => {
+      return await Promise.resolve({
         status: 200,
         data: 'test response',
       });

@@ -6,8 +6,8 @@ const mockAxios = axios as jest.Mocked<typeof axios>;
 
 describe('signuptimeServices', () => {
   it('POST signup to server', async () => {
-    mockAxios.post.mockImplementation(() => {
-      return Promise.resolve({
+    mockAxios.post.mockImplementation(async () => {
+      return await Promise.resolve({
         status: 200,
         data: 'test response',
       });
