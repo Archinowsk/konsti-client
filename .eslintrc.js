@@ -95,7 +95,5 @@ module.exports = {
     '@typescript-eslint/no-misused-promises': 'off',
     '@typescript-eslint/no-var-requires': 'off',
     '@typescript-eslint/default-param-last': 'off',
-    '@typescript-eslint/no-dupe-class-members': 'off',
-    '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'off',
   },
 };

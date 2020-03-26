@@ -9,25 +9,14 @@ export interface Props {
   results: readonly Result[];
 }
 
-const FindField = styled.div`
-  min-height: 25px;
-  max-height: 25px;
-  margin: 10px auto;
-`;
-
-const Input = styled.input`
-  &:active,
-  &:focus {
-    min-height: 25px;
-    max-height: 25px;
-  }
-`;
 export const ResultsList: FC<Props> = (props: Props): ReactElement => {
   const { results } = props;
   const { t } = useTranslation();
   const [sortedBy, setSortedBy] = React.useState<string>('');
-  const [searchTerm, setSearchTerm] = React.useState<string>(' ');
-  const [searchResults, setSearchResults] = React.useState<Result[]>([]);
+  const [searchTerm, setSearchTerm] = React.useState<string>('');
+  const [searchResults, setSearchResults] = React.useState<readonly Result[]>(
+    []
+  );
   React.useEffect(() => {
     setSortedBy('username');
   }, []);
@@ -43,7 +32,7 @@ export const ResultsList: FC<Props> = (props: Props): ReactElement => {
         );
       })
     );
-  }, [searchTerm]);
+  }, [searchTerm, results]);
 
   const buttons = ['username', 'gameTitle'];
 
@@ -78,17 +67,26 @@ export const ResultsList: FC<Props> = (props: Props): ReactElement => {
           </span>
         </FindField>
       </div>
-      {console.log(searchTerm)}
       {sortedBy === 'username' && (
-        <ResultsByUsername
-          results={searchTerm !== ' ' ? searchResults : results}
-        />
+        <ResultsByUsername results={searchResults ?? results} />
       )}
       {sortedBy === 'gameTitle' && (
-        <ResultsByGameTitle
-          results={searchTerm !== ' ' ? searchResults : results}
-        />
+        <ResultsByGameTitle results={searchResults ?? results} />
       )}
     </div>
   );
 };
+
+const FindField = styled.div`
+  min-height: 25px;
+  max-height: 25px;
+  margin: 10px auto;
+`;
+
+const Input = styled.input`
+  &:active,
+  &:focus {
+    min-height: 25px;
+    max-height: 25px;
+  }
+`;

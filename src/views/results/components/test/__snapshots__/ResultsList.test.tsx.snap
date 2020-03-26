@@ -36,7 +36,7 @@ exports[`ResultsList should render correctly 1`] = `
         <ResultsList__Input
           onChange={[Function]}
           type="text"
-          value=" "
+          value=""
         />
       </span>
     </ResultsList__FindField>
