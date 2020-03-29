@@ -57,11 +57,11 @@ export const PasswordManagement: FC<{}> = (): ReactElement => {
     }
   };
 
-  const handleSerialChange = event => {
+  const handleSerialChange = (event) => {
     setUserSerialInput(event.target.value);
   };
 
-  const handlePasswordChange = event => {
+  const handlePasswordChange = (event) => {
     setChangePasswordInput(event.target.value);
   };
 
@@ -117,12 +117,12 @@ export const PasswordManagement: FC<{}> = (): ReactElement => {
 
 const FormFieldIcon = styled.span`
   padding: 0 0 0 8px;
-  font-size: ${props => props.theme.iconSize};
+  font-size: ${(props) => props.theme.iconSize};
 `;
 
 const FormInput = styled.input`
-  border: 1px solid ${props => props.theme.borderInactive};
-  color: ${props => props.theme.buttonText};
+  border: 1px solid ${(props) => props.theme.borderInactive};
+  color: ${(props) => props.theme.buttonText};
   height: 34px;
   padding: 0 0 0 10px;
   width: 100%;

@@ -1,7 +1,7 @@
 import { Game } from 'typings/game.typings';
 
 export const getStartTimes = (games: readonly Game[]): readonly string[] => {
-  const startTimes = games.map(game => {
+  const startTimes = games.map((game) => {
     return game.startTime;
   });
 

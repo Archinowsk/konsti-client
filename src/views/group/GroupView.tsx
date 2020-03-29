@@ -182,7 +182,7 @@ export const GroupView: FC<{}> = (): ReactElement => {
     setLoading(false);
   };
 
-  const handleJoinGroupChange = event => {
+  const handleJoinGroupChange = (event) => {
     setJoinGroupValue(event.target.value);
   };
 
@@ -358,19 +358,19 @@ const GroupStatusMessage = styled.span`
 
 const StyledButton = styled.button`
   &.active {
-    background-color: ${props => props.theme.buttonSelected};
-    border: 1px solid ${props => props.theme.borderActive};
+    background-color: ${(props) => props.theme.buttonSelected};
+    border: 1px solid ${(props) => props.theme.borderActive};
   }
 `;
 
 const WarningButton = styled.button`
-  background-color: ${props => props.theme.warning};
-  color: ${props => props.theme.warningButtonText};
+  background-color: ${(props) => props.theme.warning};
+  color: ${(props) => props.theme.warningButtonText};
 `;
 
 const FormInput = styled.input`
-  border: 1px solid ${props => props.theme.borderInactive};
-  color: ${props => props.theme.buttonText};
+  border: 1px solid ${(props) => props.theme.borderInactive};
+  color: ${(props) => props.theme.buttonText};
   height: 34px;
   padding: 0 0 0 10px;
   width: 100%;

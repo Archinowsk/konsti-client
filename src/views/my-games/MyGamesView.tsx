@@ -59,7 +59,7 @@ export const MyGamesView: FC<{}> = (): ReactElement => {
     groupMembers: readonly GroupMember[]
   ): GroupMember | null => {
     const groupLeader = groupMembers.find(
-      member => member.serial === member.groupCode
+      (member) => member.serial === member.groupCode
     );
     if (!groupLeader) return null;
     return groupLeader;

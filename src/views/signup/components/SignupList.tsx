@@ -93,7 +93,7 @@ export const SignupList: FC<Props> = (props: Props): ReactElement => {
   const onCancelClick = async (): Promise<void> => {
     setSubmitting(true);
 
-    const gamesWithDifferentTime = selectedGames.filter(selectedGame => {
+    const gamesWithDifferentTime = selectedGames.filter((selectedGame) => {
       if (selectedGame.time !== signupTime) {
         return selectedGame;
       }
@@ -132,13 +132,13 @@ export const SignupList: FC<Props> = (props: Props): ReactElement => {
 
     const noSignupGames = config.noSignupGames;
 
-    const signupOpenGames = visibleGames.filter(game => {
+    const signupOpenGames = visibleGames.filter((game) => {
       if (noSignupGames.includes(game.gameId)) return false;
       else return true;
     });
 
     const selectedGameDetails = selectedGames.map(
-      selectedGame => selectedGame.gameDetails
+      (selectedGame) => selectedGame.gameDetails
     );
 
     const availableGames = _.differenceBy(
@@ -148,30 +148,30 @@ export const SignupList: FC<Props> = (props: Props): ReactElement => {
     );
 
     const availableGamesForStartTime = availableGames.filter(
-      nonSelectedGame => nonSelectedGame.startTime === signupTime
+      (nonSelectedGame) => nonSelectedGame.startTime === signupTime
     );
 
     return _.sortBy(availableGamesForStartTime, [
-      game => game.title.toLowerCase(),
+      (game) => game.title.toLowerCase(),
     ]);
   };
 
   const filterSelectedGames = () => {
     const selectedGameDetails = selectedGames.map(
-      selectedGame => selectedGame.gameDetails
+      (selectedGame) => selectedGame.gameDetails
     );
 
     return selectedGameDetails.filter(
-      selectedGame => selectedGame.startTime === signupTime
+      (selectedGame) => selectedGame.startTime === signupTime
     );
   };
 
-  const updateSelectedGames = newSelectedGames => {
+  const updateSelectedGames = (newSelectedGames) => {
     if (newSelectedGames.length === 0) {
       dispatch(submitSelectedGames(newSelectedGames));
     }
 
-    const newSignups = newSelectedGames.map(newSelectedGame => {
+    const newSignups = newSelectedGames.map((newSelectedGame) => {
       return {
         gameDetails: { ...newSelectedGame },
         priority: parseInt(newSelectedGames.indexOf(newSelectedGame), 10) + 1,
@@ -180,14 +180,14 @@ export const SignupList: FC<Props> = (props: Props): ReactElement => {
     });
 
     const existingGames = selectedGames.filter(
-      selectedGame => selectedGame.gameDetails.startTime !== signupTime
+      (selectedGame) => selectedGame.gameDetails.startTime !== signupTime
     );
     const combined = existingGames.concat(newSignups);
     dispatch(submitSelectedGames(combined));
   };
 
   // Select signup time from buttons and store it
-  const selectSignupTime = signupTime => {
+  const selectSignupTime = (signupTime) => {
     dispatch(submitSignupTime(signupTime));
   };
 
@@ -207,22 +207,22 @@ export const SignupList: FC<Props> = (props: Props): ReactElement => {
   const signupStartTime = timeFormatter.startTime(signupTime);
   const signupEndTime = timeFormatter.endTime(signupTime);
 
-  const isActive = isActive => (isActive ? 'active' : '');
+  const isActive = (isActive) => (isActive ? 'active' : '');
 
   const checkForSignupChanges = (
     signedGames: readonly Signup[],
     selectedGames: readonly Signup[]
   ): boolean => {
-    const filteredSignedGames = signedGames.filter(signedGame => {
-      return selectedGames.find(selectedGame => {
+    const filteredSignedGames = signedGames.filter((signedGame) => {
+      return selectedGames.find((selectedGame) => {
         return (
           signedGame.gameDetails.gameId === selectedGame.gameDetails.gameId
         );
       });
     });
 
-    const filteredSelectedGames = selectedGames.filter(selectedGame => {
-      return signedGames.find(signedGame => {
+    const filteredSelectedGames = selectedGames.filter((selectedGame) => {
+      return signedGames.find((signedGame) => {
         return (
           selectedGame.gameDetails.gameId === signedGame.gameDetails.gameId
         );
@@ -241,7 +241,7 @@ export const SignupList: FC<Props> = (props: Props): ReactElement => {
     }
   };
 
-  const signupTimeButtons = signupTimes.map(time => {
+  const signupTimeButtons = signupTimes.map((time) => {
     return (
       <StyledButton
         key={time}
@@ -320,22 +320,22 @@ export const SignupList: FC<Props> = (props: Props): ReactElement => {
 
 const StyledButton = styled.button`
   &.active {
-    background-color: ${props => props.theme.buttonSelected};
-    border: 1px solid ${props => props.theme.borderActive};
+    background-color: ${(props) => props.theme.buttonSelected};
+    border: 1px solid ${(props) => props.theme.borderActive};
   }
 `;
 
 const ErrorMessage = styled.span`
-  color: ${props => props.theme.error};
+  color: ${(props) => props.theme.error};
 `;
 
 const InfoMessage = styled.span`
-  color: ${props => props.theme.informative};
+  color: ${(props) => props.theme.informative};
   font-weight: 600;
 `;
 
 const SuccessMessage = styled.span`
-  color: ${props => props.theme.success};
+  color: ${(props) => props.theme.success};
   font-weight: 600;
 `;
 

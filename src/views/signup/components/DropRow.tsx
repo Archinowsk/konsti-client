@@ -16,7 +16,7 @@ export const DropRow: FC<Props> = (props: Props): ReactElement => {
   const { droppableId, games, label, showCount } = props;
   const { t } = useTranslation();
 
-  const getListStyle = dragging => {
+  const getListStyle = (dragging) => {
     if (dragging) return 'dragging';
     else return '';
   };
@@ -51,7 +51,7 @@ export const DropRow: FC<Props> = (props: Props): ReactElement => {
                 draggableId={game.gameId}
                 index={index}
               >
-                {provided => (
+                {(provided) => (
                   <Link to={`/games/${game.gameId}`}>
                     <DraggableItem
                       className={`${getPopularity(game)}`}
@@ -85,12 +85,12 @@ export const DropRow: FC<Props> = (props: Props): ReactElement => {
 };
 
 const DropRowContainer = styled.div`
-  background-color: ${props => props.theme.backgroundHighlight};
+  background-color: ${(props) => props.theme.backgroundHighlight};
   min-height: 40px;
   padding: 10px;
 
   &.dragging {
-    background-color: ${props => props.theme.backgroundDndRow};
+    background-color: ${(props) => props.theme.backgroundDndRow};
   }
 
   &.availableGames,
@@ -99,15 +99,15 @@ const DropRowContainer = styled.div`
   }
 
   a {
-    color: ${props => props.theme.mainText};
+    color: ${(props) => props.theme.mainText};
     text-decoration: none;
     cursor: grabbing;
   }
 `;
 
 const DraggableItem = styled.div`
-  background-color: ${props => props.theme.backgroundDndItem};
-  border: 1px solid ${props => props.theme.borderInactive};
+  background-color: ${(props) => props.theme.backgroundDndItem};
+  border: 1px solid ${(props) => props.theme.borderInactive};
   margin: 8px 0;
   padding: 8px;
   box-shadow: 0 1px 0 rgba(9, 30, 66, 0.25);
@@ -138,15 +138,15 @@ const SignupGameTitle = styled.p`
 
 const SignupShortDescription = styled.p`
   margin: 0 0 0 14px;
-  font-size: ${props => props.theme.fontSizeSmall};
+  font-size: ${(props) => props.theme.fontSizeSmall};
   font-style: italic;
 
-  @media (max-width: ${props => props.theme.breakpointPhone}) {
+  @media (max-width: ${(props) => props.theme.breakpointPhone}) {
     margin: 0;
   }
 `;
 
 const SignupPopularity = styled.p`
-  font-size: ${props => props.theme.fontSizeSmall};
+  font-size: ${(props) => props.theme.fontSizeSmall};
   margin-bottom: 0;
 `;

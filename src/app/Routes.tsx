@@ -176,21 +176,21 @@ export const Routes: FC<Props> = (props: Props): ReactElement => {
 };
 
 const StyledRoutes = styled.div`
-  background-color: ${props => props.theme.backgroundHighlight};
-  border-bottom: 1px solid ${props => props.theme.borderInactive};
+  background-color: ${(props) => props.theme.backgroundHighlight};
+  border-bottom: 1px solid ${(props) => props.theme.borderInactive};
 `;
 
 const RouterLink = styled(NavLink)`
   position: relative;
   display: inline-block;
   padding: 10px 12px 10px 12px;
-  font-size: ${props => props.theme.linkFontSize};
+  font-size: ${(props) => props.theme.linkFontSize};
   text-decoration: none;
-  color: ${props => props.theme.mainText};
+  color: ${(props) => props.theme.mainText};
 
   :hover,
   :focus {
-    background-color: ${props => props.theme.backgroundHover};
+    background-color: ${(props) => props.theme.backgroundHover};
   }
 
   &.active {
@@ -198,7 +198,7 @@ const RouterLink = styled(NavLink)`
   }
 
   &.active::after {
-    background-color: ${props => props.theme.mainText};
+    background-color: ${(props) => props.theme.mainText};
     bottom: 0;
     content: '';
     display: block;

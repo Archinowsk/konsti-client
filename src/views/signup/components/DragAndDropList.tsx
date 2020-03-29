@@ -146,7 +146,7 @@ export const DragAndDropList: FC<Props> = (props: Props): ReactElement => {
 };
 
 const ErrorMessage = styled.p`
-  color: ${props => props.theme.error};
+  color: ${(props) => props.theme.error};
 `;
 
 const DropRows = styled.div`

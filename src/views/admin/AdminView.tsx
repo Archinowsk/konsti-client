@@ -65,7 +65,7 @@ export const AdminView: FC<{}> = (): ReactElement => {
 
   const getStartingTimes = () => {
     const visibleGames = getVisibleGames();
-    const startTimes = visibleGames.map(game => game.startTime);
+    const startTimes = visibleGames.map((game) => game.startTime);
     return [...Array.from(new Set(startTimes))].sort();
   };
 
@@ -195,7 +195,7 @@ export const AdminView: FC<{}> = (): ReactElement => {
             <TimesDropdown
               times={getStartingTimes()}
               selectedTime={selectedSignupTime}
-              onChange={event => setSelectedSignupTime(event.target.value)}
+              onChange={(event) => setSelectedSignupTime(event.target.value)}
             />
 
             <Hidden hiddenGames={hiddenGames} />
@@ -208,10 +208,10 @@ export const AdminView: FC<{}> = (): ReactElement => {
 
 const StatusMessage = styled.p`
   &.error {
-    color: ${props => props.theme.error};
+    color: ${(props) => props.theme.error};
   }
 
   &.success {
-    color: ${props => props.theme.success};
+    color: ${(props) => props.theme.success};
   }
 `;

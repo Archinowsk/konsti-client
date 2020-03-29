@@ -15,7 +15,7 @@ export const SignupsByStartTimes: FC<Props> = (props: Props): ReactElement => {
   const { t } = useTranslation();
 
   const getGamesList = (startTime: string) => {
-    return signups.map(signup => {
+    return signups.map((signup) => {
       if (signup.time === startTime) {
         if (!signup.gameDetails) {
           return (
@@ -36,7 +36,7 @@ export const SignupsByStartTimes: FC<Props> = (props: Props): ReactElement => {
     });
   };
 
-  const startTimesList = startTimes.map(startTime => {
+  const startTimesList = startTimes.map((startTime) => {
     return (
       <div key={startTime}>
         <p className='bold'>

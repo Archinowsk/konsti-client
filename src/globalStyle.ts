@@ -3,10 +3,10 @@ import { Theme } from 'theme';
 
 export const GlobalStyle = createGlobalStyle<{ theme: Theme }>`
   html {
-    color: ${props => props.theme.mainText};
+    color: ${(props) => props.theme.mainText};
     display: flex;
     font-family: Helvetica, Arial, Verdana, Tahoma, sans-serif;
-    font-size: ${props => props.theme.fontSizeNormal};
+    font-size: ${(props) => props.theme.fontSizeNormal};
   }
 
   body {
@@ -16,7 +16,7 @@ export const GlobalStyle = createGlobalStyle<{ theme: Theme }>`
     width: 800px;
   }
 
-  @media (max-width: ${props => props.theme.breakpointPhone}) {
+  @media (max-width: ${(props) => props.theme.breakpointPhone}) {
     body {
       background-color: #fff;
       padding-bottom: 0;
@@ -30,7 +30,7 @@ export const GlobalStyle = createGlobalStyle<{ theme: Theme }>`
     padding: 30px;
   }
 
-  @media (max-width: ${props => props.theme.breakpointPhone}) {
+  @media (max-width: ${(props) => props.theme.breakpointPhone}) {
     #main {
       border: solid 1px #fff;
       margin: 0 0 10px 0;
@@ -39,7 +39,7 @@ export const GlobalStyle = createGlobalStyle<{ theme: Theme }>`
   }
 
   select {
-    font-size: ${props => props.theme.fontSizeNormal};
+    font-size: ${(props) => props.theme.fontSizeNormal};
     padding: 4px;
     border-radius: 4px;
   }
@@ -48,7 +48,7 @@ export const GlobalStyle = createGlobalStyle<{ theme: Theme }>`
   input[type='number'],
   input[type='password'],
   textarea {
-    font-size: ${props => props.theme.fontSizeNormal};
+    font-size: ${(props) => props.theme.fontSizeNormal};
   }
 
   input {
@@ -57,7 +57,7 @@ export const GlobalStyle = createGlobalStyle<{ theme: Theme }>`
   }
 
   input::placeholder {
-    color: ${props => props.theme.inputPlaceholder};
+    color: ${(props) => props.theme.inputPlaceholder};
   }
 
   input:focus {
@@ -87,29 +87,29 @@ export const GlobalStyle = createGlobalStyle<{ theme: Theme }>`
 
   button {
     background-color: #fff;
-    border: 1px solid ${props => props.theme.borderInactive};
+    border: 1px solid ${(props) => props.theme.borderInactive};
     border-radius: 5px;
-    color: ${props => props.theme.buttonText};
+    color: ${(props) => props.theme.buttonText};
     cursor: pointer;
     margin: 10px 10px 10px 0;
     padding: 6px 20px;
-    font-size: ${props => props.theme.buttonFontSize};
+    font-size: ${(props) => props.theme.buttonFontSize};
   }
 
   button:hover,
   button:focus {
-    background-color: ${props => props.theme.backgroundActive};
-    border: 1px solid ${props => props.theme.borderActive};
-    color: ${props => props.theme.borderActive};
+    background-color: ${(props) => props.theme.backgroundActive};
+    border: 1px solid ${(props) => props.theme.borderActive};
+    color: ${(props) => props.theme.borderActive};
   }
 
   button:disabled {
-    background-color: ${props => props.theme.disabled};
+    background-color: ${(props) => props.theme.disabled};
   }
 
   button:disabled:hover,
   button:disabled:focus {
-    color: ${props => props.theme.buttonText};
+    color: ${(props) => props.theme.buttonText};
   }
 
   .small {

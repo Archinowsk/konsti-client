@@ -20,7 +20,7 @@ i18next
   .init({
     backend: {
       loadPath: '{{lng}}',
-      parse: data => data,
+      parse: (data) => data,
       ajax: loadLocales,
     },
     fallbackLng: 'en',

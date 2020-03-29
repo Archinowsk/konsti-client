@@ -37,7 +37,7 @@ export const GameDetails: FC<{}> = (): ReactElement => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const game = games.find(game => game.gameId === gameId);
+  const game = games.find((game) => game.gameId === gameId);
 
   const [hidden, setHidden] = React.useState<boolean>(false);
   const [favorited, setFavorited] = React.useState<boolean>(false);
@@ -51,14 +51,14 @@ export const GameDetails: FC<{}> = (): ReactElement => {
       if (!game || !game.gameId) return;
 
       // Check if in favorites
-      favoritedGames.find(favoritedGame => {
+      favoritedGames.find((favoritedGame) => {
         if (favoritedGame.gameId === game.gameId) {
           setFavorited(true);
         }
       });
 
       // Check if hidden
-      hiddenGames.find(hiddenGame => {
+      hiddenGames.find((hiddenGame) => {
         if (hiddenGame.gameId === game.gameId) {
           setHidden(true);
         }

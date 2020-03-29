@@ -17,7 +17,7 @@ export const TimesDropdown: FC<Props> = (props: Props): ReactElement => {
   const { times, onChange, selectedTime } = props;
   const { t } = useTranslation();
 
-  const sortedTimes = times.map(sortedTime => {
+  const sortedTimes = times.map((sortedTime) => {
     const formattedDate = timeFormatter.weekdayAndTime({
       time: sortedTime,
       capitalize: true,

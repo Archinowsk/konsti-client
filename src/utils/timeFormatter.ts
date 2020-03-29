@@ -26,9 +26,7 @@ const startTime = (startTime: string): string => {
       .subtract(SIGNUP_OPEN_TIME, 'hours')
       .isBefore(moment(startTime).hours(DAY_START_TIME))
   ) {
-    return moment(startTime)
-      .hours(DAY_START_TIME)
-      .format(timeFormat);
+    return moment(startTime).hours(DAY_START_TIME).format(timeFormat);
   }
   // Valid signup start time
   else {

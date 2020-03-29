@@ -27,7 +27,9 @@ export const ResultsView: FC<{}> = (): ReactElement => {
     fetchData();
   }, [store]);
 
-  const validResults = result.filter(result => result.enteredGame.gameDetails);
+  const validResults = result.filter(
+    (result) => result.enteredGame.gameDetails
+  );
 
   return (
     <div className='results-view'>

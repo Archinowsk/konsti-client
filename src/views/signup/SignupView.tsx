@@ -36,9 +36,9 @@ export const SignupView: FC<{}> = (): ReactElement => {
   }, [store]);
 
   React.useEffect(() => {
-    const visibleGames = games.filter(game => {
+    const visibleGames = games.filter((game) => {
       const hidden = hiddenGames.find(
-        hiddenGame => game.gameId === hiddenGame.gameId
+        (hiddenGame) => game.gameId === hiddenGame.gameId
       );
       if (!hidden) return game;
     });

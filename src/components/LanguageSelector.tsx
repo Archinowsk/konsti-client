@@ -8,9 +8,9 @@ export const LanguageSelector: FC<{}> = (): ReactElement => {
   const language = i18n.language;
 
   // Language toggle
-  const toggle = lng => i18n.changeLanguage(lng);
+  const toggle = (lng) => i18n.changeLanguage(lng);
 
-  const setLanguage = event => {
+  const setLanguage = (event) => {
     toggle(event.target.value);
     moment.locale(event.target.value);
   };

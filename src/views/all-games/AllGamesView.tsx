@@ -44,9 +44,9 @@ export const AllGamesView: FC<{}> = (): ReactElement => {
   const getVisibleGames = (games: readonly Game[]): readonly Game[] => {
     const filteredGames = getTagFilteredGames(games);
 
-    const visibleGames = filteredGames.filter(game => {
+    const visibleGames = filteredGames.filter((game) => {
       const hidden = hiddenGames.find(
-        hiddenGame => game.gameId === hiddenGame.gameId
+        (hiddenGame) => game.gameId === hiddenGame.gameId
       );
       if (!hidden) return game;
     });
@@ -55,7 +55,7 @@ export const AllGamesView: FC<{}> = (): ReactElement => {
       return getUpcomingGames(visibleGames, testTime);
     } else if (selectedView === 'revolving-door') {
       return getUpcomingGames(visibleGames, testTime).filter(
-        game => game.revolvingDoor
+        (game) => game.revolvingDoor
       );
     }
 
@@ -65,11 +65,11 @@ export const AllGamesView: FC<{}> = (): ReactElement => {
   const getTagFilteredGames = (games: readonly Game[]): readonly Game[] => {
     if (!selectedTag) return games;
     if (selectedTag === 'aloittelijaystavallinen') {
-      return games.filter(game => game.beginnerFriendly);
+      return games.filter((game) => game.beginnerFriendly);
     } else if (selectedTag === 'tabletopRPG') {
-      return games.filter(game => game.programType === 'tabletopRPG');
+      return games.filter((game) => game.programType === 'tabletopRPG');
     } else if (selectedTag === 'freeformRPG') {
-      return games.filter(game => game.programType === 'freeformRPG');
+      return games.filter((game) => game.programType === 'freeformRPG');
     }
     return games;
     // return games.filter(game => game.tags && game.tags.includes(selectedTag));
@@ -79,7 +79,7 @@ export const AllGamesView: FC<{}> = (): ReactElement => {
   const tags = ['aloittelijaystavallinen', 'tabletopRPG', 'freeformRPG'];
 
   const tagsList = () => {
-    return tags.map(tag => {
+    return tags.map((tag) => {
       return (
         <option key={tag} value={tag}>
           {tag === 'in-english' && t(`gameTags.inEnglish`)}
@@ -95,7 +95,7 @@ export const AllGamesView: FC<{}> = (): ReactElement => {
   const getRunningRevolvingDoorGames = (games: readonly Game[]) => {
     const { useTestTime } = config;
     const timeNow = useTestTime ? moment(testTime) : moment();
-    const runningGames = games.filter(game => {
+    const runningGames = games.filter((game) => {
       return (
         game.revolvingDoor &&
         moment(game.startTime).isBefore(timeNow) &&
@@ -106,7 +106,7 @@ export const AllGamesView: FC<{}> = (): ReactElement => {
     if (!runningGames || runningGames.length === 0) {
       return <p>{t('noCurrentlyRunningGames')}</p>;
     }
-    return runningGames.map(game => {
+    return runningGames.map((game) => {
       return (
         <div key={game.gameId} className='games-list'>
           <Link to={`/games/${game.gameId}`}>{game.title}</Link>{' '}
@@ -150,7 +150,7 @@ export const AllGamesView: FC<{}> = (): ReactElement => {
           <TagsDropdown>
             <span className={'choose-tag-instruction'}>{t('chooseTag')} </span>
             <select
-              onChange={event => setSelectedTag(event.target.value)}
+              onChange={(event) => setSelectedTag(event.target.value)}
               value={selectedTag}
             >
               <option value=''>{t('allGames')}</option>
@@ -178,7 +178,7 @@ export const AllGamesView: FC<{}> = (): ReactElement => {
 };
 
 const GameListShortDescription = styled.p`
-  font-size: ${props => props.theme.fontSizeSmall};
+  font-size: ${(props) => props.theme.fontSizeSmall};
   font-style: italic;
   margin: 4px 0 8px 14px;
 `;
@@ -188,7 +188,7 @@ const AllGamesVisibilityBar = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  @media (max-width: ${props => props.theme.breakpointPhone}) {
+  @media (max-width: ${(props) => props.theme.breakpointPhone}) {
     flex-direction: column;
     align-items: flex-start;
 

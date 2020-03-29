@@ -22,7 +22,7 @@ export const Accordion: FC<Props> = (props: Props): ReactElement => {
 
   const splitTextRows = (text: string) => {
     const rows = t(text).split('\n');
-    return rows.map(row => <p key={row}>{row}</p>);
+    return rows.map((row) => <p key={row}>{row}</p>);
   };
 
   return (
@@ -53,7 +53,7 @@ export const Accordion: FC<Props> = (props: Props): ReactElement => {
 
 const AccordionContent = styled.div`
   box-shadow: 0 1px 0 rgba(9, 30, 66, 0.25);
-  border: 1px solid ${props => props.theme.borderInactive};
+  border: 1px solid ${(props) => props.theme.borderInactive};
   border-radius: 3px;
   padding: 0 10px;
 `;

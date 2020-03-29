@@ -14,10 +14,10 @@ export const AllGamesList: FC<Props> = (props: Props): ReactElement => {
   const { games } = props;
   const { t } = useTranslation();
 
-  const buildGamesList = games => {
+  const buildGamesList = (games) => {
     const sortedGames = _.sortBy(games, [
-      game => game.startTime,
-      game => game.title.toLowerCase(),
+      (game) => game.startTime,
+      (game) => game.title.toLowerCase(),
     ]);
 
     const groupedGames = _.groupBy(sortedGames, 'startTime');
@@ -33,7 +33,7 @@ export const AllGamesList: FC<Props> = (props: Props): ReactElement => {
       const signupEndTime = timeFormatter.endTime(startTime);
 
       // @ts-ignore
-      const allGamesRevolvingDoor = games.every(game => game.revolvingDoor);
+      const allGamesRevolvingDoor = games.every((game) => game.revolvingDoor);
 
       const title = (
         <GameListTitle key={startTime}>
@@ -85,7 +85,7 @@ const GameListTitle = styled.h3`
 `;
 
 const GameListShortDescription = styled.p`
-  font-size: ${props => props.theme.fontSizeSmall};
+  font-size: ${(props) => props.theme.fontSizeSmall};
   font-style: italic;
   margin: 4px 0 8px 14px;
 `;
