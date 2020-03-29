@@ -101,7 +101,7 @@ const devConfig = {
   // webpack-dev-server config
   devServer: {
     host: 'localhost',
-    port: 8080,
+    port: 8000,
     hot: true, // enable HMR on the server
     contentBase: path.join(__dirname, 'build'),
     historyApiFallback: true, // respond to 404s with index.html
