@@ -14,10 +14,10 @@ export const Hidden: FC<Props> = (props: Props): ReactElement => {
   const { t } = useTranslation();
 
   const sortedGames = _.sortBy(hiddenGames, [
-    hiddenGame => hiddenGame.title.toLowerCase(),
+    (hiddenGame) => hiddenGame.title.toLowerCase(),
   ]);
 
-  const GamesList = sortedGames.map(game => (
+  const GamesList = sortedGames.map((game) => (
     <li key={game.gameId}>
       <Link to={`/games/${game.gameId}`}>{game.title}</Link>
       {' - '}

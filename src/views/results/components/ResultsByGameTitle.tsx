@@ -14,7 +14,7 @@ export const ResultsByGameTitle: FC<Props> = (props: Props): ReactElement => {
   const { t } = useTranslation();
 
   const sortedResults = _.sortBy(results, [
-    result => result.enteredGame.gameDetails.title.toLowerCase(),
+    (result) => result.enteredGame.gameDetails.title.toLowerCase(),
   ]);
 
   const groupedResults = _.groupBy(
@@ -26,10 +26,10 @@ export const ResultsByGameTitle: FC<Props> = (props: Props): ReactElement => {
 
   for (const result in groupedResults) {
     const sortedResults = _.sortBy(groupedResults[result], [
-      result => result.username.toLowerCase(),
+      (result) => result.username.toLowerCase(),
     ]);
 
-    const playerList = sortedResults.map(result => (
+    const playerList = sortedResults.map((result) => (
       <p key={result.username}>{result.username}</p>
     ));
 
@@ -52,7 +52,7 @@ export const ResultsByGameTitle: FC<Props> = (props: Props): ReactElement => {
 };
 
 const GameResult = styled.div`
-  border-bottom: solid 1px ${props => props.theme.disabled};
+  border-bottom: solid 1px ${(props) => props.theme.disabled};
   padding-bottom: 10px;
 `;
 

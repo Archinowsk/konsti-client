@@ -13,7 +13,7 @@ export const GamesByStartTimes: FC<Props> = (props: Props): ReactElement => {
   const { games, startTimes } = props;
 
   const getGamesList = (startTime: string) => {
-    return games.map(game => {
+    return games.map((game) => {
       if (game.startTime === startTime) {
         return (
           <GameDetailsList key={game.gameId}>
@@ -24,7 +24,7 @@ export const GamesByStartTimes: FC<Props> = (props: Props): ReactElement => {
     });
   };
 
-  const startTimesList = startTimes.map(startTime => {
+  const startTimesList = startTimes.map((startTime) => {
     return (
       <div key={startTime}>
         <p className='bold'>

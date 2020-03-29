@@ -15,12 +15,12 @@ export const MySignupsList: FC<Props> = (props: Props): ReactElement => {
   const { t } = useTranslation();
 
   const sortedSignups = _.sortBy(signedGames, [
-    signedGame => signedGame.gameDetails.startTime,
-    signedGame => signedGame.priority,
+    (signedGame) => signedGame.gameDetails.startTime,
+    (signedGame) => signedGame.priority,
   ]);
 
   const startTimes = getStartTimes(
-    signedGames.map(signedGame => signedGame.gameDetails)
+    signedGames.map((signedGame) => signedGame.gameDetails)
   );
 
   return (

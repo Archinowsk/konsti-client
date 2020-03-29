@@ -15,8 +15,8 @@ export const MyFavoritesList: FC<Props> = (props: Props): ReactElement => {
   const { t } = useTranslation();
 
   const sortedGames: readonly Game[] = _.sortBy(favoritedGames, [
-    favoritedGame => favoritedGame.startTime,
-    favoritedGame => favoritedGame.title.toLowerCase(),
+    (favoritedGame) => favoritedGame.startTime,
+    (favoritedGame) => favoritedGame.title.toLowerCase(),
   ]);
 
   const startTimes = getStartTimes(favoritedGames);

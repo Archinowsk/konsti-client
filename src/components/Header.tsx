@@ -50,7 +50,7 @@ const HeaderContainer = styled.header`
 `;
 
 const Logo = styled.a`
-  color: ${props => props.theme.mainText};
+  color: ${(props) => props.theme.mainText};
   text-decoration: none;
 `;
 

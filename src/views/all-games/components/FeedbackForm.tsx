@@ -35,7 +35,7 @@ export const FeedbackForm: FC<Props> = (props: Props): ReactElement => {
     setSubmitting(false);
   };
 
-  const handleFeedbackChange = event => {
+  const handleFeedbackChange = (event) => {
     setFeedbackValue(event.target.value);
   };
 
@@ -73,5 +73,5 @@ const FeedbackTextarea = styled.textarea`
 `;
 
 const SuccessMessage = styled.p`
-  color: ${props => props.theme.success};
+  color: ${(props) => props.theme.success};
 `;

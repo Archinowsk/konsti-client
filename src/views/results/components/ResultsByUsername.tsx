@@ -13,10 +13,10 @@ export const ResultsByUsername: FC<Props> = (props: Props): ReactElement => {
   const { t } = useTranslation();
 
   const sortedResults = _.sortBy(results, [
-    result => result.username.toLowerCase(),
+    (result) => result.username.toLowerCase(),
   ]);
 
-  const resultsTable = sortedResults.map(result => (
+  const resultsTable = sortedResults.map((result) => (
     <FlexTableColumn key={result.username}>
       <FlexTableRow>{result.username}</FlexTableRow>
       <FlexTableRow>{result.enteredGame.gameDetails.title}</FlexTableRow>
@@ -43,7 +43,7 @@ const FlexTableContainer = styled.div`
 `;
 
 const FlexTableColumn = styled.div`
-  border-bottom: solid 1px ${props => props.theme.disabled};
+  border-bottom: solid 1px ${(props) => props.theme.disabled};
   display: flex;
   flex-direction: row;
   padding: 10px 0;

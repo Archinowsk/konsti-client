@@ -79,5 +79,5 @@ export default reduxForm({
 
 const ErrorMessage = styled.span`
   font-weight: bold;
-  color: ${props => props.theme.error};
+  color: ${(props) => props.theme.error};
 `;

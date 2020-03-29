@@ -50,15 +50,15 @@ export const GameInfo: FC<Props> = (props: Props): ReactElement => {
     );
   });
 
-  const getFormattedStartTime = game =>
+  const getFormattedStartTime = (game) =>
     timeFormatter.weekdayAndTime({
       time: game.startTime,
       capitalize: true,
     });
 
-  const getFormattedEndTime = game => timeFormatter.time(game.endTime);
+  const getFormattedEndTime = (game) => timeFormatter.time(game.endTime);
 
-  const getFormattedDuration = game => {
+  const getFormattedDuration = (game) => {
     const hours = Math.floor(game.mins / 60);
     const minutes = Math.round((game.mins / 60 - hours) * 60);
 
@@ -228,7 +228,7 @@ const GameDetailsRow = styled.div`
   }
 
   &.game-details-subtext {
-    font-size: ${props => props.theme.fontSizeSmall};
+    font-size: ${(props) => props.theme.fontSizeSmall};
   }
 
   &.game-details-row-with-gap {
@@ -251,7 +251,7 @@ const GameDetailsTitle = styled.span`
     width: 25%;
   }
 
-  @media (max-width: ${props => props.theme.breakpointPhone}) {
+  @media (max-width: ${(props) => props.theme.breakpointPhone}) {
     &.game-details-two-columns {
       width: 40%;
     }
@@ -261,7 +261,7 @@ const GameDetailsTitle = styled.span`
 const GameDetailsValue = styled.span`
   width: 75%;
 
-  @media (max-width: ${props => props.theme.breakpointPhone}) {
+  @media (max-width: ${(props) => props.theme.breakpointPhone}) {
     width: 60%;
   }
 `;

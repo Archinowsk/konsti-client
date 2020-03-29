@@ -23,7 +23,7 @@ export const ResultsList: FC<Props> = (props: Props): ReactElement => {
 
   React.useEffect(() => {
     setSearchResults(
-      results.filter(result => {
+      results.filter((result) => {
         return (
           result.username.toLowerCase().includes(searchTerm.toLowerCase()) ||
           result.enteredGame.gameDetails.title
@@ -36,7 +36,7 @@ export const ResultsList: FC<Props> = (props: Props): ReactElement => {
 
   const buttons = ['username', 'gameTitle'];
 
-  const handleSearchFieldChange = e => {
+  const handleSearchFieldChange = (e) => {
     setSearchTerm(e.target.value);
   };
 
@@ -44,7 +44,7 @@ export const ResultsList: FC<Props> = (props: Props): ReactElement => {
     <div className='results-list'>
       <div className='results-button-row'>
         <span>{t('sortBy')} </span>
-        {buttons.map(name => {
+        {buttons.map((name) => {
           return (
             <button
               disabled={sortedBy === name}

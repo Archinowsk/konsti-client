@@ -76,7 +76,7 @@ const FormRow = styled.div`
   width: 50%;
   justify-content: flex-start;
 
-  @media (max-width: ${props => props.theme.breakpointPhone}) {
+  @media (max-width: ${(props) => props.theme.breakpointPhone}) {
     width: 100%;
   }
 `;
@@ -92,16 +92,16 @@ const StyledFormField = styled.div`
 
 const FormFieldIcon = styled.span`
   padding: 0 0 0 8px;
-  font-size: ${props => props.theme.iconSize};
+  font-size: ${(props) => props.theme.iconSize};
 `;
 
 const FormFieldError = styled.div`
   display: flex;
-  background-color: ${props => props.theme.backgroundHighlight};
-  color: ${props => props.theme.error};
+  background-color: ${(props) => props.theme.backgroundHighlight};
+  color: ${(props) => props.theme.error};
   width: 50%;
 
-  @media (max-width: ${props => props.theme.breakpointPhone}) {
+  @media (max-width: ${(props) => props.theme.breakpointPhone}) {
     width: 100%;
   }
 `;
@@ -112,8 +112,8 @@ const FormFieldErrorMessage = styled.span`
 
 const StyledInput = styled.input`
   &.form-input {
-    border: 1px solid ${props => props.theme.borderInactive};
-    color: ${props => props.theme.buttonText};
+    border: 1px solid ${(props) => props.theme.borderInactive};
+    color: ${(props) => props.theme.buttonText};
     height: 34px;
     padding: 0 0 0 10px;
     width: 100%;

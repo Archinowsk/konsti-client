@@ -10,7 +10,7 @@ export const getUpcomingGames = (
   const { useTestTime } = config;
   const timeNow = useTestTime ? moment(testTime) : moment();
 
-  const upcomingGames = games.filter(game =>
+  const upcomingGames = games.filter((game) =>
     moment(game.startTime).isAfter(timeNow)
   );
 
@@ -24,7 +24,7 @@ export const getUpcomingSignedGames = (
   const { useTestTime } = config;
   const timeNow = useTestTime ? moment(testTime) : moment();
 
-  const upcomingGames = signedGames.filter(signedGame => {
+  const upcomingGames = signedGames.filter((signedGame) => {
     return moment(signedGame.gameDetails.startTime)
       .add(1, 'hours')
       .isAfter(timeNow);
@@ -40,10 +40,8 @@ export const getUpcomingEnteredGames = (
   const { useTestTime } = config;
   const timeNow = useTestTime ? moment(testTime) : moment();
 
-  const upcomingGames = enteredGames.filter(enteredGame =>
-    moment(enteredGame.gameDetails.startTime)
-      .add(1, 'hours')
-      .isAfter(timeNow)
+  const upcomingGames = enteredGames.filter((enteredGame) =>
+    moment(enteredGame.gameDetails.startTime).add(1, 'hours').isAfter(timeNow)
   );
 
   return upcomingGames;
@@ -56,10 +54,8 @@ export const getUpcomingFavorites = (
   const { useTestTime } = config;
   const timeNow = useTestTime ? moment(testTime) : moment();
 
-  const upcomingGames = favoritedGames.filter(favoritedGame =>
-    moment(favoritedGame.startTime)
-      .add(1, 'hours')
-      .isAfter(timeNow)
+  const upcomingGames = favoritedGames.filter((favoritedGame) =>
+    moment(favoritedGame.startTime).add(1, 'hours').isAfter(timeNow)
   );
 
   return upcomingGames;
