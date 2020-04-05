@@ -3,7 +3,7 @@ export interface Config {
   SIGNUP_END_TIME: number;
   SIGNUP_OPEN_TIME: number;
   MESSAGE_DELAY: number;
-  CONVENTION_NAME: CONVENTION_NAME;
+  CONVENTION_NAME: ConventionName;
   CONVENTION_YEAR: string;
   CONVENTION_START_TIME: string;
   DAY_START_TIME: number;
@@ -20,7 +20,4 @@ export interface Config {
   simpleDetails: boolean;
 }
 
-export enum CONVENTION_NAME {
-  'Ropecon' = 'Ropecon',
-  'Tracon Hitpoint' = 'Tracon Hitpoint',
-}
+export type ConventionName = 'Ropecon' | 'Tracon Hitpoint';
