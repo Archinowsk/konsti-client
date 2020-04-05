@@ -2,7 +2,6 @@ import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import CompressionPlugin from 'compression-webpack-plugin';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import TemplateWebpackPlugin from 'html-webpack-template';
 import MomentLocalesPlugin from 'moment-locales-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
 import BrotliPlugin from 'brotli-webpack-plugin';
@@ -47,23 +46,9 @@ const commonConfig = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      // html-webpack-plugin configs
       title: config.appName,
-      filename: 'index.html',
-      template: TemplateWebpackPlugin,
-      inject: false,
       favicon: path.resolve(__dirname, 'assets', 'favicon.png'),
-      minify: {
-        collapseWhitespace: true,
-        preserveLineBreaks: true,
-      },
-      // html-webpack-template configs
-      appMountIds: [/* 'outdated' */ 'main'],
-      meta: {
-        'application-name': config.appName,
-      },
-      lang: 'en',
-      mobile: true,
+      template: path.resolve(__dirname, 'src', 'index.html'),
     }),
     new webpack.HashedModuleIdsPlugin(), // so that file hashes don't change unexpectedly
   ],
