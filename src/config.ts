@@ -1,4 +1,4 @@
-import { Config, ConventionName } from './typings/config.typings';
+import { Config } from './typings/config.typings';
 
 const commonConfig = {
   // App info
@@ -20,7 +20,7 @@ const commonConfig = {
   MESSAGE_DELAY: 3000, // ms
 
   // Convention settings
-  CONVENTION_NAME: 'Ropecon' as ConventionName,
+  CONVENTION_NAME: 'Ropecon' as const,
   CONVENTION_YEAR: '2020',
   CONVENTION_START_TIME: '2019-11-23T08:00:00Z', // UTC date
   DAY_START_TIME: 8, // 08:00
