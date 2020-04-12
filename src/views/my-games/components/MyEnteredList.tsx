@@ -49,10 +49,8 @@ export const MyEnteredList: FC<Props> = (props: Props): ReactElement => {
     <div className='my-entered-list'>
       <h3>{t('enteredGames')}</h3>
       <MyEnteredGames>
-        {enteredGames.length === 0 && missedSignups.length === 0 && (
-          <span>{t('noEnteredGames')}</span>
-        )}
-        {(enteredGames.length !== 0 || missedSignups.length !== 0) && (
+        {startTimes.length === 0 && <span>{t('noEnteredGames')}</span>}
+        {startTimes.length !== 0 && (
           <ResultsByStartTimes
             signups={_.sortBy(enteredGames, [
               (enteredGame) => enteredGame.time,
