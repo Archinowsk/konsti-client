@@ -15,7 +15,6 @@ interface Props {
 const RegistrationForm: FC<InjectedFormProps> = (
   props: Props
 ): ReactElement => {
-  console.log(props);
   const { handleSubmit, submitting, error } = props;
   const { t } = useTranslation();
 
