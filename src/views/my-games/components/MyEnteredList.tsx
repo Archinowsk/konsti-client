@@ -4,12 +4,11 @@ import moment from 'moment';
 import _ from 'lodash';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-import { getStartTimes } from 'utils/getStartTimes';
-import { SignupsByStartTimes } from './SignupsByStartTimes';
+import { ResultsByStartTimes } from './ResultsByStartTimes';
 import { config } from 'config';
 import { Signup } from 'typings/user.typings';
-
 import { RootState } from 'typings/redux.typings';
+import { getMissedSignups } from '../utils/getMissedSignups';
 
 export interface Props {
   enteredGames: readonly Signup[];
@@ -19,6 +18,10 @@ export interface Props {
 export const MyEnteredList: FC<Props> = (props: Props): ReactElement => {
   const { enteredGames, signedGames } = props;
   const { t } = useTranslation();
+
+  const [missedSignups, setMissedSignups] = React.useState<string[]>([]);
+  const [startTimes, setStartTimes] = React.useState<string[]>([]);
+
   const testTime: string = useSelector(
     (state: RootState) => state.admin.testTime
   );
@@ -28,70 +31,34 @@ export const MyEnteredList: FC<Props> = (props: Props): ReactElement => {
     timeNow = testTime;
   }
 
-  const signedGamesStartTimes = getStartTimes(
-    signedGames.map((signedGame) => signedGame.gameDetails)
-  );
+  React.useEffect(() => {
+    setMissedSignups(getMissedSignups(signedGames, enteredGames, timeNow));
+  }, [testTime, signedGames]);
 
-  // Get signup times for past signed games
-  const pastSignupTimes = signedGamesStartTimes.filter(
-    (signedGamesStartTime) => {
-      const signupEndTime = moment(signedGamesStartTime).subtract(
-        config.SIGNUP_END_TIME,
-        'minutes'
-      );
-
-      if (signupEndTime.isBefore(moment(timeNow))) {
-        return signedGamesStartTime;
-      }
-    }
-  );
-
-  // Check if there are past signed games without entered game => missed signup
-  const missedSignupTimes = pastSignupTimes.filter((pastSignupTime) => {
-    let found = false;
-    if (enteredGames.length === 0) {
-      return pastSignupTime;
-    }
-
-    enteredGames.find((enteredGame) => {
-      if (enteredGame.time === pastSignupTime) {
-        found = true;
-      }
-    });
-
-    if (!found) {
-      return pastSignupTime;
-    }
-  });
-
-  const missedSignups = missedSignupTimes.map((missedSignupTime) => {
-    return { gameDetails: null, time: missedSignupTime, priority: 0 };
-  });
-
-  // @ts-ignore
-  const enteredGamesAndMissed = enteredGames.concat(missedSignups);
-
-  const sortedEnteredGames = _.sortBy(enteredGamesAndMissed, [
-    (enteredGame) => enteredGame.time,
-  ]);
-
-  const startTimes = sortedEnteredGames.map((sortedEnteredGame) => {
-    return sortedEnteredGame.time;
-  });
-
-  const uniqueStartTimes = [...Array.from(new Set(startTimes))];
-  const sortedStartTimes = uniqueStartTimes.sort();
+  React.useEffect(() => {
+    setStartTimes(
+      enteredGames
+        .map((sortedEnteredGame) => {
+          return sortedEnteredGame.time;
+        })
+        .concat(missedSignups)
+    );
+  }, [missedSignups]);
 
   return (
     <div className='my-entered-list'>
       <h3>{t('enteredGames')}</h3>
       <MyEnteredGames>
-        {sortedEnteredGames.length === 0 && <span>{t('noEnteredGames')}</span>}
-        {sortedEnteredGames.length !== 0 && (
-          <SignupsByStartTimes
-            signups={sortedEnteredGames}
-            // @ts-ignore
-            startTimes={sortedStartTimes}
+        {enteredGames.length === 0 && missedSignups.length === 0 && (
+          <span>{t('noEnteredGames')}</span>
+        )}
+        {(enteredGames.length !== 0 || missedSignups.length !== 0) && (
+          <ResultsByStartTimes
+            signups={_.sortBy(enteredGames, [
+              (enteredGame) => enteredGame.time,
+            ])}
+            startTimes={[...Array.from(new Set(startTimes))].sort()}
+            missedSignups={missedSignups}
           />
         )}
       </MyEnteredGames>

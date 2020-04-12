@@ -4,10 +4,13 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { WrappedFieldProps } from 'redux-form';
 
-export const FormField: FC<WrappedFieldProps> = (
-  props: WrappedFieldProps
+interface CustomFieldProps {
+  type?: string;
+}
+
+export const FormField: FC<WrappedFieldProps & CustomFieldProps> = (
+  props: WrappedFieldProps & CustomFieldProps
 ): ReactElement => {
-  // @ts-ignore
   const { type } = props;
   const { name, onChange, onBlur, onDragStart, onDrop, onFocus } = props.input;
   const { touched, error } = props.meta;
@@ -16,7 +19,7 @@ export const FormField: FC<WrappedFieldProps> = (
   const [fieldType, setFieldType] = React.useState<string>('');
 
   React.useEffect(() => {
-    setFieldType(type);
+    setFieldType(type ?? 'text');
   }, [type]);
 
   const classNames = ['form-input'];

@@ -130,7 +130,6 @@
   "error": {
     "usernameTaken": "Käyttäjänimi on jo olemassa",
     "invalidSerial": "Epäkelpo rekisteröitymiskoodi",
-    "registrationFailed": "Rekisteröityminen epäonnistui",
     "loginFailed": "Käyttäjänimi ja salasana eivät täsmää",
     "loginDisabled": "Kirjautuminen on suljettu",
     "unkown": "Tuntematon virhe"

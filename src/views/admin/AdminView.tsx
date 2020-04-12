@@ -45,7 +45,7 @@ export const AdminView: FC<{}> = (): ReactElement => {
 
   const getVisibleGames = () => {
     if (!hiddenGames) return games;
-    const visibleGames = [];
+    const visibleGames: Game[] = [];
     for (let i = 0; i < games.length; i += 1) {
       let match = false;
 
@@ -56,7 +56,6 @@ export const AdminView: FC<{}> = (): ReactElement => {
         }
       }
       if (!match) {
-        // @ts-ignore
         visibleGames.push(games[i]);
       }
     }

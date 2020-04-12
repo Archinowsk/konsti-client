@@ -44,7 +44,7 @@ export const getOpenStartTimes = (games: readonly Game[], testTime: string) => {
     .subtract(minutes, 'minutes')
     .startOf('hour');
 
-  const openSignupTimes = [];
+  const openSignupTimes: string[] = [];
   for (const startTime of startTimes) {
     if (
       moment(startTime).isBetween(
@@ -52,7 +52,6 @@ export const getOpenStartTimes = (games: readonly Game[], testTime: string) => {
         lastSignupTime.add(1, 'minutes')
       )
     ) {
-      // @ts-ignore
       openSignupTimes.push(startTime);
     }
   }
