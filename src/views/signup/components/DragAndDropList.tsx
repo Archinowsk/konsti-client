@@ -13,18 +13,12 @@ import { RootState } from 'typings/redux.typings';
 
 export interface Props {
   updateSelectedGames: Function;
-  // updateAvailableGames: Function,
   availableGames: readonly Game[];
   selectedGames: readonly Game[];
 }
 
 export const DragAndDropList: FC<Props> = (props: Props): ReactElement => {
-  const {
-    availableGames,
-    selectedGames,
-    updateSelectedGames,
-    // updateAvailableGames,
-  } = props;
+  const { availableGames, selectedGames, updateSelectedGames } = props;
   const { t } = useTranslation();
 
   const groupCode: string = useSelector(
@@ -69,7 +63,6 @@ export const DragAndDropList: FC<Props> = (props: Props): ReactElement => {
       );
 
       if (source.droppableId === 'availableGames') {
-        // updateAvailableGames(updatedPositions);
       } else if (source.droppableId === 'selectedGames') {
         updateSelectedGames(updatedPositions);
       }
@@ -109,7 +102,6 @@ export const DragAndDropList: FC<Props> = (props: Props): ReactElement => {
       }
 
       if (updatedPositions.availableGames) {
-        // updateAvailableGames(updatedPositions.availableGames);
       }
 
       if (updatedPositions.selectedGames) {
