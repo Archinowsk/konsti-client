@@ -4,8 +4,9 @@ import { submitGetSettings } from 'views/admin/adminActions';
 import { submitGetUser } from 'views/my-games/myGamesActions';
 import { submitGetGroup } from 'views/group/groupActions';
 import { submitLogin } from 'views/login/loginActions';
+import { store } from 'utils/store';
 
-export const loadData = async (store: any): Promise<void> => {
+export const loadData = async (): Promise<void> => {
   // Get app settings
   await loadSettings(store);
 
