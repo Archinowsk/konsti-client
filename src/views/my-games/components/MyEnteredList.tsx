@@ -33,7 +33,7 @@ export const MyEnteredList: FC<Props> = (props: Props): ReactElement => {
 
   React.useEffect(() => {
     setMissedSignups(getMissedSignups(signedGames, enteredGames, timeNow));
-  }, [testTime, signedGames]);
+  }, [signedGames, enteredGames]);
 
   React.useEffect(() => {
     setStartTimes(
