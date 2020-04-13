@@ -19,7 +19,7 @@
     "clean": "rimraf build",
     "eslint-rules": "eslint --print-config .eslintrc.js",
     "eslint": "eslint . --ext .js,.ts,.tsx",
-    "prettier:check": "prettier --write ./**/*.{js,json,md,ts,tsx,yml}",
+    "prettier:check": "prettier --check ./**/*.{js,json,md,ts,tsx,yml}",
     "prettier:write": "prettier --write ./**/*.{js,json,md,ts,tsx,yml}",
     "snapshot-update": "jest -u",
     "start": "webpack-dev-server",
@@ -172,10 +172,10 @@
     "*.{js,ts,tsx}": [
       "eslint",
       "stylelint",
-      "prettier --write"
+      "prettier --check"
     ],
     "*.{json,md,yml}": [
-      "prettier --write"
+      "prettier --check"
     ]
   }
 }
