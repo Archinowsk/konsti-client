@@ -1,13 +1,9 @@
 import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
-import moment from 'moment';
 import _ from 'lodash';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
 import { ResultsByStartTimes } from './ResultsByStartTimes';
-import { config } from 'config';
 import { Signup } from 'typings/user.typings';
-import { RootState } from 'typings/redux.typings';
 import { getMissedSignups } from '../utils/getMissedSignups';
 
 export interface Props {
@@ -22,17 +18,8 @@ export const MyEnteredList: FC<Props> = (props: Props): ReactElement => {
   const [missedSignups, setMissedSignups] = React.useState<string[]>([]);
   const [startTimes, setStartTimes] = React.useState<string[]>([]);
 
-  const testTime: string = useSelector(
-    (state: RootState) => state.admin.testTime
-  );
-
-  let timeNow: string = moment().format();
-  if (config.loadedSettings !== 'production') {
-    timeNow = testTime;
-  }
-
   React.useEffect(() => {
-    setMissedSignups(getMissedSignups(signedGames, enteredGames, timeNow));
+    setMissedSignups(getMissedSignups(signedGames, enteredGames));
   }, [signedGames, enteredGames]);
 
   React.useEffect(() => {

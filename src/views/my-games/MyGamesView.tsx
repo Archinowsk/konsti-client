@@ -12,7 +12,6 @@ import {
 } from 'utils/getUpcomingGames';
 import { loadUser, loadGames, loadGroupMembers } from 'utils/loadData';
 import { isGroupLeader } from 'views/group/GroupView';
-
 import { Game } from 'typings/game.typings';
 import { Signup } from 'typings/user.typings';
 import { GroupMember } from 'typings/group.typings';
@@ -37,7 +36,6 @@ export const MyGamesView: FC<{}> = (): ReactElement => {
   const groupMembers: readonly GroupMember[] = useSelector(
     (state: RootState) => state.login.groupMembers
   );
-
   const testTime: string = useSelector(
     (state: RootState) => state.admin.testTime
   );
@@ -53,7 +51,7 @@ export const MyGamesView: FC<{}> = (): ReactElement => {
       await loadGroupMembers(store);
     };
     fetchData();
-  }, [store]);
+  }, [store, testTime]);
 
   const getGroupLeader = (
     groupMembers: readonly GroupMember[]
@@ -69,7 +67,7 @@ export const MyGamesView: FC<{}> = (): ReactElement => {
     signedGames: readonly Signup[]
   ): readonly Signup[] => {
     if (isGroupLeader(groupCode, serial)) {
-      if (!showAllGames) return getUpcomingSignedGames(signedGames, testTime);
+      if (!showAllGames) return getUpcomingSignedGames(signedGames);
       else return signedGames;
     }
 
@@ -78,8 +76,7 @@ export const MyGamesView: FC<{}> = (): ReactElement => {
 
       if (!showAllGames) {
         return getUpcomingSignedGames(
-          groupLeader ? groupLeader.signedGames : signedGames,
-          testTime
+          groupLeader ? groupLeader.signedGames : signedGames
         );
       } else return groupLeader ? groupLeader.signedGames : signedGames;
     }
@@ -104,9 +101,7 @@ export const MyGamesView: FC<{}> = (): ReactElement => {
 
         <MyFavoritesList
           favoritedGames={
-            showAllGames
-              ? favoritedGames
-              : getUpcomingFavorites(favoritedGames, testTime)
+            showAllGames ? favoritedGames : getUpcomingFavorites(favoritedGames)
           }
         />
 
@@ -120,9 +115,7 @@ export const MyGamesView: FC<{}> = (): ReactElement => {
 
         <MyEnteredList
           enteredGames={
-            showAllGames
-              ? enteredGames
-              : getUpcomingEnteredGames(enteredGames, testTime)
+            showAllGames ? enteredGames : getUpcomingEnteredGames(enteredGames)
           }
           signedGames={getSignedGames(signedGames)}
         />

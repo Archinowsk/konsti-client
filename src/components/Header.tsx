@@ -16,11 +16,16 @@ export const Header = () => {
   );
   const serial: string = useSelector((state: RootState) => state.login.serial);
   const { t } = useTranslation();
-  const { loadedSettings, CONVENTION_NAME, CONVENTION_YEAR } = config;
+  const {
+    loadedSettings,
+    CONVENTION_NAME,
+    CONVENTION_YEAR,
+    useTestTime,
+  } = config;
 
   return (
     <HeaderContainer>
-      {loadedSettings !== 'production' && <TimeSelector />}
+      {loadedSettings !== 'production' && useTestTime && <TimeSelector />}
 
       <h1>
         <Logo href='/'>{t('appTitle')}</Logo>

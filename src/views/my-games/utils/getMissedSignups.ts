@@ -2,12 +2,14 @@ import moment from 'moment';
 import { getStartTimes } from 'utils/getStartTimes';
 import { config } from 'config';
 import { Signup } from 'typings/user.typings';
+import { getTime } from 'utils/getTime';
 
 export const getMissedSignups = (
   signedGames: readonly Signup[],
-  enteredGames: readonly Signup[],
-  timeNow: string
+  enteredGames: readonly Signup[]
 ): string[] => {
+  const timeNow = getTime();
+
   const signedGamesStartTimes = getStartTimes(
     signedGames.map((signedGame) => signedGame.gameDetails)
   );

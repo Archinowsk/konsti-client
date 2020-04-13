@@ -6,7 +6,6 @@ import moment from 'moment';
 import { submitSetTestTime } from 'views/admin/adminActions';
 import { TimesDropdown } from 'components/TimesDropdown';
 import { config } from 'config';
-
 import { RootState } from 'typings/redux.typings';
 
 export const TimeSelector: FC<{}> = (): ReactElement => {
@@ -36,11 +35,11 @@ export const TimeSelector: FC<{}> = (): ReactElement => {
 
   React.useEffect(() => {
     const defaultTestTime = _.first(times);
-    if (!testTime) dispatch(submitSetTestTime(defaultTestTime ?? ''));
+    if (!testTime) setTestTime(defaultTestTime);
   });
 
-  const setTestTime = (event) => {
-    dispatch(submitSetTestTime(event.target.value));
+  const setTestTime = (testTime) => {
+    dispatch(submitSetTestTime(testTime));
   };
 
   return (
@@ -49,7 +48,7 @@ export const TimeSelector: FC<{}> = (): ReactElement => {
       <TimesDropdown
         times={times}
         selectedTime={testTime}
-        onChange={(event) => setTestTime(event)}
+        onChange={(event) => setTestTime(event.target.value)}
       />
     </div>
   );

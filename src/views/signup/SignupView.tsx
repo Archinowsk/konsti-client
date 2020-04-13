@@ -5,7 +5,6 @@ import { getOpenStartTimes } from 'utils/getOpenStartTimes';
 import { loadGroupMembers, loadUser } from 'utils/loadData';
 import { isGroupLeader } from 'views/group/GroupView';
 import { Game } from 'typings/game.typings';
-
 import { RootState } from 'typings/redux.typings';
 
 export const SignupView: FC<{}> = (): ReactElement => {
@@ -43,7 +42,7 @@ export const SignupView: FC<{}> = (): ReactElement => {
       if (!hidden) return game;
     });
 
-    setSignupTimes(getOpenStartTimes(visibleGames, testTime));
+    setSignupTimes(getOpenStartTimes(visibleGames));
   }, [hiddenGames, games, testTime]);
 
   const leader = isGroupLeader(groupCode, serial);

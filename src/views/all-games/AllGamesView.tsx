@@ -10,7 +10,7 @@ import { loadGames } from 'utils/loadData';
 import { config } from 'config';
 import { Loading } from 'components/Loading';
 import { Game } from 'typings/game.typings';
-
+import { getTime } from 'utils/getTime';
 import { RootState } from 'typings/redux.typings';
 
 export const AllGamesView: FC<{}> = (): ReactElement => {
@@ -39,7 +39,7 @@ export const AllGamesView: FC<{}> = (): ReactElement => {
       setLoading(false);
     };
     fetchData();
-  }, [store]);
+  }, [store, testTime]);
 
   const getVisibleGames = (games: readonly Game[]): readonly Game[] => {
     const filteredGames = getTagFilteredGames(games);
@@ -52,9 +52,9 @@ export const AllGamesView: FC<{}> = (): ReactElement => {
     });
 
     if (selectedView === 'upcoming') {
-      return getUpcomingGames(visibleGames, testTime);
+      return getUpcomingGames(visibleGames);
     } else if (selectedView === 'revolving-door') {
-      return getUpcomingGames(visibleGames, testTime).filter(
+      return getUpcomingGames(visibleGames).filter(
         (game) => game.revolvingDoor
       );
     }
@@ -93,8 +93,7 @@ export const AllGamesView: FC<{}> = (): ReactElement => {
   };
 
   const getRunningRevolvingDoorGames = (games: readonly Game[]) => {
-    const { useTestTime } = config;
-    const timeNow = useTestTime ? moment(testTime) : moment();
+    const timeNow = getTime();
     const runningGames = games.filter((game) => {
       return (
         game.revolvingDoor &&

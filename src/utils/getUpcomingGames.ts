@@ -1,14 +1,10 @@
 import moment from 'moment';
-import { config } from 'config';
 import { Game } from 'typings/game.typings';
 import { Signup } from 'typings/user.typings';
+import { getTime } from 'utils/getTime';
 
-export const getUpcomingGames = (
-  games: readonly Game[],
-  testTime: string
-): readonly Game[] => {
-  const { useTestTime } = config;
-  const timeNow = useTestTime ? moment(testTime) : moment();
+export const getUpcomingGames = (games: readonly Game[]): readonly Game[] => {
+  const timeNow = getTime();
 
   const upcomingGames = games.filter((game) =>
     moment(game.startTime).isAfter(timeNow)
@@ -18,11 +14,9 @@ export const getUpcomingGames = (
 };
 
 export const getUpcomingSignedGames = (
-  signedGames: readonly Signup[],
-  testTime: string
+  signedGames: readonly Signup[]
 ): readonly Signup[] => {
-  const { useTestTime } = config;
-  const timeNow = useTestTime ? moment(testTime) : moment();
+  const timeNow = getTime();
 
   const upcomingGames = signedGames.filter((signedGame) => {
     return moment(signedGame.gameDetails.startTime)
@@ -34,11 +28,9 @@ export const getUpcomingSignedGames = (
 };
 
 export const getUpcomingEnteredGames = (
-  enteredGames: readonly Signup[],
-  testTime: string
+  enteredGames: readonly Signup[]
 ): readonly Signup[] => {
-  const { useTestTime } = config;
-  const timeNow = useTestTime ? moment(testTime) : moment();
+  const timeNow = getTime();
 
   const upcomingGames = enteredGames.filter((enteredGame) =>
     moment(enteredGame.gameDetails.startTime).add(1, 'hours').isAfter(timeNow)
@@ -48,11 +40,9 @@ export const getUpcomingEnteredGames = (
 };
 
 export const getUpcomingFavorites = (
-  favoritedGames: readonly Game[],
-  testTime: string
+  favoritedGames: readonly Game[]
 ): readonly Game[] => {
-  const { useTestTime } = config;
-  const timeNow = useTestTime ? moment(testTime) : moment();
+  const timeNow = getTime();
 
   const upcomingGames = favoritedGames.filter((favoritedGame) =>
     moment(favoritedGame.startTime).add(1, 'hours').isAfter(timeNow)

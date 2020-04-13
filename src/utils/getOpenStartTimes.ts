@@ -2,8 +2,9 @@ import moment from 'moment';
 import { config } from 'config';
 import { getStartTimes } from './getStartTimes';
 import { Game } from 'typings/game.typings';
+import { getTime } from 'utils/getTime';
 
-export const getOpenStartTimes = (games: readonly Game[], testTime: string) => {
+export const getOpenStartTimes = (games: readonly Game[]) => {
   const startTimes = getStartTimes(games);
 
   const {
@@ -11,13 +12,9 @@ export const getOpenStartTimes = (games: readonly Game[], testTime: string) => {
     SIGNUP_OPEN_TIME,
     SIGNUP_END_TIME,
     // CONVENTION_START_TIME,
-    useTestTime,
   } = config;
 
-  let timeNow = moment();
-  if (useTestTime) {
-    timeNow = moment(testTime);
-  }
+  const timeNow = getTime();
 
   const earliestSignupTime = moment(timeNow)
     .add(SIGNUP_END_TIME, 'minutes')
