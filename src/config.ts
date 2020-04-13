@@ -15,9 +15,11 @@ const commonConfig = {
     typeof process.env.SETTINGS === 'string'
       ? process.env.SETTINGS
       : 'development',
-  SIGNUP_END_TIME: 30, // minutes
-  SIGNUP_OPEN_TIME: 4, // hours
   MESSAGE_DELAY: 3000, // ms
+  PRE_SIGNUP_OPEN_TIME: 4, // hours
+  PRE_SIGNUP_END_TIME: 2, // hours
+  DIRECT_SIGNUP_OPEN_TIME: 2, // hours
+  DIRECT_SIGNUP_END_TIME: 0, // hours
 
   // Convention settings
   CONVENTION_NAME: 'Ropecon' as const,

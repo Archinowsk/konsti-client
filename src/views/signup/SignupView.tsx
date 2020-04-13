@@ -1,7 +1,10 @@
 import React, { FC, ReactElement } from 'react';
 import { useSelector, useStore } from 'react-redux';
 import { SignupList } from 'views/signup/components/SignupList';
-import { getOpenStartTimes } from 'utils/getOpenStartTimes';
+import {
+  getPreSignupTimes,
+  getDirectSignupTimes,
+} from 'utils/getOpenStartTimes';
 import { loadGroupMembers, loadUser } from 'utils/loadData';
 import { isGroupLeader } from 'views/group/GroupView';
 import { Game } from 'typings/game.typings';
@@ -22,7 +25,12 @@ export const SignupView: FC<{}> = (): ReactElement => {
     (state: RootState) => state.login.groupCode
   );
 
-  const [signupTimes, setSignupTimes] = React.useState<readonly string[]>([]);
+  const [preSignupTimes, setPreSignupTimes] = React.useState<readonly string[]>(
+    []
+  );
+  const [directSignupTimes, setDirectSignupTimes] = React.useState<
+    readonly string[]
+  >([]);
 
   const store = useStore();
 
@@ -42,14 +50,20 @@ export const SignupView: FC<{}> = (): ReactElement => {
       if (!hidden) return game;
     });
 
-    setSignupTimes(getOpenStartTimes(visibleGames));
+    setPreSignupTimes(getPreSignupTimes(visibleGames));
+    setDirectSignupTimes(getDirectSignupTimes(visibleGames));
   }, [hiddenGames, games, testTime]);
 
   const leader = isGroupLeader(groupCode, serial);
 
   return (
     <div className='signup-view'>
-      <SignupList games={games} signupTimes={signupTimes} leader={leader} />
+      <SignupList
+        games={games}
+        preSignupTimes={preSignupTimes}
+        directSignupTimes={directSignupTimes}
+        leader={leader}
+      />
     </div>
   );
 };

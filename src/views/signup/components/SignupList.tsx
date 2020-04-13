@@ -17,12 +17,13 @@ import { SignupActionButtons } from './SignupActionButtons';
 
 export interface Props {
   games: readonly Game[];
-  signupTimes: readonly string[];
+  preSignupTimes: readonly string[];
+  directSignupTimes: readonly string[];
   leader: boolean;
 }
 
 export const SignupList: FC<Props> = (props: Props): ReactElement => {
-  const { games, signupTimes, leader } = props;
+  const { games, preSignupTimes, directSignupTimes, leader } = props;
 
   const signupTime: string = useSelector(
     (state: RootState) => state.signup.signupTime
@@ -158,15 +159,31 @@ export const SignupList: FC<Props> = (props: Props): ReactElement => {
 
   return (
     <SignupListContainer>
-      {signupTimes.length === 0 ? (
+      {directSignupTimes.length === 0 && preSignupTimes.length === 0 ? (
         <h2>{t('noOpenSignups')}</h2>
       ) : (
         <>
           <h2>{t('signupOpen')}</h2>
-          <SignupTimeButtons
-            signupTimes={signupTimes}
-            signupTime={signupTime}
-          />
+
+          {preSignupTimes.length !== 0 && (
+            <>
+              <h3>{t('preSignup')}</h3>
+              <SignupTimeButtons
+                signupTimes={preSignupTimes}
+                signupTime={signupTime}
+              />
+            </>
+          )}
+
+          {directSignupTimes.length !== 0 && (
+            <>
+              <h3>{t('directSignup')}</h3>
+              <SignupTimeButtons
+                signupTimes={directSignupTimes}
+                signupTime={signupTime}
+              />
+            </>
+          )}
 
           {signupTime && (
             <>

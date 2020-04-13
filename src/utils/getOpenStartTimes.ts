@@ -4,54 +4,46 @@ import { getStartTimes } from './getStartTimes';
 import { Game } from 'typings/game.typings';
 import { getTime } from 'utils/getTime';
 
-export const getOpenStartTimes = (games: readonly Game[]) => {
+export const getPreSignupTimes = (games: readonly Game[]) => {
+  const { PRE_SIGNUP_OPEN_TIME, PRE_SIGNUP_END_TIME } = config;
+
   const startTimes = getStartTimes(games);
-
-  const {
-    // DAY_START_TIME,
-    SIGNUP_OPEN_TIME,
-    SIGNUP_END_TIME,
-    // CONVENTION_START_TIME,
-  } = config;
-
   const timeNow = getTime();
 
-  const earliestSignupTime = moment(timeNow)
-    .add(SIGNUP_END_TIME, 'minutes')
-    .endOf('hour');
+  return startTimes.filter((startTime) => {
+    const earliestSignupTime = moment(startTime)
+      .subtract(PRE_SIGNUP_OPEN_TIME, 'hours')
+      .subtract(1, 'minutes');
 
-  /*
-  if (moment(earliestSignupTime).isBefore(moment(CONVENTION_START_TIME))) {
-    earliestSignupTime = moment(CONVENTION_START_TIME)
-  } else if (
-    moment(earliestSignupTime).isBefore(
-      moment(earliestSignupTime).hours(DAY_START_TIME)
-    )
-  ) {
-    earliestSignupTime = moment(earliestSignupTime)
-      .hours(DAY_START_TIME)
-      .format('HH:mm')
-  }
-  */
+    const lastSignupTime = moment(startTime).subtract(
+      PRE_SIGNUP_END_TIME,
+      'hours'
+    );
 
-  const minutes = moment(timeNow).format('m');
-
-  const lastSignupTime = moment(timeNow)
-    .add(SIGNUP_OPEN_TIME, 'hours')
-    .subtract(minutes, 'minutes')
-    .startOf('hour');
-
-  const openSignupTimes: string[] = [];
-  for (const startTime of startTimes) {
-    if (
-      moment(startTime).isBetween(
-        earliestSignupTime,
-        lastSignupTime.add(1, 'minutes')
-      )
-    ) {
-      openSignupTimes.push(startTime);
+    if (moment(timeNow).isBetween(earliestSignupTime, lastSignupTime)) {
+      return startTime;
     }
-  }
+  });
+};
 
-  return openSignupTimes;
+export const getDirectSignupTimes = (games: readonly Game[]) => {
+  const { DIRECT_SIGNUP_OPEN_TIME, DIRECT_SIGNUP_END_TIME } = config;
+
+  const startTimes = getStartTimes(games);
+  const timeNow = getTime();
+
+  return startTimes.filter((startTime) => {
+    const earliestSignupTime = moment(startTime)
+      .subtract(DIRECT_SIGNUP_OPEN_TIME, 'hours')
+      .subtract(1, 'minutes');
+
+    const lastSignupTime = moment(startTime).subtract(
+      DIRECT_SIGNUP_END_TIME,
+      'hours'
+    );
+
+    if (moment(timeNow).isBetween(earliestSignupTime, lastSignupTime)) {
+      return startTime;
+    }
+  });
 };

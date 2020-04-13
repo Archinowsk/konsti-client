@@ -1,7 +1,5 @@
 export interface Config {
   appName: string;
-  SIGNUP_END_TIME: number;
-  SIGNUP_OPEN_TIME: number;
   MESSAGE_DELAY: number;
   CONVENTION_NAME: ConventionName;
   CONVENTION_YEAR: string;
@@ -18,6 +16,10 @@ export interface Config {
   revolvingDoorEnabled: boolean;
   tagFilteringEnabled: boolean;
   simpleDetails: boolean;
+  PRE_SIGNUP_END_TIME: number;
+  PRE_SIGNUP_OPEN_TIME: number;
+  DIRECT_SIGNUP_END_TIME: number;
+  DIRECT_SIGNUP_OPEN_TIME: number;
 }
 
 export type ConventionName = 'Ropecon' | 'Tracon Hitpoint';
