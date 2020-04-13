@@ -24,7 +24,7 @@ const stats = {
 };
 
 const commonConfig = {
-  target: 'web',
+  target: 'web' as const,
 
   // Array of entry files
   entry: {
@@ -79,9 +79,9 @@ const commonConfig = {
 };
 
 const devConfig = {
-  mode: 'development',
+  mode: 'development' as const,
 
-  devtool: config.reduxTrace ? 'source-map' : 'eval', // Use eval for best hot-loading perf
+  devtool: config.reduxTrace ? ('source-map' as const) : ('eval' as const), // Use eval for best hot-loading perf
 
   // webpack-dev-server config
   devServer: {
@@ -105,13 +105,12 @@ const devConfig = {
 };
 
 const prodConfig = {
-  mode: 'production',
+  mode: 'production' as const,
 
   stats,
 
   plugins: [
     new CopyWebpackPlugin([{ from: 'assets' }]),
-    // @ts-ignore
     new MomentLocalesPlugin({
       localesToKeep: ['fi'], // “en” is built into Moment and can’t be removed
     }),
@@ -144,9 +143,9 @@ const prodConfig = {
       }),
     ],
     // https://hackernoon.com/the-100-correct-way-to-split-your-chunks-with-webpack-f8a9df5b7758
-    runtimeChunk: 'single',
+    runtimeChunk: 'single' as const,
     splitChunks: {
-      chunks: 'all',
+      chunks: 'all' as const,
       maxInitialRequests: Infinity,
       minSize: 0,
       cacheGroups: {
@@ -166,13 +165,12 @@ const prodConfig = {
 };
 
 const stagingConfig = {
-  mode: 'production',
+  mode: 'production' as const,
 
   stats,
 
   plugins: [
     new CopyWebpackPlugin([{ from: 'assets' }]),
-    // @ts-ignore
     new MomentLocalesPlugin({
       localesToKeep: ['fi'], // “en” is built into Moment and can’t be removed
     }),
@@ -198,12 +196,12 @@ const stagingConfig = {
     minimize: false,
     namedModules: true,
     namedChunks: true,
-    moduleIds: 'named',
-    chunkIds: 'named',
+    moduleIds: 'named' as const,
+    chunkIds: 'named' as const,
     // https://hackernoon.com/the-100-correct-way-to-split-your-chunks-with-webpack-f8a9df5b7758
-    runtimeChunk: 'single',
+    runtimeChunk: 'single' as const,
     splitChunks: {
-      chunks: 'all',
+      chunks: 'all' as const,
       maxInitialRequests: Infinity,
       minSize: 0,
       cacheGroups: {
@@ -226,17 +224,14 @@ const getWebpackConfig = () => {
   const TARGET = process.env.npm_lifecycle_event;
 
   if (TARGET === 'build' || TARGET === 'bundle-analyze') {
-    // @ts-ignore
     return webpackMerge(commonConfig, prodConfig);
   } else if (TARGET === 'build-staging') {
-    // @ts-ignore
     return webpackMerge(commonConfig, stagingConfig);
   } else if (
     TARGET === 'start' ||
     TARGET === 'watch' ||
     TARGET === 'build-dev'
   ) {
-    // @ts-ignore
     return webpackMerge(commonConfig, devConfig);
   }
 };

@@ -1,5 +1,5 @@
 import React, { FC, ReactElement } from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, InjectedFormProps } from 'redux-form';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { required } from 'utils/validate';
@@ -11,7 +11,7 @@ interface Props {
   error?: string;
 }
 
-const LoginForm: FC<Props> = (props: Props): ReactElement => {
+const LoginForm: FC<InjectedFormProps> = (props: Props): ReactElement => {
   const { handleSubmit, submitting, error } = props;
   const { t } = useTranslation();
 
@@ -47,7 +47,6 @@ const LoginForm: FC<Props> = (props: Props): ReactElement => {
 
 export default reduxForm({
   form: 'login',
-  // @ts-ignore
 })(LoginForm);
 
 const ErrorMessage = styled.span`

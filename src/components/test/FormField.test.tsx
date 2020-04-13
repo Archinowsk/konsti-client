@@ -1,7 +1,8 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { FormField } from '../FormField';
 import { WrappedFieldProps } from 'redux-form';
+import { FormField } from '../FormField';
+import { store } from 'utils/store';
 
 describe('FormField', () => {
   it('should render correctly', () => {
@@ -11,8 +12,7 @@ describe('FormField', () => {
         asyncValidating: false,
         autofilled: false,
         dirty: false,
-        // @ts-ignore
-        dispatch: () => {},
+        dispatch: () => store.dispatch('' as any),
         error: 'validation.required',
         form: 'registration',
         initial: undefined,
@@ -34,7 +34,6 @@ describe('FormField', () => {
         onDrop: () => {},
         onFocus: () => {},
       },
-      custom: {},
     };
     const component = shallow(<FormField {...props} />);
     expect(component).toMatchSnapshot();

@@ -6,12 +6,13 @@ import { timeFormatter } from 'utils/timeFormatter';
 import { Signup } from 'typings/user.typings';
 
 export interface Props {
-  signups: Signup[];
+  signups: readonly Signup[];
   startTimes: readonly string[];
+  missedSignups: readonly string[];
 }
 
-export const SignupsByStartTimes: FC<Props> = (props: Props): ReactElement => {
-  const { signups, startTimes } = props;
+export const ResultsByStartTimes: FC<Props> = (props: Props): ReactElement => {
+  const { signups, startTimes, missedSignups } = props;
   const { t } = useTranslation();
 
   return (
@@ -27,21 +28,22 @@ export const SignupsByStartTimes: FC<Props> = (props: Props): ReactElement => {
             </p>
             {signups.map((signup) => {
               if (signup.time === startTime) {
-                if (!signup.gameDetails) {
-                  return (
-                    <GameDetailsList key={signup.time}>
-                      {t('noSignupResult')}
-                    </GameDetailsList>
-                  );
-                } else {
-                  return (
-                    <GameDetailsList key={signup.gameDetails.gameId}>
-                      <Link to={`/games/${signup.gameDetails.gameId}`}>
-                        {signup.gameDetails.title}
-                      </Link>
-                    </GameDetailsList>
-                  );
-                }
+                return (
+                  <GameDetailsList key={signup.gameDetails.gameId}>
+                    <Link to={`/games/${signup.gameDetails.gameId}`}>
+                      {signup.gameDetails.title}
+                    </Link>
+                  </GameDetailsList>
+                );
+              }
+            })}
+            {missedSignups.map((missedSignup) => {
+              if (missedSignup === startTime) {
+                return (
+                  <GameDetailsList key={missedSignup}>
+                    {t('noSignupResult')}
+                  </GameDetailsList>
+                );
               }
             })}
           </div>

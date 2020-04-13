@@ -22,7 +22,7 @@ export const AllGamesList: FC<Props> = (props: Props): ReactElement => {
 
     const groupedGames = _.groupBy(sortedGames, 'startTime');
 
-    const GamesList = [];
+    const GamesList: JSX.Element[] = [];
 
     for (const [startTime, games] of Object.entries(groupedGames)) {
       const formattedStartTime = timeFormatter.weekdayAndTime({
@@ -32,7 +32,6 @@ export const AllGamesList: FC<Props> = (props: Props): ReactElement => {
       const signupStartTime = timeFormatter.startTime(startTime);
       const signupEndTime = timeFormatter.endTime(startTime);
 
-      // @ts-ignore
       const allGamesRevolvingDoor = games.every((game) => game.revolvingDoor);
 
       const title = (
@@ -47,10 +46,8 @@ export const AllGamesList: FC<Props> = (props: Props): ReactElement => {
         </GameListTitle>
       );
 
-      // @ts-ignore
       GamesList.push(title);
 
-      // @ts-ignore
       for (const game of games) {
         const gameEntry = (
           <div key={game.gameId} className='games-list'>
@@ -62,7 +59,6 @@ export const AllGamesList: FC<Props> = (props: Props): ReactElement => {
           </div>
         );
 
-        // @ts-ignore
         GamesList.push(gameEntry);
       }
     }

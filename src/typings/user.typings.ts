@@ -6,12 +6,6 @@ export interface Signup {
   time: string;
 }
 
-export interface EmptySignup {
-  gameDetails: null;
-  priority: number;
-  time: string;
-}
-
 export interface SignupData {
   username: string;
   selectedGames: readonly Signup[];

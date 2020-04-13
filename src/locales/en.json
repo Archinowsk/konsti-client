@@ -129,7 +129,6 @@
   "error": {
     "usernameTaken": "Username already taken",
     "invalidSerial": "Invalid code",
-    "registrationFailed": "Registration failed",
     "loginFailed": "Username and password don't match",
     "loginDisabled": "Login is disabled",
     "unkown": "Unknown error"
