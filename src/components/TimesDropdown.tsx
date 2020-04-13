@@ -1,5 +1,4 @@
 import React, { FC, ReactElement } from 'react';
-import { useTranslation } from 'react-i18next';
 import { timeFormatter } from 'utils/timeFormatter';
 
 export interface Props {
@@ -15,7 +14,6 @@ export interface Props {
 
 export const TimesDropdown: FC<Props> = (props: Props): ReactElement => {
   const { times, onChange, selectedTime } = props;
-  const { t } = useTranslation();
 
   const sortedTimes = times.map((sortedTime) => {
     const formattedDate = timeFormatter.weekdayAndTime({
@@ -32,7 +30,6 @@ export const TimesDropdown: FC<Props> = (props: Props): ReactElement => {
   return (
     <div className='times-dropdown'>
       <select onChange={onChange} value={selectedTime}>
-        <option value=''>{t('noActiveTimeSelected')}</option>
         {sortedTimes}
       </select>
     </div>

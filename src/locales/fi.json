@@ -148,7 +148,6 @@
   "activeTime": "Aktiinen aika",
   "noActiveTime": "Aktiivista aikaa ei valittuna",
   "activeTimeDescription": "Peleihin sijoittaminen suoritetaan ja tulokset näytetään aktiiviselle ajankohdalle",
-  "noActiveTimeSelected": "Ei aktiivista aikaa",
   "signupOpenBetween": "ilmoittautuminen",
   "signupOpenBetweenCapital": "Ilmoittautuminen auki ",
   "signupResultsfor": "Ilmoittautumisen tulokset peleille jotka alkavat",

@@ -7,12 +7,6 @@ exports[`TimesDropdown should render correctly 1`] = `
   <select
     onChange={[Function]}
     value=""
-  >
-    <option
-      value=""
-    >
-      noActiveTimeSelected
-    </option>
-  </select>
+  />
 </div>
 `;
