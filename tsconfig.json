@@ -8,7 +8,6 @@
     "outDir": "build",
     "strict": true,
     "noImplicitAny": false,
-    "noUnusedLocals": false,
     "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
