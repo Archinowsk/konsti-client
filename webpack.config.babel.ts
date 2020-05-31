@@ -110,7 +110,9 @@ const prodConfig = {
   stats,
 
   plugins: [
-    new CopyWebpackPlugin([{ from: 'assets' }]),
+    new CopyWebpackPlugin({
+      patterns: [{ from: 'assets' }],
+    }),
     new MomentLocalesPlugin({
       localesToKeep: ['fi'], // “en” is built into Moment and can’t be removed
     }),
@@ -170,7 +172,9 @@ const stagingConfig = {
   stats,
 
   plugins: [
-    new CopyWebpackPlugin([{ from: 'assets' }]),
+    new CopyWebpackPlugin({
+      patterns: [{ from: 'assets' }],
+    }),
     new MomentLocalesPlugin({
       localesToKeep: ['fi'], // “en” is built into Moment and can’t be removed
     }),

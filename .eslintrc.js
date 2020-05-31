@@ -81,7 +81,7 @@ module.exports = {
     'eslint-comments/no-unused-disable': 'error',
 
     // @typescript-eslint
-    '@typescript-eslint/ban-ts-ignore': 'error',
+    '@typescript-eslint/ban-ts-comment': 'error',
 
     // TODO: Enable these
     '@typescript-eslint/explicit-function-return-type': 'off',
