@@ -18,5 +18,6 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true
   },
-  "exclude": ["node_modules"]
+  "include": ["**/*.js", "**/*.ts", "**/*.tsx", ".eslintrc.js"],
+  "exclude": ["node_modules", "build", "coverage"]
 }

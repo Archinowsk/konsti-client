@@ -3,23 +3,6 @@ module.exports = {
 
   parser: '@typescript-eslint/parser', // or 'babel-eslint'
 
-  extends: [
-    'eslint-config-standard-with-typescript',
-    'eslint-config-prettier',
-    'eslint-config-prettier/react',
-    'eslint-config-prettier/standard',
-    'eslint-config-prettier/@typescript-eslint',
-    'plugin:eslint-plugin-eslint-comments/recommended',
-    'plugin:eslint-plugin-jest/recommended',
-    'plugin:eslint-plugin-promise/recommended',
-    'plugin:eslint-plugin-react/recommended',
-    'plugin:eslint-plugin-import/errors',
-    'plugin:eslint-plugin-import/typescript',
-    // 'plugin:eslint-plugin-jsx-a11y/recommended',
-    // 'plugin:eslint-plugin-security/recommended',
-    // 'plugin:eslint-plugin-unicorn/recommended',
-  ],
-
   plugins: [
     'eslint-plugin-compat',
     'eslint-plugin-jest',
@@ -33,12 +16,32 @@ module.exports = {
     // 'eslint-plugin-unicorn',
   ],
 
-  ignorePatterns: ['build', 'coverage'],
+  extends: [
+    'eslint-config-standard-with-typescript',
+    'eslint-config-prettier',
+    'eslint-config-prettier/react',
+    'eslint-config-prettier/standard',
+    'eslint-config-prettier/@typescript-eslint',
+    'plugin:eslint-plugin-eslint-comments/recommended',
+    'plugin:eslint-plugin-jest/recommended',
+    'plugin:eslint-plugin-promise/recommended',
+    'plugin:eslint-plugin-react/recommended',
+    'plugin:eslint-plugin-import/errors',
+    'plugin:eslint-plugin-import/typescript',
+    // 'plugin:@typescript-eslint/recommended',
+    // 'plugin:@typescript-eslint/recommended-requiring-type-checking',
+    // 'plugin:eslint-plugin-jsx-a11y/recommended',
+    // 'plugin:eslint-plugin-security/recommended',
+    // 'plugin:eslint-plugin-unicorn/recommended',
+  ],
+
+  ignorePatterns: ['node_modules', 'build', 'coverage'],
 
   parserOptions: {
     sourceType: 'module',
     impliedStrict: true,
-    project: './tsconfig.json',
+    tsconfigRootDir: __dirname,
+    project: ['./tsconfig.json'],
   },
 
   env: {
