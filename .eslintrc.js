@@ -85,15 +85,18 @@ module.exports = {
 
     // @typescript-eslint
     '@typescript-eslint/ban-ts-comment': 'error',
+    '@typescript-eslint/require-array-sort-compare': [
+      'error',
+      { ignoreStringArrays: true },
+    ],
+    '@typescript-eslint/default-param-last': 'off', // Problem setting Redux reducer initial state
 
     // TODO: Enable these
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/strict-boolean-expressions': 'off',
     '@typescript-eslint/no-floating-promises': 'off',
     '@typescript-eslint/restrict-template-expressions': 'off',
-    '@typescript-eslint/require-array-sort-compare': 'off',
     '@typescript-eslint/no-misused-promises': 'off',
     '@typescript-eslint/no-var-requires': 'off',
-    '@typescript-eslint/default-param-last': 'off',
   },
 };
