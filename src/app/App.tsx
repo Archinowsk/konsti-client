@@ -30,7 +30,7 @@ export const App: FC<{}> = (): ReactElement => {
     fetchData();
 
     const startUpdateTimer = (): void => {
-      setInterval(() => fetchData(), dataUpdateInterval * 1000);
+      setInterval(async () => await fetchData(), dataUpdateInterval * 1000);
     };
     startUpdateTimer();
   }, [store, dataUpdateInterval]);

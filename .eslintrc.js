@@ -88,11 +88,8 @@ module.exports = {
 
     // TODO: Enable these
     '@typescript-eslint/no-explicit-any': 'off',
-    '@typescript-eslint/no-use-before-define': 'off',
     '@typescript-eslint/strict-boolean-expressions': 'off',
     '@typescript-eslint/no-floating-promises': 'off',
-    '@typescript-eslint/no-empty-function': 'off',
-    '@typescript-eslint/promise-function-async': 'off',
     '@typescript-eslint/restrict-template-expressions': 'off',
     '@typescript-eslint/require-array-sort-compare': 'off',
     '@typescript-eslint/no-misused-promises': 'off',

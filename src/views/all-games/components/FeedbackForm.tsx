@@ -54,7 +54,10 @@ export const FeedbackForm: FC<Props> = (props: Props): ReactElement => {
             rows={4}
           />
 
-          <button disabled={submitting} onClick={() => sendFeedbackEvent()}>
+          <button
+            disabled={submitting}
+            onClick={async () => await sendFeedbackEvent()}
+          >
             {t('button.sendFeedback')}
           </button>
         </>

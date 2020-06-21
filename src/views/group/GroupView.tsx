@@ -251,7 +251,10 @@ export const GroupView: FC<{}> = (): ReactElement => {
             <div>
               <p>{t('createGroupConfirmationMessage')}</p>
               <p>{t('groupLeaderWarning')}</p>
-              <button disabled={loading} onClick={() => createGroup()}>
+              <button
+                disabled={loading}
+                onClick={async () => await createGroup()}
+              >
                 {t('button.joinGroupConfirmation')}
               </button>
             </div>
@@ -262,7 +265,10 @@ export const GroupView: FC<{}> = (): ReactElement => {
               <p className='bold'>{t('joiningGroupWillCancelGames')}</p>
 
               {joinGroupInput}
-              <button disabled={loading} onClick={() => joinGroup()}>
+              <button
+                disabled={loading}
+                onClick={async () => await joinGroup()}
+              >
                 {t('button.joinGroup')}
               </button>
             </div>
@@ -294,7 +300,7 @@ export const GroupView: FC<{}> = (): ReactElement => {
             {!groupLeader && (
               <button
                 disabled={loading}
-                onClick={() => leaveGroup({ leader: groupLeader })}
+                onClick={async () => await leaveGroup({ leader: groupLeader })}
               >
                 {t('button.leaveGroup')}
               </button>
@@ -326,7 +332,9 @@ export const GroupView: FC<{}> = (): ReactElement => {
 
                     <WarningButton
                       disabled={loading}
-                      onClick={() => closeGroup({ leader: groupLeader })}
+                      onClick={async () =>
+                        await closeGroup({ leader: groupLeader })
+                      }
                     >
                       {t('button.closeGroup')}
                     </WarningButton>
