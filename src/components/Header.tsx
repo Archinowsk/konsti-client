@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { LanguageSelector } from 'components/LanguageSelector';
@@ -7,7 +7,7 @@ import { config } from 'config';
 import { TimeSelector } from 'test/test-components/TimeSelector';
 import { RootState } from 'typings/redux.typings';
 
-export const Header = () => {
+export const Header = (): ReactElement => {
   const username: string = useSelector(
     (state: RootState) => state.login.username
   );

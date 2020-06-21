@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React, { FC, ReactElement, ChangeEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ResultsByGameTitle } from './ResultsByGameTitle';
 import { ResultsByUsername } from './ResultsByUsername';
@@ -36,7 +36,7 @@ export const ResultsList: FC<Props> = (props: Props): ReactElement => {
 
   const buttons = ['username', 'gameTitle'];
 
-  const handleSearchFieldChange = (e) => {
+  const handleSearchFieldChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setSearchTerm(e.target.value);
   };
 

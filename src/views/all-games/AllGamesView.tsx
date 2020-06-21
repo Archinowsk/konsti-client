@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React, { FC, ReactElement, ChangeEvent } from 'react';
 import { useSelector, useStore } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -78,7 +78,7 @@ export const AllGamesView: FC<{}> = (): ReactElement => {
   // const tags = ['in-english', 'aloittelijaystavallinen', 'sopii-lapsille'];
   const tags = ['aloittelijaystavallinen', 'tabletopRPG', 'freeformRPG'];
 
-  const tagsList = () => {
+  const tagsList = (): ReactElement[] => {
     return tags.map((tag) => {
       return (
         <option key={tag} value={tag}>
@@ -92,7 +92,9 @@ export const AllGamesView: FC<{}> = (): ReactElement => {
     });
   };
 
-  const getRunningRevolvingDoorGames = (games: readonly Game[]) => {
+  const getRunningRevolvingDoorGames = (
+    games: readonly Game[]
+  ): ReactElement | ReactElement[] => {
     const timeNow = getTime();
     const runningGames = games.filter((game) => {
       return (
@@ -149,7 +151,9 @@ export const AllGamesView: FC<{}> = (): ReactElement => {
           <TagsDropdown>
             <span className={'choose-tag-instruction'}>{t('chooseTag')} </span>
             <select
-              onChange={(event) => setSelectedTag(event.target.value)}
+              onChange={(event: ChangeEvent<HTMLSelectElement>) =>
+                setSelectedTag(event.target.value)
+              }
               value={selectedTag}
             >
               <option value=''>{t('allGames')}</option>

@@ -3,7 +3,6 @@ import {
   SUBMIT_UPDATE_FAVORITES,
 } from 'views/my-games/myGamesActions';
 import { SUBMIT_SIGNED_GAMES } from 'views/signup/signupActions';
-
 import { MyGamesState } from 'typings/redux.typings';
 
 const initialState = {
@@ -15,7 +14,7 @@ const initialState = {
 export const myGamesReducer = (
   state: MyGamesState = initialState,
   action: any
-) => {
+): MyGamesState => {
   switch (action.type) {
     case SUBMIT_GET_USER_GAMES:
       return {

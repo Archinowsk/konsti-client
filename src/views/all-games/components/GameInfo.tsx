@@ -17,7 +17,7 @@ export const GameInfo: FC<Props> = (props: Props): ReactElement => {
 
   if (!game) return <div className='game-details' />;
 
-  const getGenres = (genresList: readonly string[]) => {
+  const getGenres = (genresList: readonly string[]): ReactElement[] => {
     return genresList.map((genre, i) => {
       return (
         <span key={genre}>
@@ -28,7 +28,7 @@ export const GameInfo: FC<Props> = (props: Props): ReactElement => {
     });
   };
 
-  const getStyles = (styles: readonly string[]) => {
+  const getStyles = (styles: readonly string[]): ReactElement[] => {
     return styles.map((style, i) => {
       return (
         <span key={style}>
@@ -50,15 +50,16 @@ export const GameInfo: FC<Props> = (props: Props): ReactElement => {
     );
   });
 
-  const getFormattedStartTime = (game) =>
+  const getFormattedStartTime = (game): string =>
     timeFormatter.weekdayAndTime({
       time: game.startTime,
       capitalize: true,
     });
 
-  const getFormattedEndTime = (game) => timeFormatter.time(game.endTime);
+  const getFormattedEndTime = (game): string =>
+    timeFormatter.time(game.endTime);
 
-  const getFormattedDuration = (game) => {
+  const getFormattedDuration = (game): string => {
     const hours = Math.floor(game.mins / 60);
     const minutes = Math.round((game.mins / 60 - hours) * 60);
 

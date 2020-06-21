@@ -6,7 +6,7 @@ const initialState = { games: [] };
 export const allGamesReducer = (
   state: AllGamesState = initialState,
   action: any
-) => {
+): AllGamesState => {
   switch (action.type) {
     case SUBMIT_GET_GAMES:
       return { ...state, games: action.games };

@@ -18,7 +18,10 @@ const initialState = {
   groupMembers: [],
 };
 
-export const loginReducer = (state: LoginState = initialState, action: any) => {
+export const loginReducer = (
+  state: LoginState = initialState,
+  action: any
+): LoginState => {
   switch (action.type) {
     case SUBMIT_LOGIN:
       return {

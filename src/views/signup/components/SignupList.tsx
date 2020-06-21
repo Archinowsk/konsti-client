@@ -123,7 +123,7 @@ export const SignupList: FC<Props> = (props: Props): ReactElement => {
     setSubmitting(false);
   };
 
-  const updateSelectedGames = (newSelectedGames) => {
+  const updateSelectedGames = (newSelectedGames): void => {
     if (newSelectedGames.length === 0) {
       dispatch(submitSelectedGames(newSelectedGames));
     }

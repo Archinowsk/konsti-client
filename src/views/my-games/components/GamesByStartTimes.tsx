@@ -12,7 +12,7 @@ export interface Props {
 export const GamesByStartTimes: FC<Props> = (props: Props): ReactElement => {
   const { games, startTimes } = props;
 
-  const getGamesList = (startTime: string) => {
+  const getGamesList = (startTime: string): Array<ReactElement | undefined> => {
     return games.map((game) => {
       if (game.startTime === startTime) {
         return (

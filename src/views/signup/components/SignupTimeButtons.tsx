@@ -14,11 +14,11 @@ export const SignupTimeButtons: FC<Props> = (props: Props): ReactElement => {
 
   const dispatch = useDispatch();
 
-  const selectSignupTime = (signupTime) => {
+  const selectSignupTime = (signupTime): void => {
     dispatch(submitSignupTime(signupTime));
   };
 
-  const isActive = (isActive) => (isActive ? 'active' : '');
+  const isActive = (isActive): string => (isActive ? 'active' : '');
 
   return (
     <>

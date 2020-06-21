@@ -2,6 +2,7 @@ import { getUser } from 'services/userServices';
 import { postFavorite } from 'services/favoriteServices';
 import { FavoriteData, UserGames } from 'typings/user.typings';
 import { Game } from 'typings/game.typings';
+import { SubmitGetUser } from 'typings/redux.typings';
 
 export const SUBMIT_GET_USER_GAMES = 'SUBMIT_GET_USER_GAMES';
 export const SUBMIT_UPDATE_FAVORITES = 'SUBMIT_UPDATE_FAVORITES';
@@ -40,7 +41,7 @@ const submitGetUserAsync = ({
   enteredGames,
   favoritedGames,
   signedGames,
-}: UserGames) => {
+}: UserGames): SubmitGetUser => {
   return {
     type: SUBMIT_GET_USER_GAMES,
     enteredGames,
