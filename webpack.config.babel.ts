@@ -7,7 +7,7 @@ import TerserPlugin from 'terser-webpack-plugin';
 import BrotliPlugin from 'brotli-webpack-plugin';
 import Dotenv from 'dotenv-webpack';
 import path from 'path';
-import webpack from 'webpack';
+import webpack, { Configuration } from 'webpack';
 import webpackMerge from 'webpack-merge';
 import { config } from './src/config';
 
@@ -224,19 +224,16 @@ const stagingConfig = {
   },
 };
 
-const getWebpackConfig = () => {
+const getWebpackConfig = (): Configuration => {
   const TARGET = process.env.npm_lifecycle_event;
 
-  if (TARGET === 'build' || TARGET === 'bundle-analyze') {
-    return webpackMerge(commonConfig, prodConfig);
-  } else if (TARGET === 'build-staging') {
-    return webpackMerge(commonConfig, stagingConfig);
-  } else if (
-    TARGET === 'start' ||
-    TARGET === 'watch' ||
-    TARGET === 'build-dev'
-  ) {
-    return webpackMerge(commonConfig, devConfig);
+  switch (TARGET) {
+    case 'build' || 'bundle-analyze':
+      return webpackMerge(commonConfig, prodConfig);
+    case 'build-staging':
+      return webpackMerge(commonConfig, stagingConfig);
+    default:
+      return webpackMerge(commonConfig, devConfig);
   }
 };
 

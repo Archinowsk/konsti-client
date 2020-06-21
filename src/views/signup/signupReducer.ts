@@ -5,7 +5,6 @@ import {
 } from 'views/signup/signupActions';
 import { SignupState } from 'typings/redux.typings';
 
-// Initial null value is required for syncing signedGames and selectedGames only once
 const initialState = {
   signupTime: '',
   selectedGames: [],
@@ -15,7 +14,7 @@ const initialState = {
 export const signupReducer = (
   state: SignupState = initialState,
   action: any
-) => {
+): SignupState => {
   switch (action.type) {
     case SUBMIT_SIGNUP_TIME:
       return { ...state, signupTime: action.signupTime };

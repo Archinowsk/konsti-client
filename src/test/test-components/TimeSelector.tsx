@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React, { FC, ReactElement, ChangeEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import _ from 'lodash';
@@ -38,7 +38,7 @@ export const TimeSelector: FC<{}> = (): ReactElement => {
     if (!testTime) setTestTime(defaultTestTime);
   });
 
-  const setTestTime = (testTime) => {
+  const setTestTime = (testTime): void => {
     dispatch(submitSetTestTime(testTime));
   };
 
@@ -48,7 +48,9 @@ export const TimeSelector: FC<{}> = (): ReactElement => {
       <TimesDropdown
         times={times}
         selectedTime={testTime}
-        onChange={(event) => setTestTime(event.target.value)}
+        onChange={(event: ChangeEvent<HTMLInputElement>) =>
+          setTestTime(event.target.value)
+        }
       />
     </div>
   );

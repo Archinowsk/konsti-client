@@ -1,7 +1,8 @@
 import { Game } from 'typings/game.typings';
 import { GroupMember } from 'typings/group.typings';
-import { Signup, UserGroup } from 'typings/user.typings';
+import { Signup, UserGroup, UserGames, LoginData } from 'typings/user.typings';
 import { Result } from 'typings/result.typings';
+import { Settings } from 'typings/settings.typings';
 
 export interface AdminState {
   hiddenGames: readonly Game[];
@@ -52,4 +53,16 @@ export interface RootState {
   myGames: MyGamesState;
   results: ResultsState;
   signup: SignupState;
+}
+
+export interface SubmitGetUser extends UserGames {
+  type: string;
+}
+
+export interface SubmitLogin extends LoginData {
+  type: string;
+}
+
+export interface GetSettings extends Settings {
+  type: string;
 }

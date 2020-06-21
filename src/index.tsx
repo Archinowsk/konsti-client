@@ -41,7 +41,7 @@ const loader = (
   </div>
 );
 
-const render = () => {
+const render = (): void => {
   const rootReactElement = document.getElementById('main');
 
   ReactDOM.render(

@@ -5,7 +5,7 @@ import { initReactI18next } from 'react-i18next';
 import en from 'locales/en.json';
 import fi from 'locales/fi.json';
 
-const loadLocales = (url: string, options: any, callback: Function) => {
+const loadLocales = (url: string, options: any, callback: Function): void => {
   if (url === 'en') {
     callback(en, { status: '200' });
   } else if (url === 'fi') {

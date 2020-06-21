@@ -14,7 +14,10 @@ const initialState = {
   appOpen: true,
 };
 
-export const adminReducer = (state: AdminState = initialState, action: any) => {
+export const adminReducer = (
+  state: AdminState = initialState,
+  action: any
+): AdminState => {
   switch (action.type) {
     case SUBMIT_UPDATE_HIDDEN:
       return { ...state, hiddenGames: action.hiddenGames };

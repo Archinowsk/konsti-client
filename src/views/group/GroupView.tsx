@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React, { FC, ReactElement, ChangeEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector, useStore } from 'react-redux';
 import styled from 'styled-components';
@@ -49,12 +49,12 @@ export const GroupView: FC<{}> = (): ReactElement => {
     fetchData();
   }, [store]);
 
-  const openGroupForming = () => {
+  const openGroupForming = (): void => {
     setShowCreateGroup(true);
     setShowJoinGroup(false);
   };
 
-  const openJoinGroup = () => {
+  const openJoinGroup = (): void => {
     setShowJoinGroup(true);
     setShowCreateGroup(false);
   };
@@ -157,7 +157,7 @@ export const GroupView: FC<{}> = (): ReactElement => {
     setCloseGroupConfirmation(value);
   };
 
-  const closeGroup = async ({ leader }) => {
+  const closeGroup = async ({ leader }): Promise<void> => {
     setLoading(true);
     const groupData = {
       username: username,
@@ -182,11 +182,13 @@ export const GroupView: FC<{}> = (): ReactElement => {
     setLoading(false);
   };
 
-  const handleJoinGroupChange = (event) => {
+  const handleJoinGroupChange = (
+    event: ChangeEvent<HTMLInputElement>
+  ): void => {
     setJoinGroupValue(event.target.value);
   };
 
-  const isInGroup = () => {
+  const isInGroup = (): boolean => {
     if (groupCode && groupCode !== '0') {
       return true;
     }

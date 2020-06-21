@@ -14,7 +14,7 @@ export const AllGamesList: FC<Props> = (props: Props): ReactElement => {
   const { games } = props;
   const { t } = useTranslation();
 
-  const buildGamesList = (games) => {
+  const buildGamesList = (games): ReactElement[] => {
     const sortedGames = _.sortBy(games, [
       (game) => game.startTime,
       (game) => game.title.toLowerCase(),
@@ -22,7 +22,7 @@ export const AllGamesList: FC<Props> = (props: Props): ReactElement => {
 
     const groupedGames = _.groupBy(sortedGames, 'startTime');
 
-    const GamesList: JSX.Element[] = [];
+    const GamesList: ReactElement[] = [];
 
     for (const [startTime, games] of Object.entries(groupedGames)) {
       const formattedStartTime = timeFormatter.weekdayAndTime({

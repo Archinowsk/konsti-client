@@ -3,6 +3,7 @@ import { getSettings, postToggleAppOpen } from 'services/settingsServices';
 import { postSignupTime } from 'services/signuptimeServices';
 import { Game } from 'typings/game.typings';
 import { Settings } from 'typings/settings.typings';
+import { GetSettings } from 'typings/redux.typings';
 
 export const SUBMIT_UPDATE_HIDDEN = 'SUBMIT_UPDATE_HIDDEN';
 export const SUBMIT_GET_SETTINGS = 'SUBMIT_GET_SETTINGS';
@@ -68,7 +69,7 @@ const submitGetSettingsAsync = ({
   hiddenGames,
   signupTime,
   appOpen,
-}: Settings) => {
+}: Settings): GetSettings => {
   return {
     type: SUBMIT_GET_SETTINGS,
     hiddenGames,

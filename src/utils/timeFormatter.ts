@@ -60,7 +60,7 @@ const time = (time: string): string => {
   return moment(time).format(timeFormat);
 };
 
-const capitalizeFirstLetter = (string: string) => {
+const capitalizeFirstLetter = (string: string): string => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
 

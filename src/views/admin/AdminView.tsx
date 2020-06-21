@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React, { FC, ReactElement, ChangeEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
@@ -38,12 +38,12 @@ export const AdminView: FC<{}> = (): ReactElement => {
     signupTime
   );
 
-  const showMessage = ({ message, style }) => {
+  const showMessage = ({ message, style }): void => {
     setMessage(message);
     setMessageStyle(style);
   };
 
-  const getVisibleGames = () => {
+  const getVisibleGames = (): readonly Game[] => {
     if (!hiddenGames) return games;
     const visibleGames: Game[] = [];
     for (let i = 0; i < games.length; i += 1) {
@@ -62,7 +62,7 @@ export const AdminView: FC<{}> = (): ReactElement => {
     return visibleGames;
   };
 
-  const getStartingTimes = () => {
+  const getStartingTimes = (): string[] => {
     const visibleGames = getVisibleGames();
     const startTimes = visibleGames.map((game) => game.startTime);
     return [...Array.from(new Set(startTimes))].sort();
@@ -194,7 +194,9 @@ export const AdminView: FC<{}> = (): ReactElement => {
             <TimesDropdown
               times={getStartingTimes()}
               selectedTime={selectedSignupTime}
-              onChange={(event) => setSelectedSignupTime(event.target.value)}
+              onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                setSelectedSignupTime(event.target.value)
+              }
             />
 
             <Hidden hiddenGames={hiddenGames} />

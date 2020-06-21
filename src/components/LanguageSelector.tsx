@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React, { FC, ReactElement, ChangeEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import moment from 'moment';
 import styled from 'styled-components';
@@ -8,9 +8,9 @@ export const LanguageSelector: FC<{}> = (): ReactElement => {
   const language = i18n.language;
 
   // Language toggle
-  const toggle = (lng) => i18n.changeLanguage(lng);
+  const toggle = (lng): Promise<any> => i18n.changeLanguage(lng);
 
-  const setLanguage = (event) => {
+  const setLanguage = (event: ChangeEvent<HTMLSelectElement>): void => {
     toggle(event.target.value);
     moment.locale(event.target.value);
   };

@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React, { FC, ReactElement, ChangeEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { postFeedback } from 'services/feedbackServices';
@@ -35,7 +35,9 @@ export const FeedbackForm: FC<Props> = (props: Props): ReactElement => {
     setSubmitting(false);
   };
 
-  const handleFeedbackChange = (event) => {
+  const handleFeedbackChange = (
+    event: ChangeEvent<HTMLTextAreaElement>
+  ): void => {
     setFeedbackValue(event.target.value);
   };
 

@@ -16,11 +16,11 @@ export const Accordion: FC<Props> = (props: Props): ReactElement => {
 
   const { t } = useTranslation();
 
-  const onClick = () => {
+  const onClick = (): void => {
     setOpen(!open);
   };
 
-  const splitTextRows = (text: string) => {
+  const splitTextRows = (text: string): ReactElement[] => {
     const rows = t(text).split('\n');
     return rows.map((row) => <p key={row}>{row}</p>);
   };

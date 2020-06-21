@@ -1,7 +1,7 @@
 import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useStore } from 'react-redux';
-import { ResultsList } from 'views/helper/components/ResultsList';
+import { HelperResultsList } from 'views/helper/components/HelperResultsList';
 import { PasswordManagement } from 'views/helper/components/PasswordManagement';
 import { loadResults, loadSettings } from 'utils/loadData';
 
@@ -36,7 +36,7 @@ export const HelperView: FC<{}> = (): ReactElement => {
       </button>
 
       <>
-        {selectedTool === 'results' && <ResultsList />}
+        {selectedTool === 'results' && <HelperResultsList />}
         {selectedTool === 'password-management' && <PasswordManagement />}
       </>
     </div>

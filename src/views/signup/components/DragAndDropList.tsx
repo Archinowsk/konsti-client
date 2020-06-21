@@ -31,9 +31,10 @@ export const DragAndDropList: FC<Props> = (props: Props): ReactElement => {
   const [warningVisible, setWarningVisible] = React.useState<boolean>(false);
   const [warning, setWarning] = React.useState<string>('');
 
-  const getList = (id: string) => {
+  const getList = (id: string): readonly Game[] => {
     if (id === 'availableGames') return availableGames;
     else if (id === 'selectedGames') return selectedGames;
+    return [];
   };
 
   const showWarning = async (message: string): Promise<void> => {
@@ -44,7 +45,7 @@ export const DragAndDropList: FC<Props> = (props: Props): ReactElement => {
     setWarning('');
   };
 
-  const onDragEnd = (result: any) => {
+  const onDragEnd = (result: any): void => {
     const { source, destination } = result;
 
     // Dropped outside the list

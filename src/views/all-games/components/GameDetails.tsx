@@ -47,7 +47,7 @@ export const GameDetails: FC<{}> = (): ReactElement => {
   React.useEffect(() => {
     setLoading(true);
 
-    const checkGameState = () => {
+    const checkGameState = (): void => {
       if (!game || !game.gameId) return;
 
       // Check if in favorites
@@ -70,7 +70,7 @@ export const GameDetails: FC<{}> = (): ReactElement => {
   }, [game, favoritedGames, hiddenGames]);
 
   // Find selected game index
-  const findGame = (gameId, array) => {
+  const findGame = (gameId, array): number => {
     for (let i = 0; i < array.length; i += 1) {
       if (array[i].gameId === gameId) {
         return i;

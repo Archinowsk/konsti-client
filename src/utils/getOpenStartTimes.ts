@@ -4,7 +4,7 @@ import { getStartTimes } from './getStartTimes';
 import { Game } from 'typings/game.typings';
 import { getTime } from 'utils/getTime';
 
-export const getOpenStartTimes = (games: readonly Game[]) => {
+export const getOpenStartTimes = (games: readonly Game[]): string[] => {
   const startTimes = getStartTimes(games);
 
   const {

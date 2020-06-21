@@ -1,4 +1,4 @@
-export const getGameTags = (game) => {
+export const getGameTags = (game): string[] => {
   if (!game.tags) return [];
 
   const tagsList: string[] = [];

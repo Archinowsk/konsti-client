@@ -28,7 +28,7 @@ export const FormField: FC<WrappedFieldProps & CustomFieldProps> = (
     classNames.push('checkbox');
   }
 
-  const togglePasswordVisibility = () => {
+  const togglePasswordVisibility = (): void => {
     if (fieldType === 'password') setFieldType('text');
     else if (fieldType === 'text') setFieldType('password');
   };

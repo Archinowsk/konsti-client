@@ -1,4 +1,4 @@
-import React, { FC, ReactElement } from 'react';
+import React, { FC, ReactElement, ChangeEvent } from 'react';
 import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -25,7 +25,7 @@ export const PasswordManagement: FC<{}> = (): ReactElement => {
     string
   >('');
 
-  const submitGetUser = async () => {
+  const submitGetUser = async (): Promise<void> => {
     let response;
     try {
       response = await getUserBySerial(userSerialInput);
@@ -43,7 +43,7 @@ export const PasswordManagement: FC<{}> = (): ReactElement => {
     }
   };
 
-  const submitUpdatePassword = async () => {
+  const submitUpdatePassword = async (): Promise<void> => {
     const response = await updateUserPassword(
       username,
       serial,
@@ -57,15 +57,15 @@ export const PasswordManagement: FC<{}> = (): ReactElement => {
     }
   };
 
-  const handleSerialChange = (event) => {
+  const handleSerialChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setUserSerialInput(event.target.value);
   };
 
-  const handlePasswordChange = (event) => {
+  const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setChangePasswordInput(event.target.value);
   };
 
-  const togglePasswordVisibility = () => {
+  const togglePasswordVisibility = (): void => {
     if (passwordFieldType === 'password') setPasswordFieldType('text');
     else if (passwordFieldType === 'text') setPasswordFieldType('password');
   };

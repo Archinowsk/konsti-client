@@ -1,6 +1,7 @@
 import { postLogin } from 'services/loginServices';
 import { saveSession, clearSession } from 'utils/localStorage';
 import { Login, LoginData } from 'typings/user.typings';
+import { SubmitLogin } from 'typings/redux.typings';
 
 export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
 
@@ -47,7 +48,7 @@ const submitLoginAsync = ({
   userGroup,
   serial,
   groupCode,
-}: LoginData) => {
+}: LoginData): SubmitLogin => {
   return {
     type: SUBMIT_LOGIN,
     username,

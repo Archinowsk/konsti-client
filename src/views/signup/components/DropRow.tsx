@@ -16,7 +16,7 @@ export const DropRow: FC<Props> = (props: Props): ReactElement => {
   const { droppableId, games, label, showCount } = props;
   const { t } = useTranslation();
 
-  const getListStyle = (dragging) => {
+  const getListStyle = (dragging): string => {
     if (dragging) return 'dragging';
     else return '';
   };

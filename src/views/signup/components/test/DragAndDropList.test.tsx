@@ -4,7 +4,7 @@ import { store } from 'utils/store';
 import { shallow } from 'enzyme';
 import { DragAndDropList, Props } from '../DragAndDropList';
 
-const updateSelectedGames = () => {};
+const updateSelectedGames = (): void => {};
 const availableGames = [];
 const selectedGames = [];
 

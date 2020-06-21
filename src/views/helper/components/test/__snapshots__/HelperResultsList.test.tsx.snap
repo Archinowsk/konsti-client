@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ResultsList should render correctly 1`] = `
+exports[`HelperResultsList should render correctly 1`] = `
 <ContextProvider
   value={
     Object {
@@ -30,6 +30,6 @@ exports[`ResultsList should render correctly 1`] = `
     }
   }
 >
-  <ResultsList />
+  <HelperResultsList />
 </ContextProvider>
 `;

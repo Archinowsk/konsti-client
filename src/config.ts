@@ -50,7 +50,7 @@ const devConfig = {
   dataUpdateInterval: 60, // seconds
 };
 
-const combineConfig = () => {
+const combineConfig = (): Config => {
   if (process.env.SETTINGS === 'production') {
     return { ...commonConfig, ...prodConfig };
   } else if (process.env.SETTINGS === 'staging') {

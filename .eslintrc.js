@@ -87,7 +87,6 @@ module.exports = {
     '@typescript-eslint/ban-ts-comment': 'error',
 
     // TODO: Enable these
-    '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
     '@typescript-eslint/strict-boolean-expressions': 'off',
