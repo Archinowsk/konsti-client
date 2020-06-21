@@ -20,7 +20,7 @@ import { store } from 'utils/store';
 moment.locale(getLanguage());
 
 // Root component
-const App = lazy(() => import('app/App'));
+const App = lazy(async () => await import('app/App'));
 
 const { enableAxe, enableWhyDidYouRender } = config;
 

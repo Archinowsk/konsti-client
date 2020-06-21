@@ -8,7 +8,7 @@ export const LanguageSelector: FC<{}> = (): ReactElement => {
   const language = i18n.language;
 
   // Language toggle
-  const toggle = (lng): Promise<any> => i18n.changeLanguage(lng);
+  const toggle = async (lng): Promise<any> => await i18n.changeLanguage(lng);
 
   const setLanguage = (event: ChangeEvent<HTMLSelectElement>): void => {
     toggle(event.target.value);

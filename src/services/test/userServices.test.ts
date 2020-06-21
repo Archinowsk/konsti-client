@@ -11,11 +11,12 @@ const mockAxios = axios as jest.Mocked<typeof axios>;
 
 describe('userServices', () => {
   it('GET user from server', async () => {
-    mockAxios.get.mockImplementation(() =>
-      Promise.resolve({
-        status: 200,
-        data: 'test response',
-      })
+    mockAxios.get.mockImplementation(
+      async () =>
+        await Promise.resolve({
+          status: 200,
+          data: 'test response',
+        })
     );
 
     const username = 'test username';
@@ -30,11 +31,12 @@ describe('userServices', () => {
   });
 
   it('GET user by serial from server', async () => {
-    mockAxios.get.mockImplementation(() =>
-      Promise.resolve({
-        status: 200,
-        data: 'test response',
-      })
+    mockAxios.get.mockImplementation(
+      async () =>
+        await Promise.resolve({
+          status: 200,
+          data: 'test response',
+        })
     );
 
     const serial = '12345';

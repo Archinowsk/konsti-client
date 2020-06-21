@@ -6,11 +6,12 @@ const mockAxios = axios as jest.Mocked<typeof axios>;
 
 describe('resultsServices', () => {
   it('GET results from server', async () => {
-    mockAxios.get.mockImplementation(() =>
-      Promise.resolve({
-        status: 200,
-        data: 'test response',
-      })
+    mockAxios.get.mockImplementation(
+      async () =>
+        await Promise.resolve({
+          status: 200,
+          data: 'test response',
+        })
     );
 
     const startTime = '2019-07-26T13:00:00Z';

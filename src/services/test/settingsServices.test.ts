@@ -6,11 +6,12 @@ const mockAxios = axios as jest.Mocked<typeof axios>;
 
 describe('settingsServices', () => {
   it('GET settings from server', async () => {
-    mockAxios.get.mockImplementation(() =>
-      Promise.resolve({
-        status: 200,
-        data: 'test response',
-      })
+    mockAxios.get.mockImplementation(
+      async () =>
+        await Promise.resolve({
+          status: 200,
+          data: 'test response',
+        })
     );
 
     const response = await getSettings();

@@ -172,25 +172,37 @@ export const GameDetails: FC<{}> = (): ReactElement => {
         </button>
 
         {favorited && loggedIn && userGroup === 'user' && game && (
-          <button disabled={submitting} onClick={() => updateFavorite('del')}>
+          <button
+            disabled={submitting}
+            onClick={async () => await updateFavorite('del')}
+          >
             {t('button.removeFavorite')}
           </button>
         )}
 
         {!favorited && loggedIn && userGroup === 'user' && game && (
-          <button disabled={submitting} onClick={() => updateFavorite('add')}>
+          <button
+            disabled={submitting}
+            onClick={async () => await updateFavorite('add')}
+          >
             {t('button.favorite')}
           </button>
         )}
 
         {hidden && loggedIn && userGroup === 'admin' && game && (
-          <button disabled={submitting} onClick={() => updateHidden('del')}>
+          <button
+            disabled={submitting}
+            onClick={async () => await updateHidden('del')}
+          >
             {t('button.show')}
           </button>
         )}
 
         {!hidden && loggedIn && userGroup === 'admin' && game && (
-          <button disabled={submitting} onClick={() => updateHidden('add')}>
+          <button
+            disabled={submitting}
+            onClick={async () => await updateHidden('add')}
+          >
             {t('button.hide')}
           </button>
         )}
