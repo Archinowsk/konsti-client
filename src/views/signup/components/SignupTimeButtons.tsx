@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { timeFormatter } from 'utils/timeFormatter';
 import { submitSignupTime } from 'views/signup/signupActions';
 
-export interface Props {
+interface Props {
   signupTimes: readonly string[];
   signupTime: string;
 }
