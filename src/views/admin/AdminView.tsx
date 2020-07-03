@@ -14,7 +14,7 @@ import { timeFormatter } from 'utils/timeFormatter';
 import { Game } from 'typings/game.typings';
 import { RootState } from 'typings/redux.typings';
 
-export const AdminView: FC<{}> = (): ReactElement => {
+export const AdminView: FC = (): ReactElement => {
   const games: readonly Game[] = useSelector(
     (state: RootState) => state.allGames.games
   );
@@ -38,7 +38,13 @@ export const AdminView: FC<{}> = (): ReactElement => {
     signupTime
   );
 
-  const showMessage = ({ message, style }): void => {
+  const showMessage = ({
+    message,
+    style,
+  }: {
+    message: string;
+    style: string;
+  }): void => {
     setMessage(message);
     setMessageStyle(style);
   };
@@ -94,12 +100,12 @@ export const AdminView: FC<{}> = (): ReactElement => {
     }
     setSubmitting(false);
 
-    if (response && response.status === 'success') {
+    if (response?.status === 'success') {
       showMessage({
         message: response.resultMessage,
         style: response.status,
       });
-    } else if (response && response.status === 'error') {
+    } else if (response?.status === 'error') {
       showMessage({
         message: response.message,
         style: response.status,

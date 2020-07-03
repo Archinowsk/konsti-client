@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import styled from 'styled-components';
 import loaderImage from '../../assets/loading.gif';
 
-export const Loading: FC<{}> = (): ReactElement => {
+export const Loading: FC = (): ReactElement => {
   const { t } = useTranslation();
   return (
     <LoadingContainer>

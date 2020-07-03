@@ -1,24 +1,21 @@
+import { AxiosResponse, AxiosError } from 'axios';
 import { api } from 'utils/api';
-import { SignupData } from 'typings/user.typings';
+import { SignupData, PostSignupResponse } from 'typings/user.typings';
+import { ServerError } from 'typings/utils.typings';
 
-export const postSignup = async (signupData: SignupData): Promise<void> => {
-  let response;
+export const postSignup = async (
+  signupData: SignupData
+): Promise<PostSignupResponse | ServerError> => {
+  let response: AxiosResponse;
   try {
-    response = await api.post('/signup', { signupData });
+    response = await api.post<PostSignupResponse>('/signup', { signupData });
   } catch (error) {
-    if (error.message === 'Network Error') {
-      console.log('Network error: no connection to server');
-    } else {
-      console.log(`postSignup error:`, error);
+    if (error?.response) {
+      const axiosError: AxiosError<ServerError> = error;
+      if (axiosError.response) return axiosError.response.data;
     }
+    throw error;
   }
 
-  if ((response && response.status !== 200) || (response && !response.data)) {
-    console.log('Response status !== 200, reject');
-    return await Promise.reject(response);
-  }
-
-  if (response) {
-    return response.data;
-  }
+  return response.data;
 };

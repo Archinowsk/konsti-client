@@ -5,28 +5,26 @@ import { SubmissionError } from 'redux-form';
 import { submitLogin } from 'views/login/loginActions';
 import LoginForm from 'views/login/components/LoginForm';
 
-export const LoginView: FC<{}> = (): ReactElement => {
+export const LoginView: FC = (): ReactElement => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const submit = async (form): Promise<void> => {
-    let response;
+  const submit = async (form: any): Promise<void> => {
     try {
-      response = await dispatch(submitLogin(form));
+      await dispatch(submitLogin(form));
     } catch (error) {
-      console.log(`submitLogin error:`, error);
-    }
-
-    if (response && response.code === 21) {
-      throw new SubmissionError({
-        _error: t('error.loginFailed'),
-      });
-    }
-
-    if (response && response.code === 22) {
-      throw new SubmissionError({
-        _error: t('error.loginDisabled'),
-      });
+      switch (error.code) {
+        case 21:
+          throw new SubmissionError({
+            _error: t('error.loginFailed'),
+          });
+        case 22:
+          throw new SubmissionError({
+            _error: t('error.loginDisabled'),
+          });
+        default:
+          throw new Error(`submitLogin error: ${error.message}`);
+      }
     }
   };
 

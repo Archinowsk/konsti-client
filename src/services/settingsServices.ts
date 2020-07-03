@@ -1,45 +1,43 @@
+import { AxiosResponse, AxiosError } from 'axios';
 import { api } from 'utils/api';
+import {
+  ServerError,
+  GetSettingsResponse,
+  PostToggleAppOpenResponse,
+} from 'typings/utils.typings';
 
-export const getSettings = async (): Promise<void> => {
-  let response;
+export const getSettings = async (): Promise<
+  GetSettingsResponse | ServerError
+> => {
+  let response: AxiosResponse;
   try {
-    response = await api.get('/settings');
+    response = await api.get<GetSettingsResponse>('/settings');
   } catch (error) {
-    if (error.message === 'Network Error') {
-      console.log('Network error: no connection to server');
-    } else {
-      console.log(`getSettings error:`, error);
+    if (error?.response) {
+      const axiosError: AxiosError<ServerError> = error;
+      if (axiosError.response) return axiosError.response.data;
     }
+    throw error;
   }
 
-  if ((response && response.status !== 200) || (response && !response.data)) {
-    console.log('Response status !== 200, reject');
-    return await Promise.reject(response);
-  }
-
-  if (response) {
-    return response.data;
-  }
+  return response.data;
 };
 
-export const postToggleAppOpen = async (appOpen: boolean): Promise<void> => {
+export const postToggleAppOpen = async (
+  appOpen: boolean
+): Promise<PostToggleAppOpenResponse | ServerError> => {
   let response;
   try {
-    response = await api.post('/toggle-app-open', { appOpen });
+    response = await api.post<PostToggleAppOpenResponse>('/toggle-app-open', {
+      appOpen,
+    });
   } catch (error) {
-    if (error.message === 'Network Error') {
-      console.log('Network error: no connection to server');
-    } else {
-      console.log(`getSettings error:`, error);
+    if (error?.response) {
+      const axiosError: AxiosError<ServerError> = error;
+      if (axiosError.response) return axiosError.response.data;
     }
+    throw error;
   }
 
-  if ((response && response.status !== 200) || (response && !response.data)) {
-    console.log('Response status !== 200, reject');
-    return await Promise.reject(response);
-  }
-
-  if (response) {
-    return response.data;
-  }
+  return response.data;
 };

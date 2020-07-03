@@ -12,7 +12,7 @@ import { Game } from 'typings/game.typings';
 import { UserGroup } from 'typings/user.typings';
 import { RootState } from 'typings/redux.typings';
 
-export const GameDetails: FC<{}> = (): ReactElement => {
+export const GameDetails: FC = (): ReactElement => {
   const history = useHistory();
   const { gameId } = useParams();
 
@@ -70,7 +70,7 @@ export const GameDetails: FC<{}> = (): ReactElement => {
   }, [game, favoritedGames, hiddenGames]);
 
   // Find selected game index
-  const findGame = (gameId, array): number => {
+  const findGame = (gameId: string, array: readonly Game[]): number => {
     for (let i = 0; i < array.length; i += 1) {
       if (array[i].gameId === gameId) {
         return i;
@@ -80,7 +80,7 @@ export const GameDetails: FC<{}> = (): ReactElement => {
   };
 
   // Favorite / remove favorite clicked
-  const updateFavorite = async (action): Promise<void> => {
+  const updateFavorite = async (action: string): Promise<void> => {
     if (!game || !game.gameId) return;
 
     setSubmitting(true);
@@ -111,7 +111,7 @@ export const GameDetails: FC<{}> = (): ReactElement => {
 
     setSubmitting(false);
 
-    if (response && response.status === 'success') {
+    if (response?.status === 'success') {
       if (action === 'add') {
         setFavorited(true);
       } else if (action === 'del') {
@@ -121,7 +121,7 @@ export const GameDetails: FC<{}> = (): ReactElement => {
   };
 
   // Hide / show clicked
-  const updateHidden = async (action): Promise<void> => {
+  const updateHidden = async (action: string): Promise<void> => {
     if (!game || !game.gameId) return;
 
     setSubmitting(true);
@@ -147,7 +147,7 @@ export const GameDetails: FC<{}> = (): ReactElement => {
 
     setSubmitting(false);
 
-    if (response && response.status === 'success') {
+    if (response?.status === 'success') {
       if (action === 'add') {
         setHidden(true);
       } else if (action === 'del') {

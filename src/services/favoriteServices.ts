@@ -1,26 +1,23 @@
+import { AxiosResponse, AxiosError } from 'axios';
 import { api } from 'utils/api';
-import { FavoriteData } from 'typings/user.typings';
+import { FavoriteData, PostFavoriteResponse } from 'typings/user.typings';
+import { ServerError } from 'typings/utils.typings';
 
 export const postFavorite = async (
   favoriteData: FavoriteData
-): Promise<void> => {
-  let response;
+): Promise<PostFavoriteResponse | ServerError> => {
+  let response: AxiosResponse;
   try {
-    response = await api.post('/favorite', { favoriteData });
+    response = await api.post<PostFavoriteResponse>('/favorite', {
+      favoriteData,
+    });
   } catch (error) {
-    if (error.message === 'Network Error') {
-      console.log('Network error: no connection to server');
-    } else {
-      console.log(`postFavorite error:`, error);
+    if (error?.response) {
+      const axiosError: AxiosError<ServerError> = error;
+      if (axiosError.response) return axiosError.response.data;
     }
+    throw error;
   }
 
-  if ((response && response.status !== 200) || (response && !response.data)) {
-    console.log('Response status !== 200, reject');
-    return await Promise.reject(response);
-  }
-
-  if (response) {
-    return response.data;
-  }
+  return response.data;
 };

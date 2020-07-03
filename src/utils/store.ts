@@ -50,5 +50,3 @@ const persistedState = loadSession();
 
 // Create a Redux store object that holds the app state
 export const store = createStore(rootReducer, persistedState, enhancer);
-
-export type RootState = ReturnType<typeof rootReducer>;

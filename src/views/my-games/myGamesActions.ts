@@ -9,17 +9,13 @@ export const SUBMIT_UPDATE_FAVORITES = 'SUBMIT_UPDATE_FAVORITES';
 
 export const submitGetUser = (username: string): any => {
   return async (dispatch: Function): Promise<unknown> => {
-    let getUserResponse;
-    try {
-      getUserResponse = await getUser(username);
-    } catch (error) {
-      console.log(`getUser error:`, error);
-    }
+    const getUserResponse = await getUser(username);
 
-    if (getUserResponse?.error) {
+    if (getUserResponse?.status === 'error') {
       return await Promise.reject(getUserResponse);
     }
-    if (getUserResponse && getUserResponse.status === 'success') {
+
+    if (getUserResponse?.status === 'success') {
       const enteredGames = getUserResponse.games.enteredGames;
       const favoritedGames = getUserResponse.games.favoritedGames;
       const signedGames = getUserResponse.games.signedGames;
@@ -52,17 +48,13 @@ const submitGetUserAsync = ({
 
 export const submitUpdateFavorites = (favoriteData: FavoriteData): any => {
   return async (dispatch: Function): Promise<unknown> => {
-    let updateFavoriteResponse;
-    try {
-      updateFavoriteResponse = await postFavorite(favoriteData);
-    } catch (error) {
-      console.log(`postFavorite error:`, error);
-    }
+    const updateFavoriteResponse = await postFavorite(favoriteData);
 
-    if (updateFavoriteResponse?.error) {
+    if (updateFavoriteResponse?.status === 'error') {
       return await Promise.reject(updateFavoriteResponse);
     }
-    if (updateFavoriteResponse && updateFavoriteResponse.status === 'success') {
+
+    if (updateFavoriteResponse?.status === 'success') {
       dispatch(
         submitUpdateFavoritesAsync(updateFavoriteResponse.favoritedGames)
       );

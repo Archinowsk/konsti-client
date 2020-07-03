@@ -1,4 +1,6 @@
-export const getGameTags = (game): string[] => {
+import { Game } from 'typings/game.typings';
+
+export const getGameTags = (game: Game): string[] => {
   if (!game.tags) return [];
 
   const tagsList: string[] = [];

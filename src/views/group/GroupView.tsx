@@ -16,7 +16,7 @@ import { GroupMember } from 'typings/group.typings';
 
 import { RootState } from 'typings/redux.typings';
 
-export const GroupView: FC<{}> = (): ReactElement => {
+export const GroupView: FC = (): ReactElement => {
   const username: string = useSelector(
     (state: RootState) => state.login.username
   );
@@ -96,32 +96,37 @@ export const GroupView: FC<{}> = (): ReactElement => {
       ownSerial: serial,
     };
 
-    const response = await dispatch(submitJoinGroup(groupData));
-
-    if (response.status === 'success') {
-      showMessage({ message: t('groupJoined'), style: response.status });
-      await removeSignups();
-    } else if (response.status === 'error') {
-      if (response.code === 31) {
-        showMessage({
-          message: t('invalidGroupCode'),
-          style: response.status,
-        });
-      } else if (response.code === 32) {
-        showMessage({
-          message: t('groupNotExist'),
-          style: response.status,
-        });
-      } else {
-        showMessage({
-          message: t('generalCreateGroupError'),
-          style: response.status,
-        });
+    let response;
+    try {
+      response = await dispatch(submitJoinGroup(groupData));
+    } catch (error) {
+      switch (error.code) {
+        case 31:
+          showMessage({
+            message: t('invalidGroupCode'),
+            style: 'error',
+          });
+          return;
+        case 32:
+          showMessage({
+            message: t('groupNotExist'),
+            style: 'error',
+          });
+          return;
+        default:
+          showMessage({
+            message: t('generalCreateGroupError'),
+            style: 'error',
+          });
+          return;
       }
     }
+
+    showMessage({ message: t('groupJoined'), style: response.status });
+    await removeSignups();
   };
 
-  const leaveGroup = async ({ leader }): Promise<void> => {
+  const leaveGroup = async ({ leader }: { leader: boolean }): Promise<void> => {
     setLoading(true);
 
     const groupData = {
@@ -131,24 +136,28 @@ export const GroupView: FC<{}> = (): ReactElement => {
       ownSerial: serial,
       leaveGroup: true,
     };
-    const response = await dispatch(submitLeaveGroup(groupData));
 
-    if (response.status === 'success') {
-      showMessage({ message: t('leftGroup'), style: response.status });
-    } else if (response.status === 'error') {
-      if (response.code === 36) {
-        showMessage({
-          message: t('groupNotEmpty'),
-          style: response.status,
-        });
-      } else {
-        showMessage({
-          message: t('generalLeaveGroupError'),
-          style: response.status,
-        });
+    let response;
+    try {
+      response = await dispatch(submitLeaveGroup(groupData));
+    } catch (error) {
+      switch (error.code) {
+        case 36:
+          showMessage({
+            message: t('groupNotEmpty'),
+            style: response.status,
+          });
+          return;
+        default:
+          showMessage({
+            message: t('generalLeaveGroupError'),
+            style: response.status,
+          });
+          return;
       }
     }
 
+    showMessage({ message: t('leftGroup'), style: response.status });
     setShowJoinGroup(false);
     setLoading(false);
   };
@@ -157,7 +166,7 @@ export const GroupView: FC<{}> = (): ReactElement => {
     setCloseGroupConfirmation(value);
   };
 
-  const closeGroup = async ({ leader }): Promise<void> => {
+  const closeGroup = async ({ leader }: { leader: boolean }): Promise<void> => {
     setLoading(true);
     const groupData = {
       username: username,
@@ -195,7 +204,13 @@ export const GroupView: FC<{}> = (): ReactElement => {
     return false;
   };
 
-  const showMessage = async ({ message, style }): Promise<void> => {
+  const showMessage = async ({
+    message,
+    style,
+  }: {
+    message: string;
+    style: string;
+  }): Promise<void> => {
     setMessage(message);
     setMessageStyle(style);
     await sleep(config.MESSAGE_DELAY);

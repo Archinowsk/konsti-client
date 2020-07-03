@@ -11,7 +11,7 @@ import { getIconLibrary } from 'utils/icons';
 import { config } from 'config';
 import { RootState } from 'typings/redux.typings';
 
-export const App: FC<{}> = (): ReactElement => {
+export const App: FC = (): ReactElement => {
   const { dataUpdateInterval } = config;
   const appOpen: boolean = useSelector(
     (state: RootState) => state.admin.appOpen

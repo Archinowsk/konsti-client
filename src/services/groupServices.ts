@@ -1,51 +1,46 @@
+import { AxiosResponse, AxiosError } from 'axios';
 import { api } from 'utils/api';
-import { GroupData } from 'typings/group.typings';
+import {
+  GroupData,
+  PostGroupResponse,
+  GetGroupResponse,
+} from 'typings/group.typings';
+import { ServerError } from 'typings/utils.typings';
 
-export const postGroup = async (groupData: GroupData): Promise<void> => {
-  let response;
+export const postGroup = async (
+  groupData: GroupData
+): Promise<PostGroupResponse | ServerError> => {
+  let response: AxiosResponse;
   try {
-    response = await api.post('/group', { groupData });
+    response = await api.post<PostGroupResponse>('/group', { groupData });
   } catch (error) {
-    if (error.message === 'Network Error') {
-      console.log('Network error: no connection to server');
-    } else {
-      console.log(`postGroup error:`, error);
+    if (error?.response) {
+      const axiosError: AxiosError<ServerError> = error;
+      if (axiosError.response) return axiosError.response.data;
     }
+    throw error;
   }
 
-  if ((response && response.status !== 200) || (response && !response.data)) {
-    console.log('Response status !== 200, reject');
-    return await Promise.reject(response);
-  }
-
-  if (response) {
-    return response.data;
-  }
+  return response.data;
 };
 
-export const getGroup = async (groupCode: string): Promise<void> => {
-  let response;
+export const getGroup = async (
+  groupCode: string
+): Promise<GetGroupResponse | ServerError> => {
+  let response: AxiosResponse;
   try {
-    // response = await api.get('/group', { groupData })
-    response = await api.get('/group', {
+    response = await api.get<GetGroupResponse>('/group', {
       params: {
         groupCode,
       },
     });
   } catch (error) {
-    if (error.message === 'Network Error') {
-      console.log('Network error: no connection to server');
-    } else {
-      console.log(`getGroup error:`, error);
+    if (error?.response) {
+      const axiosError: AxiosError<ServerError> = error;
+      if (axiosError.response) return axiosError.response.data;
     }
+    throw error;
   }
 
-  if ((response && response.status !== 200) || (response && !response.data)) {
-    console.log('Response status !== 200, reject');
-    return await Promise.reject(response);
-  }
-
-  if (response) {
-    return response.data;
-  }
+  return response.data;
 };

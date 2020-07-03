@@ -1,9 +1,10 @@
 import { postRegistration } from 'services/userServices';
 import { submitLogin } from 'views/login/loginActions';
 import { RegistrationData } from 'typings/user.typings';
+import { ServerError } from 'typings/utils.typings';
 
 export const submitRegistration = (registrationData: RegistrationData): any => {
-  return async (dispatch: Function): Promise<void> => {
+  return async (dispatch: Function): Promise<ServerError | undefined> => {
     let registrationResponse;
     try {
       registrationResponse = await postRegistration(registrationData);
@@ -11,11 +12,11 @@ export const submitRegistration = (registrationData: RegistrationData): any => {
       return await Promise.reject(error);
     }
 
-    if (registrationResponse?.error) {
+    if (registrationResponse?.status === 'error') {
       return await Promise.reject(registrationResponse);
     }
 
-    if (registrationResponse && registrationResponse.status === 'success') {
+    if (registrationResponse?.status === 'success') {
       dispatch(
         submitLogin({
           username: registrationData.username,
@@ -23,7 +24,5 @@ export const submitRegistration = (registrationData: RegistrationData): any => {
         })
       );
     }
-
-    return registrationResponse;
   };
 };

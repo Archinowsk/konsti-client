@@ -13,7 +13,7 @@ import { Game } from 'typings/game.typings';
 import { getTime } from 'utils/getTime';
 import { RootState } from 'typings/redux.typings';
 
-export const AllGamesView: FC<{}> = (): ReactElement => {
+export const AllGamesView: FC = (): ReactElement => {
   const { t } = useTranslation();
 
   const games: readonly Game[] = useSelector(

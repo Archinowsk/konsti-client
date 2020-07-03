@@ -52,5 +52,50 @@ export interface UserGames {
 }
 
 export interface UpdateUserResponse {
-  status: string;
+  status: 'success';
+}
+
+export interface PostSignupResponse {
+  message: string;
+  signedGames: Signup[];
+  status: 'success';
+}
+
+export interface PostLoginResponse {
+  groupCode: string;
+  jwt: string;
+  message: string;
+  serial: string;
+  status: 'success';
+  userGroup: UserGroup;
+  username: string;
+}
+
+export interface GetUserBySerialResponse {
+  games: Game[];
+  message: string;
+  serial: string;
+  status: 'success';
+  username: string;
+}
+
+export interface PostRegistrationResponse {
+  message: string;
+  password: string;
+  status: 'success';
+  username: string;
+}
+
+export interface GetUserResponse {
+  games: UserGames;
+  message: string;
+  serial: string;
+  status: 'success';
+  username: string;
+}
+
+export interface PostFavoriteResponse {
+  favoritedGames: Game[];
+  message: string;
+  status: 'success';
 }

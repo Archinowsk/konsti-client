@@ -1,26 +1,21 @@
+import { AxiosResponse, AxiosError } from 'axios';
 import { api } from 'utils/api';
-import { Game } from 'typings/game.typings';
+import { Game, PostHiddenResponse } from 'typings/game.typings';
+import { ServerError } from 'typings/utils.typings';
 
 export const postHidden = async (
   hiddenData: readonly Game[]
-): Promise<void> => {
-  let response;
+): Promise<PostHiddenResponse | ServerError> => {
+  let response: AxiosResponse;
   try {
-    response = await api.post('/hidden', { hiddenData });
+    response = await api.post<PostHiddenResponse>('/hidden', { hiddenData });
   } catch (error) {
-    if (error.message === 'Network Error') {
-      console.log('Network error: no connection to server');
-    } else {
-      console.log(`postHidden error:`, error);
+    if (error?.response) {
+      const axiosError: AxiosError<ServerError> = error;
+      if (axiosError.response) return axiosError.response.data;
     }
+    throw error;
   }
 
-  if ((response && response.status !== 200) || (response && !response.data)) {
-    console.log('Response status !== 200, reject');
-    return await Promise.reject(response);
-  }
-
-  if (response) {
-    return response.data;
-  }
+  return response.data;
 };

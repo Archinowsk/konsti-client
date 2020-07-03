@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getUserBySerial, updateUserPassword } from 'services/userServices';
 
-export const PasswordManagement: FC<{}> = (): ReactElement => {
+export const PasswordManagement: FC = (): ReactElement => {
   const { t } = useTranslation();
 
   const [serial, setSerial] = React.useState<string>('');
@@ -26,12 +26,7 @@ export const PasswordManagement: FC<{}> = (): ReactElement => {
   >('');
 
   const submitGetUser = async (): Promise<void> => {
-    let response;
-    try {
-      response = await getUserBySerial(userSerialInput);
-    } catch (error) {
-      console.error(error);
-    }
+    const response = await getUserBySerial(userSerialInput);
 
     if (!response || response.status === 'error') {
       setUserFoundMessage(`${t('userNotFound')}`);

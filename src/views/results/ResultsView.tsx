@@ -8,7 +8,7 @@ import { Result } from 'typings/result.typings';
 
 import { RootState } from 'typings/redux.typings';
 
-export const ResultsView: FC<{}> = (): ReactElement => {
+export const ResultsView: FC = (): ReactElement => {
   const result: readonly Result[] = useSelector(
     (state: RootState) => state.results.result
   );

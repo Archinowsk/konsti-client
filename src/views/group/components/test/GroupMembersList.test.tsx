@@ -1,8 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { GroupMembersList, Props } from '../GroupMembersList';
+import { GroupMember } from 'typings/group.typings';
 
-const groupMembers = [];
+const groupMembers: GroupMember[] = [];
 
 describe('GroupMembersList', () => {
   it('should render correctly', () => {

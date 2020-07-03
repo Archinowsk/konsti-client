@@ -1,9 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { DropRow, Props } from '../DropRow';
+import { Game } from 'typings/game.typings';
 
 const droppableId = 'testId';
-const games = [];
+const games: Game[] = [];
 const label = 'test label';
 const showCount = true;
 

@@ -1,45 +1,39 @@
+import { AxiosResponse, AxiosError } from 'axios';
 import { api } from 'utils/api';
+import { ServerError } from 'typings/utils.typings';
+import {
+  PostGamesUpdateResponse,
+  GetGamesResponse,
+} from 'typings/game.typings';
 
-export const postGamesUpdate = async (): Promise<void> => {
-  let response;
+export const postGamesUpdate = async (): Promise<
+  PostGamesUpdateResponse | ServerError
+> => {
+  let response: AxiosResponse;
   try {
-    response = await api.post('/games');
+    response = await api.post<PostGamesUpdateResponse>('/games');
   } catch (error) {
-    if (error.message === 'Network Error') {
-      console.log('Network error: no connection to server');
-    } else {
-      console.log(`postGamesUpdate error:`, error);
+    if (error?.response) {
+      const axiosError: AxiosError<ServerError> = error;
+      if (axiosError.response) return axiosError.response.data;
     }
+    throw error;
   }
 
-  if ((response && response.status !== 200) || (response && !response.data)) {
-    console.log('Response status !== 200, reject');
-    return await Promise.reject(response);
-  }
-
-  if (response) {
-    return response.data;
-  }
+  return response.data;
 };
 
-export const getGames = async (): Promise<void> => {
+export const getGames = async (): Promise<GetGamesResponse | ServerError> => {
   let response;
   try {
-    response = await api.get('/games');
+    response = await api.get<GetGamesResponse>('/games');
   } catch (error) {
-    if (error.message === 'Network Error') {
-      console.log('Network error: no connection to server');
-    } else {
-      console.log(`getGames error:`, error);
+    if (error?.response) {
+      const axiosError: AxiosError<ServerError> = error;
+      if (axiosError.response) return axiosError.response.data;
     }
+    throw error;
   }
 
-  if ((response && response.status !== 200) || (response && !response.data)) {
-    console.log('Response status !== 200, reject');
-    return await Promise.reject(response);
-  }
-
-  if (response) {
-    return response.data;
-  }
+  return response.data;
 };

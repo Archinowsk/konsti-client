@@ -5,7 +5,7 @@ import { HelperResultsList } from 'views/helper/components/HelperResultsList';
 import { PasswordManagement } from 'views/helper/components/PasswordManagement';
 import { loadResults, loadSettings } from 'utils/loadData';
 
-export const HelperView: FC<{}> = (): ReactElement => {
+export const HelperView: FC = (): ReactElement => {
   const { t } = useTranslation();
 
   const [selectedTool, setSelectedTool] = React.useState<string>('results');

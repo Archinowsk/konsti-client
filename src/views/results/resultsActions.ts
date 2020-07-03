@@ -6,17 +6,13 @@ export const SUBMIT_GET_RESULTS = 'SUBMIT_GET_RESULTS';
 
 export const submitGetResults = (startTime: string): any => {
   return async (dispatch: Function): Promise<unknown> => {
-    let getResultsResponse;
-    try {
-      getResultsResponse = await getResults(startTime);
-    } catch (error) {
-      console.log(`getResults error:`, error);
-    }
+    const getResultsResponse = await getResults(startTime);
 
-    if (getResultsResponse?.error) {
+    if (getResultsResponse?.status === 'error') {
       return await Promise.reject(getResultsResponse);
     }
-    if (getResultsResponse && getResultsResponse.status === 'success') {
+
+    if (getResultsResponse?.status === 'success') {
       dispatch(
         submitGetResultsAsync({
           result: getResultsResponse.results,
@@ -31,17 +27,13 @@ export const submitGetResults = (startTime: string): any => {
 
 export const submitPlayersAssign = (signupTime: string): any => {
   return async (dispatch: Function): Promise<unknown> => {
-    let assignResponse;
-    try {
-      assignResponse = await postPlayerAssignment(signupTime);
-    } catch (error) {
-      console.log(`postPlayersAssign error:`, error);
-    }
+    const assignResponse = await postPlayerAssignment(signupTime);
 
-    if (assignResponse?.error) {
+    if (assignResponse?.status === 'error') {
       return await Promise.reject(assignResponse);
     }
-    if (assignResponse && assignResponse.status === 'success') {
+
+    if (assignResponse?.status === 'success') {
       dispatch(
         submitGetResultsAsync({
           result: assignResponse.results,

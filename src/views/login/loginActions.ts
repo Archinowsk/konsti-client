@@ -1,26 +1,27 @@
 import { postLogin } from 'services/loginServices';
 import { saveSession, clearSession } from 'utils/localStorage';
-import { Login, LoginData } from 'typings/user.typings';
+import { Login, LoginData, PostLoginResponse } from 'typings/user.typings';
 import { SubmitLogin } from 'typings/redux.typings';
+import { ServerError } from 'typings/utils.typings';
 
 export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
 
 export const submitLogin = (loginData: Login): any => {
-  return async (dispatch: Function): Promise<void> => {
-    let loginResponse;
+  return async (dispatch: Function): Promise<ServerError | undefined> => {
+    let loginResponse: PostLoginResponse | ServerError;
     try {
       loginResponse = await postLogin(loginData);
     } catch (error) {
-      console.log(`postLogin error:`, error);
+      clearSession();
+      throw error;
+    }
+
+    if (loginResponse?.status === 'error') {
       clearSession();
       return await Promise.reject(loginResponse);
     }
 
-    if (loginResponse?.error) {
-      clearSession();
-      return await Promise.reject(loginResponse);
-    }
-    if (loginResponse && loginResponse.status === 'success') {
+    if (loginResponse?.status === 'success') {
       saveSession({
         login: { jwt: loginResponse.jwt },
       });
@@ -36,8 +37,6 @@ export const submitLogin = (loginData: Login): any => {
         })
       );
     }
-
-    return loginResponse;
   };
 };
 

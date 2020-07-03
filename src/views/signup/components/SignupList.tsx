@@ -68,22 +68,20 @@ export const SignupList: FC<Props> = (props: Props): ReactElement => {
       signupTime,
     };
 
-    let response;
     try {
-      response = await dispatch(submitSignup(signupData));
+      await dispatch(submitSignup(signupData));
     } catch (error) {
-      console.log(`submitSignup error: `, error);
-    }
-
-    if (response && response.status === 'success') {
-      showMessage('signupSubmitted');
-    } else if (response && response.status === 'error') {
-      if (response.code === 41) {
-        showMessage('signupEnded');
-      } else {
-        showMessage('signupError');
+      switch (error.code) {
+        case 41:
+          showMessage('signupEnded');
+          return;
+        default:
+          showMessage('signupError');
+          return;
       }
     }
+
+    showMessage('signupSubmitted');
     setSubmitting(false);
   };
 
@@ -106,32 +104,26 @@ export const SignupList: FC<Props> = (props: Props): ReactElement => {
     try {
       signupResponse = await dispatch(submitSignup(signupData));
     } catch (error) {
-      console.log(`submitSignup error: `, error);
-    }
-
-    if (signupResponse && signupResponse.status === 'success') {
-      showMessage('signupSubmitted');
-      dispatch(submitSelectedGames(signupResponse.signedGames));
-    } else if (signupResponse && signupResponse.status === 'error') {
-      if (signupResponse.code === 41) {
-        showMessage('signupEnded');
-      } else {
-        showMessage('signupError');
+      switch (error.code) {
+        case 41:
+          showMessage('signupEnded');
+          return;
+        default:
+          showMessage('signupError');
+          return;
       }
     }
 
+    showMessage('signupSubmitted');
+    dispatch(submitSelectedGames(signupResponse.signedGames));
     setSubmitting(false);
   };
 
-  const updateSelectedGames = (newSelectedGames): void => {
-    if (newSelectedGames.length === 0) {
-      dispatch(submitSelectedGames(newSelectedGames));
-    }
-
+  const updateSelectedGames = (newSelectedGames: Game[]): void => {
     const newSignups = newSelectedGames.map((newSelectedGame) => {
       return {
         gameDetails: { ...newSelectedGame },
-        priority: parseInt(newSelectedGames.indexOf(newSelectedGame), 10) + 1,
+        priority: newSelectedGames.indexOf(newSelectedGame) + 1,
         time: signupTime,
       };
     });
@@ -143,7 +135,7 @@ export const SignupList: FC<Props> = (props: Props): ReactElement => {
     dispatch(submitSelectedGames(combined));
   };
 
-  const showMessage = async (message): Promise<void> => {
+  const showMessage = async (message: string): Promise<void> => {
     if (message === 'signupSubmitted') {
       setSignupSubmitted(true);
     } else if (message === 'signupError') {
