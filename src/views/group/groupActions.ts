@@ -1,12 +1,13 @@
 import { postGroup, getGroup } from 'services/groupServices';
 import { GroupData, GroupMember } from 'typings/group.typings';
+import { AppThunk } from 'typings/utils.typings';
 
 export const SUBMIT_UPDATE_GROUP_CODE = 'SUBMIT_UPDATE_GROUP_CODE';
 export const SUBMIT_LEAVE_GROUP = 'SUBMIT_LEAVE_GROUP';
 export const SUBMIT_UPDATE_GROUP_MEMBERS = 'SUBMIT_UPDATE_GROUP_MEMBERS';
 
-export const submitJoinGroup = (groupData: GroupData): any => {
-  return async (dispatch: Function): Promise<unknown> => {
+export const submitJoinGroup = (groupData: GroupData): AppThunk => {
+  return async (dispatch): Promise<void> => {
     const joinGroupResponse = await postGroup(groupData);
 
     if (joinGroupResponse?.status === 'error') {
@@ -17,13 +18,11 @@ export const submitJoinGroup = (groupData: GroupData): any => {
       dispatch(submitGetGroup(joinGroupResponse.groupCode));
       dispatch(submitUpdateGroupCodeAsync(joinGroupResponse.groupCode));
     }
-
-    return joinGroupResponse;
   };
 };
 
-export const submitCreateGroup = (groupData: GroupData): any => {
-  return async (dispatch: Function): Promise<unknown> => {
+export const submitCreateGroup = (groupData: GroupData): AppThunk => {
+  return async (dispatch): Promise<void> => {
     const createGroupResponse = await postGroup(groupData);
 
     if (createGroupResponse?.status === 'error') {
@@ -34,8 +33,6 @@ export const submitCreateGroup = (groupData: GroupData): any => {
       dispatch(submitGetGroup(createGroupResponse.groupCode));
       dispatch(submitUpdateGroupCodeAsync(createGroupResponse.groupCode));
     }
-
-    return createGroupResponse;
   };
 };
 
@@ -46,8 +43,8 @@ const submitUpdateGroupCodeAsync = (groupCode: string): any => {
   };
 };
 
-export const submitGetGroup = (groupCode: string): any => {
-  return async (dispatch: Function): Promise<unknown> => {
+export const submitGetGroup = (groupCode: string): AppThunk => {
+  return async (dispatch): Promise<void> => {
     const getGroupResponse = await getGroup(groupCode);
 
     if (getGroupResponse?.status === 'error') {
@@ -57,8 +54,6 @@ export const submitGetGroup = (groupCode: string): any => {
     if (getGroupResponse?.status === 'success') {
       dispatch(submitGetGroupAsync(getGroupResponse.results));
     }
-
-    return getGroupResponse;
   };
 };
 
@@ -69,8 +64,8 @@ const submitGetGroupAsync = (groupMembers: readonly GroupMember[]): any => {
   };
 };
 
-export const submitLeaveGroup = (groupData: GroupData): any => {
-  return async (dispatch: Function): Promise<unknown> => {
+export const submitLeaveGroup = (groupData: GroupData): AppThunk => {
+  return async (dispatch): Promise<void> => {
     const leaveGroupResponse = await postGroup(groupData);
 
     if (leaveGroupResponse?.status === 'error') {
@@ -80,8 +75,6 @@ export const submitLeaveGroup = (groupData: GroupData): any => {
     if (leaveGroupResponse?.status === 'success') {
       dispatch(submitLeaveGroupAsync(leaveGroupResponse.groupCode));
     }
-
-    return leaveGroupResponse;
   };
 };
 

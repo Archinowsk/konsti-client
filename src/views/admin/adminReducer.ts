@@ -4,6 +4,7 @@ import {
   SUBMIT_SELECT_SIGNUP_TIME,
   SUBMIT_SET_TEST_TIME,
   SUBMIT_TOGGLE_APP_OPEN,
+  SUBMIT_RESPONSE_MESSAGE,
 } from 'views/admin/adminActions';
 import { AdminState } from 'typings/redux.typings';
 
@@ -12,6 +13,7 @@ const initialState = {
   signupTime: '',
   testTime: '',
   appOpen: true,
+  responseMessage: '',
 };
 
 export const adminReducer = (
@@ -33,7 +35,9 @@ export const adminReducer = (
     case SUBMIT_SET_TEST_TIME:
       return { ...state, testTime: action.testTime };
     case SUBMIT_TOGGLE_APP_OPEN:
-      return { ...state, appOpen: action.appOpen };
+      return { ...state, appOpen: action.responseMessage };
+    case SUBMIT_RESPONSE_MESSAGE:
+      return { ...state, responseMessage: action.responseMessage };
     default:
       return state;
   }

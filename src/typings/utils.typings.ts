@@ -1,3 +1,6 @@
+import { ThunkAction } from 'redux-thunk';
+import { Action } from 'redux';
+import { RootState } from './redux.typings';
 import { Game } from 'typings/game.typings';
 
 export interface WeekdayAndTime {
@@ -30,3 +33,11 @@ export interface PostSignupTimeResult {
   signupTime: string;
   status: 'success';
 }
+
+// eslint-disable-next-line @typescript-eslint/no-invalid-void-type
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootState,
+  unknown,
+  Action<string>
+>;

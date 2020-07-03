@@ -100,9 +100,8 @@ export const SignupList: FC<Props> = (props: Props): ReactElement => {
       signupTime: signupTime,
     };
 
-    let signupResponse;
     try {
-      signupResponse = await dispatch(submitSignup(signupData));
+      await dispatch(submitSignup(signupData));
     } catch (error) {
       switch (error.code) {
         case 41:
@@ -115,7 +114,6 @@ export const SignupList: FC<Props> = (props: Props): ReactElement => {
     }
 
     showMessage('signupSubmitted');
-    dispatch(submitSelectedGames(signupResponse.signedGames));
     setSubmitting(false);
   };
 

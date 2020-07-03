@@ -9,6 +9,7 @@ export interface AdminState {
   signupTime: string;
   testTime: string;
   appOpen: boolean;
+  responseMessage: string;
 }
 
 export interface AllGamesState {

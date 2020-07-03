@@ -1,10 +1,12 @@
 import { postRegistration } from 'services/userServices';
 import { submitLogin } from 'views/login/loginActions';
 import { RegistrationData } from 'typings/user.typings';
-import { ServerError } from 'typings/utils.typings';
+import { AppThunk } from 'typings/utils.typings';
 
-export const submitRegistration = (registrationData: RegistrationData): any => {
-  return async (dispatch: Function): Promise<ServerError | undefined> => {
+export const submitRegistration = (
+  registrationData: RegistrationData
+): AppThunk => {
+  return async (dispatch): Promise<void> => {
     let registrationResponse;
     try {
       registrationResponse = await postRegistration(registrationData);

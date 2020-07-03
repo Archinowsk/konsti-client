@@ -27,6 +27,9 @@ export const AdminView: FC = (): ReactElement => {
   const hiddenGames: readonly Game[] = useSelector(
     (state: RootState) => state.admin.hiddenGames
   );
+  const responseMessage: string = useSelector(
+    (state: RootState) => state.admin.responseMessage
+  );
 
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -87,30 +90,16 @@ export const AdminView: FC = (): ReactElement => {
   const submitAssign = async (): Promise<void> => {
     setSubmitting(true);
 
-    showMessage({
-      message: '',
-      style: 'success',
-    });
-
-    let response;
     try {
-      response = await dispatch(submitPlayersAssign(signupTime));
+      await dispatch(submitPlayersAssign(signupTime));
     } catch (error) {
-      console.log(`submitPlayersAssign error:`, error);
+      showMessage({
+        message: error.message,
+        style: 'error',
+      });
+      return;
     }
     setSubmitting(false);
-
-    if (response?.status === 'success') {
-      showMessage({
-        message: response.resultMessage,
-        style: response.status,
-      });
-    } else if (response?.status === 'error') {
-      showMessage({
-        message: response.message,
-        style: response.status,
-      });
-    }
   };
 
   const submitTime = async (): Promise<void> => {
@@ -167,6 +156,8 @@ export const AdminView: FC = (): ReactElement => {
 
         {submitting && <p>{t('loading')}</p>}
 
+        <ResponseMessage>{responseMessage}</ResponseMessage>
+
         {(!games || games.length === 0) && <p>{t('noGamesInDatabase')}</p>}
 
         {games && games.length !== 0 && (
@@ -221,4 +212,8 @@ const StatusMessage = styled.p`
   &.success {
     color: ${(props) => props.theme.success};
   }
+`;
+
+const ResponseMessage = styled.p`
+  color: ${(props) => props.theme.success};
 `;
