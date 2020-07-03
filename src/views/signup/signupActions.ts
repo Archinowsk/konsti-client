@@ -8,14 +8,13 @@ export const UPDATE_UNSAVED_CHANGES_STATUS = 'UPDATE_UNSAVED_CHANGES_STATUS';
 
 export const submitSignup = (signupData: SignupData): any => {
   return async (dispatch: Function): Promise<unknown> => {
-    let signupResponse;
-    try {
-      signupResponse = await postSignup(signupData);
-    } catch (error) {
-      console.log(`postSignup error:`, error);
+    const signupResponse = await postSignup(signupData);
+
+    if (signupResponse?.status === 'error') {
+      return await Promise.reject(signupResponse);
     }
 
-    if (signupResponse && signupResponse.status === 'success') {
+    if (signupResponse?.status === 'success') {
       dispatch(submitSignupAsync(signupResponse.signedGames));
     }
 

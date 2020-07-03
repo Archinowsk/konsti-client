@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { postHidden } from '../hiddenServices';
+import { Game } from 'typings/game.typings';
 
 jest.mock('axios');
 const mockAxios = axios as jest.Mocked<typeof axios>;
@@ -13,7 +14,7 @@ describe('hiddenServices', () => {
       });
     });
 
-    const hiddenData = [];
+    const hiddenData: Game[] = [];
 
     const response = await postHidden(hiddenData);
 

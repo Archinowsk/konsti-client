@@ -17,7 +17,7 @@ import { Signup } from 'typings/user.typings';
 import { GroupMember } from 'typings/group.typings';
 import { RootState } from 'typings/redux.typings';
 
-export const MyGamesView: FC<{}> = (): ReactElement => {
+export const MyGamesView: FC = (): ReactElement => {
   const { t } = useTranslation();
 
   const serial: string = useSelector((state: RootState) => state.login.serial);

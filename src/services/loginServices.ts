@@ -1,25 +1,26 @@
+import { AxiosResponse, AxiosError } from 'axios';
 import { api } from 'utils/api';
-import { Login } from 'typings/user.typings';
+import { Login, PostLoginResponse } from 'typings/user.typings';
+import { ServerError } from 'typings/utils.typings';
 
-export const postLogin = async (loginData: Login): Promise<void> => {
+export const postLogin = async (
+  loginData: Login
+): Promise<PostLoginResponse | ServerError> => {
   const { username, password, jwt } = loginData;
-  let response;
+  let response: AxiosResponse;
   try {
-    response = await api.post('/login', { username, password, jwt });
+    response = await api.post<PostLoginResponse>('/login', {
+      username,
+      password,
+      jwt,
+    });
   } catch (error) {
-    if (error.message === 'Network Error') {
-      console.log('Network error: no connection to server');
-    } else {
-      console.log(`postLogin error:`, error);
+    if (error?.response) {
+      const axiosError: AxiosError<ServerError> = error;
+      if (axiosError.response) return axiosError.response.data;
     }
+    throw error;
   }
 
-  if ((response && response.status !== 200) || (response && !response.data)) {
-    console.log('Response status !== 200, reject');
-    return await Promise.reject(response);
-  }
-
-  if (response) {
-    return response.data;
-  }
+  return response.data;
 };

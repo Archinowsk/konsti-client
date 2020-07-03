@@ -1,27 +1,25 @@
+import { AxiosResponse, AxiosError } from 'axios';
 import { api } from 'utils/api';
+import { ServerError } from 'typings/utils.typings';
+import { GetResultsResponse } from 'typings/result.typings';
 
-export const getResults = async (startTime: string): Promise<void> => {
-  let response;
+export const getResults = async (
+  startTime: string
+): Promise<GetResultsResponse | ServerError> => {
+  let response: AxiosResponse;
   try {
-    response = await api.get('/results', {
+    response = await api.get<GetResultsResponse>('/results', {
       params: {
         startTime,
       },
     });
   } catch (error) {
-    if (error.message === 'Network Error') {
-      console.log('Network error: no connection to server');
-    } else {
-      console.log(`getResults error:`, error);
+    if (error?.response) {
+      const axiosError: AxiosError<ServerError> = error;
+      if (axiosError.response) return axiosError.response.data;
     }
+    throw error;
   }
 
-  if ((response && response.status !== 200) || (response && !response.data)) {
-    console.log('Response status !== 200, reject');
-    return await Promise.reject(response);
-  }
-
-  if (response) {
-    return response.data;
-  }
+  return response.data;
 };

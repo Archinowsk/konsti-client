@@ -16,3 +16,15 @@ export interface GroupData {
   leaveGroup?: boolean;
   closeGroup?: boolean;
 }
+
+export interface PostGroupResponse {
+  groupCode: string;
+  message: string;
+  status: 'success';
+}
+
+export interface GetGroupResponse {
+  message: string;
+  results: GroupMember[];
+  status: 'success';
+}

@@ -7,7 +7,7 @@ import { isGroupLeader } from 'views/group/GroupView';
 import { Game } from 'typings/game.typings';
 import { RootState } from 'typings/redux.typings';
 
-export const SignupView: FC<{}> = (): ReactElement => {
+export const SignupView: FC = (): ReactElement => {
   const games: readonly Game[] = useSelector(
     (state: RootState) => state.allGames.games
   );

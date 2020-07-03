@@ -1,8 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { ResultsByGameTitle, Props } from '../ResultsByGameTitle';
+import { Result } from 'typings/result.typings';
 
-const results = [];
+const results: Result[] = [];
 
 describe('ResultsByGameTitle', () => {
   it('should render correctly', () => {

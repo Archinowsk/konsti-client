@@ -1,9 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { GamesByStartTimes, Props } from '../GamesByStartTimes';
+import { Game } from 'typings/game.typings';
 
-const games = [];
-const startTimes = [];
+const games: Game[] = [];
+const startTimes: string[] = [];
 
 describe('GamesByStartTimes', () => {
   it('should render correctly', () => {

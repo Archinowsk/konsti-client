@@ -1,8 +1,8 @@
-import axios from 'axios';
+import axios, { AxiosInstance } from 'axios';
 import { config } from 'config';
 import { getJWT } from 'utils/getJWT';
 
-export const api = axios.create({
+export const api: AxiosInstance = axios.create({
   baseURL: `${config.apiServerURL}/api`,
   timeout: 60000, // 60s
   headers: {

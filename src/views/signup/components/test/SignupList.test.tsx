@@ -3,9 +3,10 @@ import { Provider } from 'react-redux';
 import { store } from 'utils/store';
 import { shallow } from 'enzyme';
 import { SignupList, Props } from '../SignupList';
+import { Game } from 'typings/game.typings';
 
-const games = [];
-const signupTimes = [];
+const games: Game[] = [];
+const signupTimes: string[] = [];
 const leader = true;
 
 describe('SignupList', () => {

@@ -7,17 +7,13 @@ export const SUBMIT_UPDATE_GROUP_MEMBERS = 'SUBMIT_UPDATE_GROUP_MEMBERS';
 
 export const submitJoinGroup = (groupData: GroupData): any => {
   return async (dispatch: Function): Promise<unknown> => {
-    let joinGroupResponse;
-    try {
-      joinGroupResponse = await postGroup(groupData);
-    } catch (error) {
-      console.log(`postGroup error:`, error);
-    }
+    const joinGroupResponse = await postGroup(groupData);
 
-    if (joinGroupResponse?.error) {
+    if (joinGroupResponse?.status === 'error') {
       return await Promise.reject(joinGroupResponse);
     }
-    if (joinGroupResponse && joinGroupResponse.status === 'success') {
+
+    if (joinGroupResponse?.status === 'success') {
       dispatch(submitGetGroup(joinGroupResponse.groupCode));
       dispatch(submitUpdateGroupCodeAsync(joinGroupResponse.groupCode));
     }
@@ -28,17 +24,13 @@ export const submitJoinGroup = (groupData: GroupData): any => {
 
 export const submitCreateGroup = (groupData: GroupData): any => {
   return async (dispatch: Function): Promise<unknown> => {
-    let createGroupResponse;
-    try {
-      createGroupResponse = await postGroup(groupData);
-    } catch (error) {
-      console.log(`postGroup error:`, error);
-    }
+    const createGroupResponse = await postGroup(groupData);
 
-    if (createGroupResponse?.error) {
+    if (createGroupResponse?.status === 'error') {
       return await Promise.reject(createGroupResponse);
     }
-    if (createGroupResponse && createGroupResponse.status === 'success') {
+
+    if (createGroupResponse?.status === 'success') {
       dispatch(submitGetGroup(createGroupResponse.groupCode));
       dispatch(submitUpdateGroupCodeAsync(createGroupResponse.groupCode));
     }
@@ -56,17 +48,13 @@ const submitUpdateGroupCodeAsync = (groupCode: string): any => {
 
 export const submitGetGroup = (groupCode: string): any => {
   return async (dispatch: Function): Promise<unknown> => {
-    let getGroupResponse;
-    try {
-      getGroupResponse = await getGroup(groupCode);
-    } catch (error) {
-      console.log(`postGroup error:`, error);
-    }
+    const getGroupResponse = await getGroup(groupCode);
 
-    if (getGroupResponse?.error) {
+    if (getGroupResponse?.status === 'error') {
       return await Promise.reject(getGroupResponse);
     }
-    if (getGroupResponse && getGroupResponse.status === 'success') {
+
+    if (getGroupResponse?.status === 'success') {
       dispatch(submitGetGroupAsync(getGroupResponse.results));
     }
 
@@ -83,17 +71,13 @@ const submitGetGroupAsync = (groupMembers: readonly GroupMember[]): any => {
 
 export const submitLeaveGroup = (groupData: GroupData): any => {
   return async (dispatch: Function): Promise<unknown> => {
-    let leaveGroupResponse;
-    try {
-      leaveGroupResponse = await postGroup(groupData);
-    } catch (error) {
-      console.log(`postGroup error:`, error);
-    }
+    const leaveGroupResponse = await postGroup(groupData);
 
-    if (leaveGroupResponse?.error) {
+    if (leaveGroupResponse?.status === 'error') {
       return await Promise.reject(leaveGroupResponse);
     }
-    if (leaveGroupResponse && leaveGroupResponse.status === 'success') {
+
+    if (leaveGroupResponse?.status === 'success') {
       dispatch(submitLeaveGroupAsync(leaveGroupResponse.groupCode));
     }
 

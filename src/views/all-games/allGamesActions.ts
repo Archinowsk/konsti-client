@@ -5,17 +5,13 @@ export const SUBMIT_GET_GAMES = 'SUBMIT_GET_GAMES';
 
 export const submitGetGames = (): any => {
   return async (dispatch: Function): Promise<unknown> => {
-    let getGamesResponse;
-    try {
-      getGamesResponse = await getGames();
-    } catch (error) {
-      console.log(`getGames error:`, error);
-    }
+    const getGamesResponse = await getGames();
 
-    if (getGamesResponse?.error) {
+    if (getGamesResponse?.status === 'error') {
       return await Promise.reject(getGamesResponse);
     }
-    if (getGamesResponse && getGamesResponse.status === 'success') {
+
+    if (getGamesResponse?.status === 'success') {
       dispatch(submitGetGamesAsync(getGamesResponse.games));
     }
 
@@ -25,17 +21,13 @@ export const submitGetGames = (): any => {
 
 export const submitGamesUpdate = (): any => {
   return async (dispatch: Function): Promise<unknown> => {
-    let gamesUpdateResponse;
-    try {
-      gamesUpdateResponse = await postGamesUpdate();
-    } catch (error) {
-      console.log(`postGamesUpdate error:`, error);
-    }
+    const gamesUpdateResponse = await postGamesUpdate();
 
-    if (gamesUpdateResponse?.error) {
+    if (gamesUpdateResponse?.status === 'error') {
       return await Promise.reject(gamesUpdateResponse);
     }
-    if (gamesUpdateResponse && gamesUpdateResponse.status === 'success') {
+
+    if (gamesUpdateResponse?.status === 'success') {
       dispatch(submitGetGamesAsync(gamesUpdateResponse.games));
     }
 

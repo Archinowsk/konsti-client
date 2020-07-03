@@ -7,7 +7,7 @@ import { timeFormatter } from 'utils/timeFormatter';
 import { Result } from 'typings/result.typings';
 import { RootState } from 'typings/redux.typings';
 
-export const HelperResultsList: FC<{}> = (): ReactElement => {
+export const HelperResultsList: FC = (): ReactElement => {
   const results: readonly Result[] = useSelector(
     (state: RootState) => state.results.result
   );

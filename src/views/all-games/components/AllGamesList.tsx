@@ -14,7 +14,7 @@ export const AllGamesList: FC<Props> = (props: Props): ReactElement => {
   const { games } = props;
   const { t } = useTranslation();
 
-  const buildGamesList = (games): ReactElement[] => {
+  const buildGamesList = (games: readonly Game[]): ReactElement[] => {
     const sortedGames = _.sortBy(games, [
       (game) => game.startTime,
       (game) => game.title.toLowerCase(),

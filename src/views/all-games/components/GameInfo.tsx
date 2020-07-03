@@ -50,16 +50,16 @@ export const GameInfo: FC<Props> = (props: Props): ReactElement => {
     );
   });
 
-  const getFormattedStartTime = (game): string =>
+  const getFormattedStartTime = (game: Game): string =>
     timeFormatter.weekdayAndTime({
       time: game.startTime,
       capitalize: true,
     });
 
-  const getFormattedEndTime = (game): string =>
+  const getFormattedEndTime = (game: Game): string =>
     timeFormatter.time(game.endTime);
 
-  const getFormattedDuration = (game): string => {
+  const getFormattedDuration = (game: Game): string => {
     const hours = Math.floor(game.mins / 60);
     const minutes = Math.round((game.mins / 60 - hours) * 60);
 

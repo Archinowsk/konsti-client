@@ -3,12 +3,13 @@ import { useTranslation } from 'react-i18next';
 import moment from 'moment';
 import styled from 'styled-components';
 
-export const LanguageSelector: FC<{}> = (): ReactElement => {
+export const LanguageSelector: FC = (): ReactElement => {
   const { t, i18n } = useTranslation();
   const language = i18n.language;
 
   // Language toggle
-  const toggle = async (lng): Promise<any> => await i18n.changeLanguage(lng);
+  const toggle = async (lng: string): Promise<any> =>
+    await i18n.changeLanguage(lng);
 
   const setLanguage = (event: ChangeEvent<HTMLSelectElement>): void => {
     toggle(event.target.value);

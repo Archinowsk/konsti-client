@@ -1,9 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { SignupsByStartTimes, Props } from '../SignupsByStartTimes';
+import { Signup } from 'typings/user.typings';
 
-const signups = [];
-const startTimes = [];
+const signups: Signup[] = [];
+const startTimes: string[] = [];
 
 describe('SignupsByStartTimes', () => {
   it('should render correctly', () => {

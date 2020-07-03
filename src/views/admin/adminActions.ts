@@ -13,17 +13,13 @@ export const SUBMIT_TOGGLE_APP_OPEN = 'SUBMIT_TOGGLE_APP_OPEN';
 
 export const submitUpdateHidden = (hiddenGames: readonly Game[]): any => {
   return async (dispatch: Function): Promise<unknown> => {
-    let updateHiddenResponse;
-    try {
-      updateHiddenResponse = await postHidden(hiddenGames);
-    } catch (error) {
-      console.log(`submitUpdateHidden error:`, error);
-    }
+    const updateHiddenResponse = await postHidden(hiddenGames);
 
-    if (updateHiddenResponse?.error) {
+    if (updateHiddenResponse?.status === 'error') {
       return await Promise.reject(updateHiddenResponse);
     }
-    if (updateHiddenResponse && updateHiddenResponse.status === 'success') {
+
+    if (updateHiddenResponse?.status === 'success') {
       dispatch(submitUpdateHiddenAsync(updateHiddenResponse.hiddenGames));
     }
 
@@ -40,18 +36,13 @@ const submitUpdateHiddenAsync = (hiddenGames: readonly Game[]): any => {
 
 export const submitGetSettings = (): any => {
   return async (dispatch: Function): Promise<unknown> => {
-    let settingsResponse;
-    try {
-      settingsResponse = await getSettings();
-    } catch (error) {
-      console.log(`getSettings error:`, error);
-    }
+    const settingsResponse = await getSettings();
 
-    if (settingsResponse?.error) {
+    if (settingsResponse?.status === 'error') {
       return await Promise.reject(settingsResponse);
     }
 
-    if (settingsResponse && settingsResponse.status === 'success') {
+    if (settingsResponse?.status === 'success') {
       dispatch(
         submitGetSettingsAsync({
           hiddenGames: settingsResponse.hiddenGames,
@@ -80,17 +71,13 @@ const submitGetSettingsAsync = ({
 
 export const submitSignupTime = (signupTime: string): any => {
   return async (dispatch: Function): Promise<unknown> => {
-    let signupTimeResponse;
-    try {
-      signupTimeResponse = await postSignupTime(signupTime);
-    } catch (error) {
-      console.log(`postSignupTime error:`, error);
-    }
+    const signupTimeResponse = await postSignupTime(signupTime);
 
-    if (signupTimeResponse?.error) {
+    if (signupTimeResponse?.status === 'error') {
       return await Promise.reject(signupTimeResponse);
     }
-    if (signupTimeResponse && signupTimeResponse.status === 'success') {
+
+    if (signupTimeResponse?.status === 'success') {
       dispatch(submitSignupTimeAsync(signupTimeResponse.signupTime));
     }
 
@@ -114,17 +101,13 @@ export const submitSetTestTime = (testTime: string): any => {
 
 export const submitToggleAppOpen = (appOpen: boolean): any => {
   return async (dispatch: Function): Promise<unknown> => {
-    let appOpenResponse;
-    try {
-      appOpenResponse = await postToggleAppOpen(appOpen);
-    } catch (error) {
-      console.log(`postAppOpen error:`, error);
-    }
+    const appOpenResponse = await postToggleAppOpen(appOpen);
 
-    if (appOpenResponse?.error) {
+    if (appOpenResponse?.status === 'error') {
       return await Promise.reject(appOpenResponse);
     }
-    if (appOpenResponse && appOpenResponse.status === 'success') {
+
+    if (appOpenResponse?.status === 'success') {
       dispatch(submitToggleAppOpenAsync(appOpenResponse.appOpen));
     }
 

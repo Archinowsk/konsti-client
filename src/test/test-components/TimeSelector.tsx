@@ -8,7 +8,7 @@ import { TimesDropdown } from 'components/TimesDropdown';
 import { config } from 'config';
 import { RootState } from 'typings/redux.typings';
 
-export const TimeSelector: FC<{}> = (): ReactElement => {
+export const TimeSelector: FC = (): ReactElement => {
   const testTime: string = useSelector(
     (state: RootState) => state.admin.testTime
   );
@@ -35,10 +35,10 @@ export const TimeSelector: FC<{}> = (): ReactElement => {
 
   React.useEffect(() => {
     const defaultTestTime = _.first(times);
-    if (!testTime) setTestTime(defaultTestTime);
+    if (!testTime && defaultTestTime) setTestTime(defaultTestTime);
   });
 
-  const setTestTime = (testTime): void => {
+  const setTestTime = (testTime: string): void => {
     dispatch(submitSetTestTime(testTime));
   };
 
