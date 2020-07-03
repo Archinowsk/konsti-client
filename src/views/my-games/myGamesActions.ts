@@ -3,12 +3,13 @@ import { postFavorite } from 'services/favoriteServices';
 import { FavoriteData, UserGames } from 'typings/user.typings';
 import { Game } from 'typings/game.typings';
 import { SubmitGetUser } from 'typings/redux.typings';
+import { AppThunk } from 'typings/utils.typings';
 
 export const SUBMIT_GET_USER_GAMES = 'SUBMIT_GET_USER_GAMES';
 export const SUBMIT_UPDATE_FAVORITES = 'SUBMIT_UPDATE_FAVORITES';
 
-export const submitGetUser = (username: string): any => {
-  return async (dispatch: Function): Promise<unknown> => {
+export const submitGetUser = (username: string): AppThunk => {
+  return async (dispatch): Promise<void> => {
     const getUserResponse = await getUser(username);
 
     if (getUserResponse?.status === 'error') {
@@ -28,8 +29,6 @@ export const submitGetUser = (username: string): any => {
         })
       );
     }
-
-    return getUserResponse;
   };
 };
 
@@ -46,8 +45,8 @@ const submitGetUserAsync = ({
   };
 };
 
-export const submitUpdateFavorites = (favoriteData: FavoriteData): any => {
-  return async (dispatch: Function): Promise<unknown> => {
+export const submitUpdateFavorites = (favoriteData: FavoriteData): AppThunk => {
+  return async (dispatch): Promise<void> => {
     const updateFavoriteResponse = await postFavorite(favoriteData);
 
     if (updateFavoriteResponse?.status === 'error') {
@@ -59,8 +58,6 @@ export const submitUpdateFavorites = (favoriteData: FavoriteData): any => {
         submitUpdateFavoritesAsync(updateFavoriteResponse.favoritedGames)
       );
     }
-
-    return updateFavoriteResponse;
   };
 };
 

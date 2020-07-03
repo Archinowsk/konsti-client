@@ -66,15 +66,18 @@ export const GroupView: FC = (): ReactElement => {
       leader: true,
       ownSerial: serial,
     };
-    const response = await dispatch(submitCreateGroup(groupData));
-    if (response.status === 'success') {
-      showMessage({ message: t('groupCreated'), style: response.status });
-    } else if (response.status === 'error') {
+
+    try {
+      await dispatch(submitCreateGroup(groupData));
+    } catch (error) {
       showMessage({
         message: t('generalCreateGroupError'),
-        style: response.status,
+        style: 'error',
       });
+      return;
     }
+
+    showMessage({ message: t('groupCreated'), style: 'success' });
   };
 
   // Remove all signups
@@ -96,9 +99,8 @@ export const GroupView: FC = (): ReactElement => {
       ownSerial: serial,
     };
 
-    let response;
     try {
-      response = await dispatch(submitJoinGroup(groupData));
+      await dispatch(submitJoinGroup(groupData));
     } catch (error) {
       switch (error.code) {
         case 31:
@@ -122,7 +124,7 @@ export const GroupView: FC = (): ReactElement => {
       }
     }
 
-    showMessage({ message: t('groupJoined'), style: response.status });
+    showMessage({ message: t('groupJoined'), style: 'success' });
     await removeSignups();
   };
 
@@ -137,27 +139,26 @@ export const GroupView: FC = (): ReactElement => {
       leaveGroup: true,
     };
 
-    let response;
     try {
-      response = await dispatch(submitLeaveGroup(groupData));
+      await dispatch(submitLeaveGroup(groupData));
     } catch (error) {
       switch (error.code) {
         case 36:
           showMessage({
             message: t('groupNotEmpty'),
-            style: response.status,
+            style: 'error',
           });
           return;
         default:
           showMessage({
             message: t('generalLeaveGroupError'),
-            style: response.status,
+            style: 'error',
           });
           return;
       }
     }
 
-    showMessage({ message: t('leftGroup'), style: response.status });
+    showMessage({ message: t('leftGroup'), style: 'success' });
     setShowJoinGroup(false);
     setLoading(false);
   };
@@ -176,17 +177,17 @@ export const GroupView: FC = (): ReactElement => {
       leaveGroup: true,
       closeGroup: true,
     };
-    const response = await dispatch(submitLeaveGroup(groupData));
 
-    if (response.status === 'success') {
-      showMessage({ message: t('closedGroup'), style: response.status });
-    } else if (response.status === 'error') {
+    try {
+      await dispatch(submitLeaveGroup(groupData));
+    } catch (error) {
       showMessage({
         message: t('generalLeaveGroupError'),
-        style: response.status,
+        style: 'error',
       });
     }
 
+    showMessage({ message: t('closedGroup'), style: 'success' });
     toggleCloseGroupConfirmation(false);
     setLoading(false);
   };

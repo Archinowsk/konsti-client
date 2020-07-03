@@ -2,12 +2,12 @@ import { postLogin } from 'services/loginServices';
 import { saveSession, clearSession } from 'utils/localStorage';
 import { Login, LoginData, PostLoginResponse } from 'typings/user.typings';
 import { SubmitLogin } from 'typings/redux.typings';
-import { ServerError } from 'typings/utils.typings';
+import { ServerError, AppThunk } from 'typings/utils.typings';
 
 export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
 
-export const submitLogin = (loginData: Login): any => {
-  return async (dispatch: Function): Promise<ServerError | undefined> => {
+export const submitLogin = (loginData: Login): AppThunk => {
+  return async (dispatch): Promise<void> => {
     let loginResponse: PostLoginResponse | ServerError;
     try {
       loginResponse = await postLogin(loginData);

@@ -1,10 +1,11 @@
 import { getGames, postGamesUpdate } from 'services/gamesServices';
 import { Game } from 'typings/game.typings';
+import { AppThunk } from 'typings/utils.typings';
 
 export const SUBMIT_GET_GAMES = 'SUBMIT_GET_GAMES';
 
-export const submitGetGames = (): any => {
-  return async (dispatch: Function): Promise<unknown> => {
+export const submitGetGames = (): AppThunk => {
+  return async (dispatch): Promise<void> => {
     const getGamesResponse = await getGames();
 
     if (getGamesResponse?.status === 'error') {
@@ -14,13 +15,11 @@ export const submitGetGames = (): any => {
     if (getGamesResponse?.status === 'success') {
       dispatch(submitGetGamesAsync(getGamesResponse.games));
     }
-
-    return getGamesResponse;
   };
 };
 
-export const submitGamesUpdate = (): any => {
-  return async (dispatch: Function): Promise<unknown> => {
+export const submitGamesUpdate = (): AppThunk => {
+  return async (dispatch): Promise<void> => {
     const gamesUpdateResponse = await postGamesUpdate();
 
     if (gamesUpdateResponse?.status === 'error') {
@@ -30,8 +29,6 @@ export const submitGamesUpdate = (): any => {
     if (gamesUpdateResponse?.status === 'success') {
       dispatch(submitGetGamesAsync(gamesUpdateResponse.games));
     }
-
-    return gamesUpdateResponse;
   };
 };
 

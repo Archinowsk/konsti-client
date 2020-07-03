@@ -1,11 +1,13 @@
 import { postPlayerAssignment } from 'services/assignmentServices';
 import { getResults } from 'services/resultsServices';
 import { ResultsState } from 'typings/redux.typings';
+import { AppThunk } from 'typings/utils.typings';
+import { submitResponseMessageAsync } from 'views/admin/adminActions';
 
 export const SUBMIT_GET_RESULTS = 'SUBMIT_GET_RESULTS';
 
-export const submitGetResults = (startTime: string): any => {
-  return async (dispatch: Function): Promise<unknown> => {
+export const submitGetResults = (startTime: string): AppThunk => {
+  return async (dispatch): Promise<void> => {
     const getResultsResponse = await getResults(startTime);
 
     if (getResultsResponse?.status === 'error') {
@@ -20,13 +22,11 @@ export const submitGetResults = (startTime: string): any => {
         })
       );
     }
-
-    return getResultsResponse;
   };
 };
 
-export const submitPlayersAssign = (signupTime: string): any => {
-  return async (dispatch: Function): Promise<unknown> => {
+export const submitPlayersAssign = (signupTime: string): AppThunk => {
+  return async (dispatch): Promise<void> => {
     const assignResponse = await postPlayerAssignment(signupTime);
 
     if (assignResponse?.status === 'error') {
@@ -40,9 +40,9 @@ export const submitPlayersAssign = (signupTime: string): any => {
           startTime: assignResponse.startTime,
         })
       );
-    }
 
-    return assignResponse;
+      dispatch(submitResponseMessageAsync(assignResponse.resultMessage));
+    }
   };
 };
 

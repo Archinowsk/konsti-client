@@ -102,21 +102,18 @@ export const GameDetails: FC = (): ReactElement => {
       favoritedGames: allFavoritedGames,
     };
 
-    let response;
     try {
-      response = await dispatch(submitUpdateFavorites(favoriteData));
+      await dispatch(submitUpdateFavorites(favoriteData));
     } catch (error) {
-      console.log(`submitUpdateFavorites error:`, error);
+      throw new Error(`submitUpdateFavorites error: ${error}`);
     }
 
     setSubmitting(false);
 
-    if (response?.status === 'success') {
-      if (action === 'add') {
-        setFavorited(true);
-      } else if (action === 'del') {
-        setFavorited(false);
-      }
+    if (action === 'add') {
+      setFavorited(true);
+    } else if (action === 'del') {
+      setFavorited(false);
     }
   };
 
@@ -138,21 +135,18 @@ export const GameDetails: FC = (): ReactElement => {
       }
     }
 
-    let response;
     try {
-      response = await dispatch(submitUpdateHidden(allHiddenGames));
+      await dispatch(submitUpdateHidden(allHiddenGames));
     } catch (error) {
-      console.log(`submitUpdateHidden error`, error);
+      throw new Error(`submitUpdateHidden error: ${error}`);
     }
 
     setSubmitting(false);
 
-    if (response?.status === 'success') {
-      if (action === 'add') {
-        setHidden(true);
-      } else if (action === 'del') {
-        setHidden(false);
-      }
+    if (action === 'add') {
+      setHidden(true);
+    } else if (action === 'del') {
+      setHidden(false);
     }
   };
 

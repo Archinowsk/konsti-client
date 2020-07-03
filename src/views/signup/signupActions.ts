@@ -1,13 +1,14 @@
 import { postSignup } from 'services/signupServices';
 import { Signup, SignupData } from 'typings/user.typings';
+import { AppThunk } from 'typings/utils.typings';
 
 export const SUBMIT_SIGNUP_TIME = 'SUBMIT_SELECT_SIGNUPTIME';
 export const SUBMIT_SELECTED_GAMES = 'SUBMIT_SELECTED_GAMES';
 export const SUBMIT_SIGNED_GAMES = 'SUBMIT_SIGNED_GAMES';
 export const UPDATE_UNSAVED_CHANGES_STATUS = 'UPDATE_UNSAVED_CHANGES_STATUS';
 
-export const submitSignup = (signupData: SignupData): any => {
-  return async (dispatch: Function): Promise<unknown> => {
+export const submitSignup = (signupData: SignupData): AppThunk => {
+  return async (dispatch): Promise<void> => {
     const signupResponse = await postSignup(signupData);
 
     if (signupResponse?.status === 'error') {
@@ -16,9 +17,8 @@ export const submitSignup = (signupData: SignupData): any => {
 
     if (signupResponse?.status === 'success') {
       dispatch(submitSignupAsync(signupResponse.signedGames));
+      dispatch(submitSelectedGames(signupResponse.signedGames));
     }
-
-    return signupResponse;
   };
 };
 
