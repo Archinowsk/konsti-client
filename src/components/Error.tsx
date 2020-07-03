@@ -1,11 +1,12 @@
 import React, { FC, ReactElement } from 'react';
 
 interface Props {
-  meta: any;
+  meta: { touched: boolean; error: string };
 }
 
 export const Error: FC<Props> = (props: Props): ReactElement => {
   const {
+    // eslint-disable-next-line react/prop-types
     meta: { touched, error },
   } = props;
 
