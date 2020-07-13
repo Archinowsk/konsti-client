@@ -1,11 +1,15 @@
 import i18next from 'i18next';
-import backend from 'i18next-xhr-backend';
+import backend, { BackendOptions } from 'i18next-xhr-backend';
 import languageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
 import en from 'locales/en.json';
 import fi from 'locales/fi.json';
 
-const loadLocales = (url: string, options: any, callback: Function): void => {
+const loadLocales = (
+  url: string,
+  options: BackendOptions,
+  callback: Function
+): void => {
   if (url === 'en') {
     callback(en, { status: '200' });
   } else if (url === 'fi') {
@@ -20,7 +24,7 @@ i18next
   .init({
     backend: {
       loadPath: '{{lng}}',
-      parse: (data: any) => data,
+      parse: (data: string) => data,
       ajax: loadLocales,
     },
     fallbackLng: 'en',

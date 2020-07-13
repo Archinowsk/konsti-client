@@ -46,9 +46,9 @@ export const MyGamesView: FC = (): ReactElement => {
 
   React.useEffect(() => {
     const fetchData = async (): Promise<void> => {
-      await loadGames(store);
-      await loadUser(store);
-      await loadGroupMembers(store);
+      await loadGames();
+      await loadUser();
+      await loadGroupMembers();
     };
     fetchData();
   }, [store, testTime]);

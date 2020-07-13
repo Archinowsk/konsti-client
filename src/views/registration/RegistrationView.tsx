@@ -4,14 +4,17 @@ import { SubmissionError } from 'redux-form';
 import { useTranslation } from 'react-i18next';
 import { submitRegistration } from 'views/registration/registrationActions';
 import RegistrationForm from 'views/registration/components/RegistrationForm';
+import { RegistrationFormFields } from 'typings/user.typings';
 
 export const RegistrationView: FC = (): ReactElement => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const submit = async (form: any): Promise<void> => {
+  const submit = async (
+    registrationFormFields: RegistrationFormFields
+  ): Promise<void> => {
     try {
-      await dispatch(submitRegistration(form));
+      await dispatch(submitRegistration(registrationFormFields));
     } catch (error) {
       switch (error.code) {
         case 11:
@@ -30,6 +33,7 @@ export const RegistrationView: FC = (): ReactElement => {
 
   return (
     <div className='registration-view'>
+      {/* @ts-expect-error */}
       <RegistrationForm onSubmit={submit} />
     </div>
   );

@@ -1,14 +1,18 @@
 import { postLogin } from 'services/loginServices';
 import { saveSession, clearSession } from 'utils/localStorage';
-import { Login, LoginData, PostLoginResponse } from 'typings/user.typings';
+import {
+  LoginFormFields,
+  LoginData,
+  PostLoginResponse,
+} from 'typings/user.typings';
 import { ServerError, AppThunk } from 'typings/utils.typings';
 import { SubmitLoginAsync, SUBMIT_LOGIN } from 'typings/loginActions.typings';
 
-export const submitLogin = (loginData: Login): AppThunk => {
+export const submitLogin = (loginFormFields: LoginFormFields): AppThunk => {
   return async (dispatch): Promise<void> => {
     let loginResponse: PostLoginResponse | ServerError;
     try {
-      loginResponse = await postLogin(loginData);
+      loginResponse = await postLogin(loginFormFields);
     } catch (error) {
       clearSession();
       throw error;

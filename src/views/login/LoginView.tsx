@@ -4,14 +4,15 @@ import { useTranslation } from 'react-i18next';
 import { SubmissionError } from 'redux-form';
 import { submitLogin } from 'views/login/loginActions';
 import LoginForm from 'views/login/components/LoginForm';
+import { LoginFormFields } from 'typings/user.typings';
 
 export const LoginView: FC = (): ReactElement => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const submit = async (form: any): Promise<void> => {
+  const submit = async (loginFormFields: LoginFormFields): Promise<void> => {
     try {
-      await dispatch(submitLogin(form));
+      await dispatch(submitLogin(loginFormFields));
     } catch (error) {
       switch (error.code) {
         case 21:

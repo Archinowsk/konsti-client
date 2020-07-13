@@ -1,8 +1,8 @@
-import React, { FC, ReactElement } from 'react';
+import React, { FC, ReactElement, ChangeEvent } from 'react';
 import { timeFormatter } from 'utils/timeFormatter';
 
 export interface Props {
-  onChange: any;
+  onChange: (event: ChangeEvent<HTMLSelectElement>) => void;
   selectedTime: string;
   times: readonly string[];
 }

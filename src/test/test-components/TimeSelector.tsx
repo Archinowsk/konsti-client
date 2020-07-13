@@ -48,7 +48,7 @@ export const TimeSelector: FC = (): ReactElement => {
       <TimesDropdown
         times={times}
         selectedTime={testTime}
-        onChange={(event: ChangeEvent<HTMLInputElement>) =>
+        onChange={(event: ChangeEvent<HTMLSelectElement>) =>
           setTestTime(event.target.value)
         }
       />

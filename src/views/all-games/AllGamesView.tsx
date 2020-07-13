@@ -35,7 +35,7 @@ export const AllGamesView: FC = (): ReactElement => {
   React.useEffect(() => {
     setLoading(true);
     const fetchData = async (): Promise<void> => {
-      await loadGames(store);
+      await loadGames();
       setLoading(false);
     };
     fetchData();

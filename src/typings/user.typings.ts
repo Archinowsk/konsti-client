@@ -17,7 +17,7 @@ export interface FavoriteData {
   favoritedGames: readonly Game[];
 }
 
-export interface Login {
+export interface LoginFormFields {
   username?: string;
   password?: string;
   jwt?: string;
@@ -38,7 +38,7 @@ export interface LoginData {
   groupCode: string;
 }
 
-export interface RegistrationData {
+export interface RegistrationFormFields {
   password: string;
   registerDescription: boolean;
   serial: string;

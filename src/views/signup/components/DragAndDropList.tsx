@@ -2,7 +2,7 @@ import React, { FC, ReactElement } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { DragDropContext } from 'react-beautiful-dnd';
+import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 import { DropRow } from 'views/signup/components/DropRow';
 import { reorder, move } from 'utils/dragAndDrop';
 import { sleep } from 'utils/sleep';
@@ -45,7 +45,7 @@ export const DragAndDropList: FC<Props> = (props: Props): ReactElement => {
     setWarning('');
   };
 
-  const onDragEnd = (result: any): void => {
+  const onDragEnd = (result: DropResult): void => {
     const { source, destination } = result;
 
     // Dropped outside the list

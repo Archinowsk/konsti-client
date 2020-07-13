@@ -1,15 +1,15 @@
 import { postRegistration } from 'services/userServices';
 import { submitLogin } from 'views/login/loginActions';
-import { RegistrationData } from 'typings/user.typings';
+import { RegistrationFormFields } from 'typings/user.typings';
 import { AppThunk } from 'typings/utils.typings';
 
 export const submitRegistration = (
-  registrationData: RegistrationData
+  registrationFormFields: RegistrationFormFields
 ): AppThunk => {
   return async (dispatch): Promise<void> => {
     let registrationResponse;
     try {
-      registrationResponse = await postRegistration(registrationData);
+      registrationResponse = await postRegistration(registrationFormFields);
     } catch (error) {
       return await Promise.reject(error);
     }
@@ -21,8 +21,8 @@ export const submitRegistration = (
     if (registrationResponse?.status === 'success') {
       dispatch(
         submitLogin({
-          username: registrationData.username,
-          password: registrationData.password,
+          username: registrationFormFields.username,
+          password: registrationFormFields.password,
         })
       );
     }
