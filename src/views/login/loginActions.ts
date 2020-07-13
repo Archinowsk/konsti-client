@@ -1,10 +1,8 @@
 import { postLogin } from 'services/loginServices';
 import { saveSession, clearSession } from 'utils/localStorage';
 import { Login, LoginData, PostLoginResponse } from 'typings/user.typings';
-import { SubmitLogin } from 'typings/redux.typings';
 import { ServerError, AppThunk } from 'typings/utils.typings';
-
-export const SUBMIT_LOGIN = 'SUBMIT_LOGIN';
+import { SubmitLoginAsync, SUBMIT_LOGIN } from 'typings/loginActions.typings';
 
 export const submitLogin = (loginData: Login): AppThunk => {
   return async (dispatch): Promise<void> => {
@@ -47,7 +45,7 @@ const submitLoginAsync = ({
   userGroup,
   serial,
   groupCode,
-}: LoginData): SubmitLogin => {
+}: LoginData): SubmitLoginAsync => {
   return {
     type: SUBMIT_LOGIN,
     username,

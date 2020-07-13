@@ -1,19 +1,20 @@
 import {
+  SignupActionTypes,
   SUBMIT_SIGNUP_TIME,
   SUBMIT_SELECTED_GAMES,
   UPDATE_UNSAVED_CHANGES_STATUS,
-} from 'views/signup/signupActions';
+} from 'typings/signupActions.typings';
 import { SignupState } from 'typings/redux.typings';
 
-const initialState = {
+const initialState: SignupState = {
   signupTime: '',
   selectedGames: [],
   unsavedChanges: false,
 };
 
 export const signupReducer = (
-  state: SignupState = initialState,
-  action: any
+  state = initialState,
+  action: SignupActionTypes
 ): SignupState => {
   switch (action.type) {
     case SUBMIT_SIGNUP_TIME:

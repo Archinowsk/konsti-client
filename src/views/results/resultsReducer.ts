@@ -1,11 +1,14 @@
-import { SUBMIT_GET_RESULTS } from 'views/results/resultsActions';
+import {
+  ResultActionTypes,
+  SUBMIT_GET_RESULTS,
+} from 'typings/resultActions.typings';
 import { ResultsState } from 'typings/redux.typings';
 
-const initialState = { startTime: '', result: [] };
+const initialState: ResultsState = { startTime: '', result: [] };
 
 export const resultsReducer = (
-  state: ResultsState = initialState,
-  action: any
+  state = initialState,
+  action: ResultActionTypes
 ): ResultsState => {
   switch (action.type) {
     case SUBMIT_GET_RESULTS:

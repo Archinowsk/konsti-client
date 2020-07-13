@@ -1,19 +1,23 @@
 import {
+  MyGamesActionTypes,
   SUBMIT_GET_USER_GAMES,
   SUBMIT_UPDATE_FAVORITES,
-} from 'views/my-games/myGamesActions';
-import { SUBMIT_SIGNED_GAMES } from 'views/signup/signupActions';
+} from 'typings/myGamesActions.typings';
+import {
+  SignupActionTypes,
+  SUBMIT_SIGNED_GAMES,
+} from 'typings/signupActions.typings';
 import { MyGamesState } from 'typings/redux.typings';
 
-const initialState = {
+const initialState: MyGamesState = {
   enteredGames: [],
   favoritedGames: [],
   signedGames: [],
 };
 
 export const myGamesReducer = (
-  state: MyGamesState = initialState,
-  action: any
+  state = initialState,
+  action: MyGamesActionTypes | SignupActionTypes
 ): MyGamesState => {
   switch (action.type) {
     case SUBMIT_GET_USER_GAMES:

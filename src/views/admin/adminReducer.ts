@@ -1,14 +1,15 @@
 import {
+  AdminActionTypes,
   SUBMIT_UPDATE_HIDDEN,
   SUBMIT_GET_SETTINGS,
   SUBMIT_SELECT_SIGNUP_TIME,
   SUBMIT_SET_TEST_TIME,
   SUBMIT_TOGGLE_APP_OPEN,
   SUBMIT_RESPONSE_MESSAGE,
-} from 'views/admin/adminActions';
+} from 'typings/adminActions.typings';
 import { AdminState } from 'typings/redux.typings';
 
-const initialState = {
+const initialState: AdminState = {
   hiddenGames: [],
   signupTime: '',
   testTime: '',
@@ -17,8 +18,8 @@ const initialState = {
 };
 
 export const adminReducer = (
-  state: AdminState = initialState,
-  action: any
+  state = initialState,
+  action: AdminActionTypes
 ): AdminState => {
   switch (action.type) {
     case SUBMIT_UPDATE_HIDDEN:
@@ -35,7 +36,7 @@ export const adminReducer = (
     case SUBMIT_SET_TEST_TIME:
       return { ...state, testTime: action.testTime };
     case SUBMIT_TOGGLE_APP_OPEN:
-      return { ...state, appOpen: action.responseMessage };
+      return { ...state, appOpen: action.appOpen };
     case SUBMIT_RESPONSE_MESSAGE:
       return { ...state, responseMessage: action.responseMessage };
     default:

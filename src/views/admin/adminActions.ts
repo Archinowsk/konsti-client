@@ -3,15 +3,21 @@ import { getSettings, postToggleAppOpen } from 'services/settingsServices';
 import { postSignupTime } from 'services/signuptimeServices';
 import { Game } from 'typings/game.typings';
 import { Settings } from 'typings/settings.typings';
-import { GetSettings } from 'typings/redux.typings';
 import { AppThunk } from 'typings/utils.typings';
-
-export const SUBMIT_UPDATE_HIDDEN = 'SUBMIT_UPDATE_HIDDEN';
-export const SUBMIT_GET_SETTINGS = 'SUBMIT_GET_SETTINGS';
-export const SUBMIT_SELECT_SIGNUP_TIME = 'SUBMIT_SELECT_SIGNUP_TIME';
-export const SUBMIT_SET_TEST_TIME = 'SUBMIT_SET_TEST_TIME';
-export const SUBMIT_TOGGLE_APP_OPEN = 'SUBMIT_TOGGLE_APP_OPEN';
-export const SUBMIT_RESPONSE_MESSAGE = 'SUBMIT_RESPONSE_MESSAGE';
+import {
+  SubmitUpdateHiddenAsync,
+  SubmitGetSettingsAsync,
+  SubmitSignupTimeAsync,
+  SubmitSetTestTime,
+  SubmitToggleAppOpenAsync,
+  SubmitResponseMessageAsync,
+  SUBMIT_UPDATE_HIDDEN,
+  SUBMIT_GET_SETTINGS,
+  SUBMIT_SELECT_SIGNUP_TIME,
+  SUBMIT_SET_TEST_TIME,
+  SUBMIT_TOGGLE_APP_OPEN,
+  SUBMIT_RESPONSE_MESSAGE,
+} from 'typings/adminActions.typings';
 
 export const submitUpdateHidden = (hiddenGames: readonly Game[]): AppThunk => {
   return async (dispatch): Promise<void> => {
@@ -27,7 +33,9 @@ export const submitUpdateHidden = (hiddenGames: readonly Game[]): AppThunk => {
   };
 };
 
-const submitUpdateHiddenAsync = (hiddenGames: readonly Game[]): any => {
+const submitUpdateHiddenAsync = (
+  hiddenGames: readonly Game[]
+): SubmitUpdateHiddenAsync => {
   return {
     type: SUBMIT_UPDATE_HIDDEN,
     hiddenGames,
@@ -58,7 +66,7 @@ const submitGetSettingsAsync = ({
   hiddenGames,
   signupTime,
   appOpen,
-}: Settings): GetSettings => {
+}: Settings): SubmitGetSettingsAsync => {
   return {
     type: SUBMIT_GET_SETTINGS,
     hiddenGames,
@@ -81,14 +89,14 @@ export const submitSignupTime = (signupTime: string): AppThunk => {
   };
 };
 
-const submitSignupTimeAsync = (signupTime: string): any => {
+const submitSignupTimeAsync = (signupTime: string): SubmitSignupTimeAsync => {
   return {
     type: SUBMIT_SELECT_SIGNUP_TIME,
     signupTime,
   };
 };
 
-export const submitSetTestTime = (testTime: string): any => {
+export const submitSetTestTime = (testTime: string): SubmitSetTestTime => {
   return {
     type: SUBMIT_SET_TEST_TIME,
     testTime,
@@ -109,14 +117,18 @@ export const submitToggleAppOpen = (appOpen: boolean): AppThunk => {
   };
 };
 
-const submitToggleAppOpenAsync = (appOpen: boolean): any => {
+const submitToggleAppOpenAsync = (
+  appOpen: boolean
+): SubmitToggleAppOpenAsync => {
   return {
     type: SUBMIT_TOGGLE_APP_OPEN,
     appOpen,
   };
 };
 
-export const submitResponseMessageAsync = (responseMessage: string): any => {
+export const submitResponseMessageAsync = (
+  responseMessage: string
+): SubmitResponseMessageAsync => {
   return {
     type: SUBMIT_RESPONSE_MESSAGE,
     responseMessage,

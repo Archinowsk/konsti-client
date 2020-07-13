@@ -1,10 +1,14 @@
 import { postGroup, getGroup } from 'services/groupServices';
 import { GroupData, GroupMember } from 'typings/group.typings';
 import { AppThunk } from 'typings/utils.typings';
-
-export const SUBMIT_UPDATE_GROUP_CODE = 'SUBMIT_UPDATE_GROUP_CODE';
-export const SUBMIT_LEAVE_GROUP = 'SUBMIT_LEAVE_GROUP';
-export const SUBMIT_UPDATE_GROUP_MEMBERS = 'SUBMIT_UPDATE_GROUP_MEMBERS';
+import {
+  SubmitUpdateGroupCodeAsync,
+  SubmitGetGroupAsync,
+  SubmitLeaveGroupAsync,
+  SUBMIT_UPDATE_GROUP_CODE,
+  SUBMIT_LEAVE_GROUP,
+  SUBMIT_UPDATE_GROUP_MEMBERS,
+} from 'typings/groupActions.typings';
 
 export const submitJoinGroup = (groupData: GroupData): AppThunk => {
   return async (dispatch): Promise<void> => {
@@ -36,7 +40,9 @@ export const submitCreateGroup = (groupData: GroupData): AppThunk => {
   };
 };
 
-const submitUpdateGroupCodeAsync = (groupCode: string): any => {
+const submitUpdateGroupCodeAsync = (
+  groupCode: string
+): SubmitUpdateGroupCodeAsync => {
   return {
     type: SUBMIT_UPDATE_GROUP_CODE,
     groupCode,
@@ -57,7 +63,9 @@ export const submitGetGroup = (groupCode: string): AppThunk => {
   };
 };
 
-const submitGetGroupAsync = (groupMembers: readonly GroupMember[]): any => {
+const submitGetGroupAsync = (
+  groupMembers: readonly GroupMember[]
+): SubmitGetGroupAsync => {
   return {
     type: SUBMIT_UPDATE_GROUP_MEMBERS,
     groupMembers,
@@ -78,7 +86,7 @@ export const submitLeaveGroup = (groupData: GroupData): AppThunk => {
   };
 };
 
-const submitLeaveGroupAsync = (groupCode: string): any => {
+const submitLeaveGroupAsync = (groupCode: string): SubmitLeaveGroupAsync => {
   return {
     type: SUBMIT_LEAVE_GROUP,
     groupCode,
