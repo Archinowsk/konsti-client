@@ -10,7 +10,7 @@ import BrotliPlugin from 'brotli-webpack-plugin';
 import Dotenv from 'dotenv-webpack';
 import path from 'path';
 import webpack, { Configuration } from 'webpack';
-import webpackMerge from 'webpack-merge';
+import { merge } from 'webpack-merge';
 import { config } from './src/config';
 
 const stats = {
@@ -231,11 +231,11 @@ const getWebpackConfig = (): Configuration => {
 
   switch (TARGET) {
     case 'build' || 'bundle-analyze':
-      return webpackMerge(commonConfig, prodConfig);
+      return merge(commonConfig, prodConfig);
     case 'build-staging':
-      return webpackMerge(commonConfig, stagingConfig);
+      return merge(commonConfig, stagingConfig);
     default:
-      return webpackMerge(commonConfig, devConfig);
+      return merge(commonConfig, devConfig);
   }
 };
 
