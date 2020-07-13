@@ -1,11 +1,14 @@
-import { SUBMIT_GET_GAMES } from 'views/all-games/allGamesActions';
+import {
+  AllGamesActionTypes,
+  SUBMIT_GET_GAMES,
+} from 'typings/allGamesActions.typings';
 import { AllGamesState } from 'typings/redux.typings';
 
-const initialState = { games: [] };
+const initialState: AllGamesState = { games: [] };
 
 export const allGamesReducer = (
-  state: AllGamesState = initialState,
-  action: any
+  state = initialState,
+  action: AllGamesActionTypes
 ): AllGamesState => {
   switch (action.type) {
     case SUBMIT_GET_GAMES:

@@ -3,8 +3,10 @@ import { getResults } from 'services/resultsServices';
 import { ResultsState } from 'typings/redux.typings';
 import { AppThunk } from 'typings/utils.typings';
 import { submitResponseMessageAsync } from 'views/admin/adminActions';
-
-export const SUBMIT_GET_RESULTS = 'SUBMIT_GET_RESULTS';
+import {
+  SubmitGetResultsAsync,
+  SUBMIT_GET_RESULTS,
+} from 'typings/resultActions.typings';
 
 export const submitGetResults = (startTime: string): AppThunk => {
   return async (dispatch): Promise<void> => {
@@ -46,7 +48,9 @@ export const submitPlayersAssign = (signupTime: string): AppThunk => {
   };
 };
 
-const submitGetResultsAsync = (results: ResultsState): any => {
+const submitGetResultsAsync = (
+  results: ResultsState
+): SubmitGetResultsAsync => {
   return {
     type: SUBMIT_GET_RESULTS,
     result: results.result,

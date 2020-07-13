@@ -1,11 +1,16 @@
 import { postSignup } from 'services/signupServices';
 import { Signup, SignupData } from 'typings/user.typings';
 import { AppThunk } from 'typings/utils.typings';
-
-export const SUBMIT_SIGNUP_TIME = 'SUBMIT_SELECT_SIGNUPTIME';
-export const SUBMIT_SELECTED_GAMES = 'SUBMIT_SELECTED_GAMES';
-export const SUBMIT_SIGNED_GAMES = 'SUBMIT_SIGNED_GAMES';
-export const UPDATE_UNSAVED_CHANGES_STATUS = 'UPDATE_UNSAVED_CHANGES_STATUS';
+import {
+  SubmitSignupAsync,
+  SubmitSignupTime,
+  SubmitSelectedGames,
+  UpdateUnsavedChangesStatus,
+  SUBMIT_SIGNUP_TIME,
+  SUBMIT_SELECTED_GAMES,
+  UPDATE_UNSAVED_CHANGES_STATUS,
+  SUBMIT_SIGNED_GAMES,
+} from 'typings/signupActions.typings';
 
 export const submitSignup = (signupData: SignupData): AppThunk => {
   return async (dispatch): Promise<void> => {
@@ -22,28 +27,34 @@ export const submitSignup = (signupData: SignupData): AppThunk => {
   };
 };
 
-const submitSignupAsync = (signedGames: readonly Signup[]): any => {
+const submitSignupAsync = (
+  signedGames: readonly Signup[]
+): SubmitSignupAsync => {
   return {
     type: SUBMIT_SIGNED_GAMES,
     signedGames,
   };
 };
 
-export const submitSignupTime = (signupTime: string): any => {
+export const submitSignupTime = (signupTime: string): SubmitSignupTime => {
   return {
     type: SUBMIT_SIGNUP_TIME,
     signupTime,
   };
 };
 
-export const submitSelectedGames = (selectedGames: readonly Signup[]): any => {
+export const submitSelectedGames = (
+  selectedGames: readonly Signup[]
+): SubmitSelectedGames => {
   return {
     type: SUBMIT_SELECTED_GAMES,
     selectedGames,
   };
 };
 
-export const updateUnsavedChangesStatus = (status: boolean): any => {
+export const updateUnsavedChangesStatus = (
+  status: boolean
+): UpdateUnsavedChangesStatus => {
   return {
     type: UPDATE_UNSAVED_CHANGES_STATUS,
     unsavedChanges: status,

@@ -1,14 +1,15 @@
-import { SUBMIT_LOGIN } from 'views/login/loginActions';
+import { LoginActionTypes, SUBMIT_LOGIN } from 'typings/loginActions.typings';
 import {
+  GroupActionTypes,
   SUBMIT_UPDATE_GROUP_CODE,
   SUBMIT_LEAVE_GROUP,
   SUBMIT_UPDATE_GROUP_MEMBERS,
-} from 'views/group/groupActions';
+} from 'typings/groupActions.typings';
 
 import { LoginState } from 'typings/redux.typings';
 import { UserGroup } from 'typings/user.typings';
 
-const initialState = {
+const initialState: LoginState = {
   username: '',
   loggedIn: false,
   jwt: '',
@@ -19,8 +20,8 @@ const initialState = {
 };
 
 export const loginReducer = (
-  state: LoginState = initialState,
-  action: any
+  state = initialState,
+  action: LoginActionTypes | GroupActionTypes
 ): LoginState => {
   switch (action.type) {
     case SUBMIT_LOGIN:

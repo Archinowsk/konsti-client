@@ -1,8 +1,7 @@
 import { clearSession } from 'utils/localStorage';
+import { SubmitLogout, SUBMIT_LOGOUT } from 'typings/logoutActions.typings';
 
-export const SUBMIT_LOGOUT = 'SUBMIT_LOGOUT';
-
-export const submitLogout = (): any => {
+export const submitLogout = (): SubmitLogout => {
   clearSession();
   return {
     type: SUBMIT_LOGOUT,

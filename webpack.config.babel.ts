@@ -80,7 +80,7 @@ const commonConfig = {
   },
 };
 
-const devConfig = {
+const devConfig: Configuration = {
   mode: 'development' as const,
 
   devtool: config.reduxTrace ? ('source-map' as const) : ('eval' as const), // Use eval for best hot-loading perf
@@ -106,7 +106,7 @@ const devConfig = {
   ],
 };
 
-const prodConfig = {
+const prodConfig: Configuration = {
   mode: 'production' as const,
 
   stats,
@@ -155,7 +155,7 @@ const prodConfig = {
       cacheGroups: {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
-          name(module: any) {
+          name(module) {
             const packageName = module.context.match(
               /[\\/]node_modules[\\/](.*?)([\\/]|$)/
             )[1];
@@ -168,7 +168,7 @@ const prodConfig = {
   },
 };
 
-const stagingConfig = {
+const stagingConfig: Configuration = {
   mode: 'production' as const,
 
   stats,
@@ -213,7 +213,7 @@ const stagingConfig = {
       cacheGroups: {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
-          name(module: any) {
+          name(module) {
             const packageName = module.context.match(
               /[\\/]node_modules[\\/](.*?)([\\/]|$)/
             )[1];

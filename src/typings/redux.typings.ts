@@ -1,8 +1,8 @@
 import { Game } from 'typings/game.typings';
 import { GroupMember } from 'typings/group.typings';
-import { Signup, UserGroup, UserGames, LoginData } from 'typings/user.typings';
+import { Signup, UserGroup } from 'typings/user.typings';
 import { Result } from 'typings/result.typings';
-import { Settings } from 'typings/settings.typings';
+import { appReducer } from 'utils/store';
 
 export interface AdminState {
   hiddenGames: readonly Game[];
@@ -47,23 +47,4 @@ export interface LocalStorageState {
   login: { jwt: string };
 }
 
-export interface RootState {
-  admin: AdminState;
-  allGames: AllGamesState;
-  login: LoginState;
-  myGames: MyGamesState;
-  results: ResultsState;
-  signup: SignupState;
-}
-
-export interface SubmitGetUser extends UserGames {
-  type: string;
-}
-
-export interface SubmitLogin extends LoginData {
-  type: string;
-}
-
-export interface GetSettings extends Settings {
-  type: string;
-}
+export type RootState = ReturnType<typeof appReducer>;

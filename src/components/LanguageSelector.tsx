@@ -1,5 +1,6 @@
 import React, { FC, ReactElement, ChangeEvent } from 'react';
 import { useTranslation } from 'react-i18next';
+import { TFunction } from 'i18next';
 import moment from 'moment';
 import styled from 'styled-components';
 
@@ -8,7 +9,7 @@ export const LanguageSelector: FC = (): ReactElement => {
   const language = i18n.language;
 
   // Language toggle
-  const toggle = async (lng: string): Promise<any> =>
+  const toggle = async (lng: string): Promise<TFunction> =>
     await i18n.changeLanguage(lng);
 
   const setLanguage = (event: ChangeEvent<HTMLSelectElement>): void => {

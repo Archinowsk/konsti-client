@@ -2,11 +2,13 @@ import { getUser } from 'services/userServices';
 import { postFavorite } from 'services/favoriteServices';
 import { FavoriteData, UserGames } from 'typings/user.typings';
 import { Game } from 'typings/game.typings';
-import { SubmitGetUser } from 'typings/redux.typings';
 import { AppThunk } from 'typings/utils.typings';
-
-export const SUBMIT_GET_USER_GAMES = 'SUBMIT_GET_USER_GAMES';
-export const SUBMIT_UPDATE_FAVORITES = 'SUBMIT_UPDATE_FAVORITES';
+import {
+  SubmitGetUserAsync,
+  SubmitUpdateFavoritesAsync,
+  SUBMIT_GET_USER_GAMES,
+  SUBMIT_UPDATE_FAVORITES,
+} from 'typings/myGamesActions.typings';
 
 export const submitGetUser = (username: string): AppThunk => {
   return async (dispatch): Promise<void> => {
@@ -36,7 +38,7 @@ const submitGetUserAsync = ({
   enteredGames,
   favoritedGames,
   signedGames,
-}: UserGames): SubmitGetUser => {
+}: UserGames): SubmitGetUserAsync => {
   return {
     type: SUBMIT_GET_USER_GAMES,
     enteredGames,
@@ -61,7 +63,9 @@ export const submitUpdateFavorites = (favoriteData: FavoriteData): AppThunk => {
   };
 };
 
-const submitUpdateFavoritesAsync = (favoritedGames: readonly Game[]): any => {
+const submitUpdateFavoritesAsync = (
+  favoritedGames: readonly Game[]
+): SubmitUpdateFavoritesAsync => {
   return {
     type: SUBMIT_UPDATE_FAVORITES,
     favoritedGames,
