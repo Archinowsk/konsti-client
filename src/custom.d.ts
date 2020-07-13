@@ -1,4 +1,4 @@
 declare module '*.gif' {
-  const content: any;
+  const content: string;
   export = content;
 }

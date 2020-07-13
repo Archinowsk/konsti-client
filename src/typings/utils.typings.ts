@@ -1,5 +1,5 @@
-import { ThunkAction } from 'redux-thunk';
-import { Action } from 'redux';
+import { ThunkAction, ThunkDispatch } from 'redux-thunk';
+import { Action, AnyAction } from 'redux';
 import { RootState } from './redux.typings';
 import { Game } from 'typings/game.typings';
 
@@ -41,3 +41,5 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   unknown,
   Action<string>
 >;
+
+export type AppThunkDispatch = ThunkDispatch<RootState, undefined, AnyAction>;

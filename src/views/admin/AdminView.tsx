@@ -191,7 +191,7 @@ export const AdminView: FC = (): ReactElement => {
             <TimesDropdown
               times={getStartingTimes()}
               selectedTime={selectedSignupTime}
-              onChange={(event: ChangeEvent<HTMLInputElement>) =>
+              onChange={(event: ChangeEvent<HTMLSelectElement>) =>
                 setSelectedSignupTime(event.target.value)
               }
             />

@@ -1,7 +1,7 @@
 import { AxiosResponse, AxiosError } from 'axios';
 import { api } from 'utils/api';
 import {
-  RegistrationData,
+  RegistrationFormFields,
   UpdateUserResponse,
   GetUserBySerialResponse,
   PostRegistrationResponse,
@@ -10,9 +10,9 @@ import {
 import { ServerError } from 'typings/utils.typings';
 
 export const postRegistration = async (
-  registrationData: RegistrationData
+  registrationFormFields: RegistrationFormFields
 ): Promise<PostRegistrationResponse | ServerError> => {
-  const { username, password, serial } = registrationData;
+  const { username, password, serial } = registrationFormFields;
   let response: AxiosResponse;
   try {
     response = await api.post<PostRegistrationResponse>('/user', {

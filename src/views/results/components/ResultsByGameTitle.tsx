@@ -22,7 +22,7 @@ export const ResultsByGameTitle: FC<Props> = (props: Props): ReactElement => {
     'enteredGame.gameDetails.title'
   );
 
-  const resultsByGameTitle: any = [];
+  const resultsByGameTitle: ReactElement[] = [];
 
   for (const result in groupedResults) {
     const sortedResults = _.sortBy(groupedResults[result], [

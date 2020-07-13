@@ -1,12 +1,12 @@
 import { AxiosResponse, AxiosError } from 'axios';
 import { api } from 'utils/api';
-import { Login, PostLoginResponse } from 'typings/user.typings';
+import { LoginFormFields, PostLoginResponse } from 'typings/user.typings';
 import { ServerError } from 'typings/utils.typings';
 
 export const postLogin = async (
-  loginData: Login
+  loginFormFields: LoginFormFields
 ): Promise<PostLoginResponse | ServerError> => {
-  const { username, password, jwt } = loginData;
+  const { username, password, jwt } = loginFormFields;
   let response: AxiosResponse;
   try {
     response = await api.post<PostLoginResponse>('/login', {

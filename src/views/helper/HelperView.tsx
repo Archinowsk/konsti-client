@@ -14,8 +14,8 @@ export const HelperView: FC = (): ReactElement => {
 
   React.useEffect(() => {
     const fetchData = async (): Promise<void> => {
-      await loadSettings(store);
-      await loadResults(store);
+      await loadSettings();
+      await loadResults();
     };
     fetchData();
   }, [store]);

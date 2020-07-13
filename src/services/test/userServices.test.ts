@@ -62,14 +62,14 @@ describe('userServices', () => {
     const serial = '12345';
     const username = 'test username';
 
-    const registrationData = {
+    const registrationFormFields = {
       password,
       serial,
       username,
       registerDescription: true,
     };
 
-    const response = await postRegistration(registrationData);
+    const response = await postRegistration(registrationFormFields);
 
     expect(response).toEqual('test response');
     expect(mockAxios.post).toHaveBeenCalledTimes(1);

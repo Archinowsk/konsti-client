@@ -5,68 +5,75 @@ import { submitGetUser } from 'views/my-games/myGamesActions';
 import { submitGetGroup } from 'views/group/groupActions';
 import { submitLogin } from 'views/login/loginActions';
 import { store } from 'utils/store';
+import { AppThunkDispatch } from 'typings/utils.typings';
 
 export const loadData = async (): Promise<void> => {
   // Get app settings
-  await loadSettings(store);
+  await loadSettings();
 
   // Get games data
-  await loadGames(store);
+  await loadGames();
 
   // Check if existing user session
-  await recoverSession(store);
+  await recoverSession();
 
   // Get assignment results
-  await loadResults(store);
+  await loadResults();
 
   // Get user data
-  await loadUser(store);
+  await loadUser();
 
   // Get group members
-  await loadGroupMembers(store);
+  await loadGroupMembers();
 };
 
-export const loadSettings = async (store: any): Promise<void> => {
-  await store.dispatch(submitGetSettings());
+export const loadSettings = async (): Promise<void> => {
+  const dispatch: AppThunkDispatch = store.dispatch;
+  await dispatch(submitGetSettings());
 };
 
-export const loadGames = async (store: any): Promise<void> => {
-  await store.dispatch(submitGetGames());
+export const loadGames = async (): Promise<void> => {
+  const dispatch: AppThunkDispatch = store.dispatch;
+  await dispatch(submitGetGames());
 };
 
-const recoverSession = async (store: any): Promise<void> => {
+const recoverSession = async (): Promise<void> => {
   const state = store.getState();
+  const dispatch: AppThunkDispatch = store.dispatch;
   const { loggedIn, jwt } = state.login;
 
   if (!loggedIn && jwt) {
-    await store.dispatch(submitLogin({ jwt }));
+    await dispatch(submitLogin({ jwt }));
   }
 };
 
-export const loadResults = async (store: any): Promise<void> => {
+export const loadResults = async (): Promise<void> => {
   const state = store.getState();
+  const dispatch: AppThunkDispatch = store.dispatch;
   const { loggedIn } = state.login;
   const { signupTime } = state.admin;
 
   if (loggedIn && signupTime) {
-    await store.dispatch(submitGetResults(signupTime));
+    await dispatch(submitGetResults(signupTime));
   }
 };
 
-export const loadUser = async (store: any): Promise<void> => {
+export const loadUser = async (): Promise<void> => {
   const state = store.getState();
+  const dispatch: AppThunkDispatch = store.dispatch;
   const { loggedIn, userGroup, username } = state.login;
 
   if (loggedIn && userGroup === 'user') {
-    await store.dispatch(submitGetUser(username));
+    await dispatch(submitGetUser(username));
   }
 };
 
-export const loadGroupMembers = async (store: any): Promise<void> => {
+export const loadGroupMembers = async (): Promise<void> => {
   const state = store.getState();
+  const dispatch: AppThunkDispatch = store.dispatch;
   const { loggedIn, groupCode } = state.login;
 
   if (loggedIn && groupCode !== '0') {
-    await store.dispatch(submitGetGroup(groupCode));
+    await dispatch(submitGetGroup(groupCode));
   }
 };

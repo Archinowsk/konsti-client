@@ -85,6 +85,7 @@ module.exports = {
 
     // @typescript-eslint
     '@typescript-eslint/ban-ts-comment': 'error',
+    '@typescript-eslint/no-explicit-any': 'error',
     '@typescript-eslint/require-array-sort-compare': [
       'error',
       { ignoreStringArrays: true },
@@ -92,7 +93,6 @@ module.exports = {
     '@typescript-eslint/default-param-last': 'off', // Problem setting Redux reducer initial state
 
     // TODO: Enable these
-    '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/strict-boolean-expressions': 'off',
     '@typescript-eslint/no-floating-promises': 'off',
     '@typescript-eslint/restrict-template-expressions': 'off',

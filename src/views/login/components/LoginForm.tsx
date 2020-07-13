@@ -5,13 +5,9 @@ import styled from 'styled-components';
 import { required } from 'utils/validate';
 import { FormField } from 'components/FormField';
 
-interface Props {
-  handleSubmit: any;
-  submitting: boolean;
-  error?: string;
-}
-
-const LoginForm: FC<InjectedFormProps> = (props: Props): ReactElement => {
+const LoginForm: FC<InjectedFormProps> = (
+  props: InjectedFormProps
+): ReactElement => {
   const { handleSubmit, submitting, error } = props;
   const { t } = useTranslation();
 

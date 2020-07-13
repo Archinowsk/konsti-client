@@ -44,7 +44,7 @@ export const GroupView: FC = (): ReactElement => {
 
   React.useEffect(() => {
     const fetchData = async (): Promise<void> => {
-      await loadGroupMembers(store);
+      await loadGroupMembers();
     };
     fetchData();
   }, [store]);

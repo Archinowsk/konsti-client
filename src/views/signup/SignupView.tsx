@@ -28,8 +28,8 @@ export const SignupView: FC = (): ReactElement => {
 
   React.useEffect(() => {
     const fetchData = async (): Promise<void> => {
-      await loadUser(store);
-      await loadGroupMembers(store);
+      await loadUser();
+      await loadGroupMembers();
     };
     fetchData();
   }, [store]);

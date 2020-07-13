@@ -12,7 +12,9 @@ describe('FormField', () => {
         asyncValidating: false,
         autofilled: false,
         dirty: false,
-        dispatch: () => store.dispatch('' as any),
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
+        dispatch: () => store.dispatch(''),
         error: 'validation.required',
         form: 'registration',
         initial: undefined,

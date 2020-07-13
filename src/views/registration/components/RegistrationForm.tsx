@@ -6,14 +6,8 @@ import { FormField } from 'components/FormField';
 import { required } from 'utils/validate';
 import { Accordion } from 'components/Accordion';
 
-interface Props {
-  handleSubmit: any;
-  submitting: boolean;
-  error?: string;
-}
-
 const RegistrationForm: FC<InjectedFormProps> = (
-  props: Props
+  props: InjectedFormProps
 ): ReactElement => {
   const { handleSubmit, submitting, error } = props;
   const { t } = useTranslation();

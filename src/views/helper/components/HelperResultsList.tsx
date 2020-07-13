@@ -29,7 +29,7 @@ export const HelperResultsList: FC = (): ReactElement => {
     'enteredGame.gameDetails.title'
   );
 
-  const resultsByGameTitle: any = [];
+  const resultsByGameTitle: ReactElement[] = [];
 
   for (const result in groupedResults) {
     const sortedResults = _.sortBy(groupedResults[result], [

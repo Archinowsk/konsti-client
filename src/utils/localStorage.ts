@@ -1,6 +1,6 @@
 import { LocalStorageState } from 'typings/redux.typings';
 
-export const loadSession = (): any => {
+export const loadSession = (): string | undefined => {
   try {
     const serializedState = localStorage.getItem('state');
     if (
@@ -10,7 +10,7 @@ export const loadSession = (): any => {
       return JSON.parse(serializedState);
     }
   } catch (error) {
-    console.error(error);
+    throw new Error(error);
   }
 };
 
