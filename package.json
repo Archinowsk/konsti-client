@@ -8,8 +8,8 @@
   },
   "main": "index.tsx",
   "scripts": {
-    "build:prod": "webpack-cli",
     "build:dev": "webpack-cli",
+    "build:prod": "webpack-cli",
     "build:staging": "webpack-cli",
     "build:types": "tsc --emitDeclarationOnly",
     "bundle-analyzer": "webpack-cli --profile --json > stats.json && webpack-bundle-analyzer stats.json build -m server",
