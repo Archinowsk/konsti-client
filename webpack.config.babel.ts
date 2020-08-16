@@ -230,9 +230,9 @@ const getWebpackConfig = (): Configuration => {
   const TARGET = process.env.npm_lifecycle_event;
 
   switch (TARGET) {
-    case 'build' || 'bundle-analyze':
+    case 'build:prod' || 'bundle-analyzer':
       return merge(commonConfig, prodConfig);
-    case 'build-staging':
+    case 'build:staging':
       return merge(commonConfig, stagingConfig);
     default:
       return merge(commonConfig, devConfig);
