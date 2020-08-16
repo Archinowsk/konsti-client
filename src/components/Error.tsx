@@ -6,7 +6,6 @@ interface Props {
 
 export const Error: FC<Props> = (props: Props): ReactElement => {
   const {
-    // eslint-disable-next-line react/prop-types
     meta: { touched, error },
   } = props;
 
