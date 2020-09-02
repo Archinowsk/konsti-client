@@ -1,5 +1,3 @@
-export type Theme = typeof theme;
-
 export const theme = {
   backgroundActive: '#ebf1de',
   backgroundDndItem: '#fff',
@@ -32,3 +30,5 @@ export const theme = {
   buttonFontSize: '14px',
   linkFontSize: '18px',
 };
+
+export type Theme = typeof theme;

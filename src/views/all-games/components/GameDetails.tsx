@@ -14,6 +14,8 @@ import { RootState } from 'typings/redux.typings';
 
 export const GameDetails: FC = (): ReactElement => {
   const history = useHistory();
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-expect-error
   const { gameId } = useParams();
 
   const username: string = useSelector(
