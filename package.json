@@ -67,6 +67,7 @@
     "@babel/preset-typescript": "7.10.4",
     "@babel/register": "7.11.5",
     "@hot-loader/react-dom": "16.13.0",
+    "@svgr/webpack": "5.4.0",
     "@types/brotli-webpack-plugin": "1.1.0",
     "@types/browserslist": "4.8.0",
     "@types/compression-webpack-plugin": "4.0.0",
