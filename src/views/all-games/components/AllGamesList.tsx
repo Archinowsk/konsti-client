@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import styled from 'styled-components';
 import { timeFormatter } from 'utils/timeFormatter';
-import { updateFavorite, UpdateFavoriteOpts } from '../allGamesActions';
+import { updateFavorite, UpdateFavoriteOpts } from 'utils/favorite';
 import { Game } from 'typings/game.typings';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 

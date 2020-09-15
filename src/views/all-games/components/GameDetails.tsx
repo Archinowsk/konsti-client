@@ -7,7 +7,7 @@ import { FeedbackForm } from 'views/all-games/components/FeedbackForm';
 import { GameInfo } from 'views/all-games/components/GameInfo';
 import { Loading } from 'components/Loading';
 import { Game } from 'typings/game.typings';
-import { updateFavorite, UpdateFavoriteOpts } from '../allGamesActions';
+import { updateFavorite, UpdateFavoriteOpts } from 'utils/favorite';
 
 import { UserGroup } from 'typings/user.typings';
 import { RootState } from 'typings/redux.typings';
