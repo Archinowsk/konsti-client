@@ -7,8 +7,7 @@ import styled from 'styled-components';
 import { timeFormatter } from 'utils/timeFormatter';
 import { updateFavorite, UpdateFavoriteOpts } from '../allGamesActions';
 import { Game } from 'typings/game.typings';
-import Favorite from '../../../../assets/favorite-24px.svg';
-import NotFavorite from '../../../../assets/favorite_border-24px.svg';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { UserGroup } from 'typings/user.typings';
 import { RootState } from 'typings/redux.typings';
@@ -100,14 +99,14 @@ export const AllGamesList: FC<Props> = (props: Props): ReactElement => {
               <IconContainer
                 onClick={async () => await updateFavoriteHandler(game, 'del')}
               >
-                <Favorite />
+                <FontAwesomeIcon icon='heart' />
               </IconContainer>
             )}
             {!favorited && loggedIn && userGroup === 'user' && game && (
               <IconContainer
                 onClick={async () => await updateFavoriteHandler(game, 'add')}
               >
-                <NotFavorite />
+                <FontAwesomeIcon icon={['far', 'heart']} />
               </IconContainer>
             )}
             <Link to={`/games/${game.gameId}`}>{game.title}</Link>{' '}
@@ -136,7 +135,7 @@ export const AllGamesList: FC<Props> = (props: Props): ReactElement => {
 };
 
 const IconContainer = styled.span`
-  svg {
+  span {
     position: relative;
     top: 6px;
   }
