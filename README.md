@@ -1,3 +1,5 @@
+# Moved to https://github.com/ropekonsti/konsti
+
 # konsti-client
 
 ![Build](https://github.com/Archinowsk/konsti-client/workflows/Node%20CI/badge.svg)
